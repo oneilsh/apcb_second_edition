@@ -1,0 +1,23 @@
+bookdown::pdf_book:
+  template: latex/template.tex
+  pandoc_args: --top-level-division=chapter
+  includes:
+    in_header: latex/preamble.tex
+    before_body: latex/before_body.tex
+    after_body: latex/after_body.tex
+  latex_engine: xelatex
+  citation_package: biblatex
+  keep_tex: yes
+bookdown::epub_book: default
+bookdown::gitbook:
+  css: style.css
+  config:
+    sharing:
+      github: yes
+    toc:
+      before: |
+        <li><a href="./">Title of the Memoir</a></li>
+      after: |
+        <li><a href="https://github.com/GitHubID/Repository" target="blank">Published with bookdown</a></li>
+    download: "pdf"
+bookdown::word_document2: default

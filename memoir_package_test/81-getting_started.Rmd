@@ -1,0 +1,157 @@
+# Getting Started {#getting_started}
+
+_RStudio_ in version higher than 1 must be used.
+The **bookdown** package must be installed.
+
+For the creation of the PDF file, an installation of LaTeX is necessary.
+Under Windows, use [MikTex](https://miktex.org/download).
+The automatic download of missing packages (under Windows: MiKTeX settings, _Install missing packages=Yes_) is required.
+
+The main file is _index.Rmd_ which contains the description of the book in its header. 
+All other _.Rmd_ files in the folder contain a chapter: the order of chapters is that of the file names, sorted alphabetically.
+The _references.bib_ file contains the bibliography.
+
+The basic parameters of the project must be entered in the following files.
+
+
+## index.Rmd {#index}
+
+In the file header, enter the title of the work and the name of the author(s).
+
+    title: "Title of the Memoir" 
+    author: "Authors' names"
+    
+The date field may be kept to display the knitting date automatically.
+
+The `url` field contains the link to the GitHub pages of the project.
+It is used by `build_readme()`.
+
+The `github-repo` field contains the name of the repository of the project on GitHub.
+It is used to build a link to the repository from the menu bar of the GitBook version of the document.
+
+`description` is used by `build_readme()` and to build an HTML meta tag intended for search engines.
+`cover-image` is the name of an image file that will be used by social networks when the GitBook is shared.
+Twitter uses both to build a link to the project.
+If a PDF file is used as the PDF book cover (see below), a good idea is to export it to PNG and declare the PNG file in `cover-image`.
+
+The cover will be:
+
+- that of a book if the _maintitlepage_ statement is present. 
+The content of _epigraph_ and _credits_ will be written on page 2, with `images/logo.pdf`.
+- the first page of the PDF file declared in the _pdftitlepage_ instruction if it is present.
+
+Delete one of the two instructions in the header or both covers will be built, like in the gallery[^811].
+
+[^811]: https://ericmarcon.github.io/memoiR/gallery/memoir/MyBook.pdf
+
+The languages are specified according to the IETF language tags, such as "en-US".
+The main language (`lang`) is that of the structure of the document, translating elements such as "chapter".
+The other languages (`otherlangs`) can be used to switch language inside the PDF document to benefit from correct hyphenation.
+
+
+LaTeX specific options are:
+
+- _documentclass_: the document class is _memoir_ for this template.
+The options of the _memoir_ class are listed, not to be changed normally.
+- _papersize_: A4.
+- _fontsize_: 11pt.
+- _mainfont_ and _mathfont_ may replace the standard Computer Modern font.
+Tex Gyre fonts[^812] are a good choice.
+Both **tex-gyre** and **tex-gyre-math** LaTeX packages must be available.
+- _MemoirChapStyle_ and _MemoirPageStyle_ define the style of the document.
+Two styles are favored: _companion_ for documents with large outer margins containing notes, references and captions, or _daleif1_ and _Ruled_ for more classical layouts with small margins.
+- Margins: choose whether to use _largemargins_ or not, and adjust the other parameters according to that.
+Margin values should work well in most cases.
+- _toc-depth_: number of levels in the table of contents, 2 by default (i.e. `###` subsections are shown).
+- _secnum-depth_: The lowest numbered level in the document. Default is `section` (i.e. `##`). 
+Alternatives are `chapter` (i.e. `#`), `subsection` (i.e. `###`) or `subsubsection` (i.e. `####`).
+- _lot_ and _lof_ to add lists of tables and figures.
+
+[^812]: https://www.ctan.org/pkg/tex-gyre
+
+The name of the `.bib` file containing the references is in `bibliography`.
+It must be entered with its `.bib` extension.
+
+Bibliography is managed by BibLaTeX, whose options should not be changed except for the style.
+It is `verbose-inote` in documents with large margins to show the full citations in them.
+The citations are called as notes in the text.
+`authoryear-ibid` is suited for small-margin documents: the citations in the text contain author and year, and no footnote is used.
+The line `pageref=true` must be deleted or commented out if this style is used or an error may occur during LaTeX compilation.
+
+`longbibliography` formats the bibliography on two columns with a small font when it is set to `true`.
+If `false`, the regular font is used in a single column with small margins.
+
+The back cover appears in PDF outputs only.
+It is designed to to display abstract and keyword in several languages if necessary.
+The items of `backcover` are a list:
+
+- language: the name of the language, that will be passed to the LaTeX command `\selectlanguage{}`.
+- abstract: the content of the abstract.
+- keywords: a list of keywords.
+- abstractlabel and keywordlabel: the localized text to print before abstract and keywords.
+
+`backcoverfontsize` may be changed better fit the page size, according to the length of the abstracts.
+
+Some options should not be modified, including:
+
+- *fig_crop*: yes to allow cropping of excess margins of figures.
+GhostScript must be installed.
+If it is not, or in order to save computing time, the option may be set to `no`.
+
+Some may be added to the header:
+
+- _fontfamily_: [font](https://en.wikibooks.org/wiki/LaTeX/Fonts#Font_families), _lmodern_ by default.
+- _linestretch_: line spacing, 1 by default.
+
+
+For a student thesis, prepare the cover page with Word, Powerpoint or a DTP program and save it in PDF format, in A4 size.
+Only the first page of the PDF is used.
+
+
+## _bookdown.yml
+
+Enter the name of the Rmd file that will be the result of the merging of all chapters and choose if it should be destroyed after use.
+It will also be the name of the PDF and Word files.
+The default options will suit most uses.
+
+    book_filename: "MyBook"
+    delete_merged_file: true
+
+
+If the project is hosted on GitHub, indicate its address.
+Otherwise, delete the line.
+
+    repo: "https://github.com/GitHubID/Repository"
+
+The knitted files are stored in the output directory.
+`docs` is the good choice for GitHub Pages.
+
+
+## _output.yml
+
+Customize the table of contents in HTML format.
+
+    config:
+      toc:
+        before: |
+          <li><a href="./">Bookdown book</a></li>
+        after: |
+          <li><a href="https://github.com/GitHubID/Repository
+
+
+## Multilingual documents
+
+Languages are declared in the document header.
+
+The main language of the document (`lang`) changes the name of some elements, such as the table of contents.
+To use other languages in the text, they must be declared in `otherlangs`.
+
+Changing the language has no effect in HTML, but changes hyphenation in PDF output.
+
+The language change in basic markdown format, 
+```
+::: {lang=en-US}
+```
+is not supported by R Markdown.
+See the correct syntax in section \@ref(sec:languages).
+

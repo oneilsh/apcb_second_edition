@@ -1,0 +1,95 @@
+# (PART\*) Part 0: Custom Bookdown Template for APCB v2.0 {-}
+
+This section provides some formatting examples. See comments in the source files for details.
+
+# Algorithms and Data Structures
+
+Having learned so many programming concepts--variables and the data to which they refer, functions, loops, and so on--it would be a shame not to talk about some of the surprising and elegant methods they enable. Computer science students spend years learning about these topics, and the themes in this chapter underlie much of bioinformatics.
+
+We’ll start with algorithms, which according to a classic book on the topic--*Introduction to Algorithms* by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein--are:
+
+> any well-defined computational procedure that takes some value, or set of values, as input and produces some value, or set of values, as output.
+
+With such a broad definition, all of the Python coding we’ve done could accurately be categorized as practice in algorithms. The word "algorithm," by the way, derives from the name of the eighth-century Persian mathematician al-Khwārizmī, who developed systematic approaches for solving equations (among other accomplishments). Although most functioning code may be characterized as an algorithm, algorithms usually involve more than just collating data and are paired with well-defined *problems*, providing a specification for what valid inputs are and what the corresponding outputs should be. Some examples of problems include:
+
+
+* Given a list of $n$ numbers in arbitrary order, return it or a copy of it in sorted order. (The "sorting" problem.)
+* Given a list of $n$ numbers in sorted order and a query number `q`, return `True` if `q` is present in the list and `False` if it is not. (The "searching" problem.)
+* Given two strings of $m$ and $n$, line them up against each other (inserting dashes where necessary to make them the same length) to maximize a score based on the character matches. (The "string alignment" problem.)
+
+<div class="fig center" id="figId1" style="width: 50%">
+  <img src="images/chapter_demo/II.13_1_string_alignment.png" />
+  <p class="caption">This is a caption. Clearly, some problems, like the string alignment problem, are of special interest for life scientists. Others, like sorting and searching, are ubiquitous. No matter who cares about the problem, a good algorithm for solving it should do so efficiently.</p>
+</div>
+
+Link to the [fig](#figId1)
+
+
+
+
+
+
+
+
+<!-- See the source code for this page for actual usage of the described formatting :) -->
+
+
+<!-- # Section Headers and Parts {#section-headers} -->
+
+<!-- "Part" headers can be included by adding some special syntax; in the below `(PART\*)` is used to indicate that the header is a Part-header for styling, and `{-}` prevents it from being numbered.  -->
+
+<!-- ``` -->
+<!-- # (PART\*) Part 1: The Unix/Linux Command-Line {-} -->
+<!-- ``` -->
+
+<!-- Section Headers can be created using standard markdown syntax; section headers are automatically linkable but can be given a friendlier ID by including a `#theid` in the `{}` metadata; using `-` in the same metadata makes the sections unnumbered: -->
+
+<!-- #### Level 4 Header Default -->
+
+<!-- #### Level 4 Header Unnumbered {-} -->
+
+<!-- ### Level 4 Header, Unnumbered + Custom ID {- #custom-id-example} -->
+
+<!-- Code for the above headers: -->
+
+<!-- ``` -->
+<!-- ### Level 3 Header Default -->
+
+<!-- #### Level 4 Header Unnumbered {-} -->
+
+<!-- #### Level 4 Header, Unnumbered + Custom ID {- #custom-id-example} -->
+<!-- ``` -->
+
+<!-- <div class="callout-box"> -->
+<!-- #### Exercises {-} -->
+
+<!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a interdum tortor. Sed in neque vestibulum, placerat velit vel, eleifend tellus. Mauris vel neque ac leo fermentum condimentum. Aenean ipsum orci, vestibulum quis auctor at, lacinia vitae arcu. Integer non venenatis urna. Nulla at elementum nibh. Quisque ut ipsum ornare, consectetur tellus at, ullamcorper urna. Fusce at pharetra sapien. -->
+
+<!-- 1. Item 1 -->
+<!-- 2. Item 2 -->
+<!--     <pre class="language-r line-numbers linkable-line-numbers" id="linktarget" data-start="1" data-line="2,3,5,7-9"><code> -->
+<!--     x <- function(a, b) { -->
+<!--       return(a+b) -->
+<!--     } -->
+
+<!--     rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x()  -->
+<!--     line 6 -->
+<!--     line 7 -->
+<!--     line 8 -->
+<!--     line 9 -->
+<!--     line 10 -->
+<!--     </code></pre> -->
+<!-- 3. Item 3 -->
+
+<!-- <pre class="line-numbers" data-start=4><code class="language-txt"> -->
+<!-- This is just some text. -->
+
+<!-- Nothing to see here, move along, move along. -->
+<!-- </code></pre> -->
+
+<!-- Aliquam dui purus, convallis ut suscipit vel, scelerisque id mi. Quisque arcu odio, pretium quis risus sed, tempor tristique ipsum. Suspendisse potenti. Quisque est turpis, feugiat quis convallis sit amet, convallis sed ex. Aenean ultrices sapien et augue pulvinar egestas eget vitae ante. Pellentesque bibendum molestie metus, vitae congue elit commodo et. Fusce consequat ac ante eget egestas. Sed ullamcorper augue ut felis convallis, at pharetra dolor blandit. Aenean lacus metus, scelerisque sit amet metus et, dapibus laoreet ipsum. Phasellus euismod egestas consectetur. Aliquam et condimentum nunc. -->
+<!-- </div> -->
+
+<!-- We can then create links to these anchors with `[some text](#anchor-id)` syntax. For example, [here](#custom-id-example-2) is a link to the last of the headers above created with `[here](#custom-id-example-2)`. These links can be used across chapters or parts.  -->
+
+

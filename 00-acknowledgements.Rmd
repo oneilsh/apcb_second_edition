@@ -1,0 +1,3 @@
+# Acknowledgements {-}
+
+I’d like to thank the Oregon State University Press, the OSU Library, OSU Ecampus, and the Center for Genome Research and Biocomputing at OSU for their support in the production of this work–in particular, Brett Tyler, Tom Booth, Faye Chadwell, Dianna Fisher, and Mark Kindred from those departments. I am grateful to all those who contributed feedback including Matthew Peterson, Kevin Weitemier, Andi Stephens, Kelly Stratton, Jason Williams, John Gamble, Kasim Alomari, Joshua Petitmermet, and Katie Carter. Finally, I especially thank Gabriel Higginbotham for his heroic work in typesetting, and to Stacey Wagner for her comprehensive and insightful comments.

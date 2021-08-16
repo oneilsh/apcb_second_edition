@@ -1,32 +1,71 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
-date: "`r Sys.Date()`"
+title: "A Primer for Computational Biology (2nd Edition)"
+author: "Shawn T. O'Neil, Matthew Peterson, Leslie Coonrod"
+#date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
-documentclass: book
+documentclass: memoir
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+#github-repo: rstudio/bookdown-demo
+#description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 
-# Prerequisites
+# Preface {-}
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+It has become almost cliché to state that contemporary life scientists work with a staggering amount and variety of data. This fact makes it no less true: the advent of high-throughput sequencing alone has forced biologists to routinely aggregate multi-gigabyte data sets and compare the results against multi-terabyte databases. The good news is that work of this kind is within the reach of anyone possessing the right computational skills.
 
-The **bookdown** package can be installed from CRAN or Github:
+The purpose of this book is perhaps best illustrated by a fictional, but not unreasonable, scenario. Suppose I am a life scientist (undergraduate or graduate research assistant, postdoc, or faculty) with limited but basic computational skills. I’ve identified a recently developed data collection method—perhaps a new sequencing technology—that promises to provide unique insight into my system of study. After considerable field and lab work, the data are returned as a dozen files a few gigabytes in total size.
 
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
+Knowing this data set is too large for any web-based tool like those hosted by the National Center for Biotechnology Information (NCBI), I head to my local sequencing center, which conveniently hosts a copy of the latest graphical suite for bioinformatics analysis. After clicking through the menus and panes, searching the toolbox window, and looking at the help manual, I come to realize this software suite cannot process this newly generated data. Because the software is governed by an expensive license agreement, I send an email to the company and receive a prompt reply. It seems the development team is working on a feature for the type of analysis I want, but they don’t expect it to be ready until next year’s release.
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+After a quick online search, I find that no other commercial software supports my data, either. But I stumble upon a recent paper in a major bioinformatics journal describing not only a novel statistical methodology appropriate for the data, but also software available for download! Sadly, the software is designed for use on the Linux command line, with which I’m not familiar.
 
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+Realizing my quandary, I head to the local computing guru in the next lab over and explain the situation. Enthusiastically, she invites me to sit with her and take a look at the data. After uploading the data to the remote machine she regularly works on, she opens a hacker’s-style terminal interface, a black background with light gray text occasionally dotted with color. Without even installing the bioinformatics software, she begins giving me an overview of the data in seconds. “Very nice! Looks like you’ve got about 600 million sequences here . . . pretty good-quality scores, too.” After a few more keystrokes, she says, “And it looks like the library prep worked well; about 94% of these begin with the expected sequence bases. The others are probably error, but that’s normal.”
+
+Still working in the terminal, she proceeds to download and install the software mentioned in the bioinformatics paper. Typing commands and reading outputs that look to be some sort of hybrid language of English and whatever the computer’s native language is, she appears to be communicating directly with the machine, having a conversation even. Things like `./configure --prefix=$HOME/local` and `make install` flash upon the screen. Within a few more minutes, the software is ready to use, and she sets it to work on the data files after a quick check of its documentation.
+
+“I’m guessing this will take at least a half hour or so to run. Want to go get some coffee? I could use a break anyway.” As we walk to the cafe, I tell her about the commercial software that couldn’t process the data. “Oh yeah, those packages are usually behind the times because they have so many features to cover and the technology advances so quickly. I do use them for routine things, but even then they don’t always publish their methods, so it’s difficult to understand exactly what’s going on.”
+
+“But aren’t the graphical packages easier to use?” I ask. “Sure,” she replies, “sometimes. They’re not as flexible as they look. I’ve written graphical versions of my own software before, but it’s time consuming and more difficult to update later. Besides, it’s easier for me to write down what commands I ran to get an answer in my lab notebook, which is digital anyway these days, rather than grabbing endless screenshots of a graphical interface.”
+
+When we get back to her office, she opens the results file, which shows up in the same gray-on-black typewriter font in nicely formatted rows and columns of numbers and identifiers. I could easily imagine importing the results into a spreadsheet, though she mentions there are about 6.1 million rows of output data.
+
+“Well, here it is! The p values in this last column will tell you which results are the most important,” she says as she sorts the file on that column (in mere seconds) to reveal the top few records with the lowest p values. Recalling that the significant results should theoretically correlate to the GC content of the sequences in certain positions, I ask if it’s possible to test for that. “Yes, it’s definitely possible,” she answers. “Well, extracting just the most significant sequences will be easy given this table. But then I’ll have to write a short program, probably in Python, which I just started learning, to compute the aggregate GC content of those sequences on a position-by-position basis. From there it won’t be hard to feed the results into an R script to test for differences in each group compared to all the others. It should only take a few hours, but I’m a bit busy this week. I’ll see what I can do by next Friday, but you’ll owe me more than just coffee!”
+
+
+### A Few Goals {-}
+
+Bioinformatics and computational biology sit at the intersection of a variety of disciplines, including biology, computer science, mathematics, and statistics. Whereas bioinformatics is usually viewed as the development of novel analysis methods and software, computational biology focuses on applying those methods to data of scientific interest. Proficiency in both requires an understanding of the language of computing. This language is more like a collection of languages or dialects—of basic commands, analysis tools, Python, R, and so on.
+
+It may seem odd that so much of modern computational research is carried out on the comparatively ancient platform of a text-based interface. Graphical utilities have their place, particularly for data visualization, though even graphics are often best described in code. If we are to most efficiently communicate with computational machinery, we need to share with the machinery a language, or languages. We can share powerful dialects, complete with grammar, syntax, and even analogs for things like nouns (data) and verbs (commands and functions).
+
+This book aims to teach these basics of scientific computing: skills that even in fields such as computer science are often gained informally over a long period of time. This book is intended for readers who have passing familiarity with computing (for example, I assume the reader is familiar with concepts such as files and folders). While these concepts will likely be useful to researchers in many fields, I frame most of the discussion and examples in the analysis of biological data, and thus assume some basic biological knowledge, including concepts such as genes, genomes, and proteins. This book covers topics such as the usage of the command-line interface, installing and running bioinformatics software (without access to administrator privileges on the machine), basic analysis of data using built-in system tools, visualization of results, and introductory programming techniques in languages commonly used for bioinformatics.
+
+There are two related topics that are not covered in this book. First, I avoid topics related to “system administration,” which involves installing and managing operating systems and computer hardware, except where necessary. Second, I focus on computing for bioinformatics or computational biology, rather than bioinformatics itself. Thus this book largely avoids discussing the detailed mathematical models and algorithms underlying the software we will install and use. This is not to say that a good scientist can avoid mathematics, statistics, and algorithms—these are simply not the primary focus here.
+
+Bioinformatics and computational biology are quickly growing and highly interdisciplinary fields, bringing computational experts and biologists into close and frequent contact. To be successful, these collaborations require a shared vocabulary and understanding of diverse skill sets; some of this understanding and vocabulary are discussed here. Although most of this book focuses on the nuts and bolts of data analysis, some chapters focus more on topics specifically related to computer science and programming, giving newcomers a chance to understand and communicate with their computational colleagues as well as forming a basis for more advanced study in bioinformatics.
+
+### Organization {-}
+
+This book is divided into three parts, the first covering the Unix/Linux command-line environment, the second introducing programming with Python, and the third introducing programming in R. Though there are some dependencies between parts (for example, chapter 21, “[Bioinformatics Knick-knacks and Regular Expressions](),” forgoes duplication of topics from chapter 11, “[Patterns (Regular Expressions)]()”), readers sufficiently interested in only Python or only R should be able to start at those points. Nevertheless, the parts are given their order for a reason: command-line efficiency introduces “computational” thinking and problem solving, Python is a general-purpose language that emphasizes good coding practice, and R specializes in certain types of analyses but is trickier to work with. Understanding these three general topics constitutes a solid basis for computational biologists in the coming decade or more.
+
+The text within each part follows, more or less, a Shakespearean plot, with the apex occurring somewhere in the middle (thus it is best to follow chapters within parts in order). For Part I, this apex occurs in chapter 6, “[Installing (Bioinformatics) Software](),” wherein we learn to both install and use some bioinformatics software, as well as collect the procedure into a reusable pipeline. In Part II, chapter 23, “[Objects and Classes](),” describes an involved custom analysis of a file in variant call format (VCF) using some principles in object-oriented design. Finally, the apex in Part III occurs in chapter 33, “[Split, Apply, Combine](),” which describes some powerful data processing techniques applied to a multifactor gene expression analysis. Following each apex are additional, more advanced topics that shouldn’t be overlooked. The second half of Part I covers the powerful paradigm of data pipelines and a variety of important command-line analysis tools such as awk and sed. Part II covers some topics related to software packages and concludes with an introduction to algorithms and data structures. Finally, Part III follows its apex with handy functions for manipulating and plotting complex data sets.
+
+Finally, the text includes an extensive number of examples. To get a proper feel for the concepts, it is highly recommended that you execute the commands and write the code for yourself, experimenting and trying variations as you feel necessary. It is difficult for even the sharpest of minds to absorb material of this nature by reading alone.
+
+### Availability {-}
+
+This book is available both as an open-access online resource as well as in print. The open-access license used for the online version is the Creative Commons CC BY-NC-SA, or “Attribution-NonCommercial-ShareAlike” license. According to [https://creativecommons.org/licenses/](https://creativecommons.org/licenses/), “This license lets others remix, tweak, and build upon [the] work non-commercially, as long as they credit [the author] and license their new creations under the identical terms.”
+
+<div class="fig center" style="width: 30%">
+  <img src="images/index.Rmd.images/cc_license-300x106.png" />
+</div>
+
+The data files and many of the completed scripts mentioned within the text are available for direct download here: https://open.oregonstate.education/computationalbiology/back-matter/files/.
+
+For comments or to report errors, please feel free to contact oneilsh@gmail.com. Should any errata be needed post-publication, they will appear in this preface of the online version.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

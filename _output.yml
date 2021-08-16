@@ -1,16 +1,23 @@
 bookdown::gitbook:
-  css: style.css
+  css: ["style.css"]
+  includes:
+    in_header:
+      - "packages/prism/include.html"
+    #  - "packages/linebreak/in_header.html"
+    #after_body: "packages/linebreak/after_body.html"
   config:
     toc:
+      collapse: section
       before: |
-        <li><a href="./">A Minimal Book Example</a></li>
+        <li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
-    download: ["pdf", "epub"]
+    edit: https://github.com/oneilsh/apcb_bookdown/edit/master/%s
+    download: []
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
+  template: latex/template.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes

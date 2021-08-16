@@ -1,0 +1,2032 @@
+% Template adapted from https://github.com/jgm/pandoc-templates/blob/master/default.latex
+% To be used with XeLaTex in memoiR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode=true}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+% Right to left support
+
+
+\documentclass[
+  12pt,
+  american,
+  a4paper,
+  extrafontsizes,onecolumn,openright
+  ]{memoir}
+
+% Double (or whatever) spacing
+
+% Math
+\usepackage{amssymb, amsmath}
+% mathspec: arbitrary math fonts
+\usepackage{unicode-math}
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+% Fonts
+\usepackage{lmodern}
+\usepackage{fontspec}
+% Main font
+% Specific sanserif font
+% Specific monotype font
+% Specific math font
+% Chinese, Japanese, Corean fonts
+
+% Use upquote for straight quotes in verbatim environments
+\usepackage{upquote}
+% Use microtype
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+
+% Verbatim in note
+
+% Color links
+\usepackage{xcolor}
+
+% Strikeout
+
+% Necessary for code chunks
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+% Listings package
+
+% Tables
+\usepackage{longtable,booktabs,tabu}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+
+% Graphics
+\usepackage{graphicx,grffile}
+\graphicspath{{images/}}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+% Prevent overfull lines
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Number sections for memoir (secnumdepth counter is ignored)
+\setsecnumdepth{section}
+
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+% Include headers (preamble.tex) here
+% % Add LaTeX code into the preamble of the document here
+% \hyphenation{bio-di-ver-si-ty sap-lings}
+%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % memoiR dalef3 chapter style
+% % https://ctan.crest.fr/tex-archive/info/latex-samples/MemoirChapStyles/MemoirChapStyles.pdf
+% \usepackage{soul}
+% \definecolor{nicered}{rgb}{.647,.129,.149}
+% \makeatletter
+% \newlength\dlf@normtxtw
+% \setlength\dlf@normtxtw{\textwidth}
+% \def\myhelvetfont{\def\sfdefault{mdput}}
+% \newsavebox{\feline@chapter}
+% \newcommand\feline@chapter@marker[1][4cm]{%
+%   \sbox\feline@chapter{%
+%     \resizebox{!}{#1}{\fboxsep=1pt%
+% 	  \colorbox{nicered}{\color{white}\bfseries\sffamily\thechapter}%
+% 	}}%
+%   \rotatebox{90}{%
+%     \resizebox{%
+% 	  \heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}%
+% 	{!}{\scshape\so\@chapapp}}\quad%
+%   \raisebox{\depthof{\usebox{\feline@chapter}}}{\usebox{\feline@chapter}}%
+%  }
+% \newcommand\feline@chm[1][4cm]{%
+%   \sbox\feline@chapter{\feline@chapter@marker[#1]}%
+%   \makebox[0pt][l]{% aka \rlap
+%     \makebox[1cm][r]{\usebox\feline@chapter}%
+%   }}
+% \makechapterstyle{daleif1}{
+%   \renewcommand\chapnamefont{\normalfont\Large\scshape\raggedleft\so}
+%   \renewcommand\chaptitlefont{\normalfont\huge\bfseries\scshape\color{nicered}}
+%   \renewcommand\chapternamenum{}
+%   \renewcommand\printchaptername{}
+%   \renewcommand\printchapternum{\null\hfill\feline@chm[2.5cm]\par}
+%   \renewcommand\afterchapternum{\par\vskip\midchapskip}
+%   \renewcommand\printchaptertitle[1]{\chaptitlefont\raggedleft ##1\par}
+% }
+% \makeatother
+
+
+% \makeatletter
+% \def\thm@space@setup{%
+%   \thm@preskip=8pt plus 2pt minus 4pt
+%   \thm@postskip=\thm@preskip
+% }
+% \makeatother
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % This package takes care of setting up the preamble for the entire
+% % document.
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% %\NeedsTeXFormat{LaTeX2e}
+% %\ProvidesPackage{mypreamble}
+%
+%
+% \setstocksize{25.2cm}{19.5cm}{*}
+% \settrimmedsize{24.6cm}{18.9cm}{*}
+% \settrims{0.318cm}{0.318cm}
+%
+% \setlxvchars
+% \settypeblocksize{*}{1.2\lxvchars}{*}
+%
+% \setlrmargins{*}{*}{1.5}
+% \setulmarginsandblock{1in}{1in}{1.2}
+% \checkandfixthelayout
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %    PACKAGES TO LOAD
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \RequirePackage[T1]{fontenc}
+% \RequirePackage[style=numeric-comp,sortcites=true]{biblatex}
+% \RequirePackage{babel}
+% \RequirePackage{csquotes}
+% \RequirePackage[oldstylenums]{kpfonts}
+% \RequirePackage{microtype}
+% \RequirePackage{textcase}
+% \RequirePackage[inline]{enumitem}
+% \RequirePackage{xspace}
+% \RequirePackage{graphicx}
+% \RequirePackage{ifthen}
+% \RequirePackage{amsmath}
+% \RequirePackage{amsthm}
+% \RequirePackage{pifont}
+% \RequirePackage{array}
+% \RequirePackage{varioref}
+% \RequirePackage{lettrine}
+% \RequirePackage{lipsum}
+% \RequirePackage{relsize}
+% \RequirePackage{svn-multi}
+% \RequirePackage{siunitx}
+% \RequirePackage[bottom]{footmisc}
+% \RequirePackage{xstring}
+% \RequirePackage{multirow}
+% \RequirePackage{datetime}
+% \RequirePackage{etoolbox}
+% \RequirePackage{ragged2e}
+% \RequirePackage{nicefrac}
+% \RequirePackage{listings}
+% \RequirePackage[rgb,hyperref]{xcolor}
+% % Load hyperref package last
+% \RequirePackage{hyperref}
+%
+%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %    PACKAGE SETTINGS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% % BibLaTeX
+% \bibliography{bibliography} % Specify file
+% \defbibheading{bibliography}{\bibsection} % Fix header problem
+%
+% % Hyperref: settings
+% \hypersetup{pdfborder={0 0 0}, colorlinks=false}
+%
+% % Memoir
+% \abstractnum   % Format heading as chapter
+% \abstractintoc % Include "Abstract" in ToC
+% \newsubfloat{figure} % Creates commands for subfigures
+% \newsubfloat{table} % Creates commands for subtables
+%
+% % Listings
+% % Register listings
+% \begingroup%
+% \makeatletter%
+% \let\newcounter\@gobble\let\setcounter\@gobbletwo%
+%   \globaldefs\@ne \let\c@loldepth\@ne%
+%   \newlistof{listings}{lol}{\lstlistlistingname}%
+%   \newlistentry{lstlisting}{lol}{0}%
+% \endgroup%
+% \makeatletter%
+% \g@addto@macro\insertchapterspace%
+%   {\addtocontents{lol}{\protect\addvspace{10pt}}}%
+% \makeatother%
+% \makeatletter%
+% \AtBeginDocument{\addtocontents{lol}{\protect\addvspace{10\p@}}}%
+% \makeatother
+%
+% % Tell xspace to add space before hyphen
+% \xspaceremoveexception{-}
+% \makeatletter
+% \renewcommand*\@xspace@hook{%
+%   \ifx\@let@token-%
+%     \expandafter\@xspace@dash@i
+%   \fi
+% }
+% \def\@xspace@dash@i-{\futurelet\@let@token\@xspace@dash@ii}
+% \def\@xspace@dash@ii{%
+%   \ifx\@let@token-%
+%   \else
+%     \unskip
+%   \fi
+%   -%
+% }
+% \makeatother
+%
+%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %    NEW COMMANDS AND ENVIRONMENTS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% % Commands for producing theorems
+% \newtheoremstyle{mystyle}%
+%   {\baselineskip}% Space above
+%   {\baselineskip}% Space below
+%   {}% Body font
+%   {}% Indent amount
+%   {\scshape}% Theorem head font
+%   { -- }% Punctuation after theorem head
+%   {0pt}% Space after theorem head
+%   {}% Theorem head spec (empty means normal)
+% \theoremstyle{mystyle}
+% \newtheorem{theorem}{Theorem}[chapter]
+% \newtheorem{definition}{Definition}[chapter]
+%
+% % Commands for producing superscripts and subscripts in text
+% \newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+% \newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+%
+% % Style-changing commands in text (may also do more stuff)
+% \newcommand{\keyword}[1]{%
+%   \emph{#1}%
+% }
+%
+% % Environment for including notes within the text
+% \newenvironment{notes}
+% {%
+%   \vspace{0.25\baselineskip plus 0.1\baselineskip minus 0.1\baselineskip}%
+%
+%   \footnotesize\itshape%
+% }
+% {%
+%   \vspace{0.25\baselineskip plus 0.1\baselineskip minus 0.1\baselineskip}%
+% }
+%
+% % Text strings not set in small caps
+% \newcommand{\etal}{et~al.\xspace}
+% \newcommand{\eg}{e.g.\xspace}
+% \newcommand{\ie}{i.e.\xspace}
+% \newcommand{\etc}{etc.\xspace}
+% \newcommand{\st}{\superscript{st}\xspace}
+% \newcommand{\nd}{\superscript{nd}\xspace}
+% \newcommand{\rd}{\superscript{rd}\xspace}
+% \newcommand{\msc}{M.Sc.\xspace}
+% \renewcommand{\th}{\superscript{th}\xspace}
+% \newcommand{\phd}{PhD\xspace}
+% \newcommand{\geforce}{GeForce\xspace}
+% \newcommand{\directCompute}{DirectCompute\xspace}
+% \newcommand{\obsidian}{Obsidian\xspace}
+% \newcommand{\cudaGlobal}{\dataElement{\_\_global\_\_}\xspace}
+% \newcommand{\cudaDevice}{\dataElement{\_\_device\_\_}\xspace}
+% \newcommand{\cudaHost}{\dataElement{\_\_host\_\_}\xspace}
+% \newcommand{\cudaShared}{\dataElement{\_\_shared\_\_}\xspace}
+% \newcommand{\cudaThreadfence}{\dataElement{\_\_threadfence()}\xspace}
+% \newcommand{\forsyde}{ForSyDe\xspace}
+%
+% % Text strings set in small caps (these should not be used in headings or
+% % captions which will be used in the ToC)
+% \newcommand{\nvidia}{\setInSC{NVIDIA}\xspace}
+% \newcommand{\Nvidia}{\setInSCCF{NVIDIA}\xspace}
+% \newcommand{\cuda}{\setInSC{CUDA}\xspace}
+% \newcommand{\Cuda}{\setInSCCF{CUDA}\xspace}
+% \newcommand{\cpu}{\setInSC{CPU}\xspace}
+% \newcommand{\cpus}{\setInSC{CPU}s\xspace}
+% \newcommand{\gpu}{\setInSC{GPU}\xspace}
+% \newcommand{\Gpu}{\setInSCCF{GPU}\xspace}
+% \newcommand{\gpus}{\setInSC{GPU}s\xspace}
+% \newcommand{\Gpus}{\setInSCCF{GPU}s\xspace}
+% \newcommand{\gpgpu}{\setInSC{GPGPU}\xspace}
+% \newcommand{\gpgpus}{\setInSC{GPGPU}s\xspace}
+% \newcommand{\ieee}{\setInSC{IEEE}\xspace}
+% \newcommand{\Ieee}{\setInSCCF{IEEE}\xspace}
+% \newcommand{\sigplan}{\setInSC{SIGPLAN}\xspace}
+% \newcommand{\Sigplan}{\setInSCCF{SIGPLAN}\xspace}
+% \newcommand{\acm}{\setInSC{ACM}\xspace}
+% \newcommand{\Acm}{\setInSCCF{ACM}\xspace}
+% \newcommand{\vhdl}{\setInSC{VHDL}\xspace}
+% \newcommand{\Vhdl}{\setInSCCF{VHDL}\xspace}
+% \newcommand{\simd}{\setInSC{SIMD}\xspace}
+% \newcommand{\simt}{\setInSC{SIMT}\xspace}
+% \newcommand{\dram}{\setInSC{DRAM}\xspace}
+% \newcommand{\sm}{\setInSC{SM}\xspace}
+% \newcommand{\sms}{\setInSC{SM}s\xspace}
+% \newcommand{\spSC}{\setInSC{SP}\xspace} % \sp was already defined
+% \newcommand{\sps}{\setInSC{SP}s\xspace}
+% \newcommand{\sfu}{\setInSC{SFU}\xspace}
+% \newcommand{\sfus}{\setInSC{SFU}s\xspace}
+% \newcommand{\pj}{pJ\xspace}
+% \newcommand{\kb}{\setInSC{KB}\xspace}
+% \newcommand{\mb}{\setInSC{MB}\xspace}
+% \newcommand{\gb}{\setInSC{GB}\xspace}
+% \newcommand{\mhz}{\setInSC{MHz}\xspace}
+% \newcommand{\ghz}{\setInSC{GHz}\xspace}
+% \newcommand{\spfp}{\setInSC{SPFP}\xspace}
+% \newcommand{\dpfp}{\setInSC{DPFP}\xspace}
+% \newcommand{\ilp}{\setInSC{ILP}\xspace}
+% \newcommand{\xml}{\setInSC{XML}\xspace}
+% \newcommand{\kth}{\setInSC{KTH}\xspace}
+% \newcommand{\ict}{\setInSC{ICT}\xspace}
+% \newcommand{\es}{\setInSC{ES}\xspace}
+% \newcommand{\cSC}{C\xspace} % \c was already defined
+% \newcommand{\cpp}{C++\xspace}
+% \newcommand{\systemc}{SystemC\xspace}
+% \newcommand{\opencl}{Open\setInSC{CL}\xspace}
+% \newcommand{\directx}{DirectX\xspace}
+% \newcommand{\openmp}{Open\setInSC{MP}\xspace}
+% \newcommand{\skepu}{Ske\setInSC{PU}\xspace}
+% \newcommand{\starpu}{Star\setInSC{PU}\xspace}
+% \newcommand{\graphml}{Graph\setInSC{ML}\xspace}
+% \newcommand{\xaarjet}{XaarJet~\setInSC{AB}\xspace}
+% \newcommand{\dph}{\setInSC{DPH}\xspace}
+% \newcommand{\bfs}{\setInSC{BFS}\xspace}
+% \newcommand{\dfs}{\setInSC{DFS}\xspace}
+% \newcommand{\fifo}{\setInSC{FIFO}\xspace}
+% \newcommand{\ticpp}{Tiny\setInSC{XML}++\xspace}
+% \newcommand{\id}{\setInSC{ID}\xspace}
+% \newcommand{\ids}{\setInSC{ID}s\xspace}
+% \newcommand{\astSC}{\setInSC{AST}\xspace} % \ast was already defined
+% \newcommand{\fpu}{\setInSC{FPU}\xspace}
+% \newcommand{\fpus}{\setInSC{FPU}s\xspace}
+% \newcommand{\ram}{\setInSC{RAM}\xspace}
+% \newcommand{\api}{\setInSC{API}\xspace}
+% \newcommand{\sdk}{\setInSC{SDK}\xspace}
+% \newcommand{\dsl}{\setInSC{DSL}\xspace}
+% % Sets a string in small caps, but it is only set in small caps if the
+% % current font is roman or italics (where fake small caps are used) - otherwise
+% % the string is set in upper case
+% \makeatletter
+% \DeclareRobustCommand{\setInSC}[1]{%
+%   \ifx\f@shape\code@Roman
+%     \expandafter\textsc{\MakeTextLowercase{#1}}%
+%   \else
+%     \ifdim\fontdimen\@ne\font>\z@
+%       \begingroup
+%       \check@mathfonts
+%       \fontsize\sf@size\z@\selectfont
+%       \let\MakeTextLowercase\@firstofone
+%       \expandafter\MakeUppercase{#1}%
+%       \endgroup
+%     \else
+%       \expandafter\MakeTextUppercase{#1}%
+%     \fi
+%   \fi
+% }
+% \newcommand*{\code@Roman}{n}
+% \newcommand*{\code@Italics}{it}
+% \makeatother
+% % The next command performs the same as \setInSC, but will always capitalize the
+% % first letter ("Small Caps, Capitalize First"), and set the remainder in small
+% % caps
+% \DeclareRobustCommand{\setInSCCF}[1]{%
+%   \StrLeft{#1}{1}[\first]%
+%   \StrGobbleLeft{#1}{1}[\remainder]%
+%   \MakeTextUppercase{\first}\setInSC{\remainder}%
+% }
+%
+% % Command for converting a month number into corresponding month name
+% \newcommand{\monthName}[1]{%
+%   \ifcase #1%
+%   \or January%
+%   \or February%
+%   \or March%
+%   \or April%
+%   \or May%
+%   \or June%
+%   \or July%
+%   \or August%
+%   \or September%
+%   \or October%
+%   \or November%
+%   \or December%
+% \fi%
+% }
+%
+% % Other text strings
+% \newcommand{\thesisNumber}{TRITA-ICT-EX-2012:13}
+% \newcommand{\appModel}{%
+%   \ifnum\currentgrouptype = 6 %
+%     \ifnum\lastnodetype = 0 %
+%     \else
+%       \ifnum\lastnodetype = 7 %
+%       \else
+%         \relax
+%       \fi
+%     \fi
+%   \fi
+%   \ifmmode
+%     \mathcal{LSM}%
+%   \else
+%     $\mathcal{LSM}$\xspace%
+%   \fi
+% }
+% % Schedule Finding Methods
+% \newcommand{\sfmEp}{\textsc{sfm-ep}\xspace}
+% \newcommand{\sfmFps}{\textsc{sfm-fps}\xspace}
+% \newcommand{\sfmBps}{\textsc{sfm-bps}\xspace}
+% % When citing sources in figures and tables
+% \newcommand{\source}[2][]{%
+%   % #1 = prefix text (optional)
+%   % #2 = citation(s)
+%   \ifthenelse{\equal{#1}{}}{%
+%     Source: #2%
+%   }{%
+%     Source: #1 #2%
+%   }%
+% }
+% \newcommand{\sources}[2][]{%
+%   % #1 = prefix text (optional)
+%   % #2 = citation(s)
+%   \ifthenelse{\equal{#1}{}}{%
+%     Sources: #2%
+%   }{%
+%     Sources: #1 #2%
+%   }%
+% }
+%
+%
+% % Lists
+% % Lengths
+% \newlength{\listAllLeftMarginI}
+% \setlength{\listAllLeftMarginI}{2\parindent}
+% \newlength{\listItemizeLeftMarginI}
+% \setlength{\listItemizeLeftMarginI}{\listAllLeftMarginI}
+% \newlength{\listItemizeLeftMarginII}
+% \setlength{\listItemizeLeftMarginII}{\parindent}
+% \newlength{\listEnumerateLeftMarginI}
+% \setlength{\listEnumerateLeftMarginI}{\listAllLeftMarginI}
+% \newlength{\listEnumerateLeftMarginII}
+% \setlength{\listEnumerateLeftMarginII}{\parindent}
+% \addtolength{\listEnumerateLeftMarginII}{4pt}
+% \newlength{\listTopSep}
+% \setlength{\listTopSep}{0pt}
+% \newlength{\listParSep}
+% \setlength{\listParSep}{0pt}
+% \newlength{\listLabelSep}
+% \setlength{\listLabelSep}{1em}
+% \newlength{\listItemSep}
+% \setlength{\listItemSep}{0.5\baselineskip}
+% % Labels
+% \newcommand{\listItemizeLabelI}{\raisebox{0.1ex}{\tiny\ding{110}}}
+% \newcommand{\listItemizeLabelII}{$\diamond$}
+% \newcommand{\listEnumerateLabelI}{{\arabic*}.}
+% \newcommand{\listEnumerateRefI}{{\arabic*}}
+% \newcommand{\listEnumerateLabelII}{{\alph*}.}
+% \newcommand{\listEnumerateRefII}{{\alph*}}
+% \newcommand{\listInlineEnumerateLabel}{({\roman*})}
+% % Global list settings
+% \setlist{%
+%   noitemsep,
+%   topsep=\listTopSep,
+%   parsep=\listParSep,
+%   leftmargin=\listAllLeftMarginI,
+%   labelsep=\listLabelSep,
+% }
+% \setlist[itemize, 1]{%
+%   label=\listItemizeLabelI,
+% }
+% \setlist[itemize, 2]{%
+%   label=\listItemizeLabelII,
+%   leftmargin=\listItemizeLeftMarginII,
+% }
+% \setlist[enumerate, 1]{%
+%   label=\listEnumerateLabelI,
+%   ref=\listEnumerateRefI,
+% }
+% \setlist[enumerate, 2]{%
+%   label=\listEnumerateLabelII,
+%   ref=\listEnumerateRefII,
+%   leftmargin=\listEnumerateLeftMarginII,
+% }
+% \newenvironment{inlineEnumerate}
+% {%
+%   \begin{enumerate*}[%
+%       label=\listInlineEnumerateLabel,
+%     ]%
+% }
+% {%
+%   \end{enumerate*}
+% }
+%
+% % Timeline
+% \newlength{\timelineTopSkip}
+% \newlength{\timelineBottomSkip}
+% \newlength{\timelineItemWidth}
+% \newlength{\timelineDescWidth}
+% \setlength{\timelineTopSkip}{0.25\baselineskip}
+% \setlength{\timelineBottomSkip}{\timelineTopSkip}
+% \setlength{\timelineItemWidth}{6em}
+% \setlength{\timelineDescWidth}{\textwidth}
+% \addtolength{\timelineDescWidth}{-\timelineItemWidth}
+% \addtolength{\timelineDescWidth}{-1em}
+% \addtolength{\timelineDescWidth}{-3.5em}
+% \newenvironment{timeline}
+% {%
+%   \par\addvspace{\timelineTopSkip}%
+%   \hfill%
+%   \begin{tabular}{p{\timelineItemWidth}@{\quad}p{\timelineDescWidth}}%
+% }
+% {%
+%   \end{tabular}%
+%   \par\addvspace{\timelineBottomSkip}%
+% }
+% \newcommand{\milestone}[3]{%
+%   % #1 = Start week
+%   % #2 = End week (leave empty if this only spans one week)
+%   % #3 = Mile stone
+%   \ifthenelse{\equal{#2}{}}{%
+%     \raggedleft Week #1: & #3 \\
+%   }{%
+%     \raggedleft Weeks #1--#2: & #3 \\
+%   }
+% }
+%
+% % Objectives
+% \newenvironment{objectives}
+% {%
+%   \begin{enumerate}%
+% }
+% {%
+%   \end{enumerate}%
+% }
+% \newenvironment{subobjectives}
+% {%
+%   \begin{itemize}[label=\listEnumerateLabelII]%
+% }
+% {%
+%   \end{itemize}%
+% }
+%
+% % Challenges
+% \newenvironment{challenges}
+% {%
+%   \begin{itemize}[itemsep=\listItemSep]
+% }
+% {%
+%   \end{itemize}
+% }
+% \newenvironment{challenge_category}[1]
+%   % #1 = category
+% {%
+%   \item #1
+%     \begin{itemize}[itemsep=\listItemSep]
+% }
+% {%
+%     \end{itemize}
+% }
+% \newcommand{\priorityLevel}[1]{\textsc{#1}}
+% \newcommand{\challenge}[3]{%
+%   % #1 = problem
+%   % #2 = description
+%   % #3 = priority (Critical, High, Medium, Low)
+%   \item \textit{#1} (\priorityLevel{#3}) \\ #2
+% }
+%
+% % Command options
+% \newenvironment{componentOptions}
+% {%
+%   \begin{trivlist}
+% }
+% {%
+%   \end{trivlist}
+% }
+% \newcommand{\option}[2]{%
+%   \item[] \hspace{\parindent}{\ttfamily #1}
+%   \begin{itemize}
+%     \item[] #2
+%   \end{itemize}
+% }
+%
+% % List of Abbreviations
+% \newlength{\abbrItemWidth}
+% \newlength{\abbrDescWidth}
+% \setlength{\abbrItemWidth}{6em}
+% \setlength{\abbrDescWidth}{\textwidth}
+% \addtolength{\abbrDescWidth}{-\abbrItemWidth}
+% \addtolength{\abbrDescWidth}{-3em}
+% \newenvironment{abbreviations}
+% {%
+%   \begin{tabular}{p{\abbrItemWidth}p{\abbrDescWidth}}
+% }
+% {%
+%   \end{tabular}
+% }
+% \newcommand{\abbrItem}[2]{%
+%   % #1 = Abbreviation
+%   % #2 = Description
+%   #1 & #2 \\
+% }
+%
+%
+%
+% % Texts
+% \newenvironment{introduction}
+% {%
+%   \begin{minipage}{\textwidth}%
+%    \itshape%
+% }
+% {%
+%   \end{minipage}%
+%   \par\addvspace{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}%
+% }
+% \newenvironment{warning}
+% {%
+%   {\warningColor\scshape Warning!}
+%   \par\addvspace{0.5\baselineskip}
+%   \begin{minipage}{\textwidth}%
+%    \itshape%
+% }
+% {%
+%   \end{minipage}%
+%   \par\addvspace{2\baselineskip}%
+% }
+%
+% % TODO command (for drafting only)
+% \newcommand{\todo}[1]{{\todoColor\textsc{todo}: \textit{#1}}}
+%
+%
+%
+% % Referencing
+% % Path "varioref" to remove "... on the facing page", "... on the
+% % next page", etc., and only use "... on page XX" when necessary.
+% \makeatletter
+% \AtBeginDocument{%
+%   \patchcmd{\NR@@vpageref}{\reftextfacebefore}{\unskip}%
+%            {\typeout{*** SUCCESS ***}}{\typeout{*** FAIL ***}}%
+%   \patchcmd{\NR@@vpageref}{\reftextfaceafter}{\unskip}%
+%            {\typeout{*** SUCCESS ***}}{\typeout{*** FAIL ***}}%
+%   \patchcmd{\NR@@vpageref}{\reftextbefore}{\unskip}%
+%            {\typeout{*** SUCCESS ***}}{\typeout{*** FAIL ***}}%
+%   \patchcmd{\NR@@vpageref}{\reftextbefore}{\unskip}%
+%            {\typeout{*** SUCCESS ***}}{\typeout{*** FAIL ***}}%
+%   \patchcmd{\NR@@vpageref}{\reftextafter}{\unskip}%
+%            {\typeout{*** SUCCESS ***}}{\typeout{*** FAIL ***}}%
+%   \patchcmd{\NR@@vpageref}{\reftextafter}{\unskip}%
+%            {\typeout{*** SUCCESS ***}}{\typeout{*** FAIL ***}}%
+% }
+% \makeatother
+% % Figures
+% \newcommand{\labelFigure}[1]{%
+%   % #1 = label
+%   \label{fig:#1}%
+% }
+% \newcommand{\refFigure}[1]{%
+%   % #1 = reference
+%   \figurename~\vref{fig:#1}\xspace%
+% }
+% \newcommand{\refFigureOnly}[1]{%
+%   % #1 = reference
+%   \figurename~\ref{fig:#1}\xspace%
+% }
+% \newcommand{\refSubfigureOnly}[1]{%
+%   % #1 = reference
+%   \subcaptionref{fig:#1}\xspace%
+% }
+% % Tables
+% \newcommand{\labelTable}[1]{%
+%   % #1 = label
+%   \label{tab:#1}%
+% }
+% \newcommand{\refTable}[1]{%
+%   % #1 = reference
+%   \tablename~\vref{tab:#1}\xspace%
+% }
+% \newcommand{\refTableOnly}[1]{%
+%   % #1 = reference
+%   \tablename~\ref{tab:#1}\xspace%
+% }
+% \newcommand{\refSubtableOnly}[1]{%
+%   % #1 = reference
+%   \subcaptionref{tab:#1}\xspace%
+% }
+% % Code
+% \newcommand{\refListing}[1]{%
+%   % #1 = reference
+%   \lstlistingname~\vref{lst:#1}\xspace%
+% }
+% \newcommand{\refListingOnly}[1]{%
+%   % #1 = reference
+%   \lstlistingname~\ref{lst:#1}\xspace%
+% }
+% % Lists
+% \newcommand{\labelList}[1]{%
+%   % #1 = label
+%   \label{list:#1}%
+% }
+% \newcommand{\refList}[1]{%
+%   % #1 = reference
+%   List~\vref{list:#1}\xspace%
+% }
+% \newcommand{\refListOnly}[1]{%
+%   % #1 = reference
+%   List~\ref{list:#1}\xspace%
+% }
+% % List items
+% \newcommand{\labelListItem}[1]{%
+%   % #1 = label
+%   \label{list:item:#1}%
+% }
+% \newcommand{\refListItem}[1]{%
+%   % #1 = reference
+%   \vref{list:item:#1}\xspace%
+% }
+% \newcommand{\refListItemOnly}[1]{%
+%   % #1 = reference
+%   \ref{list:item:#1}\xspace%
+% }
+% % Parts
+% \newcommand{\labelPart}[1]{%
+%   % #1 = label
+%   \label{chap:#1}%
+% }
+% \newcommand{\refPart}[1]{%
+%   % #1 = reference
+%   Part~\vref{chap:#1}\xspace%
+% }
+% \newcommand{\refPartOnly}[1]{% Doesn't include the page referencing
+%   % #1 = reference
+%   Part~\ref{chap:#1}\xspace%
+% }
+% % Chapters
+% \newcommand{\labelChapter}[1]{%
+%   % #1 = label
+%   \label{chap:#1}%
+% }
+% \newcommand{\refChapter}[1]{%
+%   % #1 = reference
+%   Chapter~\vref{chap:#1}\xspace%
+% }
+% \newcommand{\refChapterOnly}[1]{% Doesn't include the page referencing
+%   % #1 = reference
+%   Chapter~\ref{chap:#1}\xspace%
+% }
+% % Sections
+% \newcommand{\labelSection}[1]{%
+%   % #1 = label
+%   \label{sec:#1}%
+% }
+% \newcommand{\refSection}[1]{%
+%   % #1 = reference
+%   Section~\vref{sec:#1}\xspace%
+% }
+% \newcommand{\refSectionOnly}[1]{% Doesn't include the page referencing
+%   % #1 = reference
+%   Section~\ref{sec:#1}\xspace%
+% }
+% % Appendices
+% \newcommand{\labelAppendix}[1]{%
+%   % #1 = label
+%   \label{appen:#1}%
+% }
+% \newcommand{\refAppendix}[1]{%
+%   % #1 = reference
+%   Appendix~\vref{appen:#1}\xspace%
+% }
+% \newcommand{\refAppendixOnly}[1]{% Doesn't include the page referencing
+%   % #1 = reference
+%   Appendix~\ref{appen:#1}\xspace%
+% }
+%
+% % Command for reverting to normal number style
+% \newcommand\normalNumberStyle{%
+%   \renewcommand{\rmdefault}{jkp}%
+%   \renewcommand{\sfdefault}{jkpss}%
+%   \normalfont
+% }
+%
+% % Command for getting current time stamp
+% \newcommand{\getTimestamp}{%
+%   \dashdate\today~\currenttime%
+% }
+%
+% % Command for writing out email addresses
+% \newcommand{\email}[1]{\url{#1}}
+%
+%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %    DOCUMENT CUSTOMIZATIONS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% % Set left and right margins to equal ratio
+% %%\setlrmargins{*}{*}{1}
+% %%\checkandfixthelayout
+%
+% % Rules
+% \newcommand{\thinRule}{\rule{\textwidth}{0.25pt}}
+%
+% % Customize heading appearances
+% % Define styles
+% \newcommand{\partSize}{\Huge}
+% \newcommand{\partStyle}{\lsstyle\scshape}
+% \newcommand{\chapterSize}{\Huge}
+% \newcommand{\chapterStyle}{\lsstyle\scshape}
+% \newcommand{\chapterAfter}{\vspace*{3ex}\thinRule}
+% \newcommand{\sectionSize}{\large}
+% \newcommand{\sectionStyle}{\lsstyle\scshape\MakeTextLowercase}
+% \newcommand{\subsectionSize}{\normalfont}
+% \newcommand{\subsectionStyle}{\itshape}
+% \newcommand{\subsubsectionSize}{\normalfont}
+% \newcommand{\subsubsectionStyle}{}
+% \newlength{\partNumSizePt}
+% \setlength{\partNumSizePt}{60pt}
+% \newlength{\chapterNumSizePt}
+% \setlength{\chapterNumSizePt}{60pt}
+% \newcommand{\partNumSize}{%
+%   \fontsize{\partNumSizePt}{1.2\partNumSizePt}\selectfont%
+% }
+% \newcommand{\partNumStyle}{\partChapterNumColor}
+% \newcommand{\chapterNumSize}{%
+%   \fontsize{\chapterNumSizePt}{1.2\chapterNumSizePt}\selectfont%
+% }
+% \newcommand{\chapterNumStyle}{\partChapterNumColor}
+% % Customize parts
+% \renewcommand{\partnamefont}{\partSize\partStyle}
+% \renewcommand{\partnumfont}{\partNumSize\partNumStyle}
+% \renewcommand{\printpartname}{}
+% \renewcommand{\printparttitle}[1]{%
+%   \normalfont\normalcolor\partnamefont #1
+% }
+% % Customize chapters
+% \makeatletter
+% %\setlength{\beforechapskip}{30pt}
+% \setlength{\beforechapskip}{-30pt}
+% \renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
+% \setlength{\afterchapskip}{3ex}
+% \setlength{\midchapskip}{3ex}
+% \renewcommand*{\chapnamefont}{%
+%   \Large\flushright\chapterStyle\partChapterNumColor%
+% }
+% \renewcommand*{\chapnumfont}{\chapterNumSize\chapterNumStyle}
+% \renewcommand*{\chaptitlefont}{%
+%   \normalfont\flushleft\normalcolor\chapterSize\chapterStyle%
+% }
+% \renewcommand*{\printchaptername}{%
+%   \chapnamefont\MakeTextLowercase{\@chapapp}%
+% }
+% \renewcommand*{\chapternamenum}{\quad}
+% \renewcommand*{\printchapternum}{%
+%   \chapnumfont\textls[-75]{\classicstylenums{\thechapter}}%
+% }
+% \renewcommand*{\printchaptertitle}[1]{%
+%   \chaptitlefont #1
+%   \chapterAfter
+% }
+% \makeatother
+% % Customize sections and subsections
+% \setsecnumformat{\csname my#1\endcsname\quad}
+% \setsecheadstyle{\sectionSize\sectionStyle}
+% \newcommand{\mysection}{{\thesection}}
+% \setsubsecheadstyle{\subsectionSize\subsectionStyle}
+% \newcommand{\mysubsection}{{\normalfont\subsectionSize\thesubsection}}
+% \setsubsubsecheadstyle{\subsubsectionSize\subsubsectionStyle}
+% \newcommand{\mysubsubsection}{{\normalfont\subsubsectionSize\thesubsubsection}}
+%
+% % Customize "Table of ..." appearance
+% % Customize headings
+% \newcommand{\renewPrintXTitle}[1]{%
+%   \renewcommand{#1}[1]{%
+%     \printchaptertitle{##1}%
+%   }%
+% }
+% \renewPrintXTitle{\printtoctitle}
+% \renewPrintXTitle{\printlottitle}
+% \renewPrintXTitle{\printloftitle}
+% % Customize ToC headings
+% \renewcommand{\cftpartfont}{\partChapterNumColor\partStyle}
+% \renewcommand{\cftchapterfont}{\chapterStyle}
+% \renewcommand{\cftsectionfont}{}
+% \renewcommand{\cftsubsectionfont}{}
+% \renewcommand{\cftfigurefont}{}
+% \renewcommand{\cfttablefont}{}
+% \renewcommand{\cftlstlistingfont}{}
+% % Increase number width
+% \newlength{\cftNumWidthIncrease}
+% \setlength{\cftNumWidthIncrease}{0.25em}
+% \addtolength{\cftpartnumwidth}{\cftNumWidthIncrease}
+% \addtolength{\cftchapternumwidth}{\cftNumWidthIncrease}
+% \addtolength{\cftsectionindent}{\cftNumWidthIncrease}
+% \addtolength{\cftsubsectionindent}{\cftNumWidthIncrease}
+% % No leader dots
+% \renewcommand*{\cftpartdotsep}{\cftnodots}
+% \renewcommand*{\cftchapterdotsep}{\cftnodots}
+% \renewcommand*{\cftsectiondotsep}{\cftnodots}
+% \renewcommand*{\cftsubsectiondotsep}{\cftnodots}
+% \renewcommand*{\cftfiguredotsep}{\cftnodots}
+% \renewcommand*{\cfttabledotsep}{\cftnodots}
+% \renewcommand*{\cftlstlistingdotsep}{\cftnodots}
+% % Set page numbers immediately after entry text
+% \newcommand{\tocEntryPageSep}{\hspace{1em}}
+% \renewcommand{\cftpartleader}{\tocEntryPageSep}
+% \renewcommand{\cftpartafterpnum}{\cftparfillskip}
+% \renewcommand{\cftchapterleader}{\tocEntryPageSep}
+% \renewcommand{\cftchapterafterpnum}{\cftparfillskip}
+% \renewcommand{\cftsectionleader}{\tocEntryPageSep}
+% \renewcommand{\cftsectionafterpnum}{\cftparfillskip}
+% \renewcommand{\cftsubsectionleader}{\tocEntryPageSep}
+% \renewcommand{\cftsubsectionafterpnum}{\cftparfillskip}
+% \renewcommand{\cftfigureleader}{\tocEntryPageSep}
+% \renewcommand{\cftfigureafterpnum}{\cftparfillskip}
+% \renewcommand{\cfttableleader}{\tocEntryPageSep}
+% \renewcommand{\cfttableafterpnum}{\cftparfillskip}
+% \renewcommand{\cftlstlistingleader}{\tocEntryPageSep}
+% \renewcommand{\cftlstlistingafterpnum}{\cftparfillskip}
+% % Customize page numbers
+% \newcommand{\tocPageStyle}{\tocPageColor}
+% \renewcommand{\cftpartpagefont}{\tocPageStyle}
+% \renewcommand{\cftchapterpagefont}{\tocPageStyle}
+% \renewcommand{\cftsectionpagefont}{\tocPageStyle}
+% \renewcommand{\cftsubsectionpagefont}{\tocPageStyle}
+% \renewcommand{\cftfigurepagefont}{\tocPageStyle}
+% \renewcommand{\cfttablepagefont}{\tocPageStyle}
+% \renewcommand{\cftlstlistingpagefont}{\tocPageStyle}
+%
+% % Fix "List of Listings" appearance (make it coherent with other listings)
+% \renewcommand{\lstlistlistingname}{List of Listings}
+%
+% % Abstract
+% % Remove indents around abstract text
+% \setlength{\absleftindent}{0pt}
+% \setlength{\absrightindent}{0pt}
+% % Change font size to conform with the rest of the document text
+% \renewcommand{\abstracttextfont}{\normalsize}
+%
+% % Customize headers and footers
+% \newcommand{\hfTextSize}{\footnotesize}
+% \newcommand{\headTextStyle}{\lsstyle\scshape\MakeTextLowercase}
+% \nouppercaseheads
+% \makeevenhead{headings}%
+%              {\hfTextSize\thepage}%
+%              {}%
+%              {\hfTextSize\headTextStyle\leftmark}
+% \makeoddhead{headings}%
+%             {\hfTextSize\headTextStyle\rightmark}%
+%             {}%
+%             {\hfTextSize\thepage}
+% % Add SVN date and revision to footer (remove in final version)
+% %\newcommand{\svnInfo}{\$ Revision: \svnrev ~ Date: \svndate~\$}
+% %\makeevenfoot{headings}{}{\tiny \svnInfo}{}
+% %\makeoddfoot{headings}{}{\tiny \svnInfo}{}
+% %\makeevenhead{plain}{}{\tiny \svnInfo}{}
+% %\makeoddhead{plain}{}{\tiny \svnInfo}{}
+% % Set 'headings' as page style
+% \pagestyle{headings}
+% % Clear style for title page (no header nor footer)
+% \makepagestyle{titlepage}
+%
+% % Use numbering down until and including subsubsections
+% \setsecnumdepth{subsubsection}
+%
+% % Set ToC to include subsections
+% \setcounter{tocdepth}{2}
+%
+% % Customize captions
+% \newcommand{\captionSize}{\small}
+% \newcommand{\captionStyle}{\scshape}
+% \newcommand{\captionWidthRatio}{0.9}
+% \captionnamefont{\captionSize\captionStyle}
+% \captiontitlefont{\captionSize}
+% \captiondelim{ -- }
+% \captiontitlefinal{.}
+% \changecaptionwidth
+% \captionwidth{\captionWidthRatio\textwidth}
+%
+% % Customize drop caps
+% \setcounter{DefaultLines}{2}
+% \renewcommand{\LettrineFontHook}{\dropCapColor}
+% \renewcommand{\DefaultFindent}{0pt}
+% \renewcommand{\DefaultNindent}{0pt}
+%
+% % Do not use old-style numbers for typewriter fonts
+% \renewcommand{\ttdefault}{jkptt}
+% \normalfont
+%
+% % Redefine date/time format
+% \newdateformat{dashdate}{%
+%   \THEYEAR-\twodigit{\THEMONTH}-\twodigit{\THEDAY}%
+% }
+% \renewcommand{\timeseparator}{:}
+% \settimeformat{hhmmsstime}
+%
+% % Make URLs in bibliography entries smaller
+% \AtBeginBibliography{\def\UrlFont{\small\ttfamily}}
+%
+% % Define colors
+% \newcommand{\titleColor}{\color[rgb]{0.616, 0.0627, 0.176}}
+% \newcommand{\partChapterNumColor}{\titleColor}
+% \newcommand{\dropCapColor}{\titleColor}
+% \newcommand{\tocPageColor}{\color[rgb]{0.0980, 0.329, 0.651}}
+% \definecolor{shade0}{rgb}{1.0 , 1.0 , 1.0 }
+% \definecolor{shade1}{rgb}{0.9 , 0.9 , 0.9 }
+% \definecolor{shade2}{rgb}{0.8 , 0.8 , 0.8 }
+% \definecolor{shade3}{rgb}{0.65, 0.65, 0.65}
+% \definecolor{shade4}{rgb}{0.45, 0.45, 0.45}
+% \definecolor{shade5}{rgb}{0.0 , 0.0 , 0.0 }
+% \definecolor{nodeColor}{named}{shade1}
+% \definecolor{nodeInnerColor}{named}{shade5}
+% \definecolor{portColor}{named}{shade5}
+% \definecolor{processColor}{named}{shade1}
+% \definecolor{networkColor}{named}{shade0}
+% \newcommand{\codeBackgroundColor}{\color[rgb]{0.95, 0.95, 0.95}}
+% \newcommand{\codeKeywordsColor}{\color[rgb]{0.498, 0.557, 0.167}}
+% \newcommand{\codeCommentsColor}{\color[rgb]{0.251, 0.275, 0.086}}
+% \newcommand{\warningColor}{\color[rgb]{1.0, 0.0, 0.0}}
+% \newcommand{\todoColor}{\color[rgb]{1.0, 0.0, 0.0}}
+%
+%
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+% Spacing in lists
+\usepackage{enumitem}
+
+% Polyglossia
+\usepackage{polyglossia}
+\setmainlanguage{en-US}
+\setotherlanguage{fr-FR}
+\setotherlanguage{it}
+
+% BibLaTeX
+\usepackage[backend=biber,style=authoryear-ibid,isbn=false,backref=true,giveninits=true,uniquename=init,maxcitenames=2,maxbibnames=150,sorting=nyt,sortcites=false]{biblatex}
+\addbibresource{references.bib}
+
+% cslreferences environment required by pandoc > 2.7
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% memoiR format
+
+% Chapter Summary environment
+\usepackage[tikz]{bclogo}
+\newenvironment{Summary}
+  {\begin{bclogo}[logo=\bctrombone, noborder=true, couleur=lightgray!50]{In a Nutshell}\parindent0pt}
+  {\end{bclogo}}
+% Syntax:
+%
+%```{block, type='Summary'}
+% Deliver message here.
+% ```
+
+% scriptsize code
+\let\oldverbatim\verbatim
+\def\verbatim{\oldverbatim\scriptsize}
+% Applies to code blocks and R code results
+% code chunk options size='scriptsize' applies only to R code and results
+% if the code chunk sets a different size, \def\verbatim{...} is prioritary for code results
+
+
+% Layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Based on memoir, style companion
+\newcommand{\MemoirChapStyle}{daleif1}
+\newcommand{\MemoirPageStyle}{Ruled}
+
+% Space between paragraphs
+\usepackage{parskip}
+	\abnormalparskip{3pt}
+
+% Adjust margin paragraphs vertical position
+\usepackage{marginfix}
+
+
+% Margins
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% allow use of '-',+','/' ans '*' to make simple length computation
+\usepackage{calc}
+
+% Full-width figures utilities
+\newlength\widthw % full width
+\newlength{\rf}
+\newcommand*{\definesHSpace}{
+  \strictpagecheck % slower but efficient detection of odd/even pages
+  \checkoddpage
+  \ifoddpage
+  \setlength{\rf}{0mm}
+  \else
+  \setlength{\rf}{\marginparsep+\marginparwidth}
+  \fi
+}
+
+\makeatletter
+% 1" margins for the front matter.
+\newcommand*{\SmallMargins}{
+ %  \setlrmarginsandblock{1.5in}{1.5in}{*}
+ %  \setmarginnotes{0.1in}{0.1in}{0.1in}
+ % \setulmarginsandblock{1.5in}{1in}{*}
+ %  \checkandfixthelayout
+\setstocksize{25.2cm}{19.5cm}{*}
+\settrimmedsize{24.6cm}{18.9cm}{*}
+\settrims{0.318cm}{0.318cm}
+
+\setlxvchars
+\settypeblocksize{*}{1.2\lxvchars}{*}
+
+\setlrmargins{*}{*}{1.5}
+\setulmarginsandblock{1in}{1in}{1.2}
+\checkandfixthelayout
+
+  \ch@ngetext
+  \clearpage
+  \setlength{\widthw}{\textwidth+\marginparsep+\marginparwidth}
+  \footnotesatfoot
+  \chapterstyle{\MemoirChapStyle}	% Chapter and page styles must be recalled
+  \pagestyle{\MemoirPageStyle}
+}
+
+% 3" outer margin for the main matter
+\newcommand{\LargeMargins}{\SmallMargins}
+\makeatother
+
+% Figure captions and footnotes in outer margins
+
+
+% Main title page with filigrane
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\MainTitlePage}[2]{
+	\SmallMargins % Margins
+	\pagestyle{empty} % No header/footer
+	~\\ % Print a character or the page will not exist
+	\begin{textblock}{2}(30,10)
+		\rule{1pt}{\paperheight-20mm}
+	\end{textblock}
+	\begin{textblock}{140}(50, 45)
+		\flushright
+		\begin{Spacing}{3}
+			{\fontfamily{qtm}\selectfont\fontsize{45}{45}\selectfont \textsc{\thetitle}}
+		\end{Spacing}
+	\end{textblock}
+	\begin{textblock}{140}(50, 125)
+		\flushright
+		{\fontfamily{qtm}\Large \theauthor}
+	\end{textblock}
+		\begin{textblock}{140}[0, 1](50, 262)
+		\normalfont	Version: \thedate
+	\end{textblock}
+	\newpage
+	~\\ % Print a character or the page will not exist
+	\begin{textblock}{140}(40, 40)
+		#1
+	\end{textblock}
+	\begin{textblock}{140}[0,1](40, 270)
+		\centering
+    \includegraphics[width=5cm]{logo}\\ \bigskip
+    #2
+	\end{textblock}
+	\newpage
+}
+
+% Clear page and open an even one (\clearpage opens an odd one)
+\newcommand{\evenpage}{
+  \clearpage
+	\strictpagecheck % slower but efficient detection of odd/even pages
+  \checkoddpage
+  \ifoddpage
+    \thispagestyle{empty}
+    ~\\ % Print a character or the page will not exist
+    \newpage
+  \else
+    % do nothing
+  \fi
+}
+
+% Text blocks
+\usepackage[absolute,overlay]{textpos}
+	\setlength{\TPHorizModule}{1mm}
+	\setlength{\TPVertModule}{1mm}
+
+
+%% PDF title page to insert
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pdfpages}
+
+
+%% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[strict,autostyle]{csquotes}
+% Repeated citation as author-year-title instead of author-title (modification of footcite:note in verbose-inote.cbx)
+
+%% Table of Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% fix the typesetting of the part number
+\renewcommand\partnumberlinebox[2]{#2\ ---\ }
+
+
+% Fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Hyperref comes last
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={Title of the Memoir},
+  pdfauthor={Authors' names},
+  colorlinks=true,
+  linkcolor=Maroon,
+  citecolor=Blue,
+  urlcolor=Blue,
+  breaklinks=true}
+
+% Don't use monospace font for urls
+\urlstyle{same}
+
+
+% Title, author, date from YAML to LaTeX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Title of the Memoir}
+
+\author{Authors' names}
+
+\date{2021-07-02}
+
+
+% End of preamble
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\frontmatter
+
+% Title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\includepdf[pages=1]{images/cover.pdf}
+\cleardoublepage
+
+\MainTitlePage{This document is reproducible thanks to:
+
+\begin{itemize}
+  \item \LaTeX and its class memoir (\url{http://www.ctan.org/pkg/memoir}).
+  \item R (\url{http://www.r-project.org/}) and RStudio (\url{http://www.rstudio.com/})
+  \item bookdown (\url{http://bookdown.org/}) and memoiR (\url{https://ericmarcon.github.io/memoiR/})
+\end{itemize}}{Name of the owner of the logo
+
+\url{http://www.company.com}
+
+An explanatory sentence.
+Leave an empty line for line breaks.}
+
+
+% Before Body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LargeMargins
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+
+% Body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LargeMargins
+\hypertarget{introduction}{%
+\chapter*{Introduction}\label{introduction}}
+\addcontentsline{toc}{chapter}{Introduction}
+
+This document allows you to create a book in PDF format (and ePub format) at the same time as an HTML version to be published on the web.
+The syntax is that of \textbf{Markdown} with some extensions.
+
+The \textbf{bookdown} package must be installed from CRAN or GitHub:
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
+\CommentTok{# or the development version}
+\CommentTok{# devtools::install_github('rstudio/bookdown')}
+\end{Highlighting}
+\end{Shaded}
+
+\normalsize
+
+The book is organized in chapters.
+Each chapter is an Rmd file, whose name normally begins with its number (e.g.~\texttt{01-intro.Rmd}).
+All Rmd files in the project folder are actually treated as chapters, sorted by filename.
+The index.Rmd file is special: it contains the document header and the first chapter.
+
+This first chapter is placed in the foreword of the printed book: it should not be numbered (hence the \texttt{\{-\}} code next to the title) in the HTML version.
+It must end with the LaTeX command \texttt{\textbackslash{}mainmatter} which marks the beginning of the body of the book.
+
+The outline levels start with \texttt{\#} for chapters (only one per file), \texttt{\#\#} for sections, etc.
+
+Compilation in PDF format is done by XeLaTeX, which must be installed.
+
+While writing, it is strongly advised to create only the HTML file, which is much faster than a LaTeX compilation.
+Each chapter can be viewed very quickly by clicking on the \emph{Knit} button above the source window.
+The entire book is created by clicking on the \emph{Build Book} button in the RStudio \emph{Build} window.
+The button's drop-down list allows you to create all documents or limit yourself to one format.
+
+\mainmatter
+
+\hypertarget{getting_started}{%
+\chapter{Getting Started}\label{getting_started}}
+
+\emph{RStudio} in version higher than 1 must be used.
+The \textbf{bookdown} package must be installed.
+
+For the creation of the PDF file, an installation of LaTeX is necessary.
+Under Windows, use \href{https://miktex.org/download}{MikTex}.
+The automatic download of missing packages (under Windows: MiKTeX settings, \emph{Install missing packages=Yes}) is required.
+
+The main file is \emph{index.Rmd} which contains the description of the book in its header.
+All other \emph{.Rmd} files in the folder contain a chapter: the order of chapters is that of the file names, sorted alphabetically.
+The \emph{references.bib} file contains the bibliography.
+
+The basic parameters of the project must be entered in the following files.
+
+\hypertarget{index}{%
+\section{index.Rmd}\label{index}}
+
+In the file header, enter the title of the work and the name of the author(s).
+
+\begin{verbatim}
+title: "Title of the Memoir" 
+author: "Authors' names"
+\end{verbatim}
+
+The date field may be kept to display the knitting date automatically.
+
+The \texttt{url} field contains the link to the GitHub pages of the project.
+It is used by \texttt{build\_readme()}.
+
+The \texttt{github-repo} field contains the name of the repository of the project on GitHub.
+It is used to build a link to the repository from the menu bar of the GitBook version of the document.
+
+\texttt{description} is used by \texttt{build\_readme()} and to build an HTML meta tag intended for search engines.
+\texttt{cover-image} is the name of an image file that will be used by social networks when the GitBook is shared.
+Twitter uses both to build a link to the project.
+If a PDF file is used as the PDF book cover (see below), a good idea is to export it to PNG and declare the PNG file in \texttt{cover-image}.
+
+The cover will be:
+
+\begin{itemize}
+\tightlist
+\item
+  that of a book if the \emph{maintitlepage} statement is present.
+  The content of \emph{epigraph} and \emph{credits} will be written on page 2, with \texttt{images/logo.pdf}.
+\item
+  the first page of the PDF file declared in the \emph{pdftitlepage} instruction if it is present.
+\end{itemize}
+
+Delete one of the two instructions in the header or both covers will be built, like in the gallery\footnote{\url{https://ericmarcon.github.io/memoiR/gallery/memoir/MyBook.pdf}}.
+
+The languages are specified according to the IETF language tags, such as \enquote{en-US}.
+The main language (\texttt{lang}) is that of the structure of the document, translating elements such as \enquote{chapter}.
+The other languages (\texttt{otherlangs}) can be used to switch language inside the PDF document to benefit from correct hyphenation.
+
+LaTeX specific options are:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{documentclass}: the document class is \emph{memoir} for this template.
+  The options of the \emph{memoir} class are listed, not to be changed normally.
+\item
+  \emph{papersize}: A4.
+\item
+  \emph{fontsize}: 11pt.
+\item
+  \emph{mainfont} and \emph{mathfont} may replace the standard Computer Modern font.
+  Tex Gyre fonts\footnote{\url{https://www.ctan.org/pkg/tex-gyre}} are a good choice.
+  Both \textbf{tex-gyre} and \textbf{tex-gyre-math} LaTeX packages must be available.
+\item
+  \emph{MemoirChapStyle} and \emph{MemoirPageStyle} define the style of the document.
+  Two styles are favored: \emph{companion} for documents with large outer margins containing notes, references and captions, or \emph{daleif1} and \emph{Ruled} for more classical layouts with small margins.
+\item
+  Margins: choose whether to use \emph{largemargins} or not, and adjust the other parameters according to that.
+  Margin values should work well in most cases.
+\item
+  \emph{toc-depth}: number of levels in the table of contents, 2 by default (i.e.~\texttt{\#\#\#} subsections are shown).
+\item
+  \emph{secnum-depth}: The lowest numbered level in the document. Default is \texttt{section} (i.e.~\texttt{\#\#}).
+  Alternatives are \texttt{chapter} (i.e.~\texttt{\#}), \texttt{subsection} (i.e.~\texttt{\#\#\#}) or \texttt{subsubsection} (i.e.~\texttt{\#\#\#\#}).
+\item
+  \emph{lot} and \emph{lof} to add lists of tables and figures.
+\end{itemize}
+
+The name of the \texttt{.bib} file containing the references is in \texttt{bibliography}.
+It must be entered with its \texttt{.bib} extension.
+
+Bibliography is managed by BibLaTeX, whose options should not be changed except for the style.
+It is \texttt{verbose-inote} in documents with large margins to show the full citations in them.
+The citations are called as notes in the text.
+\texttt{authoryear-ibid} is suited for small-margin documents: the citations in the text contain author and year, and no footnote is used.
+The line \texttt{pageref=true} must be deleted or commented out if this style is used or an error may occur during LaTeX compilation.
+
+\texttt{longbibliography} formats the bibliography on two columns with a small font when it is set to \texttt{true}.
+If \texttt{false}, the regular font is used in a single column with small margins.
+
+The back cover appears in PDF outputs only.
+It is designed to to display abstract and keyword in several languages if necessary.
+The items of \texttt{backcover} are a list:
+
+\begin{itemize}
+\tightlist
+\item
+  language: the name of the language, that will be passed to the LaTeX command \texttt{\textbackslash{}selectlanguage\{\}}.
+\item
+  abstract: the content of the abstract.
+\item
+  keywords: a list of keywords.
+\item
+  abstractlabel and keywordlabel: the localized text to print before abstract and keywords.
+\end{itemize}
+
+\texttt{backcoverfontsize} may be changed better fit the page size, according to the length of the abstracts.
+
+Some options should not be modified, including:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{fig\_crop}: yes to allow cropping of excess margins of figures.
+  GhostScript must be installed.
+  If it is not, or in order to save computing time, the option may be set to \texttt{no}.
+\end{itemize}
+
+Some may be added to the header:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{fontfamily}: \href{https://en.wikibooks.org/wiki/LaTeX/Fonts\#Font_families}{font}, \emph{lmodern} by default.
+\item
+  \emph{linestretch}: line spacing, 1 by default.
+\end{itemize}
+
+For a student thesis, prepare the cover page with Word, Powerpoint or a DTP program and save it in PDF format, in A4 size.
+Only the first page of the PDF is used.
+
+\hypertarget{bookdown.yml}{%
+\section{\_bookdown.yml}\label{bookdown.yml}}
+
+Enter the name of the Rmd file that will be the result of the merging of all chapters and choose if it should be destroyed after use.
+It will also be the name of the PDF and Word files.
+The default options will suit most uses.
+
+\begin{verbatim}
+book_filename: "MyBook"
+delete_merged_file: true
+\end{verbatim}
+
+If the project is hosted on GitHub, indicate its address.
+Otherwise, delete the line.
+
+\begin{verbatim}
+repo: "https://github.com/GitHubID/Repository"
+\end{verbatim}
+
+The knitted files are stored in the output directory.
+\texttt{docs} is the good choice for GitHub Pages.
+
+\hypertarget{output.yml}{%
+\section{\_output.yml}\label{output.yml}}
+
+Customize the table of contents in HTML format.
+
+\begin{verbatim}
+config:
+  toc:
+    before: |
+      <li><a href="./">Bookdown book</a></li>
+    after: |
+      <li><a href="https://github.com/GitHubID/Repository
+\end{verbatim}
+
+\hypertarget{multilingual-documents}{%
+\section{Multilingual documents}\label{multilingual-documents}}
+
+Languages are declared in the document header.
+
+The main language of the document (\texttt{lang}) changes the name of some elements, such as the table of contents.
+To use other languages in the text, they must be declared in \texttt{otherlangs}.
+
+Changing the language has no effect in HTML, but changes hyphenation in PDF output.
+
+The language change in basic markdown format,
+
+\begin{verbatim}
+::: {lang=en-US}
+\end{verbatim}
+
+is not supported by R Markdown.
+See the correct syntax in section \ref{sec:languages}.
+
+\hypertarget{syntax}{%
+\chapter{Syntax}\label{syntax}}
+
+\scriptsize
+
+\begin{Summary}
+Deliver the take-home message here.
+
+It can contain several paragraphs.
+\end{Summary}
+
+\normalsize
+
+The syntax of \emph{R Mardown} extended by \emph{Bookdown} is recalled here.
+
+In RStudio, create a new document of type Document R Markdown.
+The wizard allows you to choose between different formats.
+
+Click on \emph{From template}: from templates installed by packages.
+The memoiR package templates are displayed: choose \emph{Memoir}.
+
+Each chapter of the book is an Rmd file, whose name normally starts with its number (e.g.~\texttt{01-intro.Rmd}).
+All Rmd files in the project folder are actually treated as chapters, sorted by file name, including those provided by the template (startup and syntax) which should be deleted except for \texttt{99-references.Rmd} which contains the bibliography, placed at the end.
+The \texttt{index.Rmd} file is special: it contains the document header and the first chapter.
+
+Each other file starts with a top-level title:
+
+\begin{verbatim}
+# Title of the Chapter
+\end{verbatim}
+
+If the document is made of parts containing chapters, the file with the fist chapter of each part must start with:
+
+\begin{verbatim}
+# (PART) Title of the Part {-}
+  
+# Title of the Chapter
+\end{verbatim}
+
+Note the \texttt{\{-\}} instruction after the title of the part to avoid having it numbered.
+
+Appendices are introduced as a special part:
+
+\begin{verbatim}
+# (APPENDIX) Appendix {-} 
+
+# Title of the first appendix
+\end{verbatim}
+
+\hypertarget{write}{%
+\section{Write}\label{write}}
+
+The main features of Markdown are summarized here.
+A quick and complete training is offered by RStudio\footnote{\url{https://rmarkdown.rstudio.com/lesson-1.html}}.
+
+The text is written without any formatting other than line breaks.
+A simple line break has no effect on the document produced: it allows to separate sentences to simplify the tracking of the source code by git.
+
+A line break marks a paragraph change.
+
+The different levels of the plan are designated by the number of braces at the beginning of the line: \texttt{\#} for a level 1 title, \texttt{\#\#} for a level 2 title, etc.
+A space separates the hashes and the title text.
+
+Bullet lists are marked by a dash (followed by a space) at the beginning of the line.
+An empty line is required before the beginning of the list, but the elements of the list are separated by a simple line break.
+Indented lists are created by inserting 4 spaces before the dash at the beginning of the line.
+Last, numbered lists are created in the same way by replacing the hyphens by numbers, whose value does not matter.
+
+In the text, the italicized parts are surrounded by a star or an underscore (\texttt{*italic*}), while two stars mark the bold.
+
+\hypertarget{r-code}{%
+\section{R code}\label{r-code}}
+
+R code is included in code chunks (\emph{code chunks}) that are easily created by clicking on the \enquote{Insert a new code chunk} button above the source code window in RStudio.
+They start and end with three quotation marks on a new line.
+These code chunks can contain R code but also Python code for example: the type of code is indicated in the header on the first line, before the name of the code chunk, then a comma separated list of options, for example:
+
+\begin{verbatim}
+```{r cars, echo=TRUE}
+```
+\end{verbatim}
+
+The name and options are optional: the minimum header is \texttt{\{r\}}.
+
+The most useful options are:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{echo} to show (\texttt{=TRUE}) or hide (\texttt{=FALSE}) the code.
+\item
+  \texttt{message=FALSE} to hide the opening messages of some packages.
+\item
+  \texttt{warning=FALSE} to hide warnings.
+\end{itemize}
+
+The default options are declared in the code snippet named \enquote{Options} at the beginning of the Markdown document, in the \texttt{opts\_chunk\$set()} function.
+The \texttt{echo} option should be set to \texttt{FALSE} by default for a scientific article for example.
+
+When it is \texttt{TRUE}, the code is printed as follow
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\normalsize
+
+\hypertarget{figures}{%
+\section{Figures}\label{figures}}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(pressure)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=\widthw]{MyBook_files/figure-latex/pressure-1} 
+
+}
+
+\caption{A full width figure}\label{fig:pressure}
+\end{figure}
+
+\normalsize
+
+Figures can be created by the R code (figure \ref{fig:pressure}).
+With Bookdown, a label is associated with each figure: its name is \texttt{fig:xxx} where \texttt{xxx} is the name of the R code snippet.
+References are made with the command \texttt{\textbackslash{}@ref(fig:xxx)}.
+
+The header of the code snippet of the figure \ref{fig:pressure} is:
+
+\begin{verbatim}
+```{r pressure, fig.cap="Title of the figure, out.width="\\widthw"}
+```
+\end{verbatim}
+
+It contains at least the name of the figure and its caption.
+
+The default width of figures is set in the option chunk in \texttt{index.Rmd}.
+It is \texttt{out.width=\textquotesingle{}80\%\textquotesingle{}} in this template, i.e.~80\% of the width of the text.
+If a full-width figure is needed, including the margin width, use \texttt{out.width="\textbackslash{}\textbackslash{}widthw"} in its code snippet.
+
+If the caption is long, the header is not easy to read.
+Also, the caption is limited to simple text.
+For more elaborate captions, it is possible to declare the caption in a separate paragraph that begins with the text \texttt{(ref:FigureName)}.
+The figure \ref{fig:pressure2} benefits from an improved caption.
+
+
+
+\scriptsize
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{MyBook_files/figure-latex/pressure2-1} 
+
+}
+
+\caption{Title with \emph{italic}, math (\(\sqrt\pi\)) and reference to figure \ref{fig:pressure}}\label{fig:pressure2}
+\end{figure}
+
+\normalsize
+
+The text in \texttt{fig.cap}, \enquote{Title of figure} previously, is replaced by \texttt{(ref:pressure)} \emph{within the quotation marks} and the caption is entered in a paragraph starting with \texttt{(ref:pressure)} followed by a space.
+Captions are limited to a single paragraph.
+They should not contain bibliographic references or references to the figures may not find them: if necessary, cite the source of a figure in the text.
+
+Figures that are not created by R but come from files are embedded in a piece of code by the \texttt{include\_graphics()} function whose argument is the file containing the image to be displayed.
+Always place these files in the \texttt{images} folder for good organization.
+
+\hypertarget{tables}{%
+\section{Tables}\label{tables}}
+
+The horizontal - and vertical separators \textbar{} allow to draw a table according to the Markdown syntax, but it is not the best method.
+
+Tables can also be produced by R code.
+The content of the table is in a dataframe.
+The \texttt{kable} function in the \emph{knitr} package prepares the table for display and passes the result to the \texttt{kable\_styling} function in the \emph{kableExtra} package for final formatting.
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(iris) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Sepal length ($l_s$)"}\NormalTok{, }\StringTok{"Width"}\NormalTok{, }\StringTok{"Petal length"}\NormalTok{, }
+    \StringTok{"Width"}\NormalTok{, }\StringTok{"Species"}\NormalTok{)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(iris), }\DataTypeTok{caption =} \StringTok{"Table created by R"}\NormalTok{, }\DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{, }
+    \DataTypeTok{escape =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable_styling}\NormalTok{(}\DataTypeTok{bootstrap_options =} \StringTok{"striped"}\NormalTok{, }
+    \DataTypeTok{full_width =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:kable}Table created by R}
+\centering
+\begin{tabular}[t]{rrrrl}
+\toprule
+Sepal length ($l_s$) & Width & Petal length & Width & Species\\
+\midrule
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\addlinespace
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\normalsize
+
+The caption is specified by the \texttt{caption} argument and referencing is possible because the table is given a label whose name is \texttt{tab:} followed by the name of the code snippet (table \ref{tab:kable}).
+As with figures, an enhanced legend can be written in a separate paragraph.
+
+Always use the \texttt{booktabs\ =\ TRUE} argument so that the thickness of the separator lines is optimal in LaTeX.
+Since the table contains mathematics (in the name of the first column), the \texttt{escape\ =\ FALSE} option is necessary.
+
+The \texttt{bootstrap\_options\ =\ "striped"} style option provides more readable tables in HTML.
+Last, the \texttt{full\_width\ =\ FALSE} option allows you to adjust the width of the table to its content instead of occupying all the available width.
+
+\hypertarget{maths}{%
+\section{Maths}\label{maths}}
+
+Equations in LaTeX format can be inserted in line, like \(A=\pi r^2\) (code: \texttt{\$A=\textbackslash{}pi\ r\^{}2\$}) or isolated (the \$ are doubled) like \[e^{i \pi} = -1.\]
+
+They can be numbered: see equation \eqref{eq:disk}, using the \texttt{\textbackslash{}equation} environment.
+
+\begin{equation}
+  A = \pi r^2.
+  \label{eq:disk}
+\end{equation}
+
+The numbered equation is created by the following code:
+
+\begin{verbatim}
+\begin{equation}
+  A = \pi r^2.
+  \label{eq:disk}
+\end{equation}
+\end{verbatim}
+
+\hypertarget{cross-references}{%
+\section{Cross-references}\label{cross-references}}
+
+Figures and tables have an automatically generated label, identical to the name of the code snippet prefixed with \texttt{fig:} and \texttt{tab:}.
+
+For equations, the label is added manually by the code \texttt{(\textbackslash{}\#eq:xxx)} before the end of the equation.
+
+Sections can be tagged by ending their title with \texttt{\{\#yyy\}}.
+
+Bookmarks can also be placed freely in the text with the command \texttt{(ref:zzz)}.
+
+In all cases, the call to the reference is made by the command \texttt{\textbackslash{}@ref(ref:zzz)}.
+
+\hypertarget{bibliography}{%
+\section{Bibliography}\label{bibliography}}
+
+Bibliographic references in bibtex format must be included in the \texttt{.bib} file declared in the header of the Markdown document.
+
+\begin{verbatim}
+bibliography: references.bib
+\end{verbatim}
+
+They can be called in the text, between brackets by the code \texttt{{[}@CitationKey{]}}, as sidenotes \autocite{Xie2016}, or without square brackets, to include the authors' names in the text, such as \textcite{Xie2018} .
+
+Bibliography is handled by pandoc when producing Word or HTML documents.
+The bibliographic style can be specified, by adding the line
+
+\begin{verbatim}
+csl:file_name.csl
+\end{verbatim}
+
+in the document header and copying the \emph{.csl} style file into the project folder.
+The default style (if no csl is specified) is \enquote{chicago-author-date}.
+Several thousand styles are available \footnote{\url{https://github.com/citation-style-language/styles}}.
+
+For PDF documents, the bibliography is handled by BibLaTeX, see section \ref{index}.
+
+\hypertarget{forcing-line-breaks}{%
+\section{Forcing line breaks}\label{forcing-line-breaks}}
+
+Hyphenation is handled automatically in LaTeX.
+If a word is not hyphenated correctly, add its hyphenation in the preamble of the file with the command \texttt{hyphenation} (words are separated by spaces, hyphenation locations are represented by dashes).
+
+If LaTeX can't find a solution for the line break, for example because some code is too long a non-breaking block, add the LaTeX command \texttt{\textbackslash{}break} to the line break location.
+Do not leave a space before the command.
+The HTML document ignores LaTeX commands.
+
+\hypertarget{sec:languages}{%
+\section{Languages}\label{sec:languages}}
+
+Languages are declared in the document header.
+
+The main language of the document (\texttt{lang}) changes the name of some elements, such as the table of contents.
+The change of language in the document (one of \texttt{otherlangs}) is managed in LaTeX but not in HTML by inserting on a new line the following command:
+
+\begin{verbatim}
+\selectlanguage{english}
+\end{verbatim}
+
+The current language has an effect only in LaTeX output: a space is added before double punctuation in French, the size of spaces is larger at the beginning of sentences in English, etc.
+The \texttt{\textbackslash{}selectlanguage} command is simply ignored in HTML.
+
+Language codes are used in the header, such as \texttt{en-US} but language names are necessary in \texttt{\textbackslash{}selectlanguage\{\}}.
+Name matches are listed in table 3 of the polyglossia package documentation\footnote{\url{http://mirrors.ctan.org/macros/unicodetex/latex/polyglossia/polyglossia.pdf}}.
+
+\hypertarget{chapter-summary}{%
+\section{Chapter summary}\label{chapter-summary}}
+
+The take-home message of each chapter can be displayed in a box, see the beginning of this one.
+The code is that of a code block of type \enquote{Summary}.
+
+\begin{verbatim}
+```{block, type='Summary'}
+Some text for this block.
+```
+\end{verbatim}
+
+Its heading text is set in the header of \texttt{index.Rmd}:
+
+\begin{verbatim}
+chaptersummary: In a Nutshell
+\end{verbatim}
+
+\hypertarget{documentation}{%
+\section{Documentation}\label{documentation}}
+
+\hypertarget{user-documentation}{%
+\subsection{User documentation}\label{user-documentation}}
+
+\begin{itemize}
+\tightlist
+\item
+  The book \href{https://bookdown.org/yihui/bookdown/}{bookdown: Authoring Books and Technical Documents with R Markdown} by Yihui Xie, the author of \textbf{bookdown} and \textbf{knitr}.
+  All the necessary details for writing (writing equations, cross-references, etc.) are given.
+\item
+  The \href{https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf}{R Markdown cheat sheet} for the syntax.
+\end{itemize}
+
+\hypertarget{documentation-for-developers}{%
+\subsection{Documentation for developers}\label{documentation-for-developers}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://rmarkdown.rstudio.com/pdf_document_format.html\#advanced_customization}{LaTeX file format customization}.
+\item
+  The \href{https://pandoc.org/MANUAL.html}{Pandoc manual} for possible options in the YAML header.
+\end{itemize}
+
+This template is based on \emph{Bookdown} and the \emph{Memoir} LaTeX class to allow writing a book, a report, a PhD thesis, etc. in \emph{R Markdown}.
+
+The main file is \emph{index.Rmd} which contains the description of the book in its header. All other \emph{.Rmd} files in the folder contain a chapter.
+The \emph{references.bib} file contains the bibliography.
+
+This file will have to be deleted, as well as \emph{81-getting\_started.Rmd} and \emph{82-syntax.Rmd}: they have to be replaced by the content of the book.
+
+To get started, create a new R project from this folder.
+Then open \emph{index.Rmd} and click on the \emph{Build Book} button in the \emph{Build} window of Rstudio.
+
+
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\backmatter
+\SmallMargins
+
+\printbibliography
+\onecolumn
+
+
+% Tables (of tables, of figures)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\cleardoublepage
+\LargeMargins
+\listoffigures
+
+
+% After-body (LaTeX code inclusion)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% Back cover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Even page, small margins, no running head, no page number.
+\evenpage
+\SmallMargins
+\thispagestyle{empty}
+
+\begin{normalsize}
+
+\begin{description}
+
+\selectlanguage{english}
+\item[Abstract]
+English abstract, on the last page.
+
+This is a bookdown template based on LaTeX memoir class.
+\item[Keywords]
+Keyword in English, As a list.
+~\\
+
+\end{description}
+
+\end{normalsize}
+
+\vspace*{\fill}
+\centering\includegraphics[width=.3\textwidth]{images/logo}
+\end{document}
