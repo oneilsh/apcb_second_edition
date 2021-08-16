@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="context.html"/>
+<link rel="next" href="hello-world.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	'break-lines': 80
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a><ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a><ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="3" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>3</b> Hello, World</a><ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="logging-in" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Logging In</h1>
+<p>This book assumes that you have access to an account on a Unix-like operating system (such as Linux) that you can use directly or log in to remotely via the SSH (Secure-SHell) login protocol. Accounts of this type are frequently available at universities and research institutions, though you may also consider using or installing Linux on your own hardware. Additionally, the CyVerse Collaborative provides free command-line access to biological researchers through their Atmosphere system; see the end of this chapter for information on how to access this system using your web browser.</p>
+<p>Before explaining anything in detail, let’s cover the actual process of logging in to a remote computer via SSH. To do this, you will need four things:</p>
+<ol style="list-style-type: decimal">
+<li>Client software on your own computer.</li>
+<li>The address of the remote computer, called its “host name,” or, alternatively, its IP (Internet protocol) address.</li>
+<li>A username on the remote computer with which to log in.</li>
+<li>A corresponding password on the remote machine with which to log in.</li>
+</ol>
+<p>If you are using a computer running Mac OS X, the client software will be command line oriented and is accessible from the Terminal utility. The Terminal is located in the Utilities folder, inside of the Applications folder.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-02-logging-in.Rmd.images/Updated_CompbioFinder.png" /></p>
+</div>
+<p>In the window that opens up, you will see a prompt for entering commands. On my computer it looks like this (except for the lines numbers along the left):</p>
+<pre id=block_2e081f
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$
+</code></pre>
+<p>At this prompt, enter the following: <code>ssh &lt;username&gt;@&lt;hostname or ip&gt;</code>. Note that you don’t actually type the angle brackets; angle brackets are just some commonly used nomenclature to indicate a field you need to specify. To log in to my account with username <code>oneils</code> at the Oregon State University’s main Linux computer (<code>shell.onid.oregonstate.edu</code>), for example, I would type:</p>
+<pre id=block_284655
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>ssh oneils@shell.onid.oregonstate.edu</b>
+</code></pre>
+<p>To log in to a CyVerse instance with IP address <code>128.196.64.193</code> (and username <code>oneils</code>), however, I would use:</p>
+<pre id=block_58f691
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>ssh oneils@128.196.64.193</b>
+</code></pre>
+<p>After pressing Enter to run the command, you may be asked to “verify the key fingerprint” of the remote computer. Each computer running the SSH login system uses a unique pair of “keys” for cryptographic purposes: the public key is accessible to the world, and only the remote computer knows the private key. Messages encrypted with the public key can only be decrypted with the private key—if you cared to verify with the owner of the remote computer that the public key “fingerprint” was correct, then you could be assured that no one between you and the correct remote computer could see your login session. Unless you have a reason to suspect espionage of some sort, it’s usually safe to enter yes at this prompt. Normally, you will be prompted once for each fingerprint, unless your local computer forgets the fingerprint or the system administrator changes it (or there is indeed an espionage attempt!).</p>
+<p>In any case, you will next be asked to enter your password. Note that <em>as you type the password, you won’t see any characters being shown on the screen</em>. This is another security feature, so that no passersby can see the contents or even the length of your password. It does make password entry more difficult, however, so take care when entering it. After logging in to a remote computer, the command prompt will usually change to reflect the login:</p>
+<pre id=block_b7ac5e
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@atmosphere ~$
+</code></pre>
+<p>If you are running Microsoft Windows, you will need to download the client SSH software from the web, install it, and run it. One option is PuTTy.exe, which is available at <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a>.</p>
+<p>Once downloaded, it will need to be installed and run. In the <code>Host Name (or IP address)</code> field, enter the host name or IP address, as discussed above. Leave the port number to the default of <code>22</code>, and click Open.</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part1-02-logging-in.Rmd.images/I.2_6_putty_blank.png" /></p>
+</div>
+<p>If you have successfully entered the host name or IP, you will be prompted for your username and password (and potentially to verify the key fingerprint).</p>
+<p>Finally, if you are already running a Linux or other Unix-like operating system, the steps for logging in remotely via SSH will be similar to those for Mac OS X, though you’ll need to find the Terminal utility on your own. If you are using CyVerse Atmosphere, then you can utilize a terminal window right in the web browser by clicking on the Access By Shell tab or Open Web Shell link. In all cases, the text-based interface will be identical, because the remote computer, rather than your local desktop, determines the display.</p>
+<div class="callout-box">
+<h4 id="logging-in-further-changing-your-password" class="unnumbered">Logging in Further, Changing Your Password</h4>
+<p>Depending on where you are logging in to, you may not be done with the login process. At many universities and research centers, the administrator would prefer that you not do any work on the computer you initially logged in to, because that computer may be reserved just for initial logins by dozens or even hundreds of researchers. As a result, you may need to “check out” a secondary, internal computer for your actual computational needs. Sometimes this can be done by SSHing on the command line to the secondary computer, but at some institutions, you will be asked to run other commands for this checkout process. Check with your local system administrator.</p>
+<p>In addition, you may want to change your password after your initial login. Running the <code>passwd</code> command usually suffices, and you will be prompted to enter both your old and new passwords. As usual, for security reasons, no characters will appear when entered. Further, good system administrators never ask for your password, and they are unable to recover it if it gets lost. The best administrators can do is reset it to a temporary one.</p>
+</div>
+<div id="ssh-secure-shell" class="section level3 unnumbered">
+<h3>SSH: Secure Shell</h3>
+<p>One might rightfully ask: what did we just accomplish with all of this logging in? On our desktop computer, we used a program called a client to connect to another program, called a server. A <em>server</em> is a program that waits in the background for another program (a <em>client</em>) to connect to it.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> This connection often happens over a network, but connections can occur between programs on the same computer as well. A client is a program that is generally run by a user on an as-needed basis, and it connects to a server. While it’s more correct to define a server as a program that waits for a connection from a client, colloquially, computers that primarily run server programs are also referred to as servers.</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part1-02-logging-in.Rmd.images/I.2_7_ssh_server_client-3-1024x262.png" /></p>
+</div>
+<p>The SSH server and the SSH client communicate using what is known as the SSH “protocol,” simply an agreed-upon format for data transfer. The SSH protocol is quite lightweight: because all of the actual computation happens on the remote machine, the only information that needs to be transferred to the server are the keystrokes typed by the user, and the only information that needs to be transferred to the client are the characters to be displayed to the user. As its name implies, the SSH protocol is very secure owing to its reliance on advanced public-key cryptography.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>The SSH server may not be the only server program running on the remote computer. For example, web servers allow remote computers to serve web pages to clients (like Mozilla Firefox and OS X’s Safari) using HTTP (hypertext transfer protocol). But because there is only one host name or IP address associated with the remote computer, an extra bit (byte, actually) of information is required, known as the “port number.” By way of analogy, if the remote computer were an apartment building, port numbers would be apartment numbers. By convention, SSH connects on port 22 and HTTP connects on port 80, although these ports can be changed by administrators who wish to run their services in nonstandard ways. This explains why port 22 is specified when connecting via Putty (and is the default when using command-line <code>ssh</code>, but it can be adjusted with a parameter).</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part1-02-logging-in.Rmd.images/I.2_8_web_server_client-1-1024x380.png" /></p>
+</div>
+<p>Other protocols of note include FTP (file transfer protocol) and its secure version, SFTP (secure file transfer protocol), designed specifically for transferring files.</p>
+</div>
+<div id="command-line-access-with-cyverse-atmosphere" class="section level3 unnumbered">
+<h3>Command-Line Access with CyVerse Atmosphere</h3>
+<p>Readers of this book will ideally have access to a Unix-based operating system (e.g., Linux) with command-line access. This is often the case for individuals at universities and other research or educational institutions. Many users have access to such systems but don’t even realize it, as the service is not often widely advertised.</p>
+<p>For those without institutional access, there are a few alternatives. First, Mac OS X machines are themselves Unix-based and come with a command-line interface (via the Terminal application), though the command-line tools differ vary slightly from the GNU-based tools found on most Linux distributions. A web search for “OS-X GNU core utils” will turn up some instructions for remedying this discrepancy. Second, it is possible to install a Linux distribution (like Ubuntu Linux) on most desktops and laptops by configuring the computer to “dual boot” Linux and the primary operating system. Alternatively, Linux distributions can be installed within “virtual machine” software, like VirtualBox (<a href="http://virtualbox.org">http://virtualbox.org</a>).</p>
+<p>A rather exciting, relatively recent addition to these options is the Atmosphere system, run by the CyVerse (previously iPlant) collaborative, a cyber-infrastructure project founded in 2008 to support the computational needs of researchers in the life sciences. CyVerse as a whole hosts a variety of projects, from educational resources to guided bioinformatics analyses. The Atmosphere system is the most relevant for us here, as it provides cloud-based access to systems running Linux. To get started using one of these systems, navigate to <a href="http://cyverse.org/atmosphere">http://cyverse.org/atmosphere</a> and click on the link for “Create an Account” or “Launch Atmosphere.” If you need to create a new account, do so—CyVerse requests a variety of information for account creation to help gauge user interest and garner funding support. You may also need to request special access to the Atmosphere system through your account on the Atmosphere homepage, as Atmosphere is more resource intensive than other tools provided by CyVerse.</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part1-02-logging-in.Rmd.images/I.2_9_atmosphere_home.png" /></p>
+</div>
+<p>After clicking on the “Launch” link, you will have the opportunity to enter your username and password (if you have been granted one).</p>
+<p>The Atmosphere system works by divvying up clusters of physical computers (located at one of various providers around the country) into user-accessible virtual machines of various sizes. When performing a computation that requires many CPU cores, for example, one might wish to access a new “instance” with 16 CPUs, 64 gigabytes (GB) of RAM, and 800 GB of hard disk space. On the other hand, for learning purposes, you will likely only need a small instance with 1 CPU and 4 GB of RAM. This is an important consideration, as CyVerse limits users to a certain quota of resources. Users are limited by the number of “atmosphere units” (AUs) they can use per month, defined roughly as using a single CPU for an hour. Users are also limited in the total number of CPUs and total amount of RAM they can use simultaneously.</p>
+<p>After determining the instance size needed, one needs to determine which operating system “image” should be loaded onto the virtual machine. All users can create such images—some users create images with software preinstalled to analyze RNA sequencing data, perform de novo genome assembly, and so on. We’ve created an image specifically to accompany this book: it is fairly simple and includes NCBI Blast+ (the most modern version of BLAST produced by the National Center for Biotechnology Information), R, Python, <code>git</code>, and a few other tools. It is called “APCB Image.”</p>
+<p>To activate a new instance with this image, click on the “New -&gt; Instance” button in the Atmosphere interface. You may first need to create a “Project” for the instance to live in. You can search for “APCB Image” in the search box of instance types. Here’s the view of my APCB project after creating and starting the instance:</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part1-02-logging-in.Rmd.images/I.2_10_atmosphere_started_instance.png" /></p>
+</div>
+<p>After creating the instance, it may be in one of several states; usually it will be either “running” (i.e., available for login and consuming resources) or “suspended” (effectively paused and not consuming resources). The interface for a given instance has buttons for suspending or resuming a suspended instance, as well as buttons for “Stop” (shutting an instance down), “Reboot” (rebooting the instance), and “Delete” (removing the instance and all data stored in it).</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part1-02-logging-in.Rmd.images/I.2_11_atmosphere_instance_running.png" /></p>
+</div>
+<p>Once an instance is up and running, there are several ways to access it. First, it is accessible via SSH at the IP address provided. Note that this IP address is likely to change each time the instance is resumed. Above, the IP address is shown as <code>128.196.64.36</code>, so we could access it from the OS X Terminal application:</p>
+<pre id=block_1a286d
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[soneil@mbp ~]$ <b>ssh oneils@128.196.64.36</b>
+</code></pre>
+<p>The Atmosphere Web interface also provides an “Open Web Shell” button, providing command-line access right in your browser. When you are done working with your Atmosphere instance, it’s important to suspend the instance, otherwise you’ll be wasting computational resources that others could be using (as well as your own quota).</p>
+</div>
+<div id="logging-out" class="section level3 unnumbered">
+<h3>Logging Out</h3>
+<p>Once finished working with the remote computer, we should log out of the SSH session. Logging out is accomplished by running the command <code>exit</code> on the command line until returned to the local desktop or the SSH client program closes the connection. Alternatively, it suffices to close the SSH client program or window—SSH will close the connection, and no harm will be done. Note, however, than any currently executing program will be killed on logout.</p>
+<p>If you are working on an Atmosphere instance or similar remotely hosted virtual machine, it’s a good idea to also suspend the instance so that time spent not working isn’t counted against your usage limit.</p>
+<div class="exercises">
+<h4 id="exercises" class="unnumbered">Exercises</h4>
+<ol style="list-style-type: decimal">
+<li>Practice logging in to and back out of the remote machine to which you have access.</li>
+<li>Change your password to something secure but also easy to remember. Most Linux/Unix systems do not limit the length of a password, and longer passwords made up of collections of simple words are more secure than short strings of random letters. For example, a password like <code>correcthorsebatterystaple</code> is much more secure than <code>Tr0ub4dor&amp;3</code>.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></li>
+<li>A program called <code>telnet</code> allows us to connect to any server on any port and attempt to communicate with it (which requires that we know the correct messages to send to the server for the protocol). Try connecting with <code>telnet</code> to port <code>80</code> of <code>google.com</code> by using the “Telnet” radio button in PuTTY if on Windows, or by running <code>telnet google.com 80</code> in the Terminal on OS X. Issue the command <code>GET http://www.google.com/</code> to see the raw data returned by the server.</li>
+</ol>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>The style of your terminal session likely won’t look like what we show in this book, but you can customize the look of your terminal using preferences. We’ll be spending a lot of time in this environment!<a href="logging-in.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Sometimes server programs are called “daemons,” terminology that evokes Maxwell’s infamous “demon,” an impossible theoretical entity working in the background to sort gaseous molecules.<a href="logging-in.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>The public-key infrastructure currently in use by SSH is only secure as far as anyone in the academic sphere suspects: the mathematics underlying the key exchange protocol haven’t yet been proven unbreakable. Most mathematicians, however, suspect that they are unbreakable. On the other hand, bugs have been known to occur in the software itself, though they are usually fixed promptly when found.<a href="logging-in.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>These example passwords were drawn from a webcomic on the topic, located at <a href="http://xkcd.com/936/">http://xkcd.com/936/</a>.<a href="logging-in.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="context.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hello-world.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-02-logging-in.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
