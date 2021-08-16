@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="acknowledgements.html"/>
+<link rel="next" href="literature.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': false,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	'break-lines': 80
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Primer for Computational Biology (2nd Ed.)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i><b>2</b> Acknowledgements</a></li>
+<li class="part"><span><b>Part 0: Custom Bookdown Template for APCB v2.0</b></span></li>
+<li class="chapter" data-level="3" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>3</b> Algorithms and Data Structures</a></li>
+<li class="chapter" data-level="4" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>4</b> Literature</a></li>
+<li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
+<li class="chapter" data-level="6" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>6</b> Applications</a><ul>
+<li class="chapter" data-level="6.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>6.1</b> Example one</a></li>
+<li class="chapter" data-level="6.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>6.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i><b>8</b> Dedication</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="algorithms-and-data-structures" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Algorithms and Data Structures</h1>
+<p>Having learned so many programming concepts–variables and the data to which they refer, functions, loops, and so on–it would be a shame not to talk about some of the surprising and elegant methods they enable. Computer science students spend years learning about these topics, and the themes in this chapter underlie much of bioinformatics.</p>
+<p>We’ll start with algorithms, which according to a classic book on the topic–<em>Introduction to Algorithms</em> by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein–are:</p>
+<blockquote>
+<p>any well-defined computational procedure that takes some value, or set of values, as input and produces some value, or set of values, as output.</p>
+</blockquote>
+<p>With such a broad definition, all of the Python coding we’ve done could accurately be categorized as practice in algorithms. The word “algorithm,” by the way, derives from the name of the eighth-century Persian mathematician al-Khwārizmī, who developed systematic approaches for solving equations (among other accomplishments). Although most functioning code may be characterized as an algorithm, algorithms usually involve more than just collating data and are paired with well-defined <em>problems</em>, providing a specification for what valid inputs are and what the corresponding outputs should be. Some examples of problems include:</p>
+<ul>
+<li>Given a list of <span class="math inline">\(n\)</span> numbers in arbitrary order, return it or a copy of it in sorted order. (The “sorting” problem.)</li>
+<li>Given a list of <span class="math inline">\(n\)</span> numbers in sorted order and a query number <code>q</code>, return <code>True</code> if <code>q</code> is present in the list and <code>False</code> if it is not. (The “searching” problem.)</li>
+<li>Given two strings of <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span>, line them up against each other (inserting dashes where necessary to make them the same length) to maximize a score based on the character matches. (The “string alignment” problem.)</li>
+</ul>
+<div id="figId1" class="fig center" style="width: 50%">
+<img src="images/chapter_demo/II.13_1_string_alignment.png" />
+<p class="caption">
+This is a caption. Clearly, some problems, like the string alignment problem, are of special interest for life scientists. Others, like sorting and searching, are ubiquitous. No matter who cares about the problem, a good algorithm for solving it should do so efficiently.
+</p>
+</div>
+<p>Link to the <a href="algorithms-and-data-structures.html#figId1">fig</a></p>
+<!-- See the source code for this page for actual usage of the described formatting :) -->
+<!-- # Section Headers and Parts {#section-headers} -->
+<!-- "Part" headers can be included by adding some special syntax; in the below `(PART\*)` is used to indicate that the header is a Part-header for styling, and `{-}` prevents it from being numbered.  -->
+<!-- ``` -->
+<!-- # (PART\*) Part 1: The Unix/Linux Command-Line {-} -->
+<!-- ``` -->
+<!-- Section Headers can be created using standard markdown syntax; section headers are automatically linkable but can be given a friendlier ID by including a `#theid` in the `{}` metadata; using `-` in the same metadata makes the sections unnumbered: -->
+<!-- #### Level 4 Header Default -->
+<!-- #### Level 4 Header Unnumbered {-} -->
+<!-- ### Level 4 Header, Unnumbered + Custom ID {- #custom-id-example} -->
+<!-- Code for the above headers: -->
+<!-- ``` -->
+<!-- ### Level 3 Header Default -->
+<!-- #### Level 4 Header Unnumbered {-} -->
+<!-- #### Level 4 Header, Unnumbered + Custom ID {- #custom-id-example} -->
+<!-- ``` -->
+<!-- <div class="callout-box"> -->
+<!-- #### Exercises {-} -->
+<!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a interdum tortor. Sed in neque vestibulum, placerat velit vel, eleifend tellus. Mauris vel neque ac leo fermentum condimentum. Aenean ipsum orci, vestibulum quis auctor at, lacinia vitae arcu. Integer non venenatis urna. Nulla at elementum nibh. Quisque ut ipsum ornare, consectetur tellus at, ullamcorper urna. Fusce at pharetra sapien. -->
+<!-- 1. Item 1 -->
+<!-- 2. Item 2 -->
+<!--     <pre class="language-r line-numbers linkable-line-numbers" id="linktarget" data-start="1" data-line="2,3,5,7-9"><code> -->
+<!--     x <- function(a, b) { -->
+<!--       return(a+b) -->
+<!--     } -->
+<!--     rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x()  -->
+<!--     line 6 -->
+<!--     line 7 -->
+<!--     line 8 -->
+<!--     line 9 -->
+<!--     line 10 -->
+<!--     </code></pre> -->
+<!-- 3. Item 3 -->
+<!-- <pre class="line-numbers" data-start=4><code class="language-txt"> -->
+<!-- This is just some text. -->
+<!-- Nothing to see here, move along, move along. -->
+<!-- </code></pre> -->
+<!-- Aliquam dui purus, convallis ut suscipit vel, scelerisque id mi. Quisque arcu odio, pretium quis risus sed, tempor tristique ipsum. Suspendisse potenti. Quisque est turpis, feugiat quis convallis sit amet, convallis sed ex. Aenean ultrices sapien et augue pulvinar egestas eget vitae ante. Pellentesque bibendum molestie metus, vitae congue elit commodo et. Fusce consequat ac ante eget egestas. Sed ullamcorper augue ut felis convallis, at pharetra dolor blandit. Aenean lacus metus, scelerisque sit amet metus et, dapibus laoreet ipsum. Phasellus euismod egestas consectetur. Aliquam et condimentum nunc. -->
+<!-- </div> -->
+<!-- We can then create links to these anchors with `[some text](#anchor-id)` syntax. For example, [here](#custom-id-example-2) is a link to the last of the headers above created with `[here](#custom-id-example-2)`. These links can be used across chapters or parts.  -->
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="acknowledgements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

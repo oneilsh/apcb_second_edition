@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Hello, World | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 3 Hello, World | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Hello, World | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Hello, World | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="logging-in.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	'break-lines': 80
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a><ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a><ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="3" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>3</b> Hello, World</a><ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hello-world" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Hello, World</h1>
+<p>Before we begin with programming in Python, it is useful to consider how the language fits into the landscape and history of similar languages. Initially, computer programming was not far removed from the <a href="context.html#hardware_defs">hardware</a> on which it was being coded. This meant writing “bytecode”—or its human-readable equivalent, assembly code—that explicitly referenced memory (RAM) locations and copied data to and from the relatively small number of CPU registers (the storage units directly accessible by the CPU). Unfortunately, this meant that code had to be rewritten for each of the many types of CPUs. Later, more portable languages like C were developed. These languages still work close to the hardware in many ways; in particular, the programmer must tell the computer how it should allocate and de-allocate memory from RAM. On the other hand, some abstraction provides higher-level coding constructs that are not specific to CPU type. This code is then compiled into bytecode by a compiling program for each specific CPU (as discussed in previous chapters, we had to compile some software from source to install it). The result is a fast and often optimized program that frees the programmer from having to worry about the huge variety of CPU types.</p>
+<p>Later, some programmers decided that they didn’t want to have to worry about specifying how RAM space should be allocated and de-allocated. They also wanted more features built into their languages to help them quickly architect complicated programs. One of the languages meant to accomplish these goals is Python, a project started in 1988 by mathematician, computer scientist, and Monty Python fan Guido van Rossum.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> “High-level” languages like Python and R (covered in later chapters) provide many built-in features to the programmer, and they are even more abstract than languages like C.</p>
+<p>Unfortunately, because of the added abstractions, languages like Python can’t easily be compiled (like C can) to be run directly on the CPU.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> In fact, these languages are not run the same way compiled or assembly programs are: they are interpreted by another program that is written in a compiled language like C and runs on the CPU. So, a Python “program” is just a text file of commands that are interpreted by another program that is actually interacting with the CPU and RAM.</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part2-01-hello-world.images/II.1_1_compiled_vs_interpreted.png" /></p>
+</div>
+<p>The added ease and flexibility of interpreted languages generally comes at a cost: because of the extra execution layer, they tend to be 2 to 100 times slower and use 2 to 20 times more memory than carefully constructed C programs, depending on what is being computed. These languages are significantly easier to use, however, and we can get our ideas into code far more quickly.</p>
+<p>Work on the Python language and interpreters for it has progressed steadily since the 1990s, emphasizing a “one best way” approach. Rather than providing multiple versions of basic commands that do the same thing, Python provides as few commands as possible while attempting to not limit the programmer. Python also emphasizes code readability: most syntax is composed of English-like words, shortcuts and punctuation characters are kept to a minimum, and the visual structure of “blocks” of code are enforced with indentation.</p>
+<p>For these reasons, Python use has grown significantly in recent years, especially for bioinformatics and computational biology. The emphasis on readability and “one best way” facilitates learning, particularly for those who are brand-new to programming.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> Most importantly, Python allows us to focus on the concepts of programming without struggling through an abundance of choices and confusing syntax, and new programmers can frequently read and understand code written by others. Finally, Python incorporates a number of modern programming paradigms making it appropriate for both small tasks and larger software engineering projects—it’s an official language at Google (along with C++ and Java), and it’s taught in introductory courses at Johns Hopkins University, New York University, the Massachusetts Institute of Technology, and many others.</p>
+<p>All of this isn’t to say that any programming language is devoid of quirks and difficulties. We’ll only be covering some of what Python offers—the parts that are most basic and likely to be found in many languages. Topics that are highly “Pythonic” will be highlighted as we go along.</p>
+<div class="callout-box">
+<h4 id="python-versions" class="unnumbered">Python Versions</h4>
+<p>In this book we will be working with Python version 2.7; that is, we’re going to assume that the Python executable found in your <code>$PATH</code> variable is version 2.7 (perhaps 2.7.10, which is the last of the 2.7 series as of 2015). You can check this by running <code>python --version</code> on the command line. While newer versions are available (up to 3.4 and higher), they are not yet universally used. These newer versions change some syntax from 2.7. For many of the concepts introduced in this book, if you stick with the syntax as shown, your code should be compatible with these newer versions as well, but possibly not backward-compatible with older versions such as 2.5 or 2.6. This is an unfortunate artifact of Python’s “one best way” philosophy: on occasion, the Python designers change their minds about what the best way is!</p>
+<p>To give an example, the print function <code>print("hello there")</code> works in Python versions 2.6, 2.7, 3.0, 3.1, and so on, whereas the keyword version <code>print "hello there"</code> (notice the lack of parentheses) would only work in versions 2.6 and 2.7. In some cases where differences in behavior would occur in later versions, we’ll note them in footnotes.</p>
+</div>
+<div id="hello-world-1" class="section level3 unnumbered">
+<h3>Hello, World</h3>
+<p>Because we’re working in an interpreted language, in order to write a program, we’ll need to create a file of Python code, and then supply it as input to the interpreting program. There are a few ways to do this: (1) use an interactive graphical environment like Jupyter notebook; (2) run the <a href="#interpreter_def">interpreter</a> ourselves on the command line, giving the file name containing our code as an argument; or (3) making the code file an executable <a href="#script_def">script</a> in the command line environment using <code>#!</code> syntax.</p>
+<div id="jupyter-notebook" class="section level4 unnumbered">
+<h4>Jupyter Notebook</h4>
+<p>For those wishing to program Python without working on the command line, a variety of graphical environments are available. A typical installation of Python from <a href="http://python.org">http://python.org</a> includes the “Idle” code editor. One of the nicer alternatives to this default is known as Jupyter, which runs in a web browser allows the programmer to interleave sections of code and documentation.</p>
+<p>Installing Jupyter requires that Python already be installed (from <a href="http://python.org">http://python.org</a>), and then requires using the command line terminal in Linux, OS X, or Windows; see <a href="http://python.org/install">http://jupyter.org/install</a> for details. Once installed, it can be started from the command line by running <code>jupyter notebook</code>:</p>
+<pre id=block_876d04
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[soneil@mbp ~]$ <b>jupyter notebook</b>
+</code></pre>
+<p>The Jupyter interface will open in the default desktop web browser, showing the list of folders and files in whatever directory the command was run from.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part2-01-hello-world.images/II.1_3_ipython_folders-3.png" /></p>
+</div>
+<p>Clicking the “New” button, followed by “Python Notebook” will create a new notebook document composed of “cells.” Cells in a notebook can contain human-readable text (as documentation) or lines of Python code. Whether the text in the cell is interpreted as code or text depends on the choice made in the “Cell” menu.</p>
+<p>Each cell may be “executed” by clicking on the “Play” button; doing so causes text cells to change to a nicely formatted output, and executes lines of code for code cells. But beware: the output of a given cell often depends on what other cells have been executed and in which order (see the “Cell output depends on the order of execution” cell in the figure below).</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part2-01-hello-world.images/II.1_4_ipython_notebook_ex-4.png" /></p>
+</div>
+<p>For this reason, I highly recommend making the assumption that all code cells will be executed in top-to-bottom order, which can be accomplished by selecting “Run All” from the “Cell” menu whenever you want to execute any code. Doing so causes all the cells to be re-executed each time it is run, it but has the advantage of ensuring the correctness of the overall notebook as changes are made to cells over time.</p>
+</div>
+<div id="specified-interpreter" class="section level4 unnumbered">
+<h4>Specified Interpreter</h4>
+<p>As convenient as notebooks are, because the previous part of this book focused on the command line, and Python interfaces quite nicely with it, the examples here will be from the command line environment. Because Python programs are interpreted scripts, we can manually specify the <a href="#interpreter_def">interpreter</a> on the command line each time we run such a <a href="#script_def">script</a>.</p>
+<p>For this method, we first have to edit a code file that we’ll call <code>helloworld.py</code> (<code>.py</code> is the traditional extension for Python programs). On the command line, we’ll edit code files with our text editor <code>nano</code>, passing in a few extra parameters:</p>
+<pre id=block_10949d
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[soneil@mbp ~]$ <b>nano -w -i -E -T 4 helloworld.py</b>
+</code></pre>
+<p>The <code>-w</code> tells nano not to automatically wrap long lines (we’re writing code after all, not an essay), <code>-i</code> says to automatically indent newlines to the current indentation level, <code>-T 4</code> says that tab-stops should be four spaces wide, and <code>-E</code> says that tabs should be converted to spaces (four of them). This usage of four spaces per indentation level is widely agreed upon by the Python community as being easy on the eyes. (“One best way,” remember?) We’ll put a simple call to the <code>print()</code> function in the file:</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part2-01-hello-world.images/II.1_6_py_2_hello_world.png" /></p>
+</div>
+<p>As usual, <code>Control-o</code> saves the file (press Enter if prompted about the file name) and <code>Control-x</code> exits <code>nano</code>. Next, to run it, all we need to do is call the Python interpreter on the file:</p>
+<pre id=block_a995fb
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[soneil@mbp ~]$ <b>python helloworld.py</b>
+Hello world!
+</code></pre>
+<p>Success! We’ve written our first Python program!</p>
+</div>
+<div id="making-the-file-executable" class="section level4 unnumbered">
+<h4>Making the File Executable</h4>
+<p>An alternative method is to make the code file an executable <a href="#script_def">script</a>. First, we have to edit the code file to include a special first line:</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part2-01-hello-world.images/II.1_8_py_3_hello_world_chmod.png" /></p>
+</div>
+<p>For this method to work, the first two characters of the file must be <code>#!</code> (in fact, the entire line needs to be replicated exactly); although <code>nano</code> is displaying what looks to be a blank line above our <code>#!</code> line, there isn’t really one there.</p>
+<p>In chapter 5, “<a href="">Permissions and Executables</a>,” we discussed the <code>#!</code> line as containing the absolute path to the interpreter, as in <code>#!/usr/bin/bash</code> for bash scripts. In this case, we are specifying something slightly different: <code>#!/usr/bin/env python</code>. The <code>env</code> program, among other things, searches for the installed location of the given argument and executes that. A <code>#!</code> line like this will cause a Python program to be successfully executed, even if it is installed in a nonstandard location. (One may ask if <code>env</code> is ever installed in a nonstandard location. Fortunately, it is rare to find <code>env</code> located anywhere other than in <code>/usr/bin</code>.)</p>
+<p>Next, we need to exit <code>nano</code> and make the file executable by using the <code>chmod</code> utility, and finally we can run it with <code>./helloworld.py</code>. This specifies that the program <code>helloworld.py</code> should be run and that it exists in the current directory (<code>./</code>).</p>
+<pre id=block_ef3a01
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[soneil@mbp ~]$ <b>ls</b>
+helloworld.py
+[soneil@mbp ~]$ <b>chmod +x helloworld.py</b>
+[soneil@mbp ~]$ <b>./helloworld.py</b>
+Hello world!
+</code></pre>
+<div class="callout-box">
+<h4 id="configuring-and-using-nano" class="unnumbered">Configuring and Using <code>nano</code></h4>
+<p>Generally, you won’t want to type <code>nano -w -i -E -T 4 ...</code> every time you want to edit a Python code file. Fortunately, <code>nano</code> can be configured to automatically use these options if they are specified correctly in a file called <code>.nanorc</code> in your home directory. But this may not be the best choice, either: when editing files that are not Python code, you likely don’t want to convert all your tab entries to spaces. Instead, you may want to define a shell alias called <code>nanopy</code> specifically for editing Python code. To have this shell alias preserved for each login session, the relevant code would need to be added to your <code>.bashrc</code> (assuming your <a href="#shell_def">shell</a> is bash):</p>
+<pre id=block_ef3a01
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[soneil@mbp ~]$ <b>echo "alias nanopy='nano -w -i -E -T 4 ' >> ~/.bashrc"</b>
+</code></pre>
+<p>If you are going to perform the above, double-check that the command is exactly as written. After logging out and back in, you can edit a Python code file with the alias using <code>nanopy helloworld.py</code>.</p>
+<p>As evident from the code sample above, <code>nano</code> can also provide syntax highlighting (coloring of code for readability) if your <code>$HOME/.nanorc</code> and related files are configured properly, though it isn’t necessary for programming.</p>
+<p>Don’t forget that it is often useful to have multiple terminal windows open simultaneously. You can use one for editing, one for running your program and testing, and perhaps a third running <code>top</code>, displaying how much CPU and RAM your program is using.</p>
+<p>Although not as powerful as more sophisticated text editors such as <code>emacs</code> or <code>vim</code>, <code>nano</code> is easy to use and includes a number of features such as editing multiple files, cutting and pasting within and between files, regular-expression-based search and search/replace, spell check, and more. While editing, <code>nano</code> can also take you directly to a line number (<code>Control–-</code>), which will come in handy when you need to go directly to a line that caused an error.</p>
+<p>Whatever editor you choose to use, reading some documentation will help you be much more productive. For the rest of our code samples, we’ll be showing screenshots from within <code>vim</code>, primarily because it provides prettier syntax highlighting.</p>
+</div>
+<div class="exercises">
+<h4 id="exercises-1" class="unnumbered">Exercises</h4>
+<ol style="list-style-type: decimal">
+<li>Create a file of Python code on the command line containing a simple <code>print("Hello!")</code> statement. Execute it by specifying the interpreter. If you are running iPython notebook, try to create a similarly simple notebook and execute the cell.</li>
+<li>Create a file of Python code, make it an executable script, and execute it. Does that work? Why or why not?</li>
+<li>Determine which version of Python you are running (perhaps by running <code>python --version</code>). Test to see which versions of print work for you: <code>print("Hello!")</code> or <code>print "Hello!"</code>. (The former is much preferred.)</li>
+</ol>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>The history of computing is full of twists, turns, and reinvention of wheels. LISP, for example, is a language that incorporates many of the same high-level features as Python, but it was first developed in 1958!<a href="hello-world.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>On the other hand, ambitious programmers are currently working on projects like Cython to do exactly this.<a href="hello-world.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>Many believe that the best way to learn programming is in a hardware-oriented fashion with assembly or a language like C. This is a legitimate philosophy, but for the intended audience of this book, we’ll stick with the higher-level languages Python and R.<a href="hello-world.html#fnref8" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="logging-in.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-01-hello-world.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
