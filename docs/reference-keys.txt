@@ -1,3 +1,6 @@
 context
 logging-in
 hello-world
+elementary-data-types
+an-introduction
+variables-and-data

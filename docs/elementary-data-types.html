@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Elementary Data Types | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 4 Elementary Data Types | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Elementary Data Types | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Elementary Data Types | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hello-world.html"/>
+<link rel="next" href="an-introduction.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	'break-lines': 80
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a><ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a><ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="3" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>3</b> Hello, World</a><ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>4</b> Elementary Data Types</a><ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-floats-and-booleans"><i class="fa fa-check"></i>Integers, Floats, and Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="5" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>5</b> An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>6</b> Variables and Data</a><ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="elementary-data-types" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Elementary Data Types</h1>
+<p>Variables are vital to nearly all programming languages. In Python, <em>variables</em> are “names that refer to data.” The most basic types of data that can be referred to are defined by how contemporary computers work and are shared by most languages.</p>
+<div id="integers-floats-and-booleans" class="section level3 unnumbered">
+<h3>Integers, Floats, and Booleans</h3>
+<p>Consider the integer <code>10</code>, and the real number <code>5.64</code>. It turns out that these two are represented differently in the computer’s binary code, partly for reasons of efficiency (e.g., storing <code>10</code> vs. <code>10.0000000000</code>). Python and most other languages consider integers and real numbers to be two different “types”: real numbers are called <em>floats</em> (short for “floating point numbers”), and integers are called <em>ints</em>. We assign data like floats and ints to variables using the <code>=</code> operator.</p>
+<pre id=block_264936
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+print("Hello world!")
+
+exons = 10                              # an int
+theta = 5.64                            # a float
+</code></pre>
+<p>While we’re on the topic of variables, variable names in Python should always start with a lowercase letter and contain only letters, underscores, and numbers.</p>
+<p>Note that the interpreter ignores <code>#</code> characters and anything after them on the line.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> This allows us to put “comments” in our code. Blank lines don’t matter, either, allowing the insertion of blank lines in the code for ease of reading.</p>
+<p>We can convert an int type into a float type using the <code>float()</code> function, which takes one parameter inside the parentheses:</p>
+<pre id=block_c4e667
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+exons_as_float = float(exons)           # return 10.0 (a float)
+</code></pre>
+<p>Similarly, we can convert floats to ints using the <code>int()</code> function, which truncates the floating point value at the decimal point (so <code>5.64</code> will be truncated to the int type <code>5</code>, while <code>-4.67</code> would be truncated to the int type <code>-4</code>):</p>
+<pre id=block_22ed97
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+theta_as_int = int(theta)               # return 5 (an int)
+</code></pre>
+<p>This information is useful because of a particular caveat when working with most programming languages, Python included: if we perform mathematical operations using only int types, the result will always be an int. Thus, if we want to have our operations return a floating point value, we need to convert at least one of the inputs on the right-hand side to a float type first. Fortunately, we can do this in-line:</p>
+<pre id=block_5009b6
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+a = 10                          # an int
+b = 3                           # an int
+answer_1 = a / b                # int/int returns int: 3
+answer_2 = a / float(b)         # int/float returns float: 3.3333
+c = 2.55                        # a float
+answer_3 = (b + c) * a          # (int + float) * int returns (float) * int...
+                                #    ... return float: 55.5
+</code></pre>
+<p>In the last line above, we see that mathematical expressions can be grouped with parentheses in the usual way (to override the standard order of operations if needed), and if a subexpression returns a float, then it will travel up the chain to induce floating-point math for the rest of the expression.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>Another property of importance is that the right-hand side of an assignment is evaluated before the assignment happens.</p>
+<pre id=block_fe5e60
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+value = 7
+value = value + 1
+print(value)                    # prints 8
+</code></pre>
+<p>Aside from the usual addition and subtraction, other mathematical operators of note include <code>**</code> for exponential powers and <code>%</code> for modulus (to indicate a remainder after integer division, e.g., <code>7 % 3</code> is <code>1</code>, <code>8 % 3</code> is <code>2</code>, <code>9 % 3</code> is <code>0</code>, and so on).</p>
+<pre id=block_731b74
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+a = 7
+b = 3
+c = a % b                       # modulus ("remainder"): 1
+c = a ** b                      # exponent: 343
+</code></pre>
+<p>Notice that we’ve reused the variables <code>a</code>, <code>b</code>, and <code>c</code>; this is completely allowable, but we must remember that they now refer to different data. (Recall that a variable in Python is a name that refers to, or references, some data.) In general, execution of lines within the same file (or cell in an iPython notebook) happens in an orderly top-to-bottom fashion, though later we’ll see “control structures” that alter this flow.</p>
+<p>Booleans are simple data types that hold either the special value <code>True</code> or the special value <code>False</code>. Many functions return Booleans, as do comparisons:</p>
+<pre id=block_bae7a1
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+sun_is_yellow = True            # boolean True
+test = 2 < -3                   # boolean False
+</code></pre>
+<p>For now, we won’t use Boolean values much, but later on they’ll be important for controlling the flow of our programs.</p>
+</div>
+<div id="strings" class="section level3 unnumbered">
+<h3>Strings</h3>
+<p>Strings, which hold sequences of letters, digits, and other characters, are the most interesting basic data type.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> We can specify the contents using either single or double quotes, which can be useful if we want the string itself to contain a quote. Alternatively, we can <em>escape</em> odd characters like quotes if they would confuse the interpreter as it attempts to parse the file.</p>
+<pre id=block_ad3ef6
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+first = "Shawn"
+last = "O'Neil"                 # string
+last = 'O\'Neil'                # same string
+</code></pre>
+<p>Strings can be added together with <code>+</code> to concatenate them, which results in a new string being returned so that it can be assigned to a variable. The <code>print()</code> function, in its simplest form, takes a single value such as a string as a parameter. This could be a variable referring to a piece of data, or the result of a computation that returns one:</p>
+<pre id=block_a488c8
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+full = first + last
+print(full)                     # prints "ShawnO'Neil"
+print(first + " " + last)       # prints "Shawn O'Neil"
+</code></pre>
+<p>We cannot concatenate strings to data types that aren’t strings, however.</p>
+<pre id=block_9aeebf
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+height = 5.5
+sentence = full + " height is " + height     # Error on this line!
+</code></pre>
+<p>Running the above code would result in a <code>TypeError: cannot concatenate 'str' and 'float' objects</code>, and the offending line number would be reported. In general, the actual bug in your code might be before the line reporting the error. This particular error example wouldn’t occur if we had specified <code>height = "5.5"</code> in the previous line, because two strings can be concatenated successfully.</p>
+<p>Fortunately, most built-in data types in Python can be converted to a string (or a string describing them) using the <code>str()</code> function, which returns a string.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_11_py_14_strfunc.png" /></p>
+</div>
+<p>As the above illustrates, we may choose in some cases to store the result of an expression in a variable for later use, or we may wish to use a more complex expression directly. The choice is a balance between verbose code and less verbose code, either of which can enhance readability. You should use whatever makes the most sense to you, the person most likely to have to read the code later!</p>
+<p>Python makes it easy to extract a single-character string from a string using brackets, or “index” syntax. Remember that in Python, the first letter of a string occurs at index <code>0</code>.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_12_py_15_str_index1.png" /></p>
+</div>
+<p>The use of brackets is also known as “slice” syntax, because we can them it to extract a slice (substring) of a string with the following syntax: <code>string_var[begin_index:end_index]</code>. Again, indexing of a string starts at <code>0</code>. Because things can’t be too easy, the beginning index is inclusive, while the ending index is exclusive.</p>
+<pre id=block_d9c4f6
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACTAG"
+subseq = seq[1:4]               # "CTA"
+</code></pre>
+<p>A good way to remember this confusing bit of syntax is to think of indices as occurring between the letters.</p>
+<div class="fig right" style="width: 30%">
+<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_14_between_letters_indices.png" /></p>
+</div>
+<p>If a string looks like it could be converted to an int or float type, it probably can be with the <code>float()</code> or <code>int()</code> conversion functions. If such a conversion doesn’t make sense, however, Python will crash with an error. For example, the last line below will produce the error <code>ValueError: could not convert string to float: XY_2.7Q</code>.</p>
+<pre id=block_6c7a3b
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+exons_str = "10"
+theta_str = "5.64"
+evalue_str = "2.5e-4"
+
+exons = int(exons_str)             # int 10
+theta = float(theta_str)           # float 5.64
+evalue = float(evalue_str)         # float 0.00025
+
+test = float("XY_2.7Q")            # Error on this line!
+</code></pre>
+<p>To get the length of a string, we can use the <code>len()</code> function, which returns an int. We can use this in conjunction with <code>[]</code> syntax to get the last letter of a string, even if we don’t know the length of the string before the program is run. We need to remember, though, that the index of the last character is one less than the length, based on the indexing rules.</p>
+<pre id=block_cab3b9
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACTAG"
+seq_len = len(seq)                    # int 5
+last_letter = seq[seq_len - 1]        # string "G"
+## or
+last_letter = seq[len(seq) - 1]       # string "G"
+</code></pre>
+<p>Similarly, if we want a substring from position <code>2</code> to the end of the string, we need to remember the peculiarities of the <code>[]</code> slice notation, which is inclusive:exclusive.</p>
+<pre id=block_249199
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+end_seq = seq[2:len(seq)]             # indices 2 to 5, inclusive:exclusive
+print(end_seq)                        # print "TAG"
+</code></pre>
+</div>
+<div id="immutability" class="section level3 unnumbered">
+<h3>Immutability</h3>
+<p>In some languages it is possible to change the contents of a string after it’s been created. In Python and some other languages, this is not the case, and strings are said to be <em>immutable</em>. Data are said to be immutable if they cannot be altered after their initial creation. The following line of code, for example, would cause an error like <code>TypeError: 'str' object does not support item assignment</code>:</p>
+<pre id=block_6d2e23
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACTAG"
+seq[2] = "C"                          # Error on this line!
+</code></pre>
+<p>Languages like Python and Java make strings immutable for a variety of reasons, including computational efficiency and as a safeguard to prevent certain common classes of programming bugs. For computational biology, where we often wish to modify strings representing biological sequences, this is an annoyance. We’ll learn several strategies to work around this problem in future chapters.</p>
+<p>In many cases, we can make it look like we are changing the contents of some string data by reusing the variable name. In the code below, we are defining strings <code>seqa</code> and <code>seqb</code>, as well as <code>seqc</code> as the concatenation of these, and then <code>seqd</code> as a substring of <code>seqc</code>. Finally, we reuse the <code>seqa</code> variable name to refer to different data (which gets copied from the original).</p>
+<pre id=block_d7e099
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seqa = "ACTAG"                         # "ACTAG"
+seqb = "GGAC"                          # "GGAC"
+seqc = seqa + seqb                     # "ACTAGGGAC"
+seqd = seqc[2:7]                       # "TAGGG"
+
+seqa = "ATG" + seqa                    # redefine seqa, "ATGACTAG"
+</code></pre>
+<p>Here’s how we might represent these variables and the data stored in memory, both before and after the reassignment of <code>seqa</code>.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_20_redef_seqa-3.png" /></p>
+</div>
+<p>Because the string <code>"ACTAG"</code> is immutable, redefining <code>seqa</code> results in an entirely different piece of data being created. The original string <code>"ACTAG"</code> will still exist in memory (RAM) for a short time, but because it is not accessible via any variables, Python will eventually clean it out to make room in memory in a process known as garbage collection.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> Garbage collection is an automatic, periodic process of de-allocating memory used by data that are no longer accessible (and hence no longer needed) by the program.</p>
+<p>This immutability of strings could result in code that takes much longer to execute than expected, because concatenating strings results in copying of data (see the results of <code>seqc = seqa + seqb</code> above). For example, if we had a command that concatenated chromosome strings (millions of letters each) to create a genome string, <code>genome = chr1 + chr2 + chr3 + chr4</code>, the result would be a copy of all four chromosomes being created in memory! On the other hand, in many cases, Python can use the immutability of strings to its advantage. Suppose, for example, that we wanted to get a large substring from a large string, <code>centromere_region = chr1[0:1500000]</code>. In this case, Python doesn’t need to make a copy of the substring in memory. Because the original string can never change, all it needs is some bookkeeping behind the scenes to remember that the <code>centromere_region</code> variable is associated with part of string <code>chr1</code> references. This is why <code>seqd</code> in the figure above does not duplicate data from <code>seqc</code>.</p>
+<p>None of this discussion is to imply that you should worry about the computational efficiency of these operations at this point. Rather, the concept of immutability and the definition of a variable (in Python) as a “name that refers to some data” are important enough to warrant formal discussion.</p>
+<div class="exercises">
+<h4 id="exercises-2" class="unnumbered">Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Create and run a Python program that uses integers, floats, and strings, and converts between these types. Try using the <code>bool()</code> function to convert an integer, float, or string to Boolean and print the results. What kinds of integers, floats, and strings are converted to a Boolean <code>False</code>, and what kinds are converted to <code>True</code>?</p></li>
+<li><p>We know that we can’t use the <code>+</code> operator to concatenate a string type and integer type, but what happens when we multiply a string by an integer? (This is a feature that is fairly specific to Python.)</p></li>
+<li><p>What happens when you attempt to use a float type as an index into a string using <code>[]</code> syntax? What happens when you use a negative integer?</p></li>
+<li><p>Suppose you have a sequence string as a variable, like <code>seq = "ACTAGATGA"</code>. Using only the concepts from this chapter, write some code that uses the <code>seq</code> variable to create two new variables, <code>first_half</code> and <code>second_half</code> that contain the first half (rounded down) and the second half (rounded up) of <code>seq</code>. When printed, these two should print <code>"ACTA"</code> and <code>"GATGA"</code>, respectively.</p>
+<pre id=block_8264d7
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+ <code>
+ #!/usr/bin/env python
+
+seq = "ACTAGATGA"
+## Write some code here:
+
+
+
+print(first_half)                     # should print "ACTA"
+print(second_half)                    # should print "GATGA"
+</code></pre>
+<p>Importantly, your code should work no matter the string <code>seq</code> refers to, without changing any other code, so long as the length of the string is at least two letters. For example, if <code>seq = "TACTTG"</code>, then the same code should result in <code>first_half</code>referring to <code>"TAC"</code> and <code>second_half</code> referring to <code>"TTG"</code>.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>The <code>#</code> symbols are ignored unless they occur within a pair of quotes. Technically, the interpreter also ignores the <code>#!</code> line, but it is needed to help the system find the interpreter in the execution process if running the program as a script.<a href="elementary-data-types.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>This isn’t true in Python 3.0 and later; e.g., <code>10 / 3</code> will return the float <code>3.33333</code>.<a href="elementary-data-types.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Unlike C and some other languages, Python does not have a “char” datatype specifically for storing a single character.<a href="elementary-data-types.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Garbage collection is a common feature of high-level languages like Python, though some compiled languages support it as well. C does not: programmers are required to ensure that all unused data are erased during program execution. Failure to do so is known as a “memory leak” and causes many real-world software crashes.<a href="elementary-data-types.html#fnref12" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hello-world.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="an-introduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-02-elementary_data_types.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

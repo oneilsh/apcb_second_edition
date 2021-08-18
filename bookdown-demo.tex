@@ -4,10 +4,14 @@
 %
 \documentclass[
 ]{memoir}
+\title{A Primer for Computational Biology (2nd Edition)}
+\author{Shawn T. O'Neil, Matthew Peterson, Leslie Coonrod}
+\date{}
+
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -36,52 +40,13 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={A Minimal Book Example},
-  pdfauthor={Yihui Xie},
+  pdftitle={A Primer for Computational Biology (2nd Edition)},
+  pdfauthor={Shawn T. O'Neil, Matthew Peterson, Leslie Coonrod},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -90,19 +55,6 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -141,17 +93,17 @@
 % %    PACKAGES TO LOAD
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\RequirePackage[T1]{fontenc}
-\RequirePackage[style=numeric-comp,sortcites=true]{biblatex}
-\RequirePackage{babel}
-\RequirePackage{csquotes}
-\RequirePackage[oldstylenums]{kpfonts}
-\RequirePackage{microtype}
-\RequirePackage{textcase}
-\RequirePackage[inline]{enumitem}
-\RequirePackage{xspace}
-\RequirePackage{graphicx}
-\RequirePackage{ifthen}
+% \RequirePackage[T1]{fontenc}
+% \RequirePackage[style=numeric-comp,sortcites=true]{biblatex}
+% \RequirePackage{babel}
+% \RequirePackage{csquotes}
+% \RequirePackage[oldstylenums]{kpfonts}
+% \RequirePackage{microtype}
+% \RequirePackage{textcase}
+% \RequirePackage[inline]{enumitem}
+% \RequirePackage{xspace}
+% \RequirePackage{graphicx}
+% \RequirePackage{ifthen}
 % \RequirePackage{amsmath}
 % \RequirePackage{amsthm}
 % \RequirePackage{pifont}
@@ -1039,12 +991,11 @@
 % \newcommand{\todoColor}{\color[rgb]{1.0, 0.0, 0.0}}
 %
 %
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-
-\title{A Minimal Book Example}
-\author{Yihui Xie}
-\date{2021-06-25}
 
 \begin{document}
 \maketitle
@@ -1053,121 +1004,398 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
 
-This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports, e.g., a math equation \(a^2 + b^2 = c^2\).
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
 
-The \textbf{bookdown} package can be installed from CRAN or Github:
+It has become almost cliché to state that contemporary life scientists work with a staggering amount and variety of data. This fact makes it no less true: the advent of high-throughput sequencing alone has forced biologists to routinely aggregate multi-gigabyte data sets and compare the results against multi-terabyte databases. The good news is that work of this kind is within the reach of anyone possessing the right computational skills.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\CommentTok{# or the development version}
-\CommentTok{# devtools::install_github("rstudio/bookdown")}
-\end{Highlighting}
-\end{Shaded}
+The purpose of this book is perhaps best illustrated by a fictional, but not unreasonable, scenario. Suppose I am a life scientist (undergraduate or graduate research assistant, postdoc, or faculty) with limited but basic computational skills. I've identified a recently developed data collection method---perhaps a new sequencing technology---that promises to provide unique insight into my system of study. After considerable field and lab work, the data are returned as a dozen files a few gigabytes in total size.
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
+Knowing this data set is too large for any web-based tool like those hosted by the National Center for Biotechnology Information (NCBI), I head to my local sequencing center, which conveniently hosts a copy of the latest graphical suite for bioinformatics analysis. After clicking through the menus and panes, searching the toolbox window, and looking at the help manual, I come to realize this software suite cannot process this newly generated data. Because the software is governed by an expensive license agreement, I send an email to the company and receive a prompt reply. It seems the development team is working on a feature for the type of analysis I want, but they don't expect it to be ready until next year's release.
 
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.name/tinytex/}.
+After a quick online search, I find that no other commercial software supports my data, either. But I stumble upon a recent paper in a major bioinformatics journal describing not only a novel statistical methodology appropriate for the data, but also software available for download! Sadly, the software is designed for use on the Linux command line, with which I'm not familiar.
 
-\hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+Realizing my quandary, I head to the local computing guru in the next lab over and explain the situation. Enthusiastically, she invites me to sit with her and take a look at the data. After uploading the data to the remote machine she regularly works on, she opens a hacker's-style terminal interface, a black background with light gray text occasionally dotted with color. Without even installing the bioinformatics software, she begins giving me an overview of the data in seconds. \enquote{Very nice! Looks like you've got about 600 million sequences here . . . pretty good-quality scores, too.} After a few more keystrokes, she says, \enquote{And it looks like the library prep worked well; about 94\% of these begin with the expected sequence bases. The others are probably error, but that's normal.}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+Still working in the terminal, she proceeds to download and install the software mentioned in the bioinformatics paper. Typing commands and reading outputs that look to be some sort of hybrid language of English and whatever the computer's native language is, she appears to be communicating directly with the machine, having a conversation even. Things like \texttt{./configure\ -\/-prefix=\$HOME/local} and \texttt{make\ install} flash upon the screen. Within a few more minutes, the software is ready to use, and she sets it to work on the data files after a quick check of its documentation.
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+\enquote{I'm guessing this will take at least a half hour or so to run. Want to go get some coffee? I could use a break anyway.} As we walk to the cafe, I tell her about the commercial software that couldn't process the data. \enquote{Oh yeah, those packages are usually behind the times because they have so many features to cover and the technology advances so quickly. I do use them for routine things, but even then they don't always publish their methods, so it's difficult to understand exactly what's going on.}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\enquote{But aren't the graphical packages easier to use?} I ask. \enquote{Sure,} she replies, \enquote{sometimes. They're not as flexible as they look. I've written graphical versions of my own software before, but it's time consuming and more difficult to update later. Besides, it's easier for me to write down what commands I ran to get an answer in my lab notebook, which is digital anyway these days, rather than grabbing endless screenshots of a graphical interface.}
 
-\begin{figure}
+When we get back to her office, she opens the results file, which shows up in the same gray-on-black typewriter font in nicely formatted rows and columns of numbers and identifiers. I could easily imagine importing the results into a spreadsheet, though she mentions there are about 6.1 million rows of output data.
 
-{\centering \includegraphics[width=0.8\linewidth]{bookdown-demo_files/figure-latex/nice-fig-1} 
+\enquote{Well, here it is! The p values in this last column will tell you which results are the most important,} she says as she sorts the file on that column (in mere seconds) to reveal the top few records with the lowest p values. Recalling that the significant results should theoretically correlate to the GC content of the sequences in certain positions, I ask if it's possible to test for that. \enquote{Yes, it's definitely possible,} she answers. \enquote{Well, extracting just the most significant sequences will be easy given this table. But then I'll have to write a short program, probably in Python, which I just started learning, to compute the aggregate GC content of those sequences on a position-by-position basis. From there it won't be hard to feed the results into an R script to test for differences in each group compared to all the others. It should only take a few hours, but I'm a bit busy this week. I'll see what I can do by next Friday, but you'll owe me more than just coffee!}
 
-}
+\hypertarget{a-few-goals}{%
+\subsection*{A Few Goals}\label{a-few-goals}}
+\addcontentsline{toc}{subsection}{A Few Goals}
 
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
+Bioinformatics and computational biology sit at the intersection of a variety of disciplines, including biology, computer science, mathematics, and statistics. Whereas bioinformatics is usually viewed as the development of novel analysis methods and software, computational biology focuses on applying those methods to data of scientific interest. Proficiency in both requires an understanding of the language of computing. This language is more like a collection of languages or dialects---of basic commands, analysis tools, Python, R, and so on.
 
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+It may seem odd that so much of modern computational research is carried out on the comparatively ancient platform of a text-based interface. Graphical utilities have their place, particularly for data visualization, though even graphics are often best described in code. If we are to most efficiently communicate with computational machinery, we need to share with the machinery a language, or languages. We can share powerful dialects, complete with grammar, syntax, and even analogs for things like nouns (data) and verbs (commands and functions).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+This book aims to teach these basics of scientific computing: skills that even in fields such as computer science are often gained informally over a long period of time. This book is intended for readers who have passing familiarity with computing (for example, I assume the reader is familiar with concepts such as files and folders). While these concepts will likely be useful to researchers in many fields, I frame most of the discussion and examples in the analysis of biological data, and thus assume some basic biological knowledge, including concepts such as genes, genomes, and proteins. This book covers topics such as the usage of the command-line interface, installing and running bioinformatics software (without access to administrator privileges on the machine), basic analysis of data using built-in system tools, visualization of results, and introductory programming techniques in languages commonly used for bioinformatics.
 
-\begin{table}
+There are two related topics that are not covered in this book. First, I avoid topics related to \enquote{system administration,} which involves installing and managing operating systems and computer hardware, except where necessary. Second, I focus on computing for bioinformatics or computational biology, rather than bioinformatics itself. Thus this book largely avoids discussing the detailed mathematical models and algorithms underlying the software we will install and use. This is not to say that a good scientist can avoid mathematics, statistics, and algorithms---these are simply not the primary focus here.
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+Bioinformatics and computational biology are quickly growing and highly interdisciplinary fields, bringing computational experts and biologists into close and frequent contact. To be successful, these collaborations require a shared vocabulary and understanding of diverse skill sets; some of this understanding and vocabulary are discussed here. Although most of this book focuses on the nuts and bolts of data analysis, some chapters focus more on topics specifically related to computer science and programming, giving newcomers a chance to understand and communicate with their computational colleagues as well as forming a basis for more advanced study in bioinformatics.
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+\hypertarget{organization}{%
+\subsection*{Organization}\label{organization}}
+\addcontentsline{toc}{subsection}{Organization}
 
-\hypertarget{literature}{%
-\chapter{Literature}\label{literature}}
+This book is divided into three parts, the first covering the Unix/Linux command-line environment, the second introducing programming with Python, and the third introducing programming in R. Though there are some dependencies between parts (for example, chapter 21, \enquote{\href{}{Bioinformatics Knick-knacks and Regular Expressions},} forgoes duplication of topics from chapter 11, \enquote{\href{}{Patterns (Regular Expressions)}}), readers sufficiently interested in only Python or only R should be able to start at those points. Nevertheless, the parts are given their order for a reason: command-line efficiency introduces \enquote{computational} thinking and problem solving, Python is a general-purpose language that emphasizes good coding practice, and R specializes in certain types of analyses but is trickier to work with. Understanding these three general topics constitutes a solid basis for computational biologists in the coming decade or more.
 
-Here is a review of existing methods.
+The text within each part follows, more or less, a Shakespearean plot, with the apex occurring somewhere in the middle (thus it is best to follow chapters within parts in order). For Part I, this apex occurs in chapter 6, \enquote{\href{}{Installing (Bioinformatics) Software},} wherein we learn to both install and use some bioinformatics software, as well as collect the procedure into a reusable pipeline. In Part II, chapter 23, \enquote{\href{}{Objects and Classes},} describes an involved custom analysis of a file in variant call format (VCF) using some principles in object-oriented design. Finally, the apex in Part III occurs in chapter 33, \enquote{\href{}{Split, Apply, Combine},} which describes some powerful data processing techniques applied to a multifactor gene expression analysis. Following each apex are additional, more advanced topics that shouldn't be overlooked. The second half of Part I covers the powerful paradigm of data pipelines and a variety of important command-line analysis tools such as awk and sed. Part II covers some topics related to software packages and concludes with an introduction to algorithms and data structures. Finally, Part III follows its apex with handy functions for manipulating and plotting complex data sets.
 
-\hypertarget{methods}{%
-\chapter{Methods}\label{methods}}
+Finally, the text includes an extensive number of examples. To get a proper feel for the concepts, it is highly recommended that you execute the commands and write the code for yourself, experimenting and trying variations as you feel necessary. It is difficult for even the sharpest of minds to absorb material of this nature by reading alone.
 
-We describe our methods in this chapter.
+\hypertarget{availability}{%
+\subsection*{Availability}\label{availability}}
+\addcontentsline{toc}{subsection}{Availability}
 
-\hypertarget{applications}{%
-\chapter{Applications}\label{applications}}
+This book is available both as an open-access online resource as well as in print. The open-access license used for the online version is the Creative Commons CC BY-NC-SA, or \enquote{Attribution-NonCommercial-ShareAlike} license. According to \url{https://creativecommons.org/licenses/}, \enquote{This license lets others remix, tweak, and build upon {[}the{]} work non-commercially, as long as they credit {[}the author{]} and license their new creations under the identical terms.}
 
-Some \emph{significant} applications are demonstrated in this chapter.
+The data files and many of the completed scripts mentioned within the text are available for direct download here: \url{https://open.oregonstate.education/computationalbiology/back-matter/files/}.
 
-\hypertarget{example-one}{%
-\section{Example one}\label{example-one}}
+For comments or to report errors, please feel free to contact \href{mailto:oneilsh@gmail.com}{\nolinkurl{oneilsh@gmail.com}}. Should any errata be needed post-publication, they will appear in this preface of the online version.
 
-\hypertarget{example-two}{%
-\section{Example two}\label{example-two}}
+\hypertarget{acknowledgements}{%
+\chapter*{Acknowledgements}\label{acknowledgements}}
+\addcontentsline{toc}{chapter}{Acknowledgements}
 
-\hypertarget{final-words}{%
-\chapter{Final Words}\label{final-words}}
+I'd like to thank the Oregon State University Press, the OSU Library, OSU Ecampus, and the Center for Genome Research and Biocomputing at OSU for their support in the production of this work--in particular, Brett Tyler, Tom Booth, Faye Chadwell, Dianna Fisher, and Mark Kindred from those departments. I am grateful to all those who contributed feedback including Matthew Peterson, Kevin Weitemier, Andi Stephens, Kelly Stratton, Jason Williams, John Gamble, Kasim Alomari, Joshua Petitmermet, and Katie Carter. Finally, I especially thank Gabriel Higginbotham for his heroic work in typesetting, and to Stacey Wagner for her comprehensive and insightful comments.
 
-We have finished a nice book.
+\hypertarget{dedication}{%
+\chapter*{Dedication}\label{dedication}}
+\addcontentsline{toc}{chapter}{Dedication}
+
+\emph{To the amazing instructors I've been fortunate enough to learn from, and to the amazing students I've been fortunate enough to learn with.}
+
+\hypertarget{part-part-1-the-unixlinux-command-line}{%
+\part*{Part 1: The UNIX/Linux Command-Line}\label{part-part-1-the-unixlinux-command-line}}
+\addcontentsline{toc}{part}{Part 1: The UNIX/Linux Command-Line}
+
+\hypertarget{context}{%
+\chapter{Context}\label{context}}
+
+\hypertarget{command-lines-and-operating-systems}{%
+\subsection*{Command Lines and Operating Systems}\label{command-lines-and-operating-systems}}
+\addcontentsline{toc}{subsection}{Command Lines and Operating Systems}
+
+Many operating systems, including Microsoft Windows and Mac OS X, include a command line interface (CLI) as well as the standard graphical user interface (GUI). In this book, we are interested mostly in command line interfaces included as part of an operating system derived from the historically natural environment for scientific computing, Unix, including the various Linux distributions (e.g., Ubuntu Linux and Red Hat Linux), BSD Unix, and Mac OS X.
+
+Even so, an understanding of modern computer operating systems and how they interact with the hardware and other software is useful. An operating system is loosely taken to be the set of software that manages and allocates the underlying hardware---divvying up the amount of time each user or program may use on the central processing unit (CPU), for example, or saving one user's secret files on the hard drive and protecting them from access by other users. When a user starts a program, that program is \enquote{owned} by the user in question. If a program wishes to interact with the hardware in any way (e.g., to read a file or display an image to the screen), it must funnel that request through the operating system, which will usually handle those requests such that no one program may monopolize the operating system's attention or the hardware.
+
+The figure above illustrates the four main \enquote{consumable} resources available to modern computers:
+
+\hypertarget{hardware_defs}{%
+\subparagraph{}\label{hardware_defs}}
+\addcontentsline{toc}{subparagraph}{}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The CPU. Some computers have multiple CPUs, and some CPUs have multiple processing \enquote{cores.} Generally, if there are \(n\) total cores and \(k\) programs running, then each program may access up to \(n/k\) processing power per unit time. The exception is when there are many processes (say, a few thousand); in this case, the operating system must spend a considerable amount of time just switching between the various programs, effectively reducing the amount of processing power available to all processes.
+\item
+  Hard drives or other \enquote{persistent storage.} Such drives can store ample amounts of data, but access is quite slow compared to the speed at which the CPU runs. Persistent storage is commonly made available through remote drives \enquote{mapped in} over the network, making access even slower (but perhaps providing much more space).
+\item
+  RAM, or random access memory. Because hard drives are so slow, all data must be copied into the \enquote{working memory} RAM to be accessed by the CPU. RAM is much faster but also much more expensive (and hence usually provides less total storage). When RAM is filled up, many operating systems will resort to trying to use the hard drive as though it were RAM (known as \enquote{swapping} because data are constantly being swapped into and out of RAM). Because of the difference in speed, it may appear to the user as though the computer has crashed, when in reality it is merely working at a glacial pace.
+\item
+  The network connection, which provides access to the outside world. If multiple programs wish to access the network, they must share time on the connection, much like for the CPU.
+\end{enumerate}
+
+Because the software interfaces we use every day---those that show us our desktop icons and allow us to start other programs---are so omnipresent, we often think of them as part of the operating system. Technically, however, these are programs that are run by the user (usually automatically at login or startup) and must make requests of the operating system, just like any other program. Operating systems such as Microsoft Windows and Mac OS X are in reality operating systems bundled with extensive suites of user software.
+
+\hypertarget{a-brief-history}{%
+\subsection*{A Brief History}\label{a-brief-history}}
+\addcontentsline{toc}{subsection}{A Brief History}
+
+The complete history of the operating systems used by computational researchers is long and complex, but a brief summary and explanation of several commonly used terms and acronyms such as BSD, \enquote{open source,} and GNU may be of interest. (Impatient readers may at this point skip ahead, though some concepts in this subsection may aid in understanding the relationship between computer hardware and software.)
+
+Foundational research into how the physical components that make up computing machinery should interact with users through software was performed as early as the 1950s and 1960s. In these decades, computers were rare, room-sized machines and were shared by large numbers of people. In the mid-1960s, researchers at Bell Labs (then owned by AT\&T), the Massachusetts Institute of Technology, and General Electric developed a novel operating system known as Multics, short for Multiplexed Information and Computing Service. Multics introduced a number of important concepts, including advances in how files are organized and how resources are allocated to multiple users.
+
+In the early 1970s, several engineers at Bell Labs were unhappy with the size and complexity of Multics, and they decided to reproduce most of the functionality in a slimmed-down version they called UNICS---this time short for Uniplexed Information and Computing Service---a play on the Multics name but not denoting a major difference in structure. As work progressed, the operating system was renamed Unix. Further developments allowed the software to be easily translated (or ported) for use on computer hardware of different types. These early versions of Multics and Unix also pioneered the automatic and simultaneous sharing of hardware resources (such as CPU time) between users, as well as protected files belonging to one user from others---important features when many researchers must share a single machine. (These same features allow us to multitask on modern desktop computers.)
+
+During this time, AT\&T and its subsidiary Bell Labs were prohibited by antitrust legislation from commercializing any projects not directly related to telephony. As such, the researchers licensed, free of cost, copies of the Unix software to any interested parties. The combination of a robust technology, easy portability, and free cost ensured that there were a large number of interested users, particularly in academia. Before long, many applications were written to operate on top of the Unix framework (many of which we'll use in this book), representing a powerful computing environment even before the 1980s.
+
+In the early 1980s, the antitrust lawsuit against AT\&T was settled, and AT\&T was free to commercialize Unix, which they did with what we can only presume was enthusiasm. Unsurprisingly, the new terms and costs were not favorable for the largely academic and research-focused user base of Unix, causing great concern for many so heavily invested in the technology.
+
+Fortunately, a group of researchers at the University of California (UC), Berkeley, had been working on their own research with Unix for some time, slowly reengineering it from the inside out. By the end of AT\&T's antitrust suit, they had produced a project that looked and worked like AT\&T's Unix: BSD (for Berkeley Systems Distribution) Unix. BSD Unix was released under a new software license known as the BSD license: anyone was free to copy the software free of charge, use it, modify it, and redistribute it, so long as anything redistributed was also released under the same BSD license and credit was given to UC Berkeley (this last clause was later dropped). Modern versions of BSD Unix, while not used heavily in academia, are regarded as robust and secure operating systems, though they consequently often lack cutting-edge or experimental features.
+
+In the same year that AT\&T sought to commercialize Unix, computer scientist Richard Stallmann responded by founding the nonprofit Free Software Foundation (FSF), which was dedicated to the idea that software should be free of ownership, and that users should be free to use, copy, modify, and redistribute it. He also initiated the GNU operating system project, with the goal of re-creating the Unix environment under a license similar to that of BSD Unix. (GNU stands for GNU's Not Unix: a recursive, self-referencing acronym exemplifying the peculiar humor of computer scientists.)
+
+The GNU project implemented a licensing scheme that differed somewhat from the BSD license. GNU software was to be licensed under terms created specifically for the project, called the GPL, or GNU Public License. The GPL allows anyone to use the software in any way they see fit (including distributing for free or selling any program built using it), provided they also make available the human-readable code that they've created and license it under the GPL as well (the essence of \enquote{open source}\footnote{Modern software is initially written using human-readable \enquote{source code,} then compiled into machine-readable software. Given source code, it is easy to produce software, but the reverse is not necessarily true. The distinctions between the BSD and GPL licenses are thus significant.}). It's as if the Ford Motor Company gave away the blueprints for a new car, with the requirement that any car designed using those blueprints also come with its own blueprints and similar rules. For this reason, software written under the GPL has a natural tendency to spread and grow. Ironically and ingeniously, Richard Stallmann and the BSD group used the licensing system, generally intended to protect the spread of intellectual property and causing the Unix crisis of the 1980s, to ensure the perpetual freedom of their work (and with it, the Unix legacy).
+
+While Stallmann and the FSF managed to re-create most of the software that made up the standard Unix environment (the bundled software), they did not immediately re-create the core of the operating system (also called the kernel). In 1991, computer science student Linus Torvalds began work on this core GPL-licensed component, which he named Linux (pronounced \enquote{lin-ucks,} as prescribed by the author himself). Many other developers quickly contributed to the project, and now Linux is available in a variety of \enquote{distributions,} such as Ubuntu Linux and Red Hat Linux, including both the Linux kernel and a collection of Unix-compatible GPL (and occasionally non-GPL) software. Linux distributions differ primarily in what software packages come bundled with the kernel and how these packages are installed and managed.
+
+Today, a significant number of software projects are issued under the GPL, BSD, or similar \enquote{open} licenses. These include both the Python and R projects, as well as most of the other pieces of software covered in this book. In fact, the idea has caught on for noncode projects as well, with many documents (including this one) published under open licenses like Creative Commons, which allow others to use materials free of charge, provided certain provisions are followed.
+
+\hypertarget{logging-in}{%
+\chapter{Logging In}\label{logging-in}}
+
+This book assumes that you have access to an account on a Unix-like operating system (such as Linux) that you can use directly or log in to remotely via the SSH (Secure-SHell) login protocol. Accounts of this type are frequently available at universities and research institutions, though you may also consider using or installing Linux on your own hardware. Additionally, the CyVerse Collaborative provides free command-line access to biological researchers through their Atmosphere system; see the end of this chapter for information on how to access this system using your web browser.
+
+Before explaining anything in detail, let's cover the actual process of logging in to a remote computer via SSH. To do this, you will need four things:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Client software on your own computer.
+\item
+  The address of the remote computer, called its \enquote{host name,} or, alternatively, its IP (Internet protocol) address.
+\item
+  A username on the remote computer with which to log in.
+\item
+  A corresponding password on the remote machine with which to log in.
+\end{enumerate}
+
+If you are using a computer running Mac OS X, the client software will be command line oriented and is accessible from the Terminal utility. The Terminal is located in the Utilities folder, inside of the Applications folder.\footnote{The style of your terminal session likely won't look like what we show in this book, but you can customize the look of your terminal using preferences. We'll be spending a lot of time in this environment!}
+
+In the window that opens up, you will see a prompt for entering commands. On my computer it looks like this (except for the lines numbers along the left):
+
+At this prompt, enter the following: \texttt{ssh\ \textless{}username\textgreater{}@\textless{}hostname\ or\ ip\textgreater{}}. Note that you don't actually type the angle brackets; angle brackets are just some commonly used nomenclature to indicate a field you need to specify. To log in to my account with username \texttt{oneils} at the Oregon State University's main Linux computer (\texttt{shell.onid.oregonstate.edu}), for example, I would type:
+
+To log in to a CyVerse instance with IP address \texttt{128.196.64.193} (and username \texttt{oneils}), however, I would use:
+
+After pressing Enter to run the command, you may be asked to \enquote{verify the key fingerprint} of the remote computer. Each computer running the SSH login system uses a unique pair of \enquote{keys} for cryptographic purposes: the public key is accessible to the world, and only the remote computer knows the private key. Messages encrypted with the public key can only be decrypted with the private key---if you cared to verify with the owner of the remote computer that the public key \enquote{fingerprint} was correct, then you could be assured that no one between you and the correct remote computer could see your login session. Unless you have a reason to suspect espionage of some sort, it's usually safe to enter yes at this prompt. Normally, you will be prompted once for each fingerprint, unless your local computer forgets the fingerprint or the system administrator changes it (or there is indeed an espionage attempt!).
+
+In any case, you will next be asked to enter your password. Note that \emph{as you type the password, you won't see any characters being shown on the screen}. This is another security feature, so that no passersby can see the contents or even the length of your password. It does make password entry more difficult, however, so take care when entering it. After logging in to a remote computer, the command prompt will usually change to reflect the login:
+
+If you are running Microsoft Windows, you will need to download the client SSH software from the web, install it, and run it. One option is PuTTy.exe, which is available at \url{http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html}.
+
+Once downloaded, it will need to be installed and run. In the \texttt{Host\ Name\ (or\ IP\ address)} field, enter the host name or IP address, as discussed above. Leave the port number to the default of \texttt{22}, and click Open.
+
+If you have successfully entered the host name or IP, you will be prompted for your username and password (and potentially to verify the key fingerprint).
+
+Finally, if you are already running a Linux or other Unix-like operating system, the steps for logging in remotely via SSH will be similar to those for Mac OS X, though you'll need to find the Terminal utility on your own. If you are using CyVerse Atmosphere, then you can utilize a terminal window right in the web browser by clicking on the Access By Shell tab or Open Web Shell link. In all cases, the text-based interface will be identical, because the remote computer, rather than your local desktop, determines the display.
+
+\hypertarget{logging-in-further-changing-your-password}{%
+\subsubsection*{Logging in Further, Changing Your Password}\label{logging-in-further-changing-your-password}}
+\addcontentsline{toc}{subsubsection}{Logging in Further, Changing Your Password}
+
+Depending on where you are logging in to, you may not be done with the login process. At many universities and research centers, the administrator would prefer that you not do any work on the computer you initially logged in to, because that computer may be reserved just for initial logins by dozens or even hundreds of researchers. As a result, you may need to \enquote{check out} a secondary, internal computer for your actual computational needs. Sometimes this can be done by SSHing on the command line to the secondary computer, but at some institutions, you will be asked to run other commands for this checkout process. Check with your local system administrator.
+
+In addition, you may want to change your password after your initial login. Running the \texttt{passwd} command usually suffices, and you will be prompted to enter both your old and new passwords. As usual, for security reasons, no characters will appear when entered. Further, good system administrators never ask for your password, and they are unable to recover it if it gets lost. The best administrators can do is reset it to a temporary one.
+
+\hypertarget{ssh-secure-shell}{%
+\subsection*{SSH: Secure Shell}\label{ssh-secure-shell}}
+\addcontentsline{toc}{subsection}{SSH: Secure Shell}
+
+One might rightfully ask: what did we just accomplish with all of this logging in? On our desktop computer, we used a program called a client to connect to another program, called a server. A \emph{server} is a program that waits in the background for another program (a \emph{client}) to connect to it.\footnote{Sometimes server programs are called \enquote{daemons,} terminology that evokes Maxwell's infamous \enquote{demon,} an impossible theoretical entity working in the background to sort gaseous molecules.} This connection often happens over a network, but connections can occur between programs on the same computer as well. A client is a program that is generally run by a user on an as-needed basis, and it connects to a server. While it's more correct to define a server as a program that waits for a connection from a client, colloquially, computers that primarily run server programs are also referred to as servers.
+
+The SSH server and the SSH client communicate using what is known as the SSH \enquote{protocol,} simply an agreed-upon format for data transfer. The SSH protocol is quite lightweight: because all of the actual computation happens on the remote machine, the only information that needs to be transferred to the server are the keystrokes typed by the user, and the only information that needs to be transferred to the client are the characters to be displayed to the user. As its name implies, the SSH protocol is very secure owing to its reliance on advanced public-key cryptography.\footnote{The public-key infrastructure currently in use by SSH is only secure as far as anyone in the academic sphere suspects: the mathematics underlying the key exchange protocol haven't yet been proven unbreakable. Most mathematicians, however, suspect that they are unbreakable. On the other hand, bugs have been known to occur in the software itself, though they are usually fixed promptly when found.}
+
+The SSH server may not be the only server program running on the remote computer. For example, web servers allow remote computers to serve web pages to clients (like Mozilla Firefox and OS X's Safari) using HTTP (hypertext transfer protocol). But because there is only one host name or IP address associated with the remote computer, an extra bit (byte, actually) of information is required, known as the \enquote{port number.} By way of analogy, if the remote computer were an apartment building, port numbers would be apartment numbers. By convention, SSH connects on port 22 and HTTP connects on port 80, although these ports can be changed by administrators who wish to run their services in nonstandard ways. This explains why port 22 is specified when connecting via Putty (and is the default when using command-line \texttt{ssh}, but it can be adjusted with a parameter).
+
+Other protocols of note include FTP (file transfer protocol) and its secure version, SFTP (secure file transfer protocol), designed specifically for transferring files.
+
+\hypertarget{command-line-access-with-cyverse-atmosphere}{%
+\subsection*{Command-Line Access with CyVerse Atmosphere}\label{command-line-access-with-cyverse-atmosphere}}
+\addcontentsline{toc}{subsection}{Command-Line Access with CyVerse Atmosphere}
+
+Readers of this book will ideally have access to a Unix-based operating system (e.g., Linux) with command-line access. This is often the case for individuals at universities and other research or educational institutions. Many users have access to such systems but don't even realize it, as the service is not often widely advertised.
+
+For those without institutional access, there are a few alternatives. First, Mac OS X machines are themselves Unix-based and come with a command-line interface (via the Terminal application), though the command-line tools differ vary slightly from the GNU-based tools found on most Linux distributions. A web search for \enquote{OS-X GNU core utils} will turn up some instructions for remedying this discrepancy. Second, it is possible to install a Linux distribution (like Ubuntu Linux) on most desktops and laptops by configuring the computer to \enquote{dual boot} Linux and the primary operating system. Alternatively, Linux distributions can be installed within \enquote{virtual machine} software, like VirtualBox (\url{http://virtualbox.org}).
+
+A rather exciting, relatively recent addition to these options is the Atmosphere system, run by the CyVerse (previously iPlant) collaborative, a cyber-infrastructure project founded in 2008 to support the computational needs of researchers in the life sciences. CyVerse as a whole hosts a variety of projects, from educational resources to guided bioinformatics analyses. The Atmosphere system is the most relevant for us here, as it provides cloud-based access to systems running Linux. To get started using one of these systems, navigate to \url{http://cyverse.org/atmosphere} and click on the link for \enquote{Create an Account} or \enquote{Launch Atmosphere.} If you need to create a new account, do so---CyVerse requests a variety of information for account creation to help gauge user interest and garner funding support. You may also need to request special access to the Atmosphere system through your account on the Atmosphere homepage, as Atmosphere is more resource intensive than other tools provided by CyVerse.
+
+After clicking on the \enquote{Launch} link, you will have the opportunity to enter your username and password (if you have been granted one).
+
+The Atmosphere system works by divvying up clusters of physical computers (located at one of various providers around the country) into user-accessible virtual machines of various sizes. When performing a computation that requires many CPU cores, for example, one might wish to access a new \enquote{instance} with 16 CPUs, 64 gigabytes (GB) of RAM, and 800 GB of hard disk space. On the other hand, for learning purposes, you will likely only need a small instance with 1 CPU and 4 GB of RAM. This is an important consideration, as CyVerse limits users to a certain quota of resources. Users are limited by the number of \enquote{atmosphere units} (AUs) they can use per month, defined roughly as using a single CPU for an hour. Users are also limited in the total number of CPUs and total amount of RAM they can use simultaneously.
+
+After determining the instance size needed, one needs to determine which operating system \enquote{image} should be loaded onto the virtual machine. All users can create such images---some users create images with software preinstalled to analyze RNA sequencing data, perform de novo genome assembly, and so on. We've created an image specifically to accompany this book: it is fairly simple and includes NCBI Blast+ (the most modern version of BLAST produced by the National Center for Biotechnology Information), R, Python, \texttt{git}, and a few other tools. It is called \enquote{APCB Image.}
+
+To activate a new instance with this image, click on the \enquote{New -\textgreater{} Instance} button in the Atmosphere interface. You may first need to create a \enquote{Project} for the instance to live in. You can search for \enquote{APCB Image} in the search box of instance types. Here's the view of my APCB project after creating and starting the instance:
+
+After creating the instance, it may be in one of several states; usually it will be either \enquote{running} (i.e., available for login and consuming resources) or \enquote{suspended} (effectively paused and not consuming resources). The interface for a given instance has buttons for suspending or resuming a suspended instance, as well as buttons for \enquote{Stop} (shutting an instance down), \enquote{Reboot} (rebooting the instance), and \enquote{Delete} (removing the instance and all data stored in it).
+
+Once an instance is up and running, there are several ways to access it. First, it is accessible via SSH at the IP address provided. Note that this IP address is likely to change each time the instance is resumed. Above, the IP address is shown as \texttt{128.196.64.36}, so we could access it from the OS X Terminal application:
+
+The Atmosphere Web interface also provides an \enquote{Open Web Shell} button, providing command-line access right in your browser. When you are done working with your Atmosphere instance, it's important to suspend the instance, otherwise you'll be wasting computational resources that others could be using (as well as your own quota).
+
+\hypertarget{logging-out}{%
+\subsection*{Logging Out}\label{logging-out}}
+\addcontentsline{toc}{subsection}{Logging Out}
+
+Once finished working with the remote computer, we should log out of the SSH session. Logging out is accomplished by running the command \texttt{exit} on the command line until returned to the local desktop or the SSH client program closes the connection. Alternatively, it suffices to close the SSH client program or window---SSH will close the connection, and no harm will be done. Note, however, than any currently executing program will be killed on logout.
+
+If you are working on an Atmosphere instance or similar remotely hosted virtual machine, it's a good idea to also suspend the instance so that time spent not working isn't counted against your usage limit.
+
+\hypertarget{exercises}{%
+\subsubsection*{Exercises}\label{exercises}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Practice logging in to and back out of the remote machine to which you have access.
+\item
+  Change your password to something secure but also easy to remember. Most Linux/Unix systems do not limit the length of a password, and longer passwords made up of collections of simple words are more secure than short strings of random letters. For example, a password like \texttt{correcthorsebatterystaple} is much more secure than \texttt{Tr0ub4dor\&3}.\footnote{These example passwords were drawn from a webcomic on the topic, located at \url{http://xkcd.com/936/}.}
+\item
+  A program called \texttt{telnet} allows us to connect to any server on any port and attempt to communicate with it (which requires that we know the correct messages to send to the server for the protocol). Try connecting with \texttt{telnet} to port \texttt{80} of \texttt{google.com} by using the \enquote{Telnet} radio button in PuTTY if on Windows, or by running \texttt{telnet\ google.com\ 80} in the Terminal on OS X. Issue the command \texttt{GET\ http://www.google.com/} to see the raw data returned by the server.
+\end{enumerate}
+
+\hypertarget{part-part-2-programming-in-python}{%
+\part*{Part 2: Programming in Python}\label{part-part-2-programming-in-python}}
+\addcontentsline{toc}{part}{Part 2: Programming in Python}
+
+\hypertarget{hello-world}{%
+\chapter{Hello, World}\label{hello-world}}
+
+Before we begin with programming in Python, it is useful to consider how the language fits into the landscape and history of similar languages. Initially, computer programming was not far removed from the \protect\hyperlink{hardware_defs}{hardware} on which it was being coded. This meant writing \enquote{bytecode}---or its human-readable equivalent, assembly code---that explicitly referenced memory (RAM) locations and copied data to and from the relatively small number of CPU registers (the storage units directly accessible by the CPU). Unfortunately, this meant that code had to be rewritten for each of the many types of CPUs. Later, more portable languages like C were developed. These languages still work close to the hardware in many ways; in particular, the programmer must tell the computer how it should allocate and de-allocate memory from RAM. On the other hand, some abstraction provides higher-level coding constructs that are not specific to CPU type. This code is then compiled into bytecode by a compiling program for each specific CPU (as discussed in previous chapters, we had to compile some software from source to install it). The result is a fast and often optimized program that frees the programmer from having to worry about the huge variety of CPU types.
+
+Later, some programmers decided that they didn't want to have to worry about specifying how RAM space should be allocated and de-allocated. They also wanted more features built into their languages to help them quickly architect complicated programs. One of the languages meant to accomplish these goals is Python, a project started in 1988 by mathematician, computer scientist, and Monty Python fan Guido van Rossum.\footnote{The history of computing is full of twists, turns, and reinvention of wheels. LISP, for example, is a language that incorporates many of the same high-level features as Python, but it was first developed in 1958!} \enquote{High-level} languages like Python and R (covered in later chapters) provide many built-in features to the programmer, and they are even more abstract than languages like C.
+
+Unfortunately, because of the added abstractions, languages like Python can't easily be compiled (like C can) to be run directly on the CPU.\footnote{On the other hand, ambitious programmers are currently working on projects like Cython to do exactly this.} In fact, these languages are not run the same way compiled or assembly programs are: they are interpreted by another program that is written in a compiled language like C and runs on the CPU. So, a Python \enquote{program} is just a text file of commands that are interpreted by another program that is actually interacting with the CPU and RAM.
+
+The added ease and flexibility of interpreted languages generally comes at a cost: because of the extra execution layer, they tend to be 2 to 100 times slower and use 2 to 20 times more memory than carefully constructed C programs, depending on what is being computed. These languages are significantly easier to use, however, and we can get our ideas into code far more quickly.
+
+Work on the Python language and interpreters for it has progressed steadily since the 1990s, emphasizing a \enquote{one best way} approach. Rather than providing multiple versions of basic commands that do the same thing, Python provides as few commands as possible while attempting to not limit the programmer. Python also emphasizes code readability: most syntax is composed of English-like words, shortcuts and punctuation characters are kept to a minimum, and the visual structure of \enquote{blocks} of code are enforced with indentation.
+
+For these reasons, Python use has grown significantly in recent years, especially for bioinformatics and computational biology. The emphasis on readability and \enquote{one best way} facilitates learning, particularly for those who are brand-new to programming.\footnote{Many believe that the best way to learn programming is in a hardware-oriented fashion with assembly or a language like C. This is a legitimate philosophy, but for the intended audience of this book, we'll stick with the higher-level languages Python and R.} Most importantly, Python allows us to focus on the concepts of programming without struggling through an abundance of choices and confusing syntax, and new programmers can frequently read and understand code written by others. Finally, Python incorporates a number of modern programming paradigms making it appropriate for both small tasks and larger software engineering projects---it's an official language at Google (along with C++ and Java), and it's taught in introductory courses at Johns Hopkins University, New York University, the Massachusetts Institute of Technology, and many others.
+
+All of this isn't to say that any programming language is devoid of quirks and difficulties. We'll only be covering some of what Python offers---the parts that are most basic and likely to be found in many languages. Topics that are highly \enquote{Pythonic} will be highlighted as we go along.
+
+\hypertarget{python-versions}{%
+\subsubsection*{Python Versions}\label{python-versions}}
+\addcontentsline{toc}{subsubsection}{Python Versions}
+
+In this book we will be working with Python version 2.7; that is, we're going to assume that the Python executable found in your \texttt{\$PATH} variable is version 2.7 (perhaps 2.7.10, which is the last of the 2.7 series as of 2015). You can check this by running \texttt{python\ -\/-version} on the command line. While newer versions are available (up to 3.4 and higher), they are not yet universally used. These newer versions change some syntax from 2.7. For many of the concepts introduced in this book, if you stick with the syntax as shown, your code should be compatible with these newer versions as well, but possibly not backward-compatible with older versions such as 2.5 or 2.6. This is an unfortunate artifact of Python's \enquote{one best way} philosophy: on occasion, the Python designers change their minds about what the best way is!
+
+To give an example, the print function \texttt{print("hello\ there")} works in Python versions 2.6, 2.7, 3.0, 3.1, and so on, whereas the keyword version \texttt{print\ "hello\ there"} (notice the lack of parentheses) would only work in versions 2.6 and 2.7. In some cases where differences in behavior would occur in later versions, we'll note them in footnotes.
+
+\hypertarget{hello-world-1}{%
+\subsection*{Hello, World}\label{hello-world-1}}
+\addcontentsline{toc}{subsection}{Hello, World}
+
+Because we're working in an interpreted language, in order to write a program, we'll need to create a file of Python code, and then supply it as input to the interpreting program. There are a few ways to do this: (1) use an interactive graphical environment like Jupyter notebook; (2) run the \protect\hyperlink{interpreter_def}{interpreter} ourselves on the command line, giving the file name containing our code as an argument; or (3) making the code file an executable \protect\hyperlink{script_def}{script} in the command line environment using \texttt{\#!} syntax.
+
+\hypertarget{jupyter-notebook}{%
+\subsubsection*{Jupyter Notebook}\label{jupyter-notebook}}
+\addcontentsline{toc}{subsubsection}{Jupyter Notebook}
+
+For those wishing to program Python without working on the command line, a variety of graphical environments are available. A typical installation of Python from \url{http://python.org} includes the \enquote{Idle} code editor. One of the nicer alternatives to this default is known as Jupyter, which runs in a web browser allows the programmer to interleave sections of code and documentation.
+
+Installing Jupyter requires that Python already be installed (from \url{http://python.org}), and then requires using the command line terminal in Linux, OS X, or Windows; see \href{http://python.org/install}{http://jupyter.org/install} for details. Once installed, it can be started from the command line by running \texttt{jupyter\ notebook}:
+
+The Jupyter interface will open in the default desktop web browser, showing the list of folders and files in whatever directory the command was run from.
+
+Clicking the \enquote{New} button, followed by \enquote{Python Notebook} will create a new notebook document composed of \enquote{cells.} Cells in a notebook can contain human-readable text (as documentation) or lines of Python code. Whether the text in the cell is interpreted as code or text depends on the choice made in the \enquote{Cell} menu.
+
+Each cell may be \enquote{executed} by clicking on the \enquote{Play} button; doing so causes text cells to change to a nicely formatted output, and executes lines of code for code cells. But beware: the output of a given cell often depends on what other cells have been executed and in which order (see the \enquote{Cell output depends on the order of execution} cell in the figure below).
+
+For this reason, I highly recommend making the assumption that all code cells will be executed in top-to-bottom order, which can be accomplished by selecting \enquote{Run All} from the \enquote{Cell} menu whenever you want to execute any code. Doing so causes all the cells to be re-executed each time it is run, it but has the advantage of ensuring the correctness of the overall notebook as changes are made to cells over time.
+
+\hypertarget{specified-interpreter}{%
+\subsubsection*{Specified Interpreter}\label{specified-interpreter}}
+\addcontentsline{toc}{subsubsection}{Specified Interpreter}
+
+As convenient as notebooks are, because the previous part of this book focused on the command line, and Python interfaces quite nicely with it, the examples here will be from the command line environment. Because Python programs are interpreted scripts, we can manually specify the \protect\hyperlink{interpreter_def}{interpreter} on the command line each time we run such a \protect\hyperlink{script_def}{script}.
+
+For this method, we first have to edit a code file that we'll call \texttt{helloworld.py} (\texttt{.py} is the traditional extension for Python programs). On the command line, we'll edit code files with our text editor \texttt{nano}, passing in a few extra parameters:
+
+The \texttt{-w} tells nano not to automatically wrap long lines (we're writing code after all, not an essay), \texttt{-i} says to automatically indent newlines to the current indentation level, \texttt{-T\ 4} says that tab-stops should be four spaces wide, and \texttt{-E} says that tabs should be converted to spaces (four of them). This usage of four spaces per indentation level is widely agreed upon by the Python community as being easy on the eyes. (\enquote{One best way,} remember?) We'll put a simple call to the \texttt{print()} function in the file:
+
+As usual, \texttt{Control-o} saves the file (press Enter if prompted about the file name) and \texttt{Control-x} exits \texttt{nano}. Next, to run it, all we need to do is call the Python interpreter on the file:
+
+Success! We've written our first Python program!
+
+\hypertarget{making-the-file-executable}{%
+\subsubsection*{Making the File Executable}\label{making-the-file-executable}}
+\addcontentsline{toc}{subsubsection}{Making the File Executable}
+
+An alternative method is to make the code file an executable \protect\hyperlink{script_def}{script}. First, we have to edit the code file to include a special first line:
+
+For this method to work, the first two characters of the file must be \texttt{\#!} (in fact, the entire line needs to be replicated exactly); although \texttt{nano} is displaying what looks to be a blank line above our \texttt{\#!} line, there isn't really one there.
+
+In chapter 5, \enquote{\href{}{Permissions and Executables},} we discussed the \texttt{\#!} line as containing the absolute path to the interpreter, as in \texttt{\#!/usr/bin/bash} for bash scripts. In this case, we are specifying something slightly different: \texttt{\#!/usr/bin/env\ python}. The \texttt{env} program, among other things, searches for the installed location of the given argument and executes that. A \texttt{\#!} line like this will cause a Python program to be successfully executed, even if it is installed in a nonstandard location. (One may ask if \texttt{env} is ever installed in a nonstandard location. Fortunately, it is rare to find \texttt{env} located anywhere other than in \texttt{/usr/bin}.)
+
+Next, we need to exit \texttt{nano} and make the file executable by using the \texttt{chmod} utility, and finally we can run it with \texttt{./helloworld.py}. This specifies that the program \texttt{helloworld.py} should be run and that it exists in the current directory (\texttt{./}).
+
+\hypertarget{configuring-and-using-nano}{%
+\subsubsection*{\texorpdfstring{Configuring and Using \texttt{nano}}{Configuring and Using nano}}\label{configuring-and-using-nano}}
+\addcontentsline{toc}{subsubsection}{Configuring and Using \texttt{nano}}
+
+Generally, you won't want to type \texttt{nano\ -w\ -i\ -E\ -T\ 4\ ...} every time you want to edit a Python code file. Fortunately, \texttt{nano} can be configured to automatically use these options if they are specified correctly in a file called \texttt{.nanorc} in your home directory. But this may not be the best choice, either: when editing files that are not Python code, you likely don't want to convert all your tab entries to spaces. Instead, you may want to define a shell alias called \texttt{nanopy} specifically for editing Python code. To have this shell alias preserved for each login session, the relevant code would need to be added to your \texttt{.bashrc} (assuming your \protect\hyperlink{shell_def}{shell} is bash):
+
+If you are going to perform the above, double-check that the command is exactly as written. After logging out and back in, you can edit a Python code file with the alias using \texttt{nanopy\ helloworld.py}.
+
+As evident from the code sample above, \texttt{nano} can also provide syntax highlighting (coloring of code for readability) if your \texttt{\$HOME/.nanorc} and related files are configured properly, though it isn't necessary for programming.
+
+Don't forget that it is often useful to have multiple terminal windows open simultaneously. You can use one for editing, one for running your program and testing, and perhaps a third running \texttt{top}, displaying how much CPU and RAM your program is using.
+
+Although not as powerful as more sophisticated text editors such as \texttt{emacs} or \texttt{vim}, \texttt{nano} is easy to use and includes a number of features such as editing multiple files, cutting and pasting within and between files, regular-expression-based search and search/replace, spell check, and more. While editing, \texttt{nano} can also take you directly to a line number (\texttt{Control–-}), which will come in handy when you need to go directly to a line that caused an error.
+
+Whatever editor you choose to use, reading some documentation will help you be much more productive. For the rest of our code samples, we'll be showing screenshots from within \texttt{vim}, primarily because it provides prettier syntax highlighting.
+
+\hypertarget{exercises-1}{%
+\subsubsection*{Exercises}\label{exercises-1}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a file of Python code on the command line containing a simple \texttt{print("Hello!")} statement. Execute it by specifying the interpreter. If you are running iPython notebook, try to create a similarly simple notebook and execute the cell.
+\item
+  Create a file of Python code, make it an executable script, and execute it. Does that work? Why or why not?
+\item
+  Determine which version of Python you are running (perhaps by running \texttt{python\ -\/-version}). Test to see which versions of print work for you: \texttt{print("Hello!")} or \texttt{print\ "Hello!"}. (The former is much preferred.)
+\end{enumerate}
+
+\hypertarget{elementary-data-types}{%
+\chapter{Elementary Data Types}\label{elementary-data-types}}
+
+Variables are vital to nearly all programming languages. In Python, \emph{variables} are \enquote{names that refer to data.} The most basic types of data that can be referred to are defined by how contemporary computers work and are shared by most languages.
+
+\hypertarget{integers-floats-and-booleans}{%
+\subsection*{Integers, Floats, and Booleans}\label{integers-floats-and-booleans}}
+\addcontentsline{toc}{subsection}{Integers, Floats, and Booleans}
+
+Consider the integer \texttt{10}, and the real number \texttt{5.64}. It turns out that these two are represented differently in the computer's binary code, partly for reasons of efficiency (e.g., storing \texttt{10} vs.~\texttt{10.0000000000}). Python and most other languages consider integers and real numbers to be two different \enquote{types}: real numbers are called \emph{floats} (short for \enquote{floating point numbers}), and integers are called \emph{ints}. We assign data like floats and ints to variables using the \texttt{=} operator.
+
+While we're on the topic of variables, variable names in Python should always start with a lowercase letter and contain only letters, underscores, and numbers.
+
+Note that the interpreter ignores \texttt{\#} characters and anything after them on the line.\footnote{The \texttt{\#} symbols are ignored unless they occur within a pair of quotes. Technically, the interpreter also ignores the \texttt{\#!} line, but it is needed to help the system find the interpreter in the execution process if running the program as a script.} This allows us to put \enquote{comments} in our code. Blank lines don't matter, either, allowing the insertion of blank lines in the code for ease of reading.
+
+We can convert an int type into a float type using the \texttt{float()} function, which takes one parameter inside the parentheses:
+
+Similarly, we can convert floats to ints using the \texttt{int()} function, which truncates the floating point value at the decimal point (so \texttt{5.64} will be truncated to the int type \texttt{5}, while \texttt{-4.67} would be truncated to the int type \texttt{-4}):
+
+This information is useful because of a particular caveat when working with most programming languages, Python included: if we perform mathematical operations using only int types, the result will always be an int. Thus, if we want to have our operations return a floating point value, we need to convert at least one of the inputs on the right-hand side to a float type first. Fortunately, we can do this in-line:
+
+In the last line above, we see that mathematical expressions can be grouped with parentheses in the usual way (to override the standard order of operations if needed), and if a subexpression returns a float, then it will travel up the chain to induce floating-point math for the rest of the expression.\footnote{This isn't true in Python 3.0 and later; e.g., \texttt{10\ /\ 3} will return the float \texttt{3.33333}.}
+
+Another property of importance is that the right-hand side of an assignment is evaluated before the assignment happens.
+
+Aside from the usual addition and subtraction, other mathematical operators of note include \texttt{**} for exponential powers and \texttt{\%} for modulus (to indicate a remainder after integer division, e.g., \texttt{7\ \%\ 3} is \texttt{1}, \texttt{8\ \%\ 3} is \texttt{2}, \texttt{9\ \%\ 3} is \texttt{0}, and so on).
+
+Notice that we've reused the variables \texttt{a}, \texttt{b}, and \texttt{c}; this is completely allowable, but we must remember that they now refer to different data. (Recall that a variable in Python is a name that refers to, or references, some data.) In general, execution of lines within the same file (or cell in an iPython notebook) happens in an orderly top-to-bottom fashion, though later we'll see \enquote{control structures} that alter this flow.
+
+Booleans are simple data types that hold either the special value \texttt{True} or the special value \texttt{False}. Many functions return Booleans, as do comparisons:
+
+For now, we won't use Boolean values much, but later on they'll be important for controlling the flow of our programs.
+
+\hypertarget{strings}{%
+\subsection*{Strings}\label{strings}}
+\addcontentsline{toc}{subsection}{Strings}
+
+Strings, which hold sequences of letters, digits, and other characters, are the most interesting basic data type.\footnote{Unlike C and some other languages, Python does not have a \enquote{char} datatype specifically for storing a single character.} We can specify the contents using either single or double quotes, which can be useful if we want the string itself to contain a quote. Alternatively, we can \emph{escape} odd characters like quotes if they would confuse the interpreter as it attempts to parse the file.
+
+Strings can be added together with \texttt{+} to concatenate them, which results in a new string being returned so that it can be assigned to a variable. The \texttt{print()} function, in its simplest form, takes a single value such as a string as a parameter. This could be a variable referring to a piece of data, or the result of a computation that returns one:
+
+We cannot concatenate strings to data types that aren't strings, however.
+
+Running the above code would result in a \texttt{TypeError:\ cannot\ concatenate\ \textquotesingle{}str\textquotesingle{}\ and\ \textquotesingle{}float\textquotesingle{}\ objects}, and the offending line number would be reported. In general, the actual bug in your code might be before the line reporting the error. This particular error example wouldn't occur if we had specified \texttt{height\ =\ "5.5"} in the previous line, because two strings can be concatenated successfully.
+
+Fortunately, most built-in data types in Python can be converted to a string (or a string describing them) using the \texttt{str()} function, which returns a string.
 
   \bibliography{book.bib,packages.bib}
 

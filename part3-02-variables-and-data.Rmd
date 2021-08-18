@@ -1,0 +1,239 @@
+# Variables and Data
+
+Like most languages, R lets us assign data to variables. In fact, we can do so using either the `=` assignment operator or the `<-` operator, though the latter is most commonly found and generally preferred.
+
+<pre id=block_cb56af
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+alpha <- -4.4
+print(alpha)                   # prints [1] -4.4
+</code></pre>
+
+Here, `print()` is a function, which prints the contents of its parameter (to the interpreter window in RStudio, or [standard output]() on the command line). This function has the “side effect” of printing the output but doesn’t return anything.^[The R interpreter will also print the contents of any variable or value returned without being assigned to a variable. For example, the lines `alpha` and `3 + 4` are equivalent to `print(alpha)` and `print(3 + 4)`. Such “printless” prints are common in R code, but we prefer the more explicit and readable call to the `print()` function.] By contrast, the `abs()` function returns the absolute value of its input without any other effects.
+
+<pre id=block_f5de40
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+alpha_abs <- abs(alpha)
+print(alpha_abs)               # prints [1] 4.4
+</code></pre>
+
+The interpreter ignores `#` characters and anything after them on a single line, so we can use them to insert comments in our code for explanation or to improve readability. Blank lines are ignored, so we can add them to improve readability as well.
+
+You might be curious why the extra `[1]` is included in the printed output; we’ll return to that point soon, but for now, let it suffice to say that the number `4.4` is the first (and only) of a collection of values being printed.
+
+The right-hand side of an assignment is usually evaluated first, so we can do tricky things like reuse variable names in expressions.
+
+<pre id=block_6a4b0e
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+gamma <- -6.6
+gamma <- abs(gamma)
+print(gamma)                   # prints [1] 6.6
+
+count <- 22
+count <- count + 1
+print(count)                   # prints [2] 23
+</code></pre>
+
+Variable and function names in R deserve some special discussion. There are a variety of conventions, but a common one that we’ll use is the same convention we used for Python: variable names should (1) consist of only letters and numbers and underscores, (2) start with a lowercase letter, (3) use underscores to separate words, and (4) be meaningful and descriptive to make code more readable.
+
+In R, variable and function names are also allowed to include the `.` character, which contains no special meaning (unlike in many other languages). So, `alpha.abs <- abs(alpha)` is not an uncommon thing to see, though we’ll be sticking with the convention `alpha_abs <- abs(alpha)`. R variables may be almost anything, so long as we are willing to surround the name with back-tick characters. So, ```alpha abs` <- abs(alpha)`` would be a valid line of code, as would a following line like ``print(`alpha abs`)``, though this is not recommended.
+
+### Numerics, Integers, Characters, and Logicals {-}
+
+One of the most basic types of data in R is the “numeric,” also known as a float, or floating-pointing number in other languages.^[This reflects the most common use of the term "numeric" in R, though perhaps not the most accurate. R has a `double` type which implements floating-point numbers, and technically both these and integers are subtypes of `numeric`.] R even supports scientific notation for these types.
+
+
+<pre id=block_19abb9
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+gc_content <- 0.34                 # numeric 0.34
+evalue <- 1e-7                     # numeric 0.0000001
+</code></pre>
+
+R also provides a separate type for integers, numbers that don’t have a fractional value. They are important, but less commonly seen in R primarily because numbers are created as numerics, even if they look like integers.
+
+<pre id=block_6cfc0a
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq_len <- 215                     # actually numeric 215.0
+</code></pre>
+
+It is possible to convert numeric types to actual integer types with the `as.integer()` function, and vice versa with the `as.numeric()` function.
+
+<pre id=block_c55b1d
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq_len_int <- as.integer(seq_len)       # integer 215
+seq_len2 <- as.numeric(seq_len_int)      # numeric 215.0
+</code></pre>
+
+When converting to an integer type, decimal parts are removed, and thus the values are rounded toward `0` (`4.8` becomes `4`, and `-4.8` would become `-4`.)
+
+The “character” data type holds a string of characters (though of course the string may contain only a single character, or no characters as in `''`). These can be specified using either single or double quotes.
+
+
+<pre id=block_bd8f4d
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+name <- 'Shawn'
+last_name <- "O'Neil"
+</code></pre>
+
+Concatenating character strings is trickier in R than in some other languages, so we’ll cover that in chapter 32, “[Character and Categorical Data]().” (The `cat()` function works similarly, and allows us to include special characters like tabs and newlines by using `\t` and `\n`, respectively; `cat("Shawn\tO'Neil")` would output something like `Shawn O'Neil`.)
+
+Character types are different from integers and numerics, and they can’t be treated like them even if they look like them. However, the `as.character()` and `as.numeric()` functions will convert character strings to the respective type if it is possible to do so.
+
+<pre id=block_084601
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+value_chr <- "6.2"
+asum <- 5.4 + value_chr                   # Error!
+asum2 <- 5.4 + as.numeric(value_chr)      # numeric 11.6
+</code></pre>
+
+By default, the R interpreter will produce a warning (`NAs induced by conversion`) if such a conversion doesn’t make sense, as in `as.numeric("Shawn")`. It is also possible to convert a numeric or integer type to a character type, using `as.character()`.
+
+<pre id=block_18e3aa
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+asum2_char <- as.character(asum2)          # character, "11.6"
+</code></pre>
+
+The “logical” data type, known as a Boolean type in other languages, is one of the more important types for R. These simple types store either the special value `TRUE` or the special value `FALSE` (by default, these can also be represented by the shorthand `T` and `F`, though this shorthand is less preferred because some coders occasionally use `T` and `F` for variable names as well). Comparisons between other types return logical values (unless they result in a warning or error of some kind). It is possible to compare character types with comparators like `<` and `>`; the comparison is done in [lexicographic (dictionary) order]().
+
+<pre id=block_5f1751
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+sun_is_yellow <- TRUE                       # logical TRUE
+result <- 3 < 5                             # logical TRUE
+
+char_test <- "AACT" < "CGTAC"               # logical TRUE
+</code></pre>
+
+But beware: in R (and Python), such comparisons also work when they should perhaps instead result in an error: character types can be validly compared to numeric types, and character values are always considered larger. This particular property has resulted in a number of programming mistakes.
+
+<pre id=block_9b92d6
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+mix_text <- "AACT" > -20.4                  # logical TRUE
+</code></pre>
+
+R supports `<`, `>`, `<=`, `>=`, `==`, and `!=` comparisons, and these have the same meaning as for the comparisons in Python (see chapter 17, “[Conditional Control Flow](),” for details). For numeric types, R suffers from the same caveat about equality comparison as Python and other languages: rounding errors for numbers with decimal expansions can compound in dangerous ways, and so comparing numerics for equality should be done with care. (You can see this by trying to run `print(0.2 * 0.2 / 0.2 == 0.2)`, which will result in `FALSE`; again, see chapter 17 for details.^[Because whole numbers are by default stored as numerics (rather than integers), this may cause some discomfort when attempting to compare them. But because whole numbers can be stored exactly as numerics (without rounding), statements like `4 + 1 == 5`, equivalent to `4.0 + 1.0 == 5.0`, would result in `TRUE`. Still, some cases of division might cause a problem, as in `(1/5) * (1/5) / (1/5) == (1/5)`.]) The “official” way to compare two numerics for approximate equality in R is rather clunky: `isTRUE(all.equal(a, b))` returns `TRUE` if a and b are approximately equal (or, if they contain multiple values, all elements are). We’ll explore some alternatives in later chapters.
+
+<pre id=block_1ae328
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+a <- 0.2 * 0.2 / 0.2
+b <- 0.2
+result <- isTRUE(all.equal(a, b))           # logical TRUE
+</code></pre>
+
+Speaking of programming mistakes, because `<-` is the preferred assignment operator but `=` is also an assignment operator, one must be careful when coding with these and the `==` or `<` comparison operators. Consider the following similar statements, all of which have different meanings.
+
+<pre id=block_a02bac
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+val <- 5                                    # assigns 5 to val
+val < -5                                    # compares val to -5 (less than)
+val = -5                                    # assigns -5 to val
+val == -5                                   # compares val to -5 (equality)
+</code></pre>
+
+R also supports logical connectives, though these take on a slightly different syntax than most other languages.
+
+| Connective | Meaning                                    | Example (with `a <- 7`, `b <- 3`) |
+|------------|--------------------------------------------|-----------------------------------|
+| `&`        | and: `TRUE` if both sides are `TRUE`       | `a < 8 & b == 3     # TRUE`       |
+| `|`        | or: `TRUE` if one or both sides are `TRUE` | `a < 8 | b == 9     # TRUE`      |
+| `!`        | not: `TRUE` if the following is `FALSE`    | `! a < 3            # TRUE`       |
+
+These can be grouped with parentheses, and usually should be to avoid confusion.
+
+<pre id=block_8d185a
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+base1 <- "A"
+base2 <- "T"
+val1 <- 3.5
+val2 <- 4.7
+
+result <- val1 < val2 & (base2 == "T" | !(base1 < base2))   # TRUE
+</code></pre>
+
+When combining logical expressions this way, each side of an ampersand or `|` must result in a logical—the code `a == 9 | 7` is not the same as `a == 9 | a == 7` (and, in fact, the former will always result in `TRUE` with no warning).
+
+Because R is such a dynamic language, it can often be useful to check what type of data a particular variable is referring to. This can be accomplished with the `class()` function, which returns a character string of the appropriate type.
+
+<pre id=block_631db3
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+id <- "REG3A"
+len <- as.integer(525)
+gc_content <- 0.67
+id_class <- class(id)
+len_class <- class(len)
+
+print(id_class)                           # prints [1] "character"
+print(len_class)                          # prints [1] "integer"
+print(class(gc_content))                  # prints [1] "numeric"
+</code></pre>
+
+We’ll do this frequently as we continue to learn about various R data types.
+
+
+<div class="exercises">
+#### Exercises {-}
+Given a set of variables, a, b, c, and d, find assignments of them to either TRUE or FALSE such that the result variable holds TRUE.
+1. Given a set of variables, `a`, `b`, `c`, and `d`, find assignments of them to either `TRUE` or `FALSE` such that the result variable holds `TRUE`.
+
+   <pre id=block_50b0ec
+        class="language-python 
+               line-numbers 
+               linkable-line-numbers">
+    <code>
+    a <- # TRUE or FALSE?
+    b <- # TRUE or FALSE?
+    c <- # TRUE or FALSE?
+    d <- # TRUE or FALSE?
+    ## We want the code below to print TRUE
+    result <- (c | b) & (!b | d) & (!c | a) & (!c | !a)
+    print(result)
+    </code></pre>
+2. Without running the code, try to reason out what `print(class(class(4.5)))` would result in.
+3. Try converting a character type like `"1e-50"` to a numeric type with `as.numeric()`, and one like `"1x10^5"`. What are the numeric values after conversion? Try converting the numeric value `0.00000001` to a character type—what is the string produced? What are the smallest and largest numerics you can create?
+4. The `is.numeric()` function returns the logical `TRUE` if its input is a numeric type, and `FALSE` otherwise. The functions `is.character()`, `is.integer()`, and `is.logical()` do the same for their respective types. Try using these to test whether specific variables are specific types.
+5. What happens when you run a line like `print("ABC"* 4)`? What about `print("ABC" + 4)`? Why do you think the results are what they are? How about `print("ABC" + "DEF")`? Finally, try the following: `print(TRUE + 5)`, `print(TRUE + 7)`, `print(FALSE + 5)`, `print(FALSE + 7)`, `print(TRUE * 4)`, and `print(FALSE * 4)`. What do you think is happening here?
+</div>
+
