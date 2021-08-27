@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.Rmd": "markdown"
+    },
+    "files.autoSave": "off"
+}
