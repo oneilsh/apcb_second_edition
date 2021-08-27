@@ -26,4 +26,4 @@ More text blah blah blah
   <img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_12_filesystem_ex.png" />
 </div>
 
-
+More more more
