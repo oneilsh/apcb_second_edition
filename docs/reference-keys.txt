@@ -1,5 +1,6 @@
 context
 logging-in
+the-command-line-and-filesystem
 hello-world
 elementary-data-types
 an-introduction

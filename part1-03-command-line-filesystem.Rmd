@@ -1,0 +1,29 @@
+
+# The Command Line and Filesystem
+
+Computer users are used to interacting with a “user interface.” On many computers, this interface displays the desktop or task bar, icons, file previews, and so on. It takes input from the user in the form of keystrokes, mouse movements, and in some cases voice commands, and presents the results of the user’s actions. Perhaps most importantly, the user interface is itself a *program* (it is software running on a computer, after all) we interact with to *execute other programs*.
+
+
+###### {- #shell} 
+###### {- #command_prompt} 
+The same thing happens when we use SSH to log in to a remote machine, or open up the Terminal application on a Linux or OS X desktop. In this case, however, instead of interacting with a GUI (Graphical User Interface), we interact with a CLI (Command-Line Interface), or *shell*, which does the job of displaying the command prompt. The shell is the software we interact with on the command line. In some sense it is the command line, as it displays the command prompt, accepts input via typed text, runs other programs on our behalf, and displays the results textually. A *command prompt* is a line of status information provided in a text-based interface, indicating that commands are to be entered and run by pressing Enter. Command prompts often include information about what computer or network one is logged in to, the username one is logged in with, and an indication of the “present working directory” (discussed below).
+
+The first command that we’ll learn for the Linux command line is `echo`, which prints the parameters we give it.
+
+<pre id=part1-03-echo-example
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>echo hello there</b>
+hello there
+</code></pre>
+
+
+More text blah blah blah
+
+<div class="fig center" style="width: 80%">
+  <img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_12_filesystem_ex.png" />
+</div>
+
+
