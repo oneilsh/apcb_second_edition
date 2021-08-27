@@ -14,7 +14,10 @@ link-citations: yes
 
 # Preface {-}
 
-It has become almost cliché to state that contemporary life scientists work with a staggering amount and variety of data. This fact makes it no less true: the advent of high-throughput sequencing alone has forced biologists to routinely aggregate multi-gigabyte data sets and compare the results against multi-terabyte databases. The good news is that work of this kind is within the reach of anyone possessing the right computational skills.
+It has become almost cliché to state that contemporary life scientists work with a staggering amount and variety of data. 
+This fact makes it no less true: the advent of high-throughput sequencing alone has forced biologists to routinely aggregate 
+multi-gigabyte data sets and compare the results against multi-terabyte databases. 
+The good news is that work of this kind is within the reach of anyone possessing the right computational skills.
 
 The purpose of this book is perhaps best illustrated by a fictional, but not unreasonable, scenario. Suppose I am a life scientist (undergraduate or graduate research assistant, postdoc, or faculty) with limited but basic computational skills. I’ve identified a recently developed data collection method—perhaps a new sequencing technology—that promises to provide unique insight into my system of study. After considerable field and lab work, the data are returned as a dozen files a few gigabytes in total size.
 
