@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Dedication | A Primer for Computational Biology (2nd Edition)</title>
-  <meta name="description" content="Dedication | A Primer for Computational Biology (2nd Edition)" />
+  <title>Chapter 3 The Command Line and Filesystem | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 3 The Command Line and Filesystem | A Primer for Computational Biology (2nd Edition)" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Dedication | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:title" content="Chapter 3 The Command Line and Filesystem | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Dedication | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="twitter:title" content="Chapter 3 The Command Line and Filesystem | A Primer for Computational Biology (2nd Edition)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="acknowledgements.html"/>
-<link rel="next" href="context.html"/>
+<link rel="prev" href="logging-in.html"/>
+<link rel="next" href="hello-world.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -220,10 +220,30 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dedication" class="section level1 unnumbered">
-<h1>Dedication</h1>
-<p><em>To the amazing instructors I’ve been fortunate enough to learn from, and to the amazing students I’ve been fortunate enough to learn with.</em></p>
+<div id="the-command-line-and-filesystem" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> The Command Line and Filesystem</h1>
+<p>Computer users are used to interacting with a “user interface.” On many computers, this interface displays the desktop or task bar, icons, file previews, and so on. It takes input from the user in the form of keystrokes, mouse movements, and in some cases voice commands, and presents the results of the user’s actions. Perhaps most importantly, the user interface is itself a <em>program</em> (it is software running on a computer, after all) we interact with to <em>execute other programs</em>.</p>
+<div id="shell" class="section level6 unnumbered">
+<h6></h6>
+</div>
+<div id="command_prompt" class="section level6 unnumbered">
+<h6></h6>
+<p>The same thing happens when we use SSH to log in to a remote machine, or open up the Terminal application on a Linux or OS X desktop. In this case, however, instead of interacting with a GUI (Graphical User Interface), we interact with a CLI (Command-Line Interface), or <em>shell</em>, which does the job of displaying the command prompt. The shell is the software we interact with on the command line. In some sense it is the command line, as it displays the command prompt, accepts input via typed text, runs other programs on our behalf, and displays the results textually. A <em>command prompt</em> is a line of status information provided in a text-based interface, indicating that commands are to be entered and run by pressing Enter. Command prompts often include information about what computer or network one is logged in to, the username one is logged in with, and an indication of the “present working directory” (discussed below).</p>
+<p>The first command that we’ll learn for the Linux command line is <code>echo</code>, which prints the parameters we give it.</p>
+<pre id=part1-03-echo-example
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>echo hello there</b>
+hello there
+</code></pre>
+<p>More text blah blah blah</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_12_filesystem_ex.png" /></p>
+</div>
 
+</div>
 </div>
 
 
@@ -233,8 +253,8 @@
           </div>
         </div>
       </div>
-<a href="acknowledgements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="context.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logging-in.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hello-world.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -266,7 +286,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/00-dedication.Rmd",
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-03-command-line-filesystem.Rmd",
 "text": "Edit"
 },
 "history": {
