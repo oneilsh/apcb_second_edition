@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Variables and Data | A Primer for Computational Biology (2nd Edition)</title>
   <meta name="description" content="Chapter 7 Variables and Data | A Primer for Computational Biology (2nd Edition)" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Variables and Data | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="an-introduction.html"/>
 
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -181,7 +181,13 @@
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a><ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
 <li class="part"><span><b>Part 2: Programming in Python</b></span></li>
 <li class="chapter" data-level="4" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>4</b> Hello, World</a><ul>
 <li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
@@ -231,7 +237,7 @@
 alpha <- -4.4
 print(alpha)                   # prints [1] -4.4
 </code></pre>
-<p>Here, <code>print()</code> is a function, which prints the contents of its parameter (to the interpreter window in RStudio, or <a href="">standard output</a> on the command line). This function has the “side effect” of printing the output but doesn’t return anything.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> By contrast, the <code>abs()</code> function returns the absolute value of its input without any other effects.</p>
+<p>Here, <code>print()</code> is a function, which prints the contents of its parameter (to the interpreter window in RStudio, or <a href="">standard output</a> on the command line). This function has the “side effect” of printing the output but doesn’t return anything.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> By contrast, the <code>abs()</code> function returns the absolute value of its input without any other effects.</p>
 <pre id=block_f5de40
      class="language-r 
             line-numbers 
@@ -260,7 +266,7 @@ print(count)                   # prints [2] 23
 <p>In R, variable and function names are also allowed to include the <code>.</code> character, which contains no special meaning (unlike in many other languages). So, <code>alpha.abs &lt;- abs(alpha)</code> is not an uncommon thing to see, though we’ll be sticking with the convention <code>alpha_abs &lt;- abs(alpha)</code>. R variables may be almost anything, so long as we are willing to surround the name with back-tick characters. So, `<code>alpha abs` &lt;- abs(alpha)</code> would be a valid line of code, as would a following line like <code>print(`alpha abs`)</code>, though this is not recommended.</p>
 <div id="numerics-integers-characters-and-logicals" class="section level3 unnumbered">
 <h3>Numerics, Integers, Characters, and Logicals</h3>
-<p>One of the most basic types of data in R is the “numeric,” also known as a float, or floating-pointing number in other languages.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> R even supports scientific notation for these types.</p>
+<p>One of the most basic types of data in R is the “numeric,” also known as a float, or floating-pointing number in other languages.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> R even supports scientific notation for these types.</p>
 <pre id=block_19abb9
      class="language-r 
             line-numbers 
@@ -334,7 +340,7 @@ char_test <- "AACT" < "CGTAC"               # logical TRUE
 <code>
 mix_text <- "AACT" > -20.4                  # logical TRUE
 </code></pre>
-<p>R supports <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, and <code>!=</code> comparisons, and these have the same meaning as for the comparisons in Python (see chapter 17, “<a href="">Conditional Control Flow</a>,” for details). For numeric types, R suffers from the same caveat about equality comparison as Python and other languages: rounding errors for numbers with decimal expansions can compound in dangerous ways, and so comparing numerics for equality should be done with care. (You can see this by trying to run <code>print(0.2 * 0.2 / 0.2 == 0.2)</code>, which will result in <code>FALSE</code>; again, see chapter 17 for details.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>) The “official” way to compare two numerics for approximate equality in R is rather clunky: <code>isTRUE(all.equal(a, b))</code> returns <code>TRUE</code> if a and b are approximately equal (or, if they contain multiple values, all elements are). We’ll explore some alternatives in later chapters.</p>
+<p>R supports <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, and <code>!=</code> comparisons, and these have the same meaning as for the comparisons in Python (see chapter 17, “<a href="">Conditional Control Flow</a>,” for details). For numeric types, R suffers from the same caveat about equality comparison as Python and other languages: rounding errors for numbers with decimal expansions can compound in dangerous ways, and so comparing numerics for equality should be done with care. (You can see this by trying to run <code>print(0.2 * 0.2 / 0.2 == 0.2)</code>, which will result in <code>FALSE</code>; again, see chapter 17 for details.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>) The “official” way to compare two numerics for approximate equality in R is rather clunky: <code>isTRUE(all.equal(a, b))</code> returns <code>TRUE</code> if a and b are approximately equal (or, if they contain multiple values, all elements are). We’ll explore some alternatives in later chapters.</p>
 <pre id=block_1ae328
      class="language-r 
             line-numbers 
@@ -414,7 +420,7 @@ print(class(gc_content))                  # prints [1] "numeric"
 </code></pre>
 <p>We’ll do this frequently as we continue to learn about various R data types.</p>
 <div class="exercises">
-<h4 id="exercises-4" class="unnumbered">Exercises</h4>
+<h4 id="exercises-5" class="unnumbered">Exercises</h4>
 <p>Given a set of variables, a, b, c, and d, find assignments of them to either TRUE or FALSE such that the result variable holds TRUE.
 1. Given a set of variables, <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code>, find assignments of them to either <code>TRUE</code> or <code>FALSE</code> such that the result variable holds <code>TRUE</code>.</p>
 <pre id=block_50b0ec
@@ -462,12 +468,15 @@ print(class(gc_content))                  # prints [1] "numeric"
 
 
 
+
+
+
 <div class="footnotes">
 <hr />
-<ol start="15">
-<li id="fn15"><p>The R interpreter will also print the contents of any variable or value returned without being assigned to a variable. For example, the lines <code>alpha</code> and <code>3 + 4</code> are equivalent to <code>print(alpha)</code> and <code>print(3 + 4)</code>. Such “printless” prints are common in R code, but we prefer the more explicit and readable call to the <code>print()</code> function.<a href="variables-and-data.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p>This reflects the most common use of the term “numeric” in R, though perhaps not the most accurate. R has a <code>double</code> type which implements floating-point numbers, and technically both these and integers are subtypes of <code>numeric</code>.<a href="variables-and-data.html#fnref16" class="footnote-back">↩︎</a></p></li>
-<li id="fn17"><p>Because whole numbers are by default stored as numerics (rather than integers), this may cause some discomfort when attempting to compare them. But because whole numbers can be stored exactly as numerics (without rounding), statements like <code>4 + 1 == 5</code>, equivalent to <code>4.0 + 1.0 == 5.0</code>, would result in <code>TRUE</code>. Still, some cases of division might cause a problem, as in <code>(1/5) * (1/5) / (1/5) == (1/5)</code>.<a href="variables-and-data.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<ol start="18">
+<li id="fn18"><p>The R interpreter will also print the contents of any variable or value returned without being assigned to a variable. For example, the lines <code>alpha</code> and <code>3 + 4</code> are equivalent to <code>print(alpha)</code> and <code>print(3 + 4)</code>. Such “printless” prints are common in R code, but we prefer the more explicit and readable call to the <code>print()</code> function.<a href="variables-and-data.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>This reflects the most common use of the term “numeric” in R, though perhaps not the most accurate. R has a <code>double</code> type which implements floating-point numbers, and technically both these and integers are subtypes of <code>numeric</code>.<a href="variables-and-data.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Because whole numbers are by default stored as numerics (rather than integers), this may cause some discomfort when attempting to compare them. But because whole numbers can be stored exactly as numerics (without rounding), statements like <code>4 + 1 == 5</code>, equivalent to <code>4.0 + 1.0 == 5.0</code>, would result in <code>TRUE</code>. Still, some cases of division might cause a problem, as in <code>(1/5) * (1/5) / (1/5) == (1/5)</code>.<a href="variables-and-data.html#fnref20" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -520,6 +529,10 @@ gitbook.start({
 "text": null
 },
 "download": {},
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
