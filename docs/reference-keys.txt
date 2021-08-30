@@ -1,6 +1,7 @@
 context
 logging-in
 the-command-line-and-filesystem
+working-with-files-and-directories
 hello-world
 elementary-data-types
 an-introduction
