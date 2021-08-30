@@ -130,7 +130,7 @@ p450s.fasta   <span style="color: blue">tempdir</span>   todo_list.txt
 p450s.fasta
 </code></pre>
 
-Beware! *Deleted files are gone forever*. There is no undo, and there is no recycle bin. Whenever you use the `rm` command, double-check your syntax. There’s a world of difference between `rm -rf project_copy` (which deletes the folder project_copy) and `rm -rf project _copy` (which removes the folders `project` and `_copy`, if they exist).
+Beware! *Deleted files are gone forever*. There is no undo, and there is no recycle bin. Whenever you use the `rm` command, double-check your syntax. There’s a world of difference between `rm -rf project_copy` (which deletes the folder project_copy) and `rm -rf project _copy` (which removes the folders `project` and `_copy`, if they exist). If you're nervous about using `rm`, consider utilizing the `-i` option, which will ask for confirmation before removing each file.
 
 ### Checking the Size of a File or Directory {-}
 
