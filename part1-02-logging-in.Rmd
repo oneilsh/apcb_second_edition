@@ -155,6 +155,8 @@ If you are working on an Atmosphere instance or similar remotely hosted virtual 
 #### Exercises {-}
 
 1. Practice logging in to and back out of the remote machine to which you have access.
+
 2. Change your password to something secure but also easy to remember. Most Linux/Unix systems do not limit the length of a password, and longer passwords made up of collections of simple words are more secure than short strings of random letters. For example, a password like `correcthorsebatterystaple` is much more secure than `Tr0ub4dor&3`.^[These example passwords were drawn from a webcomic on the topic, located at [http://xkcd.com/936/](http://xkcd.com/936/).]
+
 3. A program called `telnet` allows us to connect to any server on any port and attempt to communicate with it (which requires that we know the correct messages to send to the server for the protocol). Try connecting with `telnet` to port `80` of `google.com` by using the “Telnet” radio button in PuTTY if on Windows, or by running `telnet google.com 80` in the Terminal on OS X. Issue the command `GET http://www.google.com/` to see the raw data returned by the server.
 </div>

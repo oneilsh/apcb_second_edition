@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="the-command-line-and-filesystem.html"/>
-<link rel="next" href="hello-world.html"/>
+<link rel="next" href="permissions-and-executables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -201,22 +201,27 @@
 <li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
 <li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a><ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
 <li class="part"><span><b>Part 2: Programming in Python</b></span></li>
-<li class="chapter" data-level="5" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>5</b> Hello, World</a><ul>
+<li class="chapter" data-level="6" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>6</b> Hello, World</a><ul>
 <li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>6</b> Elementary Data Types</a><ul>
+<li class="chapter" data-level="7" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>7</b> Elementary Data Types</a><ul>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-floats-and-booleans"><i class="fa fa-check"></i>Integers, Floats, and Booleans</a></li>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
 </ul></li>
 <li class="part"><span><b>Part 3: Programming in R</b></span></li>
-<li class="chapter" data-level="7" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>7</b> An Introduction</a><ul>
+<li class="chapter" data-level="8" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>8</b> An Introduction</a><ul>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>8</b> Variables and Data</a><ul>
+<li class="chapter" data-level="9" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>9</b> Variables and Data</a><ul>
 <li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -451,19 +456,16 @@ fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
 <div class="exercises">
 <h4 id="exercises-2" class="unnumbered">Exercises</h4>
 <ol style="list-style-type: decimal">
-<li>Create the following directories inside your home directory, if you don’t already have them: <code>downloads</code>, <code>local</code>, and <code>projects</code>. Inside of <code>local</code>, create a directory called <code>bin</code>. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.</li>
-<li>Open not one but <em>two</em> login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of <code>top</code>.</li>
+<li><p>Create the following directories inside your home directory, if you don’t already have them: <code>downloads</code>, <code>local</code>, and <code>projects</code>. Inside of <code>local</code>, create a directory called <code>bin</code>. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.</p></li>
+<li><p>Open not one but <em>two</em> login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of <code>top</code>.</br></br>
+Create a hidden directory inside of your home directory called <code>.hidden</code>. Inside of this directory, create a file called <code>notes</code>. Edit the file to contain tricks and information you fear you might forget.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p></li>
+<li><p>Spend a few minutes just practicing tab completion while moving around the filesystem using absolute and relative paths. Getting around efficiently via tab-completion is a surprisingly necessary skill.</p></li>
+<li><p>Skim the man page for <code>ls</code>, and try out a few of the options listed there. Read a bit of the <code>info</code> page for <code>nano</code>.</p></li>
 </ol>
-<p>Create a hidden directory inside of your home directory called <code>.hidden</code>. Inside of this directory, create a file called <code>notes</code>. Edit the file to contain tricks and information you fear you might forget.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>
-3. Spend a few minutes just practicing tab completion while moving around the filesystem using absolute and relative paths. Getting around efficiently via tab-completion is a surprisingly necessary skill.
-4. Skim the man page for <code>ls</code>, and try out a few of the options listed there. Read a bit of the <code>info</code> page for <code>nano</code>.</p>
 </div>
 
 </div>
 </div>
-
-
-
 <div class="footnotes">
 <hr />
 <ol start="9">
@@ -478,7 +480,7 @@ fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
         </div>
       </div>
 <a href="the-command-line-and-filesystem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="hello-world.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="permissions-and-executables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

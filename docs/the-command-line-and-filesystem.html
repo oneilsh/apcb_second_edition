@@ -201,22 +201,27 @@
 <li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
 <li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a><ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
 <li class="part"><span><b>Part 2: Programming in Python</b></span></li>
-<li class="chapter" data-level="5" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>5</b> Hello, World</a><ul>
+<li class="chapter" data-level="6" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>6</b> Hello, World</a><ul>
 <li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>6</b> Elementary Data Types</a><ul>
+<li class="chapter" data-level="7" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>7</b> Elementary Data Types</a><ul>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-floats-and-booleans"><i class="fa fa-check"></i>Integers, Floats, and Booleans</a></li>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
 </ul></li>
 <li class="part"><span><b>Part 3: Programming in R</b></span></li>
-<li class="chapter" data-level="7" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>7</b> An Introduction</a><ul>
+<li class="chapter" data-level="8" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>8</b> An Introduction</a><ul>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>8</b> Variables and Data</a><ul>
+<li class="chapter" data-level="9" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>9</b> Variables and Data</a><ul>
 <li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -270,6 +275,9 @@ hello $USER
 [oneils@mbp ~]$ <b>echo $GREETING</b>
 hello oneils
 </code></pre>
+</div>
+<div id="environment_variable" class="section level6 unnumbered">
+<h6></h6>
 <p>The <code>echo</code> program might seem absurdly simple, as it just prints its parameters. But it is quite useful in practice and as a learning tool. For example, we can use <code>echo</code> to print not only simple strings, but also the contents of an <em>environment variable</em>, which is a variable bit of information (usually holding strings of text) that is accessible by the shell and other programs the user runs. Accessing the contents of an environment variable requires prefixing it with a <code>$</code>.</p>
 <p>The shell (and other programs) commonly uses environment variables to store information about your login session, much like how, in a GUI interface, a “variable” remembers the wallpaper picture for the desktop. Environment variables control many aspects of the command-line environment, and so they are quite important. Many of these are set automatically when we log in. For example, <code>$USER</code>.</p>
 <pre id=part1-03-$USER
@@ -556,11 +564,11 @@ drwx------   7  oneils  iplant-everyone 4.0K  Sep 15 09:52 <span style="color: b
 <div class="exercises">
 <h4 id="exercises-1" class="unnumbered">Exercises</h4>
 <ol style="list-style-type: decimal">
-<li>Practice moving about the filesystem with <code>cd</code> and listing directory contents with <code>ls</code>, including navigating by relative path, absolute path, <code>.</code> and <code>..</code>. Use <code>echo $PWD</code> and <code>pwd</code> frequently to list your present working directory. Practice navigating home with <code>cd ~</code>, <code>cd $HOME</code>, and just <code>cd</code> with no arguments. You might find it useful to draw a “map” of the filesystem, or at least the portions relevant to you, on a piece of paper.</li>
-<li>Without explicitly typing your username, create another environment variable called <code>$CHECKCASH</code>, such that when <code>echo $CHECKCASH</code> is run, a string like <code>oneils has $20</code> is printed (except that <code>oneils</code> would be your username and should be set by reading from <code>$USER</code>).</li>
-<li>The directory <code>/etc</code> is where many configuration files are stored. Try navigating there (using <code>cd</code>) using an absolute path. Next, go back home with <code>cd $HOME</code> and try navigating there using a relative path.</li>
-<li>What happens if you are in the top-level directory <code>/</code> and you run <code>cd ..</code>?</li>
-<li>Users’ home directories are normally located in <code>/home</code>. Is this the case for you? Are there any other home directories belonging to other users that you can find, and if so, can you <code>cd</code> to them and run <code>ls</code>?</li>
+<li><p>Practice moving about the filesystem with <code>cd</code> and listing directory contents with <code>ls</code>, including navigating by relative path, absolute path, <code>.</code> and <code>..</code>. Use <code>echo $PWD</code> and <code>pwd</code> frequently to list your present working directory. Practice navigating home with <code>cd ~</code>, <code>cd $HOME</code>, and just <code>cd</code> with no arguments. You might find it useful to draw a “map” of the filesystem, or at least the portions relevant to you, on a piece of paper.</p></li>
+<li><p>Without explicitly typing your username, create another environment variable called <code>$CHECKCASH</code>, such that when <code>echo $CHECKCASH</code> is run, a string like <code>oneils has $20</code> is printed (except that <code>oneils</code> would be your username and should be set by reading from <code>$USER</code>).</p></li>
+<li><p>The directory <code>/etc</code> is where many configuration files are stored. Try navigating there (using <code>cd</code>) using an absolute path. Next, go back home with <code>cd $HOME</code> and try navigating there using a relative path.</p></li>
+<li><p>What happens if you are in the top-level directory <code>/</code> and you run <code>cd ..</code>?</p></li>
+<li><p>Users’ home directories are normally located in <code>/home</code>. Is this the case for you? Are there any other home directories belonging to other users that you can find, and if so, can you <code>cd</code> to them and run <code>ls</code>?</p></li>
 </ol>
 </div>
 

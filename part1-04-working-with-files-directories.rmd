@@ -249,10 +249,13 @@ But if the rogue program is in a particularly bad error state, it won’t stop e
 
 <div class="exercises">
 #### Exercises {-}
-1. Create the following directories inside your home directory, if you don’t already have them: `downloads`, `local`, and `projects`. Inside of `local`, create a directory called `bin`. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.
-2. Open not one but *two* login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of `top`.
 
+1. Create the following directories inside your home directory, if you don’t already have them: `downloads`, `local`, and `projects`. Inside of `local`, create a directory called `bin`. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.
+
+2. Open not one but *two* login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of `top`.</br></br>
 Create a hidden directory inside of your home directory called `.hidden`. Inside of this directory, create a file called `notes`. Edit the file to contain tricks and information you fear you might forget.^[You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like `nano`, TextEdit on OS X, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters with serif quotes, which don’t work on the command line, leading to headaches.]
+
 3. Spend a few minutes just practicing tab completion while moving around the filesystem using absolute and relative paths. Getting around efficiently via tab-completion is a surprisingly necessary skill.
+
 4. Skim the man page for `ls`, and try out a few of the options listed there. Read a bit of the `info` page for `nano`.
 </div>
