@@ -1,0 +1,5577 @@
+[soneil@mbp ~]$
+[soneil@mbp ~]$ ssh oneils@shell.onid.oregonstate.edu
+[soneil@mbp ~]$ ssh oneils@128.196.64.193
+oneils@atmosphere ~$ 
+oneils@atmosphere ~$ echo hello there
+hello there
+oneils@atmosphere ~$ echo $USER
+oneils
+oneils@atmosphere ~$ export GREETING=hello
+oneils@atmosphere ~$ echo $GREETING
+hello
+oneils@atmosphere ~$ export GREETING=hello everyone
+oneils@atmosphere ~$ echo $GREETING
+hello
+oneils@atmosphere ~$ export GREETING=hello\ everyone
+oneils@atmosphere ~$ echo $GREETING
+hello everyone
+oneils@atmosphere ~$ export GREETING='hello everyone'
+oneils@atmosphere ~$ echo $GREETING
+hello everyone
+oneils@atmosphere ~$ export GREETING='hello $USER'
+oneils@atmosphere ~$ echo $GREETING
+hello $USER
+oneils@atmosphere ~$ export GREETING="hello $USER"
+oneils@atmosphere ~$ echo $GREETING
+hello oneils
+oneils@atmosphere ~$ echo $0
+-bash
+oneils@atmosphere ~$ tcsh
+172:~> echo $0
+tcsh
+172:~> setenv GREETING "hello $USER"
+172:~> echo $GREETING
+hello oneils
+172:~> exit
+exit
+oneils@atmosphere ~$ echo $0
+-bash
+oneils@atmosphere ~$ echo $HOME
+/home/oneils
+oneils@atmosphere ~$ echo $PWD
+/home/oneils
+oneils@atmosphere ~$ pwd
+/home/oneils
+oneils@atmosphere ~$ ls
+apcb     Documents  Music     Public     todo_list.txt
+Desktop  Downloads  Pictures  Templates  Videos
+oneils@atmosphere ~$ cd /home
+oneils@atmosphere /home$ echo $PWD
+/home
+oneils@atmosphere /home$ ls
+lost+found  oneils
+oneils@atmosphere /home$ cd $HOME
+oneils@atmosphere ~$ pwd
+/home/oneils
+oneils@atmosphere ~$ ls
+apcb     Documents  Music     Public     todo_list.txt
+Desktop  Downloads  Pictures  Templates  Videos
+oneils@atmosphere ~$ cd Pictures
+oneils@atmosphere ~/Pictures$ ls
+profile.jpg
+oneils@atmosphere ~/Pictures$ cd $HOME
+oneils@atmosphere ~$ ls -a
+.              .config    .gstreamer-0.10  .profile       .vim
+..             .dbus      .gvfs            Public         .viminfo
+apcb           Desktop    .ICEauthority    .pulse         .vimrc
+.bash_history  Documents  .local           .pulse-cookie  .vnc
+.bash_login    Downloads  Music            .ssh           .Xauthority
+.bash_logout   .gconf     .netrc           Templates      .Xdefaults
+.bashrc        .gnome2    Pictures         todo_list.txt  .xscreensaver
+.cache         .gnupg     .pip             Videos         .xsession-errors
+oneils@atmosphere ~$ ls -lah
+total 168K
+drwxr-xr-x 25 oneils iplant-everyone 4.0K Sep 23 22:40 .
+drwxr-xr-x  4 root   root            4.0K Sep 15 09:48 ..
+drwxr-xr-x  4 oneils iplant-everyone 4.0K Sep 15 11:19 apcb
+-rw-------  1 root   root            2.2K Sep 15 10:49 .bash_history
+-rw-r--r--  1 oneils iplant-everyone   61 Sep 16 19:46 .bash_login
+-rw-r--r--  1 oneils iplant-everyone  220 Apr  3  2012 .bash_logout
+-rw-r--r--  1 oneils iplant-everyone 3.6K Sep 15 09:48 .bashrc
+drwx------  7 oneils iplant-everyone 4.0K Sep 15 09:52 .cache
+...
+oneils@atmosphere ~$ echo $PWD
+/home/oneils
+oneils@atmosphere ~$ cd .
+oneils@atmosphere ~$ echo $PWD
+/home/oneils
+oneils@atmosphere ~$ cd ..
+oneils@atmosphere /home$ echo $PWD
+/home
+oneils@atmosphere /$ cd $HOME
+oneils@atmosphere ~$ echo $PWD
+/home/oneils
+oneils@atmosphere ~$ cd ../..
+oneils@atmosphere /$ echo $PWD
+/
+oneils@atmosphere ~$ ls
+apcb     Documents  Music        Pictures  Templates      Videos
+Desktop  Downloads  p450s.fasta  Public    todo_list.txt
+oneils@atmosphere ~$ less p450s.fasta
+>sp|Q3LFU0|CP1A1_BALAC Cytochrome P450 1A1 OS=Balaenoptera acutorostrata GN=CYP1
+A1 PE=2 SV=1
+MFSVFGLSIPISATELLLASATFCLVFWVVRAWQPRVPKGLKSPPGPWSWPLIGHVLTLG
+KSPHLALSRLSQRYGDVLQIRIGCTPVLVLSGLDTIRQALVRQGDDFKGRPDLYSFTLVA
+DGQSMTFNPDSGPVWAARRRLAQNALKSFSIASDPASSSSCYLEEHVSKESEYLIGKFQE
+p450s.fasta
+>sp|Q3LFU0|CP1A1_BALAC Cytochrome P450 1A1 OS=Balaenoptera acutorostrata GN=CYP1
+MFSVFGLSIPISATELLLASATFCLVFWVVRAWQPRVPKGLKSPPGPWSWPLIGHVLTLG
+KSPHLALSRLSQRYGDVLQIRIGCTPVLVLSGLDTIRQALVRQGDDFKGRPDLYSFTLVA
+DGQSMTFNPDSGPVWAARRRLAQNALKSFSIASDPASSSSCYLEEHVSKESEYLIGKFQE
+p450s.fasta
+oneils@atmosphere ~$ ls
+apcb     Documents  Music        Pictures  Templates      Videos
+Desktop  Downloads  p450s.fasta  Public    todo_list.txt
+oneils@atmosphere ~$ mkdir projects
+oneils@atmosphere ~$ ls
+apcb     Documents  Music        Pictures  Public     todo_list.txt
+Desktop  Downloads  p450s.fasta  projects  Templates  Videos
+oneils@atmosphere ~$ mv p450s.fasta p450s.fa
+oneils@atmosphere ~$ mv p450s.fa projects
+oneils@atmosphere ~$ mv projects projects_dir
+oneils@atmosphere ~$ ls
+apcb     Documents  Music     projects_dir  Templates      Videos
+Desktop  Downloads  Pictures  Public        todo_list.txt
+oneils@atmosphere ~$ 
+oneils@atmosphere ~$ mv projects_dir/p450s.fa p450s.fasta
+oneils@atmosphere ~$ mv projects_dir/ projects
+oneils@atmosphere ~$ cp todo_list.txt todo_copy.txt
+oneils@atmosphere ~$ cp -r projects projects_dir_copy
+oneils@atmosphere ~/projects$ cp ../todo_list.txt ../p450s.fasta .
+oneils@atmosphere ~/projects$ mkdir tempdir
+oneils@atmosphere ~/projects$ ls
+p450s.fasta  tempdir  todo_list.txt
+oneils@atmosphere ~/projects$ rm todo_list.txt 
+oneils@atmosphere ~/projects$ rm -rf tempdir/
+oneils@atmosphere ~/projects$ ls
+p450s.fasta
+oneils@atmosphere ~/projects$ cd $HOME
+oneils@atmosphere ~$ ls
+apcb     Documents  Music        Pictures  Public     todo_list.txt
+Desktop  Downloads  p450s.fasta  projects  Templates  Videos
+oneils@atmosphere ~$ du -sh p450s.fasta
+16K p450s.fasta
+oneils@atmosphere ~$ du -sh projects/
+4.0K projects/
+oneils@atmosphere ~$ du -sh .
+11M .
+oneils@atmosphere ~$ nano todo_list.txt
+  GNU nano 2.2.6             File: todo_list.txt                                
+
+
+drink coffee
+write book
+sleep
+
+
+                                [ Read 3 lines ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+oneils@atmosphere ~/apcb/intro$ ls
+fileAA.temp  fileA.temp  fileB.temp  temp
+oneils@atmosphere ~/apcb/intro$ mv fileA.temp fileAA.temp fileB.temp temp/
+oneils@atmosphere ~/apcb/intro$ ls
+fileAA.temp  fileA.temp  fileB.temp  temp
+oneils@atmosphere ~/apcb/intro$ mv file*.temp temp/
+oneils@atmosphere ~$ man ls
+top - 02:23:20 up 15 days, 16:34,  2 users,  load average: 0.03, 0.02, 0.05
+Tasks: 127 total,   1 running, 126 sleeping,   0 stopped,   0 zombie
+Cpu(s):  0.0%us,  0.0%sy,  0.0%ni, 99.7%id,  0.3%wa,  0.0%hi,  0.0%si,  0.0%st
+Mem:   4050124k total,  1801608k used,  2248516k free,   142652k buffers
+Swap:        0k total,        0k used,        0k free,  1256080k cached
+
+
+  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND           
+    1 root      20   0 90540 4264 2696 S  0.0  0.1   0:07.85 init               
+    2 root      20   0     0    0    0 S  0.0  0.0   0:00.00 kthreadd           
+    3 root      20   0     0    0    0 S  0.0  0.0   0:43.50 ksoftirqd/0        
+    5 root      20   0     0    0    0 S  0.0  0.0   0:00.35 kworker/u:0        
+    6 root      RT   0     0    0    0 S  0.0  0.0   0:00.00 migration/0        
+oneils@atmosphere ~$ finger Shawn
+Login: oneils         Name: Shawn O'neil
+Directory: /home/oneils             Shell: /bin/bash
+On since Mon Oct 20 16:52 (MST) on pts/0 from 8-169.ptpg.oregonstate.edu
+No mail.
+No Plan.
+oneils@atmosphere ~/apcb/intro$ ls -l
+total 20
+-rwxrwxrwx 1 oneils iplant-everyone 15891 Oct 20 17:42 p450s.fasta
+drwxr-xr-x 2 oneils iplant-everyone  4096 Oct 20 17:40 temp
+oneils@atmosphere ~/apcb/intro$ groups $USER
+oneils : iplant-everyone users community de-preview-access atmo-user dnasubway-
+users myplant-users
+oneils@atmosphere ~/apcb/intro$ chgrp community p450s.fasta 
+oneils@atmosphere ~$ cd /bin
+oneils@atmosphere /bin$ ls -l
+total 7384
+-rwxr-xr-x 1 root root 959120 Mar 28  2013 bash
+-rwxr-xr-x 1 root root  31112 Dec 14  2011 bunzip2
+-rwxr-xr-x 1 root root  31112 Dec 14  2011 bzcat
+...
+^?ELF^B^A^A^@^@^@^@^@^@^@^@^@^B^@>^@^A^@^@^@8<D4>A^@^@^@^@^@@^@^@^@^@^@^@^@<90>
+<9B>^N^@^@^@^@^@^@^@^@^@@^@8^@   ^@@^@^\^@ESC^@^F^@^@^@^E^@^@^@@^@^@^@^@^@^@^@@
+^@@^@^@^@^@^@@^@@^@^@^@^@^@<F8>^A^@^@^@^@^@^@<F8>^A^@^@^@^@^@^@^H^@^@^@^@^@^@^@
+^C^@^@^@^D^@^@^@8^B^@^@^@^@^@^@8^B@^@^@^@^@^@8^B@^@^@^@^@^@^\^@^@^@^@^@^@^@^\^@
+^@^@^@^@^@^@^A^@^@^@^@^@^@^@^A^@^@^@^E^@^@^@^@^@^@^@^@^@^@^@^@^@@^@^@^@^@^@^@^@@^@^@^@^@^@<A4><FE>^M^@^@^@^@^@<A4><FE>^M^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^F^@^@
+^@^H^N^N^@^@^@^@^@^H^Nn^@^@^@^@^@^H^Nn^@^@^@^@^@<88><8C>^@^@^@^@^@^@@<E8>^@^@^@
+^@^@^@^@^@ ^@^@^@^@^@^B^@^@^@^F^@^@^@0^N^N^@^@^@^@^@0^Nn^@^@^@^@^@0^Nn^@^@^@^@^@
+bash
+oneils@atmosphere ~/apcb/intro$ /bin/echo hello
+hello
+oneils@atmosphere ~/apcb/intro$ ../../../../bin/echo hello
+hello
+oneils@atmosphere ~/apcb/intro$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+oneils@atmosphere ~$ which echo
+/bin/echo
+oneils@atmosphere ~/apcb/intro$ which cd
+oneils@atmosphere ~/apcb/intro$ 
+  GNU nano 2.2.6              File: myprog.sh                         Modified  
+
+
+#!/bin/bash
+
+
+echo "Hello!"
+echo "This is a bit weird..."
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+oneils@atmosphere ~/apcb/intro$ ls
+myprog.sh  p450s.fasta  temp
+oneils@atmosphere ~/apcb/intro$ chmod +x myprog.sh 
+oneils@atmosphere ~/apcb/intro$ ls -l
+total 24
+-rwxr-xr-x 1 oneils iplant-everyone    57 Oct 20 20:49 myprog.sh
+-rw-rw-rw- 1 oneils community       15891 Oct 20 17:42 p450s.fasta
+drwxr-xr-x 2 oneils iplant-everyone  4096 Oct 20 17:40 temp
+oneils@atmosphere ~/apcb/intro$ pwd
+/home/oneils/apcb/intro
+oneils@atmosphere ~/apcb/intro$ /home/oneils/apcb/intro/myprog.sh 
+Hello!
+This is a bit weird...
+oneils@atmosphere ~/apcb/intro$ ./myprog.sh 
+Hello!
+This is a bit weird...
+oneils@atmosphere ~/apcb/intro$ cd $HOME 
+oneils@atmosphere ~$ /home/oneils/apcb/intro/myprog.sh 
+Hello!
+This is a bit weird...
+oneils@atmosphere ~$ apcb/intro/myprog.sh 
+Hello!
+This is a bit weird...
+oneils@atmosphere ~$ myprog.sh
+-bash: myprog.sh: command not found
+oneils@atmosphere ~$ cd $HOME
+oneils@atmosphere ~$ mkdir local
+oneils@atmosphere ~$ mkdir local/bin
+oneils@atmosphere ~$ ls
+apcb     Documents  local  Pictures  Templates      Videos
+Desktop  Downloads  Music  Public    todo_list.txt
+oneils@atmosphere ~$ mv apcb/intro/myprog.sh local/bin
+oneils@atmosphere ~$ export PATH="$HOME/local/bin:$PATH"
+oneils@atmosphere ~$ echo $PATH
+/home/oneils/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+:/usr/games
+oneils@atmosphere ~$ myprog.sh
+Hello!
+This is a bit weird...
+oneils@atmosphere ~$ ls -a
+.              .dbus       .gnome2          Public         .vnc
+..             Desktop     .gstreamer-0.10  .pulse         .Xauthority
+apcb           Documents   .gvfs            .pulse-cookie  .Xdefaults
+.bash_history  Downloads   .ICEauthority    .ssh           .xscreensaver
+.bash_logout   .gconf      local            Templates      .xsession-errors
+.bashrc        .git        Music            todo_list.txt
+.cache         .gitconfig  Pictures         Videos
+.config        .gitignore  .profile         .vim
+oneils@atmosphere ~$ nano -w .bashrc
+## ...
+export IDS_HOME="/irods/data.iplantc.org/iplant/home/oneils"
+alias ids_home="cd $IDS_HOME"
+
+
+## End Atmosphere System
+
+
+## Added by Shawn O'Neil, for my local/bin
+export PATH="$HOME/local/bin:$PATH" 
+
+
+oneils@atmosphere ~$ cd $HOME
+oneils@atmosphere ~$ mkdir downloads
+oneils@atmosphere ~$ cd downloads/
+oneils@atmosphere ~/downloads$ 
+oneils@atmosphere ~/downloads$ wget 'http://eddylab.org/software/hmmer3/3.1b1/h
+mmer-3.1b1.tar.gz' -O hmmer-3.1b1.tar.gz
+oneils@atmosphere ~/downloads$ ls
+hmmer-3.1b1.tar.gz
+oneils@atmosphere ~/downloads$ gzip -d hmmer-3.1b1.tar.gz 
+oneils@atmosphere ~/downloads$ ls
+hmmer-3.1b1.tar
+oneils@atmosphere ~/downloads$ tar -xf hmmer-3.1b1.tar 
+oneils@atmosphere ~/downloads$ ls
+hmmer-3.1b1  hmmer-3.1b1.tar
+oneils@atmosphere ~/downloads$ cd hmmer-3.1b1/
+oneils@atmosphere ~/downloads/hmmer-3.1b1$ ls
+aclocal.m4    configure.ac   INSTALL        Makefile.in    src
+config.guess  COPYRIGHT      install-sh     profmark       testsuite
+config.sub    documentation  libdivsufsort  README         tutorial
+configure     easel          LICENSE        RELEASE-NOTES  Userguide.pdf
+Brief installation instructions 
+HMMER 3.1b1; May 2013
+-------------------------------------------------------------
+
+
+These are quick installation instructions. For complete documentation,
+including customization and troubleshooting, please see the
+Installation chapter in the HMMER User's Guide (Userguide.pdf).
+
+
+Starting from a source distribution, hmmer-3.1b1.tar.gz:
+ uncompress:                uncompress hmmer-3.1b1.tar.gz  
+ unpack:                    tar xf hmmer-3.1b1.tar
+ move into new directory:   cd hmmer-3.1b1
+ configure:                 ./configure
+ build:                     make
+ automated tests:           make check
+ automated install:         make install
+
+
+
+Installation directories:
+  --prefix=PREFIX         install architecture-independent files in PREFIX
+                          [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+                          [PREFIX]
+
+
+oneils@atmosphere ~/downloads/hmmer-3.1b1$ ./configure --prefix=$HOME/local
+configure: Configuring HMMER for your system.
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+...
+oneils@atmosphere ~/downloads/hmmer-3.1b1$ make
+     SUBDIR easel
+make[1]: Entering directory `/home/oneils/downloads/hmmer-3.1b1/easel'
+     CC easel.o
+     CC esl_alphabet.o
+...
+oneils@atmosphere ~/downloads/hmmer-3.1b1$ make install
+/usr/bin/install -c -d /home/oneils/local/bin
+/usr/bin/install -c -d /home/oneils/local/lib
+/usr/bin/install -c -d /home/oneils/local/include
+...
+oneils@atmosphere ~/downloads/hmmer-3.1b1$ cd $HOME/local
+oneils@atmosphere ~/local$ ls
+bin  include  lib  share
+oneils@atmosphere ~/local$ cd bin
+oneils@atmosphere ~/local/bin$ ls
+alimask   hmmc2       hmmfetch  hmmpress   hmmsim     myprog.sh  phmmer
+hmmalign  hmmconvert  hmmlogo   hmmscan    hmmstat    nhmmer
+hmmbuild  hmmemit     hmmpgmd   hmmsearch  jackhmmer  nhmmscan
+oneils@atmosphere ~$ uname -a
+Linux 172.31.88.3 3.2.0-37-virtual #58-Ubuntu SMP Thu Jan 24 15:48:03 UTC 2013
+x86_64 x86_64 x86_64 GNU/Linux
+oneils@atmosphere ~$ cd downloads/
+oneils@atmosphere ~/downloads$ wget
+'http://www.drive5.com/muscle/downloads3.8.31/muscle3.
+8.31_i86linux64.tar.gz'
+oneils@atmosphere ~/downloads$ ls
+hmmer-3.1b1  hmmer-3.1b1.tar  muscle3.8.31_i86linux64.tar.gz
+oneils@atmosphere ~/downloads$ gzip -d muscle3.8.31_i86linux64.tar.gz 
+oneils@atmosphere ~/downloads$ tar -xf muscle3.8.31_i86linux64.tar 
+oneils@atmosphere ~/downloads$ ls
+hmmer-3.1b1      muscle3.8.31_i86linux64
+hmmer-3.1b1.tar  muscle3.8.31_i86linux64.tar
+oneils@atmosphere ~/downloads$ ./muscle3.8.31_i86linux64 
+
+
+MUSCLE v3.8.31 by Robert C. Edgar
+
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+...
+oneils@atmosphere ~/downloads$ cp muscle3.8.31_i86linux64 $HOME/local/bin/muscle
+oneils@atmosphere ~/downloads$ 
+oneils@atmosphere ~/downloads$ cd $HOME
+oneils@atmosphere ~$ mkdir projects
+oneils@atmosphere ~$ cd projects/
+oneils@atmosphere ~/projects$ mkdir p450s
+oneils@atmosphere ~/projects$ cd p450s/
+oneils@atmosphere ~/projects/p450s$ wget 'ftp://ftp.flybase.net/releases/FB2014_
+05/dmel_r6.02/fasta/dmel-all-translation-r6.02.fasta.gz'
+oneils@atmosphere ~/projects/p450s$ gzip -d dmel-all-translation-r6.02.fasta.gz 
+oneils@atmosphere ~/projects/p450s$ less -S dmel-all-translation-r6.02.fasta 
+oneils@atmosphere ~/projects/p450s$ ls
+dmel-all-translation-r6.02.fasta  p450s.fasta
+oneils@atmosphere ~/projects/p450s$ which muscle
+/home/oneils/local/bin/muscle
+oneils@atmosphere ~/projects/p450s$ which hmmbuild
+/home/oneils/local/bin/hmmbuild
+oneils@atmosphere ~/projects/p450s$ which hmmsearch
+/home/oneils/local/bin/hmmsearch
+oneils@atmosphere ~/projects/p450s$ muscle
+
+
+MUSCLE v3.8.31 by Robert C. Edgar
+
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
+
+
+
+Basic usage
+
+
+    muscle -in <inputfile> -out <outputfile>
+
+
+Common options (for a complete list please see the User Guide):
+
+
+    -in <inputfile>    Input file in FASTA format (default stdin)
+    -out <outputfile>  Output alignment in FASTA format (default stdout)
+    -diags             Find diagonals (faster for similar sequences)
+    -maxiters <n>      Maximum number of iterations (integer, default 16)
+    -maxhours <h>      Maximum time to iterate in hours (default no limit)
+    -html              Write output in HTML format (default FASTA)
+...
+oneils@atmosphere ~/projects/p450s$ muscle -in p450s.fasta -out p450s.fasta.aln
+>sp|P05176|CP1A1_RABIT Cytochrome P450 1A1 OS=Oryctolagus cuniculus GN=CYP1A1 PE
+------------------------------------------------------------
+---------------------------------------------------MVSDFGLPT
+FISATELLLASAVFCLVFWVAGASKPRVPKGLKRLPGPWGWPLLGHVLTLGK---NPHV-
+---ALARLSRRYGDVFQIRLGSTPVVVLSGLDTIKQALVRQGDDFKGRPDLYSFSFVTK-
+-----------------------------GQSMIFGSDSGPV---------WAARRRLAQ
+NALNSFSVAS--------------------------------------------------
+----------------DPASSSSCYLEEHV---SQEAENLISK-FQELMAAVGH------
+oneils@atmosphere ~/projects/p450s$ hmmbuild
+Incorrect number of command line arguments.
+Usage: hmmbuild [-options] <hmmfile_out> <msafile>
+
+
+where basic options are:
+  -h     : show brief help on version and usage
+  -n <s> : name the HMM <s>
+  -o <f> : direct summary output to file <f>, not stdout
+  -O <f> : resave annotated, possibly modified MSA to file <f>
+
+
+To see more help on other available options, do:
+  hmmbuild -h
+oneils@atmosphere ~/projects/p450s$ hmmbuild p450s.fasta.aln.hmm p450s.fasta.aln
+CKSUM 797170701
+STATS LOCAL MSV      -12.2089  0.69650
+STATS LOCAL VITERBI  -13.2160  0.69650
+STATS LOCAL FORWARD   -6.4971  0.69650
+HMM          A        C        D        E        F        G        H        I   
+            m->m     m->i     m->d     i->m     i->i     d->m     d->d
+  COMPO   2.56763  4.18442  2.94826  2.71355  3.22576  2.92226  3.70840  2.94423
+          2.68504  4.42336  2.77569  2.73176  3.46465  2.40496  3.72606  3.29362
+          0.66606  1.72211  1.17901  3.05405  0.04832  0.00000        *
+      1   3.15916  4.51751  4.70912  4.16707  3.23103  4.39232  4.76778  1.44083
+oneils@atmosphere ~/projects/p450s$ ls
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
+oneils@atmosphere ~/projects/p450s$ hmmsearch
+Incorrect number of command line arguments.
+Usage: hmmsearch [options] <hmmfile> <seqdb>
+
+
+where most common options are:
+  -h : show brief help on version and usage
+
+
+To see more help on available options, do hmmsearch -h
+oneils@atmosphere ~/projects/p450s$ hmmsearch p450s.fasta.aln.hmm dmel-all-trans
+lation-r6.02.fasta
+...
+  Alignments for each domain:
+  == domain 1  score: 2.4 bits;  conditional E-value: 0.19
+  p450s.fasta 433 sdekivpivndlfganfdtisvalswslpylvaspeigkklkke 476
+                  + +++       f a+f+ is  l++   +l  +p ++ +l++e
+  FBpp0086933 305 TADDLLAQCLLFFFAGFEIISSSLCFLTHELCLNPTVQDRLYEE 348
+                  555566666667899***************************99 PP
+...
+oneils@atmosphere ~/projects/p450s$ ls
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
+oneils@atmosphere ~/projects/p450s$ hmmsearch p450s.fasta.aln.hmm dmel-all-trans
+lation-r6.02.fasta > p450s_hmmsearch_dmel.txt
+Query:       p450s.fasta  [M=730]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence    Descript
+    ------- ------ -----    ------- ------ -----   ---- --  --------    --------
+    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0081483  type=pr
+    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0307731  type=pr
+      7e-67  227.0   0.0      7e-67  227.0   0.0    1.5  1  FBpp0082768  type=pr
+    9.5e-67  226.6   0.0    9.5e-67  226.6   0.0    2.1  1  FBpp0297168  type=pr
+  GNU nano 2.2.6             File: runhmmer.sh                                  
+
+
+#!/bin/bash
+
+
+muscle -in p450s.fasta -out p450s.fasta.aln
+hmmbuild p450s.fasta.aln.hmm p450s.fasta.aln
+hmmsearch p450s.fasta.aln.hmm dmel-all-translation-r6.02.fasta \
+   > p450s_hmmsearch_dmel.txt
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+  GNU nano 2.2.6             File: runhmmer.sh                                  
+
+
+#!/bin/bash
+
+
+export query=p450s.fasta
+export db=dmel-all-translation-r6.02.fasta
+export output=p450s_hmmsearch_dmel.txt
+
+
+muscle -in $query -out $query.aln
+hmmbuild $query.aln.hmm $query.aln
+hmmsearch $query.aln.hmm $db \
+   > $output
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+  GNU nano 2.2.6             File: runhmmer.sh                                  
+
+
+#!/bin/bash
+
+
+export query=$1
+export db=$2
+export output=$3
+
+
+muscle -in $query -out $query.aln
+hmmbuild $query.aln.hmm $query.aln
+hmmsearch $query.aln.hmm $db \
+   > $output
+
+
+                               [ Wrote 12 lines ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+  GNU nano 2.2.6             File: runhmmer.sh                                  
+
+
+#!/bin/bash
+
+
+# Check number of input parameters:
+if [ $# -ne 3 ]; then
+    echo "Wrong number of parameters."
+    echo "Usage: runhmmer.sh <query_fasta> <db_fasta> <output_name>"
+    exit
+fi
+
+
+export query=$1
+export db=$2
+export output=$3
+
+
+muscle -in $query -out $query.aln
+hmmbuild $query.aln.hmm $query.aln
+hmmsearch $query.aln.hmm $db \
+   > $output
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+oneils@atmosphere ~/apcb/intro/blast$ wget 'http://downloads.yeastgenome.org/seq
+uence/S288C_reference/orf_protein/orf_trans.fasta.gz' -O orf_trans.fasta.gz
+...
+oneils@atmosphere ~/apcb/intro/blast$ gzip -d orf_trans.fasta.gz 
+oneils@atmosphere ~/apcb/intro/blast$ ls
+orf_trans.fasta
+oneils@atmosphere ~/apcb/intro/blast$ makeblastdb -in orf_trans.fasta -out orf_t
+rans -dbtype prot -title "Yeast Open Reading Frames" -parse_seqids
+...
+oneils@atmosphere ~/apcb/intro/blast$ ls
+orf_trans.fasta  orf_trans.pin  orf_trans.psd  orf_trans.psq
+orf_trans.phr    orf_trans.pog  orf_trans.psi
+oneils@atmosphere ~/apcb/intro/blast$ blastp -query orf_trans.fasta -db orf_tran
+s -max_target_seqs 2 -max_hsps 1 -evalue 1e-6 -outfmt '7 qseqid sseqid length ql
+en slen qstart qend sstart send evalue' -out yeast_blastp_yeast_top2.txt -num_th
+reads 4
+...
+# BLASTP 2.2.30+
+# Query: YAL003W EFB1 SGDID:S000000003, Chr I from 142174-142253,142620-143160, 
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 1 hits found
+YAL003W YAL003W 207     207     207     1       207     1       207     2e-148
+# BLASTP 2.2.30+
+# Query: YAL005C SSA1 SGDID:S000000004, Chr I from 141431-139503, Genome Release
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 2 hits found
+YAL005C YAL005C 643     643     643     1       643     1       643     0.0
+YAL005C YLL024C 643     643     640     1       643     1       640     0.0
+...
+sp|Q3LFU0|CP1A1_BALAC   YHR007C 531     23.83   2e-12   49      ERG11 SGDID:S000
+sp|P56590|CP1A1_CANFA   YHR007C 531     24.10   1e-14   48      ERG11 SGDID:S000
+sp|Q06367|CP1A1_CAVPO   YDR402C 490     28.03   7e-13   49      DIT2 SGDID:S0000
+sp|Q92039|CP1A1_CHACA   YHR007C 531     23.81   8e-09   40      ERG11 SGDID:S000
+...
+oneils@atmosphere ~/apcb/intro$ mkdir fasta_stats
+oneils@atmosphere ~/apcb/intro$ cd fasta_stats/
+oneils@atmosphere ~/apcb/intro/fasta_stats$ wget http://library.open.oregonstate
+.edu/doc/computationalbiology/fasta_stats
+Resolving library.open.oregonstate.edu (library.open.oregonstate.edu)...
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ chmod +x fasta_stats 
+oneils@atmosphere ~/apcb/intro/fasta_stats$ wget http://library.open.oregonstate
+.edu/doc/computationalbiology/pz_cDNAs.fasta
+Resolving library.open.oregonstate.edu (library.open.oregonstate.edu)...
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ http://library.open.oregonstate
+.edu/doc/computationalbiology/pz_cDNAs_sample.fasta
+Resolving library.open.oregonstate.edu (library.open.oregonstate.edu)...
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ls
+fasta_stats  pz_cDNAs.fasta  pz_cDNAs_sample.fasta
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs_sample.fasta 
+# Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+Processing sequence ID PZ7180000031590
+PZ7180000031590 0.378 486 ACAAA 5 unit:ATTTA 10 pentanucleotide
+Processing sequence ID PZ7180000000004_TX
+PZ7180000000004_TX 0.279 1000 AAATA 12 unit:TAA 12 trinucleotide
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs_sample.fasta
+> pz_sample_stats.txt
+Processing sequence ID PZ7180000031590
+Processing sequence ID PZ7180000000004_TX
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ls
+fasta_stats  pz_cDNAs.fasta  pz_cDNAs_sample.fasta  pz_sample_stats.txt
+# Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+PZ7180000031590 0.378   486     ACAAA   5       unit:ATTTA      10      pentanuc
+PZ7180000000004_TX      0.279   1000    AAATA   12      unit:TAA        12      
+pz_sample_stats.txt (END)
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs_sample.fasta
+> pz_sample_stats.txt 2> pz_sample_stats.err.txt
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ls
+fasta_stats     pz_cDNAs_sample.fasta    pz_sample_stats.txt
+pz_cDNAs.fasta  pz_sample_stats.err.txt
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta > pz_st
+ats.txt
+# Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+PZ832049        0.321   218     CTTAA   4       unit:CGT        6       trinucle
+PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ439397        0.153   111     TTAAT   5       unit:GAAAT      10      pentanuc
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ535325        0.108   120     AATTA   6       unit:TA 6       dinucleotide
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ grep 'unit:' pz_stats.txt > pz_stats
+.table
+PZ832049        0.321   218     CTTAA   4       unit:CGT        6       trinucle
+PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ439397        0.153   111     TTAAT   5       unit:GAAAT      10      pentanuc
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ535325        0.108   120     AATTA   6       unit:TA 6       dinucleotide
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ wc pz_stats.table 
+  471  3297 21131 pz_stats.table
+oneils@atmosphere ~/apcb/intro/fasta_stats$ grep 'unit:' pz_stats.txt | wc
+    471    3297   21131
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | gre
+p 'unit:' | wc
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | \
+> grep 'unit:' | \
+> wc
+oneils@atmostphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | \
+> grep 'unit:AT' | \
+> less -S
+PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ7180000031590 0.378   486     ACAAA   5       unit:ATTTA      10      pentanuc
+PZ7180000031597 0.287   403     ATTAT   6       unit:ATTTTG     12      hexanucl
+PZ7180000025478 0.516   829     TGATG   18      unit:ATG        18      trinucle
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | \
+> grep 'unit:AT' | \
+> grep 'dinucleotide' | \
+> less -S
+PZ7180000031598 0.209   81      AATAT   5       unit:AT 6       dinucleotide
+PZ463243        0.226   97      TTGTA   3       unit:AT 4       dinucleotide
+PZ7180000000106_T       0.246   1044    AAAAA   22      unit:AT 10      dinucleo
+PZ17593_A       0.157   76      ATTAA   5       unit:AT 4       dinucleotide
+PZ492422        0.144   90      ATTAA   5       unit:AT 4       dinucleotide
+PZ22453_A       0.267   269     ATTAA   8       unit:AT 4       dinucleotide
+...
+  GNU nano 2.2.6             File: count_ATs.sh                                 
+
+
+#!/bin/bash
+
+
+if [ $# -ne 1 ]; then
+    echo "Wrong number of parameters."
+    echo "Usage: count_ATs.sh <fasta_file>"
+    exit
+fi
+
+
+export file=$1
+
+
+fasta_stats $file | \
+    grep 'unit:AT' | \
+    grep 'dinucleotide' | \
+    wc
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs_sample.fasta 
+# Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+Processing sequence ID PZ7180000031590
+PZ7180000031590 0.378 486 ACAAA 5 unit:ATTTA 10 pentanucleotide
+Processing sequence ID PZ7180000000004_TX
+PZ7180000000004_TX 0.279 1000 AAATA 12 unit:TAA 12 trinucleotide
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | \
+> grep -v '#' | \
+> sort -k7,7nr | \
+> less -S
+PZ805359        0.0     101     ATATA   47      unit:AT 94      dinucleotide
+PZ796092        0.365   361     TACGT   9       unit:GTACGT     48      hexanucl
+PZ7180000019700 0.375   564     GAGTG   12      unit:GAGTG      30      pentanuc
+PZ7180000028921 0.31    561     TGTAA   8       unit:CTGTG      30      pentanuc
+PZ851952        0.399   338     TATAT   12      unit:AT 24      dinucleotide
+PZ7180000000664_B       0.3     652     TTTTT   18      unit:TAAAATTAT  18      
+PZ7180000023622 0.31    687     TTAAT   9       unit:TGA        18      trinucle
+PZ7180000023665_ATQ     0.401   508     ACTGA   5       unit:TGACACTGA  18      
+PZ7180000025478 0.516   829     TGATG   18      unit:ATG        18      trinucle
+PZ7180000030412 0.461   258     TGATG   8       unit:ATG        18      trinucle
+PZ7180000036892 0.268   548     AATAA   16      unit:TAA        18      trinucle
+PZ801814        0.262   255     TTACA   5       unit:TATTTACAT  18      enneanuc
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | \
+> grep -v '#' | \
+> sort -k7,7nr -k2,2gr | \
+> sort -k7,7nr -u | \
+> less -S
+PZ805359        0.0     101     ATATA   47      unit:AT 94      dinucleotide
+PZ796092        0.365   361     TACGT   9       unit:GTACGT     48      hexanucl
+PZ7180000019700 0.375   564     GAGTG   12      unit:GAGTG      30      pentanuc
+PZ851952        0.399   338     TATAT   12      unit:AT 24      dinucleotide
+PZ7180000025478 0.516   829     TGATG   18      unit:ATG        18      trinucle
+PZ7180000000447_B       0.484   578     ATCCA   7       unit:TCCA       16      
+...
+@DB775P1:229:C1JDAACXX:3:1101:17936:7565 1:N:0:
+CTATTACTGCCTGCAACAACATAAGGATACCATAAATTGTAATTCTTAACAAAGCAGAGATCGGAAGAGCGGTTCAGCAG
++
+CCCFFFFFHHHHGJIJJJJJGGJJJJJJJIJIJJJJGIGIIIJJJJJJJJGIJJIIIJJIHIIIJJIJJIHHEDFCEEEE
+@DB775P1:229:C1JDAACXX:3:1101:17888:7593 1:N:0:
+TACATCAGCAAACCACCAGTGGTACGCAAATACATGGTGCTTCTTTAATCTTCAGTCCTCGGCTTTCCTCATATATCACT
++
+CCCFFFFFHHHHHJJJJJJHIJHHIJJJJJJJJJJJJFHIJJJJJJJJJJJJJJJIJJJJIIJJJHHHHHHFFFFFFFEE
+@DB775P1:229:C1JDAACXX:3:1101:17820:7597 1:N:0:
+GTAACTGCACCATATGCTGGATTCTGGACAATGAATATCGAAGTAAATAAGAAAACCTCATACCTCATCTTTCTCAATGG
++
+BCCDFFEFHHHHHJJJJJIJIJJIJJJJJIIGIIIDFIIJIJIFHIJGGIGIJJJIJHJIGHGDIJCEEGHIGIGCACEF
+...
+# BLASTP 2.2.30+
+# Query: YAL003W EFB1 SGDID:S000000003, Chr I from 142174-142253,142620-143160, 
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 1 hits found
+YAL003W YAL003W 207     207     207     1       207     1       207     2e-148
+# BLASTP 2.2.30+
+# Query: YAL005C SSA1 SGDID:S000000004, Chr I from 141431-139503, Genome Release
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 2 hits found
+YAL005C YAL005C 643     643     643     1       643     1       643     0.0
+YAL005C YLL024C 643     643     640     1       643     1       640     0.0
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($1 != $2) {print $0}}' | \
+> less -S
+YDR534C YOR383C 134     529     205     1       129     1       134     7e-33
+YDR536W YEL069C 525     570     565     21      532     50      553     6e-59
+YDR541C YOL151W 342     345     343     4       345     2       343     6e-150
+YDR542W YGL261C 121     121     121     1       121     1       121     3e-83
+YDR545W YOR396W 1797    1797    1797    1       1797    1       1797    0.0
+YDR545W YLR467W 1797    1797    1797    1       1797    1       1797    0.0
+YEL006W YIL006W 330     336     374     15      330     41      365     4e-130
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($1 != $2) {print $0}}' | \
+> sort -k1,1d -u | \
+> wc
+   2884   28840  138048
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print $1,$2}'
+YAL001C YAL001C
+YAL002W YAL002W
+YAL003W YAL003W
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print $1":::"$2}'
+YAL001C:::YAL001C
+YAL002W:::YAL002W
+YAL003W:::YAL003W
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print NR,$0}'
+1 YAL001C       YAL001C 1161    1161    1161    1       1161    1       1161    
+2 YAL002W       YAL002W 1275    1275    1275    1       1275    1       1275    
+3 YAL003W       YAL003W 207     207     207     1       207     1       207     
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($10 < 1e-10) {print $0}}'
+YAL001C YAL001C 1161    1161    1161    1       1161    1       1161    0.0
+YAL002W YAL002W 1275    1275    1275    1       1275    1       1275    0.0
+YAL003W YAL003W 207     207     207     1       207     1       207     2e-148
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{ \
+> if($10 < 1e-30) {print "great",$1,$2,$10} \
+> else if($10 < 1e-20) {print "good",$1,$2,$10} \
+> else {print "ok",$1,$2,$10} \
+> }'
+...
+great YAL018C YAL018C 0.0
+good YAL018C YOL048C 4e-25
+great YAL019W YAL019W 0.0
+great YAL019W YOR290C 1e-84
+great YAL020C YAL020C 0.0
+great YAL021C YAL021C 0.0
+good YAL021C YOL042W 6e-27
+great YAL022C YAL022C 0.0
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($1 == "YAL054C") {print $0}}'
+YAL054C YAL054C 714     714     714     1       714     1       714     0.0
+YAL054C YLR153C 645     714     684     73      712     37      674     0.0
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print $1,$2,$4/$5}'
+...
+YAL017W YAL017W 1
+YAL017W YOL045W 1.2314
+YAL018C YAL018C 1
+YAL018C YOL048C 0.950437
+YAL019W YAL019W 1
+YAL019W YOR290C 0.664319
+YAL020C YAL020C 1
+...
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk 'BEGIN{sumeval = 0} {sumeval = sumeval + $10} END{print sumeval/NR}'
+3.00206e-09
+oneils@atmosphere ~/apcb/intro/blast$ cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk 'BEGIN{sumeval = 0; count = 0} \
+> {if($1 != $2){sumeval = sumeval + $10; count = count + 1}} \
+> END{print sumeval/count}'
+9.06228e-09
+...
+>PZ456916 nReads=1 cov=1
+AAACTGTCTCTAATTAATTTATAAAATTTAATTTTTTAGTAAAAAAGCTAAAATAATTTTAAAAGACGAG
+AAGACCCTATAGAGTTTTATAATTTATTTAATTATTATTAATATATAAATTTTAAAATTAAAATTAGGTA
+AATTATTTTGTTGGGGTGACAG
+>PZ7180000037718 nReads=9 cov=6.26448
+ACTTTTTTTTTAATTTATTTAATTATATTAACTAATAAATCCGTTGTAATTGTGAGTTTATATGCAATTT
+CGAAGTAGAACCGTTTCACTGGAAAGCGTTGTGTTGTCAGTTCGGTCGCTCTTTCGTATTTTTAAATATA
+AGTAGGCTTATAAATTGAAGCGTTTTGCTTCTTGACAATTTATCTTACTGCATATGTGATAAGTATCAGA
+ATTGCCCGCAGTATTCCCGAAGCGAGCGACCGAAGCCGGTCAATGTGAAAAACGAAAAACATTTTTTTTA
+TATAAGCAACAAAAAAAACCTCTTTATACGTTTAACTTAGATAGTTATTATTAATTTTAGCTTTTAATAG
+GTGTTTCGATGATTTTCACGAATTTTTTTTTGTTTTCTCGCATTTAGCTAGCGATTGCAAGAGTCGCAGT
+GTACATAATATAATAGTTAGACATGATATGGACAATACCTAACAAGTGAAAAGAAAAAAAATATCATTTT
+ATTGAACAAATACATTCAGTGGAATTAT
+>PZ7180000000004_TY nReads=86 cov=36.4238
+CCAAAGTCAACCATGGCGGCCGGGGTACTTTATACTTATCCGACAAACTTCCGTGCTTATAAGGCGTTGA
+TCGCCGCACAGTACTCCGGGGTCGATCTTAAAGTTGCAACGGGTTTCGTATTTGGCGAGACAAATAAATC
+TGAAGAGTTCCTGAAAAAATTCCCTGCGGGCAAAGTACCGGCTTATGAAAGTGCTGATGGAAAAGTGGTG
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ cat pz_cDNAs.fasta | \
+> grep '>' | \
+> grep '_' | \
+> sed -r 's/_/ /' | \
+> sort -k2,2d -u | \
+> less -S
+...
+>PZ7180000000067 AF nReads=16 cov=12.0608
+>PZ7180000028269 AFW nReads=3 cov=2.97992
+>PZ7180000036480 AIJ nReads=11 cov=4.61416
+>PZ783221 AOC nReads=1 cov=1
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ echo "TATGCATGTTTAGTAGCTTTTAG" | \
+> sed -r 's/ATG([ACTG]{3,3})+((TAA)|(TAG)|(TGA))/_ORF_/g'
+T_ORF_CTTTTAG
+...
+>PZ7180000037718 nReads=9 cov=6.26448
+>PZ7180000000004_TY nReads=86 cov=36.4238
+>PZ7180000000067_AF nReads=16 cov=12.0608
+>PZ7180000031591 nReads=4 cov=3.26022
+>PZ7180000024036 nReads=14 cov=5.86079
+>PZ15501_A nReads=1 cov=1
+...
+PZ7180000037718-gene
+PZ7180000000004-gene_TY
+PZ7180000000067-gene_AF
+PZ7180000031591-gene
+PZ7180000024036-gene
+PZ15501-gene_A
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ cat pz_cDNAs.fasta | \
+> grep -E '>[^_[:space:]]+(_[A-Z]+){0,1}' | \
+> wc
+    471    1413   15279
+...
+>PZ456916-gene nReads=1 cov=1
+AAACTGTCTCTAATTAATTTATAAAATTTAATTTTTTAGTAAAAAAGCTAAAATAATTTTAAAAGACGAG
+AAGACCCTATAGAGTTTTATAATTTATTTAATTATTATTAATATATAAATTTTAAAATTAAAATTAGGTA
+AATTATTTTGTTGGGGTGACAG
+>PZ7180000037718-gene nReads=9 cov=6.26448
+ACTTTTTTTTTAATTTATTTAATTATATTAACTAATAAATCCGTTGTAATTGTGAGTTTATATGCAATTT
+CGAAGTAGAACCGTTTCACTGGAAAGCGTTGTGTTGTCAGTTCGGTCGCTCTTTCGTATTTTTAAATATA
+AGTAGGCTTATAAATTGAAGCGTTTTGCTTCTTGACAATTTATCTTACTGCATATGTGATAAGTATCAGA
+ATTGCCCGCAGTATTCCCGAAGCGAGCGACCGAAGCCGGTCAATGTGAAAAACGAAAAACATTTTTTTTA
+TATAAGCAACAAAAAAAACCTCTTTATACGTTTAACTTAGATAGTTATTATTAATTTTAGCTTTTAATAG
+GTGTTTCGATGATTTTCACGAATTTTTTTTTGTTTTCTCGCATTTAGCTAGCGATTGCAAGAGTCGCAGT
+GTACATAATATAATAGTTAGACATGATATGGACAATACCTAACAAGTGAAAAGAAAAAAAATATCATTTT
+ATTGAACAAATACATTCAGTGGAATTAT
+>PZ7180000000004-gene_TY nReads=86 cov=36.4238
+CCAAAGTCAACCATGGCGGCCGGGGTACTTTATACTTATCCGACAAACTTCCGTGCTTATAAGGCGTTGA
+TCGCCGCACAGTACTCCGGGGTCGATCTTAAAGTTGCAACGGGTTTCGTATTTGGCGAGACAAATAAATC
+TGAAGAGTTCCTGAAAAAATTCCCTGCGGGCAAAGTACCGGCTTATGAAAGTGCTGATGGAAAAGTGGTG
+...
+>YAL001C TFC3 SGDID:S000000001, Chr I from 151006-147594,151166-151097, Genome R
+>YAL002W VPS8 SGDID:S000000002, Chr I from 143707-147531, Genome Release 64-2-1,
+>YAL003W EFB1 SGDID:S000000003, Chr I from 142174-142253,142620-143160, Genome R
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ cat lines.txt | tr '\n' '#'
+line 1#line 2#line 3#oneils@atmosphere ~/apcb/intro/fasta_stats$ 
+>PZ7180000027934 nReads=5 cov=2.32231@TTTAATGATCAGTAAAGTTATAGTAGTTGTATGTACAATATT
+>PZ456916 nReads=1 cov=1@AAACTGTCTCTAATTAATTTATAAAATTTAATTTTTTAGTAAAAAAGCTAAAATA
+>PZ7180000037718 nReads=9 cov=6.26448@ACTTTTTTTTTAATTTATTTAATTATATTAACTAATAAATCC
+>PZ7180000000004_TY nReads=86 cov=36.4238@CCAAAGTCAACCATGGCGGCCGGGGTACTTTATACTTA
+oneils@atmosphere ~/apcb/intro/fasta_stats$ blastx -query pz_cDNAs.fasta \
+> -subject ../blast/orf_trans.fasta \
+> -evalue 1e-6 \
+> -max_target_seqs 1 \
+> -max_hsps 1 \
+> -outfmt 6 \
+> -out pz_blastx_yeast_top1.txt
+PZ7180000000004_TX      YPR181C 58.33   36      15      0       891     998     
+PZ7180000000004_TY      YKL081W 31.07   338     197     8       13      993     
+PZ7180000000067_AF      YMR226C 40.00   60      34      1       60      239     
+PZ7180000031592 YGL130W 58.33   36      14      1       478     374     225     
+PZ1082_AB       YHR104W 44.92   118     62      3       4       348     196     
+PZ11_FX YLR406C 53.01   83      38      1       290     42      25      106     
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | \
+> grep -v '#' > pz_stats.table
+PZ832049        0.321   218     CTTAA   4       unit:CGT        6       trinucle
+PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ439397        0.153   111     TTAAT   5       unit:GAAAT      10      pentanuc
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ535325        0.108   120     AATTA   6       unit:TA 6       dinucleotide
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ cat pz_stats.txt | \
+> sort -k1,1d > pz_stats.sorted.txt
+oneils@atmosphere ~/apcb/intro/fasta_stats$ cat pz_blastx_yeast_top1.txt | \
+> sort -k1,1d > pz_blastx_yeast_top1.sorted.txt 
+PZ1028_K 0.409 403 TTCAT 4 unit:CTTCT 10 pentanucleotide YDR146C 36.07 61 36 2 1
+PZ1082_AB 0.404 373 TTTGC 4 unit:GCA 6 trinucleotide YHR104W 44.92 118 62 3 4 34
+PZ11_FX 0.435 400 CCCTT 4 unit:CAT 9 trinucleotide YLR406C 53.01 83 38 1 290 42 
+PZ3202_E 0.463 496 AGAGT 5 unit:TGGC 8 tetranucleotide YBR247C 64.00 25 9 0 344 
+PZ483608 0.391 462 AATGT 4 unit:CAAGA 10 pentanucleotide YMR100W 44.44 27 15 0 4
+PZ488295 0.665 428 CGCGC 9 unit:GC 10 dinucleotide YIL106W 35.00 140 87 3 410 3 
+...
+PZ1028_K             0.409  403   TTCAT  4   unit:CTTCT   10  pentanucleotide  Y
+PZ1082_AB            0.404  373   TTTGC  4   unit:GCA     6   trinucleotide    Y
+PZ11_FX              0.435  400   CCCTT  4   unit:CAT     9   trinucleotide    Y
+PZ3202_E             0.463  496   AGAGT  5   unit:TGGC    8   tetranucleotide  Y
+PZ483608             0.391  462   AATGT  4   unit:CAAGA   10  pentanucleotide  Y
+PZ488295             0.665  428   CGCGC  9   unit:GC      10  dinucleotide     Y
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ ./fasta_stats pz_cDNAs.fasta | \
+> grep -v '#' | \
+> awk '{print $4}' | \
+> sort | \
+> uniq -c | \
+> less -S
+     44 AAAAA
+      1 AAAAG
+     12 AAAAT
+     24 AAATA
+      1 AAATG
+     10 AAATT
+...
+     90 1
+     18 2
+      4 3
+      5 4
+      5 5
+      1 6
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ cat pz_cDNAs.fasta | \
+> grep '>' | \
+> sed -r 's/=/ /g' | \
+> awk '{print int($5)}'
+9
+2
+2
+...
+    281 1
+     48 2
+     41 3
+     26 4
+     16 5
+      8 6
+...
+oneils@atmosphere ~/apcb/intro/fasta_stats$ cat pz_cDNAs.fasta | \
+> grep '>' | \
+> sed -r 's/=/ /g' | \
+> awk '{print int($5)}' | \
+> sort -k1,1n | \
+> uniq -c | \
+> gnuplot -e 'set term dumb; plot "-" using 2:1 with points'
+
+
+
+
+
+  300 ++-----+------+------+------+------+-----+------+------+------+-----++
+      A      +      +      +      +      +     +      "-" using 2:1 + A    +
+      |                                                                    |
+  250 ++                                                                  ++
+      |                                                                    |
+      |                                                                    |
+  200 ++                                                                  ++
+      |                                                                    |
+      |                                                                    |
+  150 ++                                                                  ++
+      |                                                                    |
+      |                                                                    |
+      |                                                                    |
+  100 ++                                                                  ++
+      |                                                                    |
+      |                                                                    |
+   50 +A                                                                  ++
+      |A                                                                   |
+      + A    +      +      +      +      +     +      +      +      +      +
+    0 ++-AAAAAAAAAAAA-----A+------+-----A+---A-+------+------+------+---A-A+
+      0      20     40     60     80    100   120    140    160    180    200
+  1000 ++-----+---+--+-+-+++-++-----+---+--+--++-++++------+---+--+-+-++-+++
+       +                      +                     Coverage Counts   A    +
+       +                                                                   +
+       A                                                                   +
+       +                                                                   +
+       |                                                                   |
+   100 ++                                                                 ++
+       +                                                                   +
+       +      A                                                            +
+       +          A                                                        +
+       +             A                                                     +
+       +               A                                                   +
+       |                                                                   |
+    10 ++                AA                                               ++
+       +                   A                                               +
+       +                     A A                                           +
+       +                      A                                            +
+       +                       AAA AA                                      +
+       +                      +                     +                      +
+     1 ++-----+---+--+-+-+++-++---A-+AAAAAAAA-+A-+++A-A----A---+--+-+-++-+++
+       1                      10                   100                    1000
+oneils@atmosphere ~/apcb/intro/temp$ ls
+file10.tmp  file13.tmp  file16.tmp  file19.tmp  file2.tmp  file5.tmp  file8.tmp
+file11.tmp  file14.tmp  file17.tmp  file1.tmp   file3.tmp  file6.tmp  file9.tmp
+file12.tmp  file15.tmp  file18.tmp  file20.tmp  file4.tmp  file7.tmp
+oneils@atmosphere ~/apcb/intro/temp$ for i in $(ls *.tmp); do mv $i $i.txt; done
+oneils@atmosphere ~/apcb/intro/temp$ ls
+file10.tmp.txt  file14.tmp.txt  file18.tmp.txt  file2.tmp.txt  file6.tmp.txt
+file11.tmp.txt  file15.tmp.txt  file19.tmp.txt  file3.tmp.txt  file7.tmp.txt
+file12.tmp.txt  file16.tmp.txt  file1.tmp.txt   file4.tmp.txt  file8.tmp.txt
+file13.tmp.txt  file17.tmp.txt  file20.tmp.txt  file5.tmp.txt  file9.tmp.txt
+#!/bin/bash
+
+
+for i in $(ls *.tmp); do
+    mv $i $i.txt;
+done
+oneils@atmosphere ~/apcb/intro/temp$ ls -1 *.tmp* | \
+> awk '{print "mv "$1" "$1}' 
+mv file10.tmp.txt file10.tmp.txt
+mv file11.tmp.txt file11.tmp.txt
+mv file12.tmp.txt file12.tmp.txt
+...
+mv file10.tmp.txt file10.txt
+mv file11.tmp.txt file11.txt
+mv file12.tmp.txt file12.txt
+...
+oneils@atmosphere ~/apcb/intro/temp$ ls -1 *.tmp.* | \
+> awk '{print "mv "$1" "$1}' | \
+> sed -r 's/\.tmp//2' | \
+> bash
+oneils@atmosphere ~/apcb/intro/temp$ ls
+file10.txt  file13.txt  file16.txt  file19.txt  file2.txt  file5.txt  file8.txt
+file11.txt  file14.txt  file17.txt  file1.txt   file3.txt  file6.txt  file9.txt
+file12.txt  file15.txt  file18.txt  file20.txt  file4.txt  file7.txt
+oneils@atmosphere ~/projects/p450s$ ls
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln      p450s_hmmsearch_dmel.txt
+p450s.fasta                       p450s.fasta.aln.hmm  runhmmer.sh
+oneils@atmosphere ~/projects/p450s$ git init
+Initialized empty Git repository in /home/oneils/projects/p450s/.git/
+oneils@atmosphere ~/projects/p450s$ git add runhmmer.sh
+oneils@atmosphere ~/projects/p450s$ git status
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+# new file:   runhmmer.sh
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+# dmel-all-translation-r6.02.fasta
+# p450s.fasta
+# p450s.fasta.aln
+# p450s.fasta.aln.hmm
+# p450s_hmmsearch_dmel.txt
+oneils@atmosphere ~/projects/p450s$ git commit -m 'Added runhmmer.sh'
+[master (root-commit) ec46950] Added runhmmer.sh
+ 1 file changed, 20 insertions(+)
+ create mode 100755 runhmmer.sh
+oneils@atmosphere ~/projects/p450s$ ls
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln.hmm       runhmmer.sh
+p450s.fasta                       p450s_hmmsearch_dmel.txt
+p450s.fasta.aln                   README.txt
+oneils@atmosphere ~/projects/p450s$ git add runhmmer.sh
+oneils@atmosphere ~/projects/p450s$ git add README.txt
+oneils@atmosphere ~/projects/p450s$ git commit -m 'New readme, changed
+runhmmer' 
+[master 50c11fe] New readme, changed runhmmer
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+ create mode 100644 README.txt
+oneils@atmosphere ~/projects/p450s$ git log
+commit 50c11fe4fbe23c2615c3e56161cd122432f323df
+Author: Shawn O'Neil <shawn.oneil@cgrb.oregonstate.edu>
+Date:   Thu Feb 26 01:44:35 2015 -0700
+
+
+    New readme, changed runhmmer
+
+
+commit ec46950b36d3fe027b6ae50f0358f8ead02cb937
+Author: Shawn O'Neil <shawn.oneil@cgrb.oregonstate.edu>
+Date:   Thu Feb 26 01:38:50 2015 -0700
+
+
+    Added runhmmer.sh
+diff --git a/README.txt b/README.txt
+deleted file mode 100644
+index 6bf2ae5..0000000
+--- a/README.txt
++++ /dev/null
+@@ -1,4 +0,0 @@
+-This project aims at using HMMER to search
+-for p450-1A1 genes against the D. melanogaster
+-protein dataset. 
+-
+diff --git a/runhmmer.sh b/runhmmer.sh
+index 652b435..04b368c 100755
+--- a/runhmmer.sh
++++ b/runhmmer.sh
+@@ -1,7 +1,5 @@
+ #!/bin/bash
+ 
+...
+...
+PZ7180000023260_APN     GO:0005515      btb poz domain containing protein
+PZ7180000035568_APN     GO:0005515      btb poz domain containing protein
+PZ7180000020052_APQ     GO:0055114      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0006099      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0004449      isocitrate dehydrogenase (nad+)
+...
+oneils@atmosphere ~/apcb/py$ nano -w -i -E -T 4 helloworld.py
+  GNU nano 2.2.6             File: helloworld.py                      Modified  
+
+
+print("Hello world!")
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+oneils@atmosphere ~/apcb/py$ python helloworld.py 
+Hello world!
+oneils@atmosphere ~/apcb/py$ 
+  GNU nano 2.2.6             File: helloworld.py                                
+
+
+#!/usr/bin/env python
+print("Hello world!")
+
+
+                               [ Wrote 2 lines ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+oneils@atmosphere ~/apcb/py$ ls
+helloworld.py
+oneils@atmosphere ~/apcb/py$ chmod +x helloworld.py
+oneils@atmosphere ~/apcb/py$ ./helloworld.py 
+Hello world!
+oneils@atmosphere ~/apcb/py$ 
+oneils@atmosphere ~$ echo "alias nanopy='nano -w -i -E -T 4 '" >> ~/.bashrc
+print("Hello world!")
+
+
+exons = 10                        # an int holding 10
+theta = 5.64                      # a float holding 5.64
+exons_as_float = float(exons)     # return 10.0 (a float)
+theta_as_int = int(theta)         # returns 5 (an int)
+a = 10                            # an int
+b = 3                             # an int
+answer_1 = a/b                    # int/int returns int: 3
+answer_2 = a/float(b)             # int/float returns float: 3.333
+c = 2.55                          # a float
+answer_3 = (b + c)*a              # (int+float)*int returns (float)*int
+                                  #    returns float: 55.5
+value = 7
+value = value + 1
+print(value)                      # prints 8
+a = 7
+b = 3
+c = a % b                         # modulus ("remainder"): 1
+c = a ** b                        # exponent: 343
+sun_is_yellow = True              # boolean True
+test = 2 < -3                     # boolean False
+first = "Shawn"
+last = "O'Neil"                   # string
+last = 'O\'Neil'                  # same string
+full = first + last
+print(full)                       # prints "ShawnO'Neil"
+print(first + " " + last)         # prints "Shawn O'Neil"
+height = 5.5
+sentence = full + " height is " + height   # Error on this line!
+sentence = full + " height is " + str(height)
+print(sentence)
+## or
+print(full + " height is " + str(height))
+seq = "ACTAG"
+
+
+
+
+
+middle_base = seq[2]              # "T"
+seq = "ACTAG"
+subseq = seq[1:4]                 # "CTA"
+exons_str = "10"
+theta_str = "5.64"
+evalue_str = "2.5e-4"
+
+
+exons = int(exons_str)            # int 10
+theta = float(theta_str)          # float 5.46
+evalue = float(evalue_str)        # float 0.00025
+
+
+test = float("XY_2.7Q")           # Error on this line!
+seq = "ACTAG"
+seq_len = len(seq)                # int 5
+last_letter = seq[seq_len - 1]    # string "G"
+## or
+last_letter = seq[len(seq) - 1]   # string "G"
+end_seq = seq[2:len(seq)]         # indices 2 to 5, inclusive:exclusive
+print(end_seq)                    # prints "TAG"
+seq = "ACTAG"
+seq[2] = "C"                      # Error on this line!
+seqa = "ACTAG"                    # "ACTAG"
+seqb = "GGAC"                     # "GGAC"
+seqc = seqa + seqb                # "ACTAGGGAC"
+seqd = seqc[2:7]                  # "TAGGG"
+
+
+seqa = "ATG" + seqa               # redefine seqa, "ATGACTAG"
+#!/usr/bin/env python
+
+
+seq = "ACTAGATGA"
+## Write some code here:
+
+
+
+
+
+print(first_half)          # should print "ACTA"
+print(second_half)         # should print "GATGA"
+a_list = [1, 2.4, "CYP6B", 724]          # list of 4 elements
+an_el = a_list[1]                        # 2.4
+sublist = a_list[1:3]                    # list of two: [2.4, "CYP6B"]
+list_len = len(a_list)                   # 4
+last_el = a_list[list_len - 1]           # 725
+inner_list = [0.245, False]              # list of two elements
+a_list[3] = inner_list                   # a_list now refers to
+                                         # [2, 2.4, "CYP6B", [0.245, False]]
+new_list = list()                        # new_list refers to an empty list
+new_list.append("A")                     # new_list now refers to ["A"]
+new_list.append("G")                     # new_list now refers to ["A", "G"]
+a_result = new_list.append("C")    # ask list to .append(), store returned value
+
+
+
+print(a_result)                    # prints None
+print(new_list)                    # prints ["A", "G", "C"]
+c_list = ["T", "C", "A", "G"]
+sorted_copy = sorted(c_list)             # ["A", "C", "G", "T"]
+
+
+print(c_list)                            # prints ["T", "C", "A", "G"]
+c_list.sort()                            # asks c_list to sort itself
+print(c_list)                            # prints ["A", "C", "G", "T"]
+seq = "CGCGTAGTACAGA"
+
+
+subs_list = seq.split("TA")
+print(subs_list)                         # prints ["CGCG", "G", "CAGA"]
+ids = tuple()                            # empty tuple
+ids = ("CYP6B", "AGP4", "CATB")          # a tuple of length 3
+gene_ids = ["CYP6B", "AGP4", "CATB"]
+
+
+for gene_id in gene_ids:
+    print("gene_id is " + gene_id)
+    
+print("Done.")
+gene_id is CYP6B
+gene_id is AGP4
+gene_id is CATB
+Done.
+gene_ids = ["CYP6B", "AGP4", "CATB"]
+counter = 0
+
+
+for gene_id in gene_ids:
+    print("gene_id is " + gene_id)
+    
+    counter = counter + 1
+
+
+print("Done.")
+print(counter)
+gene_ids = ["CYP6B", "AGP4", "CATB"]
+
+
+indices = range(0,3)   
+for index in indices:                              # for index in [0, 1, 2]
+    gene_id = gene_ids[index]
+    print("gene id " + str(index) + " is " + gene_id)
+
+
+print("Done.")
+
+
+## Or, more succinctly:
+for index in range(0, len(gene_ids)):              # for index in [0, 1, 2]
+    print("gene id " + str(index) + " is " + gene_ids[index])
+
+
+print("Done.")
+gene_id 0 is CYP6B
+gene_id 1 is AGP4
+gene_id 2 is CATB
+Done.
+nums = [1, 2, 3, 4, 5, 6]
+squares = [num ** 2 for num in nums]   # [1, 4, 9, 16, 25, 36]
+seqs = ["TAC", "TC", "CGAGG", "TAG", "A"]
+lens = [len(seq) for seq in seqs]      # [3, 2, 5, 3, 1]
+lens = [len(seq) for seq in seqs if seq[0] == "T"] # [3, 2, 3]
+count_start_ts = sum([1 for seq in seqs if seq[0] == "T"])
+print(count_start_ts)                  # prints 3
+total = 0
+for i in range(0,4):
+    total = total + 1
+
+
+print(total)                  ## What is printed?
+
+
+total = 0
+for i in range(0,4):
+    for j in range(0,4):
+        total = total + 1
+
+
+print(total)                  ## What is printed?
+
+
+total = 0
+for i in range(0,4):
+    for j in range(0,4):
+        for k in range(0,4):
+            total = total + 1
+
+
+print(total)                  ## What is printed?
+total = 0
+x = 10
+
+
+for i in range(0, x):
+    for j in range(0, i):
+        total = total + 1
+
+
+print(total)                  ## How does total relate to x?
+  GNU nano 2.2.6               File: ids.txt                                    
+CYP6B   0.24
+AGP4    0.96
+CATB    0.37
+                               [ Wrote 3 lines ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+import io
+
+
+fhandle = io.open("ids.txt", "rU")
+
+
+line1 = fhandle.readline()
+line2 = fhandle.readline()
+line3 = fhandle.readline()
+
+
+print("Starting output:")
+print(line1)
+print(line2)
+print(line3)
+print("Done.")
+
+
+fhandle.close()
+Starting output:
+CYP6B 0.24
+
+
+AGP4 0.96
+
+
+CATB 0.37
+
+
+Done.
+import io
+
+
+fhandle = io.open("ids.txt", "rU")
+
+
+line1 = fhandle.readline()
+line1stripped = line1.strip() 
+line2 = fhandle.readline()
+line2stripped = line2.strip() 
+line3 = fhandle.readline()
+line3stripped = line3.strip() 
+
+
+print("Starting output:")
+print(line1stripped) 
+print(line2stripped) 
+print(line3stripped) 
+print("Done.")
+
+
+fhandle.close()
+Starting output:
+CYP6B 0.24
+AGP4 0.96
+CATB 0.37
+Done.
+line1stripped = fhandle.readline().strip()
+
+
+
+
+
+
+
+
+print(line2stripped)       # prints line without redundant newline
+import io
+
+
+fhandle = io.open("ids.txt", "rU")
+line1 = fhandle.readline().strip()
+line2 = fhandle.readline().strip()
+line3 = fhandle.readline().strip()
+
+
+fhandle.close()
+
+
+line1_list = line1.split("\t")
+line2_list = line2.split("\t")
+line3_list = line3.split("\t")
+
+
+gc1 = float(line1_list[1])
+gc2 = float(line2_list[1])
+gc3 = float(line3_list[1])
+
+
+mean_gc = (gc1 + gc2 + gc3)/3.0
+print(mean_gc)
+import io
+
+
+fhandle = io.open("ids.txt", "rU")
+
+
+print("Starting output:")
+for line in fhandle: 
+    linestripped = line.strip() 
+    print(linestripped) 
+print("Done")
+
+
+fhandle.close()
+import io
+
+
+fhandle = io.open("data/numbers.txt", "w")   # overwrites data/numbers.txt
+for value in range(0, 10):
+    fhandle.write(str(value) + "\n")
+
+
+fhandle.close()
+PZ7180000000004_TY      YKL081W 31.07   338     197     8       13      993     
+PZ1082_AB       YHR104W 44.92   118     62      3       4       348     196     
+PZ11_FX YLR406C 53.01   83      38      1       290     42      25      106     
+PZ7180000036154 YNL245C 36.27   102     60      3       105     395     1       
+PZ605962        YKR079C 29.57   115     66      4       429     121     479     
+PZ856513        YKL215C 48.39   155     73      3       3       452     109     
+...
+#!/usr/bin/env python
+import io
+
+
+blast_handle = io.open("pz_blastx_yeast_top1.txt", "rU")
+
+
+counter = 0
+eval_sum = 0.0
+
+
+for line in blast_handle:
+    line_stripped = line.strip()
+    line_list = line_stripped.split("\t")
+    eval_str = line_list[10]
+
+
+    eval_sum = eval_sum + float(eval_str)
+    counter = counter + 1
+
+
+blast_handle.close()
+
+
+mean = eval_sum/counter
+print("Mean is: " + str(mean))
+with io.open("ids.txt", "rU") as fhandle:
+    line1 = fhandle.readline()
+    line2 = fhandle.readline()
+    line3 = fhandle.readline()
+
+
+    print(line1)
+    print(line2)
+    print(line3)
+
+
+print("Done processing file; file handle is closed.")
+seq = "ATGATGACGTAGACGAGTA"
+num_bases = len(seq)
+
+
+if num_bases < 10:
+    print("seq is less than 10 bases.")
+elif num_bases < 20:
+    print("seq is at least 10 bases...")
+    print("... and it's less than 20 bases.")
+elif num_bases < 40:
+    print("seq is at least 20 bases...")
+    print("... and it's less than 40 bases.")
+else:
+    print("seq is at least 40 bases.")
+    
+print("Done checking length of seq.")
+seqs = ["ACGTAGAC", "CAGTAGAGC", "GACGA", "CGATAGG"]
+count_short = 0
+count_long = 0
+
+
+for seq in seqs:
+    num_bases = len(seq)
+    if num_bases < 8:
+        count_short = count_short + 1
+    else:
+        count_long = count_long + 1
+
+
+print("Number short: " + str(count_short) + " number long: " + str(count_long))
+counter = 0
+
+
+while counter < 4:
+    print("Counter is now: " + str(counter))
+    counter = counter + 1
+
+
+print("Done. Counter ends with: " + str(counter))
+seq = "ACAGGACGT"
+num_bases = len(seq)
+
+
+base_index = 0
+while base_index < num_bases:
+    base_i = seq[base_index]
+    print("base is: " + base_i)
+
+
+    base_index = base_index + 1
+
+
+print("Done")
+seqs = ["ACT", "AC", "T", "TAG", "1AC", "A"]
+seqs.sort()
+print(seqs)   # prints ['1AC', 'A', 'AC', 'ACT', 'T', 'TAG']
+seq = "ACTAGGAC"
+remainder = len(seq)%3
+if remainder = 0:
+    print("Number of bases is a multiple of 3")
+    print("It's a candidate for an open reading frame.")
+a = 0.2
+b = 0.2*0.2/0.2
+epsilon = 0.00000001
+
+
+if a + epsilon > b and a - epsilon < b:
+    print("a and b are within " + str(epsilon))
+#!/usr/bin/env python
+import io
+
+
+fhandle = io.open("seq.txt", "rU")
+seq = fhandle.readline()
+seq = seq.strip()
+
+
+stop_counter = 0
+for index in range(0, len(seq) - 3 + 1):
+    codon = seq[index:index + 3]
+    #print(codon)
+    if codon == "TAG" or codon == "TAA" or codon == "TGA":
+        stop_counter = stop_counter + 1
+
+
+print(stop_counter)
+import io
+
+
+fhandle = io.open("seq.txt", "rU")
+seq = fhandle.readline()
+seq = seq.strip()
+
+
+stop_counter = 0
+index = 0
+while index <= len(seq) - 3:
+    codon = seq[index:index + 3]
+    # print(codon)
+    if codon == "TAG" or codon == "TAA" or codon == "TGA":
+        stop_counter = stop_counter + 1
+
+
+    index = index + 1
+
+
+print(stop_counter)
+PZ7180000024555 402705.62
+PZ7180000000678_B       562981.52
+PZ7180000000003_KK      354193.41
+PZ7180000000005_NW      416120.04
+[oneils@atmosphere ~/apcb/py$ python mol_weight_ids_seqs.py | column -t
+PZ7180000024555     402705.62
+PZ7180000000678_B   562981.52
+PZ7180000000003_KK  354193.41
+PZ7180000000005_NW  416120.04
+base_counter = 0
+seq_len = len(seq)
+
+
+for index in range(0, seq_len):
+    seq_base = seq[index]
+    if seq_base == "G" or seq_base == "C":
+        base_counter = base_counter + 1
+
+
+gc = base_counter/float(seq_len)
+## Given a DNA (A,C,T,G) string and a,
+## 1-letter base string, returns the number of
+## occurances of the base in the sequence.
+def base_composition(seq, query_base):
+    base_counter = 0
+    seq_len = len(seq)
+    
+    for index in range(0, seq_len):
+        seq_base = seq[index]
+        if seq_base == query_base:
+            base_counter = base_counter + 1
+            
+    return base_counter
+
+
+
+seq1 = "ACTGATGCAT"
+seq2 = "TTATCGAC"
+seq1_ccomp = base_composition(seq1, "C")     # 2
+seq2_tcomp = base_composition(seq2, "T")     # 3
+## Given a DNA (A,C,T,G) string and a,
+## 1-letter base string, returns the number of
+## occurances of the base in the sequence.
+def base_composition(seq, query_base):
+    base_counter = 0
+    seq_len = len(seq)
+
+
+    for index in range(0, seq_len):
+        seq_base = seq[index]
+        if seq_base == query_base:
+            base_counter = base_counter + 1
+
+
+    return base_counter
+
+
+
+## Given a DNA (A,C,T,G) sequence string, returns the GC-content as float
+def gc_content(seq):
+    g_cont = base_composition(seq, "G")
+    c_cont = base_composition(seq, "C")
+    seq_len = len(seq)
+    gc = (g_cont + c_cont)/float(seq_len)
+    return gc
+
+
+seq3 = "ACCCTAGACTG"
+seq3_gc = gc_content(seq3)                   # 0.5454
+## Assume a variable called seq4 holds a DNA sequence,
+## returns the GC-content of it as float.
+def gc_content():
+    g_cont = base_composition(seq4, "G")
+    c_cont = base_composition(seq4, "C")
+    seq_len = len(seq4)
+    gc = (g_cont + c_cont)/float(seq_len)
+    return gc
+
+
+seq4 = "ACCGTAGACTG"
+seq4_gc = gc_content()                       # 0.5454
+def gc_content(seq):
+    """ Given a DNA (A,C,T,G) sequence string,
+    returns the GC-content as float"""
+
+
+    g_cont = base_composition(seq, "G")
+    c_cont = base_composition(seq, "C")
+    seq_len = len(seq)
+    gc = (g_cont + c_cont)/float(seq_len)
+    return gc
+PZ7180000000004_TX      AATGCGAATATTTTTATTTACAATCAATTACAATCAAGTCTTAAACTTATAGATTA
+PZ7180000027934 TTTAATGATCAGTAAAGTTATAGTAGTTGTATGTACAATATTGTGCTAGCTTGAGACAGTCATG
+PZ7180000000004_TY      CCAAAGTCAACCATGGCGGCCGGGGTACTTTATACTTATCCGACAAACTTCCGTGC
+PZ7180000024036 GTAATACAAACGCTTTTATTAAATAAATACTTAAGTTACAATTAGTGTTATGAGAACATTAGAT
+ids_seqs.txt (END)
+#!/usr/bin/env python
+import io
+
+
+
+## Given a DNA (A,C,T,G) string and a 1-letter base string,
+## returns the number of occurances of the base in the sequence.
+def base_composition(seq, query_base):
+    base_counter = 0
+    seq_len = len(seq)
+    
+    for index in range(0, seq_len):
+        seq_base = seq[index]
+        if seq_base == query_base:
+            base_counter = base_counter + 1
+
+
+    return base_counter
+
+
+## Given a DNA (A,C,T,G) sequence string, returns the GC-content as float
+def gc_content(seq):
+    g_cont = base_composition(seq, "G")
+    c_cont = base_composition(seq, "C")
+    seq_len = len(seq)
+    gc = (g_cont + c_cont)/float(seq_len)
+    return gc
+
+
+## Open file, and loop over lines
+fhandle = io.open("ids_seqs.txt", "rU")
+
+
+for line in fhandle:
+    linestripped = line.strip()
+    linelist = line.split("\t")
+    id = linelist[0]
+    sequence = linelist[1]
+    seqgc = gc_content(sequence)
+    print(id + "\t" + str(seqgc))
+
+
+fhandle.close()
+## Given a string, windowsize (int) and step size (int),
+## returns a list of windows of the windowsize.
+## E.g. "TACTGG", 3, 2 => ["TAC", "CTG"]
+def get_windows(seq, windowsize, stepsize):
+    ## your code here
+    ## etc.
+seq = "ACGGTAGACCT"
+print(seq)
+
+
+windows1 = get_windows(seq, 3, 1)
+print(windows1)
+
+
+windows2 = get_windows(seq, 3, 3)
+print(windows2)
+
+
+windows3 = get_windows(seq, 3, 5)
+print(windows3)
+
+
+windows4 = get_windows(seq, 5, 2)
+print(windows4)
+ACGGTAGACCT
+['ACG', 'CGG', 'GGT', 'GTA', 'TAG', 'AGA', 'GAC', 'ACC', 'CCT']
+['ACG', 'GTA', 'GAC']
+['ACG', 'AGA']
+['ACGGT', 'GGTAG', 'TAGAC', 'GACCT']
+oneils@atmosphere ~/apcb/intro/fasta_stats$ grep '_L' pz_stats.table | \
+> sort -k2,2g | \
+> less -S
+PZ7180000000117_L       0.336   1000    AAATA   12      unit:TCT        9       
+PZ7180000000157_L       0.372   836     ATTTA   7       unit:AGGAA      10      
+PZ7180000000106_L       0.39    876     ACAAT   6       unit:TAA        6       
+PZ7180000000146_L       0.419   630     AAGAG   4       unit:CAAA       8       
+PZ7180000000124_L       0.422   812     TAATA   5       unit:TAGCTG     12      
+#!/usr/bin/env python
+import sys
+
+
+counter = 1
+for line in sys.stdin:
+    linestripped = line.strip()
+    print("line " + str(counter) + " is: " + linestripped)
+    counter = counter + 1
+oneils@atmosphere ~/apcb/py$ cat ids.txt 
+CYP6B
+AGP4
+CATB
+oneils@atmosphere ~/apcb/py$ cat ids.txt | ./stdin_ex.py 
+line 1 is: CYP6B
+line 2 is: AGP4
+line 3 is: CATB
+oneils@atmosphere ~/apcb/py$ ./stdin_ex.py 
+...
+oneils@atmosphere ~/apcb/py$ ./stdin_ex.py 
+Typing line one, then enter
+Typing line two, then control-d
+line 1 is: Typing line one, then enter
+line 2 is: Typing line two, then control-d
+#!/usr/bin/env python
+import sys
+
+
+if(sys.stdin.isatty()): 
+    print("Usage: cat <file> | ./stdin_ex.py") 
+    quit() 
+
+
+counter = 1
+for line in sys.stdin:
+    linestripped = line.strip()
+    print("line " + str(counter) + " is: " + linestripped)
+    counter = counter + 1
+oneils@atmosphere ~/apcb/py$ cat ids.txt | ./stdin_ex.py | sort -k4,4d 
+line 2 is: AGP4
+line 3 is: CATB
+line 1 is: CYP6B
+#!/usr/bin/env python
+import sys
+
+
+row_ids = ["AGP", "CYP", "CAT"]
+columns = [[1856, 2262, 457], [0.26, 0.16, 0.73], ["T", "T", "F"]]
+
+
+for row_index in range(0, len(row_ids)):
+    row_id = row_ids[row_index]           # e.g. "AGP"
+    sys.stdout.write(row_id + "\t")
+
+
+    for col_index in range(0, len(columns)):
+        column = columns[col_index]       # e.g. [1856, 2262, 457]
+        value = column[row_index]         # e.g. 1856
+
+
+        sys.stdout.write(str(value) + "\t")
+
+
+    sys.stdout.write("\n")
+AGP 1856 0.26 T
+CYP 2262 0.16 T
+CAT 457 0.73 F
+#!/usr/bin/env python
+import sys
+
+
+if len(sys.argv) < 3:
+    print("Sorry, expected at least two paramaters.")
+    print("Usage: ./input_params_ex.py param1 param2")
+    quit()
+
+
+print("Here is sys.argv:")
+print(sys.argv)
+oneils@atmosphere ~/apcb/py$ chmod +x input_params.py 
+oneils@atmosphere ~/apcb/py$ ./input_params.py arg1 50
+Here is sys.argv:
+['./input_params.py', 'arg1', '50']
+oneils@atmosphere ~/apcb/py$ ./input_params.py 'argument 1' 50
+Here is sys.argv:
+['./input_params.py', 'argument 1', '50']
+oneils@atmosphere ~/apcb/py$ ls -1 cluster*.fasta
+cluster_AB.fasta
+cluster_AC.fasta
+cluster_AG.fasta
+cluster_D.fasta
+#!/usr/bin/env python
+import subprocess
+
+
+cmd = "ls -1 cluster*.fasta"
+result = subprocess.check_output(cmd, shell = True)
+# eg "cluster_AB.fasta\ncluster_AC.fasta\n"
+
+
+result_stripped = result.strip()
+result_lines = result_stripped.split("\n")
+
+
+print(result_lines)
+oneils@atmosphere ~/apcb/py$ chmod +x list_cluster_fasta.py 
+oneils@atmosphere ~/apcb/py$ ./list_cluster_fasta.py 
+['cluster_AB.fasta', 'cluster_AC.fasta',
+'cluster_AG.fasta', 'cluster_D.fasta']
+#!/usr/bin/env python
+import subprocess
+
+
+cmd = "ls -1 cluster*.fasta"
+result = subprocess.check_output(cmd, shell = True)
+# eg "cluster_AB.fasta\ncluster_AC.fasta\n"
+
+
+result_stripped = result.strip()
+result_lines = result_stripped.split("\n")
+
+
+for filename in result_lines:
+    name_list = filename.split(".")  # eg ["cluster_AB", "fasta"]
+    cmd = "runAssembly " + "-o " + name_list[0] + ".out " + filename
+    # eg "runAssembly -o cluster_AB.out cluster_AB.fasta"
+
+
+    print("Running: " + cmd)
+    #subprocess.check_output(cmd, shell = True)
+oneils@atmosphere ~/apcb/py$ ./list_cluster_fasta.py 
+Running: runAssembly -o cluster_AB.out cluster_AB.fasta
+Running: runAssembly -o cluster_AC.out cluster_AC.fasta
+Running: runAssembly -o cluster_AG.out cluster_AG.fasta
+Running: runAssembly -o cluster_D.out cluster_D.fasta
+#!/usr/bin/env python
+import subprocess
+
+
+## This file is called runs_itself.py, and this program runs itself.
+## Maybe not a good idea?
+cmd = "./runs_itself.py"
+result = subprocess.check_output(cmd, shell = True)
+ids_to_gcs = dict()
+
+
+ids_to_gcs["CYP6B"] = 0.56
+
+
+key = "CATB"
+val = 0.73
+ids_to_gcs[key] = val
+
+
+ids_to_gcs["AGP2"] = 0.24
+val_catb = ids_to_gcs["CATB"]
+print(val_catb)                       # prints 0.73
+
+
+key_agp2 = "AGP2"
+val_agp2 = ids_to_gcs[key_agp2]       # holds 0.24
+test = ids_to_gcs["TL34_X"]           # Error!
+ids = ids_to_gcs.keys()      # list of keys
+ids_sorted = sorted(ids)     # sorted version
+for idkey in ids_sorted:     # for each key
+    gc = ids_to_gcs[idkey]   # get the value
+    print("id " + idkey + " has GC content " + str(gc))
+if ids_to_gcs.has_key("TL34_X"):
+    tl34x_gc = ids_to_gcs["TL34_X"]
+    print("TL34_X has GC " + str(tl34x_gc))
+else:
+    print("TL34_X not found in dictionary.")
+PZ7180000020811_DVU     GO:0003824      GJ12748 [Drosophila virilis]
+PZ7180000020752_DVU     GO:0003824      GI16375 [Drosophila mojavensis]
+PZ7180000034678_DWY     GO:0003824      hypothetical protein YpF1991016_1335 [Ye
+PZ7180000024883_EZN     GO:0006548      sjchgc01974 protein
+PZ7180000024883_EZN     GO:0004252      sjchgc01974 protein
+PZ7180000024883_EZN     GO:0004500      sjchgc01974 protein
+PZ7180000024883_EZN     GO:0006508      sjchgc01974 protein
+PZ7180000023260_APN     GO:0005515      btb poz domain containing protein
+...
+1 PZ7180000020811_DVU
+1 PZ7180000020752_DVU
+1 PZ7180000034678_DWY
+4 PZ7180000024883_EZN
+1 PZ7180000023260_APN
+...
+#!/usr/bin/env python
+import sys
+
+
+if(sys.stdin.isatty()):
+    print("Usage: cat <annotation file> | ./countannots.py")
+    quit()
+
+
+ids_to_counts = dict()
+
+
+# Parse input
+for line in sys.stdin:
+    line_list = line.strip().split("\t")
+    seqid = line_list[0]
+    if ids_to_counts.has_key(seqid):
+        ids_to_counts[seqid] = ids_to_counts[seqid] + 1
+    else:
+        ids_to_counts[seqid] = 1
+
+
+# Print dict contents
+ids_list = ids_to_counts.keys()
+for seqid in ids_list:
+    count = ids_to_counts[seqid]
+    print(str(count) + "\t" + seqid)
+oneils@atmosphere ~/apcb/py$ cat PZ.annot.txt | ./go_id_count.py
+2 PZ736262
+4 PZ7180000000004_OO
+5 PZ7180000000004_OM
+3 PZ7180000000004_OJ
+2 PZ7180000000021_AX
+...
+oneils@atmosphere ~/apcb/py$ cat PZ.annot.txt | grep 'transcriptase'
+PZ7180000000003_PI GO:0003723 reverse transcriptase
+PZ7180000000003_PI GO:0003964 reverse transcriptase
+PZ7180000000003_PI GO:0031072 reverse transcriptase
+PZ7180000000003_PI GO:0006278 reverse transcriptase
+PZ840833_BZS GO:0005488 reverse transcriptase
+PZ858982_CAA GO:0005488 reverse transcriptase
+PZ858982_CAA GO:0044464 reverse transcriptase
+PZ7180000029134_AHQ GO:0003723 reverse transcriptase
+PZ7180000029134_AHQ GO:0003964 reverse transcriptase
+...
+4 PZ924_N
+4 PZ7180000000089_N
+1 PZ840833_BZS
+1 PZCAP37180000034572_A
+3 PZ7180000029134_AHQ
+1 PZ492962
+oneils@atmosphere ~/apcb/py$ cat PZ.annot.txt | \
+> grep 'transcriptase' | \
+> ./go_id_count.py | \
+> sort -k1,1nr | \
+> head -n 8
+7 PZ32722_B
+5 PZ7180000000012_DC
+4 PZ59_HO
+4 PZ7180000000003_PI
+4 PZ7180000000089_N
+4 PZ924_N
+3 PZ578878
+3 PZ7180000000012_IL
+PZ7180000020811_DVU     GO:0003824      GJ12748 [Drosophila virilis]
+PZ7180000020752_DVU     GO:0003824      GI16375 [Drosophila mojavensis]
+PZ7180000034678_DWY     GO:0003824      hypothetical protein YpF1991016_1335 [Ye
+PZ7180000024883_EZN     GO:0006548      sjchgc01974 protein
+PZ7180000024883_EZN     GO:0004252      sjchgc01974 protein
+PZ7180000024883_EZN     GO:0004500      sjchgc01974 protein
+PZ7180000024883_EZN     GO:0006508      sjchgc01974 protein
+PZ7180000023260_APN     GO:0005515      btb poz domain containing protein
+...
+oneils@atmosphere ~/apcb/py$ cat PZ.annot.txt | grep 'GO:0001539'
+PZ7180000000028_AP GO:0001539 troponin c 25d
+PZ7180000000030_AP GO:0001539 troponin c
+PZ7180000000043_AP GO:0001539 troponin c 25d
+PZ7180000000044_AP GO:0001539 troponin c 25d
+PZ7180000000045_AP GO:0001539 troponin c 25d
+PZ7180000000046_AP GO:0001539 troponin c 25d
+...
+...
+oneils@atmosphere ~/apcb/py$ cat PZ.annot.txt | grep 'GO:0001539' | \
+> ./match_1st_cols.py PZ.annot.txt 
+#!/usr/bin/env python
+import sys
+import io
+
+
+if sys.stdin.isatty() or len(sys.argv) != 2:
+    print("Usage: cat <id_list> | ./match_1st_cols.py <search_file>")
+    print("This script extracts lines from <search_file> where any entry")
+    print(" in the the first column of <id_list> matches the first column")
+    print(" of <search_file>")
+    quit()
+
+
+## Build IDs wanted dictionary from standard input
+ids_wanted = dict()
+for line in sys.stdin:
+    line_stripped = line.strip()
+    line_list = line_stripped.split("\t")
+    id = line_list[0]
+    ids_wanted[id] = "wanted"
+
+
+## Loop over the file, print the lines that are wanted
+fhandle = io.open(sys.argv[1], "rU")
+for line in fhandle:
+    line_stripped = line.strip()
+    line_list = line_stripped.split("\t")
+    id = line_list[0]
+    # Is the ID one of the ones we want? 
+    if ids_wanted.has_key(id):
+        print(line_stripped)
+
+
+fhandle.close()
+oneils@atmosphere ~/apcb/py$ grep 'GO:0001539' PZ.annot.txt | \
+> ./match_1st_cols.py PZ.annot.txt 
+PZ7180000000028_AP GO:0001539 troponin c 25d
+PZ7180000000028_AP GO:0009288 troponin c 25d
+PZ7180000000028_AP GO:0005509 troponin c 25d
+PZ7180000000030_AP GO:0001539 troponin c
+PZ7180000000030_AP GO:0009288 troponin c
+PZ7180000000030_AP GO:0005509 troponin c
+PZ7180000000043_AP GO:0001539 troponin c 25d
+PZ7180000000043_AP GO:0009288 troponin c 25d
+seq = "ACTAG"
+seq[2] = "U"            # Error!
+seq = "ACTAG"
+base_list = list(seq)
+base_list[2] = "U"
+print(base_list)        # prints ['A', 'C', 'U', 'A', 'G']
+rejoined = ":".join(base_list)      # 'A:C:U:A:G'
+rejoined2 = "".join(base_list)      # 'ACUAG'
+base_list.reverse()              # base_list now: ['G', 'A', 'U', 'C', 'C']
+seq = "ACTAG"
+seq_list = list(seq)
+seq_list.reverse()
+seq_rev = "".join(seq_list_rev)  # seq_rev: "GATCA"
+# OR
+seq_rev = seq[::-1]              # seq_rev: "GATCA"
+seq = "ACGTATATATGG"
+replaced = seq.replace("TAT", "X")  # replaced: "ACGXAXGG"
+rna = seq.replace("U", "T")         # rna: "ACGUAUAUAUGG"
+                                    # seq is still: "ACGTATATATATGG"
+seq = seq.replace("U", "T")         # seq now: "ACGUAUAUAUGG"
+print(len("\t"))       # prints 1 (tab character)
+print(len(r"\t"))      # prints 2 (\ character and t character)
+import re
+
+
+seq = "CCGATGCATGCC"
+if re.search(r"ATG", seq):
+    print("seq has a start codon!")
+    result = re.search(r"ATG", seq)
+    print("the start codon is at position:")
+    print(result.start())
+seq = "CCGATGCATGCC"
+pattern = r"ATG"
+replacement = "*"
+result = re.subn(pattern, replacement, seq, 0)
+print(result[0])                                # prints "CCG*C*CC"
+print(result[1])                                # prints 2
+seq = "CCGATGCATGCC"
+between_starts = re.split(r"ATG", seq)
+print(between_starts)                           # prints ['CCG', 'C', 'CC'] 
+#!/usr/bin/env python
+import re
+import sys
+
+
+## Parse input in two columns
+for line in sys.stdin:
+    line_stripped = line.strip()
+    #line_list = line.split("\t") 
+    line_list = re.split(r"\s+", line_stripped) 
+
+
+    # ...
+
+
+GSVIVT01034325001_1      GATTTCAAAAGCATTCTGTTGTTCTTTGAGGTCAGCAACCTGACCAATAAAAACT
+GSVIVT01034326001_2      TACGCTTGACAAGACGTCTCCATGTCCTTTCAAGCGACTTGCTACGCTATGCACC
+GSVIVT01034329001_3      AAAATTGGATGCATAAAACAAAATAAATGTAAATACTAAAATAATGATCATATTC
+GSVIVT01034331001_4      AAAAAATAAAGTGTTTTAAAATAAAATCATTTAATTATTTTCACCTATTTTTTAA
+GSVIVT01034332001_5      CAAAGCCATAGCAAAAATTGCATTCTCGAACAACCAAATAAAATCGAAACTTGTA
+GSVIVT01034334001_6      GATGTTAGGAATAGTGGTTAATGGTTGTTGTCCACGTGTATAGCTTTGTTAGAAT
+GSVIVT01034337001_7      AAGATATTATAATTAAAAAATATTTAATATAATTTTTTTAAAATATTGCATTTTG
+GSVIVT01034340001_8      AAATTTTGGAAACTTATTAATAAAGGAATGACTCACATATTGTTCTTATTCAAAA
+GSVIVT01034341001_9      GTAGTGGTAAACCGTTGAGGTGGATGTCATGCTGTTGTCGACGGCGATTGGTGGT
+GSVIVT01034344001_10     TTGTATCGCATATTCAACCAAATATAAGATATGATAAGTGATGATATATATTATT
+GSVIVT01034346001_11     AACCCATTTCTTATCTCTTTCTTTCTTTCTTTCTTTCTTTCTTCTTCTTCTTCTT
+GSVIVT01034325001_1     3
+GSVIVT01034326001_2     2
+GSVIVT01034329001_3     2
+GSVIVT01034331001_4     2
+GSVIVT01034332001_5     1
+GSVIVT01034334001_6     2
+...
+#!/usr/bin/env python
+import re
+import io
+
+
+def count_motifs(seq, motif):
+    pieces = re.split(motif, seq)
+    return len(pieces) - 1
+
+
+seq = "AAAAAAATGATAGAAAAAGATAAAAAA"
+print(count_motifs(seq, r"[AT]GATA[GA]"))   # prints 2
+#!/usr/bin/env python
+import re
+import io
+
+
+def count_motifs(seq, motif):
+    pieces = re.split(motif, seq)
+    return(len(pieces) - 1)
+
+
+
+fhandle = io.open("grape_promoters.txt", "rU")
+
+
+for line in fhandle:
+    linestripped = line.strip()
+    line_list = re.split(r"\s+", linestripped)
+    gid = line_list[0]
+    seq = line_list[1]
+
+
+    num_motifs = count_motifs(seq, r"[AT]GATA[GA]")
+    print(gid + "\t" + str(num_motifs))
+    
+fhandle.close()
+GSVIVT01034325001_1     3       [AT]GATA[GA]
+GSVIVT01034325001_1     0       [CGT]ACGTG[GT][AC]
+GSVIVT01034325001_1     2       TTGAC
+GSVIVT01034326001_2     2       [AT]GATA[GA]
+GSVIVT01034326001_2     0       [CGT]ACGTG[GT][AC]
+GSVIVT01034326001_2     4       TTGAC
+GSVIVT01034329001_3     2       [AT]GATA[GA]
+GSVIVT01034329001_3     0       [CGT]ACGTG[GT][AC]
+nums = [1, 2, 3, 4, 5]
+numsb = nums
+numsb[0] = 1000
+print(nums)          # prints [1000, 2, 3, 4, 5]
+print(numsb)         # prints [1000, 2, 3, 4, 5]
+# Python example code
+x = 5
+y = None
+z = None
+if x < 10:
+    y = 20
+    if x < 30:
+     z = y*2
+
+
+# print contents of variables
+print(x)     
+if x != None:
+    print(y)     
+if z != None:
+    print(z)     
+def append_min(input_list):
+    smallest = min(input_list)
+    input_list.append(smallest)
+
+
+    return input_list
+
+
+nums = [4, 1, 5, 6, 7]
+numsb = append_min(nums)
+print(nums)
+print(numsb)
+def append_min(input_list):
+    smallest = min(input_list)
+    new_list = list()
+    for el in input_list:
+        new_list.append(el)
+
+
+    new_list.append(smallest)
+
+
+    return new_list
+
+
+nums = [4, 1, 5, 6, 7]
+numsb = append_min(nums)
+print(nums)
+print(numsb)
+def base_composition(seq, query_base):
+    answer = 0
+    seq_len = len(seq)
+
+
+    for index in range(0, seq_len):
+        seq_base = seq[index]
+        if seq_base == query_base:
+            answer = answer + 1
+    
+    # point 1
+    return answer
+
+
+def gc_content(seq):
+    g_cont = base_composition(seq, "G")
+    c_cont = base_composition(seq, "C")
+    seq_len = len(seq)
+    
+    # point 2
+    answer = (g_cont + c_cont)/float(seq_len)
+    return answer
+
+
+
+answer = "Computing answer..."
+seq = "ACCCTAGACTG"
+seq_gc = gc_content(seq)
+
+
+# point 3
+print(answer)
+#!/usr/bin/env python
+
+
+class Gene:
+    def __init__(self, creationid, creationseq):
+        print("I'm a new Gene object!")
+        print("My constructor got a param: " + str(creationid))
+        print("Assigning that param to my id instance variable...")
+        self.id = creationid
+        print("Similarly, assigning to my sequence instance variable...")
+        self.sequence = creationseq
+
+
+    def print_id(self):
+        print("My id is: " + str(self.id))
+
+
+    def print_len(self):
+        print("My sequence len is: " + str(len(self.sequence)))
+
+
+
+print("\n***   Creating geneA:")
+geneA = Gene("AY342", "CATTGAC")
+
+
+print("\n***   Creating geneB:")
+geneB = Gene("G54B", "TTACTAGA")
+
+
+print("\n***   Asking geneA to print_id():")
+geneA.print_id()
+
+
+print("\n***   Asking geneB to print_id():")
+geneB.print_id()
+
+
+print("\n***   Asking geneA to print_len():")
+geneA.print_len()
+***   Creating geneA:
+I'm a new Gene object!
+My constructor got a param: AY342
+Assigning that param to my id instance variable...
+Similarly, assigning to my sequence instance variable...
+
+
+***   Creating geneB:
+I'm a new Gene object!
+My constructor got a param: G54B
+Assigning that param to my id instance variable...
+Similarly, assigning to my sequence instance variable...
+
+
+***   Asking geneA to print_id():
+My id is: AY342
+
+
+***   Asking geneB to print_id():
+My id is: G54B
+
+
+***   Asking geneA to print_len():
+My sequence len is: 7
+    # ... (inside class Gene:)
+
+
+    def print_len(self):
+        print("My sequence len is: " + str(len(self.sequence)))
+
+
+    def base_composition(self, base): 
+        base_count = 0 
+        for index in range(0, len(self.sequence)): 
+            base_i = self.sequence[index] 
+            if base_i == base: 
+                base_count = base_count + 1 
+        return base_count 
+
+
+    def gc_content(self): 
+        g_count = self.base_composition("G") 
+        c_count = self.base_composition("C") 
+        return (g_count + c_count)/float(len(self.sequence)) 
+
+
+print("\n***   Creating geneA:")
+geneA = Gene("AY342", "CATTGAC")
+
+
+# ...
+
+
+print("\n***   Asking geneA to return its T content:")
+geneA_t = geneA.base_composition("T") 
+print(geneA_t) 
+
+
+
+print("\n***   Asking geneA to return its GC content:")
+geneA_gc = geneA.gc_content() 
+print(geneA_gc) 
+***   Asking geneA to return its T content:
+2
+
+
+***   Asking geneA to return its GC content:
+0.428571428571
+    # ... (inside class Gene:)
+
+
+    def gc_content(self):
+        g_count = self.base_composition("G")
+        c_count = self.base_composition("C")
+        return (g_count + c_count)/float(len(self.sequence))
+
+
+    def get_seq(self): 
+        return self.sequence 
+
+
+    def set_seq(self, newseq): 
+        self.sequence = newseq 
+
+
+print("***   Creating geneA:")
+geneA = Gene("AY342", "CATTGAC")
+
+
+# ...
+    def set_seq(self, newseq):
+        if newseq.base_composition("U") != 0:
+            print("Sorry, no RNA allowed.")
+        else:
+            self.sequence = newseq 
+    def set_seq(self, newseq):
+        assert newseq.base_composition("U") == 0, "Sorry, no RNA allowed."
+        self.sequence = newseq 
+    def __eq__(self, other):
+        if self.seq == other.get_seq():
+            return True
+        return False
+    def __lt__(self, other):
+        if self.seq < other.get_seq():
+            return True
+        return False
+geneA = Gene("XY6B", "CATGATA")
+geneB = Gene("LQQ5", "CATGATA")
+
+
+print(geneA.__lt__(geneB))  # False
+# same as:
+print(geneA < geneB)        # False
+
+
+print(geneA.__eq__(geneB))  # True
+# same as:
+print(geneA == geneB)       # True
+##fileformat=VCFv4.0
+##INFO=<ID=AA,Number=1,Type=String,Description="Ancestral Allele, ftp://ftp.1000
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##INFO=<ID=HM2,Number=0,Type=Flag,Description="HapMap2 membership">
+##INFO=<ID=HM3,Number=0,Type=Flag,Description="HapMap3 membership">
+##reference=human_b36_both.fasta
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  NA12891 
+1       799739  rs57181708      A       G       .       PASS    AA=-;DP=141     
+1       805678  .       A       T       .       PASS    AA=a;DP=185     GT:GQ:DP
+1       842827  rs4970461       T       G       .       PASS    AA=G;DP=114     
+1       847591  rs6689107       T       G       .       PASS    AA=G;DP=99      
+1       858267  rs13302914      C       T       .       PASS    AA=.;DP=84      
+1       877161  .       C       T       .       PASS    AA=.;DP=89      GT:GQ:DP
+1       892860  rs7524174       G       A       .       PASS    AA=G;DP=105     
+1       917172  rs2341362       T       C       .       PASS    AA=t;DP=133;HM3 
+...
+#!/usr/bin/env python
+## Imports we are likely to need:
+import io
+import sys
+import re
+
+
+## A class representing simple SNPs
+class SNP:
+    def __init__(self, chrname, pos, snpid, refallele, altallele):
+        assert refallele != altallele, "Error: ref == alt at pos " + str(pos)
+        self.chrname = chrname
+        self.pos = pos
+        self.snpid = snpid
+        self.refallele = refallele
+        self.altallele = altallele
+
+
+
+    ## Returns True if refallele/altallele is A/G, G/A, C/T, or T/C
+    def is_transition(self):
+        if self.refallele == "G" or self.refallele == "A":
+            if self.altallele == "G" or self.altallele == "A":
+                return True
+
+
+        if self.refallele == "C" or self.refallele == "T":
+            if self.altallele == "C" or self.altallele == "T":
+                return True
+
+
+        return False
+
+
+    ## Returns True if the snp is a transversion (ie, not a transition)
+    def is_transversion(self):
+        if self.is_transition():
+            return False
+        return True
+
+
+## transition test; should not result in "Failed Test"
+snp1 = SNP("1", 12351, "rs11345", "C", "T")
+assert snp1.is_transition() == True, "Failed Test"      ## Does not error
+
+
+## transversion test; should not result in "Failed Test"
+snp2 = SNP("1", 36642, "rs22541", "A", "T")
+assert snp2.is_transversion() == True, "Failed Test"    ## Does not error
+
+
+## error test; should result in "Error: ref == alt at pos 69835"
+snp3 = SNP("1", 69835, "rs53461", "A", "A")             ## Results in error
+# ...
+
+
+## A class representing a chromosome, which has a collection of SNPs
+class Chromosome:
+    def __init__(self, chrname):
+        self.chrname = chrname
+        self.locations_to_snps = dict()
+
+
+    ## Returns the chromosome name
+    def get_name(self):
+        return self.name
+
+
+
+    ## Given all necessary information to add a new SNP, create
+    ## a new SNP object and add it to the SNPs dictionary. If
+    ## a SNP already exists at that location, or
+    ## the given chrname doesn't match self.chrname, an error is reported.
+    def add_snp(self, chrname, pos, snpid, refallele, altallele):
+        ## If there is already an entry for that SNP, throw an error
+        open_location = not(self.locations_to_snps.has_key(pos))
+        assert open_location, "Duplicate SNP: " + self.chrname + ":" + str(pos)
+
+
+        ## If the chrname doesn't match self.chrname, throw an error
+        assert chrname == self.chrname, "Chr name mismatch!"
+
+
+        ## Otherwise, create the SNP object and add it to the dictionary
+        newsnp = SNP(chrname, pos, snpid, refallele, altallele)
+        self.locations_to_snps[pos] = newsnp
+
+
+    # ... (inside class Chromosome:)
+
+
+    ## Returns the number of transition snps stored in this chromosome
+    def count_transitions(self):
+        count = 0
+
+
+        locations = self.locations_to_snps.keys()
+        for location in locations:
+            snp = self.locations_to_snps[location]
+            if snp.is_transition():
+                count = count + 1
+
+
+        return count
+
+
+
+    ## Returns the number of transversion snps stored in this chromosome
+    def count_transversions(self):
+        total_snps = len(self.locations_to_snps)
+        return total_snps - self.count_transitions()
+
+
+## A test chromosome
+chr1 = Chromosome("testChr")
+chr1.add_snp("testChr", 24524, "rs15926", "G", "T")
+chr1.add_snp("testChr", 62464, "rs61532", "C", "T")
+
+
+## These should not fail:
+assert chr1.count_transitions() == 1, "Failed Test"
+assert chr1.count_transversions() == 1, "Failed Test"
+
+
+## This should fail with a "Duplicate SNP" error:
+chr1.add_snp("testChr", 24524, "rs88664", "A", "C")
+# ...
+
+
+## Check usage syntax, read filename 
+if len(sys.argv) != 2:
+    print("This program parses a VCF 4.0 file and counts")
+    print("transitions and transversions on a per-chromosome basis.")
+    print("")
+    print("Usage: ./snps_ex.py <input_vcf_file>")
+    quit()
+
+
+filename = sys.argv[1]
+
+
+
+## Create chrnames_to_chrs dictionary, parse the input file
+chrnames_to_chrs = dict()
+fhandle = io.open(filename, "rU")
+
+
+for line in fhandle:
+    # don't attempt to parse header lines (^# matches # at start of string)
+    if not(re.search(r"^#", line)):
+        line_stripped = line.strip()
+        line_list = re.split(r"\s+", line_stripped)
+
+
+        chrname = line_list[0]     # e.g. "1"
+        pos = int(line_list[1])    # e.g. 25135
+        snpid = line_list[2]       # e.g. "rs4970461" or "."
+        refallele = line_list[3]   # e.g. "A"
+        altallele = line_list[4]   # e.g. "C"
+
+
+        ## Put the data in the dictionary
+        if chrnames_to_chrs.has_key(chrname):
+            chr_obj = chrnames_to_chrs[chrname]
+            chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+        else:
+            chr_obj = Chromosome(chrname)
+            chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+            chrnames_to_chrs[chrname] = chr_obj
+# ...
+
+
+## Print the results!
+print("chromosome" + "\t" + "transitions" + "\t" + "transversions")
+for chrname in chrnames_to_chrs.keys():
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+    print(chrname + "\t" + str(trs) + "\t" + str(trv))
+oneils@atmosphere ~/apcb/py$ chmod +x snps_ex.py 
+oneils@atmosphere ~/apcb/py$ ./snps_ex.py trio.sample.vcf 
+chromosome transitions transversions
+20 2656 1187
+21 1773 848
+22 1539 639
+1 9345 4262
+3 8708 4261
+2 10309 5130
+5 7586 3874
+4 9050 4372
+7 6784 3274
+6 7874 3697
+9 5102 2653
+8 6520 3419
+X 3028 1527
+11 5944 2908
+...
+    # ... (inside class Chromosome:)
+
+
+    ## returns the number of snps between l and m, divided by
+    ## the size of the region
+    def density_region(self, l, m):
+        count = 0
+        for location in self.locations_to_snps.keys():
+            if location >= l and location <= m:
+                count = count + 1
+
+
+        size = m - l  + 1
+        return 1000*count/float(size)
+    # ... (inside class Chromosome:)
+
+
+    ## given a region size, looks at non-overlapping windows
+    ## of that size and returns a list of three elements for
+    ## the region with the highest density:
+    ## [density of region, start of region, end of region]
+    def max_density(self, region_size):
+        region_start = 1
+        ## default answer if no SNPs exist [density, start, end]:
+        best_answer = [0.0, 1, region_size - 1]
+
+
+        ## todo: implement this method
+        last_snp_position = self.get_last_snp_position()
+        while region_start < last_snp_position:
+            region_end = region_start + region_size - 1
+            region_density = self.density_region(region_start, region_end)
+            # if this region has a higher density than any we've seen so far:
+            if region_density > best_answer[0]:
+                best_answer = [region_density, region_start, region_end]
+
+
+            region_start = region_start + region_size
+
+
+        return best_answer
+    # ... (inside class Chromosome:)
+
+
+    ## returns the position of the last SNP known
+    def get_last_snp_position(self):
+        locations = self.locations_to_snps.keys()
+        locations.sort()
+        return locations[len(locations) - 1]
+# ...
+
+
+## Print the results!
+print("chromosome" + "\t" + "transitions" + "\t" + "transversions" + "\t" +
+        "density" + "\t" + "region")
+for chrname in chrnames_to_chrs.keys():
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+
+
+    max_dens_list = chr_obj.max_density(100000)
+    density = max_dens_list[0]
+    region_start = max_dens_list[1]
+    region_end = max_dens_list[2]
+    print(chrname + "\t" + str(trs) + "\t" + str(trv) + "\t" +
+            str(density) + "\t" + str(region_start) + ".." + str(region_end))
+oneils@atmosphere ~/apcb/py$ chmod +x snps_ex_density.py 
+oneils@atmosphere ~/apcb/py$ ./snps_ex_density.py trio.sample.vcf | column -t
+chromosome  transitions  transversions  density  region
+20          2656         1187           0.22     15000001..15100000
+21          1773         848            0.26     19100001..19200000
+22          1539         639            0.22     47400001..47500000
+1           9345         4262           0.25     105900001..106000000
+3           8708         4261           0.26     166900001..167000000
+2           10309        5130           0.24     225700001..225800000
+5           7586         3874           0.24     8000001..8100000
+4           9050         4372           0.27     162200001..162300000
+class Sequence:
+    def __init__(self, gid, seq):
+        self.gid = gid
+        self.seq = seq
+
+
+    def get_id(self):   
+        return self.gid
+
+
+    def length_bp(self):
+        return len(self.seq)
+
+
+# OpenReadingFrame *inherits* from Sequence
+# as well as defines an new method
+class OpenReadingFrame(Sequence):
+    def __init__(self, gid, seq):
+        self.gid = gid
+        self.seq = seq
+
+
+    def get_translation(self):
+        return dna_to_aa(self.seq)
+
+
+
+geneA = Sequence("SeqA", "CATGAG")
+geneB = OpenReadingFrame("SeqB", "ATGCCCTGA")
+print(geneA.length_bp())    # prints 6
+print(geneB.length_bp())    # prints 9
+# ...
+
+
+## AminoAcidSequence *inherits* from Sequence
+## as well as overrides an existing method
+class AminoAcidSequence(Sequence):
+    def __init__(self, gid, seq):
+        self.gid = gid
+        self.seq = seq
+
+
+    def length_bp(self):
+        return(3*len(self.seq))
+
+
+
+geneC = AminoAcidSequence("SeqC", "RQVDYW")
+print(geneC.length_bp())    # prints 18
+print(geneC.get_id())       # prints "SeqC"
+chromosome  region  percent_transitions num_snps
+1   1..100000   0.5646  12
+1   100001..200000  0.5214  16
+1   200001..300000  0.4513  7
+1   300001..400000  0.3126  19
+...
+>numeric_id=0,mutability=0.56
+CCTAA
+>numeric_id=0,mutability=0.56
+CATAGAGGAA
+>numeric_id=1,mutability=0.92
+CATCAACGAA
+[oneils@atmosphere ~/apcb/py]$ python
+Python 2.7.8 (default, Aug  7 2014, 09:56:10) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a = 3 + 4
+>>> print(a)
+7
+>>> 
+>>> a = list()
+>>> help(a)
+ |  
+ |  append(...)
+ |      L.append(object) -- append object to end
+ |  
+ |  count(...)
+ |      L.count(value) -> integer -- return number of occurrences of value
+ |  
+oneils@atmosphere ~$ python
+Python 2.7.9 (default, Feb 21 2015, 21:09:31) 
+[GCC 4.6.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> seq = "ACTAGA"
+>>> print(type(seq))
+<type 'str'>
+>>> help(str)
+## Create chrnames_to_chrs dictionary, parse the input file
+chrnames_to_chrs = dict()
+fhandle = io.open(filename, "rU")
+
+
+for line in fhandle:
+    # don't attempt to parse header lines (^# matches # at start of string)
+    if not(re.search(r"^#", line)):
+        line_stripped = line.strip()
+        line_list = re.split(r"\s+", line_stripped)
+
+
+        chrname = line_list[0]
+        pos = int(line_list[1])
+        snpid = line_list[2]
+        refallele = line_list[3]
+        altallele = line_list[4]
+
+
+        ## Put the data in the dictionary
+        if chrnames_to_chrs.has_key(chrname):
+            chr_obj = chrnames_to_chrs[chrname]
+            chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+        else:
+            chr_obj = Chromosome(chrname)
+            chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+            chrnames_to_chrs[chrname] = chr_obj
+## Create chrnames_to_chrs dictionary, given an input VCF file name
+## returns the dictionary
+def vcf_to_chrnames_dict(filename):
+    chrnames_to_chrs = dict()
+    fhandle = io.open(filename, "rU")
+
+
+    for line in fhandle:
+        # don't attempt to parse header lines (^# matches # at start of string)
+        if not(re.search(r"^#", line)):
+            line_stripped = line.strip()
+            line_list = re.split(r"\s+", line_stripped)
+
+
+            chrname = line_list[0]
+            pos = int(line_list[1])
+            snpid = line_list[2]
+            refallele = line_list[3]
+            altallele = line_list[4]
+
+
+            ## Put the data in the dictionary
+            if chrnames_to_chrs.has_key(chrname):
+                chr_obj = chrnames_to_chrs[chrname]
+                chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+            else:
+                chr_obj = Chromosome(chrname)
+                chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+                chrnames_to_chrs[chrname] = chr_obj
+
+
+    return chrnames_to_chrs
+filename = sys.argv[1]
+chrnames_to_chrs = vcf_to_chrnames_dict(filename)
+
+
+## Print the results!
+print("chromosome" + "\t" + "transitions" + "\t" + "transversions")
+for chrname in chrnames_to_chrs.keys():
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+    print(chrname + "\t" + str(trs) + "\t" + str(trv))
+import moduleA
+import moduleB
+
+
+print(moduleA.trunc(4.56))         # 4
+print(moduleB.e)                   # 64
+print(moduleA.e)                   # 2.71828
+print(moduleB.trunc("TACTAA", 3))  # "TAC"
+a_node = moduleA.Node()            # Node object defined bn moduleA
+b_node = moduleB.Node()            # Node object defined by moduleB
+[oneils@atmosphere ~/apcb/py]$ python
+Python 2.7.8 (default, Aug  7 2014, 09:56:10) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> help(re)
+""" Personal module for parsing VCF files. """
+
+
+import io
+import sys
+import re
+
+
+class SNP:
+    """ A class representing simple SNPs"""   # Docstring
+
+
+    def __init__(self, chrname, pos, snpid, refallele, altallele):
+        """ Constructor method """
+        # ...
+
+
+    def is_transition(self):
+        """ Returns True if refallele/altallele is A/G, G/A, C/T, or T/C """
+        # ...
+
+
+    def is_transversion(self):
+        """ Returns True if the snp is a transversion (ie, not a transition) """
+        # ...
+
+
+class Chromosome:
+    """ A class representing a chromosome, which has a collection of SNPs """
+
+
+    def __init__(self, chrname):
+        # ...
+
+
+    def get_name(self):
+        # ...
+
+
+    def add_snp(self, chrname, pos, snpid, refallele, altallele):
+        # ...
+
+
+    def count_transitions(self):
+        # ...
+
+
+    def count_transversions(self):
+        # ...
+
+
+def vcf_to_chrnames_dict(filename):
+    # ...
+#!/usr/bin/env python
+import MyVCFModule
+import sys
+
+
+## Check usage syntax, read filename 
+if len(sys.argv) != 2:
+    print("This program parses a VCF 4.0 file and counts")
+    print("transitions and transversions on a per-chromosome basis.")
+    print("")
+    print("Usage: ./snps_ex.py <input_vcf_file>")
+    quit()
+
+
+filename = sys.argv[1]
+
+
+chrnames_to_chrs = MyVCFModule.vcf_to_chrnames_dict(filename)
+
+
+## Print the results!
+print("chromosome" + "\t" + "transitions" + "\t" + "transversions")
+for chrname in chrnames_to_chrs.keys():
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+    print(chrname + "\t" + str(trs) + "\t" + str(trv))
+oneils@atmosphere ~/apcb/py$ python
+Python 2.7.9 (default, Feb 21 2015, 21:09:31) 
+[GCC 4.6.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import MyVCFModule
+>>> help(MyVCFModule)
+NAME
+    MyVCFModule - Personal module for parsing VCF files.
+
+
+FILE
+    /home/oneils/apcb/py/MyVCFModule.py
+
+
+CLASSES
+    Chromosome
+    SNP
+    
+    class Chromosome
+     |  A class representing a chromosome, which has a collection of SNPs
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, chrname)
+     |      Constructor
+     |  
+     |  add_snp(self, chrname, pos, snpid, refallele, altallele)
+     |      Given all necessary information to add a new SNP, create
+     |      a new SNP object and add it to the SNPs dictionary. If
+     |      a SNP already exists at that location, or
+     |      the given chrname doesn't match self.chrname, an error is reported.
+     |  
+import sys
+from MyBioParsers import MyVCFModule 
+crnames_to_chrs = MyVCFModule.vcf_to_chrnames_dict(filename)
+PZ7180000024555 ATAAACTGATCTTAAACTAATTGTCATGTTGAGTTCATAACGAGGTGCATTTTCGATAAATAGT
+PZ7180000000678_B       CATAGTAATGTATAATAATCATATATTTATATGTTAAACCTTCCAAAAATATCTAT
+PZ7180000000003_KK      AACAAGTGCACATTAATAGCAGTGTATCAACATGGGTGTGTGGCTAGAGAACTGAA
+PZ7180000000005_NW      AAATGTACCCGAGTGTTTCGGTTGTGCACACGGGTGTCTAGTTTACCGCAGTATCG
+...
+>PZ7180000024555s
+ATAAACTGATCTTAAACTAATTGTCATGTTGAGTTCATAACGAGGTGCATTTTCGATAAATAGTGAAAAT
+TGCAGTATTTTCTATTTAGGCAGTAATAAATATAAGGCTTGCTTTGTGCACATGTTAATATCTACTCTGA
+TAAAATCCTTAACTTAAAAGCAACTACAGCGACACACCTTGAGT
+>PZ7180000000678s_B
+CATAGTAATGTATAATAATCATATATTTATATGTTAAACCTTCCAAAAATATCTATGTACGGATGTAGTG
+TGTATACATCATGGCTGCTCCGTCCCGGACTCTGTCCCACTGAGCTGCATTATCAATAAAACAGGTTATA
+TATA
+>PZ7180000000003s_KK
+TTGCTAGGCATTGGAGATGAGGGAGAAGATGATGGTTACCACACCCTATCTGTACAACAGGTAAAGATAG
+TTGACACAGAAGGTAATTTAAAGAGTGTGTACCCATCGAGGACGGACTGTGTGTACGACGGCACTAATAT
+TAAAGTGTACCGTCTGCCAAAGAAATAAACTTCATTATTAAATAACGACATTACAGTTCTAATTAACGAT
+TTCGGAATTTGAAAAGTTCCAACAAATATGCTTTTGTCAATCTCATTTTGTTACAATCATATATATCTTT
+...
+#!/usr/bin/env python
+import sys
+import io
+from Bio import SeqIO
+
+
+if len(sys.argv) < 2:
+    print("Converts FASTA format to row/column format,")
+    print("printing the results on standard out.")
+    print("Usage: ./fasta2cols.py <fastafile>")
+    quit()
+
+
+filename = sys.argv[1]
+fhandle = io.open(filename, "rU")
+
+
+for record in SeqIO.parse(fhandle, "fasta"):
+    print(record.id + "\t" + record.seq)
+
+
+fhandle.close()
+>>> a = 7
+>>> help(a)
+ |  
+ |  bit_length(...)
+ |      int.bit_length() -> int
+ |      
+ |      Number of bits necessary to represent self in binary.
+ |      >>> bin(37)
+ |      '0b100101'
+ |      >>> (37).bit_length()
+ |      6
+ |  
+>>> print(a.bit_length())
+3
+ |  
+ |  __abs__(...)
+ |      x.__abs__() <==> abs(x)
+ |  
+ |  __add__(...)
+ |      x.__add__(y) <==> x+y
+ |  
+>>> b = -5
+>>> print(b.__abs__())
+5
+>>> print(abs(b))
+5
+>>> print(b.__add__(3))
+-2
+>>> print(b + 3)
+-2
+oneils@atmosphere ~/apcb/py$ git clone https://github.com/jamescasbon/PyVCF.git
+Cloning into 'PyVCF'...
+remote: Counting objects: 2178, done.
+remote: Total 2178 (delta 0), reused 0 (delta 0), pack-reused 2178
+Receiving objects: 100% (2178/2178), 1.62 MiB | 264.00 KiB/s, done.
+Resolving deltas: 100% (1243/1243), done.
+Checking connectivity... done.
+oneils@atmosphere ~/apcb/py$ cd PyVCF
+oneils@atmosphere ~/apcb/py/PyVCF$ ls
+LICENSE      README.rst  requirements  setup.py  vcf
+MANIFEST.in  docs        scripts       tox.ini
+oneils@atmosphere ~/apcb/py/PyVCF$ 
+oneils@atmosphere ~/apcb/py/PyVCF$ python setup.py install --user
+oneils@atmosphere ~/apcb/py/PyVCF$ cd ..
+oneils@atmosphere ~/apcb/py$ python
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import vcf
+>>> help(vcf)
+## Returns a sorted copy of a list of numbers (almost)
+def get_sorted(nums):
+    ## make a copy that we can sort and return
+    c_nums = list()
+    for num in nums:
+        c_nums.append(num)
+
+
+    ## Look neighboring pairs, swapping where needed
+    for index in range(0, len(c_nums) - 1):
+        leftnum = c_nums[index]
+        rightnum = c_nums[index + 1]
+        if leftnum > rightnum:
+            c_nums[index] = rightnum
+            c_nums[index + 1] = leftnum
+
+
+    return c_nums
+## Returns a sorted copy of a list of numbers (almost)
+def get_sorted(nums):
+    ## make a copy that we can sort and return
+    c_nums = list()
+    for num in nums:
+        c_nums.append(num)
+
+
+    for repetition in range(0, len(c_nums)):
+        ## Look neighboring pairs, swapping where needed
+        for index in range(0, len(c_nums) - 1):
+            leftnum = c_nums[index]
+            rightnum = c_nums[index + 1]
+            if leftnum > rightnum:
+                c_nums[index] = rightnum
+                c_nums[index + 1] = leftnum
+
+
+    return c_nums
+nums = [3, 4, 5, 1, 6, 3, 7, 9]
+print(get_sorted(nums))             # prints [1, 3, 3, 4, 5, 6, 7, 9]
+#!/usr/bin/env python
+
+
+class LinkedList:
+
+
+    def __init__(self):
+        self.first_n = None
+
+
+    def get_smallest(self):
+        if self.first_n != None:
+            return self.first_n.get_item()
+        else:
+            return None
+
+
+    def insert_item(self, item):
+        if self.first_n == None:                       # 1.
+            newnode = Node(item)
+            self.first_n = newnode
+        else:
+            if item < self.first_n.get_item():        # 2a.
+                newnode = Node(item)                      # 1)
+                newnode.set_next_n(self.first_n)          # 2)
+                self.first_n = newnode                    # 3)
+            else:                                     # 2b.
+                self.first_n.insert_item(item)
+class Node:
+
+
+    def __init__(self, item):
+        self.item = item
+        self.next_n = None
+
+
+    def get_item(self):
+        return self.item
+
+
+    def get_next_n(self):
+        return self.next_n
+
+
+    def set_next_n(self, newnext):
+        self.next_n = newnext
+
+
+    def insert_item(self, item):
+        if self.next_n == None:
+            newnode = Node(item)
+            self.next_n = newnode
+        else:
+            if item < self.next_n.get_item():
+                newnode = Node(item)
+                newnode.set_next_n(self.next_n)
+                self.next_n = newnode
+            else:
+                self.next_n.insert_item(item)
+numlist = LinkedList()
+numlist.insert_item(9)
+numlist.insert_item(3)
+numlist.insert_item(7)
+print(numlist.get_smallest())       # prints 3
+numlist.insert_item(2)
+print(numlist.get_smallest())       # prints 2
+    # ... (inside class LinkedList:)
+    
+    def is_item_present(self, query):
+        if self.first_n == None:
+            return False
+        else:
+            answer = self.first_n.is_item_present(query)
+            return answer
+    # ... (inside class Node:)
+    
+    def is_item_present(self, query):
+        if self.item == query:                         # 1.
+            return True
+        else:
+            if self.next_n == None:                    # 2a.
+                return False
+            else:                                      # 2b.
+                answer = self.next_n.is_item_present(query)
+                return answer
+numlist = LinkedList()
+numlist.insert_item(9)
+numlist.insert_item(3)
+numlist.insert_item(7)
+print(numlist.get_smallest())       # prints 3
+numlist.insert_item(2)
+print(numlist.get_smallest())       # prints 2
+print(numlist.is_item_present(7))   # prints True
+print(numlist.is_item_present(6))   # prints False
+#!/usr/bin/env python
+
+
+class BinaryTree:
+
+
+    def __init__(self):
+        self.root_n = None
+
+
+    def insert_item(self, item):
+        if self.root_n == None:
+            newnode = Node(item)
+            self.root_n = newnode
+        else:
+            self.root_n.insert_item(item)
+class Node:
+    
+    def __init__(self, item):
+        self.item = item
+        self.left_n = None
+        self.right_n = None
+        
+    def get_item(self):
+        return self.item
+    
+    def get_left_n(self):
+        return self.left_n
+    
+    def set_left_n(self, newleft):
+        self.left_n = newleft
+        
+    def get_right_n(self):
+        return self.right_n
+    
+    def set_right_n(self, newright):
+        self.right_n = newright
+    # ... (inside class Node:)
+
+
+    def insert_item(self, item):
+        if item < self.item:                        
+            if self.left_n == None:                 # 1a.  
+                newnode = Node(item)
+                self.left_n = newnode
+            else:                                   # 1b.
+                self.left_n.insert_item(item)
+        else:
+            if self.right_n == None:                # 2a.
+                newnode = Node(item)
+                self.right_n = newnode
+            else:                                   # 2b.
+                self.right_n.insert_item(newnode)
+    # ... (inside class Tree:)
+    
+    def get_smallest(self):
+        if self.root_n == None:
+            return None
+        else:
+            answer = self.root_n.get_smallest()
+            return answer
+    # ... (inside class Node:)
+    
+    def get_smallest(self):
+        if self.left_n == None:
+            return self.item
+        else:
+            answer = self.left_n.get_smallest()
+            return answer
+numtree = BinaryTree()
+numtree.insert_item(9)
+numtree.insert_item(3)
+numtree.insert_item(7)
+print(numtree.get_smallest())       # prints 3
+numtree.insert_item(2)
+print(numtree.get_smallest())       # prints 2
+#!/usr/bin/env python
+
+
+def factorial(n):
+    if n == 1:
+        return 1
+    else:
+        subanswer = factorial(n-1)
+        answer = subanswer * n
+        return answer
+
+
+print(factorial(7))                 # prints 5040
+print(factorial(8))                 # prints 40320
+print(factorial(9))                 # prints 362880
+def quicksort(nums):
+    if len(nums) <= 1:              # base case
+        return nums
+    else:                           # recursive case
+        pivot = nums[0]             # O(1)
+        lt = list()
+        eq = list()
+        gt = list()
+
+
+        for num in nums:            # O(n)
+            if num < pivot:
+                lt.append(num)
+            elif num == pivot:
+                eq.append(num)
+            else:
+                gt.append(num)
+
+
+        ## producing lt_sorted and gt_sorted
+        lt_sorted = quicksort(lt)  # O(?)
+        gt_sorted = quicksort(gt)  # O(?)
+
+
+        answer = list()
+        for num in lt_sorted:      # O(n)
+            answer.append(num)
+        for num in eq:             # O(n)
+            answer.append(num)     
+        for num in gt_sorted:      # O(n)
+            answer.append(num)
+
+
+    return answer
+nums = [4, 6, 8, 1, 2, 8, 9, 2]
+print(quicksort(nums))               # prints [1, 2, 2, 4, 6, 8, 8, 9]
+oneils@atmosphere ~/apcb/r$ R
+
+
+R version 3.1.2 (2014-10-31) -- "Pumpkin Helmet"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+
+  Natural language support but running in an English locale
+
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+
+> print("Hello world!")
+[1] "Hello world!"
+> 
+> quit(save = "no")
+oneils@atmosphere ~/apcb/r$ 
+  GNU nano 2.2.6             File: helloworld.R                                 
+
+
+#!/usr/bin/env Rscript
+
+
+print("Hello World")
+
+
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+oneils@atmosphere ~/apcb/r$ chmod +x helloworld.R 
+oneils@atmosphere ~/apcb/r$ ./helloworld.R 
+[1] "Hello World"
+oneils@atmosphere ~/apcb/r$ 
+library(stringr)
+
+
+print(str_split("Hello world", " "))
+alpha <- -4.4
+print(alpha)                       # prints [1] -4.4
+alpha_abs <- abs(alpha)
+print(alpha_abs)                   # prints [1] 4.4
+gamma <- -6.6
+gamma <- abs(gamma)
+print(gamma)                                    # prints [1] 6.6
+
+
+count <- 22
+count <- count + 1
+print(count)                                    # prints [1] 23
+gc_content <- 0.34                 # numeric 0.34
+evalue <- 1e-7                     # numeric 0.0000001
+seq_len <- 215                     # actually numeric 215.0
+seq_len_int <- as.integer(seq_len)  # integer 215
+seq_len2 <- as.numeric(seq_len_int) # numeric 215.0
+name <- 'Shawn'
+last_name <- "O'Neil"
+value_chr <- "6.2"
+asum <- 5.4 + value_chr                        # Error!
+asum2 <- 5.4 + as.numeric(value_chr)           # numeric 11.6
+asum2_char <- as.character(asum2)              # character, "11.6"
+sun_is_yellow <- TRUE                          # logical TRUE
+result <- 3 < 5                                # logical TRUE
+
+
+char_test <- "AACT" < "CGTAC"                  # logical TRUE
+mix_test <- "AACT" > -20.4                     # logical TRUE
+a <- 0.2 * 0.2 / 0.2
+b <- 0.2
+result <- isTRUE(all.equal(a, b))               # logical TRUE
+val <- 5                                       # assigns 5 to val
+val < -5                                       # compares val to -5 (less than)
+val = -5                                       # assigns -5 to val
+val == -5                                      # compares val to -5 (equality)
+base1 <- "A"
+base2 <- "T"
+val1 <- 3.5
+val2 <- 4.7
+
+
+result <- val1 < val2 & (base2 == "T" | !(base1 < base2))   # TRUE
+id <- "REG3A"
+len <- as.integer(525)
+gc_content <- 0.67
+id_class <- class(id)
+len_class <- class(len)
+
+
+print(id_class)                               # prints [1] "character"
+print(len_class)                              # prints [1] "integer"
+print(class(gc_content))                      # prints [1] "numeric"
+a <- # TRUE or FALSE?
+b <- # TRUE or FALSE?
+c <- # TRUE or FALSE?
+d <- # TRUE or FALSE?
+## We want the below code to print TRUE
+result <- ( c | b ) & ( !b | d ) & ( !c | a ) & ( !c | !a )
+print(result)
+samples <- c(3.2, 4.7, -3.5)            # 3-element numeric vector
+samples2 <- c(20.4, samples, 37.6)      # 5-element numeric vector
+print(samples2)                         # prints [1] 20.4, 3.2, 4.7, -3.5, 37.6
+second_sample <- samples2[2]            # numeric 3.2
+num_samples <- length(samples2)         # integer 5
+last_sample <- samples2[num_samples]                # numeric 37.6
+# OR
+last_sample <- samples2[length(samples2)]        # numeric 37.6
+char_vec <- c("one", "two", "three", "four", "five")
+range <- seq(1, 20, 0.5)
+print(range)
+ [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
+[16]  8.5  9.0  9.5 10.0 10.5 11.0 11.5 12.0 12.5 13.0 13.5 14.0 14.5 15.0 15.5
+[31] 16.0 16.5 17.0 17.5 18.0 18.5 19.0 19.5 20.0
+mix <- c(TRUE, FALSE, as.integer(20))
+[1]  1  0 20
+mix <- c(TRUE, FALSE, as.integer(20), 3.5)
+print(class(mix))                           # [1] "numeric"
+print(mix)                                  # [1] 1.0 0.0 20.0 3.5
+mix <- c(TRUE, FALSE, as.integer(20), 3.5, "A")
+print(class(mix))                           # [1] "character"
+print(mix)                                  # [1] "TRUE" "FALSE" "20" "3.5" "A"
+numbers <- c(10, 20, 30, 40, 50)
+second_el <- numbers[2]                     # 20
+subvector <- numbers[c(3,2)]
+print(subvector)                            # [1] 30 20
+numbers[c(3,2)] <- c(35, 25)
+print(numbers)                              # [1] 10 25 35 40 50
+print("Printing the vector:")
+print(scores)
+
+
+print("Printing the names:")
+names_scores <- names(scores)
+print(names_scores)
+[1] "Printing the vector:"
+Student A Student B Student C 
+       89        94        73 
+[1] "Printing the names:"
+[1] "Student A" "Student B" "Student C"
+ca_scores <- scores[c("Student C", "Student A")]  # 2 element vector: 73 98
+# OR
+ca_names <- c("Student C", "Student A")
+ca_scores <- scores[ca_names]
+
+
+scores[c("Student A", "Student C")] <- c(93, 84)
+print(scores)
+Student A Student B Student C 
+       93        94        84 
+select_vec <- c(TRUE, FALSE, TRUE)
+ac_scores <- scores[select_vec]                  # 2 element vector: 93 84
+# OR
+ac_scores <- scores[c(TRUE, FALSE, TRUE)]
+scores[c(TRUE, FALSE, TRUE)] <- c(94, 86)
+print(scores)
+Student A Student B Student C 
+       94        94        86 
+numeric_chars <- c("6", "3.7", "9b3x")
+numerics <- as.numeric(numeric_chars)
+print(numerics)                                 # [1] 6.0 3.7 NA
+ave <- mean(numerics)
+print(ave)                                      # [1] NA
+ave <- mean(numerics, na.rm = TRUE)
+print(ave)                                      # [1] 4.85
+values <- c(10, 20, 30, 40)
+mult <- c(1, 2, 3, 4)
+
+
+result <- values * mult                # 4 element vector: 10 40 90 160
+values <- c(10, 20, 30, 40)
+comparison_values <- c(25, 10, 25, 35)
+
+
+result <- values > comparison_values   # 4 element vector: FALSE TRUE TRUE TRUE
+values <- c(10, 20, 30, 40)
+mult <- c(10, -10)
+
+
+result <- values * mult                # 4 element vector: 100 -200 300 -400
+result <- values * 2                   # same as values * c(2)
+print(result)                          # [1] 20 40 60 80
+values <- c(3, 5, 7)
+mult <- c(10, -10)
+
+
+result <- values * mult                # 3 element vector: 30 -50 70
+values <- c(10, 20, 30, 40, 50, 60)
+values[c(TRUE, TRUE, FALSE, TRUE, FALSE, TRUE)] <- c(5, -5)
+
+
+print(values)                          # [1] 5 -5 30 5 50 -5
+values <- c(10, 20, 30, 40, 50, 60)
+values[c(TRUE, TRUE, FALSE, TRUE, FALSE, TRUE)] <- 0 # same as ... <- c(0)
+
+
+print(values)                          # [1] 0 0 30 0 50 0
+values <- c(10, 20, 30, 40, 50, 60)
+select_vec <- values > 35              # TRUE TRUE TRUE FALSE FALSE FALSE
+values[select_vec] <- 0
+
+
+print(values)                          # [1] 10 20 30 0 0 0
+values <- c(10, 20, 30, 40, 50, 60)
+values[values > 35] <- 0
+
+
+print(values)                          # [1] 10 20 30 0 0 0
+values <- c(30, 10, 60, 20, 40, 50)
+values[values > mean(values)] <- 0
+
+
+print(values)                          # [1] 30 10 0 20 0 0 
+values <- c(30, 10, 60, 20, 40, 50)
+gt_mean <- values[values > mean(values)]
+
+
+print(gt_mean)                         # [1] 60 40 50
+range <- seq(0, 7, 0.2)                # 0.0 0.2 0.4 ... 7.0
+len_range <- length(range)             # 36
+quantiles_range <- quantile(range, c(0.25, 0.5, 0.75))
+print(quantiles_range)
+ 25%  50%  75% 
+1.75 3.50 5.25 
+values <- c(20, 40, 30, 20, 10, 50, 10)
+values_uniq <- unique(values)         # 20 40 30 10 50
+
+
+rev_uniq <- rev(values_uniq)          # 50 10 30 40 20
+order_rev_uniq <- order(rev_uniq)     # 2 5 3 4 1
+id <- c("cc4", "aa6", "bb3")
+score <- c(20.05, 35.62, 42.71)
+
+
+id_sorted <- id[order(id)]
+score_sorted <- score[order(id)]
+
+
+print(id_sorted)                     # [1] "aa6" "bb3" "cc4" 
+print(score_sorted)                  # [1] 35.62 42.71 20.05
+values <- c(5, 10, 15, 20, 25, 30)
+
+
+sample_1 <- sample(values, 3, replace = FALSE)        # 15 5 30
+sample_2 <- sample(values, 3, replace = TRUE)         # 15 30 15
+count <- c(1, 2)
+
+
+count_rep1 <- rep(count, 3)                           # 1 2 1 2 1 2
+count_rep2 <- rep(count, each = 3)                    # 1 1 1 2 2 2
+values_char <- c("5.7", "4.3", "a9b3", "2.4")
+values <- as.numeric(values_char)                     # 5.7 4.3 NA 2.4
+
+
+values_na <- is.na(values)                            # FALSE FALSE TRUE FALSE
+
+
+values_no_nas <- values[!values_na]                   # 5.7 4.3 2.4
+# OR
+values_no_nas <- values[!is.na(values_na)]            # 5.7 4.3 2.4
+sample_norm <- rnorm(5, mean = 6, sd = 2)     # e.g. 7.07 2.4 4.5 6.2 5.1
+sample_unif <- runif(5, min = 2, max = 6)     # e.g. 2.1 4.06 2.48 4.67 5.80
+sample_exp <- rexp(5, rate = 1.5)             # e.g. 0.24 0.50 0.01 0.55 0.30
+sample_1 <- rnorm(100, mean = 10, sd = 4)
+sample_2 <- rnorm(100, mean = 12, sd = 4)
+
+
+ttest_result <- t.test(sample_1, sample_2)
+print(class(ttest_result))                    # [1] "htest"
+print(ttest_result)
+Welch Two Sample t-test
+
+
+data:  sample_1 and sample_2
+t = -2.6847, df = 193.503, p-value = 0.007889
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.690577 -0.411598
+sample estimates:
+mean of x mean of y 
+ 10.03711  11.58819 
+name    population      income  murder  hs_grad region
+Alabama 3615    3624    15.1    41.3    South
+Alaska  365     6315    11.3    66.7    West
+Arizona 2212    4530    7.8     58.1    West
+Arkansas        2110    3378    10.1    39.9    South
+California      21198   5114    10.3    62.6    West
+Colorado        2541    4884    6.8     63.9    West
+...
+...
+Massachusetts   5814    4755    3.3     58.5    Northeast
+Michigan        9111    4751    11.1    52.8    North Central   # mitten
+Minnesota       3921    4675    2.3     57.6    North Central
+...
+states <- read.table(file = "states.txt",
+                     header = TRUE,
+                     sep = "\t",
+                     stringsAsFactors = FALSE, 
+                     comment.char = "#")
+             name population income murder hs_grad        region
+1         Alabama       3615   3624   15.1    41.3         South
+2          Alaska        365   6315   11.3    66.7          West
+3         Arizona       2212   4530    7.8    58.1          West
+4        Arkansas       2110   3378   10.1    39.9         South
+5      California      21198   5114   10.3    62.6          West
+6        Colorado       2541   4884    6.8    63.9          West
+...
+first_10 <- head(states, n = 10)
+
+
+print(first_10)
+# OR
+print(head(states, n = 10))
+incomes <- states$"income"
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+incomes <- states$income
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+nrth_cntrl_logical <- states$region == "North Central"  # Logical vector
+states$region[nrth_cntrl_logical] <- "Central"          # Selective replacement
+# OR
+states$region[states$region == "North Central"] <- "Central"
+write.table(states,
+            file = "states_modified.txt",
+            quote = FALSE,
+            sep = "\t",
+            row.names = FALSE,
+            col.names = TRUE)
+#!/usr/bin/env Rscript
+
+
+# read args from command-line params
+args <- commandArgs(trailingOnly = TRUE)
+print(args)
+
+
+# read data frame from stdin
+input_df <- read.table("stdin", 
+                       header = FALSE, 
+                       stringsAsFactors = FALSE)
+# write data frame to stdout
+write.table(input_df,
+            file = "", 
+            row.names = FALSE, 
+            col.names = FALSE,
+            sep = "\t")
+states$newpop <- states$population
+highmurder <- states$murder >= median(states$murder)
+states$newpop[highmurder] <- states$population[highmurder] * 0.9
+states$newpop[!highmurder] <- states$population[!highmurder] * 1.1
+vec1 <- c(1/5, 0.2, 0.2 * 0.2 / 0.2)
+vec2 <- c(1/5, 1/5, 1/5)
+
+
+eq <- isTRUE(all.equal(vec1, vec2))
+print(eq)                                  # [1] TRUE
+vec1 <- c(4.00000001, 6)
+vec2 <- c(4, 2)
+epsilon <- 0.00001
+eq <- abs(vec1 - vec2) < epsilon
+print(eq)                                  # [1] TRUE FALSE
+# Compares elements of a and b; 
+# returns TRUE for each within epsilon
+equalish <- function(a, b, epsilon = 0.00001) {
+  result <- abs(a - b) < epsilon
+  return(result)
+}       
+
+
+vec1 <- c(4.00000001, 6)
+vec2 <- c(4, 2)
+eq <- equalish(vec1, vec2)
+print(eq)                         # [1] TRUE FALSE
+eq <- equalish(vec1, vec2, 0.000000000001)
+print(eq)                                  # [1] FALSE FALSE
+# by name:
+eq <- equalish(a = vec1, b = vec2, epsilon = 0.000000000001)
+# mix of position and name:
+eq <- equalish(vec1, vec2, epsilon = 0.000000000001)
+eq <- equalish(vec1, epsilon = 0.00000000001, vec2)       # confusing!
+eq <- equalish(epsilon = 0.00000000001, vec2, a = vec1)   # confusing!
+# returns the difference between mean(vec1)
+# and mean(vec2)
+diff_mean <- function(vec1, vec2, remove_NAs = FALSE) {
+  m1 <- mean(vec1, na.rm = remove_NAs) 
+  m2 <- mean(vec2, na.rm = remove_NAs)
+  return(m1 - m2)
+}
+vec1 <- c(4.00000001, 6)
+vec2 <- c(4, 2)
+eq <- equalish(vec1, vec2)                 # TRUE FALSE
+print(result)
+Error in print(result) : object 'result' not found
+Execution halted
+result <- "Success"
+vec1 <- c(4.00000001, 6)
+vec2 <- c(4, 2)
+eq <- equalish(vec1, vec2)                 # TRUE FALSE
+print(result)
+[1] "Success"
+equalish <- function(a, b, epsilon = 0.00001) {
+  result <- abs(a - b) < epsilon
+  print(testvar)
+  return(result)
+}
+
+
+
+testvar <- "Contents of testvar"
+vec1 <- c(4.00000001, 6)
+vec2 <- c(4, 2)
+eq <- equalish(vec1, vec2)  # TRUE FALSE   
+[1] "Contents of testvar"
+equalish <- function() {
+  result <- abs(vec1 - vec2) < epsilon
+  return(result)
+}
+
+
+vec1 <- c(4.00000001, 6)
+vec2 <- c(4, 2)
+epsilon <- 0.00001
+eq <- equalish()            # TRUE FALSE
+nums = [1, 2, 3, 4, 5]
+numsb = nums
+numsb[0] = 1000
+print(nums)
+print(numsb)
+[1000, 2, 3, 4, 5]
+[1000, 2, 3, 4, 5]
+nums <- c(1, 2, 3, 4, 5)
+numsb <- nums
+numsb[1] <- 1000
+print(nums)
+print(numsb)
+[1] 1 2 3 4 5
+[1] 1000    2    3    4    5
+def testfunc(param):
+    param[0] = 1000
+    return param
+
+
+nums = [1, 2, 3, 4, 5]
+numsb = testfunc(nums)
+print(nums)
+print(numsb)
+[1000, 2, 3, 4, 5]
+[1000, 2, 3, 4, 5]
+testfunc <- function(param) {
+  param[1] <- 1000
+  return(param)
+}
+
+
+nums <- c(1, 2, 3, 4, 5)
+numsb <- testfunc(nums)
+print(nums)
+print(numsb)
+[1] 1 2 3 4 5
+[1] 1000    2    3    4    5
+> help("t.test")
+t.test                  package:stats                  R Documentation
+
+
+Student's t-Test
+
+
+Description:
+
+
+     Performs one and two sample t-tests on vectors of data.
+
+
+Usage:
+
+
+     t.test(x, ...)
+     
+     ## Default S3 method:
+     t.test(x, y = NULL,
+            alternative = c("two.sided", "less", "greater"),
+            mu = 0, paired = FALSE, var.equal = FALSE,
+            conf.level = 0.95, ...)
+     
+     ## S3 method for class 'formula'
+     t.test(formula, data, subset, na.action, ...)
+     
+Arguments:
+
+
+       x: a (non-empty) numeric vector of data values.
+
+
+       y: an optional (non-empty) numeric vector of data values.
+...
+mean_diff <- function() {
+  m1 <- mean(v1)
+  m2 <- mean(v2)
+  answer <- m1 - m2
+  return(answer)
+}
+
+
+sample1 <- rnorm(100, mean = 4, sd = 3)
+sample2 <- rnorm(100, mean = 6, sd = 3)
+v1 <- sample1
+v2 <- sample2
+
+
+diff <- mean_diff()
+print(diff)
+## given two numeric vectors a and b,
+## returns the difference in coefficient of 
+## variation (sd over mean) NAs are ignored.
+diff_cov <- function(a, b) {
+  cova <- coeff_of_var(a)
+  covb <- coeff_of_var(b)
+  result <- cova - covb
+  return(result)
+}
+
+
+## given an numeric vector, returns
+## the coefficient of variation (sd over mean)
+## NAs are ignored
+coeff_of_var <- function(a) {
+  result <- sd(a, na.rm = TRUE) / mean(a, na.rm = TRUE)
+  return(result)
+}
+
+
+sample1 <- rnorm(100, mean = 4, sd = 2)
+sample2 <- rnorm(100, mean = 8, sd = 2.5)
+answer <- diff_cov(sample1, sample2)
+print(answer)
+equalish <- function(a, b, epsilon = 0.00001) {
+  result <- abs(a - b) < epsilon
+  result
+}
+organism <- "A. thaliana"
+ecotypes <- c("C24", "Col0", "WS2")
+num_chromosomes <- 5
+athal <- list(organism, ecotypes, num_chromosomes)
+print(class(athal))                                  # [1] "list"
+sublist <- athal[c(1,3)]
+sublist <- athal[c(TRUE, FALSE, TRUE)]
+eco_list <- athal[2]
+print(class(eco_list))                               # [1] "list"
+print(length(eco_list))                              # [1] 1 
+ecotypes <- athal[[2]]
+print(class(ecotypes))                               # [1] "character"
+print(ecotypes)                                      # [1] "C24" "Col0" "Ws2"
+print(athal)
+[[1]]
+[1] "A. thaliana"
+
+
+[[2]]
+[1] "C24"  "Col0" "WS2" 
+
+
+[[3]]
+[1] 5
+names(athal) <- c("Species", "Ecotypes", "# Chromosomes")
+sublist <- athal[c("Species", "# Chromosomes")]      # list of length two
+
+
+ecotypes <- athal[["Ecotypes"]]                      # ecotypes vector
+extract_name <- "Ecotypes"
+ecotypes <- athal[[extract_name]]                    # ecotypes vector
+ecotypes <- athal[["Ecotypes"]]
+# same as
+ecotypes <- athal$"Ecotypes"
+ecotypes <- athal$Ecotypes
+third_ecotype <- athal$Ecotypes[3]
+athal$Ecotypes[3] <- "WS2b"
+chrs <- list()
+chrs$Lengths <- c(34.9, 22.0, 25.4, 20.8, 31.2)
+chrs$GeneCounts <- c(7078, 4245, 5437, 4124, 6318)
+athal$ChrInfo <- chrs
+$Species
+[1] "A. thaliana"
+
+
+$Ecotypes
+[1] "C24"  "Col0" "WS2b"
+
+
+$`# Chromosomes`
+[1] 5
+
+
+$ChrInfo
+$ChrInfo$Lengths
+[1] 34.9 22.0 25.4 20.8 31.2
+
+
+$ChrInfo$GeneCounts
+[1] 7078 4245 5437 4124 6318
+sample <- rnorm(10, mean = 20, sd = 10)
+attr(sample, "disttype") <- "normal"
+print(sample)
+ [1] -3.177991  8.676695 10.623292 22.020329  5.497178 10.135908  7.113268
+ [8] 26.784623 16.306509 21.237899
+attr(,"disttype")
+[1] "normal"
+attr(athal$Species, "kingdom") <- "Plantae"
+List of 4
+ $ Species      : atomic [1:1] A. thaliana
+  ..- attr(*, "kingdom")= chr "Plantae"
+ $ Ecotypes     : chr [1:3] "C24" "Col0" "WS2b"
+ $ # Chromosomes: num 5
+ $ ChrInfo      :List of 2
+  ..$ Lengths   : num [1:5] 54.2 36.4 19.7 46.3 29.2
+  ..$ GeneCounts: num [1:5] 8621 7215 3124 7219 4140
+# delete ChrInfo and Species attribute
+athal$ChrInfo <- NULL
+attr(athal$Species, "kingdom") <- NULL
+str(athal)
+List of 3
+ $ Species      : chr "A. thaliana"
+ $ Ecotypes     : chr [1:3] "C24" "Col0" "WS2b"
+ $ # Chromosomes: num 5
+samp1 <- rnorm(100, mean = 10, sd = 5)
+samp2 <- rnorm(100, mean = 8, sd = 5)
+tresult <- t.test(samp1, samp2)
+print(tresult)
+Welch Two Sample t-test
+
+
+data:  samp1 and samp2
+t = 2.8214, df = 197.172, p-value = 0.005271
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.6312612 3.5626936
+sample estimates:
+mean of x mean of y 
+ 9.307440  7.210463 
+List of 9
+ $ statistic  : Named num 5.41
+  ..- attr(*, "names")= chr "t"
+ $ parameter  : Named num 198
+  ..- attr(*, "names")= chr "df"
+ $ p.value    : num 1.84e-07
+ $ conf.int   : atomic [1:2] 2.07 4.45
+  ..- attr(*, "conf.level")= num 0.95
+ $ estimate   : Named num [1:2] 10.41 7.15
+  ..- attr(*, "names")= chr [1:2] "mean of x" "mean of y"
+ $ null.value : Named num 0
+  ..- attr(*, "names")= chr "difference in means"
+ $ alternative: chr "two.sided"
+ $ method     : chr "Welch Two Sample t-test"
+ $ data.name  : chr "samp1 and samp2"
+ - attr(*, "class")= chr "htest"
+scores <- c(56.3, 91.7, 87.4)
+scores_list <- as.list(scores)     # A list with 3 single-element vectors
+a <- rnorm(100, mean = 2, sd = 3)
+response <- a * 1.5 + rnorm(100, mean = 0, sd = 1)
+model <- lm(response ~ a)
+print(model)
+Call:
+lm(formula = response ~ a)
+
+
+Coefficients:
+(Intercept)            a  
+   -0.06706      1.53367  
+vartest <- anova(model)
+print(vartest)
+Analysis of Variance Table
+
+
+Response: response
+          Df  Sum Sq Mean Sq F value    Pr(>F)    
+a          1 2848.43 2848.43  3827.2 < 2.2e-16 ***
+Residuals 98   72.94    0.74                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+ids <- c("AGP", "T34", "ALQ", "IXL")
+lengths <- c(256, 134, 92, 421)
+gcs <- c(0.21, 0.34, 0.41, 0.65)
+
+
+gene_info <- data.frame(ids, lengths, gcs, stringsAsFactors = FALSE)
+print(gene_info)
+'data.frame': 4 obs. of  3 variables:
+ $ ids    : chr  "AGP" "T34" "ALQ" "IXL"
+ $ lengths: num  256 134 92 421
+ $ gcs    : num  0.21 0.34 0.41 0.65
+# set column names
+names(gene_info) <- c("ids", "lengths", "gcs")
+# better way:
+colnames(gene_info) <- c("ids", "lengths", "gcs")
+
+
+print(colnames(gene_info))                      # [1] "ids" "lengths" "gcs"
+sub_info <- gene_info[c(1,3)]
+sub_info <- gene_info[c("ids", "gcs")]
+sub_info <- gene_info[c(TRUE, FALSE, TRUE)]
+ids_vec <- gene_info[[1]]
+ids_vec <- gene_info[["ids"]]
+ids_vec <- gene_info$ids
+# select the third and first rows, columns "lengths" and "ids"
+subframe <- gene_info[c(3, 1), c("lengths", "ids")]
+print(subframe)
+  lengths ids
+3      92 ALQ
+1     256 AGP
+rownames(gene_info) <- c("g1", "g2", "g3", "g4")
+subframe <- gene_info[c(3, 1), c("lengths", "ids")]
+print(subframe)
+   lengths ids
+g3      92 ALQ
+g1     256 AGP
+row_selector <- gene_info$lengths < 200 | gene_info$gcs < 0.3
+selected <- gene_info[row_selector, ]
+print(selected)
+   ids lengths  gcs
+g1 AGP     256 0.21
+g2 T34     134 0.34
+g3 ALQ      92 0.41
+gene_info_sorted <- gene_info[order(gene_info$lengths), ]
+print(gene_info_sorted)
+   ids lengths  gcs
+g3 ALQ      92 0.41
+g2 T34     134 0.34
+g1 AGP     256 0.21
+g4 IXL     421 0.65
+gene_info$gc_category <- NA
+gene_info$gc_category[gene_info$gcs < 0.5] <- "low"
+gene_info$gc_category[gene_info$gcs >= 0.5] <- "high"
+print(gene_info)
+   ids lengths  gcs gc_category
+g1 AGP     256 0.21         low
+g2 T34     134 0.34         low
+g3 ALQ      92 0.41         low
+g4 IXL     421 0.65        high
+m <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+print(m)
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+id      annotation      expression      sample
+LQ00X000020     Hypothetical protein    5.024142433     C6_control_A1
+LQ00X000020     Hypothetical protein    4.646697026     C6_control_A3
+LQ00X000020     Hypothetical protein    4.986591902     C6_control_B1
+LQ00X000020     Hypothetical protein    5.164291761     C6_control_B2
+LQ00X000020     Hypothetical protein    5.348809843     C6_control_B3
+LQ00X000020     Hypothetical protein    5.519392911     C6_control_C1
+LQ00X000020     Hypothetical protein    5.305463561     C6_control_C2
+LQ00X000020     Hypothetical protein    5.535279863     C6_control_C3
+LQ00X000020     Hypothetical protein    4.831259167     C6_chemical_A1
+LQ00X000020     Hypothetical protein    4.784184435     C6_chemical_A3
+LQ00X000020     Hypothetical protein    5.577740866     C6_chemical_B1
+library(stringr)
+
+
+expr_long <- read.table("expr_long_coded.txt",
+                        header = TRUE,
+                        sep = "\t",
+                        stringsAsFactors = FALSE)
+sample_split <- str_split_fixed(expr_long$sample, "_", 3)
+print(head(sample_split))
+     [,1] [,2]      [,3]
+[1,] "C6" "control" "A1"
+[2,] "C6" "control" "A3"
+[3,] "C6" "control" "B1"
+[4,] "C6" "control" "B2"
+[5,] "C6" "control" "B3"
+[6,] "C6" "control" "C1"
+sample_split_df <- data.frame(sample_split)
+colnames(sample_split_df) <- c("genotype", "treatment", "tissuerep")
+expr_long_split <- cbind(expr_long, sample_split_df)
+           id           annotation expression        sample genotype treatment
+1 LQ00X000020 Hypothetical protein   5.024142 C6_control_A1       C6   control
+2 LQ00X000020 Hypothetical protein   4.646697 C6_control_A3       C6   control
+3 LQ00X000020 Hypothetical protein   4.986592 C6_control_B1       C6   control
+4 LQ00X000020 Hypothetical protein   5.164292 C6_control_B2       C6   control
+5 LQ00X000020 Hypothetical protein   5.348810 C6_control_B3       C6   control
+6 LQ00X000020 Hypothetical protein   5.519393 C6_control_C1       C6   control
+  tissuerep
+1        A1
+2        A3
+3        B1
+4        B2
+5        B3
+6        C1
+expr_long_split$tissue <- NA
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "A")] <- "A"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "B")] <- "B"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "C")] <- "C"
+print(expr_long_split[is.na(expr_long_split$tissue), ]) # should print 0 rows
+expr_long_split$rep <- NA
+
+
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "1")] <- "1"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "2")] <- "2"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "3")] <- "3"
+
+
+print(expr_long_split[is.na(expr_long_split$rep), ]) # should print 0 rows
+              id                                           annotation
+260  LQ00X000370              Putative Beta-hexosaminidase subunit B2
+590  LQ00X001530                    Putative Peptide transporter PTR1
+855  LQ00X002040           Probable adenylate kinase 2, chloroplastic
+1827 LQ00X004320 Putative Serine/threonine-protein kinase BRI1-like 2
+2135 LQ00X004780                          Phenylalanine ammonia-lyase
+     expression         sample genotype treatment tissuerep tissue  rep
+260   11.731868  C6_control_B0       C6   control        B0      B <NA>
+590   12.982069 C6_chemical_C0       C6  chemical        C0      C <NA>
+855    5.327353  L4_control_C0       L4   control        C0      C <NA>
+1827   7.596899  C6_control_B0       C6   control        B0      B <NA>
+2135   6.165839  L4_control_C0       L4   control        C0      C <NA>
+bad_ids <- expr_long_split$id[is.na(expr_long_split$rep)]
+print(bad_ids)
+[1] "LQ00X000370" "LQ00X001530" "LQ00X002040" "LQ00X004320" "LQ00X004780"
+bad_rows <- expr_long_split$id %in% bad_ids      # logical vector
+
+
+expr_long_split <- expr_long_split[!bad_rows, ]  # logical selection
+first <- c("Tom", "Bob")
+last <- c("Waits", "Dylan")
+full <- str_c(first, last, sep = "_")
+print(full)                                      # [1] "Tom_Waits" "Bob_Dylan"
+print(str_c("Number of names: ", length(full)))  # [1] "Number of names: 2"
+treatment_factor <- factor(expr_long_split$treatment)
+print(head(treatment_factor, n = 10))
+ [1] control  control  control  control  control  control  control  control 
+ [9] chemical chemical
+Levels: chemical control
+ Factor w/ 2 levels "chemical","control": 2 2 2 2 2 2 2 2 1 1 ...
+print(attr(treatment_factor, "class"))           # [1] "factor"
+attr(treatment_factor, "class") <- NULL
+str(treatment_factor)
+ atomic [1:366016] 2 2 2 2 2 2 2 2 1 1 ...
+ - attr(*, "levels")= chr [1:2] "chemical" "control"
+class(treatment_factor) <- "factor"      
+attr(treatment_factor, "levels") <- c("Chemical", "Water")
+# better:
+levels(treatment_factor) <- c("Chemical", "Water")
+levels(treatment_factor) <- c("Water", "Chemical")   # Ack!
+treatment_factor <- factor(expr_long_split$treatment,
+                           levels = c("control", "chemical"), # existing levels
+                           labels = c("Water", "Chemical"),   # new names
+                           ordered = TRUE)                    # specify ordered
+
+
+print(head(treatment_factor))
+[1] Water Water Water Water Water Water
+Levels: Water < Chemical
+tissues <- unique(expr_long_split$tissue)                     # B C A
+tissues_sorted <- tissues[order(tissues)]                     # A B C
+tissues_reversed <- rev(tissues_sorted)                       # C B A
+
+
+tissues_factor <- factor(expr_long_split$tissue, 
+                         levels = tissues_reversed,
+                         ordered = TRUE)
+
+
+print(head(tissues_factor))
+[1] A A B B B C
+Levels: C < B < A
+species <- c("salmon", "trout", "salmon", "bass", "bass")
+weights <- c(10.2, 3.5, 12.6, 6.2, 6.7)
+species_factor <- reorder(species, weights, mean, order = TRUE)
+   id tissue count group
+1 AG4      A     1     2
+2 T35      C     2     1
+3 CX1      A     3     2
+4 L56      B     2     1
+...
+PZ7180000023260_APN     GO:0005515      btb poz domain containing protein
+PZ7180000035568_APN     GO:0005515      btb poz domain containing protein
+PZ7180000020052_APQ     GO:0055114      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0006099      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0004449      isocitrate dehydrogenase (nad+)
+...
+abc_grades <- grades[grades$current_grade %in% c("A", "B", "C"), ]
+abc_grades <- grades[grades$current_grade == c("A", "B", "C"), ]
+abc_grades <- grades[c("A", "B", "C"), ]
+abc_grades <- subset(grades, current_grade %in% c("A", "B", "C"))
+abc_grades <- subset(grades, current_grade == c("A", "B", "C"))
+abc_grades <- subset(grades, c("A", "B", "C"))
+library(stringr)
+
+
+expr_long <- read.table("expr_long_coded.txt",
+                        header = TRUE,
+                        sep = "\t",
+                        stringsAsFactors = FALSE)
+
+
+
+# Split sample column into 3-column matrix on _'s
+sample_split <- str_split_fixed(expr_long$sample, "_", 3)
+
+
+# Turn the matrix into a data frame with appropriate column names
+# and combine it with the original data frame into a larger set
+sample_split_df <- data.frame(sample_split)
+colnames(sample_split_df) <- c("genotype", "treatment", "tissuerep")
+expr_long_split <- cbind(expr_long, sample_split_df)
+
+
+# Create an individual tissue column
+expr_long_split$tissue <- NA
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "A")] <- "A"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "B")] <- "B"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "C")] <- "C"
+
+
+# We've already checked for NAs
+#print(expr_long_split[is.na(expr_long_split$tissue), ]) # should print 0 rows
+
+
+# Create a new rep column
+expr_long_split$rep <- NA
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "1")] <- "1"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "2")] <- "2"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "3")] <- "3"
+
+
+# We've already checked for NAs, but a few were left
+#print(expr_long_split[is.na(expr_long_split$rep), ]) # should print 0 rows
+
+
+# So we remove all rows with such "bad" IDs
+bad_ids <- expr_long_split$id[is.na(expr_long_split$rep)]
+bad_rows <- expr_long_split$id %in% bad_ids      # logical vector
+expr_long_split <- expr_long_split[!bad_rows, ]  # logical selection
+save(expr_long_split, file = "expr_long_split.Rdata")
+           id           annotation expression        sample genotype treatment
+1 LQ00X000020 Hypothetical protein   5.024142 C6_control_A1       C6   control
+2 LQ00X000020 Hypothetical protein   4.646697 C6_control_A3       C6   control
+3 LQ00X000020 Hypothetical protein   4.986592 C6_control_B1       C6   control
+4 LQ00X000020 Hypothetical protein   5.164292 C6_control_B2       C6   control
+5 LQ00X000020 Hypothetical protein   5.348810 C6_control_B3       C6   control
+6 LQ00X000020 Hypothetical protein   5.519393 C6_control_C1       C6   control
+  tissuerep tissue rep
+1        A1      A   1
+2        A3      A   3
+3        B1      B   1
+4        B2      B   2
+5        B3      B   3
+6        C1      C   1
+library(stringr)
+library(dplyr)
+
+
+## This script analyzes the data stored in the data frame
+## expr_long_split.Rdata, containing gene expression data
+
+
+load("expr_long_split.Rdata")
+expr <- expr_long_split
+uniq_ids <- unique(expr$id)
+expr1 <- expr[expr$id %in% uniq_ids[1], ]
+lm1 <- lm(expr1$expression ~ expr1$genotype +                   # genotype
+                             expr1$treatment +                  # treatment
+                             expr1$genotype : expr1$treatment)  # interaction
+lm1 <- lm(expression ~ genotype + treatment + genotype:treatment, data = expr1)
+Call:
+lm(formula = expression ~ genotype + treatment + genotype:treatment, 
+    data = expr1)
+
+
+Coefficients:
+                (Intercept)                   genotypeL4  
+                    5.38363                     -0.08384  
+           treatmentcontrol  genotypeL4:treatmentcontrol  
+                   -0.19230                      0.16046  
+
+
+List of 13
+ $ coefficients : Named num [1:4] 5.3836 -0.0838 -0.1923 0.1605
+  ..- attr(*, "names")= chr [1:4] "(Intercept)" "genotypeL4" "treatmentcontrol"
+"genotypeL4:treatmentcontrol"
+ $ residuals    : Named num [1:32] -0.167 -0.545 -0.205 -0.027 0.157 ...
+  ..- attr(*, "names")= chr [1:32] "1" "2" "3" "4" ...
+ $ effects      : Named num [1:32] -29.9003 -0.0102 0.317 0.2269 0.2552 ...
+...
+
+f <- expression ~ genotype + treatment + genotype : treatment
+str(f)
+Class 'formula' length 3 expression ~ genotype + treatment + genotype:treatment
+  ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+f <- alpha ~ beta + beta : gamma
+print(all.vars(f))                               # [1] "alpha" "beta" "gamma"
+anova1 <- anova(lm1)
+print("Printed Result: ")
+print(anova1)
+
+
+print("Structure:")
+str(anova1)
+[1] "Printed Result: "
+Analysis of Variance Table
+
+
+Response: expression
+                   Df Sum Sq  Mean Sq F value Pr(>F)
+genotype            1 0.0001 0.000104  0.0007 0.9790
+treatment           1 0.1005 0.100465  0.6770 0.4176
+genotype:treatment  1 0.0515 0.051498  0.3470 0.5605
+Residuals          28 4.1550 0.148395               
+[1] "Structure:"
+Classes ‘anova’ and 'data.frame': 4 obs. of  5 variables:
+ $ Df     : int  1 1 1 28
+ $ Sum Sq : num  0.000104 0.100465 0.051498 4.155049
+ $ Mean Sq: num  0.000104 0.100465 0.051498 0.148395
+ $ F value: num  0.000704 0.677016 0.347033 NA
+ $ Pr(>F) : num  0.979 0.418 0.561 NA
+ - attr(*, "heading")= chr  "Analysis of Variance Table\n" "Response:
+expression"
+pvals1 <- anova1$"Pr(>F)"
+pvals_df1 <- data.frame(pvals1[1], pvals1[2], pvals1[3])
+colnames(pvals_df1) <- c("genotype", "treatment", "genotype:treatment")
+
+
+print(pvals_df1)
+   genotype treatment genotype:treatment
+1 0.9790277 0.4175689          0.5605206
+pvals1 <- anova1$"Pr(>F)"                # vector of p-values
+pvals_list1 <- as.list(pvals1)           # list of p-values
+pvals_df1 <- data.frame(pvals_list1)     # single-row data frame
+colnames(pvals_df1) <- rownames(anova1)  # column names from rownames(anova1)
+
+
+print(pvals_df1)
+   genotype treatment genotype:treatment Residuals
+1 0.9790277 0.4175689          0.5605206        NA
+## Given a data frame with columns for expression,
+## genotype, and treatement, runs a linear model
+## and returns a single-row data frame with p-values in columns
+sub_df_to_pvals_df <- function(sub_df) {
+  lm1 <- lm(expression ~ genotype + treatment + genotype:treatment,
+            data = sub_df)
+
+
+  anova1 <- anova(lm1)
+  pvals1 <- anova1$"Pr(>F)"
+  pvals_list1 <- as.list(pvals1)
+  pvals_df1 <- data.frame(pvals_list1)
+  colnames(pvals_df1) <- rownames(anova1)
+
+
+  return(pvals_df1)
+}
+  Plant   Type  Treatment conc uptake
+1   Qn1 Quebec nonchilled   95   16.0
+2   Qn1 Quebec nonchilled  175   30.4
+3   Qn1 Quebec nonchilled  250   34.8
+4   Qn1 Quebec nonchilled  350   37.2
+5   Qn1 Quebec nonchilled  500   35.3
+6   Qn1 Quebec nonchilled  675   39.2
+ipercentile_range <- function(x) {
+  lower_value <- quantile(x, 0.25)
+  upper_value <- quantile(x, 0.75)
+  return(upper_value - lower_value)
+}
+samples <- list()
+samples$s1 <- rnorm(100, mean = 10, sd = 4)
+samples$s2 <- rnorm(100, mean = 5, sd = 2)
+samples$s3 <- rnorm(100, mean = 20, sd = 8)
+iqr1 <- ipercentile_range(samples$s1)              # 5.44
+iqr2 <- ipercentile_range(samples$s2)              # 2.22
+iqr3 <- ipercentile_range(samples$s3)              # 10.15
+sample_iqrs <- list(iqr1, iqr2, iqr3)              # list of 5.44 2.22 10.15
+print(class(ipercentile_range))          # [1] "function"
+print(ipercentile_range)
+function (x) 
+{
+    lower_value <- quantile(x, 0.25)
+    upper_value <- quantile(x, 0.75)
+    return(upper_value - lower_value)
+}
+sample_irqs <- lapply(samples, ipercentile_range)  # list of 5.44 2.22 10.15
+irqs_vec <- unlist(sample_irqs)
+print(irqs_vec)                                     # [1] 5.44 2.22 10.15
+Usage:
+
+
+     lapply(X, FUN, ...)
+ipercentile_range <- function(x, lower = 0.25, upper = 0.75) {
+  lower_value <- quantile(x, lower)
+  upper_value <- quantile(x, upper)
+  return(upper_value - lower_value)
+}
+inter_90s <- lapply(samples, ipercentile_range, lower = 0.05, upper = 0.95)
+print(unlist(inter_90s))                           # [1] 12.12 6.30 22.08
+s <- c(1, 2) + c(6, 3)                             # 7 5
+s <- `+`(c(1, 2), c(6, 3))                         # 7 5
+# Redefines + to mean power! Mwahaha
+`+` <- function(a, b) {
+  value <- a ^ b
+  return(value)
+}
+
+
+print(3 + 7)                                       # [1] 2187
+`%equalish%` <- function(a, b, epsilon = 0.00001) {
+  result <- abs(a - b) < epsilon
+  return(result)
+}
+
+
+answer <- c(4.00000001, 6) %equalish% c(4, 2)
+print(answer)                                      # [1] TRUE FALSE
+species <- c("bass", "bass", "trout", "bass", "trout", "bass")
+lake <- c("detroit", "green", "green", "detroit", "detroit", "green")
+weight <- c(10.4, 9.6, 4.2, 12.2, 6.5, 8.4)
+
+
+fish <- data.frame(species, lake, weight)
+print(fish)
+  species    lake weight
+1    bass detroit   10.4
+2    bass   green    9.6
+3   trout   green    4.2
+4    bass detroit   12.2
+5   trout detroit    6.5
+6    bass   green    8.4
+fish_by_species <- group_by(fish, species)
+print(fish_by_species)
+Source: local data frame [6 x 3]
+Groups: species
+
+
+  species    lake weight
+1    bass detroit   10.4
+2    bass   green    9.6
+...
+mean_sd_weight <- function(sub_df, remove_nas = FALSE) {
+  weights <- sub_df$weight
+  meanw <- mean(weights, na.rm = remove_nas)
+  sdw <- sd(weights, na.rm = remove_nas)
+  ret_df <- data.frame(mean_weight = meanw, sd_weight = sdw)
+  return(ret_df)
+}
+stats <- mean_sd_weight(fish)
+print(stats)
+  mean_weight sd_weight
+1        8.55   2.86339
+stats_by_species <- do(fish_by_species, mean_sd_weight(.))
+print(stats_by_species)
+Source: local data frame [2 x 3]
+Groups: species
+
+
+  species mean_weight sd_weight
+1    bass       10.15  1.594783
+2   trout        5.35  1.626346
+fish_by_species_lake <- group_by(fish, species, lake)
+stats_by_species_lake <- do(fish_by_species_lake, mean_sd_weight(.))
+print(stats_by_species_lake)
+  species    lake mean_weight sd_weight
+1    bass detroit        11.3 1.2727922
+2    bass   green         9.0 0.8485281
+3   trout detroit         6.5        NA
+4   trout   green         4.2        NA
+mean_normalize_weight <- function(sub_df, remove_nas = FALSE) {
+  ret_df <- sub_df
+  meanw <- mean(sub_df$weight)
+  ret_df$weight <- sub_df$weight - meanw
+  return(ret_df)
+} 
+mean_norm_by_species <- do(fish_by_species, mean_normalize_weight(.))
+print(mean_norm_by_species)
+  species    lake weight
+1    bass detroit   0.25
+2    bass   green  -0.55
+3    bass detroit   2.05
+4    bass   green  -1.75
+5   trout   green  -1.15
+6   trout detroit   1.15
+stats_by_species <- do(fish_by_species, mean_sd_weight(., remove_nas = TRUE))
+stats_by_species <- do(group_by(fish, species), mean_sd_weight(.))
+fish_by_species <- group_by(fish, species)
+stats_by_species <- summarize(fish_by_species, 
+                              mean_weight = mean(weight),
+                              sd_weight = sd(weight))
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+...
+     Species   SpeciesA   SpeciesB diff_mean_petal_width
+1     setosa     setosa     setosa                  0.00
+2 versicolor versicolor     setosa                  1.08
+3  virginica  virginica     setosa                  1.78
+4     setosa     setosa versicolor                 -1.08
+...
+library(stringr)
+library(dplyr)
+
+
+## This script analyzes the data stored in the data frame
+## expr_long_split.Rdata, containing gene expression data
+
+
+load("expr_long_split.Rdata")
+expr <- expr_long_split
+
+
+## Given a data frame with columns for expression,
+## genotype, and treatement, runs a linear model
+## and returns a single-row data frame with p-values in columns
+sub_df_to_pvals_df <- function(sub_df) {
+  lm1 <- lm(expression ~ genotype + treatment + genotype:treatment,
+            data = sub_df)
+
+
+  anova1 <- anova(lm1)
+  pvals1 <- anova1$"Pr(>F)"
+  pvals_list1 <- as.list(pvals1)
+  pvals_df1 <- data.frame(pvals_list1)
+  colnames(pvals_df1) <- rownames(anova1)
+
+
+  return(pvals_df1)
+}
+
+
+
+uniq_ids <- unique(expr$id)
+expr1 <- expr[expr$id %in% uniq_ids[1], ]
+
+
+pvals_df1 <- sub_df_to_pvals_df(expr1)
+ten_ids <- head(uniq_ids, n = 10)
+expr10 <- expr[expr$id %in% ten_ids, ]
+
+
+expr10_by_id <- group_by(expr10, id)
+pvals_df <- do(expr10_by_id, sub_df_to_pvals_df(.))
+
+
+print(pvals_df)
+Source: local data frame [10 x 5]
+Groups: id
+
+
+            id     genotype treatment genotype:treatment Residuals
+1  LQ00X000020 0.9790276672 0.4175689          0.5605206        NA
+2  LQ00X000200 0.9563376003 0.6023259          0.5273140        NA
+3  LQ00X000210 0.3882136652 0.1738578          0.1057537        NA
+4  LQ00X000280 0.5574234253 0.5687726          0.6549019        NA
+5  LQ00X000290 0.0003209239 0.5995250          0.2806888        NA
+...
+## Run all data
+expr_by_id <- group_by(expr, id)
+pvals_df <- do(expr_by_id, sub_df_to_pvals_df(.))
+
+
+## Add BY-adjusted column
+pvals_df$interaction_BY <- p.adjust(pvals_df$"genotype:treatment")
+
+
+## Extract with BY-adjusted FDR < 0.05
+pvals_interaction_sig <- pvals_df[pvals_df$interaction_BY < 0.05, ]
+print(pvals_interaction_sig)
+Source: local data frame [1 x 6]
+Groups: id
+
+
+           id   genotype    treatment genotype:treatment Residuals
+1 LQ00X058430 0.01177861 7.113263e-07        4.24831e-06        NA
+Variables not shown: interaction_BY (dbl)
+         id C6_chemical_A1 C6_chemical_A3 C6_chemical_B1 C6_chemical_B2 ...
+LQ00X000020       4.831259       4.784184       5.577741       5.143742 ...
+LQ00X000200      14.046963      14.045607      14.448088      14.927930 ...
+LQ00X000210      12.546436      12.410848      12.566147      12.638267 ...
+LQ00X000280      10.002939      10.162578       9.425349       9.774258 ...
+LQ00X000290      11.930745      10.757338      11.769187      12.391130 ...
+LQ00X000300       5.146014       5.386916       6.048761       5.263776 ...
+...
+library(tidyr)
+
+
+expr_gathered_small <- gather(expr_small, sample, expression, C6, L4)
+print(expr_gathered_small)
+           id           annotation sample expression
+1 LQ00X000020 Hypothetical Protein     C6     7.3562
+2 LQ00X000200    Predicted Protein     C6    10.1934
+3 LQ00X000210 Biotin carboxylase 1     C6     5.6224
+4 LQ00X000020 Hypothetical Protein     L4     8.2451
+5 LQ00X000200    Predicted Protein     L4     9.6261
+6 LQ00X000210 Biotin carboxylase 1     L4    11.1614
+expr_gathered <- gather(expr_wide, sample, expression, -id, -annotation)
+expr_small <- spread(expr_gathered_small, sample, expression)
+print(expr_small)
+           id           annotation      C6      L4
+1 LQ00X000020 Hypothetical Protein  7.3562  8.2451
+2 LQ00X000200    Predicted Protein 10.1934  9.6261
+3 LQ00X000210 Biotin carboxylase 1  5.6224 11.1614
+           id expression        sample
+1 LQ00X000020   5.024142 C6_control_A1
+2 LQ00X000020   4.646697 C6_control_A3
+3 LQ00X000020   4.986592 C6_control_B1
+4 LQ00X000020   5.164292 C6_control_B2
+5 LQ00X000020   5.348810 C6_control_B3
+6 LQ00X000020   5.519393 C6_control_C1
+expr_sample_separated <- separate(expr_sample,
+                                 sample,
+                                 c("genotype", "treatment", "tissuerep"),
+                                 sep = "_")
+print(expr_sample_separated)
+           id expression genotype treatment tissuerep
+1 LQ00X000020   5.024142       C6   control        A1
+2 LQ00X000020   4.646697       C6   control        A3
+3 LQ00X000020   4.986592       C6   control        B1
+4 LQ00X000020   5.164292       C6   control        B2
+5 LQ00X000020   5.348810       C6   control        B3
+6 LQ00X000020   5.519393       C6   control        C1
+expr_sample_extracted <- extract(expr_sample_separated,
+                                 tissuerep,
+                                 c("tissue", "rep"),
+                                 regex = "([A-Z])([0-9])")
+print(expr_sample_extracted)
+           id expression genotype treatment tissue rep
+1 LQ00X000020   5.024142       C6   control      A   1
+2 LQ00X000020   4.646697       C6   control      A   3
+3 LQ00X000020   4.986592       C6   control      B   1
+4 LQ00X000020   5.164292       C6   control      B   2
+5 LQ00X000020   5.348810       C6   control      B   3
+6 LQ00X000020   5.519393       C6   control      C   1
+  first     last height age
+1 Brent   Liston    6.1  27
+2 Karen Streeter    5.3  22
+  first   last.x height   last.y age
+1 Brent   Liston    6.1   Liston  27
+2   Joe Withmore    5.5    Jones  19
+3 Karen Streeter    5.3 Streeter  22
+  first     last height age
+1 Brent   Liston    6.1  27
+2   Joe Withmore    5.5  NA
+3   Joe    Jones     NA  19
+4 Karen Streeter    5.3  22
+5  Mary  O'Leary    5.2  NA
+6 Chris Peterson     NA  34
+   Plant        Type  Treatment   95  175  250  350  500  675 1000
+1    Qn1      Quebec nonchilled 16.0 30.4 34.8 37.2 35.3 39.2 39.7
+2    Qn2      Quebec nonchilled 13.6 27.3 37.1 41.8 40.6 41.4 44.3
+3    Qn3      Quebec nonchilled 16.2 32.4 40.3 42.1 42.9 43.9 45.5
+4    Qc1      Quebec    chilled 14.2 24.1 30.3 34.6 32.5 35.4 38.7
+5    Qc3      Quebec    chilled 15.1 21.0 38.1 34.0 38.9 39.6 41.4
+...
+          Type conc nonchilled_mean_uptake chilled_mean_uptake
+1       Quebec   95               15.26667            12.86667
+2       Quebec  175               30.03333            24.13333
+3       Quebec  250               37.40000            34.46667
+4       Quebec  350               40.36667            35.80000
+5       Quebec  500               39.60000            36.66667
+6       Quebec  675               41.50000            37.50000
+7       Quebec 1000               43.16667            40.83333
+8  Mississippi   95               11.30000             9.60000
+9  Mississippi  175               20.20000            14.76667
+10 Mississippi  250               27.53333            16.10000
+...
+    day time  temp activ    name
+1   307  930 36.58     0 beaver2
+2   307  940 36.73     0 beaver2
+3   307  950 36.93     0 beaver2
+4   307 1000 37.15     0 beaver2
+5   307 1010 37.23     0 beaver2
+...
+count <- 1
+
+
+while(count < 4) {
+  print("Count is: ")
+  print(count)
+  count <- count + 1
+}
+
+
+print("Done!")
+[1] "Count is: "
+[1] 1
+[1] "Count is: "
+[1] 2
+[1] "Count is: "
+[1] 3
+[1] "Done!"
+[1] "Count is: "
+[1]   1 100
+[1] "Count is: "
+[1]   2 101
+[1] "Count is: "
+[1]   3 102
+Warning messages:
+1: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+2: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+3: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+4: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+[1] "Done!"
+sample <- rnorm(1000, mean = 20, sd = 10)
+hist(sample)
+rnorm_trunc <- function(lower, upper, count, mean, sd) { 
+  sample <- rnorm(count, mean = mean, sd = sd)
+  
+  return(sample)
+}       
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+  
+  }
+
+
+  return(sample)
+}
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+
+    new_vals <- rnorm(count_bad, mean = mean, sd = sd)
+    sample[bad] <- new_vals
+  }
+
+
+  return(sample)
+}
+sample_trunc <- rnorm_trunc(0, 30, 1000, mean = 20, sd = 10)
+hist(sample_trunc)
+# a single random number between 1 and 50
+rand <- runif(1, min = 1, max = 50)
+
+
+if(rand < 10) {
+  print("The random number is less than 10")
+} else if(rand < 20) {
+  print("The random number is 10 or higher")
+  print("But it's also less than 20")
+} else if(rand < 30) {
+  print("The random number is 20 or higher")
+  print("And it's less than 30")
+} else {
+  print("The random number is 30 or higher")
+}   
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+  looped <- 0
+
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+
+    new_vals <- rnorm(count_bad, mean = mean, sd = sd)
+    sample[bad] <- new_vals
+
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+
+
+sample_trunc <- rnorm_trunc(0, 30, 1000, mean = 20, sd = 10)
+if(!is.na(sample_trunc)) {
+  hist(sample_trunc)
+}
+ids <- c("CYP6B", "CATB", "AGP4")
+
+
+for(id_el in ids) {
+  print("id_el is now: ")
+  print(id_el)
+}
+
+
+print("Done!")
+[1] "id_el is now: "
+[1] "CYP6B"
+[1] "id_el is now: "
+[1] "CATB"
+[1] "id_el is now: "
+[1] "AGP4"
+[1] "Done!"
+counter <- 1
+for(i in seq(1, 1000000)) {
+  if(counter%%1000 == 0) {
+    print("Counter is now")
+    print(counter)
+  }
+  counter <- counter + 1
+}
+counter <- 1
+for(i in seq(1, 1000000)) {
+  if(length(counter)%%1000 == 0) {
+    print("Length of counter is now")
+    print(length(counter))
+  }
+  counter <- c(counter, 1)
+}
+first_names <- c("Joseph", "Robert")
+last_names <- c("Anderson", "Wilson")
+names <- c(first_names, last_names)
+
+
+print(names)          # [1] "Joseph" "Robert" "Anderson" "Wilson"
+print(first_names)    # [1] "Joseph" "Robert"
+print(last_names)     # [1] "Anderson" "Wilson"
+# pre-allocate a counter vector of length 1 million
+counter <- rep(0, 1000000)
+for(i in seq(1, 1000000)) {
+  counter[i] <- 1
+}
+scores <- c(50, 35, 56, 36, 90)
+scores_after <- c(70, 45, 50, 42, 91)
+improvement_test <- t.test(scores, scores_after, paired = TRUE)
+print(improvement_test)
+improvement_test <- wilcox.test(scores, scores_after, paired = TRUE)
+print(improvement_test)
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+  looped <- 0
+
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+
+    new_vals <- rnorm(count_bad, mean = mean, sd = sd)
+    sample[bad] <- new_vals
+
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+sample <- rexp(1000, rate = 1.5)
+hist(sample)
+rexp_trunc <- function(lower, upper, count, rate) {
+  sample <- rexp(count, rate = rate)
+  looped <- 0
+
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+
+    new_vals <- rexp(count_bad, rate = rate)
+    sample[bad] <- new_vals
+
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+sample_trunc <- function(lower, upper, count, sample_func, ...) {
+  sample <- sample_func(count, ...)
+  looped <- 0
+
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+
+    new_vals <- sample_func(count_bad, ...)
+    sample[bad] <- new_vals
+
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+sample1 <- sample_trunc(0, 30, 1000, rnorm, mean = 20, sd = 10)
+sample2 <- sample_trunc(1, 4, 1000, rexp, rate = 1.5)
+sample3 <- sample_trunc(3, 6, 1000, rpois, lambda = 2)
+
+
+if(!is.na(sample1)) {
+  hist(sample1)
+}
+
+
+if(!is.na(sample2)) {
+  hist(sample2)
+}
+
+
+if(!is.na(sample3)) {
+  hist(sample3)
+}
+sample1 <- rnorm(20, mean = 10, sd = 3)
+sample2 <- rnorm(20, mean = 20, sd = 3)
+
+
+pval1 <- pval_from_test(sample1, sample2, t.test)
+pval2 <- pval_from_test(sample1, sample2, wilcox.test)
+pval3 <- pval_from_test(sample1, sample2, t.test, paired = TRUE)
+pval4 <- pval_from_test(sample1, sample2, wilcox.test, paired = TRUE)
+treatments <- c("w", "w", "p", "p")
+heights <- c(4.2, 5.4, 2.1, 3.2)
+lm_result <- lm(heights ~ treatments)
+anova_result <- anova(lm_result)
+print("Structure of lm_result:")
+str(lm_result)
+print("Structure of anova_result:")
+str(anova_result)
+[1] "Structure of lm_result:"
+List of 13
+ $ coefficients : Named num [1:2] 2.65 2.15
+  ..- attr(*, "names")= chr [1:2] "(Intercept)" "treatmentsw"
+...
+  .. .. .. ..- attr(*, "names")= chr [1:2] "heights" "treatments"
+ - attr(*, "class")= chr "lm"
+[1] "Structure of anova_result:"
+Classes ‘anova’ and 'data.frame': 2 obs. of  5 variables:
+ $ Df     : int  1 2
+ $ Sum Sq : num  4.62 1.33
+ $ Mean Sq: num  4.622 0.663
+ $ F value: num  6.98 NA
+ $ Pr(>F) : num  0.118 NA
+ - attr(*, "heading")= chr  "Analysis of Variance Table\n" "Response: heights"
+Call:
+lm(formula = heights ~ treatments)
+
+
+Coefficients:
+(Intercept)  treatmentsw  
+       2.65         2.15  
+
+
+Analysis of Variance Table
+
+
+Response: heights
+           Df Sum Sq Mean Sq F value Pr(>F)
+treatments  1 4.6225  4.6225  6.9774 0.1184
+Residuals   2 1.3250  0.6625               
+Call:
+NULL
+
+
+No coefficients
+  [1] print.acf*                                   
+  [2] print.anova*                                 
+  [3] print.aov*                                   
+  [4] print.aovlist*                               
+  [5] print.ar*                                    
+  [6] print.Arima*                                 
+...
+ [1] add1.lm*           alias.lm*          anova.lm*          case.names.lm*    
+ [5] confint.lm         cooks.distance.lm* deviance.lm*       dfbeta.lm*        
+ [9] dfbetas.lm*        drop1.lm*          dummy.coef.lm      effects.lm*       
+[13] extractAIC.lm*     family.lm*         formula.lm*        hatvalues.lm*     
+[17] influence.lm*      kappa.lm           labels.lm*         logLik.lm*        
+[21] model.frame.lm*    model.matrix.lm    nobs.lm*           plot.lm*          
+[25] predict.lm         print.lm*          proj.lm*           qr.lm*            
+[29] residuals.lm       rstandard.lm*      rstudent.lm*       simulate.lm*      
+[33] summary.lm         variable.names.lm* vcov.lm*          
+
+
+   Non-visible functions are asterisked
+truncated_normal_sample <- function(lower, upper, count, mean, sd) {
+  obj <- list()
+  obj$sample <- rnorm_trunc(lower, upper, count, mean, sd)
+  obj$lower <- lower
+  obj$upper <- upper
+  obj$original_mean <- mean
+  obj$original_sd <- sd
+  class(obj) <- "truncated_normal_sample"
+  return(obj)
+} 
+trsamp <- truncated_normal_sample(0, 30, 25, 20, 10)
+print(trsamp)
+$sample
+ [1] 18.570116 28.058587 18.988116 23.923216 21.362590 27.071478  9.017976
+ [8] 13.627638 14.859320  2.023175  1.335886 24.238769 19.714821  8.070529
+[15]  5.084282 13.383528 22.007093  8.546593 11.442850 17.214193 17.037683
+[22] 13.786232  7.832597 16.553821 17.877895
+
+
+$lower
+[1] 0
+
+
+$upper
+[1] 30
+
+
+$original_mean
+[1] 20
+
+
+$original_sd
+[1] 10
+
+
+attr(,"class")
+[1] "truncated_normal_sample"
+print.truncated_normal_sample <- function(obj) {
+  print("Truncated normal sample, limited to:")
+  print(c(obj$lower, obj$upper))
+  print("Original sampling mean and sd:")
+  print(c(obj$original_mean, obj$original_sd))
+  print("First 10 elements:")
+  print(head(obj$sample, n = 10))
+}
+
+
+mean.truncated_normal_sample <- function(obj) {
+  answer = mean(obj$sample)
+  return(answer)
+}
+
+
+print("Printing trsamp")
+print(trsamp)
+print("Calling mean(trsamp)")
+print(mean(trsamp))
+[1] "Printing trsamp"
+[1] "Truncated normal sample, limited to:"
+[1]  0 30
+[1] "Original sampling mean and sd:"
+[1] 20 10
+[1] "First 10 elements:"
+ [1] 15.21184 26.31239 11.38106 19.10591 24.98551 14.89133 23.83144 15.57210
+ [9] 29.12310 20.32704
+[1] "Calling mean(trsamp)"
+[1] 19.20806
+# generic function, will dispatch based on class of obj
+originalmean <- function(obj) {
+  UseMethod("originalmean", obj)
+}
+
+
+# method, dispatched to for objects of class "truncated_normal_sample"
+originalmean.truncated_normal_sample <- function(obj) {
+  answer = obj$original_mean
+  return(answer)
+}
+
+
+print(originalmean(trsamp))            # [1] 20
+vecx <- rnorm(20, mean = 5, sd = 2)
+vecy <- rnorm(20, mean = 10, sd = 1)
+
+
+pdf("dotplot.pdf")  # not necessary if using a graphical interface
+plot(vecx, vecy)
+dev.off()           # not necessary if using a graphical interface
+vecx <- rnorm(100, mean = 5, sd = 2)
+vecy <- rnorm(100, mean = 0.5, sd = 0.2)
+plot(vecx, vecy)
+hist(vecx, probability = TRUE, add = TRUE)
+vecx <- rnorm(100, mean = 5, sd = 2)
+vecy <- rnorm(100, mean = 0.5, sd = 0.2)
+plot(vecx, vecy, xlim = c(-4, 14), ylim = c(0, 1))
+hist(vecx, probability = TRUE, add = TRUE)
+vecx <- rnorm(100, mean = 10, sd = 2)
+vecy <- 2 * vecx + rnorm(100, mean = 1, sd = 1)
+lm_result <- lm(vecy ~ vecx)
+plot(vecx, vecy)
+plot(lm_result)
+library(ggplot2)
+print(head(diamonds))
+  carat       cut color clarity depth table price    x    y    z
+1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
+2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
+3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48
+p <- ggplot() +
+     layer(data = diamonds, 
+           stat = "identity",
+           geom = "point",
+           mapping = aes(x = carat, y = price, color = cut),
+           position = "identity")
+
+
+plot(p)
+ggsave("diamond_layer1.pdf", p, width = 7, height = 4)
+p <- ggplot() +
+     layer(data = diamonds, 
+           stat = "identity",
+           geom = "point",
+           mapping = aes(x = carat, y = price, color = cut),
+           position = "identity") +
+     layer(data = diamonds,
+           stat = "smooth",
+           geom = "point",
+           mapping = aes(x = carat, y = price),
+           position = "identity")
+p <- ggplot() +
+     layer(data = diamonds,
+           stat = "bin",
+           geom = "bar",
+           mapping = aes(x = carat, y = ..count..),
+           position = "identity")
+p <- ggplot() + stat_bin(data = diamonds, mapping = aes(x = carat))
+p <- ggplot() + geom_histogram(data = diamonds, mapping = aes(x = carat))
+# default stat chosen by geom, many aesthetics autoset accordingly
+p <- ggplot() + geom_boxplot(data = diamonds,
+                             mapping = aes(x = color, y = price))
+# data and default mappings set in call to ggplot()
+p <- ggplot(diamonds, aes(x = carat, y = price)) +
+     geom_point(aes(color = cut)) +
+     geom_smooth()
+dd <- diamonds[sample(seq(1, nrow(diamonds)), 1000), ]
+p <- ggplot() +
+     geom_point(data = dd, 
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat,
+                              size = table,
+                              alpha = cut))
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat)) +
+     stat_smooth(data = dd, 
+                 mapping = aes(x = carat,
+                               y = depth))
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat),
+                alpha = 0.2) +
+     stat_smooth(data = dd,
+                 mapping = aes(x = carat,
+                               y = depth),
+                 color = "red",
+                 method = "lm")
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat),
+                alpha = 0.2) +
+     stat_smooth(data = dd,
+                 mapping = aes(x = carat,
+                               y = depth),
+                 color = "red",
+                 method = "lm") +
+     facet_wrap(~ cut)
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat),
+                alpha = 0.2) +
+     stat_smooth(data = dd,
+                 mapping = aes(x = carat,
+                               y = depth),
+                 color = "red",
+                 method = "lm") +
+     facet_grid(cut ~ color)
+dd$price_per_carat_category <- cut(dd$price/dd$carat, breaks = 6)
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat)) +
+     facet_wrap(~ price_per_carat_category)
+ctg_stats <- read.table("contig_stats.txt",
+                        header = TRUE,
+                        stringsAsFactors = FALSE)
+
+
+print(head(ctg_stats))
+      ID Average_coverage Consensus_length gccontent
+1 NODE_2       49011.9000              604  0.206954
+2 NODE_3         319.4400              298  0.251678
+3 NODE_4         194.6960             8141  0.148508
+4 NODE_5         166.2010              338  0.248521
+5 NODE_6       15913.8000             2184  0.459249
+6 NODE_7          76.3737             5023  0.227752
+p <- ggplot() +
+     geom_point(data = ctg_stats, 
+                mapping = aes(x = Average_coverage,
+                              y = Consensus_length))
+p <- ggplot() +
+     geom_point(data = ctg_stats, 
+                mapping = aes(x = Average_coverage,
+                              y = Consensus_length)) +
+     scale_x_continuous(name = "Coverage", limits = c(0, 1000)) +
+     scale_y_continuous(name = "Length")
+p <- ggplot() +
+     geom_point(data = ctg_stats, 
+                mapping = aes(x = Average_coverage,
+                              y = Consensus_length)) +
+     scale_x_continuous(name = "Coverage",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_y_continuous(name = "Length",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K"))
+p <- ggplot() +
+     stat_summary_hex(data = ctg_stats,
+                      mapping = aes(x = Average_coverage,
+                                    y = Consensus_length,
+                                    z = gccontent),
+                      fun = mean) +
+     scale_x_continuous(name = "Coverage",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_y_continuous(name = "Length",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     annotation_logticks(base = 10)
+p <- ggplot() +
+     stat_summary_hex(data = ctg_stats,
+                      mapping = aes(x = Average_coverage,
+                                    y = Consensus_length,
+                                    z = gccontent),
+                      fun = length) +
+     scale_x_continuous(name = "Coverage",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_y_continuous(name = "Length",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_fill_gradient(name = "Count",
+                         trans = "log10",
+                         breaks = c(1, 10, 100, 1000),
+                         low = "black",
+                         high = "#BFBCFF") +
+     annotation_logticks(base = 10)
+p <- ggplot() +
+     geom_point(data = diamonds,
+                mapping = aes(x = carat,
+                              y = price,
+                              color = cut)) +
+     coord_polar(theta = "x")
+p <- ggplot() +
+     geom_bar(data = diamonds,
+              mapping = aes(x = cut, fill = clarity)) +
+     coord_flip()
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = x, y = z)) +
+     coord_equal()
+p <- ggplot() +
+     geom_bar(data = dd, mapping = aes(x = clarity, fill = cut)) +
+     ggtitle("Diamond Counts by Clarity and Cut") +
+     theme(text = element_text(size = 16)) +
+     theme(plot.title = element_text(size = 20))
+p <- ggplot() +
+     geom_bar(data = dd, mapping = aes(x = clarity, fill = cut)) +
+     ggtitle("Diamond Counts by Clarity and Cut") +
+     theme(text = element_text(size = 16)) +
+     theme(plot.title = element_text(size = 20)) +
+     theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p <- ggplot() +
+     geom_bar(data = dd, mapping = aes(x = clarity, fill = cut)) +
+     ggtitle("Diamond Counts by Clarity and Cut") +
+     theme(text = element_text(size = 16)) +
+     theme(plot.title = element_text(size = 20)) +
+     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+     theme(aspect.ratio = 1.5)
+p <- ggplot() +
+     geom_point(data = dd, mapping = aes(x = price, 
+                                         y = carat, color = clarity)) +
+     facet_wrap(~ cut) +
+     theme_bw()
+p <- ggplot() +
+     geom_text(data = diamonds[1:30, ], 
+               mapping = aes(x = carat, y = price, label = cut))
+p <- ggplot() +
+  stat_summary_hex(data = ctg_stats,
+                   mapping = aes(x = Average_coverage,
+                                 y = Consensus_length,
+                                 z = gccontent),
+                   fun = length) +
+  scale_x_continuous(name = "Coverage",
+                     trans = "log10",
+                     breaks = c(100, 1000, 10000, 100000),
+                     labels = c("100", "1K", "10K", "100K")) +
+  scale_y_continuous(name = "Length",
+                     trans = "log10",
+                     breaks = c(100, 1000, 10000, 100000),
+                     labels = c("100", "1K", "10K", "100K")) +
+  scale_fill_gradient(name = "Count",
+                      trans = "log10",
+                      breaks = c(1, 10, 100, 1000),
+                      low = "black",
+                      high = "#BFBCFF") +
+  annotation_logticks(base = 10) +
+  coord_equal() +
+  theme_bw() +
+  annotate("rect", xmin = 80, xmax = 150,
+                   ymin = 1000, ymax = 400000,
+                   alpha = 0.2, fill = "red") +
+  annotate("text", x = 200, y = 100000,
+                   color = "darkred",
+                   label = "Main Assembly Contigs", hjust = 0)
