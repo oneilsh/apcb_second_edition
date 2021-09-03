@@ -7,3 +7,4 @@ hello-world
 elementary-data-types
 an-introduction
 variables-and-data
+vectors
