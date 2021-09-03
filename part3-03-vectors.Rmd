@@ -1,0 +1,24 @@
+# Vectors
+
+Vectors (similar to single-type arrays in other languages) are ordered collections of simple types, usually numerics, integers, characters, or logicals. We can create vectors using the `c()` function (for concatenate), which takes as parameters the elements to put into the vector:
+
+<pre id=part3-03-concat
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+samples <- c(3.2, 4.7, -3.5)      # 3-element numeric vector
+</code></pre>
+
+The `c()` function can take other vectors as parameters, too--it will “deconstruct” all subvectors and return one large vector, rather than a vector of vectors.
+
+<pre id=part3-03-c-deconstruct
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+samples2 <- c(20.4, 4.7, 37.6)      # 5-element numeric vector
+print(samples2)                     # prints [1] 20.4, 3.2, 4.7, -3.5, 37.6
+</code></pre>
+
+
