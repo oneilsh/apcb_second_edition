@@ -469,17 +469,17 @@ Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
 Basic usage
 
 
-    muscle -in <inputfile> -out <outputfile>
+    muscle -in &lt;inputfile&gt; -out &lt;outputfile&gt;
 
 
 Common options (for a complete list please see the User Guide):
 
 
-    -in <inputfile>    Input file in FASTA format (default stdin)
-    -out <outputfile>  Output alignment in FASTA format (default stdout)
+    -in &lt;inputfile&gt;    Input file in FASTA format (default stdin)
+    -out &lt;outputfile&gt;  Output alignment in FASTA format (default stdout)
     -diags             Find diagonals (faster for similar sequences)
-    -maxiters <n>      Maximum number of iterations (integer, default 16)
-    -maxhours <h>      Maximum time to iterate in hours (default no limit)
+    -maxiters &lt;n&gt;      Maximum number of iterations (integer, default 16)
+    -maxhours &lt;h&gt;      Maximum time to iterate in hours (default no limit)
     -html              Write output in HTML format (default FASTA)
 ...
 </code></pre>
@@ -520,7 +520,7 @@ With further inspection, we’d see that the sequences have been made the same l
 <code>
 [oneils@mbp ~/projects/p450s]$ <b>hmmbuild</b>
 Incorrect number of command line arguments.
-Usage: hmmbuild [-options] <hmmfile_out> <msafile>
+Usage: hmmbuild [-options] &lt;hmmfile_out&gt; &lt;msafile&gt;
 
 
 where basic options are:
@@ -584,7 +584,7 @@ At this point, we are ready to search for the profile in the *D. melanogaster* p
 <code>
 [oneils@mbp ~/projects/p450s]$ <b>hmmsearch</b>
 Incorrect number of command line arguments.
-Usage: hmmsearch [options] <hmmfile> <seqdb>
+Usage: hmmsearch [options] &lt;hmmfile&gt; &lt;seqdb&gt;
 
 
 where most common options are:
