@@ -216,6 +216,7 @@
 <li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
 <li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
 <li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>7</b> Command Line BLAST</a><ul>
 <li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
@@ -401,7 +402,7 @@ orf_trans.phr    orf_trans.pog  orf_trans.psi
 </div>
 <p>In the output snippet above, YAL0005C has an HSP with itself (naturally), but also one with YLL024C. We’ll consider basic analyses containing this sort of data—rows and columns stored in text files, interspersed with extraneous lines—in later chapters.</p>
 <div class="exercises">
-<h4 id="exercises-5" class="unnumbered">Exercises</h4>
+<h4 id="exercises-6" class="unnumbered">Exercises</h4>
 <ol style="list-style-type: decimal">
 <li><p>If you don’t already have the NCBI Blast+ tools installed, install them. Once you do, check the contents of the <code>$BLASTDB</code> environment variable. If it’s not empty, use <code>blastdbcmd</code> to determine whether you have the “nr” database available, and any information you can determine about it (when it was downloaded, how many sequences it has, etc.)</p></li>
 <li><p>Create a new folder in your <code>projects</code> folder called <code>blast</code>. In this directory, download the <a href="data/p450s.fasta"><code>p450s.fasta</code></a> file and the yeast exome <a href="orf_trans.fasta"><code>orf_trans.fasta</code></a> from the book website. Create a database called <code>orf_trans</code> using <code>makeblastdb</code>, and use <code>blastp</code> to search the <code>p450s.fasta</code> file against it. When doing the search, use an <em>E</em>-value cutoff of <code>1e-6</code>, keep the top one target sequences, and produce an output file called <code>p450s_blastp_yeast_top1.blast</code> in output format <code>11</code>.</p></li>

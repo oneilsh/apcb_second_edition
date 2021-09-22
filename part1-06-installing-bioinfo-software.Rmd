@@ -525,9 +525,9 @@ Usage: hmmbuild [-options] <hmmfile_out> <msafile>
 
 where basic options are:
   -h     : show brief help on version and usage
-  -n <s> : name the HMM <s>
-  -o <f> : direct summary output to file <f>, not stdout
-  -O <f> : resave annotated, possibly modified MSA to file <f>
+  -n &lt;s&gt; : name the HMM &lt;s&gt;
+  -o &lt;f&gt; : direct summary output to file &lt;f&gt;, not stdout
+  -O &lt;f&gt; : resave annotated, possibly modified MSA to file &lt;f&gt;
 
 
 To see more help on other available options, do:
@@ -671,3 +671,51 @@ Scores for complete sequences (score includes all domains):
 </code></pre>
 
 ### Reproducibility with Scripts {-}
+
+It is highly unlikely that an analysis of this type is performed only once. More often than not, we’ll wish to adjust or replace the input files, compare to different protein sets, or adjust the parameters for the programs ran. Thus it make sense to capture the analysis we just performed as an executable script, perhaps called `runhmmer.sh`.
+
+<div class="fig center" style="width: 80%">
+  <img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_49_unix_90_runhmmer_1.png" />
+</div>
+
+Note in the above that we’ve broken the long `hmmsearch` line into two by ending it midway with a backslash and continuing it on the next line. The backslash lets `bash` know that more of the command is to be specified on later lines. (The backslash should be the last character on the line, with no spaces or tabs following.) After making this script executable with `chmod`, we could then rerun the analysis by navigating to this directory and running `./runhmmer.sh`.
+
+What if we wanted to change the input file, say, to `argonase-1s.fasta` instead of `p450s.fasta`? We could create a new project directory to work in, copy this script there, and then change all instances of `p450s.fasta` in the script to `argonase-1s.fasta`.
+
+Alternatively, we could use the power of [environment variables](#environment_variable) to architect our script in such a way that this process is easier.
+
+<div class="fig center" style="width: 80%">
+  <img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_50_unix_92_runhmmer_2.png" />
+</div>
+
+Now the file names of interest are specified only once, near the top of the script, and from then on the script uses its own identifiers (as environment variables) to refer to them. Reusing this script would be as simple as changing the file names specified in three lines.
+
+We can go a step further. It turns out that shell scripts can take parameters from the command line. The first parameter given to a script on the command line will be automatically stored in a variable accessible to the script called `$1`, the second parameter will be stored in `$2`, and so on. We can thus further generalize our script:
+
+<div class="fig center" style="width: 80%">
+  <img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_51_unix_93_runhmmer_3.png" />
+</div>
+
+We could have replaced all instances of `$query` with `$1`, but this organization makes our script easier to read in the future, an important consideration when programming. Now we can run a full analysis by specifying the three relevant file names on the command line, as in: `./runhmmer.sh p450s.fasta dmel-all-translation-r6.02.fasta p450s_hmmsearch_dmel.txt`.
+
+This [`runhmmer.sh`](data/runhmmer.sh) is a good candidate for inclusion in our `$HOME/local/bin` so that we can run it from anywhere, though we may want to add lines immediately following the `#!` line, to provide some help text for anyone who attempts to run the script without providing the correct inputs:
+
+<div class="fig center" style="width: 80%">
+  <img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_52_unix_94_runhmmer_4.png" />
+</div>
+
+The “if block” above will only execute if the number of parameters given (`$#`) is not equal to 3. Although languages like Python provide much nicer facilities for this sort of logic-based execution, the ability to conditionally provide usage information for scripts is important. As usual for `bash`, the interpreter ignores lines that start with `#`.
+
+<div class="exercises">
+#### Exercises {-}
+
+1. Create a new folder in your `projects` folder called `c_elegans`. Locate the FASTA file for the reference genome of *Caenorhabditis elegans* from http://wormbase.org, and download it to this folder using `wget`. The file you are searching for will be named something like `c_elegans.PRJNA13758.WS244.genomic.fa.gz`. After it is downloaded, decompress it and view it with `less -S`.
+
+2. Install an SFTP client on your desktop, like FireFTP or CyberDuck, and attempt to connect to the same machine you log in to via SFTP. Download a FASTA file of some potentially homologous sequences from Uniprot to your local desktop, and transfer it to your remote `c_elegans` directory.
+
+3. Try running `muscle` and `HMMER` on the sequences you downloaded from uniprot.org against the *C. elegans* genome.
+
+4. If you have access to more than one Unix-based machine (such as an OS X desktop and a remote Linux computer, or two remote Linux computers), read the man page for `scp` with `man scp`, and also read about it online. Try to transfer a file and a directory between machines using `scp` on the command line.
+
+5. Write an executable `bash` script that automates a process of some kind, and install it in your `$HOME/local/bin`. Test it after logging out and back in.
+</div>

@@ -216,6 +216,7 @@
 <li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
 <li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
 <li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>7</b> Command Line BLAST</a><ul>
 <li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
@@ -642,6 +643,252 @@ This software is donated to the public domain.
 </div>
 <div id="putting-it-all-together" class="section level3 unnumbered">
 <h3>Putting It All Together</h3>
+<p>At this point, we’ve obtained the data we wish to process, and we’ve successfully installed the software we intend to run on that data.</p>
+<pre id=part1-06-together
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta
+[oneils@mbp ~/projects/p450s]$ <b>which muscle</b>
+/home/oneils/local/bin/muscle
+[oneils@mbp ~/projects/p450s]$ <b>which hmmbuild</b>
+/home/oneils/local/bin/hmmbuild
+[oneils@mbp ~/projects/p450s]$ <b>which hmmsearch</b>
+/home/oneils/local/bin/hmmsearch
+</code></pre>
+<p>The first step is to run <code>muscle</code> on the <code>p450s.fasta</code> file to produce a multiple alignment. One quick way to identify how a program like <code>muscle</code> should be run (what parameters it takes) is to run it without any parameters. Alternatively, we could try the most common options for getting help: <code>muscle -h</code>, <code>muscle --help</code>, <code>muscle --h</code>, or <code>muscle -help</code>.</p>
+<pre id=part1-06-muscle-help
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>muscle</b>
+
+
+MUSCLE v3.8.31 by Robert C. Edgar
+
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
+
+
+
+Basic usage
+
+
+    muscle -in <inputfile> -out <outputfile>
+
+
+Common options (for a complete list please see the User Guide):
+
+
+    -in <inputfile>    Input file in FASTA format (default stdin)
+    -out <outputfile>  Output alignment in FASTA format (default stdout)
+    -diags             Find diagonals (faster for similar sequences)
+    -maxiters <n>      Maximum number of iterations (integer, default 16)
+    -maxhours <h>      Maximum time to iterate in hours (default no limit)
+    -html              Write output in HTML format (default FASTA)
+...
+</code></pre>
+<p>The most important line of this help text is the usage information: <code>muscle -in &lt;inputfile&gt; -out &lt;outputfile&gt;</code>; parameters in angle brackets indicate that the parameter is required (nonrequired parameters often appear in straight brackets). Further help text indicates other parameters that we could opt to add. Presumably, they could be placed before or after the input or output specifiers. So, we’ll run <code>muscle</code> on our <code>p450s.fasta</code> file, and produce a file whose file name indicates its pedigree in some way:</p>
+<pre id=part1-06-run-muscle
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>muscle -in p450s.fasta -out p450s.fasta.aln</b>
+</code></pre>
+<p>Once the command has finished executing, we can view the alignment file with <code>less -S p450s.fasta.aln</code>.</p>
+<pre id=part1-06-less-result
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>>sp|P05176|CP1A1_RABIT Cytochrome P450 1A1 OS=Oryctolagus cuniculus GN=CYP1A1 PE
+------------------------------------------------------------
+---------------------------------------------------MVSDFGLPT
+FISATELLLASAVFCLVFWVAGASKPRVPKGLKRLPGPWGWPLLGHVLTLGK---NPHV-
+---ALARLSRRYGDVFQIRLGSTPVVVLSGLDTIKQALVRQGDDFKGRPDLYSFSFVTK-
+-----------------------------GQSMIFGSDSGPV---------WAARRRLAQ
+NALNSFSVAS--------------------------------------------------
+----------------DPASSSSCYLEEHV---SQEAENLISK-FQELMAAVGH------</b>
+</code></pre>
+<p>With further inspection, we’d see that the sequences have been made the same length by the insertion of gap characters. The next step is to run <code>hmmbuild</code> to produce the HMM profile. Again, we’ll run <code>hmmbuild</code> without any options to get information on what parameters it needs.</p>
+<pre id=part1-06-hmmbuild-help
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmbuild</b>
+Incorrect number of command line arguments.
+Usage: hmmbuild [-options] <hmmfile_out> <msafile>
+
+
+where basic options are:
+  -h     : show brief help on version and usage
+  -n &lt;s&gt; : name the HMM &lt;s&gt;
+  -o &lt;f&gt; : direct summary output to file &lt;f&gt;, not stdout
+  -O &lt;f&gt; : resave annotated, possibly modified MSA to file &lt;f&gt;
+
+
+To see more help on other available options, do:
+  hmmbuild -h
+</code></pre>
+<p>The help output for <code>hmmbuild</code> is shorter, though the command also notes that we could run <code>hmmbuild -h</code> for more detailed information. The usage line, <code>hmmbuild [-options] &lt;hmmfile_out&gt; &lt;msafile&gt;</code>, indicates that the last two parameters are required, and are the name of the output file (for the profile HMM) and the multiple sequence alignment input file. The brackets indicate that, before these last two parameters, a number of optional parameters may be given, described later in the help output. In this case, <code>&lt;hmmfile_out&gt;</code> and <code>&lt;msafile&gt;</code> are positional: the second-to-last argument must specify the output, and the last must specify the input.</p>
+<pre id=part1-06-hmmbuild
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmbuild p450s.fasta.aln.hmm p450s.fasta.aln</b>
+</code></pre>
+<p>After this operation finishes, it may be interesting to take a look at the resulting HMM file with <code>less -S p450s.fasta.aln.hmm</code>. Here’s a snippet:</p>
+<pre id=part1-06-hmmbuild-less
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>CKSUM 797170701
+STATS LOCAL MSV      -12.2089  0.69650
+STATS LOCAL VITERBI  -13.2160  0.69650
+STATS LOCAL FORWARD   -6.4971  0.69650
+HMM          A        C        D        E        F        G        H        I   
+            m->m     m->i     m->d     i->m     i->i     d->m     d->d
+  COMPO   2.56763  4.18442  2.94826  2.71355  3.22576  2.92226  3.70840  2.94423
+          2.68504  4.42336  2.77569  2.73176  3.46465  2.40496  3.72606  3.29362
+          0.66606  1.72211  1.17901  3.05405  0.04832  0.00000        *
+      1   3.15916  4.51751  4.70912  4.16707  3.23103  4.39232  4.76778  1.44083</b>
+</code></pre>
+<p>With some documentation reading, we may even be able to decode how the probabilistic profile is represented in this matrix of letters and numbers. As a reminder, our project directory now contains the original sequence file, a multiple-alignment file, and the HMM profile file, as well as the <em>D. melanogaster</em> protein file in which we wish to search for the profile.</p>
+<pre id=part1-06-ls
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
+</code></pre>
+<p>At this point, we are ready to search for the profile in the <em>D. melanogaster</em> protein set with <code>hmmsearch</code>. As usual, we’ll first inspect the usage for <code>hmmsearch</code>.</p>
+<pre id=part1-06-hmmsearch-help
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmsearch</b>
+Incorrect number of command line arguments.
+Usage: hmmsearch [options] <hmmfile> <seqdb>
+
+
+where most common options are:
+  -h : show brief help on version and usage
+
+
+To see more help on available options, do hmmsearch -h
+</code></pre>
+<p>This brief help text indicates that <code>hmmsearch</code> may take a number of optional parameters (and we’d have to run <code>hmmsearch -h</code> to see them), and the last two parameters are required. These last two parameters constitute the HMM profile file we are searching for, as well as the <code>&lt;seqdb&gt;</code> in which to search. It doesn’t say what format <code>&lt;seqdb&gt;</code> should be, so we’ll try it on our <em>D. melanogaster</em> FASTA file and hope for the best (if it fails, we’ll have to read more help text or documentation).</p>
+<pre id=part1-06-hmmsearch
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-trans
+lation-r6.02.fasta</b>
+</code></pre>
+<p>Note that there was no required option for an output file. Running this command causes quite a lot of information to be printed to the terminal, including lines like:</p>
+<pre id=part1-06-hmmsearch-out
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code><b>...
+  Alignments for each domain:
+  == domain 1  score: 2.4 bits;  conditional E-value: 0.19
+  p450s.fasta 433 sdekivpivndlfganfdtisvalswslpylvaspeigkklkke 476
+                  + +++       f a+f+ is  l++   +l  +p ++ +l++e
+  FBpp0086933 305 TADDLLAQCLLFFFAGFEIISSSLCFLTHELCLNPTVQDRLYEE 348
+                  555566666667899***************************99 PP
+...</b>
+</code></pre>
+<p>And, when we run ls, we find that no output file has been created.</p>
+<pre id=part1-06-ls-no-out
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
+</code></pre>
+<div id="standard-output" class="section level6 unnumbered">
+<h6></h6>
+<p>It seems that <code>hmmsearch</code>, by default, prints all of its meaningful output to the terminal. Actually, <code>hmmsearch</code> is printing its output to the <em>standard output</em> stream. Standard output is the primary output mechanism for command-line programs (other than writing files directly). By default, standard output, also known as “standard out” or “stdout,” is printed to the terminal.</p>
+</div>
+<div id="redirect" class="section level6 unnumbered">
+<h6></h6>
+<p>Fortunately, it is possible to <em>redirect</em> the standard output stream into a file by indicating this to our shell with a <code>&gt;</code> redirect operator, and specifying a file name or path. In this case, we’ll redirect the output of standard out to a file called <code>p450s_hmmsearch_dmel.txt</code>.</p>
+<pre id=part1-06-hmmsearch-redirect
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-trans
+lation-r6.02.fasta  > p450s_hmmsearch_dmel.txt</b>
+</code></pre>
+<p>When this command executes, nothing is printed, and instead our file is created. When using the <code>&gt;</code> redirect, the file will be overwritten if it already exists. If, instead, we wished to append to an existing file (or create a new file if there is no file to append to), we could have used the <code>&gt;&gt;</code> redirect.</p>
+<p>Here are the contents of our final analysis, a simple text file with quite a bit of information, including some nicely formatted row and column data, as displayed by <code>less -S p450s_hmmsearch_dmel.txt</code>.</p>
+<pre id=part1-06-hmmsearch-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>Query:       p450s.fasta  [M=730]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence    Descript
+    ------- ------ -----    ------- ------ -----   ---- --  --------    --------
+    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0081483  type=pr
+    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0307731  type=pr
+      7e-67  227.0   0.0      7e-67  227.0   0.0    1.5  1  FBpp0082768  type=pr
+    9.5e-67  226.6   0.0    9.5e-67  226.6   0.0    2.1  1  FBpp0297168  type=pr</b>
+</code></pre>
+</div>
+</div>
+<div id="reproducibility-with-scripts" class="section level3 unnumbered">
+<h3>Reproducibility with Scripts</h3>
+<p>It is highly unlikely that an analysis of this type is performed only once. More often than not, we’ll wish to adjust or replace the input files, compare to different protein sets, or adjust the parameters for the programs ran. Thus it make sense to capture the analysis we just performed as an executable script, perhaps called <code>runhmmer.sh</code>.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_49_unix_90_runhmmer_1.png" /></p>
+</div>
+<p>Note in the above that we’ve broken the long <code>hmmsearch</code> line into two by ending it midway with a backslash and continuing it on the next line. The backslash lets <code>bash</code> know that more of the command is to be specified on later lines. (The backslash should be the last character on the line, with no spaces or tabs following.) After making this script executable with <code>chmod</code>, we could then rerun the analysis by navigating to this directory and running <code>./runhmmer.sh</code>.</p>
+<p>What if we wanted to change the input file, say, to <code>argonase-1s.fasta</code> instead of <code>p450s.fasta</code>? We could create a new project directory to work in, copy this script there, and then change all instances of <code>p450s.fasta</code> in the script to <code>argonase-1s.fasta</code>.</p>
+<p>Alternatively, we could use the power of <a href="the-command-line-and-filesystem.html#environment_variable">environment variables</a> to architect our script in such a way that this process is easier.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_50_unix_92_runhmmer_2.png" /></p>
+</div>
+<p>Now the file names of interest are specified only once, near the top of the script, and from then on the script uses its own identifiers (as environment variables) to refer to them. Reusing this script would be as simple as changing the file names specified in three lines.</p>
+<p>We can go a step further. It turns out that shell scripts can take parameters from the command line. The first parameter given to a script on the command line will be automatically stored in a variable accessible to the script called <code>$1</code>, the second parameter will be stored in <code>$2</code>, and so on. We can thus further generalize our script:</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_51_unix_93_runhmmer_3.png" /></p>
+</div>
+<p>We could have replaced all instances of <code>$query</code> with <code>$1</code>, but this organization makes our script easier to read in the future, an important consideration when programming. Now we can run a full analysis by specifying the three relevant file names on the command line, as in: <code>./runhmmer.sh p450s.fasta dmel-all-translation-r6.02.fasta p450s_hmmsearch_dmel.txt</code>.</p>
+<p>This <a href="data/runhmmer.sh"><code>runhmmer.sh</code></a> is a good candidate for inclusion in our <code>$HOME/local/bin</code> so that we can run it from anywhere, though we may want to add lines immediately following the <code>#!</code> line, to provide some help text for anyone who attempts to run the script without providing the correct inputs:</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_52_unix_94_runhmmer_4.png" /></p>
+</div>
+<p>The “if block” above will only execute if the number of parameters given (<code>$#</code>) is not equal to 3. Although languages like Python provide much nicer facilities for this sort of logic-based execution, the ability to conditionally provide usage information for scripts is important. As usual for <code>bash</code>, the interpreter ignores lines that start with <code>#</code>.</p>
+<div class="exercises">
+<h4 id="exercises-5" class="unnumbered">Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Create a new folder in your <code>projects</code> folder called <code>c_elegans</code>. Locate the FASTA file for the reference genome of <em>Caenorhabditis elegans</em> from <a href="http://wormbase.org" class="uri">http://wormbase.org</a>, and download it to this folder using <code>wget</code>. The file you are searching for will be named something like <code>c_elegans.PRJNA13758.WS244.genomic.fa.gz</code>. After it is downloaded, decompress it and view it with <code>less -S</code>.</p></li>
+<li><p>Install an SFTP client on your desktop, like FireFTP or CyberDuck, and attempt to connect to the same machine you log in to via SFTP. Download a FASTA file of some potentially homologous sequences from Uniprot to your local desktop, and transfer it to your remote <code>c_elegans</code> directory.</p></li>
+<li><p>Try running <code>muscle</code> and <code>HMMER</code> on the sequences you downloaded from uniprot.org against the <em>C. elegans</em> genome.</p></li>
+<li><p>If you have access to more than one Unix-based machine (such as an OS X desktop and a remote Linux computer, or two remote Linux computers), read the man page for <code>scp</code> with <code>man scp</code>, and also read about it online. Try to transfer a file and a directory between machines using <code>scp</code> on the command line.</p></li>
+<li><p>Write an executable <code>bash</code> script that automates a process of some kind, and install it in your <code>$HOME/local/bin</code>. Test it after logging out and back in.</p></li>
+</ol>
+</div>
 
 </div>
 </div>
