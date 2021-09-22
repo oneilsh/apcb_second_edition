@@ -3,6 +3,7 @@ logging-in
 the-command-line-and-filesystem
 working-with-files-and-directories
 permissions-and-executables
+installing-bioinformatics-software
 command-line-blast
 hello-world
 elementary-data-types
