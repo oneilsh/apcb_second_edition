@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Installing (Bioinformatics) Software | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 6 Installing (Bioinformatics) Software | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Installing (Bioinformatics) Software | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Installing (Bioinformatics) Software | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="permissions-and-executables.html"/>
+<link rel="next" href="command-line-blast.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a><ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a><ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a><ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a><ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a><ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a><ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>7</b> Command Line BLAST</a><ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="8" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>8</b> Hello, World</a><ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>9</b> Elementary Data Types</a><ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-floats-and-booleans"><i class="fa fa-check"></i>Integers, Floats, and Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="10" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>10</b> An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>11</b> Variables and Data</a><ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>12</b> Vectors</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="installing-bioinformatics-software" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Installing (Bioinformatics) Software</h1>
+<p>Ideally, the computational infrastructure to which you have access already includes a host of specialized software packages needed for your work, and the software installations are kept up to date as developers make improvements. If this isn’t the case, you might consider bribing your local system administrator with sweets and caffeine. Failing that, you’re likely to have to install the software you need yourself.</p>
+<p>Installing more sophisticated software than the simple scripts described in chapter 5, “<a href="permissions-and-executables.html#permissions-and-executables">Permissions and Executables</a>,” will follow the same basic pattern: (1) obtain executable files, (2) get them into <code>$HOME/local/bin</code>, and (3) ensure that <code>$HOME/local/bin</code> is present in the <code>$PATH</code> environment variable. Chapter 5 covered step 3, which needs to be done only once for our account. Steps 2 and 3, however, are often quite different depending on how the software is distributed.</p>
+<p>In this chapter, we’re going to run through an example of installing and running a bioinformatics suite known as HMMER. This software searches for protein sequence matches (from a set of sequences) based on a probabilistic hidden Markov model (HMM) of a set of similar protein sequences, as in orthologous proteins from different species. The motivation for choosing this example is not so we can learn about HMM modeling or this software suite specifically, but rather that it is a representative task requiring users to download files, install software in different ways, and obtain data from public repositories.</p>
+<div id="using-a-package-manager" class="section level3 unnumbered">
+<h3>Using a Package Manager</h3>
+</div>
+<div id="installing-software-without-a-package-manager" class="section level3 unnumbered">
+<h3>Installing Software without a Package Manager</h3>
+<p>The first step to installing HMMER without a package manager is to find it online. A simple web search takes us to the homepage:</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_1_hmmer_screenshot-4.png" /></p>
+</div>
+<p>Conveniently, we see a nice large “Download” button, but the button indicates that the download is made for MacOS X/Intel, the operating system running on my personal laptop. Because we are remotely logged in to a Linux computer, this download won’t work for us. Clicking the “Alternative Download Options” link reveals options that might work for the Linux system we’re using.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_2_hmmer_screenshot_2-3.png" /></p>
+</div>
+<p>In this screenshot, we see a number of interesting download options, including one for “Source,” two for “Linux binaries,” and below a suggestion of some documentation, to which we’ll return later.</p>
+</div>
+<div id="source-or-binary" class="section level3 unnumbered">
+<h3>Source or Binary?</h3>
+<p>Some bioinformatics software is created as a simple script of the kind discussed in chapter 5: a text file with a <code>#!</code> line referencing an interpreting program (that is hopefully installed on the system) and made executable with <code>chmod</code>.</p>
+<p>But it turns out that such interpreted programs are slow owing to the extra layer of execution, and for some applications, the convenience and relative ease aren’t worth the loss in speed. In these cases, software may be written in a <em>compiled</em> language, meaning that the program code starts as human-readable “source code” but is then processed into machine-readable binary code. The trick is that the process of compilation needs to be independently performed for each type of CPU. Although there are fewer CPU types in common use than in days past, both 32- and 64-bit x86 CPU architectures are still common, and software compiled for one won’t work on the other. If the developer has made available compiled binaries compatible with our system, then so much the better: we can download them, ensure they are executable, and place them in <code>$HOME/local/bin</code>. Alternatively, we may need to download the source code files and perform the compilation ourselves. In some cases, developers distribute binaries, but certain features of the program can be customized in the compilation process.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_3_source_vs_binary-3.png" /></p>
+</div>
+<p>For the sake of completeness, we’ll do a source install of HMMER; later, we’ll get some other software as binaries.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
+</div>
+<div id="downloading-and-unpacking" class="section level3 unnumbered">
+<h3>Downloading and Unpacking</h3>
+<p>We’re going to download the source files for HMMER; first, we are going to create a new directory to store downloads, called <code>downloads</code>, in our home directory (you may already have such a directory).</p>
+<pre id=part1-06-downloads
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>cd $HOME</b>
+[oneils@mbp ~]$ <b>mkdir downloads</b>
+[oneils@mbp ~]$ <b>cd downloads</b>
+[oneils@mbp ~/downloads]$
+</code></pre>
+<p>If we were to click on the link in the HMMER download page, the web browser would attempt to download the file located at the corresponding URL (<a href="http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz" class="uri">http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz</a>) to the local desktop. Because we want the file downloaded to the remote system, clicking on the download button won’t work. What we need is a tool called <code>wget</code>, which can download files from the Internet on the command line.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> The <code>wget</code> utility takes at least one important parameter, the URL, to download. It’s usually a good idea to put URLs in quotes, because they often have characters that confuse the shell and would need to be escaped or quoted. Additionally, we can specify <code>-O &lt;filename&gt;</code>, where <code>&lt;filename&gt;</code> is the name to use when saving the file. Although not required in this instance, it can be useful for URLs whose ending file names aren’t reasonable (like <code>index.php?query=fasta&amp;search=drosophila</code>).</p>
+<pre id=part1-06-wget
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads]$ <b>wget 'http://eddylab.org/software/hmmer3/3.1b1/h
+mmer-3.1b1.tar.gz' -O hmmer-3.1b1.tar.gz</b>
+</code></pre>
+<p>At this point, we have a file ending in <code>.tar.gz</code>, known as a “gzipped tarball,” representing a collection of files that have first been combined into a single file (a tarball), and then compressed (with the <code>gzip</code> utility).</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_6_gzipped_tarball-2.png" /></p>
+</div>
+<p>To get the contents out, we have to reverse this process. First, we’ll un-gzip the file with <code>gunzip hmmer-3.1b1.tar.gz</code><a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>, which will replace the file with the un-gzipped <code>hmmer-3.1b1.tar</code>.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> From there, we can un-tar the tarball with <code>tar -xf hmmer-3.1b1.tar</code> (the <code>-x</code> indicates extract, and the <code>f</code> indicates that the data will be extracted from the specified file name).<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+<pre id=part1-06-untar
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads]$ <b>ls</b>
+<span style="color: red">hmmer-3.1b1.tar.gz</span>
+[oneils@mbp ~/downloads]$ <b>gunzip -d hmmer-3.1b1.tar.gz</b>
+[oneils@mbp ~/downloads]$ <b>ls</b>
+<span style="color: red">hmmer-3.1b1.tar</span>
+[oneils@mbp ~/downloads]$ <b>tar -xf hmmer-3.1b1.tar</b>
+[oneils@mbp ~/downloads]$ <b>ls</b>
+<span style="color: blue">hmmer-3.1b1</span>  <span style="color: red">hmmer-3.1b1.tar</span>
+</code></pre>
+<p>It looks like the gzipped tarball contained a directory, called <code>hmmer-3.1b1</code>.</p>
+</div>
+<div id="other-download-and-compression-methods" class="section level3 unnumbered">
+<h3>Other Download and Compression Methods</h3>
+<p>Before continuing to work with the downloaded source code, there are a couple of things to note regarding compressed files and downloading. First, although gzipped tarballs are the most commonly used compression format for Unix-like systems, other compression types may also be found. They can usually be identified by the file extension. Different tools are available for each type, though there is also a generic <code>uncompress</code> utility that can handle most common types.</p>
+<table>
+<tr>
+<th style="text-align:left">
+Extension
+</th>
+<th style="text-align:left">
+Decompress Command
+</th>
+</tr>
+<tr>
+<td>
+<code>file.bz2</code>
+</td>
+<td>
+<code>bunzip2 file.bz2</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>file.zip</code>
+</td>
+<td>
+<code>unzip file.zip</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>file.tgz</code>
+</td>
+<td>
+<code>tar -xfz file.tgz</code> (same as <code>.tar.gz</code>)
+</td>
+</tr>
+</table>
+<p>The most common syntax for creating a gzipped tarball uses the <code>tar</code> utility, which can do both jobs of tarring and gzipping the inputs. As an example, the command <code>tar -cvzf hmmer_compress_copy.tar.gz</code> hmmer-3.1b1 would create (<code>c</code>), with verbose output (<code>v</code>), a gzipped (<code>z</code>) tarball in a file (<code>f</code>) called <code>hmmer_compress_copy.tar.gz</code> from the input <code>directory hmmer-3.1b1</code>.</p>
+<p>Traditionally, zipped files of source code were the most common way to distribute software. More recently, version control systems (used by developers to track changes to their software over time) have become web-enabled as a way to distribute software to end-users. One such system is <code>git</code>, which allows users to download entire directories of files using a “clone URL” over the web. GitHub is a similarly popular page for hosting these projects (see Chapter XXXXXXXX for more information on <code>git</code> and GitHub).</p>
+</div>
+<div id="compiling-the-source" class="section level3 unnumbered">
+<h3>Compiling the Source</h3>
+<p>Having downloaded and unpacked the HMMER source code, the first step is to check the contents of the directory and look for any <code>README</code> or <code>INSTALL</code> files. Such files are often included and contain important information from the software developer.</p>
+<pre id=part1-06-dir-content
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads]$ <b>cd hmmer-3.1b1</b>
+[oneils@mbp ~/hmmer-3.1b1]$ <b>ls</b>
+<span style="color: darkcyan">aclocal.m4</span>    configure.ac   INSTALL        Makefile.in    <span style="color: blue">src</span>
+config.guess  COPYRIGHT      install-sh     <span style="color: blue">profmark       testsuite</span>
+config.sub    <span style="color: blue">documentation  libdivsufsort</span>  README         <span style="color: blue">tutorial</span>
+<span style="color: green">configure</span>     <span style="color: blue">easel</span>          LICENSE        RELEASE-NOTES  Userguide.pdf
+</code></pre>
+<p>Taking a look at the contents of the <code>hmmer-3.1b1</code> directory, there is an <code>INSTALL</code> file, which we should read with <code>less</code>. Here’s the top part of the file:</p>
+<pre id=part1-06-INSTALL
+     class="language-txt">
+<code><b>Brief installation instructions 
+HMMER 3.1b1; May 2013
+-------------------------------------------------------------
+
+
+These are quick installation instructions. For complete documentation,
+including customization and troubleshooting, please see the
+Installation chapter in the HMMER User's Guide (Userguide.pdf).
+
+
+Starting from a source distribution, hmmer-3.1b1.tar.gz:
+ uncompress:                uncompress hmmer-3.1b1.tar.gz  
+ unpack:                    tar xf hmmer-3.1b1.tar
+ move into new directory:   cd hmmer-3.1b1
+ configure:                 ./configure
+ build:                     make
+ automated tests:           make check
+ automated install:         make install
+</b></code></pre>
+<p>The installation documentation describes a number of commands, including many we’ve already run (for extracting the data from the gzipped tarball). There are also four more commands listed: <code>./configure</code>, <code>make</code>, <code>make check</code>, and <code>make install</code>. Three of these comprise the “canonical install process”—<code>make check</code> is an optional step to check the success of the process midway through. The three important steps are: (1) <code>./configure</code>, (2) <code>make</code>, and (3) <code>make install</code>.</p>
+<ol>
+<li>
+The contents of the directory (above) include <code>configure</code> as an executable script, and the command <code>./configure</code> executes the script from the <a href="the-command-line-and-filesystem.html#present_working_directory">present working directory</a>. This script usually verifies that all of the prerequisite libraries and programs are installed on the system. More importantly, this step may set some environment variables or create a file called <code>Makefile</code>, within which will be instructions detailing how the compilation and installation process should proceed, customized for the system.
+</li>
+<li>
+Actually, <code>make</code> is an interpreting program much like <code>bash</code> (<code>which make</code> is likely to return <code>/usr/bin/make</code>—it’s a binary program). When running <code>make</code>, its default behavior is to look for a file called <code>Makefile</code> in the current directory, and run a default set of commands specified in the <code>Makefile</code> in the order specified. In this case, these default commands run the compilation programs that turn the source code into executable binaries.
+</li>
+<li>
+The make <code>install command</code> again executes make, which looks for the <code>Makefile</code>, but this time we are specifying that the “install” set of commands in the <code>Makefile</code> should run. This step copies the binary executable files (and other supporting files, if necessary) to the install location.
+</li>
+</ol>
+<p>This final step, <code>make install</code>, may lead us to ask: what is the install location? By default, it will be something like <code>/usr/bin</code>—a system-wide location writable to by only the administrator. So, unless we are logged in as <code>root</code> (the administrator), the final step in the process will fail. We must specify the install location, and although the install itself happens in the third step, the entire process is configured in the first step. There may be many options that we can specify in the <code>./configure</code> step, though the install location (known as the <code>PREFIX</code>) is by far the most commonly used. Running <code>./configure --help</code> prints a lot of information; here’s the relevant section:</p>
+<pre id=part1-06-configure
+     class="language-txt">
+<code><b>Installation directories:
+  --prefix=PREFIX         install architecture-independent files in PREFIX
+                          [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+                          [PREFIX]
+</b></code></pre>
+<p>The <code>--prefix</code> option is the one we’ll use to determine where the binaries should be located. Although our executable <strong>bin</strong>aries will eventually go in <code>$HOME/local/bin</code>, for this option we’re going to specify <code>$HOME/local</code>, because the <code>bin</code> portion of the path is implied (and other directories like <code>lib</code> and <code>share</code> might also be created alongside the <code>bin</code> directory). Finally, our modified canonical install process will consist of three steps: <code>./configure --prefix=$HOME/local</code>, <code>make</code>, and <code>make install</code>.</p>
+<pre id=part1-06-make
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads/hmmer-3.1b1]$ <b>./configure --prefix=$HOME/local</b>
+configure: Configuring HMMER for your system.
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+...
+[oneils@mbp ~/hmmer-3.1b1]$ <b>make</b>
+     SUBDIR easel
+make[1]: Entering directory `/home/oneils/downloads/hmmer-3.1b1/easel'
+     CC easel.o
+     CC esl_alphabet.o
+...
+[oneils@mbp ~/hmmer-3.1b1]$ <b>make install</b>
+/usr/bin/install -c -d /home/oneils/local/bin
+/usr/bin/install -c -d /home/oneils/local/lib
+/usr/bin/install -c -d /home/oneils/local/include
+...
+</code></pre>
+<p>At this point, if we navigate to our $HOME/local directory, we will see the added directories and binary files.</p>
+<pre id=part1-06-local
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads/hmmer-3.1b1]$ <b>cd $HOME/local</b>
+[oneils@mbp ~/hmmer-3.1b1]$ <b>ls</b>
+<span style="color: blue">bin  include  lib  share</span>
+[oneils@mbp ~/hmmer-3.1b1]$ <b>cd bin</b>
+[oneils@mbp ~/hmmer-3.1b1]$ <b>ls</b>
+<span style="color: green">alimask   hmmc2       hmmfetch  hmmpress   hmmsim     myprog.sh  phmmer
+hmmalign  hmmconvert  hmmlogo   hmmscan    hmmstat    nhmmer
+hmmbuild  hmmemit     hmmpgmd   hmmsearch  jackhmmer  nhmmscan</span>
+</code></pre>
+<p>Because these executable files exist in a directory listed in the <code>$PATH</code> variable, we can, as always, type their names on the command prompt when working in any directory to run them. (Though, again, we may need to log out and back in to get the shell to see these new programs.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>)</p>
+</div>
+<div id="installation-from-binaries" class="section level3 unnumbered">
+<h3>Installation from Binaries</h3>
+<p>Our objective is to run HMMER to search for a sequence-set profile in a larger database of sequences. For details, the HMMER documentation (available on the website) is highly recommended, particularly the “Tutorial” section, which describes turning a multiple alignment of sequences into a profile (with <code>hmmbuild</code>) and searching that profile against the larger set (with <code>hmmsearch</code>). It is also useful to read the peer-reviewed publication that describes the algorithms implemented by HMMER or any other bioinformatics software. Even if the material is outside your area of expertise, it will reveal the strengths and weaknesses of software.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_16_hmmer_pipeline-2.png" /></p>
+</div>
+<p>We’ll soon get to downloading query and target sequence sets, but we’ll quickly come to realize that although the programs in the HMMER suite can produce the profile and search it against the target set, they cannot produce a multiple alignment from a set of sequences that are similar but not all the same length. Although there are many multiple-alignment tools with different features, we’ll download the relatively popular <code>muscle</code>. This time, we’ll install it from binaries.</p>
+<p>It’s worth discussing how one goes about discovering these sequences of steps, and which tools to use. The following strategies generally work well, though creativity is almost always rewarded.</p>
+<ol>
+<li>
+Read the methods sections of papers with similar goals.
+</li>
+<li>
+Ask your colleagues.
+</li>
+<li>
+Search the Internet.
+</li>
+<li>
+Read the documentation and published papers for tools you are already familiar with, as well as those publications that cite them.
+</li>
+<li>
+Don’t let the apparent complexity of an analysis prevent you from taking the first steps. Most types of analyses employ a number of steps and many tools, and you may not have a clear picture of what the final procedure will be. Experiment with alternative tools, and look for help when you get stuck. Be sure to document your work, as you will inevitably want to retrace your steps.
+</li>
+</ol>
+<p>If we visit the <code>muscle</code> homepage, we’ll see a variety of download options, including binaries for our system, Linux.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_17_muscle_download.png" /></p>
+</div>
+<p>Unfortunately, there appear to be two options for Linux binaries: 32-bit and 64-bit. How do we know which of these we want? We can get a hint by running the <code>uname</code> program, along with the <code>-a</code> parameter to give as much information as possible.</p>
+<pre id=part1-06-uname
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>uname -a</b>
+Linux 172.31.88.3 3.2.0-37-virtual #58-Ubuntu SMP Thu Jan 24 15:48:03 UTC 2013
+x86_64 x86_64 x86_64 GNU/Linux
+</code></pre>
+<p>The <code>uname</code> program gives information about the operating system, which in this case appears to be GNU/Linux for a 64-bit, x86 CPU. If any of the binaries are likely to work, it will be the “i86linux64” set. We’ll <code>wget</code> that gzipped tarball in the <code>downloads</code> directory.</p>
+<pre id=part1-06-wget-muscle
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>cd downloads</b>
+[oneils@mbp ~/downloads]$ <b>wget'http://www.drive5.com/muscle/downloads3.8.31/muscle3.8.31_i86linux64.tar.gz'</b>
+</code></pre>
+<p>Note that in this case we haven’t used the <code>-O</code> option for <code>wget</code>, because the file name described by the URL (muscle3.8.31_i86linux64.tar.gz) is what we would like to call the file when it is downloaded anyway. Continuing on to unpack it, we find it contains only an executable that we can attempt to run.</p>
+<pre id=part1-06-untar-muscle
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads]$ <b>ls</b>
+<span style="color: blue">hmmer-3.1b1</span>  <span style="color: red">hmmer-3.1b1.tar  muscle3.8.31_i86linux64.tar.gz</span>
+[oneils@mbp ~/downloads]$ <b>tar -xfz muscle3.8.31_i86linux64.tar.gz</b>
+[oneils@mbp ~/downloads]$ <b>ls</b>
+<span style="color: blue">hmmer-3.1b1</span>      <span style="color: green">muscle3.8.31_i86linux64</span>
+<span style="color: red">hmmer-3.1b1.tar  muscle3.8.31_i86linux64.tar.gz</span>
+[oneils@mbp ~/downloads]$ <b>./muscle3.8.31_i86linux64</b>
+
+
+MUSCLE v3.8.31 by Robert C. Edgar
+
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+...
+</code></pre>
+<p>Because it didn’t report an execution error, we can install it by copying it to our <code>$HOME/local/bin</code> directory. While doing so, we’ll give it a simpler name, <code>muscle</code>.</p>
+<pre id=part1-06-install-muscle
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads]$ <b>cp muscle3.8.31_i86linux64 $HOME/local/bin/muscle</b>
+[oneils@mbp ~/downloads]$
+</code></pre>
+<p>Now our multiple aligner, <code>muscle</code>, is installed!</p>
+<div class="exercises">
+<h4 id="exercises-4" class="unnumbered">Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Follow the steps above to install the HMMER suite (from source) as well as <code>muscle</code> (from binaries) in your <code>$HOME/local/bin</code> directory. Ensure that you can run them from anywhere (including from your home directory) by running <code>muscle --help</code> and <code>hmmsearch --help</code>. Both commands should display help text instead of an error. Further, check that the versions being found by the shell are from your home directory by running <code>which hmmsearch</code> and <code>which muscle</code>.</p></li>
+<li><p>Determine whether you have the “NCBI Blast+” tools installed by searching for the <code>blastn</code> program. If they are installed, where are they located? If they are not installed, find them and install them from binaries.</p></li>
+<li><p>Install <code>sickle</code> from the <code>git</code> repo at <a href="https://github.com/najoshi/sickle" class="uri">https://github.com/najoshi/sickle</a>. To install it, you will need to follow the custom instructions inside of the <code>README.md</code> file. If you don’t have the <code>git</code> program, it is available for binary and source install at <a href="http://git-scm.com" class="uri">http://git-scm.com</a>.</p></li>
+</ol>
+</div>
+</div>
+<div id="getting-data" class="section level3 unnumbered">
+<h3>Getting Data</h3>
+<p>Now that we’ve got the software installed for our example analysis, we’ll need to get some data. Supposing we don’t have any novel data to work with, we’ll ask the following question: can we identify, using HMMER and <code>muscle</code>, homologues of P450-1A1 genes in the <em>Drosophila melanogaster</em> protein data set? (This is a trivial example, as the <em>D. melanogaster</em> genome is already well annotated.)</p>
+<p>The first step will be to download the <em>D. melanogaster</em> data set, which we can find on <a href="http://flybase.org" class="uri">http://flybase.org</a>, the genome repository for <em>Drosophila</em> genomes. Generally, genome repositories like FlyBase provide full data sets for download, but they can be difficult to find. To start, we’ll navigate to “Files,” then “Releases (FTP).”</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_22_flybase_home.png" /></p>
+</div>
+<p>From there, we’ll navigate to a recent release, like FB2014_05. Because genomic information is often being updated as better information becomes available, newer versions are indicated by newer releases.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_23_flybase_recent.png" /></p>
+</div>
+<p>Next we’ll see links for specific species; we’ll work with <code>dmel_r6.02</code>. It is often a good idea to note specific release numbers or release dates for data sets you download, for eventual description in the methods sections of any papers you write that are based on those data.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_24_flybase_dmel.png" /></p>
+</div>
+<p>The most common format for sequence information is known as FASTA and is the format we want, so the next step is to navigate to the <code>fasta</code> directory. Other potentially interesting options include the <code>gff</code> and <code>gtf</code> directories, which hold text-based annotation files describing the location and function of genes in the genome. (These formats are often useful for RNA-seq analysis.)</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_25_flybase_fasta.png" /></p>
+</div>
+<p>Finally, we see a variety of gzipped files we can <code>wget</code> on the command line. Because we are interested in the full protein data set for this species, we will use the URL for <code>dmel-all-translation-r6.02.fasta.gz</code>.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_26_flybase_all_translation.png" /></p>
+</div>
+<p>Before running <code>wget</code> on the file, we’ll create a <code>projects</code> directory in our home directory, and a <code>p450s</code> directory inside there to work in.</p>
+<pre id=part1-06-mkdir-proj
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/downloads]$ <b>cd $HOME</b>
+[oneils@mbp ~]$ <b>mkdir projects</b>
+[oneils@mbp ~]$ <b>cd projects</b>
+[oneils@mbp ~/projects]$ <b>mkdir p450s</b>
+[oneils@mbp ~/projects]$ <b>cd p450s</b>
+[oneils@mbp ~/projects/p450s]$ <b>wget 'ftp://ftp.flybase.net/releases/FB2014_05/dmel_r6.02/fasta/dmel-all-translation-r6.02.fasta.gz'</b>
+</code></pre>
+<p>Because the file is gzipped, we can use <code>gunzip</code> to decompress it, and then use <code>less -S</code> to view the results without the long lines wrapped in the terminal window.</p>
+<pre id=part1-06-gunzip
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>gunzip dmel-all-translation-r6.02.fasta.gz</b>
+[oneils@mbp ~/projects/p450s]$ <b>less -S dmel-all-translation-r6.02.fasta</b>
+</code></pre>
+<p>The result illustrates the standard format for a FASTA file. Each sequence record begins with line starting with a <code>&gt;</code> character, and the first non-whitespace-containing word following that is considered the sequence ID.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_29_fasta_format.png" /></p>
+</div>
+<p>This line might then contain whitespace characters and metadata. Whitespace comprises a sequence of one or more spaces, tabs (represented in Unix/Linux as a special character sometimes written as <code>\t</code>), or newlines (represented in Unix/Linux as a special character sometimes written as <code>\n</code>) in a row.</p>
+<p>Lines following the header line contain the sequence information, and there is no specific format for the number of lines over which the sequence may be broken, or how long those lines should be. After the last sequence line for a record, a new sequence record may start.</p>
+<p>Depending on the source of the FASTA file, the IDs or metadata may represent multiple pieces of data; in this example, the metadata are separated by spaces and have a <code>&lt;label&gt;=&lt;value&gt;</code>; format that is specific to protein sequences from FlyBase.</p>
+<p>For our next trick, we’ll download some P450-1A1 protein sequences from Uniprot.org. Uniprot.org is a well-known protein database, and it is composed of the “TrEMBL” database and the subset of TrEMBL, known as “Swiss-Prot.” While the former contains many sequences with annotations, many of those annotations have been assigned by automated homology searches and have not been reviewed. The latter, Swiss-Prot, contains only sequences whose annotations have been manually reviewed.</p>
+<p>For the download, we’ll enter “p450 1A1” into the search field, and we’ll filter the results to only those in Swiss-Prot by clicking on the “Reviewed” link, resulting in 28 matches. Next, we can click on the “Download” button to download a “FASTA (canonical)” (rather than with all isoforms included) file.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_30_uniprot_download.png" /></p>
+</div>
+<p>The Uniprot website recently underwent a redesign, such that the downloaded file is transferred directly to the web browser, rather than presented as a URL that could be accessed with <code>wget</code>. This isn’t a problem, as it gives us a chance to discuss how to transfer files between the remote system and local desktop via SFTP.</p>
+<p>Like SSH, SFTP is a common client/server protocol. Provided the server is running on the remote computer (in fact, it uses the same port as SSH, port 22, because SSH provides the secure connection), we just need to install and run an SFTP client on our desktop. There are many SFTP clients available for Microsoft Windows (e.g., Core-FTP), OS X (e.g., Cyberduck), and Linux systems (e.g., <code>sftp</code> on the command line or the graphical FileZilla). The client discussed here is called FireFTP, and it is available as an extension for the Mozilla Firefox web browser (itself available for Windows, OS X, and Linux). To get it requires installing and running Firefox, navigating to Tools → Addons, and searching for “FireFTP.”</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_31_fireftp_search.png" /></p>
+</div>
+<p>Once the plugin is installed (which requires a restart of Firefox), we can access it from the Tools → Developer submenu. Connecting the client to a remote computer requires that we first configure the connection by selecting “Create an account.” The basic required information includes an account name, the host to connect to (e.g., an IP address like <code>128.196.64.120</code> or a host name like <code>files.institution.edu</code>), as well as our login name and password.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_32_fireftp_accttab1.png" /></p>
+</div>
+<p>We also need to tell the client which protocol to connect with, which is done on the “Connection” tab; we want SFTP on port 22.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_33_fireftp_accttab2.png" /></p>
+</div>
+<p>With that accomplished, we can transfer any file back and forth using the green arrows in the interface, where the remote filesystem is shown on the right and the local filesystem is shown on the left. Here’s the result after transferring our <code>p450s.fasta</code> file.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_34_fireftp_transfer.png" /></p>
+</div>
+<blockquote>
+<h4 id="doswindows-and-unixlinux-newlines" class="unnumbered">DOS/Windows and Unix/Linux Newlines</h4>
+<p>For the most part, the way text is encoded on Microsoft operating systems (like DOS and Windows) and on Unix-like systems (like Linux and OS X) is similar. But there is one difference: how the ends of lines, or “newline characters” are represented. In Unix-like systems, a newline is represented by a single 8-bit byte (the “Line Feed” (NF) character): <code>00001010</code>. On Microsoft systems, they are represented by a pair of 8-bit bytes (“Carriage Return” (CR) followed by NF): <code>0000110100001010</code>. This means that text files created on Microsoft operating files may not be readable on Unix-like systems, and vice versa.</p>
+<p>Fortunately, there are utilities available for converting between these formats. On the command line, the utilities <code>dos2unix</code> and <code>unix2dos</code> convert to and from Unix-like format, respectively. This isn’t often an issue, as most file transfer programs (FireFTP included) automatically perform the appropriate conversion. The command-line utility <code>file</code> can also be used to determine the type of a file, including its newline type.</p>
+</blockquote>
+</div>
+<div id="putting-it-all-together" class="section level3 unnumbered">
+<h3>Putting It All Together</h3>
+<p>At this point, we’ve obtained the data we wish to process, and we’ve successfully installed the software we intend to run on that data.</p>
+<pre id=part1-06-together
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta
+[oneils@mbp ~/projects/p450s]$ <b>which muscle</b>
+/home/oneils/local/bin/muscle
+[oneils@mbp ~/projects/p450s]$ <b>which hmmbuild</b>
+/home/oneils/local/bin/hmmbuild
+[oneils@mbp ~/projects/p450s]$ <b>which hmmsearch</b>
+/home/oneils/local/bin/hmmsearch
+</code></pre>
+<p>The first step is to run <code>muscle</code> on the <code>p450s.fasta</code> file to produce a multiple alignment. One quick way to identify how a program like <code>muscle</code> should be run (what parameters it takes) is to run it without any parameters. Alternatively, we could try the most common options for getting help: <code>muscle -h</code>, <code>muscle --help</code>, <code>muscle --h</code>, or <code>muscle -help</code>.</p>
+<pre id=part1-06-muscle-help
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>muscle</b>
+
+
+MUSCLE v3.8.31 by Robert C. Edgar
+
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
+
+
+
+Basic usage
+
+
+    muscle -in &lt;inputfile&gt; -out &lt;outputfile&gt;
+
+
+Common options (for a complete list please see the User Guide):
+
+
+    -in &lt;inputfile&gt;    Input file in FASTA format (default stdin)
+    -out &lt;outputfile&gt;  Output alignment in FASTA format (default stdout)
+    -diags             Find diagonals (faster for similar sequences)
+    -maxiters &lt;n&gt;      Maximum number of iterations (integer, default 16)
+    -maxhours &lt;h&gt;      Maximum time to iterate in hours (default no limit)
+    -html              Write output in HTML format (default FASTA)
+...
+</code></pre>
+<p>The most important line of this help text is the usage information: <code>muscle -in &lt;inputfile&gt; -out &lt;outputfile&gt;</code>; parameters in angle brackets indicate that the parameter is required (nonrequired parameters often appear in straight brackets). Further help text indicates other parameters that we could opt to add. Presumably, they could be placed before or after the input or output specifiers. So, we’ll run <code>muscle</code> on our <code>p450s.fasta</code> file, and produce a file whose file name indicates its pedigree in some way:</p>
+<pre id=part1-06-run-muscle
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>muscle -in p450s.fasta -out p450s.fasta.aln</b>
+</code></pre>
+<p>Once the command has finished executing, we can view the alignment file with <code>less -S p450s.fasta.aln</code>.</p>
+<pre id=part1-06-less-result
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>>sp|P05176|CP1A1_RABIT Cytochrome P450 1A1 OS=Oryctolagus cuniculus GN=CYP1A1 PE
+------------------------------------------------------------
+---------------------------------------------------MVSDFGLPT
+FISATELLLASAVFCLVFWVAGASKPRVPKGLKRLPGPWGWPLLGHVLTLGK---NPHV-
+---ALARLSRRYGDVFQIRLGSTPVVVLSGLDTIKQALVRQGDDFKGRPDLYSFSFVTK-
+-----------------------------GQSMIFGSDSGPV---------WAARRRLAQ
+NALNSFSVAS--------------------------------------------------
+----------------DPASSSSCYLEEHV---SQEAENLISK-FQELMAAVGH------</b>
+</code></pre>
+<p>With further inspection, we’d see that the sequences have been made the same length by the insertion of gap characters. The next step is to run <code>hmmbuild</code> to produce the HMM profile. Again, we’ll run <code>hmmbuild</code> without any options to get information on what parameters it needs.</p>
+<pre id=part1-06-hmmbuild-help
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmbuild</b>
+Incorrect number of command line arguments.
+Usage: hmmbuild [-options] &lt;hmmfile_out&gt; &lt;msafile&gt;
+
+
+where basic options are:
+  -h     : show brief help on version and usage
+  -n &lt;s&gt; : name the HMM &lt;s&gt;
+  -o &lt;f&gt; : direct summary output to file &lt;f&gt;, not stdout
+  -O &lt;f&gt; : resave annotated, possibly modified MSA to file &lt;f&gt;
+
+
+To see more help on other available options, do:
+  hmmbuild -h
+</code></pre>
+<p>The help output for <code>hmmbuild</code> is shorter, though the command also notes that we could run <code>hmmbuild -h</code> for more detailed information. The usage line, <code>hmmbuild [-options] &lt;hmmfile_out&gt; &lt;msafile&gt;</code>, indicates that the last two parameters are required, and are the name of the output file (for the profile HMM) and the multiple sequence alignment input file. The brackets indicate that, before these last two parameters, a number of optional parameters may be given, described later in the help output. In this case, <code>&lt;hmmfile_out&gt;</code> and <code>&lt;msafile&gt;</code> are positional: the second-to-last argument must specify the output, and the last must specify the input.</p>
+<pre id=part1-06-hmmbuild
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmbuild p450s.fasta.aln.hmm p450s.fasta.aln</b>
+</code></pre>
+<p>After this operation finishes, it may be interesting to take a look at the resulting HMM file with <code>less -S p450s.fasta.aln.hmm</code>. Here’s a snippet:</p>
+<pre id=part1-06-hmmbuild-less
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>CKSUM 797170701
+STATS LOCAL MSV      -12.2089  0.69650
+STATS LOCAL VITERBI  -13.2160  0.69650
+STATS LOCAL FORWARD   -6.4971  0.69650
+HMM          A        C        D        E        F        G        H        I   
+            m->m     m->i     m->d     i->m     i->i     d->m     d->d
+  COMPO   2.56763  4.18442  2.94826  2.71355  3.22576  2.92226  3.70840  2.94423
+          2.68504  4.42336  2.77569  2.73176  3.46465  2.40496  3.72606  3.29362
+          0.66606  1.72211  1.17901  3.05405  0.04832  0.00000        *
+      1   3.15916  4.51751  4.70912  4.16707  3.23103  4.39232  4.76778  1.44083</b>
+</code></pre>
+<p>With some documentation reading, we may even be able to decode how the probabilistic profile is represented in this matrix of letters and numbers. As a reminder, our project directory now contains the original sequence file, a multiple-alignment file, and the HMM profile file, as well as the <em>D. melanogaster</em> protein file in which we wish to search for the profile.</p>
+<pre id=part1-06-ls
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
+</code></pre>
+<p>At this point, we are ready to search for the profile in the <em>D. melanogaster</em> protein set with <code>hmmsearch</code>. As usual, we’ll first inspect the usage for <code>hmmsearch</code>.</p>
+<pre id=part1-06-hmmsearch-help
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmsearch</b>
+Incorrect number of command line arguments.
+Usage: hmmsearch [options] &lt;hmmfile&gt; &lt;seqdb&gt;
+
+
+where most common options are:
+  -h : show brief help on version and usage
+
+
+To see more help on available options, do hmmsearch -h
+</code></pre>
+<p>This brief help text indicates that <code>hmmsearch</code> may take a number of optional parameters (and we’d have to run <code>hmmsearch -h</code> to see them), and the last two parameters are required. These last two parameters constitute the HMM profile file we are searching for, as well as the <code>&lt;seqdb&gt;</code> in which to search. It doesn’t say what format <code>&lt;seqdb&gt;</code> should be, so we’ll try it on our <em>D. melanogaster</em> FASTA file and hope for the best (if it fails, we’ll have to read more help text or documentation).</p>
+<pre id=part1-06-hmmsearch
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-trans
+lation-r6.02.fasta</b>
+</code></pre>
+<p>Note that there was no required option for an output file. Running this command causes quite a lot of information to be printed to the terminal, including lines like:</p>
+<pre id=part1-06-hmmsearch-out
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code><b>...
+  Alignments for each domain:
+  == domain 1  score: 2.4 bits;  conditional E-value: 0.19
+  p450s.fasta 433 sdekivpivndlfganfdtisvalswslpylvaspeigkklkke 476
+                  + +++       f a+f+ is  l++   +l  +p ++ +l++e
+  FBpp0086933 305 TADDLLAQCLLFFFAGFEIISSSLCFLTHELCLNPTVQDRLYEE 348
+                  555566666667899***************************99 PP
+...</b>
+</code></pre>
+<p>And, when we run ls, we find that no output file has been created.</p>
+<pre id=part1-06-ls-no-out
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
+</code></pre>
+<div id="standard-output" class="section level6 unnumbered">
+<h6></h6>
+<p>It seems that <code>hmmsearch</code>, by default, prints all of its meaningful output to the terminal. Actually, <code>hmmsearch</code> is printing its output to the <em>standard output</em> stream. Standard output is the primary output mechanism for command-line programs (other than writing files directly). By default, standard output, also known as “standard out” or “stdout,” is printed to the terminal.</p>
+</div>
+<div id="redirect" class="section level6 unnumbered">
+<h6></h6>
+<p>Fortunately, it is possible to <em>redirect</em> the standard output stream into a file by indicating this to our shell with a <code>&gt;</code> redirect operator, and specifying a file name or path. In this case, we’ll redirect the output of standard out to a file called <code>p450s_hmmsearch_dmel.txt</code>.</p>
+<pre id=part1-06-hmmsearch-redirect
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-trans
+lation-r6.02.fasta  > p450s_hmmsearch_dmel.txt</b>
+</code></pre>
+<p>When this command executes, nothing is printed, and instead our file is created. When using the <code>&gt;</code> redirect, the file will be overwritten if it already exists. If, instead, we wished to append to an existing file (or create a new file if there is no file to append to), we could have used the <code>&gt;&gt;</code> redirect.</p>
+<p>Here are the contents of our final analysis, a simple text file with quite a bit of information, including some nicely formatted row and column data, as displayed by <code>less -S p450s_hmmsearch_dmel.txt</code>.</p>
+<pre id=part1-06-hmmsearch-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>Query:       p450s.fasta  [M=730]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence    Descript
+    ------- ------ -----    ------- ------ -----   ---- --  --------    --------
+    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0081483  type=pr
+    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0307731  type=pr
+      7e-67  227.0   0.0      7e-67  227.0   0.0    1.5  1  FBpp0082768  type=pr
+    9.5e-67  226.6   0.0    9.5e-67  226.6   0.0    2.1  1  FBpp0297168  type=pr</b>
+</code></pre>
+</div>
+</div>
+<div id="reproducibility-with-scripts" class="section level3 unnumbered">
+<h3>Reproducibility with Scripts</h3>
+<p>It is highly unlikely that an analysis of this type is performed only once. More often than not, we’ll wish to adjust or replace the input files, compare to different protein sets, or adjust the parameters for the programs ran. Thus it make sense to capture the analysis we just performed as an executable script, perhaps called <code>runhmmer.sh</code>.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_49_unix_90_runhmmer_1.png" /></p>
+</div>
+<p>Note in the above that we’ve broken the long <code>hmmsearch</code> line into two by ending it midway with a backslash and continuing it on the next line. The backslash lets <code>bash</code> know that more of the command is to be specified on later lines. (The backslash should be the last character on the line, with no spaces or tabs following.) After making this script executable with <code>chmod</code>, we could then rerun the analysis by navigating to this directory and running <code>./runhmmer.sh</code>.</p>
+<p>What if we wanted to change the input file, say, to <code>argonase-1s.fasta</code> instead of <code>p450s.fasta</code>? We could create a new project directory to work in, copy this script there, and then change all instances of <code>p450s.fasta</code> in the script to <code>argonase-1s.fasta</code>.</p>
+<p>Alternatively, we could use the power of <a href="the-command-line-and-filesystem.html#environment_variable">environment variables</a> to architect our script in such a way that this process is easier.</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_50_unix_92_runhmmer_2.png" /></p>
+</div>
+<p>Now the file names of interest are specified only once, near the top of the script, and from then on the script uses its own identifiers (as environment variables) to refer to them. Reusing this script would be as simple as changing the file names specified in three lines.</p>
+<p>We can go a step further. It turns out that shell scripts can take parameters from the command line. The first parameter given to a script on the command line will be automatically stored in a variable accessible to the script called <code>$1</code>, the second parameter will be stored in <code>$2</code>, and so on. We can thus further generalize our script:</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_51_unix_93_runhmmer_3.png" /></p>
+</div>
+<p>We could have replaced all instances of <code>$query</code> with <code>$1</code>, but this organization makes our script easier to read in the future, an important consideration when programming. Now we can run a full analysis by specifying the three relevant file names on the command line, as in: <code>./runhmmer.sh p450s.fasta dmel-all-translation-r6.02.fasta p450s_hmmsearch_dmel.txt</code>.</p>
+<p>This <a href="data/runhmmer.sh"><code>runhmmer.sh</code></a> is a good candidate for inclusion in our <code>$HOME/local/bin</code> so that we can run it from anywhere, though we may want to add lines immediately following the <code>#!</code> line, to provide some help text for anyone who attempts to run the script without providing the correct inputs:</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_52_unix_94_runhmmer_4.png" /></p>
+</div>
+<p>The “if block” above will only execute if the number of parameters given (<code>$#</code>) is not equal to 3. Although languages like Python provide much nicer facilities for this sort of logic-based execution, the ability to conditionally provide usage information for scripts is important. As usual for <code>bash</code>, the interpreter ignores lines that start with <code>#</code>.</p>
+<div class="exercises">
+<h4 id="exercises-5" class="unnumbered">Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Create a new folder in your <code>projects</code> folder called <code>c_elegans</code>. Locate the FASTA file for the reference genome of <em>Caenorhabditis elegans</em> from <a href="http://wormbase.org" class="uri">http://wormbase.org</a>, and download it to this folder using <code>wget</code>. The file you are searching for will be named something like <code>c_elegans.PRJNA13758.WS244.genomic.fa.gz</code>. After it is downloaded, decompress it and view it with <code>less -S</code>.</p></li>
+<li><p>Install an SFTP client on your desktop, like FireFTP or CyberDuck, and attempt to connect to the same machine you log in to via SFTP. Download a FASTA file of some potentially homologous sequences from Uniprot to your local desktop, and transfer it to your remote <code>c_elegans</code> directory.</p></li>
+<li><p>Try running <code>muscle</code> and <code>HMMER</code> on the sequences you downloaded from uniprot.org against the <em>C. elegans</em> genome.</p></li>
+<li><p>If you have access to more than one Unix-based machine (such as an OS X desktop and a remote Linux computer, or two remote Linux computers), read the man page for <code>scp</code> with <code>man scp</code>, and also read about it online. Try to transfer a file and a directory between machines using <code>scp</code> on the command line.</p></li>
+<li><p>Write an executable <code>bash</code> script that automates a process of some kind, and install it in your <code>$HOME/local/bin</code>. Test it after logging out and back in.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="17">
+<li id="fn17"><p>If you have administrator privileges on the machine, software repositories curated with many packages are also available. Depending on the system, if you log in as root, installing HMMER may be as simple as running <code>apt-get install hmmer</code> or <code>yum install hmmer</code>.<a href="installing-bioinformatics-software.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>A similar tool called <code>curl</code> can be used for the same purpose. The feature sets are slightly different, so in some cases <code>curl</code> is preferred over <code>wget</code> and vice versa. For the simple downloading tasks in this book, either will suffice.<a href="installing-bioinformatics-software.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>Alternatively, <code>gzip -d hmmer-3.1b1.tar.gz</code>.<a href="installing-bioinformatics-software.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>The <code>gzip</code> utility is one of the few programs that care about file extensions. While most programs will work with a file of any extension, <code>gzip</code> requires a file that ends in <code>.gz</code>. If you are unsure of a file’s type, the <code>file</code> utility can help; for example, <code>file hmmer-3.1b1.tar.gz</code> reports that the file is gzip-compressed data, and would do so even if the file did not end in <code>.gz</code>.<a href="installing-bioinformatics-software.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>Note that it is not strictly necessary to unzip and then un-tar in two separate steps. We can unzip and un-tar with the single command <code>tar -xfz hmmer-3.1b1.tar.gz</code>, where <code>z</code> will filter the file through gzip.<a href="installing-bioinformatics-software.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>t’s not strictly necessary to log back out and back in; when working in <code>bash</code>, running <code>hash -r</code> will cause the shell to update its list of software found in $<code>PATH</code>.<a href="installing-bioinformatics-software.html#fnref22" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="permissions-and-executables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="command-line-blast.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-06-installing-bioinfo-software.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
