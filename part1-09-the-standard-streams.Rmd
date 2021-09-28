@@ -1,0 +1,3 @@
+# The Standard Streams
+
+In previous chapters, we learned that programs may produce output not only by writing to files, but also by printing them on the [standard output](#standard_output) stream. To further illustrate this feature, we’ve created a simple program called [`fasta_stats.py`](data/fasta_stats.py) that, given a FASTA file name as its first parameter, produces statistics on each sequence. We’ll also look at the file [`pz_cDNAs.fasta`](data/pz_cDNAs.fasta), which contains a set of 471 de novo assembled transcript sequences from *Papilio zelicaon*, and [`pz_cDNAs_sample.fasta`](data/pz_cDNAs_sample.fasta), which contains only the first two.
