@@ -807,7 +807,7 @@ As mentioned previously, individual columns of a data frame are (almost always) 
             linkable-line-numbers">
 <code>
 incomes <- states$"income"
-print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
 </code></pre>
 
 So long as the column name is sufficiently simple (in particular, so long as it doesn’t have any spaces), then the quote marks around the column name can be (and often are) omitted.
@@ -818,7 +818,7 @@ So long as the column name is sufficiently simple (in particular, so long as it 
             linkable-line-numbers">
 <code>
 incomes <- states$income
-print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
 </code></pre>
 
 
@@ -829,8 +829,8 @@ Although this syntax can be used to extract a column from a data frame as a vect
             line-numbers
             linkable-line-numbers">
 <code>
-nrth_cntrl_logical <- states$region == "North Central"  # Logical vector
-states$region[nrth_cntrl_logical] <- "Central"          # Selective replacement
+nrth_cntrl_logical <- states$region == "North Central"  # Logical vector
+states$region[nrth_cntrl_logical] <- "Central"          # Selective replacement
 # OR
 states$region[states$region == "North Central"] <- "Central"
 </code></pre>
@@ -843,11 +843,11 @@ Writing a data frame to a tab-separated file is accomplished with the `write.tab
             linkable-line-numbers">
 <code>
 write.table(states,
-            file = "states_modified.txt",
-            quote = FALSE,
-            sep = "\t",
-            row.names = FALSE,
-            col.names = TRUE)
+            file = "states_modified.txt",
+            quote = FALSE,
+            sep = "\t",
+            row.names = FALSE,
+            col.names = TRUE)
 </code></pre>
 
 
@@ -877,15 +877,15 @@ args <- commandArgs(trailingOnly = TRUE)
 print(args)
 
 # read data frame from stdin
-input_df <- read.table("stdin", 
-                       header = FALSE, 
-                       stringsAsFactors = FALSE)
+input_df <- read.table("stdin", 
+                       header = FALSE, 
+                       stringsAsFactors = FALSE)
 # write data frame to stdout
 write.table(input_df,
-            file = "", 
-            row.names = FALSE, 
-            col.names = FALSE,
-            sep = "\t")
+            file = "", 
+            row.names = FALSE, 
+            col.names = FALSE,
+            sep = "\t")
 </code></pre>
 
 Try making this script executable on the command line, and running it on `p450s_blastp_yeast_top1.txt` with something like `cat p450s_blastp_yeast_top1.txt | ./stdin_stdout_ex.R arg1 'arg 2'`.
