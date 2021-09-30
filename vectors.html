@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="variables-and-data.html"/>
-
+<link rel="next" href="r-functions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -249,6 +249,10 @@
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>13</b> R Functions</a><ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -928,7 +932,7 @@ print(head(states, n = 10))
             linkable-line-numbers">
 <code>
 incomes <- states$"income"
-print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
 </code></pre>
 <p>So long as the column name is sufficiently simple (in particular, so long as it doesn’t have any spaces), then the quote marks around the column name can be (and often are) omitted.</p>
 <pre id=part3-03-states-dollar-syntax-noquotes
@@ -937,7 +941,7 @@ print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 
             linkable-line-numbers">
 <code>
 incomes <- states$income
-print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
 </code></pre>
 <p>Although this syntax can be used to extract a column from a data frame as a vector, note that it refers to the vector within the data frame as well. In a sense, <code>states$income</code> <em>is</em> the vector stored in the <code>states</code> data frame. Thus we can use techniques like <a href="">selective replacement</a> to work with them just like any other vectors. Here, we’ll replace all instances of “North Central” in the <code>states$region</code> vector with just the term “Central,” effectively renaming the region.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
 <pre id=part3-03-states-rename-region
@@ -945,8 +949,8 @@ print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 
             line-numbers
             linkable-line-numbers">
 <code>
-nrth_cntrl_logical <- states$region == "North Central"  # Logical vector
-states$region[nrth_cntrl_logical] <- "Central"          # Selective replacement
+nrth_cntrl_logical <- states$region == "North Central"  # Logical vector
+states$region[nrth_cntrl_logical] <- "Central"          # Selective replacement
 # OR
 states$region[states$region == "North Central"] <- "Central"
 </code></pre>
@@ -957,11 +961,11 @@ states$region[states$region == "North Central"] <- "Central"
             linkable-line-numbers">
 <code>
 write.table(states,
-            file = "states_modified.txt",
-            quote = FALSE,
-            sep = "\t",
-            row.names = FALSE,
-            col.names = TRUE)
+            file = "states_modified.txt",
+            quote = FALSE,
+            sep = "\t",
+            row.names = FALSE,
+            col.names = TRUE)
 </code></pre>
 <p>The first two parameters here are the data frame to write and the file name to write to. The <code>quote = FALSE</code> parameter specifies that quotation marks shouldn’t be written around character types in the output (so the <code>name</code> column will have entries like <code>Alabama</code> and <code>Alaska</code> rather than <code>"Alabama"</code> and <code>"Alaska"</code>). The <code>sep = "\t"</code> indicates that tabs should separate the columns, while <code>row.names = FALSE</code> indicates that row names should not be written (because they don’t contain any meaningful information for this data frame), and <code>col.names = TRUE</code> indicates that we do want the column names output to the first line of the file as a “header” line.</p>
 <div class="callout-box">
@@ -981,15 +985,15 @@ args <- commandArgs(trailingOnly = TRUE)
 print(args)
 
 # read data frame from stdin
-input_df <- read.table("stdin", 
-                       header = FALSE, 
-                       stringsAsFactors = FALSE)
+input_df <- read.table("stdin", 
+                       header = FALSE, 
+                       stringsAsFactors = FALSE)
 # write data frame to stdout
 write.table(input_df,
-            file = "", 
-            row.names = FALSE, 
-            col.names = FALSE,
-            sep = "\t")
+            file = "", 
+            row.names = FALSE, 
+            col.names = FALSE,
+            sep = "\t")
 </code></pre>
 <p>Try making this script executable on the command line, and running it on <code>p450s_blastp_yeast_top1.txt</code> with something like <code>cat p450s_blastp_yeast_top1.txt | ./stdin_stdout_ex.R arg1 'arg 2'</code>.</p>
 </div>
@@ -1017,52 +1021,6 @@ states$newpop[!highmurder] <- states$population[!highmurder] * 1.1
 
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="footnotes">
 <hr />
 <ol start="37">
@@ -1078,8 +1036,8 @@ states$newpop[!highmurder] <- states$population[!highmurder] * 1.1
           </div>
         </div>
       </div>
-<a href="variables-and-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="variables-and-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
