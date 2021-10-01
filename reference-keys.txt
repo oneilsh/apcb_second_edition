@@ -11,3 +11,5 @@ an-introduction
 variables-and-data
 vectors
 r-functions
+lists-and-attributes
+attributes-removing-elements-list-structure
