@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Lists and Attributes | A Primer for Computational Biology (2nd Edition)</title>
-  <meta name="description" content="Chapter 14 Lists and Attributes | A Primer for Computational Biology (2nd Edition)" />
+  <title>Chapter 15 Data Frames | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 15 Data Frames | A Primer for Computational Biology (2nd Edition)" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Lists and Attributes | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:title" content="Chapter 15 Data Frames | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Lists and Attributes | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="twitter:title" content="Chapter 15 Data Frames | A Primer for Computational Biology (2nd Edition)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="r-functions.html"/>
-<link rel="next" href="data-frames.html"/>
+<link rel="prev" href="lists-and-attributes.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -281,393 +281,262 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lists-and-attributes" class="section level1">
-<h1><span class="header-section-number">Chapter 14</span> Lists and Attributes</h1>
-<p>The next important data type in our journey through R is the list. Lists are quite similar to vectors—they are ordered collections of data, indexable by index number, logical vector, and name (if the list is named). Lists, however, can hold multiple different types of data (including other lists). Suppose we had three different vectors representing some information about the plant <em>Arabidopsis thaliana</em>.</p>
-<pre id=part3-05-athal-data
+<div id="data-frames" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> Data Frames</h1>
+<p>In chapter 28, “<a href="">Vectors</a>,” we briefly introduced data frames as storing tables of data. Now that we have a clear understanding of both vectors and lists, we can easily describe data frames. (If you hastily skipped chapters <a href="">28</a> and <a href="">30</a> to learn about data frames, now’s the time to return to them!) Data frames are essentially named lists, where the elements are vectors representing columns. But data frames provide a few more features than simple lists of vectors. They ensure that the component column vectors are always the same length, and they allow us to work with the data by row as well as by column. Data frames are some of the most useful and ubiquitous data types in R.</p>
+<p>While we’ve already covered using the <code>read.table()</code> function to produce a data frame based on the contents of a text file, it’s also possible to create a data frame from a set of vectors.</p>
+<pre id=part3-06-df-from-vectors
      class="language-r
             line-numbers
             linkable-line-numbers">
 <code>
-organism <- "A. thaliana"
-ecotypes <- c("C24", "Col0", "WS2")
-num_chromosomes <- 5
+ids <- c("AGP", "T34", "ALQ", "IXL")
+lengths <- c(256, 134, 92, 421)
+gcs <- c(0.21, 0.34, 0.41, 0.65)
+
+gene_info <- data.frame(ids, lengths, gcs, stringsAsFactors = FALSE)
+print(gene_info)
 </code></pre>
-<p>We can then use the <code>list()</code> function to gather these vectors together into a single unit with class <code>"list"</code>.</p>
-<pre id=part3-05-athal-list-def-1
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-athal <- list(organism, ecotypes, num_chromosomes)
-print(class(athal))                                  # [1] "list"
-</code></pre>
-<p>Graphically, we might represent this list like so:</p>
-<div class="fig center" style="width: 50%">
-<p><img src="images/part3-05-lists-and-attributes.Rmd.images/III.5_3_athal_list_1-4.png" /></p>
+<div class="fig right" style="width: 30%; margin-left: 20px">
+<p><img src="images/part3-06-data-frames.Rmd.images/III.6_2_data_frame_names-3.png" /></p>
 </div>
-<p>Here, the <code>[1]</code> syntax is indicating that the elements of the list are vectors (as in when vectors are printed). Like vectors, lists can be indexed by index vector and logical vector.</p>
-<pre id=part3-05-sublist-extract-1
+<p>When printed, the contents of the column vectors are displayed neatly, with the column names along the top and row names along the left-hand side.</p>
+<p>As with <code>read.table()</code>, the <code>data.frame()</code> function takes an optional <code>stringsAsFactors</code> argument, which specifies whether character vectors (like <code>ids</code>) should be converted to factor types (we’ll cover these in detail later). For now, we’ll disable this conversion.</p>
+<p>Running <code>str(gene_info)</code> reveals the data frame’s list-like nature:</p>
+<pre id=part3-06-df-from-vectors-str-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+'data.frame': 4 obs. of  3 variables:
+ $ ids    : chr  "AGP" "T34" "ALQ" "IXL"
+ $ lengths: num  256 134 92 421
+ $ gcs    : num  0.21 0.34 0.41 0.65
+</code></pre>
+<p>Like elements of lists, the columns of data frames don’t have to have names, but not having them is uncommon. Most data frames get column names when they are created (either by <code>read.table()</code> or <code>data.frame()</code>), and if unset, they usually default to <code>V1</code>, <code>V2</code>, and so on. The column names can be accessed and set with the <code>names()</code> function, or with the more appropriate <code>colnames()</code> function.</p>
+<pre id=part3-06-df-colnames
      class="language-r
             line-numbers
             linkable-line-numbers">
 <code>
-sublist <- athal[c(1,3)]
-sublist <- athal[c(TRUE, FALSE, TRUE)]
+# set column names
+names(gene_info) <- c("ids", "lengths", "gcs")
+# better way:
+colnames(gene_info) <- c("ids", "lengths", "gcs")
+
+print(colnames(gene_info))                      # [1] "ids" "lengths" "gcs"
 </code></pre>
-<p>Both of the above assign to the variable sublist a list looking like:</p>
-<div class="fig center" style="width: 50%">
-<p><img src="images/part3-05-lists-and-attributes.Rmd.images/III.5_5_athal_sublist_1-4.png" /></p>
+<p>To highlight the list-like nature of data frames, we can work with data frames by column much like lists by element. The three lines in the following example all result in <code>sub_info</code> being a two-column data frame.</p>
+<pre id=part3-06-df-select-cols-like-list
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sub_info <- gene_info[c(1,3)]
+sub_info <- gene_info[c("ids", "gcs")]
+sub_info <- gene_info[c(TRUE, FALSE, TRUE)]
+</code></pre>
+<p>An expression like <code>gene_info[2]</code> thus would not return a numeric vector of lengths, but rather a single-column data frame containing the numeric vector. We can use <code>[[]]</code>syntax and <code>$</code> syntax to refer to the vectors contained within data frames as well (the latter is much more common).</p>
+<pre id=part3-06-df-select-single-col-like-list
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ids_vec <- gene_info[[1]]
+ids_vec <- gene_info[["ids"]]
+ids_vec <- gene_info$ids
+</code></pre>
+<p>We can even delete columns of a data frame by setting the element to <code>NULL</code>, as in <code>gene_info$lengths &lt;- NULL</code>.</p>
+<p>The real charm of data frames is that we can extract and otherwise work with them by row. Just as data frames have column names, they also have row names: a character vector of the same length as each column. Unfortunately, by default, the row names are <code>"1"</code>, <code>"2"</code>, <code>"3"</code>, and so on, but when the data frame is printed, the quotation marks are left off (see the result of <code>print(gene_info)</code> above). The row names are accessible through the <code>rownames()</code> function.</p>
+<p>Data frames are indexable using an extended <code>[]</code> syntax: <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code>, where <code>&lt;row_selector&gt;</code> and <code>&lt;column_selector&gt;</code> are vectors. Just as with vectors and lists, these indexing/selection vectors may be integers (to select by index), characters (to select by name), or logicals (to select logically). Also as with vectors, when indexing by index position or name, the requested order is respected.</p>
+<pre id=part3-06-df-select-rowcol-ex1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# select the third and first rows, columns "lengths" and "ids"
+subframe <- gene_info[c(3, 1), c("lengths", "ids")]
+print(subframe)
+</code></pre>
+<p>Here’s the resulting output, illustrating that <code>"3"</code> and <code>"1"</code> were the row names, which now occur at the first and second row, respectively.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
+<pre id=part3-06-df-select-rowcol-ex1-out
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+  lengths ids
+3      92 ALQ
+1     256 AGP
+</code></pre>
+<p>Finally, if one of <code>&lt;row_selector&gt;</code>or <code>&lt;column_selector&gt;</code> are not specified, then all rows or columns are included. As an example, <code>gene_info[c(3,1), ]</code> returns a data frame with the third and first rows and all three columns, while <code>gene_info[, c("lengths", "ids")]</code> returns one with only the <code>"lengths"</code> and <code>"ids"</code> columns, but all rows.</p>
+<div id="data-frame-operations" class="section level3 unnumbered">
+<h3>Data Frame Operations</h3>
+<p>Because data frames have much in common with lists and rows—and columns can be indexed by index number, name, or logical vector—there are many powerful ways we can manipulate them. Suppose we wanted to extract only those rows where the <code>lengths</code> column is less than <code>200</code>, or the <code>gcs</code> column is less than <code>0.3</code>.</p>
+<pre id=part3-06-df-select-logical-1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+row_selector <- gene_info$lengths < 200 | gene_info$gcs < 0.3
+selected <- gene_info[row_selector, ]
+print(selected)
+</code></pre>
+<p>This syntax is concise but sophisticated. While <code>gene_info$lengths</code> refers to the numeric vector named <code>"lengths"</code> in the data frame, the <code>&lt;</code> logical operator is vectorized, with the single element <code>200</code> being recycled as needed. The same process happens for <code>gene_info$gcs &lt; 0.3</code>, and the logical-or operator <code>|</code> is vectorized, producing a logical vector later used for selecting the rows of interest. An even shorter version of these two lines would be<code>selected &lt;- gene_info[gene_info$lengths &lt; 200 | gene_info$gcs &lt; 0.3, ].</code> The printed output:</p>
+<pre id=part3-06-df-select-logical-1-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+   ids lengths  gcs
+g1 AGP     256 0.21
+g2 T34     134 0.34
+g3 ALQ      92 0.41
+</code></pre>
+<p>If we wished to extract the gcs vector from this result, we could use something like <code>selected_gcs &lt;- selected$gcs</code>. Sometimes more compact syntax is used, where the <code>$</code> and column name are appended directly to the <code>[]</code> syntax.</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part3-06-data-frames.Rmd.images/III.6_13_subframe_column_1.png" /></p>
 </div>
-<p>This seems straightforward enough: subsetting a list with an indexing vector returns a smaller list with the requested elements. But this rule can be deceiving if we forget that a vector is the most basic element of data. Because <code>2</code> is the length-one vector <code>c(2)</code>, <code>athal[2]</code> returns not the second element of the <code>athal</code> list, but rather a length-one list with a single element (the vector of ecotypes).</p>
-<pre id=part3-05-sublist-extract-2
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-eco_list <- athal[2]
-print(class(eco_list))                               # [1] "list"
-print(length(eco_list))                              # [1] 1 
-</code></pre>
-<p>A graphical representation of this list:</p>
-<div class="fig center" style="width: 50%">
-<p><img src="images/part3-05-lists-and-attributes.Rmd.images/III.5_7_athal_eco_list-4.png" /></p>
+<p>Alternatively, and perhaps more clearly, we can first use <code>$</code> notation to extract the column of interest, and then use <code>[]</code> logical indexing on the resulting vector.</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part3-06-data-frames.Rmd.images/III.6_14_subframe_column_2.png" /></p>
 </div>
-<p>We will thus need a different syntax if we wish to extract an individual element from a list. This alternate syntax is <code>athal[[2]]</code>.</p>
-<pre id=part3-05-sublist-extract-3
+<p>Because subsetting data frame rows by logical condition is so common, there is a specialized function for this task: <code>subset()</code>. The first parameter is the data frame from which to select, and later parameters are logical expressions based on column names within that data frame (quotation marks are left off). For example, <code>selected &lt;- subset(gene_info, lengths &lt; 200 | gcs &lt; 0.3)</code>. If more than one logical expression is given, they are combined with <code>&amp;</code> (and). Thus <code>subset(gene_info, lengths &lt; 200, gcs &lt; 0.3)</code> is equivalent to <code>gene_info[gene_info$lengths &lt; 200 &amp; gene_info$gcs &lt; 0.3 ,]</code>.</p>
+<p>While the <code>subset()</code> function is convenient for simple extractions, knowing the ins and outs of <code>[]</code> selection for data frames as it relates to lists and vectors is a powerful tool. Consider the <code>order()</code> function, which, given a vector, returns an index vector that can be used for sorting. Just as with using <code>order()</code> to sort a vector, we can use <code>order()</code> to sort a data frame based on a particular column.</p>
+<pre id=part3-06-df-order-ex
      class="language-r
             line-numbers
             linkable-line-numbers">
 <code>
-ecotypes <- athal[[2]]
-print(class(ecotypes))                               # [1] "character"
-print(ecotypes)                                      # [1] "C24" "Col0" "Ws2"
+gene_info_sorted <- gene_info[order(gene_info$lengths), ]
+print(gene_info_sorted)
 </code></pre>
-<p>If we wanted to extract the second ecotype directly, we would need to use the relatively clunky <code>second_ecotype &lt;- athal[[2]][2]</code>, which accesses the second element of the vector (accessed by <code>[2]</code>) inside of the of the second element of the list (accessed by <code>[[2]]</code>).</p>
-<pre id=part3-05-list-print
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-print(athal)
-</code></pre>
-<p>When we print a list, this structure and the double-bracket syntax is reflected in the output.</p>
-<pre id=part3-05-list-print-out
+<p>The result is a data frame ordered by the lengths column:</p>
+<pre id=part3-06-df-order-ex-out
      class="language-txt
             line-numbers
             linkable-line-numbers">
 <code>
-[[1]]
-[1] "A. thaliana"
-
-[[2]]
-[1] "C24"  "Col0" "WS2" 
-
-[[3]]
-[1] 5
+   ids lengths  gcs
+g3 ALQ      92 0.41
+g2 T34     134 0.34
+g1 AGP     256 0.21
+g4 IXL     421 0.65
 </code></pre>
-<div id="named-lists-lists-within-lists" class="section level3 unnumbered">
-<h3>Named Lists, Lists within Lists</h3>
-<p>Like vectors, lists can be named—associated with a character vector of equal length—using the <code>names()</code> function. We can use an index vector of names to extract a sublist, and we can use <code>[[]]</code> syntax to extract individual elements by name.</p>
-<pre id=part3-05-list-names-1
+<p>Because data frames force all column vectors to be the same length, we can create new columns by assigning to them by name, and relying on <a href="">vector recycling</a> to fill out the column as necessary. Let’s create a new column called <code>gc_categories</code>, which is initially filled with <code>NA</code> values, and then use <a href="">selective replacement</a> to assign values <code>"low"</code> or <code>"high"</code> depending on the contents of the <code>gcs</code> column.</p>
+<pre id=part3-06-df-gc-category-col-add
      class="language-r
             line-numbers
             linkable-line-numbers">
 <code>
-names(athal) <- c("Species", "Ecotypes", "# Chromosomes")
-sublist <- athal[c("Species", "# Chromosomes")]      # list of length two
-
-ecotypes <- athal[["Ecotypes"]]                      # ecotypes vector
+gene_info$gc_category <- NA
+gene_info$gc_category[gene_info$gcs < 0.5] <- "low"
+gene_info$gc_category[gene_info$gcs >= 0.5] <- "high"
+print(gene_info)
 </code></pre>
-<p>We can even extract elements from a list if the name of the element we want is stored in another variable, using the <code>[[]]</code> syntax.</p>
-<pre id=part3-05-list-names-2
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-extract_name <- "Ecotypes"
-ecotypes <- athal[[extract_name]]                    # ecotypes vector
-</code></pre>
-<p>As fun as this double-bracket syntax is, because extracting elements from a list by name is a common operation, there is a shortcut using <code>$</code> syntax.</p>
-<pre id=part3-05-list-names-dollar
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-ecotypes <- athal[["Ecotypes"]]
-# same as
-ecotypes <- athal$"Ecotypes"
-</code></pre>
-<p>In fact, if the name doesn’t contain any special characters (spaces, etc.), then the quotation marks can be left off.</p>
-<pre id=part3-05-list-names-dollar-noquotes
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-ecotypes <- athal$Ecotypes
-</code></pre>
-<p>This shortcut is widely used and convenient, but, because the quotes are implied, we can’t use <code>$</code> syntax to extract an element by name if that name is stored in an intermediary variable. For example, if <code>extract_name &lt;- "ecotypes"</code>, then <code>athal$extract_name</code> will expand to <code>athal[["extract_name"]]</code>, and we won’t get the ecotypes vector. This common error reflects a misunderstanding of the <a href="">syntactic sugar</a> employed by R. Similarly, the <code>$</code> syntax won’t work for names like <code>"# Chromosomes"</code> because that name contains a space and a special character (for this reason, names of list elements are often simplified).</p>
-<p>Frequently, <code>$</code> syntax is combined with vector syntax if the element of the list being referred to is a vector. For example, we can directly extract the third ecotype, or set the third ecotype.</p>
-<pre id=part3-05-list-names-dollar-vector
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-third_ecotype <- athal$Ecotypes[3]
-athal$Ecotypes[3] <- "WS2b"
-</code></pre>
-<p>Continuing with this example, let’s suppose we have another list that describes information about each chromosome. We can start with an empty list, and assign elements to it by name.</p>
-<pre id=part3-05-list-assign-to-empty
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-chrs <- list()
-chrs$Lengths <- c(34.9, 22.0, 25.4, 20.8, 31.2)
-chrs$GeneCounts <- c(7078, 4245, 5437, 4124, 6318)
-</code></pre>
-<p>This list of two elements relates to <em>A. thaliana</em>, so it makes sense to include it somehow in the <code>athal</code> list. Fortunately, lists can contain other lists, so we’ll assign this <code>chrs</code> list as element of the <code>athal</code> list.</p>
-<pre id=part3-05-list-assign-sublist
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-athal$ChrInfo <- chrs
-</code></pre>
-<p>Lists are an excellent container for general collections of heterogeneous data in a single organized “object.” (These differ from Python <a href="">objects</a> in that they don’t have methods stored in them as well, but we’ll see how R works with methods in later chapters.) If we ran <code>print(athal)</code> at this point, all this information would be printed, but unfortunately in a fairly unfriendly manner:</p>
-<pre id=part3-05-list-complex-print-out
+<p>While there are more automated approaches for categorizing numerical data, the above example illustrates the flexibility and power of the data frame and vector syntax covered so far.</p>
+<pre id=part3-06-df-gc-category-col-add-out
      class="language-txt
             line-numbers
             linkable-line-numbers">
 <code>
-$Species
-[1] "A. thaliana"
-
-$Ecotypes
-[1] "C24"  "Col0" "WS2b"
-
-$`# Chromosomes`
-[1] 5
-
-$ChrInfo
-$ChrInfo$Lengths
-[1] 34.9 22.0 25.4 20.8 31.2
-
-$ChrInfo$GeneCounts
-[1] 7078 4245 5437 4124 6318
+   ids lengths  gcs gc_category
+g1 AGP     256 0.21         low
+g2 T34     134 0.34         low
+g3 ALQ      92 0.41         low
+g4 IXL     421 0.65        high
 </code></pre>
-<p>This output does illustrate something of interest, however. We can chain the <code>$</code> syntax to access elements of lists and contained lists by name. For example, <code>lengths &lt;- athal$ChrInfo$Lengths</code> extracts the vector of lengths contained in the internal <code>ChrInfo</code> list, and we can even modify elements of these vectors with syntax like <code>athal$ChrInfo$GeneCounts[1] &lt;- 7079</code> (perhaps a new gene was recently discovered on the first chromosome). Expanding the syntax a bit to use double-brackets rather than <code>$</code> notation, these are equivalent to <code>lengths &lt;- athal[["ChrInfo"]][["Lengths"]]</code> and <code>athal[["ChrInfo"]][["GeneCounts"]][1] &lt;- 7079</code>.</p>
+<p>One final note: while the <code>head()</code> function returns the first few elements of a vector or list, when applied to a data frame, it returns a similar data frame with only the first few rows.</p>
+<div class="callout-box">
+<h4 id="matrices-and-arrays" class="unnumbered">Matrices and Arrays</h4>
+<p>Depending on the type of analysis, you might find yourself working with matrices in R, which are essentially two-dimensional vectors. Like vectors, all elements of a matrix must be the same type, and attempts to mix types will result in autoconversion. Like data frames, they are two dimensional, and so can be indexed with <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> syntax. They also have <code>rownames()</code> and <code>colnames()</code>.</p>
+<pre id=part3-06-df-matrix-ex
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+m <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+print(m)
+</code></pre>
+<pre id=part3-06-df-matrix-ex-out
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+</code></pre>
+<p>There are a number of interesting functions for working with matrices, including <code>det()</code> (for computing the determinant of a matrix) and <code>t()</code> (for transposing a matrix).</p>
+<p>Arrays generalize the concept of multidimensional data; where matrices have only two dimensions, arrays may have two, three, or more. The line <code>a &lt;- array(c(1,1,1,1,2,2,2,2,3,3,3,3), dim = c(2,2,3))</code>, for example, creates a three-dimensional array, composed of three two-by-two matrices. The upper left element can be extracted as <code>a[1,1,1]</code>.</p>
 </div>
-<div id="attributes-removing-elements-list-structure" class="section level3">
-<h3><span class="header-section-number">14.0.1</span> Attributes, Removing Elements, List Structure</h3>
-<p>Lists are an excellent way to organize heterogeneous data, especially when data are stored in a Name → Value association,<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> making it easy to access data by character name. But what if we want to look up some information associated with a piece of data but not represented in the data itself? This would be a type of “metadata,” and R allows us to associate metadata to any piece of data using what are called <em>attributes</em>. Suppose we have a simple vector of normally distributed data:</p>
-<pre id=part3-05-list-attr-1
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-sample <- rnorm(10, mean = 20, sd = 10)
-</code></pre>
-<p>Later, we might want know what type of data this is: is it normally distributed, or something else? We can solve this problem by assigning the term <code>"normal"</code> as an attribute of the data. The attribute also needs a name, which we’ll call <code>"disttype"</code>. Attributes are assigned in a fashion similar to names.</p>
-<pre id=part3-05-list-attr-2
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-attr(sample, "disttype") <- "normal"
-print(sample)
-</code></pre>
-<p>When printed, the output shows the attributes that have been assigned as well.</p>
-<pre id=part3-05-list-attr-2-out
-     class="language-txt
-            line-numbers
-            linkable-line-numbers">
-<code>
- [1] -3.177991  8.676695 10.623292 22.020329  5.497178 10.135908  7.113268
- [8] 26.784623 16.306509 21.237899
-attr(,"disttype")
-[1] "normal"
-</code></pre>
-<p>We can separately extract a given attribute from a data item, using syntax like <code>sample_dist &lt;- attr(sample, "disttype")</code>. Attributes are used widely in R, though they are rarely modified in day-to-day usage of the language.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
-<p>To expand our <em>A. thaliana</em> example, let’s assign a “kingdom” attribute to the species vector.</p>
-<pre id=part3-05-athal-list-attr
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-attr(athal$Species, "kingdom") <- "Plantae"
-</code></pre>
-<p>At this point, we’ve built a fairly sophisticated structure: a list containing vectors (one of which has an attribute) and another list, itself containing vectors, with the various list elements being named. If we were to run <code>print(athal)</code>, we’d see rather messy output. Fortunately, R includes an alternative to <code>print()</code> called <code>str()</code>, which nicely prints the structure of a list (or other data object). Here’s the result of calling <code>str(athal)</code> at this point.</p>
-<pre id=part3-05-athal-str-out
-     class="language-txt
-            line-numbers
-            linkable-line-numbers">
-<code>
-List of 4
- $ Species      : atomic [1:1] A. thaliana
-  ..- attr(*, "kingdom")= chr "Plantae"
- $ Ecotypes     : chr [1:3] "C24" "Col0" "WS2b"
- $ # Chromosomes: num 5
- $ ChrInfo      :List of 2
-  ..$ Lengths   : num [1:5] 54.2 36.4 19.7 46.3 29.2
-  ..$ GeneCounts: num [1:5] 8621 7215 3124 7219 4140
-</code></pre>
-<p>Removing an element or attribute from a list is as simple as assigning it the special value <code>NULL</code>.</p>
-<pre id=part3-05-list-assign-null
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-# delete ChrInfo and Species attribute
-athal$ChrInfo <- NULL
-attr(athal$Species, "kingdom") <- NULL
-str(athal)
-</code></pre>
-<p>The printed structure reveals that this information has been removed.</p>
-<pre id=part3-05-list-assign-null-out
-     class="language-txt
-            line-numbers
-            linkable-line-numbers">
-<code>
-List of 3
- $ Species      : chr "A. thaliana"
- $ Ecotypes     : chr [1:3] "C24" "Col0" "WS2b"
- $ # Chromosomes: num 5
-</code></pre>
-<p>What is the point of all this detailed list making and attribute assigning? It turns out to be quite important, because many R functions return exactly these sorts of complex attribute-laden lists. Consider the <code>t.test()</code> function, which compares the means of two vectors for statistical equality:</p>
-<pre id=part3-05-ttest-1
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-samp1 <- rnorm(100, mean = 10, sd = 5)
-samp2 <- rnorm(100, mean = 8, sd = 5)
-tresult <- t.test(samp1, samp2)
-print(tresult)
-</code></pre>
-<p>When printed, the result is a nicely formatted, human-readable result.</p>
-<pre id=part3-05-ttest-1-out
-     class="language-txt
-            line-numbers
-            linkable-line-numbers">
-<code>
-Welch Two Sample t-test
-
-data:  samp1 and samp2
-t = 2.8214, df = 197.172, p-value = 0.005271
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- 0.6312612 3.5626936
-sample estimates:
-mean of x mean of y 
- 9.307440  7.210463 
-</code></pre>
-<p>If we run <code>str(tresult)</code>, however, we find the true nature of <code>tresult</code>: it’s a list!</p>
-<pre id=part3-05-ttest-1-str-out
-     class="language-txt
-            line-numbers
-            linkable-line-numbers">
-<code>
-List of 9
- $ statistic  : Named num 5.41
-  ..- attr(*, "names")= chr "t"
- $ parameter  : Named num 198
-  ..- attr(*, "names")= chr "df"
- $ p.value    : num 1.84e-07
- $ conf.int   : atomic [1:2] 2.07 4.45
-  ..- attr(*, "conf.level")= num 0.95
- $ estimate   : Named num [1:2] 10.41 7.15
-  ..- attr(*, "names")= chr [1:2] "mean of x" "mean of y"
- $ null.value : Named num 0
-  ..- attr(*, "names")= chr "difference in means"
- $ alternative: chr "two.sided"
- $ method     : chr "Welch Two Sample t-test"
- $ data.name  : chr "samp1 and samp2"
- - attr(*, "class")= chr "htest"
-</code></pre>
-<p>Given knowledge of this structure, we can easily extract specific elements, such as the <em>p</em> value with <code>pval &lt;- tresult$p.value</code> or <code>pval &lt;- tresult[["p.value"]]</code>.</p>
-<p>One final note about lists: vectors (and other types) can be converted into a list with the <code>as.list()</code> function. This will come in handy later, because lists are one of the most general data types in R, and we can use them for intermediary data representations.</p>
-<pre id=part3-05-as-list-example
-     class="language-r
-            line-numbers
-            linkable-line-numbers">
-<code>
-scores <- c(56.3, 91.7, 87.4)
-scores_list <- as.list(scores)     # A list with 3 single-element vectors
-</code></pre>
 <div class="exercises">
-<h4 id="exercises-14" class="unnumbered">Exercises</h4>
+<h4 id="exercises-15" class="unnumbered">Exercises</h4>
 <ol style="list-style-type: decimal">
-<li><p>The following code first generates a random sample called <code>a</code>, and then a sample called <code>response</code>, wherein each element of <code>response</code> is an element of <code>a</code> times 1.5 plus some random noise:</p>
-<pre id=part3-05-ex1-1
-     class="language-r 
-            line-numbers 
-            linkable-line-numbers">
- <code>
-a <- rnorm(100, mean = 2, sd = 3)
-response <- a * 1.5 + rnorm(100, mean = 0, sd = 1)
- </code></pre>
-<p>Next, we can easily create a linear model predicting values of response from <code>a</code>:</p>
-<pre id=part3-05-ex1-2
-     class="language-r 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-model <- lm(response ~ a)
-print(model)
-</code></pre>
-<p>When printed, the output nicely describes the parameters of the model.</p>
-<pre id=part3-05-ex1-3
-     class="language-txt
-            line-numbers 
-            linkable-line-numbers">
-<code>
-Call:
-lm(formula = response ~ a)
-&nbsp;
-Coefficients:
-(Intercept)            a  
--0.06706      1.53367  
-</code></pre>
-<p>We can also easily test the significance of the parameters with the anova() function (to run an analysis of variance test on the model).</p>
-<pre id=part3-05-ex1-4
-     class="language-r
-            line-numbers 
-            linkable-line-numbers">
-<code>
-vartest <- anova(model)
-print(vartest)
-</code></pre>
-<p>The output again shows nicely formatted text:</p>
-<pre id=part3-05-ex1-5
-     class="language-txt
-            line-numbers 
-            linkable-line-numbers">
-<code>
-Analysis of Variance Table
-&nbsp;
-Response: response
-       Df  Sum Sq Mean Sq F value    Pr(>F)    
-a          1 2848.43 2848.43  3827.2 < 2.2e-16 ***
-Residuals 98   72.94    0.74                      
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-</code></pre>
-<p>From the <code>model</code>, extract the coefficient of <code>a</code> into a variable called <code>a_coeff</code> (which would contain just the number <code>1.533367</code> for this random sample). Next, from <code>vartest</code> extract the <em>p</em> value associated with the <code>a</code> coefficient into a vector called <code>a_pval</code> (for this random sample, the p value is <code>2.2e-16</code>).</p></li>
-<li><p>Write a function called <code>simple_lm_pval()</code> that automates the process above; it should take two parameters (two potentially linearly dependent numeric vectors) and return the <em>p</em> value associated with the first (nonintercept) coefficient.</p></li>
-<li><p>Create a list containing three random samples from different distributions (e.g., from <code>rnorm()</code>, <code>runif()</code>, and <code>rexp()</code>), and add an attribute for <code>"disttype"</code> to each. Use <code>print()</code> and <code>str()</code> on the list to examine the attributes you added.</p></li>
-<li><p>Some names can be used with <code>$</code> notation without quotation marks; if <code>l &lt;- list(values = c(20, 30))</code>, then <code>print(l$values)</code> will print the internal vector. On the other hand, if <code>l &lt;- list("val-entries" = c(20, 30))</code>, then quotations are required as in <code>print(l$"val-entries")</code>. By experimentation, determine at least five different characters that require the use of quotation marks when using <code>$</code> notation.</p></li>
-<li><p>Experiment with the <code>is.list()</code> and <code>as.list()</code> functions, trying each of them on both vectors and lists.</p></li>
+<li><p>Read the <code>states.txt</code> file into a data frame, as discussed in Chapter 28, <a href="">Vectors</a>. Extract a new data frame called <code>states_name_pop</code> containing only the columns for <code>name</code> and <code>population</code>.</p></li>
+<li><p>Using <code>subset()</code>, extract a data frame called <code>states_gradincome_high</code> containing all columns, and all rows where the income is greater than the median of income or where <code>hs_grad</code> is greater than the median of <code>hs_grad</code>. (There are 35 such states listed in the table.) Next, do the same extraction with <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> syntax.</p></li>
+<li><p>Create a table called <code>states_by_region_income</code>, where the rows are ordered first by <code>region</code> and second by <code>income</code>. (The <code>order()</code> function can take multiple parameters as in <code>order(vec1, vec2)</code>; they are considered in turn in determining the ordering.)</p></li>
+<li><p>Use <code>order()</code>, <code>colnames()</code>, and <code>[&lt;row_selector&gt;,&lt;column_selector&gt;]</code> syntax to create a data frame <code>states_cols_ordered</code>, where the columns are alphabetically ordered (i.e., <code>hs_grad</code> first, then <code>income</code>, then <code>murder</code>, then <code>name</code>, and so on).</p></li>
+<li><p>The <code>nrow()</code> function returns the number of rows in a data frame, while <code>rev()</code> reverses a vector and <code>seq(a, b)</code> returns a vector of integers from <code>a</code> to <code>b</code> (inclusive). Use these to produce <code>states_by_income_rev</code>, which is the <code>states</code> data frame but with rows appearing in <em>reverse</em> order of income (highest incomes on top).</p></li>
+<li><p>Try converting the <code>states</code> data frame to a matrix by running it through the <code>as.matrix()</code> function. What happens to the data, and why do you think that is?</p></li>
 </ol>
 </div>
 
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="footnotes">
 <hr />
-<ol start="43">
-<li id="fn43"><p>R lists are often used like dictionaries in Python and hash tables in other languages, because of this easy and effective Name → Value lookup operation. It should be noted that (at least as of R 3.3), name lookups in lists are not as efficient as name lookups in Python dictionaries or other true hash tables. For an efficient and more idiomatic hash table/dictionary operation, there is also the package <code>hash</code> available for install with <code>install.packages("hash")</code>.<a href="lists-and-attributes.html#fnref43" class="footnote-back">↩︎</a></p></li>
-<li id="fn44"><p>For example, the names of a vector are stored as an attribute called “names”—the lines <code>names(scores) &lt;- c("Student A", "Student B", "Student C")</code> and <code>attr(scores, "names") &lt;- c("Student A", "Student B", "Student C")</code> are (almost) equivalent. Still, it is recommended to use specialized functions like <code>names()</code> rather than set them with <code>attr()</code> because the <code>names()</code> function includes additional checks on the sanity of the names vector.<a href="lists-and-attributes.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<ol start="45">
+<li id="fn45"><p>Unfortunately, when printed, quotation marks are left off of row names, commonly leading programmers to think that the row indexes are what is being displayed. Similarly, quotation marks are left off of columns that are character vectors (like the <code>ids</code> column in this example), which can cause confusion if the column is a character type with elements like <code>"1"</code>, <code>"2"</code>, and so on, potentially leading the programmer to think the column is numeric. In a final twist of confusion, using <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> syntax breaks a common pattern: <code>[]</code> indexing of a vector always returns a vector, <code>[]</code> indexing of a list always returns a list, and <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> indexing of a data frame always returns a data frame, <em>unless</em> it would have only one column, in which case the column/vector is returned. The remedy for this is <code>[&lt;row_selector&gt;, &lt;column_selector&gt;, drop = FALSE]</code>, which instructs R not to “drop” a dimension.<a href="data-frames.html#fnref45" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -675,8 +544,8 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
           </div>
         </div>
       </div>
-<a href="r-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-frames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lists-and-attributes.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -707,7 +576,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-05-lists-and-attributes.Rmd",
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-06-data-frames.Rmd",
 "text": "Edit"
 },
 "history": {
