@@ -1,3 +1,99 @@
 # The Standard Streams
 
 In previous chapters, we learned that programs may produce output not only by writing to files, but also by printing them on the [standard output](#standard_output) stream. To further illustrate this feature, we’ve created a simple program called [`fasta_stats.py`](data/fasta_stats.py) that, given a FASTA file name as its first parameter, produces statistics on each sequence. We’ll also look at the file [`pz_cDNAs.fasta`](data/pz_cDNAs.fasta), which contains a set of 471 de novo assembled transcript sequences from *Papilio zelicaon*, and [`pz_cDNAs_sample.fasta`](data/pz_cDNAs_sample.fasta), which contains only the first two.
+
+<pre id=part1-09-wget
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>mkdir fasta_stats</b>
+[oneils@mbp ~/apcb/intro]$ <b>cd fasta_stats</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wget https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/fasta_stats.py</b>
+--2021-09-28 09:23:59--  https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/fasta_stats.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)
+...
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>chmod +x fasta_stats.py</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wget https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/pz_cDNAs.fasta</b>
+...
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wget https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/pz_cDNAs_sample.fasta</b>
+...
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>ls</b>
+<span style="color: green">fasta_stats.py</span>  pz_cDNAs.fasta  pz_cDNAs_sample.fasta
+</code></pre>
+
+We can run the `fasta_stats.py` program (after making it executable) with `./fasta_stats.py pz_cDNAs_sample.fasta`.
+
+<pre id=part1-09-fasta_stats
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs_sample.fasta</b>
+# Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+Processing sequence ID PZ7180000031590
+PZ7180000031590 0.378 486 ACAAA 5 unit:ATTTA 10 pentanucleotide
+Processing sequence ID PZ7180000000004_TX
+PZ7180000000004_TX 0.279 1000 AAATA 12 unit:TAA 12 trinucleotide
+</code></pre>
+
+Based on the information printed, it appears that sequence `PZ7180000031590` has a GC content (percentage of the sequence composed of G or C characters) of 37.8%, is 486 base pairs long, the most common five-base-pair sequence is `ACAAA` (occurring 5 times), and the longest perfect repeat is 10 base pairs long, caused by the pentanucleotide `ATTTA`, occurring twice.
+
+Much like `hmmsearch`, this program writes its output to [standard output](#standard_output). If we would like to save the results, we know that we can redirect the output of standard out with the `>` redirect.
+
+<pre id=part1-09-redirect
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs_sample.fasta > pz_sample_stats.txt</b>
+Processing sequence ID PZ7180000031590
+Processing sequence ID PZ7180000000004_TX
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>ls</b>
+<span style="color: green">fasta_stats.py</span>  pz_cDNAs.fasta  pz_cDNAs_sample.fasta  pz_sample_stats.txt
+</code></pre>
+
+When we run this command, however, we see that even though the output file has been created, text is still printed to the terminal! If we use `less -S` to view the `pz_sample_stats.txt` file, we see that some of the output has gone to the file.
+
+<pre id=part1-09-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b># Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+PZ7180000031590 0.378   486     ACAAA   5       unit:ATTTA      10      pentanuc
+PZ7180000000004_TX      0.279   1000    AAATA   12      unit:TAA        12      </b>
+<span style="background-color:black; color:white;">pz_sample_stats.txt (END)</span>
+</code></pre>
+
+So what is going on? It turns out that programs can produce output (other than writing to files) on *two* streams. We are already familiar with the first, [standard output](#standard_output), which is by default printed to the terminal but can be redirected to a file with >. The second, called ###### {- #standard_error}*standard error*, is also by default printed to the terminal but is not redirected with `>`.
+
+By default, like standard output, standard error (also known as “standard err” or “stderr”) is printed to the terminal.
+
+Because standard error usually contains diagnostic information, we may not be interested in capturing it into its own file. Still, if we wish, `bash` can redirect the standard error to a file by using the `2>` redirect.^[The `tcsh` and `csh` shells unfortunately cannot natively separately redirect stdout and stderr to files. A potential workaround looks like: `( ./fasta_stats pz_cDNAs_sample.fasta > pz_sample_stats.txt ) > & pz_sample_stats.err.txt`. This command runs two independent redirects; using parentheses causes the redirect of stdout to happen first, then the further redirect of stderr can occur next. How `bash`-compatible shells handle standard output and standard error is one of the primary reasons they are preferred over the older `csh`-compatible shells.]
+
+<pre id=part1-09-stderr-redirect
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs_sample.fasta > pz_sample_stats.txt 2> pz_sample_stats.err.txt</b>
+Processing sequence ID PZ7180000031590
+Processing sequence ID PZ7180000000004_TX
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>ls</b>
+<span style="color: green">fasta_stats.py</span>  pz_cDNAs.fasta  pz_cDNAs_sample.fasta  pz_sample_stats.txt
+</code></pre>
