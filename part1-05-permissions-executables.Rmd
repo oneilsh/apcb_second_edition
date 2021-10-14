@@ -270,6 +270,8 @@ Hello!
 This is a bit weird...
 </code></pre>
 
+###### {- #script}
+
 It ran! What we’ve created is known as a script to be run by an interpreter; in this case, the interpreter is `bash`. A script is a text file with execute permissions set, containing commands that may be run by an interpreter, usually specified through the absolute path at the top of the script with a `#!` line. An interpreter is a program that can execute commands, sometimes specified in a script file.
 
 What is happening here is that the shell has noticed that the user is attempting to run an executable file, and passes the execution off to the operating system. The operating system, in turn, notices the first two bytes of the file (the `#!` characters), and rather than having the CPU run the file as binary machine code, executes the program specified on the `#!` line, passing to that program the contents of the file as “code” to be run by that program. Because in this case the interpreting program is `bash`, we can specify any commands that we can send to our shell, bash. Later, we’ll see that we can create scripts that use much more sophisticated interpreters, like `python`, to run more sophisticated code.
