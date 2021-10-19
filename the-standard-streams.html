@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Hello, World | A Primer for Computational Biology (2nd Edition)</title>
-  <meta name="description" content="Chapter 10 Hello, World | A Primer for Computational Biology (2nd Edition)" />
+  <title>Chapter 9 The Standard Streams | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 9 The Standard Streams | A Primer for Computational Biology (2nd Edition)" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Hello, World | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:title" content="Chapter 9 The Standard Streams | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Hello, World | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="twitter:title" content="Chapter 9 The Standard Streams | A Primer for Computational Biology (2nd Edition)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="the-standard-streams.html"/>
-<link rel="next" href="elementary-data-types.html"/>
+<link rel="prev" href="command-line-blast.html"/>
+<link rel="next" href="hello-world.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -287,128 +287,271 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hello-world" class="section level1">
-<h1><span class="header-section-number">Chapter 10</span> Hello, World</h1>
-<p>Before we begin with programming in Python, it is useful to consider how the language fits into the landscape and history of similar languages. Initially, computer programming was not far removed from the <a href="context.html#hardware_defs">hardware</a> on which it was being coded. This meant writing “bytecode”—or its human-readable equivalent, assembly code—that explicitly referenced memory (RAM) locations and copied data to and from the relatively small number of CPU registers (the storage units directly accessible by the CPU). Unfortunately, this meant that code had to be rewritten for each of the many types of CPUs. Later, more portable languages like C were developed. These languages still work close to the hardware in many ways; in particular, the programmer must tell the computer how it should allocate and de-allocate memory from RAM. On the other hand, some abstraction provides higher-level coding constructs that are not specific to CPU type. This code is then compiled into bytecode by a compiling program for each specific CPU (as discussed in previous chapters, we had to compile some software from source to install it). The result is a fast and often optimized program that frees the programmer from having to worry about the huge variety of CPU types.</p>
-<p>Later, some programmers decided that they didn’t want to have to worry about specifying how RAM space should be allocated and de-allocated. They also wanted more features built into their languages to help them quickly architect complicated programs. One of the languages meant to accomplish these goals is Python, a project started in 1988 by mathematician, computer scientist, and Monty Python fan Guido van Rossum.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> “High-level” languages like Python and R (covered in later chapters) provide many built-in features to the programmer, and they are even more abstract than languages like C.</p>
-<p>Unfortunately, because of the added abstractions, languages like Python can’t easily be compiled (like C can) to be run directly on the CPU.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> In fact, these languages are not run the same way compiled or assembly programs are: they are interpreted by another program that is written in a compiled language like C and runs on the CPU. So, a Python “program” is just a text file of commands that are interpreted by another program that is actually interacting with the CPU and RAM.</p>
-<div class="fig center" style="width: 60%">
-<p><img src="images/part2-01-hello-world.images/II.1_1_compiled_vs_interpreted.png" /></p>
-</div>
-<p>The added ease and flexibility of interpreted languages generally comes at a cost: because of the extra execution layer, they tend to be 2 to 100 times slower and use 2 to 20 times more memory than carefully constructed C programs, depending on what is being computed. These languages are significantly easier to use, however, and we can get our ideas into code far more quickly.</p>
-<p>Work on the Python language and interpreters for it has progressed steadily since the 1990s, emphasizing a “one best way” approach. Rather than providing multiple versions of basic commands that do the same thing, Python provides as few commands as possible while attempting to not limit the programmer. Python also emphasizes code readability: most syntax is composed of English-like words, shortcuts and punctuation characters are kept to a minimum, and the visual structure of “blocks” of code are enforced with indentation.</p>
-<p>For these reasons, Python use has grown significantly in recent years, especially for bioinformatics and computational biology. The emphasis on readability and “one best way” facilitates learning, particularly for those who are brand-new to programming.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> Most importantly, Python allows us to focus on the concepts of programming without struggling through an abundance of choices and confusing syntax, and new programmers can frequently read and understand code written by others. Finally, Python incorporates a number of modern programming paradigms making it appropriate for both small tasks and larger software engineering projects—it’s an official language at Google (along with C++ and Java), and it’s taught in introductory courses at Johns Hopkins University, New York University, the Massachusetts Institute of Technology, and many others.</p>
-<p>All of this isn’t to say that any programming language is devoid of quirks and difficulties. We’ll only be covering some of what Python offers—the parts that are most basic and likely to be found in many languages. Topics that are highly “Pythonic” will be highlighted as we go along.</p>
-<div class="callout-box">
-<h4 id="python-versions" class="unnumbered">Python Versions</h4>
-<p>In this book we will be working with Python version 2.7; that is, we’re going to assume that the Python executable found in your <code>$PATH</code> variable is version 2.7 (perhaps 2.7.10, which is the last of the 2.7 series as of 2015). You can check this by running <code>python --version</code> on the command line. While newer versions are available (up to 3.4 and higher), they are not yet universally used. These newer versions change some syntax from 2.7. For many of the concepts introduced in this book, if you stick with the syntax as shown, your code should be compatible with these newer versions as well, but possibly not backward-compatible with older versions such as 2.5 or 2.6. This is an unfortunate artifact of Python’s “one best way” philosophy: on occasion, the Python designers change their minds about what the best way is!</p>
-<p>To give an example, the print function <code>print("hello there")</code> works in Python versions 2.6, 2.7, 3.0, 3.1, and so on, whereas the keyword version <code>print "hello there"</code> (notice the lack of parentheses) would only work in versions 2.6 and 2.7. In some cases where differences in behavior would occur in later versions, we’ll note them in footnotes.</p>
-</div>
-<div id="hello-world-1" class="section level3 unnumbered">
-<h3>Hello, World</h3>
-<p>Because we’re working in an interpreted language, in order to write a program, we’ll need to create a file of Python code, and then supply it as input to the interpreting program. There are a few ways to do this: (1) use an interactive graphical environment like Jupyter notebook; (2) run the <a href="#interpreter_def">interpreter</a> ourselves on the command line, giving the file name containing our code as an argument; or (3) making the code file an executable <a href="#script_def">script</a> in the command line environment using <code>#!</code> syntax.</p>
-<div id="jupyter-notebook" class="section level4 unnumbered">
-<h4>Jupyter Notebook</h4>
-<p>For those wishing to program Python without working on the command line, a variety of graphical environments are available. A typical installation of Python from <a href="http://python.org">http://python.org</a> includes the “Idle” code editor. One of the nicer alternatives to this default is known as Jupyter, which runs in a web browser allows the programmer to interleave sections of code and documentation.</p>
-<p>Installing Jupyter requires that Python already be installed (from <a href="http://python.org">http://python.org</a>), and then requires using the command line terminal in Linux, OS X, or Windows; see <a href="http://python.org/install">http://jupyter.org/install</a> for details. Once installed, it can be started from the command line by running <code>jupyter notebook</code>:</p>
-<pre id=block_876d04
+<div id="the-standard-streams" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> The Standard Streams</h1>
+<p>In previous chapters, we learned that programs may produce output not only by writing to files, but also by printing them on the <a href="#standard_output">standard output</a> stream. To further illustrate this feature, we’ve created a simple program called <a href="data/fasta_stats.py"><code>fasta_stats.py</code></a> that, given a FASTA file name as its first parameter, produces statistics on each sequence. We’ll also look at the file <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a>, which contains a set of 471 de novo assembled transcript sequences from <em>Papilio zelicaon</em>, and <a href="data/pz_cDNAs_sample.fasta"><code>pz_cDNAs_sample.fasta</code></a>, which contains only the first two.</p>
+<pre id=part1-09-wget
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[soneil@mbp ~]$ <b>jupyter notebook</b>
+[oneils@mbp ~/apcb/intro]$ <b>mkdir fasta_stats</b>
+[oneils@mbp ~/apcb/intro]$ <b>cd fasta_stats</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wget https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/fasta_stats.py</b>
+--2021-09-28 09:23:59--  https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/fasta_stats.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)
+...
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>chmod +x fasta_stats.py</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wget https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/pz_cDNAs.fasta</b>
+...
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wget https://raw.githubusercontent.com/oneilsh/apcb_second_edition/master/data/pz_cDNAs_sample.fasta</b>
+...
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>ls</b>
+<span style="color: green">fasta_stats.py</span>  pz_cDNAs.fasta  pz_cDNAs_sample.fasta
 </code></pre>
-<p>The Jupyter interface will open in the default desktop web browser, showing the list of folders and files in whatever directory the command was run from.</p>
-<div class="fig center" style="width: 80%">
-<p><img src="images/part2-01-hello-world.images/II.1_3_ipython_folders-3.png" /></p>
-</div>
-<p>Clicking the “New” button, followed by “Python Notebook” will create a new notebook document composed of “cells.” Cells in a notebook can contain human-readable text (as documentation) or lines of Python code. Whether the text in the cell is interpreted as code or text depends on the choice made in the “Cell” menu.</p>
-<p>Each cell may be “executed” by clicking on the “Play” button; doing so causes text cells to change to a nicely formatted output, and executes lines of code for code cells. But beware: the output of a given cell often depends on what other cells have been executed and in which order (see the “Cell output depends on the order of execution” cell in the figure below).</p>
-<div class="fig center" style="width: 80%">
-<p><img src="images/part2-01-hello-world.images/II.1_4_ipython_notebook_ex-4.png" /></p>
-</div>
-<p>For this reason, I highly recommend making the assumption that all code cells will be executed in top-to-bottom order, which can be accomplished by selecting “Run All” from the “Cell” menu whenever you want to execute any code. Doing so causes all the cells to be re-executed each time it is run, it but has the advantage of ensuring the correctness of the overall notebook as changes are made to cells over time.</p>
-</div>
-<div id="specified-interpreter" class="section level4 unnumbered">
-<h4>Specified Interpreter</h4>
-<p>As convenient as notebooks are, because the previous part of this book focused on the command line, and Python interfaces quite nicely with it, the examples here will be from the command line environment. Because Python programs are interpreted scripts, we can manually specify the <a href="#interpreter_def">interpreter</a> on the command line each time we run such a <a href="#script_def">script</a>.</p>
-<p>For this method, we first have to edit a code file that we’ll call <code>helloworld.py</code> (<code>.py</code> is the traditional extension for Python programs). On the command line, we’ll edit code files with our text editor <code>nano</code>, passing in a few extra parameters:</p>
-<pre id=block_10949d
+<p>We can run the <code>fasta_stats.py</code> program (after making it executable) with <code>./fasta_stats.py pz_cDNAs_sample.fasta</code>.</p>
+<pre id=part1-09-fasta_stats
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[soneil@mbp ~]$ <b>nano -w -i -E -T 4 helloworld.py</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs_sample.fasta</b>
+# Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+Processing sequence ID PZ7180000031590
+PZ7180000031590 0.378 486 ACAAA 5 unit:ATTTA 10 pentanucleotide
+Processing sequence ID PZ7180000000004_TX
+PZ7180000000004_TX 0.279 1000 AAATA 12 unit:TAA 12 trinucleotide
 </code></pre>
-<p>The <code>-w</code> tells nano not to automatically wrap long lines (we’re writing code after all, not an essay), <code>-i</code> says to automatically indent newlines to the current indentation level, <code>-T 4</code> says that tab-stops should be four spaces wide, and <code>-E</code> says that tabs should be converted to spaces (four of them). This usage of four spaces per indentation level is widely agreed upon by the Python community as being easy on the eyes. (“One best way,” remember?) We’ll put a simple call to the <code>print()</code> function in the file:</p>
-<div class="fig center" style="width: 80%">
-<p><img src="images/part2-01-hello-world.images/II.1_6_py_2_hello_world.png" /></p>
-</div>
-<p>As usual, <code>Control-o</code> saves the file (press Enter if prompted about the file name) and <code>Control-x</code> exits <code>nano</code>. Next, to run it, all we need to do is call the Python interpreter on the file:</p>
-<pre id=block_a995fb
+<p>Based on the information printed, it appears that sequence <code>PZ7180000031590</code> has a GC content (percentage of the sequence composed of G or C characters) of 37.8%, is 486 base pairs long, the most common five-base-pair sequence is <code>ACAAA</code> (occurring 5 times), and the longest perfect repeat is 10 base pairs long, caused by the pentanucleotide <code>ATTTA</code>, occurring twice.</p>
+<p>Much like <code>hmmsearch</code>, this program writes its output to <a href="#standard_output">standard output</a>. If we would like to save the results, we know that we can redirect the output of standard out with the <code>&gt;</code> redirect.</p>
+<pre id=part1-09-redirect
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[soneil@mbp ~]$ <b>python helloworld.py</b>
-Hello world!
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs_sample.fasta > pz_sample_stats.txt</b>
+Processing sequence ID PZ7180000031590
+Processing sequence ID PZ7180000000004_TX
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>ls</b>
+<span style="color: green">fasta_stats.py</span>  pz_cDNAs.fasta  pz_cDNAs_sample.fasta  pz_sample_stats.txt
 </code></pre>
-<p>Success! We’ve written our first Python program!</p>
-</div>
-<div id="making-the-file-executable" class="section level4 unnumbered">
-<h4>Making the File Executable</h4>
-<p>An alternative method is to make the code file an executable <a href="#script_def">script</a>. First, we have to edit the code file to include a special first line:</p>
-<div class="fig center" style="width: 80%">
-<p><img src="images/part2-01-hello-world.images/II.1_8_py_3_hello_world_chmod.png" /></p>
-</div>
-<p>For this method to work, the first two characters of the file must be <code>#!</code> (in fact, the entire line needs to be replicated exactly); although <code>nano</code> is displaying what looks to be a blank line above our <code>#!</code> line, there isn’t really one there.</p>
-<p>In chapter 5, “<a href="">Permissions and Executables</a>,” we discussed the <code>#!</code> line as containing the absolute path to the interpreter, as in <code>#!/usr/bin/bash</code> for bash scripts. In this case, we are specifying something slightly different: <code>#!/usr/bin/env python</code>. The <code>env</code> program, among other things, searches for the installed location of the given argument and executes that. A <code>#!</code> line like this will cause a Python program to be successfully executed, even if it is installed in a nonstandard location. (One may ask if <code>env</code> is ever installed in a nonstandard location. Fortunately, it is rare to find <code>env</code> located anywhere other than in <code>/usr/bin</code>.)</p>
-<p>Next, we need to exit <code>nano</code> and make the file executable by using the <code>chmod</code> utility, and finally we can run it with <code>./helloworld.py</code>. This specifies that the program <code>helloworld.py</code> should be run and that it exists in the current directory (<code>./</code>).</p>
-<pre id=block_ef3a01
+<p>When we run this command, however, we see that even though the output file has been created, text is still printed to the terminal! If we use <code>less -S</code> to view the <code>pz_sample_stats.txt</code> file, we see that some of the output has gone to the file.</p>
+<pre id=part1-09-output
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[soneil@mbp ~]$ <b>ls</b>
-helloworld.py
-[soneil@mbp ~]$ <b>chmod +x helloworld.py</b>
-[soneil@mbp ~]$ <b>./helloworld.py</b>
-Hello world!
+<b># Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+PZ7180000031590 0.378   486     ACAAA   5       unit:ATTTA      10      pentanuc
+PZ7180000000004_TX      0.279   1000    AAATA   12      unit:TAA        12      </b>
+<span style="background-color:black; color:white;">pz_sample_stats.txt (END)</span>
 </code></pre>
-<div class="callout-box">
-<h4 id="configuring-and-using-nano" class="unnumbered">Configuring and Using <code>nano</code></h4>
-<p>Generally, you won’t want to type <code>nano -w -i -E -T 4 ...</code> every time you want to edit a Python code file. Fortunately, <code>nano</code> can be configured to automatically use these options if they are specified correctly in a file called <code>.nanorc</code> in your home directory. But this may not be the best choice, either: when editing files that are not Python code, you likely don’t want to convert all your tab entries to spaces. Instead, you may want to define a shell alias called <code>nanopy</code> specifically for editing Python code. To have this shell alias preserved for each login session, the relevant code would need to be added to your <code>.bashrc</code> (assuming your <a href="#shell_def">shell</a> is bash):</p>
-<pre id=block_ef3a01
+<p>So what is going on? It turns out that programs can produce output (other than writing to files) on <em>two</em> streams. We are already familiar with the first, <a href="#standard_output">standard output</a>, which is by default printed to the terminal but can be redirected to a file with &gt;. The second, called ###### {- #standard_error}<em>standard error</em>, is also by default printed to the terminal but is not redirected with <code>&gt;</code>.</p>
+<p>By default, like standard output, standard error (also known as “standard err” or “stderr”) is printed to the terminal.</p>
+<p>Because standard error usually contains diagnostic information, we may not be interested in capturing it into its own file. Still, if we wish, <code>bash</code> can redirect the standard error to a file by using the <code>2&gt;</code> redirect.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
+<pre id=part1-09-stderr-redirect
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[soneil@mbp ~]$ <b>echo "alias nanopy='nano -w -i -E -T 4 ' >> ~/.bashrc"</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs_sample.fasta > pz_sample_stats.txt 2> pz_sample_stats.err.txt</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>ls</b>
+<span style="color: green">fasta_stats.py</span>  pz_cDNAs.fasta  pz_cDNAs_sample.fasta  pz_sample_stats.txt  pz_sample_stats.err.txt
 </code></pre>
-<p>If you are going to perform the above, double-check that the command is exactly as written. After logging out and back in, you can edit a Python code file with the alias using <code>nanopy helloworld.py</code>.</p>
-<p>As evident from the code sample above, <code>nano</code> can also provide syntax highlighting (coloring of code for readability) if your <code>$HOME/.nanorc</code> and related files are configured properly, though it isn’t necessary for programming.</p>
-<p>Don’t forget that it is often useful to have multiple terminal windows open simultaneously. You can use one for editing, one for running your program and testing, and perhaps a third running <code>top</code>, displaying how much CPU and RAM your program is using.</p>
-<p>Although not as powerful as more sophisticated text editors such as <code>emacs</code> or <code>vim</code>, <code>nano</code> is easy to use and includes a number of features such as editing multiple files, cutting and pasting within and between files, regular-expression-based search and search/replace, spell check, and more. While editing, <code>nano</code> can also take you directly to a line number (<code>Control–-</code>), which will come in handy when you need to go directly to a line that caused an error.</p>
-<p>Whatever editor you choose to use, reading some documentation will help you be much more productive. For the rest of our code samples, we’ll be showing screenshots from within <code>vim</code>, primarily because it provides prettier syntax highlighting.</p>
+<p>We might pictorially represent programs and their output as alternative information flows:</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part1-09-the-standard-streams.Rmd.images/I.9_6_central_dogma_1.png" /></p>
 </div>
+<div id="filtering-lines-standard-input" class="section level3 unnumbered">
+<h3>Filtering Lines, Standard Input</h3>
+<p>It can often be useful to extract lines from a file based on a pattern. For example, the <code>pz_sample_stats.txt</code> file contains information on what each column describes, as well as the data itself. If we want to extract all the lines that match a particular pattern, say, <code>unit:</code>, we can use the tool <code>grep</code> (for Global search for Regular Expression and Print), which prints to <a href="#standard_output">standard output</a> lines that match a given pattern (or don’t match a given pattern, if using the <code>-v</code> flag): <code>grep '&lt;pattern&gt;' &lt;file&gt;</code>. To illustrate, we’ll first run fasta_stats on the full input file, redirecting the standard output to a file called <code>pz_stats.txt</code>.</p>
+<pre id=part1-09-pz_stats
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs.fasta > pz_stats.txt</b>
+</code></pre>
+<p>Looking at the file with <code>less -S pz_stats.txt</code>, we can see that informational lines as well as data-containing lines are stored in the file:</p>
+<pre id=part1-09-pz-stats-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b># Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+PZ832049        0.321   218     CTTAA   4       unit:CGT        6       trinucle
+PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ439397        0.153   111     TTAAT   5       unit:GAAAT      10      pentanuc
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ535325        0.108   120     AATTA   6       unit:TA 6       dinucleotide
+...</b>
+</code></pre>
+<p>To get rid of the informational lines, we can use <code>grep</code> to extract the other lines by searching for some pattern they have in common; in this case, the pattern <code>unit:</code> will do. Because grep prints its results to standard output, we will need to redirect the modified output to a file called, perhaps, <code>pz_stats.table</code> to indicate its tabular nature.</p>
+<pre id=part1-09-grep
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>grep 'unit:' pz_stats.txt > pz_stats.table</b>
+</code></pre>
+<p>This time, <code>less -S pz_stats.table</code> reveals only the desired lines.</p>
+<pre id=part1-09-pz-grep-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>PZ832049        0.321   218     CTTAA   4       unit:CGT        6       trinucle
+PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ439397        0.153   111     TTAAT   5       unit:GAAAT      10      pentanuc
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ535325        0.108   120     AATTA   6       unit:TA 6       dinucleotide
+...</b>
+</code></pre>
+<p>Rather than viewing the file with <code>less</code>, we can also count the number of lines present in the file with the <code>wc</code> tool, which counts the number of lines, words, and characters of input: <code>wc &lt;file&gt;</code>.</p>
+<p>Working with the cleaned data table reveals that our program produced 21,131 characters broken into 3,297 words among 471 lines of data output.</p>
+<pre id=part1-09-wc
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wc pz_stats.table</b>
+  471  3297 21131 pz_stats.table
+</code></pre>
+<p>This sort of command-line-driven analysis can be quite powerful, particularly because many of these programs—like <code>less</code>, <code>grep</code>, and <code>wc</code>—can both print their results on standard output and read input from <em>standard input</em> rather than from a file. Standard input is the secondary input mechanism for command-line programs (other than reading from files directly). By default, standard input, or “stdin”, is unused.</p>
+<p>How can we get input to a program on its standard input? It turns out that the easiest way to do so is to <em>redirect</em> the standard output of another program to it using the <code>|</code>, also known as the “pipe,” redirect (found above the Enter key on most keyboards). In this case, the data come in “on the left”:</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part1-09-the-standard-streams.Rmd.images/I.9_12_central_dogma_2.png" /></p>
+</div>
+<p>To drive this home, we’ll first remove our <code>pz_stats.table</code> file, and then rerun our <code>grep</code> for <code>unit:</code> on the <code>pz_stats.txt</code> file, but rather than send the result of <code>grep</code> to a file with the <code>&gt;</code> redirect, we’ll direct it straight to the standard input of <code>wc</code> with a <code>|</code> redirect.</p>
+<pre id=part1-09-pipe
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>grep 'unit:' pz_stats.txt | wc</b>
+    471    3297   21131
+</code></pre>
+<p>In this example, we’ve neither created a new file nor specified a file for <code>wc</code> to read from; the data are stored in a temporary buffer that is handled automatically by the shell and operating system. The <code>less</code> program can also read from standard input, so if we wanted to see the contents of the <code>grep</code> without creating a new file, we could run <code>grep 'unit:' pz_stats.txt | less -S</code>.</p>
+<p>Recall that the <code>fasta_stats</code> program wrote its output to standard out, and because <code>grep</code> can read from standard input as well, we can process the entire FASTA file without needing to create any new files by using multiple such buffers:</p>
+<pre id=part1-09-pipe-line
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | grep 'unit:' | wc</b>
+</code></pre>
+<p>When this command runs, the results printed by <code>fasta_stats</code> on standard error will still be printed to the terminal (as that is the default and we didn’t redirect standard error), but the standard output results will be filtered through <code>grep</code> and then filtered through <code>wc</code>, producing the eventual output of 471 lines.</p>
+<p>At this point, the longish nature of the commands and the fact that our terminal window is only so wide are making it difficult to read the commands we are producing. So, we’ll start breaking the commands over multiple lines by ending partial commands with backslashes. Just as in the shell scripts we wrote at the end of chapter 7, “<a href="#using_(bioinformatics)_software">Using (Bioinformatics) Software</a>”, using backslashes will let the shell know that we aren’t finished entering the command. However, the <code>bash</code> shell indicates that a command spans multiple lines by showing us a <code>&gt;</code>, which shouldn’t be confused with the redirect character that we might type ourselves. The following example shows the exact same command in a more readable form broken over multiple lines, but the highlighted characters have not been typed.</p>
+<pre id=part1-09-pipe-line
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \ </b>
+<span style="background-color:LemonChiffon">> </span><b>grep 'unit:' | \ </b>
+<span style="background-color:LemonChiffon">> </span><b>wc</b>
+</code></pre>
+<p>A chain of commands like the above, separated by pipe characters, is often called a “pipeline.” More generally, though, a pipeline can describe any series of steps from input data to output data (as in the Muscle/HMMER series covered in chapter 7).</p>
+</div>
+<div id="counting-simple-at-repeats" class="section level3 unnumbered">
+<h3>Counting Simple AT Repeats</h3>
+<p>Let’s expand on the small pipeline above to inspect just the “simple” AT repeats, that is, those that are the string “AT” repeated one or more times. We can start with what we have, but rather than just searching for <code>unit:</code>, we’ll modify the pattern to find <code>unit:AT</code>, and see what we get:</p>
+<pre id=part1-09-grep-AT
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \ </b>
+> <b>grep 'unit:AT' | \ </b>
+> <b>less -S</b>
+</code></pre>
+<p>The resulting output is close to what we hoped for, but not quite complete, as this pattern also matches things like <code>unit:ATT</code> and <code>unit:ATG</code>.</p>
+<pre id=part1-09-AT-grep-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ7180000031590 0.378   486     ACAAA   5       unit:ATTTA      10      pentanuc
+PZ7180000031597 0.287   403     ATTAT   6       unit:ATTTTG     12      hexanucl
+PZ7180000025478 0.516   829     TGATG   18      unit:ATG        18      trinucle
+...</b>
+</code></pre>
+<p>We probably want to further filter the output, but based on what pattern? In this case, those lines that match not only <code>unit:AT</code>, but also the term <code>dinucleotide</code>. Rather than attempt to produce a single complicated pattern that does this job in a single <code>grep</code>, we can add another <code>grep</code> call into the pipeline.</p>
+<pre id=part1-09-grep-grep
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \ </b>
+> <b>grep 'unit:AT' | \ </b>
+> <b>grep 'dinucleotide' | \ </b>
+> <b>less -S</b>
+</code></pre>
+<p>This command results in the output we want:</p>
+<pre id=part1-09-grep-grep-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>PZ7180000031598 0.209   81      AATAT   5       unit:AT 6       dinucleotide
+PZ463243        0.226   97      TTGTA   3       unit:AT 4       dinucleotide
+PZ7180000000106_T       0.246   1044    AAAAA   22      unit:AT 10      dinucleo
+PZ17593_A       0.157   76      ATTAA   5       unit:AT 4       dinucleotide
+PZ492422        0.144   90      ATTAA   5       unit:AT 4       dinucleotide
+PZ22453_A       0.267   269     ATTAA   8       unit:AT 4       dinucleotide
+...</b>
+</code></pre>
+<p>Rather than run the results through <code>less -S</code>, we could instead use <code>wc</code> to count the simple (dinucleotide) AT repeats. There is an important concept at play here, that of <em>iterative development</em>, the idea that as we get closer to a solution, we inspect the results and repeat as necessary. Iterative development is a good strategy for many areas in life, but it is essential and pervasive in computing.</p>
+<p>Once we’ve decided that we like the small computational process we have created, we might decide to encapsulate it and make it repeatable as a shell <a href="permissions-and-executables.html#script">script</a>, perhaps called <a href="data/count_ATs.sh"><code>count_ATs.sh</code></a>.</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part1-09-the-standard-streams.Rmd.images/I.9_20_unix_112_unit_AT_script.png" /></p>
+</div>
+<p>The above script will need to be made executable and placed in a location referenced by <code>$PATH</code>, as will the <code>fasta_stats</code> program.</p>
 <div class="exercises">
-<h4 id="exercises-8" class="unnumbered">Exercises</h4>
+<h4 id="exercises-7" class="unnumbered">Exercises</h4>
 <ol style="list-style-type: decimal">
-<li>Create a file of Python code on the command line containing a simple <code>print("Hello!")</code> statement. Execute it by specifying the interpreter. If you are running iPython notebook, try to create a similarly simple notebook and execute the cell.</li>
-<li>Create a file of Python code, make it an executable script, and execute it. Does that work? Why or why not?</li>
-<li>Determine which version of Python you are running (perhaps by running <code>python --version</code>). Test to see which versions of print work for you: <code>print("Hello!")</code> or <code>print "Hello!"</code>. (The former is much preferred.)</li>
+<li><p>Use <code>grep</code> and <code>wc</code> to determine how many sequences are in the file <a href="data/orf_trans.fasta"><code>orf_trans.fasta</code></a> without creating any temporary files.</p></li>
+<li><p>How many sequence headers in the file <a href="data/orf_trans.fasta"><code>orf_trans.fasta</code></a> have the term “polymerase”?</p></li>
+<li><p>Some of the sequence headers in <a href="data/orf_trans.fasta"><code>orf_trans.fasta</code></a> have the phrase “Verified ORF” to indicate that the open reading frame has been verified experimentally. Some also have the term “reverse complement” to indicate that the ORF (open reading frame) is present on the reverse complement sequence of the canonical genome description. How many sequences are verified ORFs <em>and</em> are not on the reverse complement?</p></li>
+<li><p>The sequence headers in <a href="data/orf_trans.fasta"><code>orf_trans.fasta</code></a> have information on the chromosome from which they originate, such as <code>Chr I</code> or <code>Chr II</code>. How many sequences are present on chromosome I?</p></li>
 </ol>
 </div>
 
 </div>
 </div>
-</div>
+
+
+
 <div class="footnotes">
 <hr />
-<ol start="26">
-<li id="fn26"><p>The history of computing is full of twists, turns, and reinvention of wheels. LISP, for example, is a language that incorporates many of the same high-level features as Python, but it was first developed in 1958!<a href="hello-world.html#fnref26" class="footnote-back">↩︎</a></p></li>
-<li id="fn27"><p>On the other hand, ambitious programmers are currently working on projects like Cython to do exactly this.<a href="hello-world.html#fnref27" class="footnote-back">↩︎</a></p></li>
-<li id="fn28"><p>Many believe that the best way to learn programming is in a hardware-oriented fashion with assembly or a language like C. This is a legitimate philosophy, but for the intended audience of this book, we’ll stick with the higher-level languages Python and R.<a href="hello-world.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<ol start="25">
+<li id="fn25"><p>The <code>tcsh</code> and <code>csh</code> shells unfortunately cannot natively separately redirect stdout and stderr to files. A potential workaround looks like: <code>( ./fasta_stats pz_cDNAs_sample.fasta &gt; pz_sample_stats.txt ) &gt; &amp; pz_sample_stats.err.txt</code>. This command runs two independent redirects; using parentheses causes the redirect of stdout to happen first, then the further redirect of stderr can occur next. How <code>bash</code>-compatible shells handle standard output and standard error is one of the primary reasons they are preferred over the older <code>csh</code>-compatible shells.<a href="the-standard-streams.html#fnref25" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -416,8 +559,8 @@ Hello world!
           </div>
         </div>
       </div>
-<a href="the-standard-streams.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="elementary-data-types.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="command-line-blast.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hello-world.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -448,7 +591,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-01-hello-world.Rmd",
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-09-the-standard-streams.Rmd",
 "text": "Edit"
 },
 "history": {

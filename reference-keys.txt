@@ -4,7 +4,9 @@ the-command-line-and-filesystem
 working-with-files-and-directories
 permissions-and-executables
 installing-bioinformatics-software
+using-bioinformatics-software
 command-line-blast
+the-standard-streams
 hello-world
 elementary-data-types
 an-introduction
