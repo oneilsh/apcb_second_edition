@@ -66,7 +66,9 @@ The result illustrates the standard format for a FASTA file. Each sequence recor
   <img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_29_fasta_format.png" />
 </div>
 
-This line might then contain whitespace characters and metadata. Whitespace comprises a sequence of one or more spaces, tabs (represented in Unix/Linux as a special character sometimes written as `\t`), or newlines (represented in Unix/Linux as a special character sometimes written as `\n`) in a row.
+###### {- #whitespace}
+
+This line might then contain *whitespace* characters and metadata. Whitespace comprises a sequence of one or more spaces, tabs (represented in Unix/Linux as a special character sometimes written as `\t`), or newlines (represented in Unix/Linux as a special character sometimes written as `\n`) in a row.
 
 Lines following the header line contain the sequence information, and there is no specific format for the number of lines over which the sequence may be broken, or how long those lines should be. After the last sequence line for a record, a new sequence record may start.
 
@@ -316,7 +318,7 @@ dmel-all-translation-r6.02.fasta  p450s.fasta.aln
 p450s.fasta                       p450s.fasta.aln.hmm
 </code></pre>
 
-###### {- #standard-output}
+###### {- #standard_output}
 
 It seems that `hmmsearch`, by default, prints all of its meaningful output to the terminal. Actually, `hmmsearch` is printing its output to the *standard output* stream. Standard output is the primary output mechanism for command-line programs (other than writing files directly). By default, standard output, also known as “standard out” or “stdout,” is printed to the terminal.
 

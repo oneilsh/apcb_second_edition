@@ -1,0 +1,1975 @@
+# BLASTX 2.2.30+
+# Query: PZ7180000000004_TX nReads=26 cov=9.436
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031590 nReads=3 cov=2.59465
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027934 nReads=5 cov=2.32231
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ456916 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037718 nReads=9 cov=6.26448
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000004_TY nReads=86 cov=36.4238
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+PZ7180000000004_TY	YKL081W	31.07	338	197	8	13	993	1	313	1e-32	  124
+PZ7180000000004_TY	YPL048W	30.70	342	196	9	13	993	1	316	1e-28	  112
+PZ7180000000004_TY	YGR201C	24.02	204	136	4	13	582	1	199	3e-12	63.5
+# BLASTX 2.2.30+
+# Query: PZ7180000000067_AF nReads=16 cov=12.0608
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031591 nReads=4 cov=3.26022
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024036 nReads=14 cov=5.86079
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ15501_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ800059 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037719 nReads=4 cov=2.62469
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000004_TZ nReads=61 cov=31.2595
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031592 nReads=4 cov=3.17598
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027936 nReads=2 cov=1.60073
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024037 nReads=26 cov=6.96922
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ1082_AB nReads=1 cov=1
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 6 hits found
+PZ1082_AB	YHR104W	44.92	118	62	3	4	348	196	313	1e-26	  100
+PZ1082_AB	YDR368W	39.00	100	50	1	1	300	196	284	2e-17	75.1
+PZ1082_AB	YOR120W	36.00	100	53	1	1	300	196	284	7e-15	67.8
+PZ1082_AB	YDL124W	35.16	128	70	7	7	366	184	306	1e-11	58.9
+PZ1082_AB	YBR149W	29.29	99	59	1	4	300	218	305	2e-07	46.2
+PZ1082_AB	YJR096W	25.25	99	68	3	7	300	166	259	6e-07	45.1
+# BLASTX 2.2.30+
+# Query: PZ7180000031593 nReads=5 cov=3.27273
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ456919 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ693347_EBM nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ342_JQ nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024039 nReads=2 cov=2.0023
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024719_APV nReads=9 cov=3.43203
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031595 nReads=2 cov=1.3588
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027939 nReads=2 cov=1.37482
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17540_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000447_A nReads=2 cov=1.52986
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000447_B nReads=7 cov=3.98616
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031596 nReads=2 cov=1.57426
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ11_FX nReads=1 cov=1
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+PZ11_FX	YLR406C	53.01	83	38	1	290	42	25	106	7e-15	65.9
+PZ11_FX	YDL075W	53.01	83	38	1	290	42	25	106	9e-15	65.5
+# BLASTX 2.2.30+
+# Query: PZ25894_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031597 nReads=2 cov=1.79653
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025470 nReads=12 cov=5.96825
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ31_GH nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031598 nReads=2 cov=1.97531
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ14988_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025471 nReads=4 cov=1.57106
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ13865_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031599 nReads=2 cov=1.375
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036150 nReads=3 cov=2.12525
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025472 nReads=18 cov=7.143
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ640524 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000600_B nReads=9 cov=3.7459
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ24242_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036151 nReads=6 cov=2.66141
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025473 nReads=7 cov=2.38076
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025474 nReads=7 cov=3.86364
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ601258 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025475 nReads=2 cov=1.55918
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028772 nReads=2 cov=1.40778
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ15399_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ35181_B nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000633_B nReads=5 cov=3.34205
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ25398_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ23512_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ662049 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036154 nReads=4 cov=3.32031
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ7180000036154	YNL245C	36.27	102	60	3	105	395	1	102	3e-07	46.2
+# BLASTX 2.2.30+
+# Query: PZ7180000025476 nReads=4 cov=1.84059
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022520 nReads=24 cov=6.4313
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036155 nReads=17 cov=4.42362
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025477 nReads=13 cov=5.1815
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ851952 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ434291 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036156 nReads=2 cov=1.51107
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025478 nReads=9 cov=4.37636
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028775 nReads=5 cov=3.61232
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ732126 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028457_BMW nReads=5 cov=3.06176
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022522 nReads=6 cov=3.58447
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025479 nReads=8 cov=2.64862
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028776 nReads=4 cov=2.71399
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ15552_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ750331 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ333_CO nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022523 nReads=28 cov=7.67314
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ801814 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028777 nReads=3 cov=1.47983
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ830890 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17053_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ22783_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022524 nReads=36 cov=9.20119
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ463243 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028778 nReads=9 cov=4.15691
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ525403 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022525 nReads=11 cov=2.73147
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028779 nReads=3 cov=1.58095
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ605962 nReads=1 cov=1
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ605962	YKR079C	29.57	115	66	4	429	121	479	590	3e-11	59.3
+# BLASTX 2.2.30+
+# Query: PZ728940 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030412 nReads=6 cov=3.56202
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ625652_CJK nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000067_AY nReads=14 cov=5.1865
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ22254_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ20930_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022527 nReads=11 cov=5.04943
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ841572 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022528 nReads=8 cov=3.47335
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030414 nReads=2 cov=1.76887
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ783221_AOC nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ532963 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ674165 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022529 nReads=21 cov=5.55482
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019700 nReads=3 cov=2.25532
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ462889 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ797650 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019701 nReads=40 cov=22.5442
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030416 nReads=2 cov=1.86179
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ856513 nReads=1 cov=1
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ856513	YKL215C	48.39	155	73	3	3	452	109	261	3e-37	  135
+# BLASTX 2.2.30+
+# Query: PZ725649 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ803611 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019702 nReads=12 cov=8.68396
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030417 nReads=2 cov=1.76136
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ16936_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019703 nReads=7 cov=4.15682
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030418 nReads=2 cov=1.70149
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ3202_E nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ729309 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ835452 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ19882_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ621267 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019704 nReads=5 cov=3.39701
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030419 nReads=2 cov=1.99686
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ817248 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ527201 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ20795_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ565168 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019705 nReads=10 cov=4.33742
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ4990_P nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ467980 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019706 nReads=4 cov=2.83127
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ701633 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019707 nReads=10 cov=8.47059
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ21389_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ699332 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ598313 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ852490_ETW nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ22908_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17500_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036719_ARD nReads=7 cov=4.1479
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ457464_ZN nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17539_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ821824 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ19001_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000146_L nReads=30 cov=20.4413
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ25854_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ20981_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ614788 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ922_U nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021471 nReads=48 cov=10.1479
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ439397 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ1028_K nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032150 nReads=2 cov=1.91414
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ861581 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ770345 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ794706 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021473 nReads=44 cov=8.81014
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024770 nReads=23 cov=7.9627
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ13077_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032152 nReads=3 cov=2.07776
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021474 nReads=46 cov=11.7995
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024771 nReads=12 cov=4.81316
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+PZ7180000024771	YFL037W	75.73	103	25	0	849	541	323	425	5e-52	  177
+PZ7180000024771	YML085C	34.58	107	62	1	846	550	327	433	5e-18	81.6
+PZ7180000024771	YML124C	34.58	107	62	1	846	550	327	433	5e-18	81.6
+# BLASTX 2.2.30+
+# Query: PZ524382 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ2143_BP nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032153 nReads=2 cov=1.96026
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021475 nReads=101 cov=41.3457
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ7180000021475	YFR050C	36.40	250	140	6	123	839	17	258	8e-45	  154
+# BLASTX 2.2.30+
+# Query: PZ800795 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ735272 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036480_AIJ nReads=11 cov=4.61416
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032154 nReads=2 cov=1.43258
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024773 nReads=2 cov=1.57051
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ18488_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032155 nReads=3 cov=2.1542
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021477 nReads=17 cov=8.17316
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024774 nReads=3 cov=1.74725
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ796092 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021478 nReads=32 cov=11.3823
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ742703 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032157 nReads=2 cov=1.86353
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021479 nReads=45 cov=8.50979
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024776 nReads=8 cov=3.44402
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ759636 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026030 nReads=9 cov=4.08691
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ799391 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000626_B nReads=2 cov=2.00401
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032158 nReads=2 cov=1.90271
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+PZ7180000032158	YPL198W	68.83	77	24	0	232	2	61	137	6e-30	  109
+PZ7180000032158	YGL076C	68.83	77	24	0	232	2	61	137	6e-30	  109
+PZ7180000032158	YNL002C	49.12	57	27	1	166	2	141	197	8e-09	51.2
+# BLASTX 2.2.30+
+# Query: PZ7180000024777 nReads=6 cov=2.38934
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ19581_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026031 nReads=6 cov=2.98716
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ24989_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032159 nReads=2 cov=1.65815
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024778 nReads=8 cov=4.29654
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+PZ7180000024778	YKL088W	48.62	109	54	2	539	219	389	497	2e-26	  106
+PZ7180000024778	YKR072C	46.09	115	59	2	557	222	370	484	2e-25	  103
+PZ7180000024778	YOR054C	44.07	118	55	3	554	222	452	565	2e-24	  100
+# BLASTX 2.2.30+
+# Query: PZ782460 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026032 nReads=7 cov=2.43676
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ448818_ACV nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ20494_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024779 nReads=11 cov=4.86829
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ542594 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ483605 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ670161 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026034 nReads=6 cov=2.34378
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ23899_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000029332 nReads=3 cov=1.77778
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ510757 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ655256 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ483608 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026036 nReads=13 cov=7.56672
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000033592 nReads=7 cov=3.2
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000029334 nReads=2 cov=1.65775
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000033593 nReads=18 cov=6.02895
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037250 nReads=8 cov=4.15104
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000029335 nReads=2 cov=1.69853
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ858766 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000033594 nReads=15 cov=4.74728
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ740242 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037251 nReads=24 cov=13.5712
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026039 nReads=12 cov=5.73953
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000029336 nReads=2 cov=1.91885
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ805359 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030970_AAC nReads=3 cov=1.81164
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000033595 nReads=29 cov=8.84946
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+PZ7180000033595	YDR018C	25.27	273	163	9	847	125	113	376	1e-16	79.3
+PZ7180000033595	YBR042C	24.05	291	176	9	844	101	109	397	7e-14	71.2
+# BLASTX 2.2.30+
+# Query: PZ7180000036892 nReads=2 cov=1.73175
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000029337 nReads=3 cov=1.97485
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000033596 nReads=2 cov=1.40179
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036893 nReads=4 cov=2.73298
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ649135 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037253 nReads=5 cov=3.52734
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ492422 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000029338 nReads=5 cov=4.05486
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ858769 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ448536 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000024876_AYM nReads=6 cov=2.00192
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ662789 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037254 nReads=6 cov=3.82863
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000029339 nReads=2 cov=1.81875
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031000 nReads=2 cov=1.89327
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ25024_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ21878_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036895 nReads=23 cov=18.3988
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ583660 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037255 nReads=11 cov=4.49815
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17031_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031001 nReads=9 cov=5.1711
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17593_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036896 nReads=9 cov=3.66603
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ7180000036896	YKL095W	28.95	114	76	3	219	545	41	154	2e-08	52.8
+# BLASTX 2.2.30+
+# Query: PZ7180000037256 nReads=11 cov=6.35108
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031002 nReads=2 cov=1.79947
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ789897_ATR nReads=1 cov=1
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ789897_ATR	YBR019C	33.09	136	77	7	379	5	14	146	1e-09	54.3
+# BLASTX 2.2.30+
+# Query: PZ7180000000620_B nReads=2 cov=1.33182
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037257 nReads=15 cov=7.2512
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ453158 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031003 nReads=2 cov=1.6375
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023622 nReads=3 cov=2.0131
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ21349_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036898 nReads=15 cov=5.75025
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ488295 nReads=1 cov=1
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+PZ488295	YIL106W	35.00	140	87	3	410	3	93	232	1e-22	90.1
+PZ488295	YFL034C-B	26.02	123	91	0	371	3	78	200	7e-17	73.6
+# BLASTX 2.2.30+
+# Query: PZ732868 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ442821 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ779644 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17064_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031004 nReads=6 cov=4.99628
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000020326 nReads=6 cov=4.36897
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023623 nReads=27 cov=7.58566
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ7180000023623	YMR234W	36.42	162	83	7	1055	624	188	347	5e-14	70.9
+# BLASTX 2.2.30+
+# Query: PZ7180000020436_DPJ nReads=4 cov=3.1009
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036899 nReads=2 cov=1.27059
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031005 nReads=2 cov=2
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000020327 nReads=4 cov=3.39468
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023624 nReads=2 cov=1.54247
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000653_B nReads=677 cov=197.683
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ24295_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031006 nReads=3 cov=2.35421
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023625 nReads=7 cov=6.30243
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ545_OM nReads=1 cov=1
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ545_OM	YPL131W	43.75	64	31	1	201	392	194	252	8e-09	51.6
+# BLASTX 2.2.30+
+# Query: PZ7180000000106_K nReads=3 cov=1.52771
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ653712 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ614444 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ667347 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031007 nReads=5 cov=3.13828
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ859196_FBK nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000106_L nReads=50 cov=20.8824
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 9 hits found
+PZ7180000000106_L	YNL202W	28.35	254	171	4	55	804	21	267	2e-21	90.1
+PZ7180000000106_L	YMR226C	31.47	251	150	8	67	789	14	252	1e-20	87.4
+PZ7180000000106_L	YIR035C	29.25	212	132	5	67	672	3	206	3e-16	74.7
+PZ7180000000106_L	YIL124W	32.09	187	121	5	67	621	10	192	7e-14	68.9
+PZ7180000000106_L	YIR036C	29.06	203	132	4	67	654	3	200	4e-13	65.9
+PZ7180000000106_L	YBR159W	27.50	240	148	7	61	726	61	292	1e-10	59.3
+PZ7180000000106_L	YKL055C	22.74	277	162	8	70	765	6	275	5e-10	57.4
+PZ7180000000106_L	YOR246C	26.70	221	121	10	67	618	17	233	1e-09	56.2
+PZ7180000000106_L	YKR009C	25.37	201	129	4	274	858	387	572	1e-09	57.0
+# BLASTX 2.2.30+
+# Query: PZ13004_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031008 nReads=2 cov=1.83586
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ7180000031008	YKL060C	55.81	129	56	1	395	9	176	303	1e-49	  162
+# BLASTX 2.2.30+
+# Query: PZ7180000020329 nReads=7 cov=3.04407
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023627 nReads=3 cov=2.01274
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000686_B nReads=332 cov=190.836
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ23003_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ22442_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ653714 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ726746 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031009 nReads=5 cov=4.2027
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023628 nReads=43 cov=14.7064
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000106_N nReads=9 cov=4.46205
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ790706 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ744951 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000020795_DWY nReads=2 cov=1.48972
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ13037_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ580713 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023629 nReads=22 cov=10.7028
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ14482_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ449977 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ24481_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ777183 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ836045 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035710 nReads=5 cov=3.49212
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ667690_CHO nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ455784_CBD nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000106_S nReads=3 cov=2.80237
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ527941 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035711 nReads=19 cov=9.8867
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ710112 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ752337 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000106_T nReads=23 cov=8.1159
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ560014 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035712 nReads=41 cov=16.5557
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ828668 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035713 nReads=21 cov=12.5486
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ567164 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022060 nReads=7 cov=3.52941
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ535325 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035714 nReads=24 cov=10.9168
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028269_AFW nReads=3 cov=2.97992
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+PZ7180000028269_AFW	YHR013C	62.22	45	17	0	247	113	148	192	1e-14	64.7
+# BLASTX 2.2.30+
+# Query: PZ7180000000124_K nReads=2 cov=1.99288
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ24949_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ792095 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ651253 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035715 nReads=3 cov=2.16468
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000124_L nReads=12 cov=5.33621
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 5 hits found
+PZ7180000000124_L	YKL055C	27.75	173	95	5	538	77	114	275	2e-10	58.2
+PZ7180000000124_L	YIR035C	30.77	169	110	4	706	206	22	185	2e-10	57.8
+PZ7180000000124_L	YMR226C	31.21	141	86	4	613	206	71	205	3e-10	57.8
+PZ7180000000124_L	YIL124W	33.58	137	84	4	607	206	62	194	5e-10	57.0
+PZ7180000000124_L	YIR036C	28.18	181	117	6	601	92	59	237	2e-09	55.1
+# BLASTX 2.2.30+
+# Query: PZ21577_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ20454_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022062 nReads=3 cov=2.16056
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ535327 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035716 nReads=13 cov=5.65193
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000030879_DFJ nReads=6 cov=3.75406
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022063 nReads=2 cov=1.37143
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ808910 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ760258 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ19012_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000157_L nReads=30 cov=14.6842
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+PZ7180000000157_L	YKR009C	26.54	260	153	8	746	6	10	244	3e-18	82.8
+PZ7180000000157_L	YNL202W	29.41	255	167	5	758	9	21	267	1e-16	75.9
+PZ7180000000157_L	YDL114W	26.96	115	76	2	473	150	118	231	7e-08	50.8
+# BLASTX 2.2.30+
+# Query: PZ7180000035718 nReads=6 cov=4.15929
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ13055_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022066 nReads=13 cov=9.16058
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000035719 nReads=10 cov=5.99667
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ768110 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022067 nReads=4 cov=2.24584
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ538629 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027517_ADM nReads=10 cov=7.20455
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022068 nReads=2 cov=1.92658
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ13088_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ503931 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ856051 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000022069 nReads=9 cov=6.87952
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ470217 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ18643_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ856052 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ775640 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ16108_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ803151 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019242 nReads=456 cov=113.356
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ18676_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ596919_AEA nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ789277 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ555871_APA nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027130 nReads=5 cov=2.9668
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023665_ATQ nReads=2 cov=1.70472
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ19592_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ17024_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000019245 nReads=4 cov=2.6625
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026772 nReads=4 cov=2.50095
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027132 nReads=5 cov=2.35828
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ663374 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ853101 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000032899 nReads=151 cov=98.8562
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036376_BVQ nReads=17 cov=6.99178
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000613_B nReads=4 cov=2.17132
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ25378_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026773 nReads=4 cov=1.88667
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027133 nReads=6 cov=3.32907
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ564758 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026774 nReads=14 cov=9.37331
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027134 nReads=3 cov=1.69639
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ13709_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ558633 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026775 nReads=4 cov=2.28205
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ797198 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ773_MP nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000646_B nReads=3 cov=2.56126
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+PZ7180000000646_B	YHR007C	31.01	129	86	2	398	21	281	409	2e-13	66.2
+PZ7180000000646_B	YMR015C	29.63	108	69	3	350	48	321	428	2e-07	47.8
+# BLASTX 2.2.30+
+# Query: PZ23525_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ733424 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027136 nReads=4 cov=3.3192
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ663378 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ15532_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027137 nReads=3 cov=1.70282
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023820 nReads=32 cov=13.4486
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000034692 nReads=12 cov=5.9462
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ33524_B nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027138 nReads=9 cov=3.68491
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023821 nReads=18 cov=5.11978
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037990 nReads=5 cov=3.28261
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ173_DV nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ24119_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ821366 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000026779 nReads=4 cov=2.56593
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000027139 nReads=8 cov=3.7925
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ15565_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ16688_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037991 nReads=6 cov=3.57916
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025499_BEG nReads=7 cov=2.23689
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ19072_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ708737 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ453893 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023823 nReads=26 cov=12.1673
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000034695 nReads=42 cov=18.4356
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000021111_BJN nReads=60 cov=23.2971
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ639490 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023824 nReads=11 cov=4.24772
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037993 nReads=4 cov=3.20534
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ824666 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ16159_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037994 nReads=7 cov=3.38238
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031741 nReads=3 cov=1.5929
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ773185 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000034698 nReads=50 cov=29.0801
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037995 nReads=9 cov=4.58665
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ21504_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ832049 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031742 nReads=4 cov=3.36879
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000034699 nReads=27 cov=12.3133
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037996 nReads=9 cov=5.39332
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031743 nReads=3 cov=2.1412
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ788124 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023827 nReads=20 cov=5.14369
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ509932 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031744 nReads=2 cov=1.82792
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ21537_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031745 nReads=2 cov=1.85
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000023829 nReads=6 cov=3.99115
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037999 nReads=8 cov=4.86677
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000664_B nReads=73 cov=38.4985
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ22982_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ22420_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ482783 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ721182 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000033000 nReads=45 cov=25.9408
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000000117_K nReads=6 cov=4.05979
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 10 hits found
+PZ7180000000117_K	YOR113W	39.25	107	63	1	481	167	591	697	9e-24	97.1
+PZ7180000000117_K	YJL056C	40.19	107	62	1	481	161	766	870	4e-21	89.4
+PZ7180000000117_K	YNL027W	37.84	111	50	2	475	143	569	660	7e-16	73.6
+PZ7180000000117_K	YPR186C	34.91	106	64	3	376	68	56	159	3e-13	65.1
+PZ7180000000117_K	YMR037C	41.82	55	31	1	484	323	644	698	6e-10	55.5
+PZ7180000000117_K	YDR216W	38.55	83	44	2	289	44	87	163	1e-09	54.7
+PZ7180000000117_K	YJR127C	40.74	54	32	0	229	68	149	202	1e-09	54.7
+PZ7180000000117_K	YML081W	31.40	86	51	1	322	65	36	113	1e-09	54.3
+PZ7180000000117_K	YKL062W	37.04	54	33	1	481	323	571	624	2e-09	53.5
+PZ7180000000117_K	YGL209W	48.28	58	28	1	481	314	15	72	1e-08	51.2
+# BLASTX 2.2.30+
+# Query: PZ7180000025620 nReads=9 cov=3.50955
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ506638 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ734865 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ625862 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000033001 nReads=137 cov=58.1597
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000037033_ADR nReads=7 cov=2.99701
+# Database: orf_trans
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+PZ7180000037033_ADR	YBR198C	26.07	211	109	7	219	842	523	689	8e-11	61.2
+PZ7180000037033_ADR	YNL253W	28.46	123	86	1	465	827	206	328	7e-09	54.7
+PZ7180000037033_ADR	YPR178W	24.76	206	144	5	369	953	181	386	9e-08	51.6
+# BLASTX 2.2.30+
+# Query: PZ7180000000117_L nReads=18 cov=7.786
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ21008_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025621 nReads=4 cov=2.91786
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ14138_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031747 nReads=3 cov=2.40482
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ753430 nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ4305_H nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ22453_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025622 nReads=6 cov=3.08579
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031748 nReads=3 cov=2.81962
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ15583_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036300 nReads=3 cov=2.2153
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ25077_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000025623 nReads=8 cov=3.60964
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028920 nReads=2 cov=1.46573
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000031749 nReads=4 cov=2.6841
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036301 nReads=20 cov=4.63444
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028921 nReads=3 cov=2.11052
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036302 nReads=5 cov=3.8
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028922 nReads=2 cov=1.67442
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ18603_A nReads=1 cov=1
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000036303 nReads=12 cov=4.41569
+# Database: orf_trans
+# 0 hits found
+# BLASTX 2.2.30+
+# Query: PZ7180000028923 nReads=3 cov=2.07642
+# Database: orf_trans
+# 0 hits found
+# BLAST processed 471 queries
