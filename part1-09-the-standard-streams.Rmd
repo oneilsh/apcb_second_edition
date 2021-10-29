@@ -104,6 +104,8 @@ We might pictorially represent programs and their output as alternative informat
 
 ### Filtering Lines, Standard Input {-}
 
+###### {- #grep}
+
 It can often be useful to extract lines from a file based on a pattern. For example, the `pz_sample_stats.txt` file contains information on what each column describes, as well as the data itself. If we want to extract all the lines that match a particular pattern, say, `unit:`, we can use the tool `grep` (for Global search for Regular Expression and Print), which prints to [standard output](#standard_output) lines that match a given pattern (or don’t match a given pattern, if using the `-v` flag): `grep '<pattern>' <file>`. To illustrate, we’ll first run fasta_stats on the full input file, redirecting the standard output to a file called `pz_stats.txt`.
 
 <pre id=part1-09-pz_stats
@@ -177,6 +179,8 @@ Working with the cleaned data table reveals that our program produced 21,131 cha
   471  3297 21131 pz_stats.table
 </code></pre>
 
+###### {- #standard_input}
+
 This sort of command-line-driven analysis can be quite powerful, particularly because many of these programs—like `less`, `grep`, and `wc`—can both print their results on standard output and read input from *standard input* rather than from a file. Standard input is the secondary input mechanism for command-line programs (other than reading from files directly). By default, standard input, or “stdin”, is unused.
 
 How can we get input to a program on its standard input? It turns out that the easiest way to do so is to *redirect* the standard output of another program to it using the `|`, also known as the “pipe,” redirect (found above the Enter key on most keyboards). In this case, the data come in “on the left”:
@@ -211,7 +215,7 @@ Recall that the `fasta_stats` program wrote its output to standard out, and beca
 
 When this command runs, the results printed by `fasta_stats` on standard error will still be printed to the terminal (as that is the default and we didn’t redirect standard error), but the standard output results will be filtered through `grep` and then filtered through `wc`, producing the eventual output of 471 lines.
 
-At this point, the longish nature of the commands and the fact that our terminal window is only so wide are making it difficult to read the commands we are producing. So, we’ll start breaking the commands over multiple lines by ending partial commands with backslashes. Just as in the shell scripts we wrote at the end of chapter 7, “[Using (Bioinformatics) Software](#using_(bioinformatics)_software)”, using backslashes will let the shell know that we aren’t finished entering the command. However, the `bash` shell indicates that a command spans multiple lines by showing us a `>`, which shouldn’t be confused with the redirect character that we might type ourselves. The following example shows the exact same command in a more readable form broken over multiple lines, but the highlighted characters have not been typed.
+At this point, the longish nature of the commands and the fact that our terminal window is only so wide are making it difficult to read the commands we are producing. So, we’ll start breaking the commands over multiple lines by ending partial commands with backslashes. Just as in the shell scripts we wrote at the end of chapter 7, “[Using (Bioinformatics) Software](using-bioinformatics-software.html)”, using backslashes will let the shell know that we aren’t finished entering the command. However, the `bash` shell indicates that a command spans multiple lines by showing us a `>`, which shouldn’t be confused with the redirect character that we might type ourselves. The following example shows the exact same command in a more readable form broken over multiple lines, but the highlighted characters have not been typed.
 
 <pre id=part1-09-pipe-line
      class="language-txt 

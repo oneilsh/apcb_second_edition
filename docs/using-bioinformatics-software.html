@@ -229,25 +229,28 @@
 <li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
 <li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a><ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
 <li class="part"><span><b>Part 2: Programming in Python</b></span></li>
-<li class="chapter" data-level="10" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>10</b> Hello, World</a><ul>
+<li class="chapter" data-level="11" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>11</b> Hello, World</a><ul>
 <li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>11</b> Elementary Data Types</a><ul>
+<li class="chapter" data-level="12" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>12</b> Elementary Data Types</a><ul>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-floats-and-booleans"><i class="fa fa-check"></i>Integers, Floats, and Booleans</a></li>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
 <li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
 </ul></li>
 <li class="part"><span><b>Part 3: Programming in R</b></span></li>
-<li class="chapter" data-level="12" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>12</b> An Introduction</a><ul>
+<li class="chapter" data-level="13" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>13</b> An Introduction</a><ul>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
 <li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>13</b> Variables and Data</a><ul>
+<li class="chapter" data-level="14" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>14</b> Variables and Data</a><ul>
 <li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>14</b> Vectors</a><ul>
+<li class="chapter" data-level="15" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>15</b> Vectors</a><ul>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
 <li><a href="vectors.html#vectorized-operations-na-values">Vectorized Operations, <code>NA</code> Values</a></li>
@@ -327,7 +330,9 @@
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_29_fasta_format.png" /></p>
 </div>
-<p>This line might then contain whitespace characters and metadata. Whitespace comprises a sequence of one or more spaces, tabs (represented in Unix/Linux as a special character sometimes written as <code>\t</code>), or newlines (represented in Unix/Linux as a special character sometimes written as <code>\n</code>) in a row.</p>
+<div id="whitespace" class="section level6 unnumbered">
+<h6></h6>
+<p>This line might then contain <em>whitespace</em> characters and metadata. Whitespace comprises a sequence of one or more spaces, tabs (represented in Unix/Linux as a special character sometimes written as <code>\t</code>), or newlines (represented in Unix/Linux as a special character sometimes written as <code>\n</code>) in a row.</p>
 <p>Lines following the header line contain the sequence information, and there is no specific format for the number of lines over which the sequence may be broken, or how long those lines should be. After the last sequence line for a record, a new sequence record may start.</p>
 <p>Depending on the source of the FASTA file, the IDs or metadata may represent multiple pieces of data; in this example, the metadata are separated by spaces and have a <code>&lt;label&gt;=&lt;value&gt;</code>; format that is specific to protein sequences from FlyBase.</p>
 <p>For our next trick, we’ll download some P450-1A1 protein sequences from Uniprot.org. Uniprot.org is a well-known protein database, and it is composed of the “TrEMBL” database and the subset of TrEMBL, known as “Swiss-Prot.” While the former contains many sequences with annotations, many of those annotations have been assigned by automated homology searches and have not been reviewed. The latter, Swiss-Prot, contains only sequences whose annotations have been manually reviewed.</p>
@@ -357,6 +362,7 @@
 <p>For the most part, the way text is encoded on Microsoft operating systems (like DOS and Windows) and on Unix-like systems (like Linux and OS X) is similar. But there is one difference: how the ends of lines, or “newline characters” are represented. In Unix-like systems, a newline is represented by a single 8-bit byte (the “Line Feed” (NF) character): <code>00001010</code>. On Microsoft systems, they are represented by a pair of 8-bit bytes (“Carriage Return” (CR) followed by NF): <code>0000110100001010</code>. This means that text files created on Microsoft operating files may not be readable on Unix-like systems, and vice versa.</p>
 <p>Fortunately, there are utilities available for converting between these formats. On the command line, the utilities <code>dos2unix</code> and <code>unix2dos</code> convert to and from Unix-like format, respectively. This isn’t often an issue, as most file transfer programs (FireFTP included) automatically perform the appropriate conversion. The command-line utility <code>file</code> can also be used to determine the type of a file, including its newline type.</p>
 </blockquote>
+</div>
 </div>
 <div id="putting-it-all-together" class="section level3 unnumbered">
 <h3>Putting It All Together</h3>
