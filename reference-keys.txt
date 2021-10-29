@@ -7,6 +7,7 @@ installing-bioinformatics-software
 using-bioinformatics-software
 command-line-blast
 the-standard-streams
+sorting-first-and-last-lines
 hello-world
 elementary-data-types
 an-introduction

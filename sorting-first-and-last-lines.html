@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Acknowledgements | A Primer for Computational Biology (2nd Edition)</title>
-  <meta name="description" content="Acknowledgements | A Primer for Computational Biology (2nd Edition)" />
+  <title>Chapter 10 Sorting, First and Last Lines | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 10 Sorting, First and Last Lines | A Primer for Computational Biology (2nd Edition)" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Acknowledgements | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:title" content="Chapter 10 Sorting, First and Last Lines | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Acknowledgements | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="twitter:title" content="Chapter 10 Sorting, First and Last Lines | A Primer for Computational Biology (2nd Edition)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="dedication.html"/>
+<link rel="prev" href="the-standard-streams.html"/>
+<link rel="next" href="hello-world.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -290,18 +290,147 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="acknowledgements" class="section level1 unnumbered">
-<h1>Acknowledgements</h1>
-<p>I’d like to thank the Oregon State University Press, the OSU Library, OSU Ecampus, and the Center for Genome Research and Biocomputing at OSU for their support in the production of this work–in particular, Brett Tyler, Tom Booth, Faye Chadwell, Dianna Fisher, and Mark Kindred from those departments. I am grateful to all those who contributed feedback including Matthew Peterson, Kevin Weitemier, Andi Stephens, Kelly Stratton, Jason Williams, John Gamble, Kasim Alomari, Joshua Petitmermet, and Katie Carter. Finally, I especially thank Gabriel Higginbotham for his heroic work in typesetting, and to Stacey Wagner for her comprehensive and insightful comments.</p>
+<div id="sorting-first-and-last-lines" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Sorting, First and Last Lines</h1>
+<p>Continuing with the <code>fasta_stats</code> examples from chapter 9, <a href="the-standard-streams.html">“The Standard Streams”</a>, the seventh column of the output contains the length of the longest perfect repeat, in characters.</p>
+<pre id=part1-10-fasta_stats
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs_sample.fasta</b>
+# Column 1: Sequence ID
+# Column 2: GC content
+# Column 3: Length
+# Column 4: Most common 5mer
+# Column 5: Count of most common 5mer
+# Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
+# Column 7: Length of repeat (in characters)
+# Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
+Processing sequence ID PZ7180000031590
+PZ7180000031590 0.378 486 ACAAA 5 unit:ATTTA 10 pentanucleotide
+Processing sequence ID PZ7180000000004_TX
+PZ7180000000004_TX 0.279 1000 AAATA 12 unit:TAA 12 trinucleotide
+</code></pre>
+<p>Which sequence contains the longest perfect repeat? To answer this question, we could consider sorting the lines according to this seventh column. (First, we’ll have to remove the header lines themselves, which we can accomplish by filtering out lines matching <code>#</code> using the <code>-v</code> flag of <a href="the-standard-streams.html#grep">grep</a>, or by grepping for <code>unit:</code>, as in chapter 9.) Enter <code>sort</code>, which sorts lines from a text file (or from <a href="the-standard-streams.html#standard_input">standard input</a>) by specified columns: <code>sort &lt;file&gt;</code> or <code>... | sort</code>.</p>
+<p>By default, <code>sort</code> sorts by all columns, by comparing the entire lines in “dictionary,” or <a href="#lexicographic_order">lexicographic order</a>. To sort by specific columns, we need to use a rather sophisticated syntax. We’ll illustrate with a figure.</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part1-10-sorting-first-last.Rmd.images/I.10_2_sort_syntax.png" /></p>
+</div>
+<p>The <code>sort</code> utility takes many potential parameters, though the most important are the <code>-k</code> parameters that specify the columns by which to sort and how that sorting should be done, and occasionally the <code>-u</code> flag. The <code>-k</code> (key) parameters are considered in order; the above specifies that the sorting should be done on columns 2 through 4 (conglomerated into a single “column”), considering them in dictionary order, and sorting them in reverse. In the case of ties, only the first column is considered in normal dictionary order, and in the case of further ties, the fifth column is considered in numeric order.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> (The difference between <code>n</code> and <code>g</code> ordering is that <code>g</code> can handle entries in scientific notation like <code>1e-6</code>, but generally <code>n</code> is preferred because it is faster and not subject to small rounding errors.)</p>
+<p>The optional <code>-u</code> flag (which may be specified before or after the keys, or even mixed in) specifies that after all the keys are considered, if there are still any ties between rows, then only the first row should be output. It outputs only “unique” lines according to the overall sorting order.</p>
+<p>By default, <code>sort</code> uses <a href="using-bioinformatics-software.html#whitespace">whitespace</a> as the column separator, though it can be changed (run <code>man sort</code> for more information). To view information about the longest perfect repeat, we will use <code>sort -k7,7nr</code>, indicating that we wish sort on the seventh column only, in reverse numeric order.</p>
+<pre id=part1-10-sort
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \</b>
+> <b>grep -v '#' | \</b>
+> <b>sort -k7,7nr | \</b>
+> <b>less -S</b>
+</code></pre>
+<p>The first few lines of output indicate that the longest perfect repeat is 94 bases long and occurs in sequence <code>PZ805359</code> (this sequence’s GC content is <code>0</code>, because it’s composed entirely of a long AT repeat).</p>
+<pre id=part1-10-sort-out
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>PZ805359        0.0     101     ATATA   47      unit:AT 94      dinucleotide
+PZ796092        0.365   361     TACGT   9       unit:GTACGT     48      hexanucl
+PZ7180000019700 0.375   564     GAGTG   12      unit:GAGTG      30      pentanuc
+PZ7180000028921 0.31    561     TGTAA   8       unit:CTGTG      30      pentanuc
+PZ851952        0.399   338     TATAT   12      unit:AT 24      dinucleotide
+PZ7180000000664_B       0.3     652     TTTTT   18      unit:TAAAATTAT  18      
+PZ7180000023622 0.31    687     TTAAT   9       unit:TGA        18      trinucle
+PZ7180000023665_ATQ     0.401   508     ACTGA   5       unit:TGACACTGA  18      
+PZ7180000025478 0.516   829     TGATG   18      unit:ATG        18      trinucle
+PZ7180000030412 0.461   258     TGATG   8       unit:ATG        18      trinucle
+PZ7180000036892 0.268   548     AATAA   16      unit:TAA        18      trinucle
+PZ801814        0.262   255     TTACA   5       unit:TATTTACAT  18      enneanuc
+...</b>
+</code></pre>
+<p>The results also indicate that there are a number of ties; several sequences contain perfect repeats of length 18 base pairs. If we only wanted one sequence reported per different repeat length, we could try <code>sort -k7,7nr -u</code>. We could alternatively modify our sort to secondarily sort by GC content (second column), <code>sort -k7,7nr -k2,2g</code>.</p>
+<p>A useful trick is to perform two sorts: one that initially sorts the data on whatever criteria are wanted, and a second that gets only the first line of a group based on secondary criteria. We may wish report only the highest GC content sequence per different repeat length, for example. We can initially use a <code>sort -k7,7nr -k2,2gr</code> to sort by repeat length and break ties by GC content, leaving the highest-GC-content sequences on top. From there, we can use a <code>sort -k7,7nr -u</code> to re-sort the data (even though they are already sorted!) by the seventh column, keeping only the top line per repeat length.</p>
+<pre id=part1-10-double-sort
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \</b>
+> <b>grep -v '#' | \</b>
+> <b>sort -k7,7nr -k2,2gr | \</b>
+> <b>sort -k7,7nr -u | \</b>
+> <b>> less -S</b>
+</code></pre>
+<p>Output:</p>
+<pre id=part1-10-double-sort-out
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>PZ805359        0.0     101     ATATA   47      unit:AT 94      dinucleotide
+PZ796092        0.365   361     TACGT   9       unit:GTACGT     48      hexanucl
+PZ7180000019700 0.375   564     GAGTG   12      unit:GAGTG      30      pentanuc
+PZ851952        0.399   338     TATAT   12      unit:AT 24      dinucleotide
+PZ7180000025478 0.516   829     TGATG   18      unit:ATG        18      trinucle
+PZ7180000000447_B       0.484   578     ATCCA   7       unit:TCCA       16      
+...</b>
+</code></pre>
+<p>There is one small concern, however: how can we be sure that our careful ordering by GC content wasn’t undone in the second sort? After all, the second sort would technically be free to reorder ties according to the seventh column, resulting in incorrect output. There is an additional flag for sort, the <code>-s</code> flag, indicating that stable sorting should be used. Stable sorting means that, in the case of ties, elements are left in their original order. So, to be safe, we could use a secondary sort of sort <code>-k7,7nr -u -s</code>, though a careful reading of the documentation for <code>sort</code> indicates that on most systems the <code>-u</code> flag implies the <code>-s</code> flag.</p>
+<div id="first-and-last-lines" class="section level3 unnumbered">
+<h3>First and Last Lines</h3>
+<p>Often we wish to extract from a file (or from [standard input(#standard_input)]) the first or last few lines. The tools <code>head</code> and <code>tail</code> are designed to do exactly this, and in combination with other tools are surprisingly handy. The <code>head</code> tool extracts the first lines of a file or standard input: <code>head -n &lt;number&gt; &lt;file&gt;</code> or <code>... | head -n &lt;number&gt;</code>. The tail tool extracts the last lines of a file or standard input: <code>tail -n &lt;number&gt; &lt;file&gt;</code> or <code>... | tail -n &lt;number&gt;</code>.</p>
+<p>The <code>head</code> and <code>tail</code> utilities, like the others covered previously, write their output to <a href="using-bioinformatics-software.html#standard_output">standard output</a>, and so they can be used within pipelines. They are often employed to inspect the beginning or end of a file (to check results or formatting). They also commonly extract test data sets. For example, <code>head -n 40000 input.fastq &gt; test.fastq</code> would extract the first 10,000 sequence records from <code>input.fastq</code> and produce <code>test.fastq</code> (because every four lines of a FASTQ sequence file represents information for a single sequence).</p>
+<pre id=part1-10-fastq
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<b>@DB775P1:229:C1JDAACXX:3:1101:17936:7565 1:N:0:
+CTATTACTGCCTGCAACAACATAAGGATACCATAAATTGTAATTCTTAACAAAGCAGAGATCGGAAGAGCGGTTCAGCAG
++
+CCCFFFFFHHHHGJIJJJJJGGJJJJJJJIJIJJJJGIGIIIJJJJJJJJGIJJIIIJJIHIIIJJIJJIHHEDFCEEEE
+@DB775P1:229:C1JDAACXX:3:1101:17888:7593 1:N:0:
+TACATCAGCAAACCACCAGTGGTACGCAAATACATGGTGCTTCTTTAATCTTCAGTCCTCGGCTTTCCTCATATATCACT
++
+CCCFFFFFHHHHHJJJJJJHIJHHIJJJJJJJJJJJJFHIJJJJJJJJJJJJJJJIJJJJIIJJJHHHHHHFFFFFFFEE
+@DB775P1:229:C1JDAACXX:3:1101:17820:7597 1:N:0:
+GTAACTGCACCATATGCTGGATTCTGGACAATGAATATCGAAGTAAATAAGAAAACCTCATACCTCATCTTTCTCAATGG
++
+BCCDFFEFHHHHHJJJJJIJIJJIJJJJJIIGIIIDFIIJIJIFHIJGGIGIJJJIJHJIGHGDIJCEEGHIGIGCACEF
+...</b>
+</code></pre>
+<p>The above shows the first 12 lines of a FASTQ file generated on an Illumina HiSeq 2000. The first line in each set of four represents an identifier for the sequence read, the second line contains the sequence itself, the third line is often unused (containing only a <code>+</code>, though it may be followed by the identifier and other optional data), and the fourth line contains the “quality” of each base in the sequence encoded as a character. (The encoding has varied in the past, but in recent years, sequencing companies have standardized the encoding used by Sanger sequencing machines.)</p>
+<p>With a bit of modified syntax, <code>tail</code> can also be used to extract all lines of a file starting at a given line. As an example, <code>tail -n +5 input.fastq &gt; test.fastq</code> would result in <code>test.fastq</code> having all but the first sequence record of <code>input.fastq</code> (i.e., starting at the fifth line). This feature is especially useful for stripping off header lines of output or files before further processing, as in <code>./fasta_stats pz_cDNAs.fasta | tail -n +9</code>, rather than using g<code>rep -v '#'</code> above.</p>
+<div class="exercises">
+<h4 id="exercises-8" class="unnumbered">Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Running <a href="data/fasta_stats.py">fasta_stats.py</a> on <a href="data/pz_cDNAs.fasta">pz_cDNAs.fasta</a>, the seventh column represents the length of the longest perfect repeat found in each sequence. Use only <code>grep</code>, <code>sort</code>, <code>wc</code>, <code>head</code>, and <code>tail</code> to determine the median value in this column. (You may need to run multiple commands or pipelines.)</p></li>
+<li><p>Running <a href="data/fasta_stats.py">fasta_stats.py</a> on <a href="data/pz_cDNAs.fasta">pz_cDNAs.fasta</a>, how many different perfect repeat units (column six) are found?</p></li>
+<li><p>The file <a href="data/pz_blastx_yeast_top10.txt">pz_blastx_yeast_top10.txt</a> is the result of running <code>blastx -query ../fasta_stats/pz_cDNAs.fasta -db orf_trans -evalue 1e-6 -max_target_seqs 10 -max_hsps 1 -outfmt 7 -out pz_blastx_yeast_top1.txt</code>. Aside from the “comment” lines that start with <code>#</code>, the first column is the query ID, the second the target (yeast) ID, the third the percentage identity of the HSP, the eleventh the E value, and the twelfth the “bitscore.” Which query ID had the largest bitscore? How many different query sequences (entries in the first column) had one or more HSPs against the database?</p></li>
+<li><p>Extract from <a href="data/pz_blastx_yeast_top10.txt">pz_blastx_yeast_top10.txt</a> a file called <code>pz_blastx_yeast_top1.txt</code> containing only the smallest <em>E</em>-valued HSP line per query ID. (You may remove comment lines starting with <code>#</code> altogether.)</p></li>
+</ol>
+</div>
 
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="26">
+<li id="fn26"><p>A word of caution: if a column contains an entry that cannot be interpreted as an integer or general number, it will be treated as <code>0</code> in the sorting order.<a href="sorting-first-and-last-lines.html#fnref26" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dedication.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-standard-streams.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hello-world.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -332,7 +461,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/00-acknowledgements.Rmd",
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-10-sorting-first-last.Rmd",
 "text": "Edit"
 },
 "history": {
