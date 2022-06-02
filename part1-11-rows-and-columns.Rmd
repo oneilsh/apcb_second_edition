@@ -244,7 +244,7 @@ There are a variety of mathematical functions built into `awk`. Here’s a sampl
 <li>`%`</li>
 <ul style="list-style-type:none;"><li>The modulus operator, returning the remainder after dividing the left-hand side by the right-hand side. For example, `NR%4` will be 1 on the first line, 2 on the second, 3 on the third, 0 on the fourth, 1 on the fifth, and so on.</li></ul>
 <li>`exp()`</li>
-<ul style="list-style-type:none;"><li>This function returns its argument raised to the natural power <i>e</i>. For example, `log(exp($1))` returns the first column’s value.</li></ul>
+<ul style="list-style-type:none;"><li>This function returns its argument raised to the natural power *e*. For example, `log(exp($1))` returns the first column’s value.</li></ul>
 <li>`int()`</li>
 <ul style="list-style-type:none;"><li>Returns the integer portion of its argument. For example, `int(6.8)` returns `6`, and `int(-3.6)` returns `-3`.</li></ul>
 <li>`rand()`</li>
@@ -272,7 +272,7 @@ oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
 
 This command works because the right-hand side of an assignment to a variable with `=` is evaluated before the assignment happens. Thus, in the `BEGIN` block, the `sumeval` variable is initialized to `0`, then for each line the value of `sumeval` is added to the contents of the tenth column (the E value of that line), and the result is stored in `sumeval`. Finally, in the `END` block, `sumeval` contains the total sum of E values, and we can divide this result by the number of lines processed, `NR`.
 
-We can execute multiple statements within a single block if we separate them with semicolons. In the above example, the average E value computed includes self-hits. We can filter them out with an if-statement before modifying `sumeval`, but then we won’t want to divide the result by `NR`, because that will include the self-hit counts as well. To solve this problem, we’ll need to keep <i>two</i> variables.
+We can execute multiple statements within a single block if we separate them with semicolons. In the above example, the average E value computed includes self-hits. We can filter them out with an if-statement before modifying `sumeval`, but then we won’t want to divide the result by `NR`, because that will include the self-hit counts as well. To solve this problem, we’ll need to keep *two* variables.
 
 <pre id=part1-11-awk-2vars
      class="language-txt 
@@ -292,11 +292,11 @@ As before, some IDs are still present more than one time in the first column wit
 <div class="exercises">
 #### Exercises {-}
 
-1. In the file [pz_blastx_yeast_top10.txt](data/pz_blastx_yeast_top10.txt), how many HSPs (lines) have an E value that is less than 1e-30 <i>or</i> have an identity value of greater than 50%? Use `awk`, `wc`, and `grep` if needed to compute the answer.
+1. In the file [pz_blastx_yeast_top10.txt](data/pz_blastx_yeast_top10.txt), how many HSPs (lines) have an E value that is less than 1e-30 *or* have an identity value of greater than 50%? Use `awk`, `wc`, and `grep` if needed to compute the answer.
 
 2. The file [contig_stats.txt](data/contig_stats.txt) describes statistics for contigs from a de novo genome assembly (a contig is an assembled “piece” of the genome). The fourth column describes the GC content of the various contigs. Other analyses indicate that the majority of correctly assembled genes have an average coverage (second column) of between 80.0 and 150.0. Use `awk` to determine the average GC content for contigs with coverage between 80.0 and 150.0. Then use another invocation of `awk` to determine the average GC content for all other contigs. (Do not count the header line in the file in your computations.)
 
-3. The file [PZ.annot.txt](data/PZ.annot.txt) is the result of a gene ontology (GO) analysis for the full set of assembled <i>Papilio zelicaon</i> cDNA sequences. Owing to the incomplete nature of the annotation process, not all sequences were assigned GO terms. How many different sequence IDs are represented in this file?
+3. The file [PZ.annot.txt](data/PZ.annot.txt) is the result of a gene ontology (GO) analysis for the full set of assembled *Papilio zelicaon* cDNA sequences. Owing to the incomplete nature of the annotation process, not all sequences were assigned GO terms. How many different sequence IDs are represented in this file?
 
 4. Some versions of the sort program can sort lines in “random” order by using the `-R` flag. Rather than using this flag, however, use `grep`, `awk` (with the `rand()` feature), `sort` (without the `-R` flag), and `head` to select five random IDs from [pz_cDNAs.fasta](data/pz_cDNAs.fasta). An example output might look like:<br>
      <div class="fig center" style="width: 100%">
