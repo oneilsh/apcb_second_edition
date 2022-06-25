@@ -8,6 +8,8 @@ using-bioinformatics-software
 command-line-blast
 the-standard-streams
 sorting-first-and-last-lines
+rows-and-columns
+patterns-regular-expressions
 hello-world
 elementary-data-types
 an-introduction

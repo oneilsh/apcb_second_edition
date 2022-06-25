@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Elementary Data Types | A Primer for Computational Biology (2nd Edition)</title>
-  <meta name="description" content="Chapter 14 Elementary Data Types | A Primer for Computational Biology (2nd Edition)" />
+  <title>Chapter 11 Rows and columns | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 11 Rows and columns | A Primer for Computational Biology (2nd Edition)" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Elementary Data Types | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:title" content="Chapter 11 Rows and columns | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Elementary Data Types | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="twitter:title" content="Chapter 11 Rows and columns | A Primer for Computational Biology (2nd Edition)" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="hello-world.html"/>
-<link rel="next" href="an-introduction.html"/>
+<link rel="prev" href="sorting-first-and-last-lines.html"/>
+<link rel="next" href="patterns-regular-expressions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -298,250 +298,341 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="elementary-data-types" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 14</span> Elementary Data Types<a href="elementary-data-types.html#elementary-data-types" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Variables are vital to nearly all programming languages. In Python, <em>variables</em> are “names that refer to data.” The most basic types of data that can be referred to are defined by how contemporary computers work and are shared by most languages.</p>
-<div id="integers-floats-and-booleans" class="section level3 unnumbered hasAnchor">
-<h3>Integers, Floats, and Booleans<a href="elementary-data-types.html#integers-floats-and-booleans" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Consider the integer <code>10</code>, and the real number <code>5.64</code>. It turns out that these two are represented differently in the computer’s binary code, partly for reasons of efficiency (e.g., storing <code>10</code> vs. <code>10.0000000000</code>). Python and most other languages consider integers and real numbers to be two different “types”: real numbers are called <em>floats</em> (short for “floating point numbers”), and integers are called <em>ints</em>. We assign data like floats and ints to variables using the <code>=</code> operator.</p>
-<pre id=block_264936
-     class="language-python 
+<div id="rows-and-columns" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 11</span> Rows and columns<a href="rows-and-columns.html#rows-and-columns" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Let’s return to the output of the yeast proteins versus yeast proteins self-BLAST we performed previously, from the file <a href="data/yeast_blastp_yeast_top2.txt"><code>yeast_blastp_yeast_top2.txt</code></a>.</p>
+<pre id=part1-11-yeast-top2
+     class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-print("Hello world!")
-
-exons = 10                              # an int
-theta = 5.64                            # a float
+<b># BLASTP 2.2.30+
+# Query: YAL003W EFB1 SGDID:S000000003, Chr I from 142174-142253,142620-143160, 
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 1 hits found
+YAL003W YAL003W 207     207     207     1       207     1       207     2e-148
+# BLASTP 2.2.30+
+# Query: YAL005C SSA1 SGDID:S000000004, Chr I from 141431-139503, Genome Release
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 2 hits found
+YAL005C YAL005C 643     643     643     1       643     1       643     0.0
+YAL005C YLL024C 643     643     640     1       643     1       640     0.0
+...</b>
 </code></pre>
-<p>While we’re on the topic of variables, variable names in Python should always start with a lowercase letter and contain only letters, underscores, and numbers.</p>
-<p>Note that the interpreter ignores <code>#</code> characters and anything after them on the line.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a> This allows us to put “comments” in our code. Blank lines don’t matter, either, allowing the insertion of blank lines in the code for ease of reading.</p>
-<p>We can convert an int type into a float type using the <code>float()</code> function, which takes one parameter inside the parentheses:</p>
-<pre id=block_c4e667
-     class="language-python 
+<p>Let’s ask the following: how many sequences in this data set had a match to some other sequence? To start with, we would probably use a <code>grep -v '#'</code> to remove all of the comment lines, but then what? We could try using <code>wc</code> to count the lines, but only after also removing the self-hits, where the ID in the first column is equal to the ID in the second column. None of the utilities we’ve seen so far—<code>grep</code>, <code>sort</code>, <code>head</code>, or <code>tail</code>—can perform this task. We need a new tool, <code>awk</code>, which is a line-by-line and column-by-column processing tool for text files: <code>awk '&lt;program&gt;' &lt;file&gt;</code> or <code>... | awk '&lt;program&gt;'</code>.</p>
+<p>Written in the late 1970s and named after its authors (Alfred Aho, Peter Weinberger, and Brian Kernigan), <code>awk</code> provides a sophisticated programming language that makes it easy to parse tabular data like the BLAST results above. The syntax for <code>awk</code> can be fairly complex, but much of the complexity can be ignored in regular use.</p>
+<p>First, let’s answer our specific question, of how many sequences had matches to other sequences, and then we’ll look at some <code>awk</code> syntax more generally. The <code>awk</code> command that we want, printing only those lines where the first two columns are not equal, is <code>awk '{if($1 != $2) {print $0}}'</code>.</p>
+<pre id=part1-11-awk
+     class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-exons_as_float = float(exons)           # return 10.0 (a float)
-</code></pre>
-<p>Similarly, we can convert floats to ints using the <code>int()</code> function, which truncates the floating point value at the decimal point (so <code>5.64</code> will be truncated to the int type <code>5</code>, while <code>-4.67</code> would be truncated to the int type <code>-4</code>):</p>
-<pre id=block_22ed97
-     class="language-python 
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($1 != $2) {print $0}}' | \
+> less -S
+</b></code></pre>
+<p>Breaking down the <code>awk</code> command, the “program” that is executed is delimited by the single quotes (which collate their contents into a single command line parameter that is sent to the <code>awk</code> program). The code inside the outer pair of curly brackets is executed for each line. For each line, if the contents of the first column (represented by <code>$1</code>) are not equal to (<code>!=)</code> the second column (<code>$2</code>), then the code in the following pair of curly brackets is executed, and the line (<code>$0</code>) is printed (to <a href="using-bioinformatics-software.html#standard_output">standard output</a>).</p>
+<pre id=part1-11-awk-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code><b>
+YDR534C YOR383C 134     529     205     1       129     1       134     7e-33
+YDR536W YEL069C 525     570     565     21      532     50      553     6e-59
+YDR541C YOL151W 342     345     343     4       345     2       343     6e-150
+YDR542W YGL261C 121     121     121     1       121     1       121     3e-83
+YDR545W YOR396W 1797    1797    1797    1       1797    1       1797    0.0
+YDR545W YLR467W 1797    1797    1797    1       1797    1       1797    0.0
+YEL006W YIL006W 330     336     374     15      330     41      365     4e-130
+...
+</b></code></pre>
+<p>In theory, at this point we should be able to replace the <code>less -S</code> with a <code>wc</code> to count the lines, and thus counting the number of sequences that had matches to other sequences. Unfortunately, in this case, theory doesn’t align with reality: inspecting the output above reveals that ID <code>YDR545W</code> is still represented by two lines, so this sequence would be counted twice.</p>
+<p>Why? In the BLAST command, we requested the top two HSPs per query with <code>-max_target_seqs 2</code> and <code>-max_hsps 1</code>, so we expected that the best HSP would be to the sequence itself, with the second best (if it existed) to be to a non-self-hit. But in this case, <code>blastx</code> decided to report two non-self-hits. In fact, if we were to inspect <code>YDR545W</code>, <code>YOR396W</code>, and <code>YLR467W</code>, we’d find that their sequences are identical, and so BLAST needed to pick two HSPs out of the three-way tie.</p>
+<p>In order to get the correct number of sequences that had matches to others, we need to remove any duplicates that might still be found in the first column. We can do this by adding a <code>sort -k1,1d -u</code>, for a final answer of 2,884.</p>
+<pre id=part1-11-awk-sort
+     class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-theta_as_int = int(theta)               # return 5 (an int)
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($1 != $2) {print $0}}' | \
+> sort -k1,1d -u | \
+> wc</b>
+   2884   28840  138048
 </code></pre>
-<p>This information is useful because of a particular caveat when working with most programming languages, Python included: if we perform mathematical operations using only int types, the result will always be an int. Thus, if we want to have our operations return a floating point value, we need to convert at least one of the inputs on the right-hand side to a float type first. Fortunately, we can do this in-line:</p>
-<pre id=block_5009b6
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-a = 10                          # an int
-b = 3                           # an int
-answer_1 = a / b                # int/int returns int: 3
-answer_2 = a / float(b)         # int/float returns float: 3.3333
-c = 2.55                        # a float
-answer_3 = (b + c) * a          # (int + float) * int returns (float) * int...
-                                #    ... return float: 55.5
-</code></pre>
-<p>In the last line above, we see that mathematical expressions can be grouped with parentheses in the usual way (to override the standard order of operations if needed), and if a subexpression returns a float, then it will travel up the chain to induce floating-point math for the rest of the expression.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
-<p>Another property of importance is that the right-hand side of an assignment is evaluated before the assignment happens.</p>
-<pre id=block_fe5e60
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-value = 7
-value = value + 1
-print(value)                    # prints 8
-</code></pre>
-<p>Aside from the usual addition and subtraction, other mathematical operators of note include <code>**</code> for exponential powers and <code>%</code> for modulus (to indicate a remainder after integer division, e.g., <code>7 % 3</code> is <code>1</code>, <code>8 % 3</code> is <code>2</code>, <code>9 % 3</code> is <code>0</code>, and so on).</p>
-<pre id=block_731b74
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-a = 7
-b = 3
-c = a % b                       # modulus ("remainder"): 1
-c = a ** b                      # exponent: 343
-</code></pre>
-<p>Notice that we’ve reused the variables <code>a</code>, <code>b</code>, and <code>c</code>; this is completely allowable, but we must remember that they now refer to different data. (Recall that a variable in Python is a name that refers to, or references, some data.) In general, execution of lines within the same file (or cell in an iPython notebook) happens in an orderly top-to-bottom fashion, though later we’ll see “control structures” that alter this flow.</p>
-<p>Booleans are simple data types that hold either the special value <code>True</code> or the special value <code>False</code>. Many functions return Booleans, as do comparisons:</p>
-<pre id=block_bae7a1
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-sun_is_yellow = True            # boolean True
-test = 2 < -3                   # boolean False
-</code></pre>
-<p>For now, we won’t use Boolean values much, but later on they’ll be important for controlling the flow of our programs.</p>
-</div>
-<div id="strings" class="section level3 unnumbered hasAnchor">
-<h3>Strings<a href="elementary-data-types.html#strings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Strings, which hold sequences of letters, digits, and other characters, are the most interesting basic data type.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a> We can specify the contents using either single or double quotes, which can be useful if we want the string itself to contain a quote. Alternatively, we can <em>escape</em> odd characters like quotes if they would confuse the interpreter as it attempts to parse the file.</p>
-<pre id=block_ad3ef6
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-first = "Shawn"
-last = "O'Neil"                 # string
-last = 'O\'Neil'                # same string
-</code></pre>
-<p>Strings can be added together with <code>+</code> to concatenate them, which results in a new string being returned so that it can be assigned to a variable. The <code>print()</code> function, in its simplest form, takes a single value such as a string as a parameter. This could be a variable referring to a piece of data, or the result of a computation that returns one:</p>
-<pre id=block_a488c8
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-full = first + last
-print(full)                     # prints "ShawnO'Neil"
-print(first + " " + last)       # prints "Shawn O'Neil"
-</code></pre>
-<p>We cannot concatenate strings to data types that aren’t strings, however.</p>
-<pre id=block_9aeebf
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-height = 5.5
-sentence = full + " height is " + height     # Error on this line!
-</code></pre>
-<p>Running the above code would result in a <code>TypeError: cannot concatenate 'str' and 'float' objects</code>, and the offending line number would be reported. In general, the actual bug in your code might be before the line reporting the error. This particular error example wouldn’t occur if we had specified <code>height = "5.5"</code> in the previous line, because two strings can be concatenated successfully.</p>
-<p>Fortunately, most built-in data types in Python can be converted to a string (or a string describing them) using the <code>str()</code> function, which returns a string.</p>
+<p>For any sufficiently complex data set, it is a good idea to check as many assumptions about it as possible when performing an analysis. In the above, using <code>wc</code> on the lines to count the number of sequences that had hits to others implied that in the first column no ID was listed twice. In this case, comparing the counts with and without the <code>sort -k1,1d -u</code> would serve to verify or reject this assumption. In later chapters, we’ll learn more techniques for this kind of “sanity checking.”</p>
+<div id="basic-syntax-for-awk" class="section level3 unnumbered hasAnchor">
+<h3>Basic Syntax for awk<a href="rows-and-columns.html#basic-syntax-for-awk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although <code>awk</code> can be used as a full-featured programming language (complete with loops, arrays, and so on), for sophisticated programming needs, other languages like Python and R are usually better suited. Let’s take a look at a practical subset of its syntax.</p>
 <div class="fig center" style="width: 100%">
-<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_11_py_14_strfunc.png" /></p>
+<p><img src="images/part1-11-rows-and-columns.Rmd.images/I.11_5_awk_syntax-3.png" /></p>
 </div>
-<p>As the above illustrates, we may choose in some cases to store the result of an expression in a variable for later use, or we may wish to use a more complex expression directly. The choice is a balance between verbose code and less verbose code, either of which can enhance readability. You should use whatever makes the most sense to you, the person most likely to have to read the code later!</p>
-<p>Python makes it easy to extract a single-character string from a string using brackets, or “index” syntax. Remember that in Python, the first letter of a string occurs at index <code>0</code>.</p>
+<p>Statements in the <code>BEGIN</code> block are executed before any line of the input is processed, statements in the unadorned middle block are executed for every line, and statements in the <code>END</code> block are executed after the last line is processed. Each of these blocks is optional, though the middle “for each line” block is rarely omitted in practice.</p>
+<p>When processing a line, a number of variables are available for use. Although many of them start with a <code>$</code>, they are not environment variables (because we’ve placed the “program” inside single quotes, they are sent to <code>awk</code> as unaltered strings, <code>$</code> signs intact).</p>
+<ul style="list-style-type:none;">
+<li>
+<code>$0</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+Holds the contents of the entire line that is being processed.
+</li>
+</ul>
+<li>
+<code>$1</code>,<code>$2</code>, etc.
+</li>
+<ul style="list-style-type:none;">
+<li>
+<code>$1</code> holds the contents of the first column of the current line, $2 holds the contents of the second column of the current line, and so on. Like <code>sort</code>, <code>awk</code> by default assumes that columns are separated by <a href="using-bioinformatics-software.html#whitespace">whitespace</a>.
+</li>
+</ul>
+<li>
+<code>NF</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+The special variable <code>NF</code> holds the number of columns (also known as fields) in the current line (<code>awk</code> does not require that all lines contain the same number of columns).
+</li>
+</ul>
+<li>
+<code>NR</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+<code>NR</code> holds the number of lines that have been processed so far, including the current line. Thus in the <code>BEGIN</code> line, <code>NR</code> holds <code>0</code>; during the processing of the first line, <code>NR</code> holds <code>1</code>; and in the <code>END</code> block, <code>NR</code> holds the total number of lines in the input.
+</li>
+</ul>
+</ul>
+</ul>
+<p>Note that both the <code>NF</code> and <code>NR</code> lack a <code>$</code> prefix. The text placed in the three blocks can consist of a wide variety of things, including conditionals, print statements, logic and mathematical manipulations, and so on. Perhaps a collection of examples will help illustrate the utility of <code>awk</code>. All of these examples are based on the BLAST output above, after filtering out comment lines with <code>grep -v '#'</code>.</p>
+<p>This command prints only the first two columns of the table, separated by a space (the default when a comma is included in a <code>print</code> statement):</p>
+<pre id=part1-11-awk-print
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print $1,$2}'</b>
+YAL001C YAL001C
+YAL002W YAL002W
+YAL003W YAL003W
+...
+</code></pre>
+<p>Instead of separating the two output columns by a space, we can instead separate them by a string like <code>:::</code>, producing only a single conglomerated column of output.</p>
+<pre id=part1-11-awk-sep
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print $1":::"$2}'</b>
+YAL001C:::YAL001C
+YAL002W:::YAL002W
+YAL003W:::YAL003W
+...
+</code></pre>
+<p>If we’d like to add a new first column that simply contains the line number, we can use the <code>NR</code> variable in conjunction with the <code>$0</code> variable:</p>
+<pre id=part1-11-awk-NR
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print NR,$0}'</b>
+1 YAL001C       YAL001C 1161    1161    1161    1       1161    1       1161    
+2 YAL002W       YAL002W 1275    1275    1275    1       1275    1       1275    
+3 YAL003W       YAL003W 207     207     207     1       207     1       207     
+...
+</code></pre>
+<p>If-statements allow <code>awk</code> to execute other statements conditionally; the syntax is <code>if( &lt;logical expression&gt; ) { &lt;statements to execute&gt; }</code>. Additionally, if a column contains numeric values, <code>awk</code> can work with them as such, and <code>awk</code> even understands scientific notation. Here’s an example where only lines with HSP E values (the tenth column in our example) of less than <code>1e-10</code> are printed.</p>
+<pre id=part1-11-awk-if
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($10 < 1e-10) {print $0}}'</b>
+YAL001C YAL001C 1161    1161    1161    1    1161    1     1161    0.0
+YAL002W YAL002W 1275    1275    1275    1    1275    1     1275    0.0
+YAL003W YAL003W 207     207     207     1    207     1     207     2e-148
+...
+</code></pre>
+<p>Notice that the organization of the curly brackets produces a nested block structure; although for this simple case the inside set of brackets could be omitted, it’s usually best practice to include them, as they illustrate exactly which statement is controlled by the preceding <code>if</code>.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
+<p>If-statements can control multiple conditions, and sometimes it helps to break <code>awk</code> programs over multiple lines to help with their readability, especially when they are included in executable scripts. This sophisticated statement adds a new first column that categorizes each HSP as either “great,” “good,” or “ok,” depending on the E value, printing only the two IDs and the E value (columns 1, 2, and 10):</p>
+<pre id=part1-11-awk-mult-line
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{ \
+> if($10 < 1e-30) {print "great",$1,$2,$10} \
+> else if($10 < 1e-20) {print "good",$1,$2,$10} \
+> else {print "ok",$1,$2,$10} \
+> }'</b>
+...
+great YAL018C YAL018C 0.0
+good YAL018C YOL048C 4e-25
+great YAL019W YAL019W 0.0
+great YAL019W YOR290C 1e-84
+great YAL020C YAL020C 0.0
+great YAL021C YAL021C 0.0
+good YAL021C YOL042W 6e-27
+great YAL022C YAL022C 0.0
+...
+</code></pre>
+<p>It is easy enough to determine whether a particular column is equal to a given string, for example, to pull out all lines where the first column is <code>YAL054C</code>:</p>
+<pre id=part1-11-awk-equal
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{if($1 == "YAL054C") {print $0}}'</b>
+YAL054C YAL054C 714     714     714     1       714     1       714     0.0
+YAL054C YLR153C 645     714     684     73      712     37      674     0.0
+</code></pre>
+<p>Mathematical computations are a nice feature of <code>awk</code>. For example, columns 4 and 5 contain the total length of the query sequence and subject sequence, respectively, so we might wish to print the ratio of these two as an additional column at the end.</p>
+<pre id=part1-11-awk-math
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk '{print $1,$2,$4/$5}'</b>
+...
+YAL017W YAL017W 1
+YAL017W YOL045W 1.2314
+YAL018C YAL018C 1
+YAL018C YOL048C 0.950437
+YAL019W YAL019W 1
+YAL019W YOR290C 0.664319
+YAL020C YAL020C 1
+...
+</code></pre>
+<p>We could then pipe the result to a <code>sort -k3,3g | tail -n 5</code> to see the five HSPs with the largest ratios. Beware, however, that when performing mathematical operations or comparisons with columns, any contents that can’t be parsed as a number (<code>1.5</code> can be, as can <code>2</code> and <code>4e-4</code>, but not <code>i5</code> or <code>NA</code>) may be truncated (e.g., <code>10x1</code> is treated as just <code>10</code>) or treated as <code>0</code>. Using sort on columns with <code>-g</code> can reveal such potential problems, as the same underlying method is used for parsing.</p>
+There are a variety of mathematical functions built into <code>awk</code>. Here’s a sample:
+<ul style="list-style-type:none;">
+<li>
+<code>log()</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+Returns the natural logarithm of its argument, as in <code>print $10 * log($3 * $4)</code> for printing the log of the multiplication of the third and fourth columns times the tenth column.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>
+</li>
+</ul>
+<li>
+<code>length()</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+The <code>length()</code> function returns the number of characters in its argument, as in <code>length($1)</code> for the character length of the first column, and <code>length($0)</code> for the character length of the whole line (spaces and tab characters included).
+</li>
+</ul>
+<li>
+<code>**</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+This operator returns the left-hand side raised to the power of the right-hand side, as in <code>$1**2</code> for the square of the first column.
+</li>
+</ul>
+<li>
+<code>%</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+The modulus operator, returning the remainder after dividing the left-hand side by the right-hand side. For example, <code>NR%4</code> will be 1 on the first line, 2 on the second, 3 on the third, 0 on the fourth, 1 on the fifth, and so on.
+</li>
+</ul>
+<li>
+<code>exp()</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+This function returns its argument raised to the natural power <em>e</em>. For example, <code>log(exp($1))</code> returns the first column’s value.
+</li>
+</ul>
+<li>
+<code>int()</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+Returns the integer portion of its argument. For example, <code>int(6.8)</code> returns <code>6</code>, and <code>int(-3.6)</code> returns <code>-3</code>.
+</li>
+</ul>
+<li>
+<code>rand()</code>
+</li>
+<ul style="list-style-type:none;">
+<li>
+When given no arguments, returns a random number between 0 (inclusive) and 1 (exclusive). By default, every time <code>awk</code> is run, the series of random numbers produced by multiple calls to <code>rand()</code> is the same. To get a “random” random series, run <code>srand()</code> (which “seeds” the random number generator) in the <code>BEGIN</code> block, as in <code>BEGIN{srand()}{print rand(),$0}</code>.
+</li>
+</ul>
+</ul>
+</ul>
+<p>Logical expressions may be combined with Boolean operators, including <code>&amp;&amp;</code> for “and” and <code>||</code> for “or” (which produces true if either or both sides are true), and grouping can be accomplished with parentheses. For instance, we might wish to print only those lines where the first column is not equal to the second, and either the tenth column is less than <code>1e-30</code> or the second column is <code>YAL044C</code>.</p>
 <div class="fig center" style="width: 100%">
-<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_12_py_15_str_index1.png" /></p>
+<p><img src="images/part1-11-rows-and-columns.Rmd.images/I.11_13_awk_blast_or.png" /></p>
 </div>
-<p>The use of brackets is also known as “slice” syntax, because we can them it to extract a slice (substring) of a string with the following syntax: <code>string_var[begin_index:end_index]</code>. Again, indexing of a string starts at <code>0</code>. Because things can’t be too easy, the beginning index is inclusive, while the ending index is exclusive.</p>
-<pre id=block_d9c4f6
-     class="language-python 
+<p>Thus far, we haven’t made much use of the <code>BEGIN</code> or <code>END</code> blocks, which are especially handy when we define and update our own variables. We can accomplish this task with an <code>=</code> assignment (not to be confused with the <code>==</code> comparison). This command prints the average E values in our example BLAST result file.</p>
+<pre id=part1-11-awk-BEGIN-END
+     class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-seq = "ACTAG"
-subseq = seq[1:4]               # "CTA"
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk 'BEGIN{sumeval = 0} {sumeval = sumeval + $10} END{print sumeval/NR}'</b>
+3.00206e-09
 </code></pre>
-<p>A good way to remember this confusing bit of syntax is to think of indices as occurring between the letters.</p>
-<div class="fig right" style="width: 30%">
-<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_14_between_letters_indices.png" /></p>
-</div>
-<p>If a string looks like it could be converted to an int or float type, it probably can be with the <code>float()</code> or <code>int()</code> conversion functions. If such a conversion doesn’t make sense, however, Python will crash with an error. For example, the last line below will produce the error <code>ValueError: could not convert string to float: XY_2.7Q</code>.</p>
-<pre id=block_6c7a3b
-     class="language-python 
+<p>This command works because the right-hand side of an assignment to a variable with <code>=</code> is evaluated before the assignment happens. Thus, in the <code>BEGIN</code> block, the <code>sumeval</code> variable is initialized to <code>0</code>, then for each line the value of <code>sumeval</code> is added to the contents of the tenth column (the E value of that line), and the result is stored in <code>sumeval</code>. Finally, in the <code>END</code> block, <code>sumeval</code> contains the total sum of E values, and we can divide this result by the number of lines processed, <code>NR</code>.</p>
+<p>We can execute multiple statements within a single block if we separate them with semicolons. In the above example, the average E value computed includes self-hits. We can filter them out with an if-statement before modifying <code>sumeval</code>, but then we won’t want to divide the result by <code>NR</code>, because that will include the self-hit counts as well. To solve this problem, we’ll need to keep <em>two</em> variables.</p>
+<pre id=part1-11-awk-2vars
+     class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-exons_str = "10"
-theta_str = "5.64"
-evalue_str = "2.5e-4"
-
-exons = int(exons_str)             # int 10
-theta = float(theta_str)           # float 5.64
-evalue = float(evalue_str)         # float 0.00025
-
-test = float("XY_2.7Q")            # Error on this line!
+oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+> grep -v '#' | \
+> awk 'BEGIN{sumeval = 0; count = 0} \
+> {if($1 != $2){sumeval = sumeval + $10; count = count + 1}} \
+> END{print sumeval/count}'</b>
+9.06228e-09
 </code></pre>
-<p>To get the length of a string, we can use the <code>len()</code> function, which returns an int. We can use this in conjunction with <code>[]</code> syntax to get the last letter of a string, even if we don’t know the length of the string before the program is run. We need to remember, though, that the index of the last character is one less than the length, based on the indexing rules.</p>
-<pre id=block_cab3b9
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-seq = "ACTAG"
-seq_len = len(seq)                    # int 5
-last_letter = seq[seq_len - 1]        # string "G"
-## or
-last_letter = seq[len(seq) - 1]       # string "G"
-</code></pre>
-<p>Similarly, if we want a substring from position <code>2</code> to the end of the string, we need to remember the peculiarities of the <code>[]</code> slice notation, which is inclusive:exclusive.</p>
-<pre id=block_249199
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-end_seq = seq[2:len(seq)]             # indices 2 to 5, inclusive:exclusive
-print(end_seq)                        # print "TAG"
-</code></pre>
-</div>
-<div id="immutability" class="section level3 unnumbered hasAnchor">
-<h3>Immutability<a href="elementary-data-types.html#immutability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In some languages it is possible to change the contents of a string after it’s been created. In Python and some other languages, this is not the case, and strings are said to be <em>immutable</em>. Data are said to be immutable if they cannot be altered after their initial creation. The following line of code, for example, would cause an error like <code>TypeError: 'str' object does not support item assignment</code>:</p>
-<pre id=block_6d2e23
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-seq = "ACTAG"
-seq[2] = "C"                          # Error on this line!
-</code></pre>
-<p>Languages like Python and Java make strings immutable for a variety of reasons, including computational efficiency and as a safeguard to prevent certain common classes of programming bugs. For computational biology, where we often wish to modify strings representing biological sequences, this is an annoyance. We’ll learn several strategies to work around this problem in future chapters.</p>
-<p>In many cases, we can make it look like we are changing the contents of some string data by reusing the variable name. In the code below, we are defining strings <code>seqa</code> and <code>seqb</code>, as well as <code>seqc</code> as the concatenation of these, and then <code>seqd</code> as a substring of <code>seqc</code>. Finally, we reuse the <code>seqa</code> variable name to refer to different data (which gets copied from the original).</p>
-<pre id=block_d7e099
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-seqa = "ACTAG"                         # "ACTAG"
-seqb = "GGAC"                          # "GGAC"
-seqc = seqa + seqb                     # "ACTAGGGAC"
-seqd = seqc[2:7]                       # "TAGGG"
-
-seqa = "ATG" + seqa                    # redefine seqa, "ATGACTAG"
-</code></pre>
-<p>Here’s how we might represent these variables and the data stored in memory, both before and after the reassignment of <code>seqa</code>.</p>
-<div class="fig center" style="width: 80%">
-<p><img src="images/part2-02-elementary-data-types.Rmd.images/II.2_20_redef_seqa-3.png" /></p>
-</div>
-<p>Because the string <code>"ACTAG"</code> is immutable, redefining <code>seqa</code> results in an entirely different piece of data being created. The original string <code>"ACTAG"</code> will still exist in memory (RAM) for a short time, but because it is not accessible via any variables, Python will eventually clean it out to make room in memory in a process known as garbage collection.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a> Garbage collection is an automatic, periodic process of de-allocating memory used by data that are no longer accessible (and hence no longer needed) by the program.</p>
-<p>This immutability of strings could result in code that takes much longer to execute than expected, because concatenating strings results in copying of data (see the results of <code>seqc = seqa + seqb</code> above). For example, if we had a command that concatenated chromosome strings (millions of letters each) to create a genome string, <code>genome = chr1 + chr2 + chr3 + chr4</code>, the result would be a copy of all four chromosomes being created in memory! On the other hand, in many cases, Python can use the immutability of strings to its advantage. Suppose, for example, that we wanted to get a large substring from a large string, <code>centromere_region = chr1[0:1500000]</code>. In this case, Python doesn’t need to make a copy of the substring in memory. Because the original string can never change, all it needs is some bookkeeping behind the scenes to remember that the <code>centromere_region</code> variable is associated with part of string <code>chr1</code> references. This is why <code>seqd</code> in the figure above does not duplicate data from <code>seqc</code>.</p>
-<p>None of this discussion is to imply that you should worry about the computational efficiency of these operations at this point. Rather, the concept of immutability and the definition of a variable (in Python) as a “name that refers to some data” are important enough to warrant formal discussion.</p>
+<p>As before, some IDs are still present more than one time in the first column with this solution, so it may make better sense to first filter the desired lines by using the <code>awk</code> and <code>sort -k1,1d -u</code> solution from above, and then use another <code>awk</code> for the average computation.</p>
 <div class="exercises">
-<h4 id="exercises-12" class="unnumbered hasAnchor">Exercises<a href="elementary-data-types.html#exercises-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4 id="exercises-9" class="unnumbered hasAnchor">Exercises<a href="rows-and-columns.html#exercises-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
-<li><p>Create and run a Python program that uses integers, floats, and strings, and converts between these types. Try using the <code>bool()</code> function to convert an integer, float, or string to Boolean and print the results. What kinds of integers, floats, and strings are converted to a Boolean <code>False</code>, and what kinds are converted to <code>True</code>?</p></li>
-<li><p>We know that we can’t use the <code>+</code> operator to concatenate a string type and integer type, but what happens when we multiply a string by an integer? (This is a feature that is fairly specific to Python.)</p></li>
-<li><p>What happens when you attempt to use a float type as an index into a string using <code>[]</code> syntax? What happens when you use a negative integer?</p></li>
-<li><p>Suppose you have a sequence string as a variable, like <code>seq = "ACTAGATGA"</code>. Using only the concepts from this chapter, write some code that uses the <code>seq</code> variable to create two new variables, <code>first_half</code> and <code>second_half</code> that contain the first half (rounded down) and the second half (rounded up) of <code>seq</code>. When printed, these two should print <code>"ACTA"</code> and <code>"GATGA"</code>, respectively.</p>
-<pre id=block_8264d7
-     class="language-python 
-            line-numbers 
-            linkable-line-numbers">
- <code>
- #!/usr/bin/env python
-
-seq = "ACTAGATGA"
-## Write some code here:
-
-
-
-print(first_half)                     # should print "ACTA"
-print(second_half)                    # should print "GATGA"
-</code></pre>
-<p>Importantly, your code should work no matter the string <code>seq</code> refers to, without changing any other code, so long as the length of the string is at least two letters. For example, if <code>seq = "TACTTG"</code>, then the same code should result in <code>first_half</code>referring to <code>"TAC"</code> and <code>second_half</code> referring to <code>"TTG"</code>.</p></li>
+<li><p>In the file <a href="data/pz_blastx_yeast_top10.txt">pz_blastx_yeast_top10.txt</a>, how many HSPs (lines) have an E value that is less than 1e-30 <em>or</em> have an identity value of greater than 50%? Use <code>awk</code>, <code>wc</code>, and <code>grep</code> if needed to compute the answer.</p></li>
+<li><p>The file <a href="data/contig_stats.txt">contig_stats.txt</a> describes statistics for contigs from a de novo genome assembly (a contig is an assembled “piece” of the genome). The fourth column describes the GC content of the various contigs. Other analyses indicate that the majority of correctly assembled genes have an average coverage (second column) of between 80.0 and 150.0. Use <code>awk</code> to determine the average GC content for contigs with coverage between 80.0 and 150.0. Then use another invocation of <code>awk</code> to determine the average GC content for all other contigs. (Do not count the header line in the file in your computations.)</p></li>
+<li><p>The file <a href="data/PZ.annot.txt">PZ.annot.txt</a> is the result of a gene ontology (GO) analysis for the full set of assembled <em>Papilio zelicaon</em> cDNA sequences. Owing to the incomplete nature of the annotation process, not all sequences were assigned GO terms. How many different sequence IDs are represented in this file?</p></li>
+<li><p>Some versions of the sort program can sort lines in “random” order by using the <code>-R</code> flag. Rather than using this flag, however, use <code>grep</code>, <code>awk</code> (with the <code>rand()</code> feature), <code>sort</code> (without the <code>-R</code> flag), and <code>head</code> to select five random IDs from <a href="data/pz_cDNAs.fasta">pz_cDNAs.fasta</a>. An example output might look like:<br></p>
+<div class="fig center" style="width: 100%">
+<img src="images/part1-11-rows-and-columns.Rmd.images/I.11_16_fasta_exercise.png" />
+</div>
+<p><br>The same command should produce a different list of five IDs each time it is run.</p></li>
 </ol>
 </div>
 
 </div>
 </div>
-
-
-
 <div class="footnotes">
 <hr />
-<ol start="34">
-<li id="fn34"><p>The <code>#</code> symbols are ignored unless they occur within a pair of quotes. Technically, the interpreter also ignores the <code>#!</code> line, but it is needed to help the system find the interpreter in the execution process if running the program as a script.<a href="elementary-data-types.html#fnref34" class="footnote-back">↩︎</a></p></li>
-<li id="fn35"><p>This isn’t true in Python 3.0 and later; e.g., <code>10 / 3</code> will return the float <code>3.33333</code>.<a href="elementary-data-types.html#fnref35" class="footnote-back">↩︎</a></p></li>
-<li id="fn36"><p>Unlike C and some other languages, Python does not have a “char” datatype specifically for storing a single character.<a href="elementary-data-types.html#fnref36" class="footnote-back">↩︎</a></p></li>
-<li id="fn37"><p>Garbage collection is a common feature of high-level languages like Python, though some compiled languages support it as well. C does not: programmers are required to ensure that all unused data are erased during program execution. Failure to do so is known as a “memory leak” and causes many real-world software crashes.<a href="elementary-data-types.html#fnref37" class="footnote-back">↩︎</a></p></li>
+<ol start="27">
+<li id="fn27"><p>This nested construct, a controlled block inside of another block that is executed for each element of a set (in this case, for each line), is one of our first examples of programming! One hint for reducing confusion when producing such structures is to fill in their structure from the outside in, adding pairs of symbols and then “backing up” into them as needed. In this example, we might have started with <code>awk ''</code>, and then added the curly brackets to produce <code>awk '{}'</code>, next<code>awk '{if() {}}'</code>, and finally filled in the logic with <code>awk '{if($10 &lt; 1e-10) {print $0}}'</code>.<a href="rows-and-columns.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p>If you are concerned about where spaces are allowed in <code>awk</code> statements, try not to be: for the most part, they are allowed anywhere, and you may feel free to use them to enhance the readability of your statements. They are not allowed in keywords and variables: <code>i f($ 1 &gt; $2) {print N R}</code> would be an invalid expression because <code>i f</code>, <code>$ 1</code>, and <code>N R</code> have erroneous spaces.<a href="rows-and-columns.html#fnref28" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -549,8 +640,8 @@ print(second_half)                    # should print "GATGA"
           </div>
         </div>
       </div>
-<a href="hello-world.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="an-introduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sorting-first-and-last-lines.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="patterns-regular-expressions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -581,7 +672,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-02-elementary_data_types.Rmd",
+"link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-11-rows-and-columns.Rmd",
 "text": "Edit"
 },
 "history": {
