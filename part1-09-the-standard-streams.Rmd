@@ -80,7 +80,9 @@ PZ7180000000004_TX      0.279   1000    AAATA   12      unit:TAA    
 <span style="background-color:black; color:white;">pz_sample_stats.txt (END)</span>
 </code></pre>
 
-So what is going on? It turns out that programs can produce output (other than writing to files) on *two* streams. We are already familiar with the first, [standard output](#standard_output), which is by default printed to the terminal but can be redirected to a file with >. The second, called ###### {- #standard_error}*standard error*, is also by default printed to the terminal but is not redirected with `>`.
+###### {- #standard_error}
+
+So what is going on? It turns out that programs can produce output (other than writing to files) on *two* streams. We are already familiar with the first, [standard output](#standard_output), which is by default printed to the terminal but can be redirected to a file with >. The second, called *standard error*, is also by default printed to the terminal but is not redirected with `>`.
 
 By default, like standard output, standard error (also known as “standard err” or “stderr”) is printed to the terminal.
 
