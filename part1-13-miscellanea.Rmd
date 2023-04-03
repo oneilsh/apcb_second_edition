@@ -28,7 +28,7 @@ could alternatively be represented as `line 1\nline 2\nline 3\n` (most files end
             linkable-line-numbers">
 <code>
 oneils@mbp ~/apcb/intro/fasta_stats$ <b>cat lines.txt | tr '\n' '#'</b>
-line 1#line 2#line 3#oneils@atmosphere ~/apcb/intro/fasta_stats$ 
+line 1#line 2#line 3#oneils@mbp ~/apcb/intro/fasta_stats$ 
 </b></code></pre>
 
 Notice in the above that even the final newline has been replaced, and our [command prompt](#command_prompt) printed on the same line as the output. Similarly, `tr` (and `sed`) can replace characters with newlines, so `tr '#' '\n'` would undo the above.
