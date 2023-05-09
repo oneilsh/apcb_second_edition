@@ -271,6 +271,7 @@ This is a bit weird...
 </code></pre>
 
 ###### {- #script}
+###### {- #interpreter}
 
 It ran! What we’ve created is known as a script to be run by an interpreter; in this case, the interpreter is `bash`. A script is a text file with execute permissions set, containing commands that may be run by an interpreter, usually specified through the absolute path at the top of the script with a `#!` line. An interpreter is a program that can execute commands, sometimes specified in a script file.
 
