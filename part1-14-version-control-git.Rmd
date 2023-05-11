@@ -7,7 +7,7 @@ In chapter 6, ["Installing (Bioinformatics) Software"](#installing-bioinformatic
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>ls</b>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
 dmel-all-translation-r6.02.fasta  p450s.fasta.aln      p450s_hmmsearch_dmel.txt
 p450s.fasta                       p450s.fasta.aln.hmm  <span style="color: DarkGreen">runhmmer.sh</span>
 </b></code></pre>
@@ -40,8 +40,8 @@ Since `git` tracks **who** made **which** changes **when**, it needs to know who
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git config --global user.name "Shawn O'Neil"</b>
-oneils@mbp ~/projects/p450s$ <b>git config --global user.email "shawn.oneil@cgrb.oregonstate.edu"</b>
+[oneils@mbp ~/projects/p450s]$ <b>git config --global user.name "Shawn O'Neil"</b>
+[oneils@mbp ~/projects/p450s]$ <b>git config --global user.email "shawn.oneil@cgrb.oregonstate.edu"</b>
 </b></code></pre>
 
 This will edit the `~/.gitconfig` file so that `git` can include your information in all of your commits. It may also be helpful to change your default text editor with the command `git config --global core.editor nano`.^[There are many options for default text editor, see https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config#ch_core_editor for more details.]
@@ -57,7 +57,7 @@ To illustrate, let’s create a repository for the `p450s` project, edit the `ru
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git init</b>
+[oneils@mbp ~/projects/p450s]$ <b>git init</b>
 Initialized empty Git repository in /home/oneils/projects/p450s/.git/
 </code></pre>
 
@@ -68,7 +68,7 @@ This step creates the hidden `.git` directory, containing the required files for
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git add runhmmer.sh</b>
+[oneils@mbp ~/projects/p450s]$ <b>git add runhmmer.sh</b>
 </code></pre>
 
 No message has been printed, but at any time we can see the status of the `git` repo by running `git status`.
@@ -78,7 +78,7 @@ No message has been printed, but at any time we can see the status of the `git` 
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git status</b>
+[oneils@mbp ~/projects/p450s]$ <b>git status</b>
 On branch master
 
 No commits yet
@@ -103,7 +103,7 @@ The status information shows that we have one new file to track, `runhmmer.sh`, 
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git commit -m 'Added runhmmer.sh'</b>
+[oneils@mbp ~/projects/p450s]$ <b>git commit -m 'Added runhmmer.sh'</b>
 [master (root-commit) 0a85fe8] Added runhmmer.sh
  1 file changed, 17 insertions(+)
  create mode 100755 runhmmer.sh
@@ -116,7 +116,7 @@ At this point, `git status` would merely inform us that we still have untracked 
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>ls</b>
+[oneils@mbp ~/projects/p450s]$ <b>ls</b>
 dmel-all-translation-r6.02.fasta  p450s.fasta.aln.hmm       <span style="color: DarkGreen">runhmmer.sh</span>
 p450s.fasta                       p450s_hmmsearch_dmel.txt
 p450s.fasta.aln                   README.txt
@@ -129,9 +129,9 @@ Running `git status` at this point would report a new untracked file,` README.tx
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git add runhmmer.sh</b>
-oneils@mbp ~/projects/p450s$ <b>git add README.txt</b>
-oneils@mbp ~/projects/p450s$ <b>git commit -m 'New readme, changed runhmmer'</b>
+[oneils@mbp ~/projects/p450s]$ <b>git add runhmmer.sh</b>
+[oneils@mbp ~/projects/p450s]$ <b>git add README.txt</b>
+[oneils@mbp ~/projects/p450s]$ <b>git commit -m 'New readme, changed runhmmer'</b>
 [master 5fb66e0] New readme, changed runhmmer
  2 files changed, 4 insertions(+), 1 deletion(-)
  create mode 100644 README.txt
@@ -144,7 +144,7 @@ Every version that we commit is saved, and we can easily see a quick log of the 
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git log</b>
+[oneils@mbp ~/projects/p450s]$ <b>git log</b>
 <span style="color: Goldenrod">commit 5fb66e0292b65f200202c8e0f2b5aefad63edb3b (</span><span style="color: Cyan">HEAD -></span> <span style="color: Green">master</span><span style="color: Goldenrod">)</span>
 Author: Shawn O'Neil <shawn.oneil@cgrb.oregonstate.edu>
 Date:   Thu Feb 26 01:44:35 2015 -0700
@@ -168,7 +168,7 @@ Or, more concisely
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git log --all --graph --decorate --oneline</b>
+[oneils@mbp ~/projects/p450s]$ <b>git log --all --graph --decorate --oneline</b>
 * <span style="color: Goldenrod">5fb66e0 (</span><span style="color: Cyan">HEAD -></span> <span style="color: Green">master</span><span style="color: Goldenrod">)</span> New readme, changed runhmmer
 * <span style="color: Goldenrod">0a85fe8</span> Added runhmmer.sh
 </code></pre>
@@ -182,7 +182,7 @@ Notice that each commit is identified by a long series of letters and numbers, s
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git diff 5fb66e0 0a85fe8</b>
+[oneils@mbp ~/projects/p450s]$ <b>git diff 5fb66e0 0a85fe8</b>
 diff --git a/README.txt b/README.txt
 deleted file mode 100644
 index abdbdfc..0000000
@@ -226,7 +226,7 @@ When working on a repo, it’s not uncommon to have many files that we’d like 
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/projects/p450s$ <b>git status</b>
+[oneils@mbp ~/projects/p450s]$ <b>git status</b>
 On branch master
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -237,8 +237,8 @@ Untracked files:
 	p450s_hmmsearch_dmel.txt</span>
 
 nothing added to commit but untracked files present (use "git add" to track)
-oneils@mbp ~/projects/p450s$ <b>echo "dmel-all-translation-r6.02.fasta" > .gitignore</b>
-oneils@mbp ~/projects/p450s$ <b>git status</b>
+[oneils@mbp ~/projects/p450s]$ <b>echo "dmel-all-translation-r6.02.fasta" > .gitignore</b>
+[oneils@mbp ~/projects/p450s]$ <b>git status</b>
 On branch master
 Untracked files:
   (use "git add <file>..." to include in what will be committed)

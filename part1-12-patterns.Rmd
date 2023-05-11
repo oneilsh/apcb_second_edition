@@ -17,7 +17,7 @@ A more complex question would be to ask how many different groups are represente
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>cat pz_cDNAs.fasta | \
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>cat pz_cDNAs.fasta | \
 > grep '>' | \
 > grep '_' | \
 <span style="background-color:LemonChiffon">> sed -r 's/_/ /' | \</span>
@@ -112,7 +112,7 @@ Notice that the string `TAG` is both a type of codon in general (`[ACTG]{3,3}`) 
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>echo "TATGCATGTTTAGTAGCTTTTAG" | \
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>echo "TATGCATGTTTAGTAGCTTTTAG" | \
 > sed -r 's/ATG([ACTG]{3,3})+((TAA)|(TAG)|(TGA))/_ORF_/g'</b>
 T_ORF_CTTTTAG
 </code></pre>
@@ -156,7 +156,7 @@ If we send these results through `wc`, we see that this file contains 471 header
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>cat pz_cDNAs.fasta | \
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>cat pz_cDNAs.fasta | \
 > grep -E '>[^_[:space:]]+(_[A-Z]+){0,1}' | \
 > wc</b>
     471    1413   15279
