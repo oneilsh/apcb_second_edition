@@ -28,6 +28,11 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
+      - name: Install packages
+        run: |
+          install.packages(c('bookdown'))
+        shell: Rscript {0}
+
       - name: Cache bookdown results
         uses: actions/cache@v3
         with:
