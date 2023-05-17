@@ -4,7 +4,7 @@
 >
 >~Donald Knuth
 
-Functions (sometimes called "subroutines") are arguably the most important concept in programming. We’ve already seen their use in many contexts, for example, when using functions like `len()` and `float()`. Here’s a bit of code that computes the GC content of a DNA sequence in a variable called `seq`:
+Functions are arguably the most important concept in programming. We’ve already seen their use in many contexts, for example, when using functions like `len()` and `float()`. Here’s a bit of code that computes the GC content of a DNA sequence in a variable called `seq`:
 
 <pre id=part2-06-GC-content
      class="language-python 
