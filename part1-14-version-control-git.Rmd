@@ -1,0 +1,264 @@
+# Version Control with git
+
+In chapter 6, ["Installing (Bioinformatics) Software"](#installing-bioinformatics-software), we worked on a rather sophisticated project, involving installing software (in our `$HOME/local/bin` directory) as well as downloading data files and writing executable scripts (which we did in our `$HOME/projects/p450s` directory). In particular, we initially created a script to automate running HMMER on some data files, called [`runhmmer.sh`](data/runhmmer.sh). Here are the contents of the project directory when last we saw it:
+
+<pre id=part1-14-ls
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln      p450s_hmmsearch_dmel.txt
+p450s.fasta                       p450s.fasta.aln.hmm  <span style="color: DarkGreen">runhmmer.sh</span>
+</b></code></pre>
+
+It may be that as we continue working on the project, we will make adjustments to the `runhmmer.sh` script or other text files in this directory. Ideally, we would be able to access previous versions of these files – in case we need to refer back for provenance reasons or we want to undo later edits. One way to accomplish this task would be to frequently create backup copies of important files, perhaps with file names including the date of the backup. This would quickly become unwieldy, however.
+
+###### {- #version_control}
+
+An alternative is to use *version control*, which is a system for managing changes to files (especially programs and scripts) over time and across various contributors to a project. A version control system thus allows a user to log **who** made **which** changes **when**, and provides the ability to examine differences between the various edits. There are a number of popular version control programs, like `svn` (subversion) and `cvs` (concurrent versioning system). Because the job of tracking changes in files across time and users is quite complex (especially when multiple users may be simultaneously making independent edits), using version control software can be a large skill set in itself.
+
+One of the more recently developed version control systems is `git`, which has gained popularity for a number of reasons, including its use in managing popular software projects like the Linux kernel.^[Linus Torvalds, who also started the Linux kernel project, developed the `git` system. Quoting Linus: "I’m an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'Git'." (Here "git" refers to the British slang for a "pig-headed and argumentative" person.)] The `git` system (which is managed by a program called `git`) uses a number of vocabulary words we should define first.
+
+<ul style="list-style-type:none;">
+<li>*Repository*</li>
+<ul style="list-style-type:none;"><li>Also known as a "repo", a `git` repository is usually just a folder/directory.</li></ul>
+<li>*Commit*</li>
+<ul style="list-style-type:none;"><li>A commit is effectively a snapshot (or version) of a selected set of files or directories in a repository. Thus there may be multiple versions of a repository across time (or even independently created by different users). Committing is the action of storing a set of files (in a repository) to a commit.</li></ul>
+<li>*Diff*</li>
+<ul style="list-style-type:none;"><li>Two different versions may be "diffed", which means to reveal the changes between them.</li></ul>
+<li>*Stage*</li>
+<ul style="list-style-type:none;"><li>Not all files need to be included in a version; staging a set of files marks them for inclusion in the version when the next commit happens.</li></ul>
+</ul>
+
+### Configuring `git` {-}
+
+Since `git` tracks **who** made **which** changes **when**, it needs to know who you are. We can do this by using the `git config` command.
+
+<pre id=part1-14-config
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git config --global user.name "Shawn O'Neil"</b>
+oneils@mbp ~/projects/p450s$ <b>git config --global user.email "shawn.oneil@cgrb.oregonstate.edu"</b>
+</b></code></pre>
+
+This will edit the `~/.gitconfig` file so that `git` can include your information in all of your commits. It may also be helpful to change your default text editor with the command `git config --global core.editor nano`.^[There are many options for default text editor, see https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config#ch_core_editor for more details.]
+
+### Initializing a Repo {-}
+
+The `git` system, like all version control systems, is fairly complex and provides many features. The basics, though, are: (1) there is a folder containing the project of interest; (2) changes to some files are made over time; (3) edited files can periodically be “staged”; and (4) a “commit” takes a snapshot of all staged files and stores their information at that point in time. (For the record, all of this information is stored in a [hidden](#hidden) directory created within the project directory called `.git`, which is managed by the `git` program itself.)
+
+To illustrate, let’s create a repository for the `p450s` project, edit the `runhmmer.sh` script file as well as create a `README.txt` file, and commit those changes. First, to turn a directory into a `git` repository, we need to run `git init`:
+
+<pre id=part1-14-init
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git init</b>
+Initialized empty Git repository in /home/oneils/projects/p450s/.git/
+</code></pre>
+
+This step creates the hidden `.git` directory, containing the required files for tracking by the system. We don’t usually need to work directly with this directory – the `git` software will do that for us. Next, we will create our first version by staging our first files and running our first commit. We could keep tracked versions of all the files in this directory, but do we want to? The data files like `dmel-all-translation-r6.02.fasta` are large and unlikely to change, so logging them would be unnecessary. Similarly, because the output file `p450s_hmmsearch_dmel.txt` is generated programmatically and can always be regenerated (if we have a version of the program that created it), we won’t track that, either. To "stage" files for the next commit, we use `git add`; to stage all files in the project directory, we would use `git add -A`, but here we want to stage only `runhmmer.sh`, so we’ll run `git add runhmmer.sh`.
+
+<pre id=part1-14-stage
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git add runhmmer.sh</b>
+</code></pre>
+
+No message has been printed, but at any time we can see the status of the `git` repo by running `git status`.
+
+<pre id=part1-14-status
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git status</b>
+On branch master
+
+No commits yet
+
+Changes to be committed:
+   (use "git rm --cached <file>..." to unstage)
+      <span style="color: Green">new file:   runhmmer.sh</span>
+
+Untracked files:
+   (use "git add <file>..." to include in what will be committed)
+      <span style="color: Red">dmel-all-translation-r6.02.fasta
+      p450s.fasta
+      p450s.fasta.aln
+      p450s.fasta.aln.hmm
+      p450s_hmmsearch_dmel.txt</span>
+</code></pre>
+
+The status information shows that we have one new file to track, `runhmmer.sh`, and a number of untracked files (which we’ve left untracked for a reason). Now we can "commit" these staged files to a new version, which causes the staged files to be stored for later reference. When committing, we need to enter a commit message, which gives us a chance to summarize the changes that are being committed.^[Commit messages are composed of two parts: the header (72 characters max) and the description. There is an art to writing informative yet brief commit messages. See [https://xkcd.com/1296/](https://xkcd.com/1296/) for examples of what NOT to write.]
+
+<pre id=part1-14-commit
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git commit -m 'Added runhmmer.sh'</b>
+[master (root-commit) 0a85fe8] Added runhmmer.sh
+ 1 file changed, 17 insertions(+)
+ create mode 100755 runhmmer.sh
+</code></pre>
+
+At this point, `git status` would merely inform us that we still have untracked files. Let’s suppose we make some edits to `runhmmer.sh` (adding a new comment line, perhaps), as well as create a new `README.txt` file describing the project.
+
+<pre id=part1-14-ls2
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta.aln.hmm       <span style="color: DarkGreen">runhmmer.sh</span>
+p450s.fasta                       p450s_hmmsearch_dmel.txt
+p450s.fasta.aln                   README.txt
+</code></pre>
+
+Running `git status` at this point would report a new untracked file,` README.txt`, as well as a line reading `modified: runhmmer.sh` to indicate that this file has changed since the last commit. We could continue to edit files and work as needed; when we are ready to commit the changes, we just need to stage the appropriate files and run another commit.
+
+<pre id=part1-14-commit2
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git add runhmmer.sh</b>
+oneils@mbp ~/projects/p450s$ <b>git add README.txt</b>
+oneils@mbp ~/projects/p450s$ <b>git commit -m 'New readme, changed runhmmer'</b>
+[master 5fb66e0] New readme, changed runhmmer
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+ create mode 100644 README.txt
+</code></pre>
+
+Every version that we commit is saved, and we can easily see a quick log of the history of a project with `git log`.
+
+<pre id=part1-14-log
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git log</b>
+<span style="color: Goldenrod">commit 5fb66e0292b65f200202c8e0f2b5aefad63edb3b (</span><span style="color: Cyan">HEAD -></span> <span style="color: Green">master</span><span style="color: Goldenrod">)</span>
+Author: Shawn O'Neil <shawn.oneil@cgrb.oregonstate.edu>
+Date:   Thu Feb 26 01:44:35 2015 -0700
+
+
+    New readme, changed runhmmer
+
+
+<span style="color: Goldenrod">commit 0a85fe802184564b2e3429e23f0472c7e6bcdc6b</span>
+Author: Shawn O'Neil <shawn.oneil@cgrb.oregonstate.edu>
+Date:   Thu Feb 26 01:38:50 2015 -0700
+
+
+    Added runhmmer.sh
+</code></pre>
+
+Or, more concisely
+
+<pre id=part1-14-log-oneline
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git log --all --graph --decorate --oneline</b>
+* <span style="color: Goldenrod">5fb66e0 (</span><span style="color: Cyan">HEAD -></span> <span style="color: Green">master</span><span style="color: Goldenrod">)</span> New readme, changed runhmmer
+* <span style="color: Goldenrod">0a85fe8</span> Added runhmmer.sh
+</code></pre>
+
+### Viewing changes bewteen commits {-}
+
+Notice that each commit is identified by a long series of letters and numbers, such as `5fb66e0292...`: this is the commit hash. To see the differences between two commits, we can run `git diff` with just the first few characters of each identifier, as in `git diff 5fb66e0 0a85fe8`. The output format isn’t remarkably readable by default.
+
+<pre id=part1-14-diff
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git diff 5fb66e0 0a85fe8</b>
+diff --git a/README.txt b/README.txt
+deleted file mode 100644
+index abdbdfc..0000000
+--- a/README.txt
++++ /dev/null
+<span style="color: Cyan">@@ -1,3 +0,0 @@</span>
+<span style="color: Red">-This project aims at using HMMER to search
+-for p450-1A1 genes against the D. melanogaster
+-protein dataset.</span>
+diff --git a/runhmmer.sh b/runhmmer.sh
+index 588f396..b3759b9 100755
+--- a/runhmmer.sh
++++ b/runhmmer.sh
+<span style="color: Cyan">@@ -1,6 +1,5 @@</span>
+ #!/bin/bash
+ 
+<span style="color: Red">-# check number of input parameters:</span>
+ if [ $# -ne 3 ]; then
+        echo "Wrong number of parameters."
+        echo "Usage: runhmmer.sh <query_fasta> <db_fasta> <output_names>"
+<span style="color: Cyan">@@ -11,6 +10,7 @@</span> export query=$1
+ export db=$2
+ export output=$3
+ 
+<span style="color: Green">+#query</span>
+ muscle -in $query -out $query.aln
+ hmmbuild $query.aln.hmm $query.aln
+ hmmsearch $query.aln.hmm $db \
+</code></pre>
+
+Here we can see `git diff` reports on each changed file in turn, first comparing `a/README.txt` (from commit `5fb66e0`) to `/dev/null`, since `README.txt` did not exist in the first commit (`0a85fe8`). The line beginning with `index` reports the hash ID of the files being compared - there's no need to worry about this unless you're going to start playing around in the `.git` folder (not recommended!).
+
+Let's consider the second set of files: `a/runhmmer.sh` and `b/runhmmer.sh`. We can see that `diff` will label lines present in `a/runhmmer.sh` but not `b/runhmmer.sh` with a preceeding "`-`". Lines present in `b/runhmmer.sh` but not `a/runhmmer.sh` will be labeled with a preceeding "`+`". Decoding the line set off by `@@`, we see that in this chunk of the file, 6 lines have been extracted from the "`+`" file, starting at line number 1 and 5 lines have been extracted from the "`-`" file again beginning at line 1. It's easy to see why we're comparing 6 lines from `a/runhmmer.sh` to 5 lines from `b/runhmmer.sh`: the line `# check number of input parameters:` has been added to `a/runhmmer.sh` and is thus noted by a leading "`-`".
+
+### Keep files untracked with `.gitignore` {-}
+
+When working on a repo, it’s not uncommon to have many files that we’d like to leave untracked, but adding all of the rest of our files that have changes to be tracked one at a time with `git add` is tedious. Fortunately, we can use a [hidden file](#hidden) called `.gitignore` to tell git about files and/or directories we do not wish to track. Indeed, once filenames have been added to the `.gitignore` file, they no longer even appear as "untracked files" when running `git status`.
+
+<pre id=part1-14-ignore
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+oneils@mbp ~/projects/p450s$ <b>git status</b>
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	<span style="color: Red">dmel-all-translation-r6.02.fasta
+	p450s.fasta
+	p450s.fasta.aln
+	p450s.fasta.aln.hmm
+	p450s_hmmsearch_dmel.txt</span>
+
+nothing added to commit but untracked files present (use "git add" to track)
+oneils@mbp ~/projects/p450s$ <b>echo "dmel-all-translation-r6.02.fasta" > .gitignore</b>
+oneils@mbp ~/projects/p450s$ <b>git status</b>
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	<span style="color: Red">.gitignore
+	p450s.fasta
+	p450s.fasta.aln
+	p450s.fasta.aln.hmm
+	p450s_hmmsearch_dmel.txt</span>
+
+nothing added to commit but untracked files present (use "git add" to track)
+</code></pre>
+
+We can even utilize wildcard characters to exclude a set of files or directories. Adding a line with `*.fasta` to our `.gitignore` file would then exclude all files with the extension `.fasta` from being tracked in our repo. Now we are free to use `git add -A`, which looks at the contents `.gitignore`. Note that the `.gitignore` file itself can also be tracked.
+
+There are even templates for `.gitignore` files, available, of course, in a GitHub repo: https://github.com/github/gitignore.
+
+### Branching {-}
+
+
+
+### Remote Repos {-}
+
+The `git` system makes it relatively easy to share projects online with others, by creating repositories on sites like GitHub. After setting up an account at http://github.com (or on similar sites, such as http://bitbucket.com), you can "push" the current state of your project from the command line to the web. (Future commits can also be pushed as you create them.) Other users can then "clone" the project from the website by using the `git clone` command discussed briefly in [chapter 6](#installing-bioinformatics-software). GitHub and similar websites feature excellent tutorials for interfacing their products with your own command line repositories, should you desire to use them.

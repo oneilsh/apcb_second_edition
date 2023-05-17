@@ -97,7 +97,9 @@ Using these pieces, we can put together a regular expression that serves as a si
   <img src="images/part1-12-patterns.Rmd.images/I.12_5_regex_orf.png" />
 </div>
 
-In reality, regular expressions are not often used in searching for coding regions (though they are sometimes used for identifying smaller motifs). Part of the reason is that regular expressions are, by default, ###### {- #greedy}*greedy*: they match the first occurring pattern they can, and they seek to match as much of the string as they can. (The cellular machinery that processes open reading frames is not greedy in this way.) Consider the following sequence, which has three open reading frames according to our simple definition and regular expression above.
+###### {- #greedy}
+
+In reality, regular expressions are not often used in searching for coding regions (though they are sometimes used for identifying smaller motifs). Part of the reason is that regular expressions are, by default, *greedy*: they match the first occurring pattern they can, and they seek to match as much of the string as they can. (The cellular machinery that processes open reading frames is not greedy in this way.) Consider the following sequence, which has three open reading frames according to our simple definition and regular expression above.
 
 <div class="fig center" style="width: 100%">
   <img src="images/part1-12-patterns.Rmd.images/I.12_6_regex_orf_matches-2.png" />

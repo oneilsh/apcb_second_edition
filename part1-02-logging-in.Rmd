@@ -54,7 +54,7 @@ In any case, you will next be asked to enter your password. Note that *as you ty
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@atmosphere ~$
+oneils@mbp ~$
 </code></pre>
 
 If you are running Microsoft Windows, you will need to download the client SSH software from the web, install it, and run it. One option is PuTTy.exe, which is available at [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).

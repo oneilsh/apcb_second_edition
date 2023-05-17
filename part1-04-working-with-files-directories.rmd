@@ -248,6 +248,7 @@ There are two ways to stop such running programs: the “soft” way and the “
 But if the rogue program is in a particularly bad error state, it won’t stop even with a `Control-c`, and a “hard” kill is necessary. To do this requires logging in to the same machine with another terminal window to regain some command-line access. Run `top`, and note the `PID` (process ID) of the offending process. If you don’t see it in the `top` window, you can also try running `ps augx`, which prints a table of all running processes. Suppose the PID for the process to kill is `24516`; killing this process can be done by running `kill -9 24156`. The `-9` option specifies that the operating system should stop the process in its tracks and immediately clean up any resources used by it. Processes that don’t stop via a `kill -9` are rare (though you can’t kill a process being run by another user), and likely require either a machine reboot or administrator intervention.
 
 <div class="exercises">
+
 #### Exercises {-}
 
 1. Create the following directories inside your home directory, if you don’t already have them: `downloads`, `local`, and `projects`. Inside of `local`, create a directory called `bin`. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.

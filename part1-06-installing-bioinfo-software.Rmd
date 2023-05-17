@@ -115,7 +115,7 @@ Before continuing to work with the downloaded source code, there are a couple of
 
 The most common syntax for creating a gzipped tarball uses the `tar` utility, which can do both jobs of tarring and gzipping the inputs. As an example, the command `tar -cvzf hmmer_compress_copy.tar.gz` hmmer-3.1b1 would create (`c`), with verbose output (`v`), a gzipped (`z`) tarball in a file (`f`) called `hmmer_compress_copy.tar.gz` from the input `directory hmmer-3.1b1`.
 
-Traditionally, zipped files of source code were the most common way to distribute software. More recently, version control systems (used by developers to track changes to their software over time) have become web-enabled as a way to distribute software to end-users. One such system is `git`, which allows users to download entire directories of files using a “clone URL” over the web. GitHub is a similarly popular page for hosting these projects (see Chapter XXXXXXXX for more information on `git` and GitHub).
+Traditionally, zipped files of source code were the most common way to distribute software. More recently, version control systems (used by developers to track changes to their software over time) have become web-enabled as a way to distribute software to end-users. One such system is `git`, which allows users to download entire directories of files using a “clone URL” over the web. GitHub is a similarly popular page for hosting these projects (see chapter 14, ["Version Control with git"](#version-control-git), for more information on `git` and GitHub).
 
 ### Compiling the Source {-}
 
