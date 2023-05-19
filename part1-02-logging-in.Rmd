@@ -54,7 +54,7 @@ In any case, you will next be asked to enter your password. Note that *as you ty
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~$
+[oneils@mbp ~]$
 </code></pre>
 
 If you are running Microsoft Windows, you will need to download the client SSH software from the web, install it, and run it. One option is PuTTy.exe, which is available at [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
@@ -140,7 +140,7 @@ Once an instance is up and running, there are several ways to access it. First, 
             line-numbers 
             linkable-line-numbers">
 <code>
-[soneil@mbp ~]$ <b>ssh oneils@128.196.64.36</b>
+[oneils@mbp ~]$ <b>ssh oneils@128.196.64.36</b>
 </code></pre>
 
 The Atmosphere Web interface also provides an “Open Web Shell” button, providing command-line access right in your browser. When you are done working with your Atmosphere instance, it’s important to suspend the instance, otherwise you’ll be wasting computational resources that others could be using (as well as your own quota).

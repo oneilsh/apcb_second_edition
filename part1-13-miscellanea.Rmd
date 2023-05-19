@@ -27,7 +27,7 @@ could alternatively be represented as `line 1\nline 2\nline 3\n` (most files end
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>cat lines.txt | tr '\n' '#'</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>cat lines.txt | tr '\n' '#'</b>
 line 1#line 2#line 3#oneils@mbp ~/apcb/intro/fasta_stats$ 
 </b></code></pre>
 
@@ -66,7 +66,7 @@ Often, the information we want to work with is stored in separate files that sha
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>blastx -query pz_cDNAs.fasta \
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>blastx -query pz_cDNAs.fasta \
 > -subject ../blast/orf_trans.fasta \
 > -evalue 1e-6 \
 > -max_target_seqs 1 \
@@ -97,7 +97,7 @@ Similarly, we can save a table of sequence information from the `fasta_stats` pr
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>./fasta_stats pz_cDNAs.fasta | \
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \
 > grep -v '#' > pz_stats.table
 </b></code></pre>
 
@@ -125,9 +125,9 @@ Like most tools, `join` outputs its result to standard output, which can be redi
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>~/apcb/intro/fasta_stats$ cat pz_stats.txt | \
+[oneils@mbp ~/apcb/intro/fasta_stats$ <b>~/apcb/intro/fasta_stats]$ cat pz_stats.txt | \
 > sort -k1,1d > pz_stats.sorted.txt</b>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>cat pz_blastx_yeast_top1.txt | \
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>cat pz_blastx_yeast_top1.txt | \
 > sort -k1,1d > pz_blastx_yeast_top1.sorted.txt 
 </b></code></pre>
 
@@ -201,7 +201,7 @@ Let’s again consider the output of `./fasta_stats pz_cDNAs.fasta`, where colum
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/fasta_stats$ <b>./fasta_stats pz_cDNAs.fasta | \
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \
 > grep -v '#' | \
 > awk '{print $4}' | \
 > sort | \
@@ -250,7 +250,7 @@ Sometimes we want to run the same command or similar commands as a set. For exam
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/temp$ <b>ls</b>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls</b>
 file10.tmp  file13.tmp  file16.tmp  file19.tmp  file2.tmp  file5.tmp  file8.tmp
 file11.tmp  file14.tmp  file17.tmp  file1.tmp   file3.tmp  file6.tmp  file9.tmp
 file12.tmp  file15.tmp  file18.tmp  file20.tmp  file4.tmp  file7.tmp
@@ -265,8 +265,8 @@ Fortunately, `bash` provides a looping construct, where elements reported by com
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/temp$ <b>for i in $(ls *.tmp); do mv $i $i.txt; done</b>
-oneils@mbp ~/apcb/intro/temp$ <b>ls</b>
+[oneils@mbp ~/apcb/intro/temp$ <b>for i in $(ls *.tmp); do mv $i ]$i.txt; done</b>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls</b>
 file10.tmp.txt  file14.tmp.txt  file18.tmp.txt  file2.tmp.txt  file6.tmp.txt
 file11.tmp.txt  file15.tmp.txt  file19.tmp.txt  file3.tmp.txt  file7.tmp.txt
 file12.tmp.txt  file16.tmp.txt  file1.tmp.txt   file4.tmp.txt  file8.tmp.txt
@@ -294,7 +294,7 @@ This solution works, though often looping and similar programming techniques (li
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/temp$ <b>ls -1 *.tmp* | \
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls -1 *.tmp* | \
 > awk '{print "mv "$1" "$1}' </b>
 mv file10.tmp.txt file10.tmp.txt
 mv file11.tmp.txt file11.tmp.txt
@@ -322,11 +322,11 @@ After the `sed`, we’ll pipe this list of commands to `bash`, and our goal is a
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/temp$ <b>ls -1 *.tmp.* | \
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls -1 *.tmp.* | \
 > awk '{print "mv "$1" "$1}' | \
 > sed -r 's/\.tmp//2' | \
 > bash</b>
-oneils@mbp ~/apcb/intro/temp$ <b>ls</b>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls</b>
 file10.txt  file13.txt  file16.txt  file19.txt  file2.txt  file5.txt  file8.txt
 file11.txt  file14.txt  file17.txt  file1.txt   file3.txt  file6.txt  file9.txt
 file12.txt  file15.txt  file18.txt  file20.txt  file4.txt  file7.txt

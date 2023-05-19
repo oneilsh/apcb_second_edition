@@ -44,7 +44,7 @@ Installing Jupyter requires that Python already be installed (from [http://pytho
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~$ <b>jupyter notebook</b>
+[oneils@mbp ~]$ <b>jupyter notebook</b>
 </code></pre>
 
 The Jupyter interface will open in the default desktop web browser, showing the list of folders and files in whatever directory the command was run from.
@@ -75,7 +75,7 @@ For this method, we first have to edit a code file that we’ll call `helloworld
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~$ <b>nano -w -i -E -T 4 helloworld.py</b>
+[oneils@mbp ~]$ <b>nano -w -i -E -T 4 helloworld.py</b>
 </code></pre>
 
 The `-w` tells nano not to automatically wrap long lines (we’re writing code after all, not an essay), `-i` says to automatically indent newlines to the current indentation level, `-T 4` says that tab-stops should be four spaces wide, and `-E` says that tabs should be converted to spaces (four of them). This usage of four spaces per indentation level is widely agreed upon by the Python community as being easy on the eyes. ("One best way", remember?) We’ll put a simple call to the `print()` function in the file:
@@ -91,7 +91,7 @@ As usual, `Control-o` saves the file (press Enter if prompted about the file nam
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~$ <b>python helloworld.py</b>
+[oneils@mbp ~]$ <b>python helloworld.py</b>
 Hello world!
 </code></pre>
 
@@ -117,10 +117,10 @@ Next, we need to exit `nano` and make the file executable by using the `chmod` u
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~$ <b>ls</b>
+[oneils@mbp ~]$ <b>ls</b>
 helloworld.py
-oneils@mbp ~$ <b>chmod +x helloworld.py</b>
-oneils@mbp ~$ <b>./helloworld.py</b>
+[oneils@mbp ~]$ <b>chmod +x helloworld.py</b>
+[oneils@mbp ~]$ <b>./helloworld.py</b>
 Hello world!
 </code></pre>
 
@@ -135,7 +135,7 @@ Generally, you won’t want to type `nano -w -i -E -T 4 ...` every time you want
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~$ <b>echo "alias nanopy='nano -w -i -E -T 4 '" >> ~/.bashrc</b>
+[oneils@mbp ~]$ <b>echo "alias nanopy='nano -w -i -E -T 4 '" >> ~/.bashrc</b>
 </code></pre>
 
 If you are going to perform the above, double-check that the command is exactly as written. After logging out and back in, you can edit a Python code file with the alias using `nanopy helloworld.py`.

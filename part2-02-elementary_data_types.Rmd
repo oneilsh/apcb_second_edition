@@ -4,7 +4,7 @@
 
 Variables are vital to nearly all programming languages. In Python, *variables* are "names that refer to data". The most basic types of data that can be referred to are defined by how contemporary computers work and are shared by most languages.
 
-### Integers, Floats, and Booleans {-}
+### Integers and Floats{-}
 
 ###### {- #float}
 ###### {- #int}
@@ -94,6 +94,17 @@ c = a ** b         # exponent: 343
 
 Notice that we’ve reused the variables `a`, `b`, and `c`; this is completely allowable, but we must remember that they now refer to different data. (Recall that a variable in Python is a name that refers to, or references, some data.) In general, execution of lines within the same file (or cell in a Jupyter Notebook) happens in an orderly top-to-bottom fashion, though later we’ll see "control structures" that alter this flow.
 
+In summary, there are seven binary operators^[There is a single "unary operator", `-` which negates an int or float, i.e., `-5`.] that can be used on ints and floats in Python:
+- `+` : addition
+- `-` : subtraction
+- `*` : multiplication
+- `**` : exponent
+- `/` : division
+- `//` : floor division (truncated whole number quotient)
+- `%` : modulo (remainder)
+
+### Booleans {-}
+
 Booleans are simple data types that hold either the special value `True` or the special value `False`. Many functions return Booleans, as do comparisons:
 
 <pre id=part2-02-bool
@@ -162,7 +173,7 @@ Fortunately, most built-in data types in Python can be converted to a string (or
 
 As the above illustrates, we may choose in some cases to store the result of an expression in a variable for later use, or we may wish to use a more complex expression directly. The choice is a balance between verbose code and less verbose code, either of which can enhance readability. You should use whatever makes the most sense to you, the person most likely to have to read the code later!
 
-This case also serves to demonstrate the benefit of utalizing f-strings: there is no need to case the int as a string! We can use any and all valid Python expressions in them.
+This case also serves to demonstrate the benefit of utalizing f-strings: there is no need to cast the int as a string! We can use any and all valid Python expressions in them.
 
 <pre id=part2-02-f-string
      class="language-python 
@@ -179,7 +190,7 @@ Python makes it easy to extract a single-character string from a string using br
   <img src="images/part2-02-elementary-data-types.Rmd.images/II.2_12_py_15_str_index1.png" />
 </div>
 
-The use of brackets is also known as "slice" syntax, because we can them it to extract a slice (substring) of a string with the following syntax: `string_var[begin_index:end_index]`. Again, indexing of a string starts at `0`. Because things can’t be too easy, the beginning index is inclusive, while the ending index is exclusive.
+The use of brackets is also known as "slice" syntax, because we can them it to extract a slice (substring) of a string with the following syntax: `string_var[begin_index:end_index]`. Again, indexing of a string starts at `0`. Because things can’t be too easy, the beginning index is inclusive, while the ending index is exclusive: `string_var[inclusive:exclusive]`.
 
 <pre id=part2-02-slicing
      class="language-python 
@@ -242,6 +253,12 @@ end_seq = seq[2:]             # indices 2 to the end of the string
 
 print(end_seq)                # print "TAG"
 </code></pre>
+
+There are four binary operators that can act on strings, we encourage you to play with them to figure out how they work:
+- `+`
+- `*`
+- `in`
+- `not in`
 
 ### Immutability {-}
 

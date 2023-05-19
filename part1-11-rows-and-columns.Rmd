@@ -34,7 +34,7 @@ First, let’s answer our specific question, of how many sequences had matches t
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{if($1 != $2) {print $0}}' | \
 > less -S
@@ -68,7 +68,7 @@ In order to get the correct number of sequences that had matches to others, we n
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{if($1 != $2) {print $0}}' | \
 > sort -k1,1d -u | \
@@ -111,7 +111,7 @@ This command prints only the first two columns of the table, separated by a spac
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{print $1,$2}'</b>
 YAL001C YAL001C
@@ -127,7 +127,7 @@ Instead of separating the two output columns by a space, we can instead separate
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{print $1":::"$2}'</b>
 YAL001C:::YAL001C
@@ -143,7 +143,7 @@ If we’d like to add a new first column that simply contains the line number, w
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{print NR,$0}'</b>
 1 YAL001C       YAL001C 1161    1161    1161    1       1161    1       1161    
@@ -159,7 +159,7 @@ If-statements allow `awk` to execute other statements conditionally; the syntax 
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{if($10 < 1e-10) {print $0}}'</b>
 YAL001C YAL001C 1161    1161    1161    1    1161    1     1161    0.0
@@ -177,7 +177,7 @@ If-statements can control multiple conditions, and sometimes it helps to break `
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{ \
 > if($10 < 1e-30) {print "great",$1,$2,$10} \
@@ -203,7 +203,7 @@ It is easy enough to determine whether a particular column is equal to a given s
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{if($1 == "YAL054C") {print $0}}'</b>
 YAL054C YAL054C 714     714     714     1       714     1       714     0.0
@@ -217,7 +217,7 @@ Mathematical computations are a nice feature of `awk`. For example, columns 4 an
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{print $1,$2,$4/$5}'</b>
 ...
@@ -264,7 +264,7 @@ Thus far, we haven’t made much use of the `BEGIN` or `END` blocks, which are e
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk 'BEGIN{sumeval = 0} {sumeval = sumeval + $10} END{print sumeval/NR}'</b>
 3.00206e-09
@@ -279,7 +279,7 @@ We can execute multiple statements within a single block if we separate them wit
             line-numbers 
             linkable-line-numbers">
 <code>
-oneils@mbp ~/apcb/intro/blast$ <b>cat yeast_blastp_yeast_top2.txt | \
+[oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk 'BEGIN{sumeval = 0; count = 0} \
 > {if($1 != $2){sumeval = sumeval + $10; count = count + 1}} \
