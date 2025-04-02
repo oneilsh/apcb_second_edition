@@ -96,6 +96,8 @@ If the sequence was instead `"CGCGTATACAGA"`, the resulting list would have cont
 
 ### Tuples (Immutable Lists) {-}
 
+###### {- #tuples}
+
 As noted above, lists are mutable, meaning they can be altered after their creation. In some special cases, it is helpful to create an immutable version of a list, called a "tuple" in Python. Like lists, tuples can be created in two ways: with the `tuple()` function (which returns an empty tuple) or directly.
 
 <pre id=part2-03-tuple

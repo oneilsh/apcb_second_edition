@@ -343,9 +343,9 @@ result = subprocess.check_output(cmd, shell = True)
                line-numbers 
                linkable-line-numbers">
      <code>
-     A    B
-     C    D
-     E    F
+          A    B
+C    D
+E    F
      </code></pre>
 
 2. Write a program called `stdin_eval_mean.py` that reads a file in the format of [`pz_blastx_yeast_top1.txt`](data/pz_blastx_yeast_top1.txt) on `sys.stdin`, computes the mean of the E-value column (column 11, with values like `1e-32`), and prints the mean to standard output. If there are no data on standard input, the program should produce a “usage” message.
@@ -354,4 +354,7 @@ result = subprocess.check_output(cmd, shell = True)
 
      Now copy this program to one called `stdin_eval_sd.py` that reads in [`pz_blastx_yeast_top1.txt`](data/pz_blastx_yeast_top1.txt) on sys.stdin and computes and prints the standard deviation of the E values. Again, try running the program with and without prefiltering with grep. (At this point you should be comfortable with writing mean() and sd() functions that take lists of floats and return answers. Your sd() function might well call the mean() function.)
 
+3. Modify the `stdin_eval_mean.py` program above (call the new version `stdin_eval_mean_threshold.py`) to accept an E-value upper threshold as a first parameter. Thus `cat pz_blastx_yeast_top1.txt | ./stdin_eval_mean.py 1e-6` should compute and print the mean of the E-value column, but only for those lines whose E value is less than 1e-6. (You’ll need to use `sys.argv` and be sure to convert the entry therein to a float.)
+
+     Your program should print usage information and exit if either there are no data provided on standard input, or if there is no threshold argument.
 </div>
