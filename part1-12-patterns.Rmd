@@ -64,7 +64,7 @@ In the example above, the entire pattern was specified by `_`, which is not a me
 <li>`[<charset>]`</li>
 <ul style="list-style-type:none;"><li>Matches any single character specified in `<charset>`. For example, `TA[CT]` matches a Y codon (`TAC` or `TAT`).</li></ul>
 <li>`[^<charset>]`</li>
-<ul style="list-style-type:none;"><li>Placing a `^` as the first character inside charset brackets negates the meaning, such that any single character not named in the brackets is matched. `TA[^CT]` matches `TAT`, `TAG`, `TA%`, and so on, but not `TAC` or `TAT`.</li></ul>
+<ul style="list-style-type:none;"><li>Placing a `^` as the first character inside charset brackets negates the meaning, such that any single character not named in the brackets is matched. `TA[^CT]` matches `TAA`, `TAG`, `TA%`, and so on, but not `TAC` or `TAT`.</li></ul>
 <li>`^` (outside of `[]`)</li>
 <ul style="list-style-type:none;"><li>Placing a `^` outside of charset brackets matches the start of the input string or line. Using `sed -r 's/^ATG/XXX/g'`, for example, replaces all instances of start codons with `XXX`, but only if they exist at the start of the line.</li></ul>
 <li>`$`</li>
