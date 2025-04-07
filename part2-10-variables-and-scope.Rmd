@@ -1,4 +1,4 @@
-# Variables and second_sample
+# Variables and Scope
 
 In chapter 20, “[Python Functions](#python-functions)”, we learned that a function should use only variables that have either been defined within the block of the function, or passed in explicitly as parameters (Rule 1). This rule works closely with our definition of a [variable](#variables) in Python, as a name that refers to some data.
 
