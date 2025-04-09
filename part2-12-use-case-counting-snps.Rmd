@@ -228,7 +228,7 @@ filename = sys.argv[1]
 chrnames_to_chrs = dict()
 with open(filename, "r") as fhandle:
     for line in fhandle:
-        # don't attempt to parse header lines (^# matches # at start of string)
+        # don't attempt to parse header lines
         if line[0] != "#":
             line_stripped = line.strip()
             line_list = re.split(r"\s+", line_stripped)

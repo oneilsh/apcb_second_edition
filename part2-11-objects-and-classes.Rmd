@@ -6,7 +6,7 @@ Python provides another advantage: it is naturally “object oriented”, even t
 
 ###### {- #object}
 ###### {- #method}
-###### {- #instance-variable}
+###### {- #instance_variable}
 
 An *object*, practically speaking, is a segment of memory (RAM) that references both data (referred to by *instance variables*) of various types and associated functions that can operate on the data.^[This definition is not precise, and in fact intentionally misrepresents how objects are stored in RAM. (In reality, all objects of the same type share a single set of functions/methods.) But this definition will serve us well conceptually.] Functions belonging to objects are called methods. Said another way, a *method* is a function that is associated with an object, and an *instance variable* is a variable that belongs to an object.
 
