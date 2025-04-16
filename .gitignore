@@ -8,3 +8,5 @@ docs/
 bookdown-demo*
 packages.bib
 dummy
+*.Rproj
+ignore/
