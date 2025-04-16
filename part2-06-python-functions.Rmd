@@ -200,7 +200,7 @@ To simplify exposition, most of the small code samples in the next few chapters 
         ## etc. 
     </code></pre>
 
-    (You might find a while-loop to be more helpful than a for-loop for this exercise.) You can find a [template](data/get_windows_template.py) which contains several [unit tests](#unit_test). These tests are in the form of `assert` statements: if the conditional in the statement is `True`, the code will continue to run, otherwise, the program is stopped and raises an `AssertionError` - this error can even be customized.
+    (You might find a while-loop to be more helpful than a for-loop for this exercise.) You can find a [template](data/get_windows_template.py) which contains several [unit tests](#unit_test). These tests are in the form of `assert` statements: if the conditional in the statement is `True`, the code will continue to run, otherwise, the program is stopped and raises an `AssertionError` - this error can even be customized. See chapter 23 for more information on [assert`](#assert).
 
 3. Although the `get_windows()` function is designed to run on strings, indexing in strings and in lists works the same in Python. What happens if you run `get_windows([1, 2, 3, 4, 5, 6, 7, 8], 3, 2)`?
 
