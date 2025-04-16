@@ -4,7 +4,6 @@
 _publish.R
 rsconnect
 .DS_Store
-docs/
 bookdown-demo*
 packages.bib
 dummy
