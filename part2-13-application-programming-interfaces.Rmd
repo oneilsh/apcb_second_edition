@@ -174,7 +174,7 @@ We’ve seen a number of modules already, including `re` and `sys`. To use a mod
 Importing the module in this way creates a *namespace* for the module. This namespace categorizes all of the functions and classes contained within that module so that different modules may have functions, classes, and variables with the same name without conflicting.
 
 <div class="fig center" style="width: 100%">
-  <img src="images/part2-13-application-programming-interfaces/II.12_8_two_modules.png" />
+  <img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_8_two_modules.png" />
 </div>
 
 If we have the above two files in the same directory as our program, source code like the following would print `4`, `64`, `2.71828`, and `"TAC"`.
@@ -359,7 +359,7 @@ As if Python didn’t already have enough “boxes” for encapsulation — func
 A package directory must also contain a special file called `__init__.py`, which lets Python know that the directory should be treated as a package from which modules may be imported. (One could put code in this file that would be executed when the `import` statement is run, but we won’t explore this feature here.)
 
 <div class="fig center" style="width: 100%">
-  <img src="images/part2-13-application-programming-interfaces/II.12_15_package_organization-2.png" />
+  <img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_15_package_organization-2.png" />
 </div>
 
 As an example, suppose that along with our `MyVCFModule.py`, we also had created a module for parsing gene ontology files called `GOParseModule.py`. We could put these together into a package (directory) called `MyBioParsers`.
@@ -429,7 +429,7 @@ Parsing data in FASTA format isn’t too difficult, but it requires an extra pre
 BioPython is a large package with many modules and APIs, which you can read more about at http://biopython.org. For the specific application of parsing a FASTA file, a good place to start is a simple web search for “biopython fasta,” which leads us to a wiki page describing the SeqIO module, complete with an example.
 
 <div class="fig center" style="width: 100%">
-  <img src="images/part2-13-application-programming-interfaces/II.12_20_biopython_wiki_shot.png" />
+  <img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_20_biopython_wiki_shot.png" />
 </div>
 
 Given our knowledge of packages, modules, and objects, we can deduce the following from this simple code example:

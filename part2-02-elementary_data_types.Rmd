@@ -298,7 +298,7 @@ Here’s how we might represent these variables and the data stored in memory, b
   <img src="images/part2-02-elementary-data-types.Rmd.images/II.2_20_redef_seqa-3.png" />
 </div>
 
-###### {- #garbage-collection}
+###### {- #garbage_collection}
 
 Because the string `"ACTAG"` is immutable, redefining `seqa` results in an entirely different piece of data being created. The original string `"ACTAG"` will still exist in memory (RAM) for a short time, but because it is not accessible via any variables, Python will eventually clean it out to make room in memory in a process known as *garbage collection*.^[Garbage collection is a common feature of high-level languages like Python, though some compiled languages support it as well. C does not: programmers are required to ensure that all unused data are erased during program execution. Failure to do so is known as a "memory leak" and causes many real-world software crashes.] Garbage collection is an automatic, periodic process of de-allocating memory used by data that are no longer accessible (and hence no longer needed) by the program.
 

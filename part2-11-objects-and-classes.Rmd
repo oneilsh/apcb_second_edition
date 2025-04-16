@@ -254,6 +254,8 @@ The steps for writing a class definition are as follows:
 
     The example below illustrates this more thoroughly, but having some practice first will be beneficial.
 
+###### {- #custom_comparable}
+
 3. If classes implement some special methods, then we can compare objects of those types with `==`, `<`, and the other comparison operators.
 
     When comparing two `Gene` objects, for example, we might say that they are equal if their sequences are equal, and `geneA` is less than `geneB` if `geneA.seq` < `geneB.seq`. Thus we can add a special method `__eq__()`, which, given the usual `self` and a reference to another object of the same type called `other`, returns `True` if we’d consider the two equal and `False` otherwise:
