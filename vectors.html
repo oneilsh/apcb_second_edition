@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 31 Vectors | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 31 Vectors | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 31 Vectors | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 31 Vectors | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="variables-and-data.html"/>
+<link rel="next" href="r-functions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vectors" class="section level1 hasAnchor" number="31">
+<h1><span class="header-section-number">Chapter 31</span> Vectors<a href="vectors.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Vectors (similar to single-type arrays in other languages) are ordered collections of simple types, usually numerics, integers, characters, or logicals. We can create vectors using the <code>c()</code> function (for concatenate), which takes as parameters the elements to put into the vector:</p>
+<pre id=part3-03-concat
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+samples <- c(3.2, 4.7, -3.5)            # 3-element numeric vector
+</code></pre>
+<p>The <code>c()</code> function can take other vectors as parameters, too–it will “deconstruct” all subvectors and return one large vector, rather than a vector of vectors.</p>
+<pre id=part3-03-c-deconstruct
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+samples2 <- c(20.4, 4.7, 37.6)          # 5-element numeric vector
+print(samples2)                         # prints [1] 20.4, 3.2, 4.7, -3.5, 37.6
+</code></pre>
+<p>We can extract individual elements from a vector using <code>[]</code> syntax; though note that, unlike many other languages,
+the first element is at index 1.</p>
+<pre id=part3-03-bracket-index-single
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+second_sample <- samples2[2]            # numeric 3.2
+</code></pre>
+<p>The <code>length()</code> function returns the number of elements of a vector (or similar types, like lists, which we’ll cover later) as an integer:</p>
+<pre id=part3-03-length-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+num_samples <- length(samples2)         # integer 5
+</code></pre>
+<p>We can use this to extract the last element of a vector, for example.</p>
+<pre id=part3-03-length-get-last
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+last_sample <- samples2[num_samples]                # numeric 37.6
+# OR
+last_sample <- samples2[length(samples2)]        # numeric 37.6
+</code></pre>
+<div id="no-naked-data-vectors-have-a-class" class="section level3 unnumbered hasAnchor">
+<h3>No “Naked Data”: Vectors Have (a) Class<a href="vectors.html#no-naked-data-vectors-have-a-class" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far in our discussion of R’s data types, we’ve been making a simplification, or at least we’ve been leaving something out. Even individual values like the numeric <code>4.6</code> are actually vectors of length one. Which is to say, <code>gc_content &lt;- 0.34</code> is equivalent to <code>gc_content &lt;- c(0.34)</code>, and in both cases, <code>length(gc_content)</code> will return <code>1</code>, which itself is a vector of length one. This applies to numerics, integers, logicals, and character types. Thus, at least compared to other languages, R has no “naked data”; the vector is the most basic unit of data that R has. This is slightly more confusing for character types than others, as each individual element is a string of characters of any length (including potentially the “empty” string <code>""</code>).</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-03-vectors.Rmd.images/III.3_6_r_22_2_char_vec.png" /></p>
+</div>
+<p>This explains quite a lot about R, including some curiosities such as why <code>print(gc_content)</code> prints <code>[1] 0.34</code>. This output is indicating that <code>gc_content</code> is a vector, the first element of which is <code>0.34</code>. Consider the <code>seq()</code> function, which returns a vector of numerics; it takes three parameters:<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a> (1) the number at which to start, (2) the number at which to end, and (3) the step size.</p>
+<pre id=part3-03-seq-example
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+range <- seq(1, 20, 0.5)
+print(range)
+</code></pre>
+<p>When we print the result, we’ll get output like the following, where the list of numbers is formatted such that it spans the width of the output window.</p>
+<pre id=part3-03-seq-example-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers
+            no-whitespace-normalization">
+<code> [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
+[16]  8.5  9.0  9.5 10.0 10.5 11.0 11.5 12.0 12.5 13.0 13.5 14.0 14.5 15.0 15.5
+[31] 16.0 16.5 17.0 17.5 18.0 18.5 19.0 19.5 20.0
+</code></pre>
+<p>The numbers in brackets indicate that the first element of the printed vector is <code>1.0</code>, the sixteenth element is <code>8.5</code>, and the thirty-first element is <code>16.0</code>.</p>
+<p>By the way, to produce a sequence of integers (rather than numerics), the step-size argument can be left off, as in <code>seq(1, 20)</code>. This is equivalent to a commonly seen shorthand, <code>1:20</code>.</p>
+<p>If all of our integers, logicals, and so on are actually vectors, and we can tell their type by running the <code>class()</code> function on them, then vectors must be the things that we are examining the class of. So, what if we attempt to mix types within a vector, for example, by including an integer with some logicals?</p>
+<pre id=part3-03-vec-class-mix1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+mix <- c(TRUE, FALSE, as.integer(20))
+</code></pre>
+<p>Running <code>print(class(mix))</code> will result in <code>"integer"</code>. In fact, if we attempt to print out mix with <code>print(mix)</code>, we’d find that the logicals have been converted into integers!</p>
+<pre id=part3-03-vec-class-mix1-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1]  1  0 20
+</code></pre>
+<p>R has chosen to convert <code>TRUE</code> into <code>1</code> and <code>FALSE</code> into <code>0</code>; these are standard binary values for true and false, whereas there is no standard logical value for a given integer. Similarly, if a numeric is added, everything is converted to numeric.</p>
+<pre id=part3-03-vec-class-mix2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+mix <- c(TRUE, FALSE, as.integer(20), 3.5)
+print(class(mix))                           # [1] "numeric"
+print(mix)                                  # [1] 1.0 0.0 20.0 3.5
+</code></pre>
+<p>And if a character string is added, everything is converted into a character string (with <code>3.5</code> becoming <code>"3.5"</code>, <code>TRUE</code> becoming <code>"TRUE"</code>, and so on).</p>
+<pre id=part3-03-vec-class-mix3
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+mix <- c(TRUE, FALSE, as.integer(20), 3.5, "A")
+print(class(mix))                           # [1] "character"
+print(mix)                                  # [1] "TRUE" "FALSE" "20" "3.5" "A"
+</code></pre>
+<p>In summary, vectors are the most basic unit of data in R, and they cannot mix types—R will autoconvert any mixed types in a single vector to a “lowest common denominator,” in the order of logical (most specific), integer, numeric, character (most general). This can sometimes result in difficult-to-find bugs, particularly when reading data from a file. If a file has a column of what appears to be numbers, but a single element cannot be interpreted as a number, the entire vector may be converted to a character type with no warning as the file is read in. We’ll discuss reading data in from text files after examining vectors and their properties.</p>
+</div>
+<div id="subsetting-vectors-selective-replacement" class="section level3 unnumbered hasAnchor">
+<h3>Subsetting Vectors, Selective Replacement<a href="vectors.html#subsetting-vectors-selective-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider the fact that we can use <code>[]</code> syntax to extract single elements from vectors:</p>
+<pre id=part3-03-selective-rep-indexing-single
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+numbers <- c(10, 20, 30, 40, 50)
+second_el <- numbers[2]                     # 20
+</code></pre>
+<p>Based on the above, we know that the <code>20</code> extracted is a vector of length one. The <code>2</code> used in the brackets is also a vector of length one; thus the line above is equivalent to <code>second_el &lt;- nums[c(2)]</code>. Does this mean that we can use longer vectors for extracting elements? Yes!</p>
+<pre id=part3-03-selective-rep-indexing-multi
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+subvector <- numbers[c(3,2)]
+print(subvector)                            # [1] 30 20
+</code></pre>
+<p>In fact, the extracted elements were even placed in the resulting two-element vector in the order in which they were extracted (the third element followed by the second element). We can use a similar syntax to selectively replace elements by specific indices in vectors.</p>
+<pre id=part3-03-selective-rep-multi1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+numbers[c(3,2)] <- c(35, 25)
+print(numbers)                              # [1] 10 25 35 40 50
+</code></pre>
+<p><em>Selective replacement</em> is the process of replacing selected elements of a vector (or similar structure) by specifying which elements to replace with <code>[]</code> indexing syntax combined with assignment <code>&lt;-</code>.<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a></p>
+<p>R vectors (and many other data container types) can be named, that is, associated with a character vector of the same length. We can set and subsequently get this names vector using the <code>names()</code> function, but the syntax is a little odd.</p>
+<pre id=part3-03-named-vec1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# create vector
+scores <- c(89, 94, 73)
+# set names for the elements
+names(scores) <- c("Student A", "Student B", "Student C")
+
+print("Printing the vector:")
+print(scores)
+
+print("Printing the names:")
+names_scores <- names(scores)
+print(names_scores)
+</code></pre>
+<p>Named vectors, when printed, display their names as well. The result from above:</p>
+<pre id=part3-03-named-vec1-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "Printing the vector:"
+Student A Student B Student C
+       89        94        73
+[1] "Printing the names:"
+[1] "Student A" "Student B" "Student C"
+</code></pre>
+<p>Named vectors may not seem that helpful now, but the concept will be quite useful later. Named vectors give us another way to subset and selectively replace in vectors: by name.</p>
+<pre id=part3-03-named-vec-selection
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ca_scores <- scores[c("Student C", "Student A")]  # 2 element vector: 73 98
+# OR
+ca_names <- c("Student C", "Student A")
+ca_scores <- scores[ca_names]
+
+scores[c("Student A", "Student C")] <- c(93, 84)
+print(scores)
+</code></pre>
+<p>Although R doesn’t enforce it, the names should be unique to avoid confusion when selecting or selectively replacing this way. Having updated Student A’s and Student B’s score, the change is reflected in the output:</p>
+<pre id=part3-03-named-vec-selection-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Student A Student B Student C
+       93        94        84
+</code></pre>
+<p>There’s one final and extremely powerful way of subsetting and selectively replacing in a vector: by logical vector. By indexing with a vector of logicals of the same length as the vector to be indexed, we can extract only those elements where the logical vector has a <code>TRUE</code> value.</p>
+<pre id=part3-03-logical-selection
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+select_vec <- c(TRUE, FALSE, TRUE)
+ac_scores <- scores[select_vec]                  # 2 element vector: 93 84
+# OR
+ac_scores <- scores[c(TRUE, FALSE, TRUE)]
+</code></pre>
+<p>While indexing by index number and by name allows us to extract elements in any given order, indexing by logical doesn’t afford us this possibility.</p>
+<p>We can perform selective replacement this way as well; let’s suppose Students A and C retake their quizzes and moderately improve their scores.</p>
+<pre id=part3-03-logical-replacement
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+scores[c(TRUE, FALSE, TRUE)] <- c(94, 86)
+print(scores)
+</code></pre>
+<p>And the printed output:</p>
+<pre id=part3-03-logical-replacement-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Student A Student B Student C
+       94        94        86
+</code></pre>
+<p>In this case, the length of the replacement vector (<code>c(159, 169)</code>) is equal to the number of <code>TRUE</code> values in the indexing vector (<code>c(TRUE, FALSE, TRUE)</code>); we’ll explore whether this is a requirement below.</p>
+<p>In summary, we have three important ways of indexing into/selecting from/selectively replacing in vectors:</p>
+<ol style="list-style-type: decimal">
+<li>by index number vector,</li>
+<li>by character vector (if the vector is named), and</li>
+<li>by logical vector.</li>
+</ol>
+</div>
+<div id="vectorized-operations-na-values" class="section level3 unnumbered hasAnchor">
+<h3>Vectorized Operations, <code>NA</code> Values<a href="vectors.html#vectorized-operations-na-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If vectors are the most basic unit of data in R, all of the functions and operators we’ve been working with—<code>as.numeric()</code>, <code>*</code>, and even comparisons like <code>&gt;</code>—implicitly work over entire vectors.</p>
+<pre id=part3-03-as-numeric-vectorized
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+numeric_chars <- c("6", "3.7", "9b3x")
+numerics <- as.numeric(numeric_chars)
+print(numerics)                                 # [1] 6.0 3.7 NA
+</code></pre>
+<p>In this example, each element of the character vector has been converted, so that <code>class(numerics)</code> would return <code>"numeric"</code>. The final character string, <code>"9b3x"</code>, cannot be reasonably converted to a numeric type, and so it has been replaced by <code>NA</code>. When this happens, the interpreter produces a warning message: <code>NAs introduced by coercion</code>.</p>
+<p><code>NA</code> is a special value in R that indicates either missing data or a failed computation of some type (as in attempting to convert <code>"9b3x"</code> to a numeric). Most operations involving <code>NA</code> values return <code>NA</code> values; for example, <code>NA + 3</code> returns <code>NA</code>, and many functions that operate on entire vectors return an <code>NA</code> if any element is <code>NA</code>. A canonical example is the <code>mean()</code> function.</p>
+<pre id=part3-03-mean-na-example
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ave <- mean(numerics)
+print(ave)                                      # [1] NA
+</code></pre>
+<p>Such functions often include an optional parameter that we can give, <code>na.rm = TRUE</code>, specifying that <code>NA</code> values should be removed before the function is run.</p>
+<pre id=part3-03-mean-na-example-narm-true
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ave <- mean(numerics, na.rm = TRUE)
+print(ave)                                      # [1] 4.85
+</code></pre>
+<p>While this is convenient, there is a way for us to remove <code>NA</code> values from any vector (see below).</p>
+<p>Other special values in R include <code>NaN</code>, for “Not a Number,” returned by calculations such as the square root of -1, <code>sqrt(-1)</code>, and <code>Inf</code> for “Infinity,” returned by calculations such as <code>1/0</code>. (<code>Inf/Inf</code>, by the way, returns <code>NaN</code>.)</p>
+<p>Returning to the concept of vectorized operations, simple arithmetic operations such as <code>+</code>, <code>*</code>, <code>/</code>, <code>-</code>, <code>^</code> (exponent), and <code>%%</code> (<a href="linky">modulus</a>) are vectorized as well, meaning that an expression like <code>3 * 7</code> is equivalent to <code>c(3)</code> * <code>c(7)</code>. When the vectors are longer than a single element, the operation is done on an element-by-element basis.</p>
+<pre id=part3-03-vectorized-mult-ex
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(10, 20, 30, 40)
+mult <- c(1, 2, 3, 4)
+
+result <- values * mult                # 4 element vector: 10 40 90 160
+</code></pre>
+<div class="fig right" style="width: 20%; margin-left: 20px">
+<p><img src="images/part3-03-vectors.Rmd.images/III.3_27_vectorized_multiplication.png" /></p>
+</div>
+<p>If we consider the <code>*</code> operator, it takes two inputs (numeric or integer) and returns an output (numeric or integer) for each pair from the vectors. This is quite similar to the comparison <code>&gt;</code>, which takes two inputs (numeric or integer or character) and returns a logical.</p>
+<pre id=part3-03-vectorized-gt-ex
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(10, 20, 30, 40)
+comparison_values <- c(25, 10, 25, 35)
+
+result <- values > comparison_values   # 4 element vector: FALSE TRUE TRUE TRUE
+</code></pre>
+</div>
+<div id="vector-recycling" class="section level3 unnumbered hasAnchor">
+<h3>Vector Recycling<a href="vectors.html#vector-recycling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="vector_recycling" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>What happens if we try to multiply two vectors that aren’t the same length? It turns out that the shorter of the two will be reused as needed, in a process known as <em>vector recycling</em>, or the reuse of the shorter vector in a vectorized operation.</p>
+<pre id=part3-03-vector-recyc-1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(10, 20, 30, 40)
+mult <- c(10, -10)
+
+result <- values * mult                # 4 element vector: 100 -200 300 -400
+</code></pre>
+<p>This works well when working with vectors of length one against longer vectors, because the length-one vector will be recycled as needed.</p>
+<pre id=part3-03-vector-recyc-2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+result <- values * 2                   # same as values * c(2)
+print(result)                          # [1] 20 40 60 80
+</code></pre>
+<p>If the length of the longer vector is not a multiple of the length of the shorter, however, the last recycle will go only partway through.</p>
+<pre id=part3-03-vector-recyc-3
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(3, 5, 7)
+mult <- c(10, -10)
+
+
+result <- values * mult                # 3 element vector: 30 -50 70
+</code></pre>
+<p>When this happens, the interpreter prints a warning: <code>longer object length is not a multiple of shorter object length</code>. There are few situations where this type of partial recycling is not an accident, and it should be avoided.</p>
+<p>Vector recycling also applies to <a href="">selective replacement</a>; for example, we can selectively replace four elements of a vector with elements from a two-element vector:</p>
+<pre id=part3-03-vector-recyc-4
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(10, 20, 30, 40, 50, 60)
+values[c(TRUE, TRUE, FALSE, TRUE, FALSE, TRUE)] <- c(5, -5)
+
+print(values)                          # [1] 5 -5 30 5 50 -5
+</code></pre>
+<p>More often we’ll selectively replace elements of a vector with a length-one vector.</p>
+<pre id=part3-03-vector-recyc-5
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(10, 20, 30, 40, 50, 60)
+values[c(TRUE, TRUE, FALSE, TRUE, FALSE, TRUE)] <- 0 # same as ... <- c(0)
+
+print(values)                          # [1] 0 0 30 0 50 0
+</code></pre>
+<p>These concepts, when combined with vector indexing of various kinds, are quite powerful. Consider that an expression like <code>values &gt; 35</code> is itself vectorized, with the shorter vector (holding just <code>35</code>) being recycled such that what is returned is a logical vector with <code>TRUE</code> values where the elements of values are greater than <code>35</code>. We could use this vector as an indexing vector for selective replacement if we wish.</p>
+<pre id=part3-03-vector-recyc-replacement
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(10, 20, 30, 40, 50, 60)
+select_vec <- values > 35              # TRUE TRUE TRUE FALSE FALSE FALSE
+values[select_vec] <- 0
+
+print(values)                          # [1] 10 20 30 0 0 0
+</code></pre>
+<p>More succinctly, rather than create a temporary variable for <code>select_vec</code>, we can place the expression <code>values &gt; 35</code> directly within the brackets.</p>
+<pre id=part3-03-vector-recyc-replacement-2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(10, 20, 30, 40, 50, 60)
+values[values > 35] <- 0
+
+print(values)                          # [1] 10 20 30 0 0 0
+</code></pre>
+<p>Similarly, we could use the result of something like <code>mean(values)</code> to replace all elements of a vector greater than the mean with <code>0</code> easily, no matter the order of the elements!</p>
+<pre id=part3-03-vector-recyc-replacement-3
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(30, 10, 60, 20, 40, 50)
+values[values > mean(values)] <- 0
+
+print(values)                          # [1] 30 10 0 20 0 0
+</code></pre>
+<p>More often, we’ll want to extract such values using logical selection.</p>
+<pre id=part3-03-vector-recyc-extraction-mean
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(30, 10, 60, 20, 40, 50)
+gt_mean <- values[values > mean(values)]
+
+print(gt_mean)                         # [1] 60 40 50
+</code></pre>
+<p>These sorts of vectorized selections, especially when combined with logical vectors, are a powerful and important part of R, so study them until you are confident with the technique.</p>
+</div>
+<div id="exercises-30" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="vectors.html#exercises-30" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<!-- weird, something about bookdown or knitr doesn't like `r` as a variable name in inline code e.g. `rels <- seq(1, 30, 0.3)` 
+hell I can't even put it in a comment (that should be just r int he e.g.) -->
+<ol style="list-style-type: decimal">
+<li><p>Suppose we have <code>els</code> as a range of numbers from 1 to 30 in steps of 0.3; <code>els &lt;- seq(1, 30, 0.3)</code>. Using just the <code>as.integer()</code> function, logical indexing, and comparisons like <code>&gt;</code>, generate a sequence <code>els_decimals</code> that contains all values of <code>els</code> that are not round integers. (That is, it should contain all values of <code>els</code> except <code>1.0</code>, <code>2.0</code>, <code>3.0</code>, and so on. There should be 297 of them.)</p></li>
+<li><p>We briefly mentioned the <code>%%</code>, or “modulus,” operator, which returns the remainder of a number after integer division (e.g., <code>4 %% 3 == 1</code> and <code>4 %% 4 == 0</code>; it is also vectorized). Given any vector <code>els</code>, for example <code>els &lt;- seq(1, 30, 0.3)</code>, produce a vector <code>els_every_other</code> that contains every other element of <code>els</code>. You will likely want to use <code>%%</code>, the <code>==</code> equality comparison, and you might also want to use <code>seq()</code> to generate a vector of indices of the same length as <code>els</code>. Do the same again, but modify the code to extract every third element of <code>els</code> into a vector called <code>els_every_third</code>.</p></li>
+<li><p>From chapter 27, “<a href="">Variables and Data</a>,” we know that comparisons like <code>==</code>, <code>!=</code>, <code>&gt;=</code> are available as well. Further, we know that <code>!</code> negates the values of a logical vector, while <code>&amp;</code> combines two logical vectors with “and,” and <code>|</code> combines two logical vectors with “or.” Use these, along with the <code>%%</code> operator discussed above, to produce a vector <code>div_3_4</code> of all integers between <code>1</code> and <code>1,000</code> (inclusive) that are evenly divisible by <code>3</code> and evenly divisible by <code>4</code>. (There are 83 of them.) Create another, <code>not_div_5_6</code>, of numbers that are not evenly divisible by <code>5</code> or <code>6</code>. (There are 667 of them. For example, <code>1,000</code> should not be included because it is divisible by <code>5</code>, and <code>18</code> should not be included because it is divisible by <code>6</code>, but <code>34</code> should be because it is divisible by neither.)</p></li>
+</ol>
+</div>
+</div>
+<div id="common-vector-functions" class="section level3 unnumbered hasAnchor">
+<h3>Common Vector Functions<a href="vectors.html#common-vector-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As vectors (specifically numeric vectors) are so ubiquitous, R has dozens (hundreds, actually) of functions that do useful things with them. While we can’t cover all of them, we can quickly cover a few that will be important in future chapters.</p>
+<p>First, we’ve already seen the <code>seq()</code> and <code>length()</code> functions; the former generates a numeric vector comprising a sequence of numbers, and the latter returns the length of a vector as a single-element integer vector.</p>
+<pre id=part3-03-range-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+range <- seq(0, 7, 0.2)                # 0.0 0.2 0.4 ... 7.0
+len_range <- length(range)             # 36
+</code></pre>
+<p>Presented without an example, <code>mean()</code>, <code>sd()</code>, and <code>median()</code> return the mean, standard deviation, and median of a numeric vector, respectively. (Provided that none of the input elements are <code>NA</code>, though all three accept the <code>na.rm = TRUE</code> parameter.) Generalizing <code>median()</code>, the <code>quantile()</code> function returns the Yth percentile of a function, or multiple percentiles if the second argument has more than one element.</p>
+<pre id=part3-03-quantile-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+quantiles_range <- quantile(range, c(0.25, 0.5, 0.75))
+print(quantiles_range)
+ 25%  50%  75%
+1.75 3.50 5.25
+</code></pre>
+<p>The output is a named numeric vector:</p>
+<pre id=part3-03-quantile-func-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+ 25%  50%  75%
+1.75 3.50 5.25
+</code></pre>
+<p>The <code>unique()</code> function removes duplicates in a vector, leaving the remaining elements in order of their first occurrence, and the <code>rev()</code> function reverses a vector.</p>
+<pre id=part3-03-unique-rev-funcs
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(20, 40, 30, 20, 10, 50, 10)
+values_uniq <- unique(values)         # 20 40 30 10 50
+
+rev_uniq <- rev(values_uniq)          # 50 10 30 40 20
+</code></pre>
+<p>There is the <code>sort()</code> function, which sorts a vector (in natural order for numerics and integers, and <a href="">lexicographic (dictionary) order</a> for character vectors). Perhaps more interesting is the <code>order()</code> function, which returns an integer vector of indices describing where the original elements of the vector would need to be placed to produce a sorted order.</p>
+<pre id=part3-03-order-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+order_rev_uniq <- order(rev_uniq)     # 2 5 3 4 1
+</code></pre>
+<p>In this example, the order vector, <code>2 5 3 4 1</code>, indicates that the second element of <code>rev_uniq</code> would come first, followed by the fifth, and so on. Thus we could produce a sorted version of <code>rev_uniq</code> with <code>rev_uniq[order_rev_uniq]</code> (by virtue of vectors’ index-based selection), or more succinctly with <code>rev_uniq[order(rev_uniq)]</code>.</p>
+<div class="fig center" style="width: 60%">
+<p><img src="images/part3-03-vectors.Rmd.images/III.3_43_order_example.png" /></p>
+</div>
+<p>Importantly, this allows us to rearrange multiple vectors with a common order determined by a single one. For example, given two vectors, <code>id</code> and <code>score</code>, which are related element-wise, we might decide to rearrange both sets in alphabetical order for <code>id</code>.</p>
+<pre id=part3-03-order-func-example
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+id <- c("cc4", "aa6", "bb3")
+score <- c(20.05, 35.62, 42.71)
+
+id_sorted <- id[order(id)]
+score_sorted <- score[order(id)]
+
+print(id_sorted)                     # [1] "aa6" "bb3" "cc4"
+print(score_sorted)                  # [1] 35.62 42.71 20.05
+values <- c(5, 10, 15, 20, 25, 30)
+</code></pre>
+<p>The <code>sample()</code> function returns a random sampling from a vector of a given size, either with replacement or without as specified with the <code>replace =</code> parameter (<code>FALSE</code> is the default if unspecified).</p>
+<pre id=part3-03-sample-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values <- c(5, 10, 15, 20, 25, 30)
+
+sample_1 <- sample(values, 3, replace = FALSE)        # 15 5 30
+sample_2 <- sample(values, 3, replace = TRUE)         # 15 30 15
+</code></pre>
+<p>The <code>rep()</code> function repeats a vector to produce a longer vector. We can repeat in an element-by-element fashion, or over the whole vector, depending on whether the <code>each =</code> parameter is used or not.</p>
+<pre id=part3-03-rep-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+count <- c(1, 2)
+
+count_rep1 <- rep(count, 3)                           # 1 2 1 2 1 2
+count_rep2 <- rep(count, each = 3)                    # 1 1 1 2 2 2
+</code></pre>
+<p>Last (but not least) for this discussion is the <code>is.na()</code> function: given a vector with elements that are possibly <code>NA</code> values, it returns a logical vector whole elements are <code>TRUE</code> in indices where the original was <code>NA</code>, allowing us to easily indicate which elements of vectors are <code>NA</code> and remove them.</p>
+<pre id=part3-03-isna-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+values_char <- c("5.7", "4.3", "a9b3", "2.4")
+values <- as.numeric(values_char)                     # 5.7 4.3 NA 2.4
+
+values_na <- is.na(values)                            # FALSE FALSE TRUE FALSE
+
+values_no_nas <- values[!values_na]                   # 5.7 4.3 2.4
+# OR
+values_no_nas <- values[!is.na(values_na)]            # 5.7 4.3 2.4
+</code></pre>
+<p>Notice the use of the exclamation point in the above to negate the logical vector returned by <code>is.na()</code>.</p>
+</div>
+<div id="generating-random-data" class="section level3 unnumbered hasAnchor">
+<h3>Generating Random Data<a href="vectors.html#generating-random-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R excels at working with probability distributions, including generating random samples from them. Many distributions are supported, including the Normal (Gaussian), Log-Normal, Exponential, Gamma, Student’s t, and so on. Here we’ll just look at generating samples from a few for use in future examples.</p>
+<p>First, the <code>rnorm()</code> function generates a numeric vector of a given length sampled from the Normal distribution with specified mean (with <code>mean =</code>) and standard deviation (with <code>sd =</code>).</p>
+<pre id=part3-03-rnorm-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_norm <- rnorm(5, mean = 6, sd = 2)     # e.g. 7.07 2.4 4.5 6.2 5.1
+</code></pre>
+<p>Similarly, the <code>runif()</code> function samples from a uniform distribution limited by a minimum and maximum value.</p>
+<pre id=part3-03-runif-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_unif <- runif(5, min = 2, max = 6)     # e.g. 2.1 4.06 2.48 4.67 5.80
+</code></pre>
+<p>The <code>rexp()</code> generates data from an Exponential distribution with a given “rate” parameter, controlling the rate of decay of the density function (the mean of large samples will approach <code>1.0/rate</code>).</p>
+<pre id=part3-03-rexp-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_exp <- rexp(5, rate = 1.5)             # e.g. 0.24 0.50 0.01 0.55 0.30
+</code></pre>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part3-03-vectors.Rmd.images/III.3_51_distribution_shapes.png" /></p>
+</div>
+<p>R includes a large number of statistical tests, though we won’t be covering much in the way of statistics other than a few driving examples. The <code>t.test()</code> function runs a two-sided student’s t-test comparing the means of two vectors. What is returned is a more complex data type with class <code>"htest"</code>.</p>
+<pre id=part3-03-ttest-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_1 <- rnorm(100, mean = 10, sd = 4)
+sample_2 <- rnorm(100, mean = 12, sd = 4)
+
+
+ttest_result <- t.test(sample_1, sample_2)
+print(class(ttest_result))                    # [1] "htest"
+print(ttest_result)
+</code></pre>
+<p>When printed, this complex data type formats itself into nice, human-readable output:</p>
+<pre id=part3-03-ttest-func-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Welch Two Sample t-test
+
+data:  sample_1 and sample_2
+t = -2.6847, df = 193.503, p-value = 0.007889
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.690577 -0.411598
+sample estimates:
+mean of x mean of y
+ 10.03711  11.58819
+</code></pre>
+</div>
+<div id="reading-and-writing-tabular-data-wrapping-long-lines" class="section level3 unnumbered hasAnchor">
+<h3>Reading and Writing Tabular Data, Wrapping Long Lines<a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we go much further, we’re going to want to be able to import data into our R programs from external files (which we’ll assume to be rows and columns of data in text files). We’ll do this with <code>read.table()</code>, and the result will be a type of data known as a “data frame” (or <code>data.frame</code> in code). We’ll cover the nuances of data frames later, but note for now that they can be thought of as a collection of vectors (of equal length), one for each column in the table.</p>
+<p>As an example, let’s suppose we have a tab-separated text file in our present working directory called <code>states.txt</code>.<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a> Each row represents one of the US states along with information on population, per capita income, illiteracy rate, murder rate (per 100,000), percentage of high school graduates, and region (all measured in the 1970s). The first row contains a “header” line with column names.</p>
+<pre id=part3-03-states-txt-example
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+name    population      income  murder  hs_grad region
+Alabama 3615    3624    15.1    41.3    South
+Alaska  365     6315    11.3    66.7    West
+Arizona 2212    4530    7.8     58.1    West
+Arkansas        2110    3378    10.1    39.9    South
+California      21198   5114    10.3    62.6    West
+Colorado        2541    4884    6.8     63.9    West
+...
+</code></pre>
+<p>Later in the file, someone has decided to annotate Michigan’s line, indicating it as the “mitten” state:</p>
+<pre id=part3-03-states-txt-example-comment
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+...
+Massachusetts   5814    4755    3.3     58.5    Northeast
+Michigan        9111    4751    11.1    52.8    North Central   # mitten
+Minnesota       3921    4675    2.3     57.6    North Central
+...
+</code></pre>
+<p>Like most functions, <code>read.table()</code> takes many potential parameters (23, in fact), but most of them have reasonable defaults. Still, there are five or so that we will commonly need to set. Because of the need to set so many parameters, using <code>read.table()</code> often results in a long line of code. Fortunately, the R interpreter allows us to break long lines over multiple lines, so long as each line ends on a character that doesn’t complete the expression (so the interpreter knows it needs to keep reading following lines before executing them). Common character choices are the comma and plus sign. When we do wrap a long line in this way, it’s customary to indent the following lines to indicate their continuance in a visual way.</p>
+<pre id=part3-03-read-table-func
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+states <- read.table(file = "states.txt",
+                     header = TRUE,
+                     sep = "\t",
+                     stringsAsFactors = FALSE,
+                     comment.char = "#")
+</code></pre>
+<p>When reading states.txt, the <code>file =</code> parameter specifies the file name to be read, while <code>header = TRUE</code> indicates to the interpreter that the first line in the file gives the column names (without it, the column names will be <code>"V1"</code>, <code>"V2"</code>, <code>"V3"</code> and so on). The <code>sep = "\t"</code> parameter indicates that tab characters are used to separate the columns in the file (the default is any whitespace), and <code>comment.char = "#"</code> indicates that <code>#</code> characters and anything after them should be ignored while reading the file (which is appropriate, as evident by the <code># mitten</code> annotation in the file). The <code>stringsAsFactors = FALSE</code> parameter is more cryptic: it tells the interpreter to leave the character-vector columns (like <code>region</code> in this example) as character vectors, rather than convert them to the more sophisticated factor data type (to be covered in later chapters).</p>
+<p>At this point, the <code>states</code> variable contains the data frame holding the columns (vectors) of data. We can print it with <code>print(states)</code>, but the result is quite a lot of output:</p>
+<pre id=part3-03-print-states-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+             name population income murder hs_grad        region
+1         Alabama       3615   3624   15.1    41.3         South
+2          Alaska        365   6315   11.3    66.7          West
+3         Arizona       2212   4530    7.8    58.1          West
+4        Arkansas       2110   3378   10.1    39.9         South
+5      California      21198   5114   10.3    62.6          West
+6        Colorado       2541   4884    6.8    63.9          West
+...
+</code></pre>
+<p>It might make better sense to extract just the first 10 rows of data and print them, which we can do with the <code>head()</code> function (<code>head()</code> can also extract just the first few elements of a long vector).</p>
+<pre id=part3-03-states-head
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+first_10 <- head(states, n = 10)
+
+print(first_10)
+# OR
+print(head(states, n = 10))
+</code></pre>
+<p>The functions <code>nrow()</code> and <code>ncol()</code> return the number of rows and columns of a data frame, respectively (which is preferred over <code>length()</code>, which returns the number of columns); the <code>dim()</code> function returns a two-element vector with number of rows (at index 1) and number of columns (at index 2).</p>
+<p>As mentioned previously, individual columns of a data frame are (almost always) vectors. To access one of these individual vectors, we can use a special <code>$</code> syntax, with the column name following the <code>$</code>.</p>
+<pre id=part3-03-states-dollar-syntax
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+incomes <- states$"income"
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+</code></pre>
+<p>So long as the column name is sufficiently simple (in particular, so long as it doesn’t have any spaces), then the quote marks around the column name can be (and often are) omitted.</p>
+<pre id=part3-03-states-dollar-syntax-noquotes
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+incomes <- states$income
+print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
+</code></pre>
+<p>Although this syntax can be used to extract a column from a data frame as a vector, note that it refers to the vector within the data frame as well. In a sense, <code>states$income</code> <em>is</em> the vector stored in the <code>states</code> data frame. Thus we can use techniques like <a href="">selective replacement</a> to work with them just like any other vectors. Here, we’ll replace all instances of “North Central” in the <code>states$region</code> vector with just the term “Central,” effectively renaming the region.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a></p>
+<pre id=part3-03-states-rename-region
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+nrth_cntrl_logical <- states$region == "North Central"  # Logical vector
+states$region[nrth_cntrl_logical] <- "Central"          # Selective replacement
+# OR
+states$region[states$region == "North Central"] <- "Central"
+</code></pre>
+<p>Writing a data frame to a tab-separated file is accomplished with the <code>write.table()</code> function.<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a> As with <code>read.table()</code>, <code>write.table()</code> can take quite a few parameters, most of which have reasonable defaults. But there are six or so we’ll want to set more often than others. Let’s write the modified <code>states</code> data frame to a file called <code>states_modified.txt</code> as a tab-separated file.</p>
+<pre id=part3-03-write-table
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+write.table(states,
+            file = "states_modified.txt",
+            quote = FALSE,
+            sep = "\t",
+            row.names = FALSE,
+            col.names = TRUE)
+</code></pre>
+<p>The first two parameters here are the data frame to write and the file name to write to. The <code>quote = FALSE</code> parameter specifies that quotation marks shouldn’t be written around character types in the output (so the <code>name</code> column will have entries like <code>Alabama</code> and <code>Alaska</code> rather than <code>"Alabama"</code> and <code>"Alaska"</code>). The <code>sep = "\t"</code> indicates that tabs should separate the columns, while <code>row.names = FALSE</code> indicates that row names should not be written (because they don’t contain any meaningful information for this data frame), and <code>col.names = TRUE</code> indicates that we do want the column names output to the first line of the file as a “header” line.</p>
+<div id="r-and-the-unixlinux-command-line" class="section level4 unnumbered hasAnchor callout-box">
+<h4>R and the Unix/Linux Command Line<a href="vectors.html#r-and-the-unixlinux-command-line" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In chapter 26, “<a href="">An Introduction</a>,” we mentioned that R scripts can be run from the command line by using the <code>#!/usr/bin/env Rscript</code> executable environment. (Older versions of R required the user to run a command like <code>R CMD BATCH scriptname.R</code>, but today using <code>Rscript</code> is preferred.) We devoted more discussion to interfacing Python with the command line environment than we will R, partially because R isn’t as frequently used that way, but also because it’s quite easy.</p>
+<p>When using <code>read.table()</code>, for example, data can be read from standard input by using the file name <code>"stdin"</code>. Anything that is printed from an R script goes to standard output by default. Because R does a fair amount of formatting when printing, however, it is often more convenient to print data frames using <code>write.table()</code> specifying <code>file = ""</code>.</p>
+<p>Finally, to get command line parameters into an R script as a character vector, the line <code>args &lt;- commandArgs(trailingOnly = TRUE)</code> will do the trick. Here’s a simple script that will read a table on standard input, write it to standard output, and also read and print out any command line arguments:</p>
+<pre id=part3-03-rscript-example
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env Rscript
+
+# read args from command-line params
+args <- commandArgs(trailingOnly = TRUE)
+print(args)
+
+# read data frame from stdin
+input_df <- read.table("stdin", 
+                       header = FALSE, 
+                       stringsAsFactors = FALSE)
+# write data frame to stdout
+write.table(input_df,
+            file = "", 
+            row.names = FALSE, 
+            col.names = FALSE,
+            sep = "\t")
+</code></pre>
+<p>Try making this script executable on the command line, and running it on <code>p450s_blastp_yeast_top1.txt</code> with something like <code>cat p450s_blastp_yeast_top1.txt | ./stdin_stdout_ex.R arg1 'arg 2'</code>.</p>
+</div>
+<div id="exercises-31" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="vectors.html#exercises-31" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Suppose we have any odd-length numeric vector (e.g., <code>sample&lt;- c(3.2, 5.1, 2.5, 1.6, 7.9)</code> or <code>sample &lt;- runif(25, min = 0, max = 1))</code>. Write some lines of code that result in printing the median of the vector, without using the <code>median()</code> or <code>quantile()</code> functions. You might find the <code>length()</code> and <code>as.integer()</code> functions to be helpful.</p></li>
+<li><p>If <code>sample</code> is a sample from an exponential distribution, for example, <code>sample &lt;- rexp(1000, rate = 1.5)</code>, then the median of the sample is generally smaller than the mean. Generate a vector, <code>between_median_mean</code>, that contains all values of <code>sample</code> that are larger than (or equal to) the median of the sample, and less than (or equal to) the mean of the sample.</p></li>
+<li><p>Read in the <a href=""><code>states.txt</code></a> file into a data frame as described. Extract a numeric vector called <code>murder_lowincome</code> containing murder rates for just those states with per capita incomes less than the median per capita income (you can use the <code>median()</code> function this time). Similarly, extract a vector called <code>murder_highincome</code> containing murder rates for just those states with greater than (or equal to) the median per capita income. Run a two-sample <code>t.test()</code> to determine whether the mean murder rates are different between these two groups.</p></li>
+<li><p>Let <code>states</code> be the state information data frame described above. Describe what the various operations below do in terms of indexing, selective replacement, vector recycling, and the types of data involved (e.g., numeric vectors and logical vectors). To get you started, the first line adds a new column to the <code>states</code> data frame called <code>"newpop"</code> that contains the same information as the <code>"population"</code> column.</p>
+<pre id=part3-03-describe-ops-exercise
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+ <code>
+states$newpop <- states$population
+highmurder <- states$murder >= median(states$murder)
+states$newpop[highmurder] <- states$population[highmurder] * 0.9
+states$newpop[!highmurder] <- states$population[!highmurder] * 1.1
+ </code></pre></li>
+<li><p>Determine the number of unique regions that are listed in the <code>states</code> data frame. Determine the number of unique regions represented by states with greater than the median income.</p></li>
+<li><p>What does the <code>sum()</code> function report for a numeric vector <code>c(2, 3, 0, 1, 0, 2)</code>? How about for <code>c(1, 0, 0, 1, 1, 0)</code>? And, finally, how about for the logical vector <code>c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE)</code>? How could the <code>sum()</code> function thus be useful in a logical context?</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="98">
+<li id="fn98"><p>Most R functions take a large number of parameters, but many of them are optional. In the next chapter, we’ll see what such optional parameters look like, and how to get an extensive list of all the parameters that built-in R functions can take.<a href="vectors.html#fnref98" class="footnote-back">↩︎</a></p></li>
+<li id="fn99"><p>The term “selective replacement” is not widely used outside of this book. In some situations, the term “conditional replacement” is used, but we wanted to define some concrete terminology to capture the entirety of the idea.<a href="vectors.html#fnref99" class="footnote-back">↩︎</a></p></li>
+<li id="fn100"><p>When running on the command line, the present working directory is inherited from the shell. In RStudio, the present working directory is set to the “project” directory if the file is part of a project folder. In either case, it is possible to change the working directory from within R using the <code>setwd()</code> function, as in <code>setwd("/home/username/rproject")</code> in Unix/Linux and <code>setwd("C:/Documents and Settings/username/My Documents/rproject")</code> in Windows. It is also possible to specify file names by absolute path, as in <code>/home/username/rproject/states.txt</code>, no matter the present working directory.<a href="vectors.html#fnref100" class="footnote-back">↩︎</a></p></li>
+<li id="fn101"><p>If you have any familiarity with R, you might have run across the <code>attach()</code> function, which takes a data frame and results in the creation of a separate vector for each column. Generally, “disassembling” a data frame this way is a bad idea—after all, the columns of a data frame are usually associated with each other for a reason! Further, this function results in the creation of many variables with names based on the column names of the data frame. Because these names aren’t clearly delimited in the code, it’s easy to create hard-to-find bugs and mix up columns from multiple data frames this way.<a href="vectors.html#fnref101" class="footnote-back">↩︎</a></p></li>
+<li id="fn102"><p>There are also more specialized functions for both reading and writing tabular data, such as <code>read.csv()</code> and <code>write.csv()</code>. We’ve focused on <code>read.table()</code> and <code>write.table()</code> because they are flexible enough to read and write tables in a variety of formats, including comma separated, tab separated, and so on.<a href="vectors.html#fnref102" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="variables-and-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-03-vectors.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

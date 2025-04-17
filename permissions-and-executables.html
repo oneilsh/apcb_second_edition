@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Permissions and Executables | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 5 Permissions and Executables | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Permissions and Executables | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Permissions and Executables | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="working-with-files-and-directories.html"/>
+<link rel="next" href="installing-bioinformatics-software.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="permissions-and-executables" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Permissions and Executables<a href="permissions-and-executables.html#permissions-and-executables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As mentioned previously, the administrator <code>root</code> configures most things on the system, like where network drives are mounted and how access to the system is granted.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> Most of the files that are important for these configurations are “owned” by root, and for security purposes, other users can’t tamper with them. In fact, all users of the system usually own the files in their own home directory, and these files can’t be tampered with by other users (except for root, who has access to everything). These security settings are controlled via <em>permissions</em> associated with every file and directory.</p>
+<p>Root can also put users together into <em>groups</em>, allowing users in the same group to share files with each other but not outsiders, if they so choose. Groups may have more than one user, and a single user may be part of more than one group, as in the following example illustrating three groups and eight users.</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_1_groups_ex.png" /></p>
+</div>
+<p>The <code>groups</code> command shows the groups to which a user belongs; in the above example, <code>groups oneilst</code> would report <code>emrichlab</code> and <code>hellmannlab</code>. To see your own groups, you can always use something like <code>groups $USER</code> (relying on the shell to replace <code>$USER</code> with your username).</p>
+<p>Unfortunately, there’s no surefire or easy way to list all the members of a particular group—at least not without some deep knowledge of how the system is configured or some programming expertise. On some systems, a command like <code>getent group &lt;groupname&gt;</code> will provide the answer; <code>getent group faculty</code> would report <code>emrichs</code>, <code>schmidtj</code>, and <code>hellmannj</code> for the example above.</p>
+<p>If you are unsure of a person’s username, the <code>finger</code> command may come to the rescue. You can supply <code>finger</code> with either a first name or last name to search for (or even the username, if known), and it will return information—if entered by the system administrator—about that user.</p>
+<pre id=part1-05-finger
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>finger Shawn</b>
+Login: oneils           Name: Shawn O'neil
+Directory: /home/oneils     Shell: /bin/bash
+On since Mon Oct 20 16:52 (MST) on pts/0 from 8-169.ptpg.oregonstate.edu
+No mail.
+No Plan.
+</code></pre>
+<p>Each file and directory is associated with one user (the owner) and one group; unfortunately, in normal Unix-like permissions, one and only one group may be associated with a file or directory. Each file and directory also has associated with it permissions describing:</p>
+<ol style="list-style-type: decimal">
+<li>what the owner can do,</li>
+<li>what members of the group can do, and</li>
+<li>what everyone else (others) can do.</li>
+</ol>
+<p>This information is displayed when running <code>ls -l</code>, and is represented by a combination of <code>r</code> (read), <code>w</code> (write), and <code>x</code> (execute). Where one of these three is absent, it is replaced by a <code>-</code>. Here’s an example, showing two entries owned by <code>oneils</code> and in the <code>iplant-everyone</code> group; one has permissions <code>rwxrwxrwx</code> (an insecure permission set, allowing anyone to do anything with the file), and the other has <code>rwxr-xr-x</code> (a much more reasonable permission set).</p>
+<pre id=part1-05-permissions
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>ls -l</b>
+total 20
+-rwxrwxrwx  1   oneils  iplant-everyone 15891 Oct 20  17:42 <span style="color: green">p450s.fasta</span>
+drwxr-xr-x  2   oneils  iplant-everyone  4086 Oct 20  17:40 <span style="color: blue">temp</span>
+</code></pre>
+<p>There is an extra entry in the first column; the first character describes the type of the entry, <code>-</code> for a regular file and <code>d</code> for directory. Let’s break down these first few columns for one of the entries:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_4_permissions_description.png" /></p>
+</div>
+<p>Each file or directory may have some combination of <code>r</code>, <code>w</code>, and <code>x</code> permissions, applied to either the user, the group, or others on the system. For files, the meanings of these permissions are fairly straightforward.</p>
+<table>
+<tr>
+<th style="text-align:left">
+Code
+</th>
+<th style="text-align:left">
+Meaning for Files
+</th>
+</tr>
+<tr>
+<td>
+<code>r</code>
+</td>
+<td>
+Can read file contents
+</td>
+</tr>
+<tr>
+<td>
+<code>w</code>
+</td>
+<td>
+Can write to (edit) the file
+</td>
+</tr>
+<tr>
+<td>
+<code>x</code>
+</td>
+<td>
+Can (potentially) “execute” the file
+</td>
+</tr>
+</table>
+<p>We’ll cover what it means for a file to be executable in a bit. For directories, these permissions take on different meanings.</p>
+<table>
+<tr>
+<th style="text-align:left">
+Code
+</th>
+<th style="text-align:left">
+Meaning for Directories
+</th>
+</tr>
+<tr>
+<td>
+<code>r</code>
+</td>
+<td>
+Can read contents of the directory (e.g., run <code>ls</code>)
+</td>
+</tr>
+<tr>
+<td>
+<code>w</code>
+</td>
+<td>
+Can modify contents of the directory (create or remove files/directories)
+</td>
+</tr>
+<tr>
+<td>
+<code>x</code>
+</td>
+<td>
+Can <code>cd</code> to the directory, and potentially access subdirectories
+</td>
+</tr>
+</table>
+<p>The <code>temp</code> directory above gives the user all permissions (<code>rwx</code>), but members of the group and others can only <code>cd</code> to the directory and view the files there (<code>r-x</code>); they can’t add or remove files or directories. (They may be able to <em>edit</em> files in <code>temp</code>, however, depending on those files’ permissions.)</p>
+<p>The <code>chmod</code> (change mode) utility allows us to add or remove permissions. There are two types of syntax, the simpler “character” syntax and the numeric “octal” syntax. We’ll describe the simpler syntax and leave discussion of the octal syntax for those brave enough to read the manual page (<code>man chmod</code>).</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_5_chmod_syntax.png" /></p>
+</div>
+To clarify, here are some examples of modifying permissions for the <code>p450s.fasta file</code>.
+<table>
+<tr>
+<th style="text-align:left">
+Command
+</th>
+<th style="text-align:left">
+Effect
+</th>
+</tr>
+<tr>
+<td>
+<code>chmod go-w p450s.fasta</code>
+</td>
+<td>
+Remove write for group and others
+</td>
+</tr>
+<tr>
+<td>
+<code>chmod ugo+r p450s.fasta</code>
+</td>
+<td>
+Add read for user, group, and others
+</td>
+</tr>
+<tr>
+<td>
+<code>chmod go-rwx p450s.fasta</code>
+</td>
+<td>
+Remove read, write, and execute for group and others
+</td>
+</tr>
+<tr>
+<td>
+<code>chmod ugo+x p450s.fasta</code>
+</td>
+<td>
+Add execute for user, group, and others
+</td>
+</tr>
+<tr>
+<td>
+<code>chmod +x p450s.fasta</code>
+</td>
+<td>
+Same as <code>chmod ugo+x p450s.fasta</code>
+</td>
+</tr>
+</table>
+<p>If you wish to modify a directory and everything inside, you can add the <code>-R</code> flag (capital R this time for recursive) to <code>chmod</code>. To share a <code>projects</code> directory and everything inside for read access with group members, for example, you can use <code>chmod -R g+r projects</code>.</p>
+<p>There are a few small things to note about file and directory permissions. The first is that while it is possible to change the group of a file or directory, you can only do so with the <code>chgrp</code> command if you are a member of that group.</p>
+<pre id=part1-05-chgrp
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>groups $USER</b>
+oneils : iplant-everyone users community de-preview-access atmo-user dnasubway-users myplant-users
+[oneils@mbp ~/apcb/intro]$ <b>cgrp community p450s.fasta</b>
+</code></pre>
+<p>Second, you own the files that you create, but generally only the root user has access to the <code>chown</code> utility that changes the owner of an existing file (it wouldn’t be very nice to “gift” another user a nefarious program).</p>
+<p>Third, while it is convenient to be able to open up a directory for reading by group members, doing so is only useful if all of the directories above it are also minimally accessible. In particular, all the directories in the path to a shared directory need to have at least <code>x</code> for the group if they are to be accessed in any way by group members.</p>
+<div id="executables-and-path" class="section level3 unnumbered hasAnchor">
+<h3>Executables and $PATH<a href="permissions-and-executables.html#executables-and-path" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What is a “program?” On a Unix-like system, it’s a file that has executable permissions for some user or users. (It also helps if that file contains some instructions that make sense to execute!) Often these are encoded in a “binary” format—simply long strings of <code>0</code>’s and <code>1</code>’s representing machine code that the CPU can interpret—but they may in some contexts also be human-readable text files. Many of the programs we’ve been using, like <code>echo</code> and <code>ls</code>, are executable files that live in the <code>/bin</code> directory along with many others, including <code>bash</code>, our shell program.</p>
+<pre id=part1-05-executable
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>cd /bin</b>
+[oneils@mbp ~/bin]$ <b>ls -l</b>
+total 273840
+-rwxr-xr-x  1   root  root 959120 Mar 28  2013  <span style="color: green">bash</span>
+-rwxr-xr-x  1   root  root  31112 Dec 14  2011  <span style="color: green">bunzip2</span>
+-rwxr-xr-x  1   root  root  31112 Dec 14  2011  <span style="color: green">bzcat</span>
+...
+</code></pre>
+<p>If we like, we can even attempt to take a look at one of these with <code>less</code>. For example, we can try to examine the contents of the <code>bash</code> program with <code>less /bin/bash</code>; even though <code>less</code> reports a warning that the file is binary encoded, it won’t hurt to try.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_8_unix_43_bash_less.png" /></p>
+</div>
+<p>A binary-encoded file doesn’t look like much when we attempt to convert it to text and view it with <code>less</code>. In any case, here’s an “execution rule” we’re going to break almost immediately: <em>to get the shell to run a program (executable file), we specify the absolute or relative path to it</em>.</p>
+<p>In this case, our execution rule would indicate that to run the <code>echo</code> program, we would specify the absolute path <code>/bin/echo hello</code>, as the echo program lives in <code>/bin</code>, or <code>../../../../bin/echo hello</code> for the relative path (because <code>/bin</code> is four folders above our present working directory <code>~/apcb/intro</code>).</p>
+<pre id=part1-05-execution-rule
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>/bin/echo hello</b>
+hello
+[oneils@mbp ~/apcb/intro]$ <b>../../../../bin/echo hello</b>
+hello
+</code></pre>
+<p>Now for the rule-breaking part: we already know that we can just run <code>echo</code> <em>without</em> specifying a path to the program. This means that when we attempt to run a program, the shell must be able to find the executable file somehow. How is this done?</p>
+<p>The answer, as with so many questions involving the shell, is an <a href="the-command-line-and-filesystem.html#environment_variable">environment variable</a> called <code>$PATH</code>. Let’s check the contents of this variable:<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+<pre id=part1-05-$PATH
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>echo $PATH</b>
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/games
+</code></pre>
+<p>The <code>$PATH</code> environment variable contains a simple string, describing a list of absolute paths separated by <code>:</code> characters. When we specify what looks to the shell like the name of a program, it searches this list of paths, in order, for an executable file of that name. When we type <code>echo</code>, it tries <code>/usr/local/sbin/echo</code>, then <code>/usr/local/bin/echo</code>, and so on, until it finds it in <code>/bin/echo</code>.</p>
+<p>The first matching executable file the shell finds in the directories listed in <code>$PATH</code> is the one that is executed. This could lead to some mischief: if a coworker with a penchant for practical jokes could modify your <code>$PATH</code> variable, they could add their own home directory as the first entry. From there, they could create an executable file called, say, <code>ls</code> that did whatever they wanted, and you would unknowingly be running that! It is possible for anyone with access to your account to modify your <code>$PATH</code>, so it’s a good idea not to leave your terminal window open around anyone with a dastardly sense of humor.</p>
+<p>If there are multiple executable files with the same name in this list of paths, can we discover which one the shell will execute? Yes: in <code>bash</code> we can make this determination using the <code>which</code> command.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<pre id=part1-05-which-echo
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>which echo</b>
+/bin/echo
+</code></pre>
+<p>What about a command like <code>cd</code>? We can try to use <code>which</code> to locate a program called <code>cd</code>, but we’ll find that nothing is reported.</p>
+<pre id=part1-05-which-cd
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>which cd</b>
+[oneils@mbp ~/apcb/intro]$
+</code></pre>
+<p>This is because <code>cd</code> is not a program (executable file), but rather a “command,” meaning the shell notices that it’s a special keyword it should handle, rather than searching for an executable file of that name. Said another way, <code>bash</code> is performing the action, rather than calling an external executable program. Knowing about the difference between commands handled by the shell and programs that are executable files is a minor point, but one that could be confusing in cases like this.</p>
+</div>
+<div id="making-files-executable" class="section level3 unnumbered hasAnchor">
+<h3>Making Files Executable<a href="permissions-and-executables.html#making-files-executable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s do something decidedly weird, and then come back and explain it. First, we’ll use <code>nano</code> to create a new file called <code>myprog.sh</code>, using the <code>-w</code> flag for <code>nano</code> to ensure that long lines are not automatically wrapped (<code>nano -w myprog.sh</code>). In this file, we’ll make the first two characters <code>#!</code>, followed immediately by the absolute path to the <code>bash</code> executable file. On later lines, we’ll put some commands that we might run in <code>bash</code>, like two <code>echo</code> calls.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_13_unix_48_myprog.png" /></p>
+</div>
+<p>Although it looks like the <code>#!</code> (pronounced “shebang,” rhyming with “the bang”) line starts on the second line, it is actually the first line in the file. This is important. Notice that <code>nano</code> has realized we are writing a file that is a bit odd, and has turned on some coloring. Your <code>nano</code> may not be configured for this syntax highlighting. If not, don’t worry: we are creating a simple text file.</p>
+<p>After we save the file (<code>Control-o</code>, then Enter confirm the file name to write) and exit <code>nano</code> (<code>Control-x</code>), we can add execute permissions to the file (for everyone, perhaps) with <code>chmod +x myprog.sh</code>.</p>
+<pre id=part1-05-chmod-myprog
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>ls</b>
+myprog.sh   p450s.fa  <span style="color: blue">temp</span>
+[oneils@mbp ~/apcb/intro]$ <b>chmod +x myprog.sh</b>
+[oneils@mbp ~/apcb/intro]$ <b>ls -l</b>
+total 24
+-rwxr-xr-x  1   oneils  iplant-everyone    57 Oct 20  20:49 <span style="color: green">myprog.sh</span>
+-rw-rw-rw-  1   oneils  community       15891 Oct 20  17:42 p450s.fasta
+drwxr-xr-x  2   oneils  iplant-everyone  4086 Oct 20  17:40 <span style="color: blue">temp</span>
+</code></pre>
+<p>It would appear that we might have created a program—we do have an executable file, and you might have guessed that the special syntax we’ve used makes the file executable in a meaningful way. Let’s try it out: according to our execution rule, we can specify the absolute path to it to run it.</p>
+<pre id=part1-05-execute-myprog
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>pwd</b>
+/home/oneils/apcb/intro
+[oneils@mbp ~/apcb/intro]$ <b>/home/oneils/apcb/intro/myprog.sh</b>
+Hello!
+This is a bit weird...
+</code></pre>
+<div id="script" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+</div>
+<div id="interpreter" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>It ran! What we’ve created is known as a script to be run by an interpreter; in this case, the interpreter is <code>bash</code>. A script is a text file with execute permissions set, containing commands that may be run by an interpreter, usually specified through the absolute path at the top of the script with a <code>#!</code> line. An interpreter is a program that can execute commands, sometimes specified in a script file.</p>
+<p>What is happening here is that the shell has noticed that the user is attempting to run an executable file, and passes the execution off to the operating system. The operating system, in turn, notices the first two bytes of the file (the <code>#!</code> characters), and rather than having the CPU run the file as binary machine code, executes the program specified on the <code>#!</code> line, passing to that program the contents of the file as “code” to be run by that program. Because in this case the interpreting program is <code>bash</code>, we can specify any commands that we can send to our shell, bash. Later, we’ll see that we can create scripts that use much more sophisticated interpreters, like <code>python</code>, to run more sophisticated code.</p>
+<p>According to our execution rule, we can also run our program by specifying a relative path to it, like <code>./myprog.sh</code> (which specifies to run the <code>myprog.sh</code> file found in the present working directory).</p>
+<pre id=part1-05-execute-myprog-relative
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>./myprog.sh</b>
+Hello!
+This is a bit weird...
+</code></pre>
+<p>This is the most common way to run files and programs that exist in the present working directory.</p>
+<p>If we change to another present working directory, like our home directory, then in order to run the program according to the execution rule, we have to again specify either the absolute or relative path.</p>
+<pre id=part1-05-execute-myprog-from-home
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>cd $HOME</b>
+[oneils@mbp ~]$ <b>/home/oneils/apcb/intro/myprog.sh</b>
+Hello!
+This is a bit weird...
+[oneils@mbp ~]$ <b>apcb/intro/myprog.sh</b>
+Hello!
+This is a bit weird...
+</code></pre>
+<p>This process is tedious; we’d like to be able to specify the name of the program, but because the location of our program isn’t specified in a directory listed in <code>$PATH</code>, we’ll get an error.</p>
+<pre id=part1-05-execute-error
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>myprog.sh</b>
+-bash: myprog.sh: command not found
+</code></pre>
+</div>
+</div>
+<div id="installing-a-program" class="section level3 unnumbered hasAnchor">
+<h3>Installing a Program<a href="permissions-and-executables.html#installing-a-program" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To add our own programs to the system so that we can run them at will from any location, we need to:</p>
+<ol style="list-style-type: decimal">
+<li>Obtain or write an executable program or script.</li>
+<li>Place it in a directory.</li>
+<li>Ensure the absolute path to that directory can be found in <code>$PATH</code>.</li>
+</ol>
+<p>Traditionally, the location to store one’s own personal executables is in one’s home directory, inside a directory called <code>local</code>, inside a directory called <code>bin</code>. Let’s create these directories (creating them was also part of a previous exercise, so you may not need to), and move our <code>myprog.sh</code> file there.</p>
+<pre id=part1-05-local-bin
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>cd $HOME</b>
+[oneils@mbp ~]$ <b>mkdir local</b>
+[oneils@mbp ~]$ <b>mkdir local/bin</b>
+[oneils@mbp ~]$ <b>ls</b>
+<span style="color: blue">apcb    Documents local  Pictures Templates     Videos</span>
+<span style="color: blue">Desktop Downloads Music  Public</span>   todo_list.txt
+[oneils@mbp ~]$ <b>mv apcb/intro/myprog.sh local/bin</b>
+</code></pre>
+<p>This accomplishes steps 1 and 2. For step 3, we need to make sure that our <code>local/bin</code> directory can be found in <code>$PATH</code>. Because <code>$PATH</code> is an environment variable, we can set it with <code>export</code>, making use of the fact that environment variables inside of double quotes (but not single quotes) are expanded to their contents.</p>
+<pre id=part1-05-export-path
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>export PATH="$HOME/local/bin:$PATH"</b>
+[oneils@mbp ~]$ <b>echo $PATH</b>
+/home/oneils/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/games
+</code></pre>
+<p>Because the right-hand side of the <code>=</code> is evaluated before the assignment happens, the <code>$PATH</code> variable now contains the full path to the <code>~/local/bin</code> directory, followed by the previous contents of <code>$PATH</code>.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> If we type a program name without specifying a path to it, the shell will search our own install location first!</p>
+<pre id=part1-05-myprog-in-path
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>myprog.sh</b>
+Hello!
+This is a bit weird...
+</code></pre>
+<p>There’s only one problem: every time we log out and log back in, modifications of environment variables that we’ve made are forgotten. Fortunately, <code>bash</code> looks for two important files when it starts:<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> (1) commands in the <code>.bash_login</code> file (in your home directory) are executed whenever <code>bash</code> starts as a consequence of a login session (e.g., when entering a password causes <code>bash</code> to start), and (2) commands in the <code>.bashrc</code> file (in your home directory) are executed whenever <code>bash</code> starts (e.g., on login <em>and</em> when <code>bash</code> is executed via a <code>#!</code> script).</p>
+<p>If you want to see a friendly greeting every time you log in, for example, you might add the line echo <code>"Hello $USER, nice to see you again!"</code> to your <code>.bash_login</code> file. Because we want our <code>$PATH</code> to be modified even if <code>bash</code> somehow starts without our logging in, we’ll add the <code>export</code> command to the <code>.bashrc</code> file.</p>
+<p>The <code>.bashrc</code> file may have information in it already, representing a default shell configuration placed there when the administrator created the account. While we can add our own commands to this file, we should do so at the end, and we should be careful to not disturb the other configuration commands that are likely there for a good reason. Also, the commands in this file should be free of errors and typos—some errors are bad enough to prevent you from logging in! Using the <code>-w</code> when editing the file with <code>nano</code> will help ensure that the editor does not attempt to autowrap long commands that shouldn’t be broken over multiple lines.</p>
+<pre id=part1-05-ls-a
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>ls -a</b>
+<span style="color: blue">.             .config     .gstreamer-0.10</span>   .profile      <span style="color: blue">.vim</span>
+<span style="color: blue">..            .dbus       .gvfs             Public</span>        .viminfo
+<span style="color: blue">apcb          Desktop</span>     .ICEauthority     <span style="color: blue">.pulse</span>        .vimrc
+.bash_history <span style="color: blue">Documents   .local</span>            .pulse-cookie <span style="color: blue">.vnc</span>
+.bash_login   <span style="color: blue">Downloads   Music             .ssh</span>     .Xauthority
+.bash_logout  <span style="color: blue">.gconf</span>      .netrc            <span style="color: blue">Templates</span>             .Xdefaults
+.bashrc       <span style="color: blue">.gnome2      Pictures</span>         Todo_list.txt        .xscreensaver
+<span style="color: blue">.cache        .gnupg      .pip              Videos</span>                .xsession-errors
+[oneils@mbp ~]$ <b>nano -w .basrc</b>
+</code></pre>
+<p>At the bottom of this file, we’ll add the <code>export</code> line:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_23_unix_57_nano_bashrc2.png" /></p>
+</div>
+<p>Because lines starting with <code>#</code> are “comments” (unexecuted, aside from the <code>#!</code> line, of course), we can use this feature to remind our future selves how that line got in the file. Because commands in these files are only executed when the shell starts, in order to activate the changes, it suffices to log out and log back in.</p>
+<div id="exercises-3" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="permissions-and-executables.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Suppose a file has the following permissions listed by <code>ls -l</code>: <code>-rwxrw-r--</code>. What does this permission string indicate the about the file?</p></li>
+<li><p>What is the difference between <code>export PATH="$HOME/local/bin:$PATH"</code> and <code>export PATH="$PATH:$HOME/local/bin"</code>? In what situations might the former be preferred over the latter?</p></li>
+<li><p>Carefully add the line export <code>PATH="$HOME/local/bin:$PATH"</code> to your <code>.bashrc</code> (assuming you have a <code>local/bin</code> directory in your home directory, and your default shell is <code>bash</code>). Be sure not to alter any lines already present, or to create any typos that might prevent you from logging in.</p></li>
+<li><p>Create an executable script in your <code>~/local/bin directory</code> called <code>myinfo.sh</code>, which runs <code>echo</code> on the <code>$HOME</code>, <code>$PWD</code>, and <code>$USER</code> environment variables, and also runs the <code>date</code> utility. Try running it by just running <code>myinfo.sh</code> from your home directory (you may need to log out and back in first, to get the shell to recognize the change in the contents of paths listed in <code>$PATH</code> if you modified your <code>.bashrc</code>).</p></li>
+<li><p>Executable <code>bash</code> scripts that start with <code>#!/bin/bash</code> will work fine, provided that the <code>bash</code> program lives in the <code>/bin</code> directory. On any system where this isn’t the case (probably a rare occurrence), it won’t.</br></br>
+Try creating a bash script where the first line is <code>#!/usr/bin/env bash</code>. The <code>env</code> program uses the <code>$PATH</code> variable to locate the <code>bash</code> executable, and passes off interpretation of the script to the located bash interpreter. This poses the same problem: what if <code>env</code> is not located in <code>/usr/bin</code>? Fortunately, this has been an agreed-upon location for the env program for decades, so scripts written in this manner are portable across more machines.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="12">
+<li id="fn12"><p>The administrator, or <code>root</code> user, is sometimes also called the “superuser.” This has been known to go to some administrators’ heads.<a href="permissions-and-executables.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>The <code>tcsh</code> and <code>csh</code> shells do not use the <code>$PATH</code> environment variable. Instead, they look in a shell variable called <code>$path</code>.<a href="permissions-and-executables.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>In <code>tcsh</code> and <code>csh</code>, the closest approximation to <code>which</code> is <code>where</code>, though <code>which</code> may also work.<a href="permissions-and-executables.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>The corresponding command to set the <code>tcsh</code> or <code>csh</code> <code>$path</code> variable is: <code>set path = ("$HOME/local/bin" $path)</code>.<a href="permissions-and-executables.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>The corresponding files for <code>tcsh</code> and <code>csh</code> shells are <code>.login</code> and <code>.cshrc</code>, respectively.<a href="permissions-and-executables.html#fnref16" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="working-with-files-and-directories.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="installing-bioinformatics-software.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-05-permissions-executables.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

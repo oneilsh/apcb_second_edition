@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 18 File Input and Output | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 18 File Input and Output | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 18 File Input and Output | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 18 File Input and Output | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="collections-and-looping-lists-and-for.html"/>
+<link rel="next" href="conditional-control-flow.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="file-input-and-output" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Chapter 18</span> File Input and Output<a href="file-input-and-output.html#file-input-and-output" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>So far, all the data we’ve been working with have been “hard-coded” into our programs. In real life, though, we’ll be seeking data from external files.</p>
+<div id="file_handle" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>We can access data that exist in an external file (a text file, usually) using a <em>file handle</em>, a special kind of data type we can connect to using an external source. In its simplest form, a file handle for reading data works sort of like a pipe: the operating system puts data (usually strings) in one end, and we extract data out of the other end, usually one line at a time. File handles for writing to files move the data in the opposite direction.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-04-file-input-output.Rmd.images/II.4_1_file_handle_input-3.png" /></p>
+</div>
+<p>To associate a file handle called <code>fhandle</code> with the file <code>"filename.txt"</code>, for example, the command is <code>fhandle = open("filename.txt", "r")</code>. The r indicates that we’re creating a read-only file handle. The file handle data type has a method called <code>.readline()</code>, which returns the next available line from the pipe as a string; so, <code>line = fhandle.readline()</code> extracts a string (line) from the file handle and assigns it to <code>line</code>.</p>
+<p>Let’s create a small file with three lines each containing a gene ID, a tab, and a corresponding GC-content value.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-04-file-input-output.Rmd.images/II.4_2_py_35_ids_list.png" /></p>
+</div>
+<p>Now let’s create a program that reads and prints the data. When we are finished reading data from a file, we need to run the file handle’s <code>.close()</code> method. Using <code>.close()</code> causes the file handle to alert the operating system that we are done reading data from the handle. At this point the operating system is free to remove the back-end “pipe” and any data that might be in it.</p>
+<pre id=part2-04-open
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>fhandle = open("ids.txt", "r")
+
+line1 = fhandle.readline()
+line2 = fhandle.readline()
+line3 = fhandle.readline()
+
+print("Starting output:")
+print(line1)
+print(line2)
+print(line3)
+print("Done.")
+
+fhandle.close()
+</code></pre>
+<p>In many languages, it is good practice to test whether a file handle was successfully opened, and if not, exit the program with an error. We could also do such tests in Python, but because Python by default quits with an informative error in this situation anyway, we won’t worry as much about checking for errors here. Python also includes a special <code>with</code> keyword that handles both opening and closing the file:</p>
+<pre id=part2-04-with-open
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>with open("ids.txt", "r") as fhandle:
+    line1 = fhandle.readline()
+    line2 = fhandle.readline()
+    line3 = fhandle.readline()
+
+    print("Starting output:")
+    print(line1)
+    print(line2)
+    print(line3)
+
+print("Done processing file; file handle is closed.")
+</code></pre>
+<p>Python documentation recommends using with in this way, as it is slightly safer in cases of program crashes that occur when a file handle is open. Notice that <code>with open()</code> works similarly to loops, in that it also requires an indented <a href="collections-and-looping-lists-and-for.html#block">code block</a>. The file is closed when the script moves on to the next code block, noted by the lack of indentation. If we try to refer to this file handle outside of the <code>with open()</code> block, we will get the error <code>ValueError: I/O operation on closed file.</code>.</p>
+<p>If the file doesn’t exist or is not readable by the program, you will get a <code>FileNoteFoundError</code> with the file name you attempted to open. Because our file does exist, we can successfully execute the code and inspect the results:</p>
+<pre id=part2-04-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>Starting output:
+CYP6B 0.24
+
+AGP4 0.96
+
+CATB 0.37
+
+Done processing file; file handle is closed.
+</code></pre>
+<p>There are a few things to note here. First, each time we call <code>fhandle.readline()</code>, the file handle returns a different string: the next string waiting to be popped out of the pipe. Second, we see that the output contains our three lines, but separated by blank lines: this is because there are “newline” characters already in the file. We don’t see these newline characters, but we can represent them ourselves if we like, in a string with the control code <code>\n</code>. Similarly, tab characters have a control code like <code>\t</code>. The file is actually a single serial string, and the <code>.readline()</code> method asks the file handle to return everything up to and including the next <code>\n</code>.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-04-file-input-output.Rmd.images/II.4_5_newlines_in_str.png" /></p>
+</div>
+<p>In the end, the reason for the blank lines in our output is that the <code>print()</code> function, for our convenience, appends a <code>\n</code> to the end of any string that we print (otherwise, most of our output would all be on the same line). Thus each line read in from the file is being printed with two <code>\n</code> characters. We’ll learn how to print without an additional newline later, when we learn how to write data to files. For now, we’ll solve the problem by removing leading and trailing whitespace (spaces, tabs, and newlines) by asking a string to run its <code>.strip()</code> method.</p>
+<pre id=part2-04-strip
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+with open("ids.txt", "r") as fhandle:
+    line1 = fhandle.readline()
+    line1stripped = line1.strip()
+    line2 = fhandle.readline()
+    line2stripped = line2.strip()
+    line3 = fhandle.readline()
+    line3stripped = line3.strip()
+
+    print("Starting output:")
+    print(line1stripped)
+    print(line2stripped)
+    print(line3stripped)
+
+print("Done.")
+</code></pre>
+<p>Here’s the modified output:</p>
+<pre id=part2-04-output_stripped
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+Starting output:
+CYP6B 0.24
+AGP4 0.96
+CATB 0.37
+Done.
+</code></pre>
+<p>If you feel adventurous (and you should!), you can try method chaining, where the dot syntax for methods can be appended so long as the previous method returned the correct type.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-04-file-input-output.Rmd.images/II.4_8_py_38_method_chaining.png" /></p>
+</div>
+<p>To tie this into earlier concepts, after we’ve extracted each line and stripped off the trailing whitespace, we can use <code>.split("\t")</code> to split each line into a list of strings. From there, we can use <code>float()</code> to convert the second element of each into a float type (remember, all data read from files are strings), and compute the mean GC content.</p>
+<pre id=part2-04-GC
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+with open("ids.txt", "r") as fhandle:
+    line1 = fhandle.readline().strip()
+    line2 = fhandle.readline().strip()
+    line3 = fhandle.readline().strip()
+
+line1_list = line1.split("\t")
+line2_list = line2.split("\t")
+line3_list = line3.split("\t")
+
+gc1 = float(line1_list[1])
+gc2 = float(line2_list[1])
+gc3 = float(line3_list[1])
+
+mean_gc = (gc1 + gc2 + gc3)/3
+print(mean_gc)
+</code></pre>
+<p>The above prints the average GC content of the three lines as <code>0.523333333</code>. (Because <code>.strip()</code> also returns a string, we could have further chained methods, as in <code>line1_list = fhandle.readline().strip().split("\t")</code>. Or to take it even further, <code>gc1 = fhandle.readline().strip().split("\t")[1]</code>.)</p>
+<p>Because file handles work like a pipe, they don’t allow for “random access”; we can get the next bit of data out of the end of the pipe, but that’s it.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> One might think that a command like <code>line5 = fhandle[4]</code> would work, but instead it would produce an error like <code>TypeError: '_io.TextIOWrapper' object is not subscriptable</code>.</p>
+<p>On the other hand, like lists, file handles are <a href="#id_#iterable">iterable</a>, meaning we can use a for-loop to access each line in order. A simple program to read lines of a file and print them one at a time (without extra blank lines) might look like this:</p>
+<pre id=part2-04-for_loop
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+with open("ids.txt", "r") as fhandle:
+    for line in fhandle:
+        linestripped = line.strip()
+        print(linestripped)
+print("Done")
+</code></pre>
+<p>Like <code>.readline()</code>, using a for-loop extracts lines from the pipe. So, if you call <code>.readline()</code> twice on a file handle attached to a file with 10 lines, and then run a for-loop on that file handle, the for-loop will iterate over the remaining 8 lines. This call could be useful if you want to remove a header line from a text table before processing the remaining lines with a loop, for example.</p>
+</div>
+<div id="writing-data" class="section level3 unnumbered hasAnchor">
+<h3>Writing Data<a href="file-input-and-output.html#writing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Writing data to a file works much the same way as reading data: we open a file handle (which again works like a pipe), and call a method on the handle called <code>.write()</code> to write strings to it. In this case, instead of using the “r” parameter in calling <code>open()</code>, we’ll use <code>"w"</code> to indicate that we want to write to the file. Be warned: when you open a file handle for writing in this manner, it overwrites any existing contents of the file. If you’d rather append to the file, you can instead use <code>"a"</code>.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
+<p>Unlike the <code>print()</code> function, the <code>.write()</code> method of a file handle does not automatically include an additional newline character <code>"\n"</code>. Thus, if you wish to write multiple lines to a file handle, you have to add them yourself. Here’s an example that prints the numbers <code>0</code> through <code>9</code> to a file, one per line.</p>
+<pre id=part2-04-for_loop
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+with open("data/numbers.txt", "w") as fhandle:   # overwrites data/numbers.txt
+    for value in range(0, 10):
+        fhandle.write(f"{value}\n")
+</code></pre>
+<p>As mentioned above, a file handle opened for writing works like a pipe that is set up by the operating system. When writing, however, we put data into the pipe, and the operating system pulls the data out the other side, writing it to the file on disk.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-04-file-input-output.Rmd.images/II.4_12_file_handle_output-3.png" /></p>
+</div>
+<p>Because the operating system is busy handling similar requests for many programs on the system, it may not get around to pulling the data from the pipe and writing to the file on disk right away. So, it’s important that we remember to use the <code>with</code> statement or call the <code>.close()</code> method on the file handle when we are done writing data; this tells the operating system that any information left in the pipe should be flushed out and saved to disk, and that the pipe structure can be cleaned up. If our program were to crash (or were to be killed) before the handle was properly closed, data in the pipe may never get written.</p>
+</div>
+<div id="computing-a-mean" class="section level3 unnumbered hasAnchor">
+<h3>Computing a Mean<a href="file-input-and-output.html#computing-a-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s put many of the skills we’ve learned so far into practice to compute the mean of the E values from the output of BLAST, which is formatted as a simple text table with tabs separating the columns. Here’s what the file, <a href="data/pz_blastx_yeast_top1.txt"><code>pz_blastx_yeast_top1.txt</code></a>, looks like in <code>less -S</code>. Although the reader will have to take our word for it, the eleventh column of this file contains E values like <code>5e-14</code>, <code>2e-112</code>, and <code>1e-18</code>.</p>
+<pre id=part2-04-top1
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+PZ7180000000004_TY  YKL081W 31.07   338   197   8     13    993   1    <span style="color: Gray">...</span>
+PZ1082_AB           YHR104W 44.92   118   62    3     4     348   196  <span style="color: Gray">...</span>
+PZ11_FX             YLR406C 53.01   83    38    1     290   42    25   <span style="color: Gray">...</span>
+PZ7180000036154     YNL245C 36.27   102   60    3     105   395   1    <span style="color: Gray">...</span>
+PZ605962            YKR079C 29.57   115   66    4     429   121   479  <span style="color: Gray">...</span>
+PZ856513            YKL215C 48.39   155   73    3     3     452   109  <span style="color: Gray">...</span>
+<span style="color: Gray">...</span>
+</code></pre>
+<div id="pseudocode" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>When solving a problem like this, it’s usually a good idea to first write, in simple English (or your nonprogramming language of choice), the <em>strategy</em> you intend to use to solve the problem. The strategy here will be as follows: the mean of a set of numbers is defined as their sum, divided by the count of them. We’ll need to keep at least two important variables, <code>eval_sum</code> and <code>counter</code>. After opening the file, we can loop through the lines and extract each E value. (This will require cleaning up the line with <code>.strip()</code>, splitting it into pieces using <code>.split("\t")</code>, and finally converting the E value to a float rather than using the string.) For each line that we see, we can add the E value extracted to the <code>eval_sum</code> variable, and we’ll add <code>1</code> to the <code>counter</code> variable as well. In the end, we can simply report <code>eval_sum/counter</code>.</p>
+<p>It often helps to convert this strategy into something partway between natural language and code, called <em>pseudocode</em>, which can help tremendously in organizing your thoughts, particularly for complex programs:</p>
+<pre id=part2-04-pseudo
+     class="language-pseudocode">
+<code>
+counter = 0
+sum_eval = 0.0
+
+open fhandle
+    for each line in fhandle
+        strip the newline characters
+        break into a list of strings by spitting on tabs
+        eval as a string is in list at index 10 (11th column)
+        add float(eval) to sum_eval and save in sum_eval
+        add 1 to count and save in count
+  
+mean = sum_eval divided by counter
+print("mean is " + mean)
+</code></pre>
+<p>With the pseudocode sketched out, we can write the actual code for our program. When executed, it reliably prints <code>Mean is: 1.3721261129291757e-08</code>.</p>
+<pre id=part2-04-mean
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+
+counter = 0
+eval_sum = 0.0
+
+with open("pz_blastx_yeast_top1.txt", "r") as blast_handle:
+    for line in blast_handle:
+        line_stripped = line.strip()
+        line_list = line_stripped.split("\t")
+        eval_str = line_list[10]
+
+        eval_sum = eval_sum + float(eval_str)
+        counter = counter + 1
+
+mean = eval_sum/counter
+print(f"Mean is: {mean}")
+</code></pre>
+<p>Note that the actual Python code (in <a href="data/blast_mean.py">blast_mean.py</a>) ended up looking quite a lot like the pseudocode – this is one of the frequently cited selling points for Python. (For this reason, we’ll also skip the pseudocode step for most examples in this book, though it can still be a valuable technique when programming in any language.)</p>
+<p>This may seem like a fair amount of work to compute a simple mean, but it is a consequence of writing software “from scratch,” and we have to start somewhere! Additionally, the benefit of learning these techniques will pay off over the long run when it comes to solving novel problems.</p>
+</div>
+</div>
+<div id="the-process-of-programming" class="section level3 unnumbered hasAnchor">
+<h3>The Process of Programming<a href="file-input-and-output.html#the-process-of-programming" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although the process of designing a strategy (and pseudocode) seems tedious, it’s highly recommended. As you progress in your abilities, your strategies and pseudocode will become more terse and higher level, but you should never skip the planning steps before coding. (On the other hand, there is also the danger of over-planning, but this more often effects teams of coders working on large projects.)</p>
+<p>There’s another thing worth noting at this point: programs like the above are almost never written top-to-bottom in their entirety, at least not without requiring significant debugging! You may forget that the result of splitting a string results in a list of strings, resulting in an error on a line like <code>eval_sum = eval_sum + eval_str</code> because <code>eval_sum</code> is a float, while <code>eval_str</code> is a string. After finding and fixing this error, you may find yet another error if you attempt to print with a line like <code>print("Mean is: " + mean)</code>, because again the types don’t match and can’t be concatenated. After all this, perhaps you find the resulting mean to unexpectedly be a large number, like <code>131.18</code>, only to find out it was because you accidently used <code>eval_str = line_list[11]</code>, forgetting that list indices start at <code>0</code>.</p>
+<p>There are two strategies for avoiding long chains of annoying bugs like this, and harder-to-find (and thus more dangerous) bugs that result in incorrect output that isn’t obviously incorrect. The first strategy is to only write a few lines at a time, and test newly added lines with <code>print()</code> statements that reveal whether they are doing what they are supposed to. In the example above, you might write a few lines and do some printing to ensure that you can successfully open the file handle and read from it (if the file is large, create a smaller version for testing). Then write a simple for-loop and do some printing to ensure you can successfully loop over the lines of the file and split them into lists of strings. Continue on by filling in some of the code in the for-loop, again printing and testing to ensure the code is doing what you think it is. And so on via <a href="the-standard-streams.html#iterative_development">iterative development</a>.</p>
+<div id="unit_test" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>The second strategy, to avoid the more dangerous bugs that aren’t immediately obvious, is to test and develop your programs using small files for which you can calculate the answer by hand (or some other trusted process). When you know from testing that your program or even just parts of your program produces the intended output, hidden bugs are much less likely to slip through the cracks. Some people produce several small inputs that represent the variety of different input situations, run the tests, and compare the outputs to the expected results in an automated fashion. This is known as “<em>unit testing</em>”, a common practice in professional software development.</p>
+<p>Finally, remember that every programmer, no matter her experience level, gets frustrated from time to time! This is entirely normal, and a good strategy when this happens is to take a brief walk, or even take a break for the day, picking up again the next day. Some find they program efficiently in the morning, others late at night. Whatever you do, <em>avoid the temptation to program by trial and error</em>, mindlessly tweaking the code in the hopes that it will produce the output you want. Even if you succeed this way (which rarely happens), you’re likely to produce code with insidious bugs, and it may well be unreadable even to yourself in a few days’ time.</p>
+</div>
+<div id="exercises-15" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="file-input-and-output.html#exercises-15" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Write a Python program to compute the sample standard deviation of the E values in the file <a href="data/pz_blastx_yeast_top1.txt">pz_blastx_yeast_top1.txt</a>. As a reminder, the sample standard deviation is defined as the square root of the sum of squared differences from the mean, divided by the number of values minus 1:<br><br>
+$
+stdev =
+$
+<br><br>
+To accomplish this, you’ll need to make two passes over the data: one as in the example to compute the mean, and another to compute the sum of squared differences. This means you’ll need to access the E values twice. Rather than close and reopen the data file, you should create an initially empty list to which you can append each E value (in your first pass over the data) for later use.<br><br>
+To compute the square root of a float, you will need to import the math module by calling <code>import math</code> near the top of your program. Then the <code>math.sqrt()</code> function will return the square root of a float; for example, <code>math.sqrt(3)</code> will return the float <code>1.7320508</code>.</li>
+<li>If <code>a_list</code> is a list, then <code>b_list = reversed(a_list)</code> creates a “<code>listreverseiterator</code>” allowing one to loop over the elements with a for-loop in reverse order. Using this information, write a program called <code>reverse_blast.py</code> that reads the contents of <a href="data/pz_blastx_yeast_top1.txt"><code>pz_blastx_yeast_top1.txt</code></a> and writes the lines in reverse order to a file called <code>pz_blastx_yeast_top1_reversed.txt</code>.</li>
+<li>A <em>quine</em> (after the logician and philosopher W. V. Quine) is a nonempty program that prints its own source code exactly. Use file handles to write a quine called <code>quine.py</code>. (Quine programs aren’t technically allowed to open files. Can you write a program that prints its own source code without opening a file?)</li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="46">
+<li id="fn46"><p>In more sophisticated usage of file handles, our pipe analogy breaks down. It’s possible to “rewind” or “fast-forward” the operating system’s current position in the file being read, if we know how far the “read head” needs to move to get to the data we want. Perhaps a better analogy for file handles would be an old-fashioned magnetic cassette tape, perhaps a fitting analogy given that files were once stored on such tapes.<a href="file-input-and-output.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>It’s also possible to open a file handle for simultaneous reading and writing. We won’t cover it here, as that functionality is less often needed.<a href="file-input-and-output.html#fnref47" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="collections-and-looping-lists-and-for.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conditional-control-flow.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-04-file-input-output.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

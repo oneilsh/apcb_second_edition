@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 19 Conditional Control Flow | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 19 Conditional Control Flow | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 19 Conditional Control Flow | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Conditional Control Flow | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="file-input-and-output.html"/>
+<link rel="next" href="python-functions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conditional-control-flow" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">Chapter 19</span> Conditional Control Flow<a href="conditional-control-flow.html#conditional-control-flow" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The phrase “control flow” refers to the fact that constructs like for-loops change the flow of program execution away from the simple top-to-bottom order. There are several other types of control flow we will cover, two of which are “conditional” in nature.</p>
+<div id="using-if-statements" class="section level3 unnumbered hasAnchor">
+<h3>Using If-Statements<a href="conditional-control-flow.html#using-if-statements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If-statements allow us to conditionally execute a <a href="collections-and-looping-lists-and-for.html#block">block</a> of code, depending on a variable referencing a Boolean <code>True</code> or <code>False</code>, or more commonly, a condition that returns a Boolean <code>True</code> or <code>False</code>. The syntax is fairly simple, described here with an example.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-05-conditional-control-flow.Rmd.images/II.5_1_py_43_if_example.png" /></p>
+</div>
+<p>All the lines from the starting <code>if</code> to the last line in an <code>elif</code> or <code>else:</code> block are part of the same logical construct. Such a construct <em>must</em> have exactly one <code>if</code> conditional block, <em>may</em> have one or more <code>elif</code> blocks (they are optional), and <em>may</em> have exactly one catchall <code>else</code> block at the end (also optional). Each conditional is evaluated in order: the first one that evaluates to <code>True</code> will run, and the rest will be skipped. If an <code>else</code> block is present, it will run if none of the earlier <code>if</code> or <code>elif</code> blocks did as a “last resort.”</p>
+<p>Just like with for-loops, if-statements can be nested inside of other blocks, and other blocks can occur inside if-statement blocks. Also just like for-loops, Python uses indentation (standard practice is four spaces per indentation level) to indicate block structure, so you will get an error if you needlessly indent (without a corresponding control flow line like <code>for</code>, <code>if</code>, <code>elif</code>, or <code>else</code>) or forget to indent when an indentation is expected.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
+<pre id=part2-05-if
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seqs = ["ACGTAGAC", "CAGTAGAGC", "GACGA", "CGATAGG"]
+count_short = 0
+count_long = 0
+
+for seq in seqs:
+    num_bases = len(seq)
+    if num_bases < 8:
+        count_short = count_short + 1
+    else:
+        count_long = count_long + 1
+
+print(f"Number short: {count_short} number long: {count_long}")
+</code></pre>
+<p>The above code would print <code>Number short: 2 number long: 2</code>.</p>
+</div>
+<div id="using-while-loops" class="section level3 unnumbered hasAnchor">
+<h3>Using While-Loops<a href="conditional-control-flow.html#using-while-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While-loops are less often used (depending on the nature of the programming being done), but they can be invaluable in certain situations and are a basic part of most programming languages. A while-loop executes a block of code so long as a condition remains <code>True</code>. Note that if the condition never becomes <code>False</code>, the block will execute over and over in an “infinite loop.” If the condition is <code>False</code> to begin with, however, the block is skipped entirely.</p>
+<pre id=part2-05-while
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+counter = 0
+
+while counter < 4:
+    print(f"Counter is now: {counter}")
+    counter = counter + 1
+
+print(f"Done. Counter ends with: {counter}")
+</code></pre>
+<p>The above will print <code>Counter is now: 0</code>, followed by <code>Counter is now: 1</code>, <code>Counter is now: 2</code>, <code>Counter is now: 3</code>, and finally <code>Done. Counter ends with: 4</code>. As with using a for-loop over a range of integers, we can also use a while-loop to access specific indices within a string or list.</p>
+<pre id=part2-05-while-index
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACAGGACGT"
+num_bases = len(seq)
+
+base_index = 0
+while base_index < num_bases:
+    base_i = seq[base_index]
+    print(f"base is: {base_i}")
+
+    base_index = base_index + 1
+
+print("Done")
+</code></pre>
+<p>The above code will print <code>base is: A</code>, <code>then base is: C</code>, and so on, ending with <code>base is: T</code> before finally printing <code>Done</code>. While-loops can thus be used as a type of fine-grained for-loop, to iterate over elements of a string (or list), in turn using simple integer indexes and <code>[]</code> syntax. While the above example adds <code>1</code> to <code>base_index</code> on each iteration, it could just as easily add some other number. Adding <code>3</code> would cause it to print every third base, for example.</p>
+<p>Similarly, we can loop over this string (and other <a href="collections-and-looping-lists-and-for.html#iterable">iterable</a> collections such as lists, tuples, etc) using a for-loop and the <code>enumerate()</code> function:</p>
+<pre id=part2-05-enumerate
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACAGGACGT"
+
+base_index = 0
+for base_index, base in enumerate(seq):
+    print(f"base at position {base_index} is: {base}")
+
+print("Done")
+</code></pre>
+<p>This code will print <code>base at position 0 is: A</code>, <code>then base at position 1 is: C</code>, etc. The <code>enumerate()</code> function returns pairs of data: 1. a counter (here equivalent to the index position) and 2. each item of the iterable (here, a character in the string) in turn. We can then assign these values to two variables.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
+</div>
+<div id="boolean-operators-and-connectives" class="section level3 unnumbered hasAnchor">
+<h3>Boolean Operators and Connectives<a href="conditional-control-flow.html#boolean-operators-and-connectives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve already seen one type of Boolean comparison, <code>&lt;</code>, which returns whether the value of its left-hand side is less than the value of its right-hand side. There are a number of others:</p>
+<table>
+<tr>
+<th style="text-align:left">
+Code
+</th>
+<th style="text-align:left">
+Meaning
+</th>
+<th style="text-align:left">
+Example
+</th>
+<th style="text-align:left">
+Evaluates to (with <code>a=7</code>, <code>b=3</code>)
+</th>
+</tr>
+<tr>
+<td>
+<code>&lt;</code>
+</td>
+<td>
+less than?
+</td>
+<td>
+<code>a &lt; b</code>
+</td>
+<td>
+<code>False</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>&gt;</code>
+</td>
+<td>
+greater than?
+</td>
+<td>
+<code>a &gt; b</code>
+</td>
+<td>
+<code>True</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>&lt;=</code>
+</td>
+<td>
+less than or equal to?
+</td>
+<td>
+<code>a &lt;= b</code>
+</td>
+<td>
+<code>False</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>&gt;=</code>
+</td>
+<td>
+greater than or equal to?
+</td>
+<td>
+<code>a &gt;= b</code>
+</td>
+<td>
+<code>True</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>!=</code>
+</td>
+<td>
+not equal to?
+</td>
+<td>
+<code>a != b</code>
+</td>
+<td>
+<code>True</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>==</code>
+</td>
+<td>
+equal to?
+</td>
+<td>
+<code>a == b</code>
+</td>
+<td>
+<code>False</code>
+</td>
+</tr>
+</table>
+<div id="lexicographic_order" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>These comparisons work for floats, integers, and even strings and lists. Sorting on strings and lists is done in <em>lexicographic order</em>: an ordering wherein item A is less than item B if the first element of A is less than the first element of B; in the case of a tie, the second element is considered, and so on. If, in this process we run out of elements for comparison, the shorter one is smaller. When applied to strings, lexicographic order corresponds to the familiar alphabetical order.</p>
+<p>Let’s print the sorted version of a Python list of strings, which does its sorting using the comparisons above. Note that numeric digits are considered to be “less than” alphabetic characters, and uppercase letters come before lowercase letters.</p>
+<pre id=part2-05-sort
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seqs = ["ACT", "AC", "T", "TAG", "1AC", "A"]
+seqs.sort()
+print(seqs)   # prints ['1AC', 'A', 'AC', 'ACT', 'T', 'TAG']
+</code></pre>
+<p>Boolean connectives let us combine conditionals that return <code>True</code> or <code>False</code> into more complex statements that also return Boolean types.</p>
+<table>
+<tr>
+<th style="text-align:left">
+Code
+</th>
+<th style="text-align:left">
+Meaning
+</th>
+<th style="text-align:left">
+Example
+</th>
+<th style="text-align:left">
+Evaluates to (with <code>a=7</code>, <code>b=3</code>)
+</th>
+</tr>
+<tr>
+<td>
+<code>and</code>
+</td>
+<td>
+<code>True</code> if both are <code>True</code>
+</td>
+<td>
+<code>a &lt; 8 and b == 3</code>
+</td>
+<td>
+<code>True</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>or</code>
+</td>
+<td>
+<code>True</code> if one or both are <code>True</code>
+</td>
+<td>
+<code>a &lt; 8 or b == 9</code>
+</td>
+<td>
+<code>True</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>not</code>
+</td>
+<td>
+<code>True</code> if the following is <code>False</code>
+</td>
+<td>
+<code>not a &lt; 3</code>
+</td>
+<td>
+<code>True</code>
+</td>
+</tr>
+</table>
+<p>These can be grouped with parentheses, and usually should be to avoid confusion, especially when more than one test follow a <code>not</code>.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-05-conditional-control-flow.Rmd.images/II.5_6_boolean_logic-3.png" /></p>
+</div>
+<p>Finally, note that generally each side of an <code>and</code> or <code>or</code> should result in only <code>True</code> or <code>False</code>. The expression <code>a == 3 or a == 7</code> has the correct form, whereas <code>a == 3 or 7</code> does not. (In fact, <code>7</code> in the latter context will be taken to mean <code>True</code>, and so <code>a == 3 or 7</code> will always result in <code>True</code>. Try it with <code>bool(7)</code>!)</p>
+</div>
+</div>
+<div id="logical-dangers" class="section level3 unnumbered hasAnchor">
+<h3>Logical Dangers<a href="conditional-control-flow.html#logical-dangers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Notice the similarity between <code>=</code> and <code>==</code>, and yet they have dramatically different meanings: the former is the variable assignment operator, while the latter is an equality test.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a> Accidentally using one where the other is meant is an easy way to produce erroneous code. Here <code>count == 1</code> won’t initialize <code>count</code> to <code>1</code>; rather, it will return whether it already is <code>1</code> (or result in an error if count doesn’t exist as a variable at that point). The reverse mistake is harder to make, as Python does not allow variable assignment in if-statement and while-loop definitions.</p>
+<pre id=part2-05-if
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACTAGGAC"
+remainder = len(seq)%3
+if remainder = 0:
+    print("Number of bases is a multiple of 3")
+    print("It's a candidate for an open reading frame.")
+</code></pre>
+<p>In the above, the intent is to determine whether the length of <code>seq</code> is a multiple of 3 (as determined by the result of <code>len(seq)%3</code> using the modulus operator), but the if-statement in this case should actually be <code>if remainder == 0:</code>. In many languages, the above would be a difficult-to-find bug (<code>remainder</code> would be assigned to <code>0</code>, and <code>0</code> evaluates to <code>False</code>!). In Python, the result is an error: <code>SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?</code>. Notice that Python helpfully suggests that perhaps we used the wrong operator and suggests alternatives.</p>
+<p>Still, a certain class of dangerous comparison is common to nearly every language, Python included: the comparison of two float types for equality or inequality.</p>
+<p>Although integers can be represented exactly in binary arithmetic (e.g., <code>751</code> in binary is represented exactly as <code>1011101111</code>), floating-point numbers can only be represented approximately. This shouldn’t be an entirely unfamiliar concept; for example, we might decide to round fractions to four decimal places when doing calculations on pencil and paper, working with $ $ as 0.3333. The trouble is that these rounding errors can compound in difficult-to-predict ways. If we decide to compute $ <em>/ $ as $ 0.3333</em>0.3333/0.3333 $, working left to right we’d start with $ 0.3333<em>0.3333 $ rounded to four digits as 0.1110. This is then divided by 0.3333 and rounded again to produce an answer of 0.3330. So, even though we know that $ </em>/ == $, our calculation process would call them unequal because it ultimately tests 0.3330 against 0.3333!</p>
+<p>Modern computers have many more digits of precision (about 15 decimal digits at a minimum, in most cases), but the problem remains the same. Worse, numbers that don’t need rounding in our Base-10 arithmetic system do require rounding in the computer’s Base-2 system. Consider 0.2, which in binary is 0.001100110011, and so on. Indeed, <code>0.2 * 0.2 / 0.2 == 0.2</code> results in <code>False</code>!</p>
+<p>While comparing floats with <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code> is usually safe (within extremely small margins of error), comparison of floats with <code>==</code> and <code>!=</code> usually indicates a misunderstanding of how floating-point numbers work.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a> In practice, we’d determine if two floating-point values are sufficiently similar, within some defined margin of error.</p>
+<pre id=part2-05-margin_of_error
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+a = 0.2
+b = 0.2*0.2/0.2
+epsilon = 0.00000001
+
+if a + epsilon > b and a - epsilon < b:
+    print(f"a and b are within {epsilon}")
+</code></pre>
+</div>
+<div id="counting-stop-codons" class="section level3 unnumbered hasAnchor">
+<h3>Counting Stop Codons<a href="conditional-control-flow.html#counting-stop-codons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As an example of using conditional control flow, we’ll consider the file <a href="data/seq.txt">seq.txt</a>, which contains a single DNA string on the first line. We wish to count the number of potential stop codons <code>"TAG"</code>, <code>"TAA"</code>, or <code>"TGA"</code> that occur in the sequence (on the forward strand only, for this example).</p>
+<p>Our strategy will be as follows: First, we’ll need to open the file and read the sequence from the first line. We’ll need to keep a counter of the number of stop codons that we see; this counter will start at zero and we’ll add one to it for each <code>"TAG"</code>, <code>"TAA"</code>, or <code>"TGA"</code> subsequence we see. To find these three possibilities, we can use a for-loop and string slicing to inspect every 3bp subsequence of the sequence; the 3bp sequence at index <code>0</code> of seq occurs at <code>seq[0:3]</code>, the one at position <code>1</code> occurs at s<code>eq[1:4]</code>, and so on.</p>
+<p>We must be careful not to attempt to read a subsequence that doesn’t occur in the sequence. If <code>seq = "AGAGAT"</code>, there are only four possible 3bp sequences, and attempting to select the one starting at index 4, <code>seq[4:7]</code>, would result in an error. To make matters worse, string indexing starts at <code>0</code>, and there are also the peculiarities of the inclusive/exclusive nature of <code>[]</code> slicing and the <code>range()</code> function!</p>
+<p>To help out, let’s draw a picture of an example sequence, with various indices and 3bp subsequences we’d like to look at annotated.</p>
+<div class="fig right" style="width: 50%">
+<p><img src="images/part2-05-conditional-control-flow.Rmd.images/II.5_9_seq_stop_windows.png" /></p>
+</div>
+<p>Given a starting index <code>index</code>, the 3bp subsequence is defined as <code>seq[index:index + 3]</code>. For the sequence above, <code>len(seq)</code> would return <code>15</code>. The first start index we are interested in is <code>0</code>, while the last start index we want to include is <code>12</code>, or <code>len(seq) - 3</code>. If we were to use the <code>range()</code> function to return a list of start sequences we are interested in, we would use <code>range(0, len(seq) - 3 + 1)</code>, where the <code>+ 1</code> accounts for the fact that <code>range()</code> is <code>range(inclusive:exclusive)</code>.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
+<p>We should also remember to run <code>.strip()</code> on the read sequence, as we don’t want the inclusion of any <code>\n</code> newline characters messing up the correct computation of the sequence length!</p>
+<p>Notice in the code below (which can be found in the file <a href="data/stop_count_seq.py"><code>stop_count_seq.py</code></a>) the commented-out line number 10: <code>#print(codon)</code>.</p>
+<pre id=part2-05-stop_count_seq
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+
+with open("seq.txt", "r") as fhandle:
+    seq = fhandle.readline()
+    seq = seq.strip()
+
+    stop_counter = 0
+    for index in range(0, len(seq) - 3 + 1):
+        codon = seq[index:index + 3]
+        #print(codon)
+        if codon == "TAG" or codon == "TAA" or codon == "TGA":
+            stop_counter = stop_counter + 1
+
+print(stop_counter)
+</code></pre>
+<p>While coding, we used this line to print each codon to be sure that 3bp subsequences were reliably being considered, especially the first and last in <a href="data/seq.txt"><code>seq.txt</code></a> (<code>ATA</code> and <code>AAT</code>). This is an important part of the debugging process because it is easy to make small “off-by-one” errors with this type of code. When satisfied with the solution, we simply commented out the print statement.</p>
+<p>For windowing tasks like this, it can occasionally be easier to access the indices with a while-loop.</p>
+<pre id=part2-05-stop_count_seq_while
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+
+with open("seq.txt", "r") as fhandle:
+    seq = fhandle.readline()
+    seq = seq.strip()
+
+    stop_counter = 0
+    index = 0
+    while index <= len(seq) - 3:
+        codon = seq[index:index + 3]
+        #print(codon)
+        if codon == "TAG" or codon == "TAA" or codon == "TGA":
+            stop_counter = stop_counter + 1
+        index += 1       # equivalent to index = index + 1
+
+print(stop_counter)
+</code></pre>
+<p>If we wished to access nonoverlapping codons, we could use <code>index = index + 3</code> rather than <code>index = index + 1</code> without any other changes to the code. Similarly, if we wished to inspect 5bp windows, we could replace instances of <code>3</code> with <code>5</code> (or use a <code>windowsize</code> variable).</p>
+<div id="exercises-16" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="conditional-control-flow.html#exercises-16" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>The molecular weight of a single-stranded DNA string (in g/mol) is (count of <code>"A"</code>) <span class="math inline">\(*\)</span> 313.21 + (count of <code>"T"</code>) <span class="math inline">\(*\)</span> 304.2 + (count of <code>"C"</code>) <span class="math inline">\(*\)</span> 289.18 + (count of <code>"G"</code>) <span class="math inline">\(*\)</span> 329.21 – 61.96 (to account for removal of one phosphate and the addition of a hydroxyl on the single strand).<br><br>
+Write code that prints the total molecular weight for the sequence in the file <a href="data/seq.txt"><code>seq.txt</code></a>. The result should be <code>21483.8</code>. Call your program <code>mol_weight_seq.py</code>.</li>
+<li>The file <a href="data/seqs.txt"><code>seqs.txt</code></a> contains a number of sequences, one sequence per line. Write a new Python program that prints the molecular weight of each on a new line. For example:
+<pre id=part2-05-output
+   class="language-txt 
+           line-numbers 
+           linkable-line-numbers">
+<code>21483.8
+19461.4
+32151.9
+...</code></pre>
+You may wish to use substantial parts of the answer for question 1 inside of a loop of some kind. Call your program <code>mol_weight_seqs.py</code>.</li>
+<li>The file <a href="data/ids_seqs.txt"><code>ids_seqs.txt</code></a> contains the same sequences as <code>seqs.txt</code>; however, this file also contains sequence IDs, with one ID per line followed by a tab character (<code>\t</code>) followed by the sequence. Modify your program from question 2 to print the same output, in a similar format: one ID per line, followed by a tab character, followed by the molecular weight. The output format should thus look like so (but the numbers will be different, to avoid giving away the answer):
+<pre id=part2-05-mol_wgt
+   class="language-txt 
+           line-numbers 
+           linkable-line-numbers">
+<code>PZ7180000024555 402705.62
+PZ7180000000678_B    562981.52
+PZ7180000000003_KK   54193.41
+PZ7180000000005_NW   416120.04</code></pre>
+Call your program <code>mol_weight_ids_seqs.py</code>.<br><br>
+Because the tab characters cause the output to align differently depending on the length of the ID string, you may wish to run the output through the command line tool <code>column</code> with a <code>-t</code> option, which automatically formats tab-separated input.
+<pre id=part2-05-column
+   class="language-txt 
+           line-numbers 
+           linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/py]$ python mol_weight_ids_seqs.py | column -t
+PZ7180000024555     402705.62
+PZ7180000000678_B   562981.52
+PZ7180000000003_KK  354193.41
+PZ7180000000005_NW  416120.04</code></pre></li>
+<li>Create a modified version of the program in question 3 of Chapter 17, <a href="collections-and-looping-lists-and-for.html#collections-and-looping-lists-and-for">“Collections and Looping: Lists and for”</a>, so that it also identifies the locations of subsequences that are self-overlapping. For example, <code>"GAGA"</code> occurs in <code>"GAGAGAGAGATATGAGA"</code> at positions <code>1</code>, <code>3</code>, <code>5</code>, <code>7</code>, and <code>14</code>.</li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="48">
+<li id="fn48"><p>Python is one of the only languages that require blocks to be delineated by indentation. Most other languages use pairs of curly brackets to delineate blocks. Many programmers feel this removes too much creativity in formatting of Python code, while others like that it enforces a common method for visually distinguishing blocks.<a href="conditional-control-flow.html#fnref48" class="footnote-back">↩︎</a></p></li>
+<li id="fn49"><p>This process of assigning a tuple (which is the data type that <code>enumerate</code> returns) to multiple variables, is referred to as <em>tuple unpacking</em>.<a href="conditional-control-flow.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<li id="fn50"><p>In the absence of parentheses for grouping, <code>and</code> takes precedence over <code>or</code>, much like multiplication takes precedence over addition in numeric algebra. Boolean logic, by the way, is named after the nineteenth-century mathematician and philosopher George Boole, who first formally described the “logical algebra” of combining truth values with connectives like “and,” “or,” and “not.”<a href="conditional-control-flow.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>The best CS instructor I ever had always pronouced <code>=</code> as “takes on the value of” and <code>==</code> as “is equal to?” (that is <code>count = 3</code> would be read as “count takes on the value of 3” and <code>count == 3</code> would be “count is equal to 3?”). That was the one term I never switched the two.<a href="conditional-control-flow.html#fnref51" class="footnote-back">↩︎</a></p></li>
+<li id="fn52"><p>You can see this for yourself: <code>print(0.2*0.2/0.2 == 0.2)</code> prints <code>False</code>! Some mathematically oriented languages are able to work entirely symbolically with such equations, bypassing the need to work with numbers at all. This requires a sophisticated parsing engine but enables such languages to evaluate even generic expressions like <code>x*x/x == x</code> as <code>True</code>.<a href="conditional-control-flow.html#fnref52" class="footnote-back">↩︎</a></p></li>
+<li id="fn53"><p>Yes, this sort of detailed logical thinking can be tedious, but it becomes easier with practice. Drawing pictures and considering small examples is also invaluable when working on programming problems, so keep a pencil and piece of paper, or a dry erase board and markers, handy.<a href="conditional-control-flow.html#fnref53" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="file-input-and-output.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="python-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-05-conditional-control-flow.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

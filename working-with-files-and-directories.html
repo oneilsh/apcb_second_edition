@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Working with Files and Directories | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 4 Working with Files and Directories | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Working with Files and Directories | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Working with Files and Directories | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-command-line-and-filesystem.html"/>
+<link rel="next" href="permissions-and-executables.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-files-and-directories" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Working with Files and Directories<a href="working-with-files-and-directories.html#working-with-files-and-directories" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Now that we know how to locate files and directories in the filesystem, let’s learn a handful of important tools for working with them and the system in general.</p>
+<div id="viewing-the-contents-of-a-text-file" class="section level3 unnumbered hasAnchor">
+<h3>Viewing the Contents of a (Text) File<a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although there are many tools to view and edit text files, one of the most efficient for viewing them is called <code>less</code>, which takes as a parameter a path to the file to view, which of course may just be a file name in the present working directory (which is a type of relative path).<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<pre id=part1-04-ls
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>ls</b>
+<span style="color: blue">apcb    Documents Music       Pictures Templates  Videos</span>
+<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">Public</span>   todo_list.txt
+</code></pre>
+<p>The invocation of <code>less</code> on the file <a href="data/p450s.fasta"><code>p450s.fasta</code></a> opens an “interactive window” within the terminal window, wherein we can scroll up and down (and left and right) in the file with the arrow keys. (As usual, the mouse is not very useful on the command line.) We can also search for a pattern by typing <code>/</code> and then typing the pattern before pressing Enter.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-04-working-with-files-directories.Rmd.images/I.4_2_unix_24_less_open.png" /></p>
+</div>
+<p>When finished with <code>less</code>, pressing <code>q</code> will exit and return control to the shell or command line. Many of the text formats used in computational biology include long lines; by default, <code>less</code> will wrap these lines around the terminal so they can be viewed in their entirety. Using <code>less -S</code> will turn off this line wrapping, allowing us to view the file without any reformatting. Here’s what the file above looks like when viewed with <code>less -S p450s.fasta</code>:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-04-working-with-files-directories.Rmd.images/I.4_3_unix_25_less_S_open.png" /></p>
+</div>
+<p>Notice that the first long line has not been wrapped, though we can still use the arrow keys to scroll left or right to see the remainder of this line.</p>
+</div>
+<div id="creating-new-directories" class="section level3 unnumbered hasAnchor">
+<h3>Creating New Directories<a href="working-with-files-and-directories.html#creating-new-directories" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>mkdir</code> command creates a new directory (unless a file or directory of the same name already exists), and takes as a parameter the path to the directory to create. This is usually a simple file name as a <a href="the-command-line-and-filesystem.html#relative_path">relative path</a> inside the present working directory.</p>
+<pre id=part1-04-mkdir
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>ls</b>
+<span style="color: blue">apcb    Documents Music       Pictures Templates  Videos</span>
+<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">Public</span>   todo_list.txt
+[oneils@mbp ~]$ <b>mkdir projects</b>
+[oneils@mbp ~]$ <b>ls</b>
+<span style="color: blue">apcb    Documents Music       Pictures  Public</span>    todo_list.txt
+<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">projects  Templates Videos</span>
+</code></pre>
+</div>
+<div id="move-or-rename-a-file-or-directory" class="section level3 unnumbered hasAnchor">
+<h3>Move or Rename a File or Directory<a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>mv</code> utility serves to both move and rename files and directories. The simplest usage works like <code>mv &lt;source_path&gt; &lt;destination_path&gt;</code>, where <code>&lt;source_path&gt;</code> is the path (absolute or relative) of the file/directory to rename, and <code>&lt;destination_path&gt;</code> is the new name or location to give it.</p>
+<p>In this example, we’ll rename <code>p450s.fasta</code> to <code>p450s.fa</code>, move it into the <code>projects</code> folder, and then rename the <code>projects</code> folder to <code>projects_dir</code>.</p>
+<pre id=part1-04-mv
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>mv p450s.fasta p450s.fa</b>
+[oneils@mbp ~]$ <b>mv p450s.fa projects</b>
+[oneils@mbp ~]$ <b>mv projects projects_dir</b>
+[oneils@mbp ~]$ <b>ls</b>
+<span style="color: blue">apcb    Documents Music    projects_dir Templates     Videos</span>
+<span style="color: blue">Desktop Downloads Pictures Public</span>       todo_list.txt
+</code></pre>
+<p>Because <code>mv</code> serves a dual role, the semantics are important to remember:</p>
+<ul>
+<li>If <code>&lt;destination_path&gt;</code> doesn’t exist, it is created (so long as all of the containing folders exist).</li>
+<li>If <code>&lt;destination_path&gt;</code> does exist:
+<ul>
+<li>If <code>&lt;destination_path&gt;</code> is a directory, the source is moved inside of that location.</li>
+<li>If <code>&lt;destination_path&gt;</code> is a file, that file is overwritten with the source.</li>
+</ul></li>
+</ul>
+<p>Said another way, <code>mv</code> attempts to guess what it should do, on the basis of whether the destination already exists. Let’s quickly undo the moves above:</p>
+<pre id=part1-04-mv-dir
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>mv projects_dir/p450s.fa p450s.fasta</b>
+[oneils@mbp ~]$ <b>mv projects_dir/ projects</b>
+</code></pre>
+<p>A few other notes: First, when specifying a path that is a directory, the trailing <code>/</code> is optional: <code>mv projects_dir/ projects</code> is the same as <code>mv projects_dir projects</code> if <code>projects_dir</code> is a directory (similarly, <code>projects</code> could have been specified as <code>projects/</code>). Second, it is possible to move multiple files into the same directory, for example, with <code>mv p450s.fasta todo_list.txt projects</code>. Third, it is quite common to see <a href="the-command-line-and-filesystem.html#dot"><code>.</code></a> referring to the present working directory as the destination, as in <code>mv ../file.txt .</code> for example, which would move <code>file.txt</code> from the directory <em>above</em> the present working directory (<a href="the-command-line-and-filesystem.html#dot_dot"><code>..</code></a>) <em>into</em> the present working directory (<code>.</code>, or “here”).</p>
+</div>
+<div id="copy-a-file-or-directory" class="section level3 unnumbered hasAnchor">
+<h3>Copy a File or Directory<a href="working-with-files-and-directories.html#copy-a-file-or-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Copying files and directories is similar to moving them, except that the original is not removed as part of the operation. The command for copying is <code>cp</code>, and the syntax is <code>cp &lt;source_path&gt; &lt;destination_path&gt;</code>. There is one caveat, however: <code>cp</code> will not copy an entire directory and all of its contents unless you add the <code>-r</code> flag to the command to indicate the operation should be recursive.</p>
+<pre id=part1-04-cp
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>cp todo_list.txt todo_copy.txt</b>
+[oneils@mbp ~]$ <b>cp -r projects projects_dir_copy</b>
+</code></pre>
+<p>Forgetting the <code>-r</code> when attempting to copy a directory results in an <code>omitting directory</code> warning.</p>
+<p>It is possible to simultaneously copy and move (and remove, etc.) many files by specifying multiple sources. For example, instead of <code>cp ../todo_list.txt .</code>, we could have copied both the to-do list and the <code>p450s.fasta</code> file with the same command:</p>
+<pre id=part1-04-cp-mult-files
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects]$ <b>cp ../todo_list.txt ../p450s.fasta .</b>
+</code></pre>
+</div>
+<div id="remove-delete-a-file-or-directory" class="section level3 unnumbered hasAnchor">
+<h3>Remove (Delete) a File or Directory<a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Files may be deleted with the <code>rm</code> command, as in <code>rm &lt;target_file&gt;</code>. If you wish to remove an entire directory and everything inside, you need to specify the <code>-r</code> flag for recursive, as in <code>rm -r &lt;target_dir&gt;</code>. Depending on the configuration of your system, you may be asked “are you sure?” for each file, to which you can reply with a y. To avoid this checking, you can also specify the <code>-f</code> (force) flag, as in <code>rm -r -f &lt;target_dir&gt;</code> or <code>rm -rf &lt;target_dir&gt;</code>. Let’s create a temporary directory alongside the file copies from above, inside the <code>projects</code> folder, and then remove the <code>p450s.fasta</code> file and the <code>todo_list.txt</code> file as well as the temporary folder.</p>
+<pre id=part1-04-rm
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects]$ <b>mkdir tempdir</b>
+[oneils@mbp ~/projects]$ <b>ls</b>
+p450s.fasta   <span style="color: blue">tempdir</span>   todo_list.txt
+[oneils@mbp ~/projects]$ <b>rm todo_list.txt</b>
+[oneils@mbp ~/projects]$ <b>rm -rf tempdir</b>
+[oneils@mbp ~/projects]$ <b>ls</b>
+p450s.fasta
+</code></pre>
+<p>Beware! <em>Deleted files are gone forever</em>. There is no undo, and there is no recycle bin. Whenever you use the <code>rm</code> command, double-check your syntax. There’s a world of difference between <code>rm -rf project_copy</code> (which deletes the folder project_copy) and <code>rm -rf project _copy</code> (which removes the folders <code>project</code> and <code>_copy</code>, if they exist). If you’re nervous about using <code>rm</code>, consider utilizing the <code>-i</code> option, which will ask for confirmation before removing each file.</p>
+</div>
+<div id="checking-the-size-of-a-file-or-directory" class="section level3 unnumbered hasAnchor">
+<h3>Checking the Size of a File or Directory<a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although <code>ls -lh</code> can show the sizes of files, this command will not summarize how much disk space a directory and all of its contents take up. To find out this information, there is the <code>du</code> (disk usage) command, which is almost always combined with the <code>-s</code> (summarize) and <code>-h</code> (show sizes in human-readable format) options.</p>
+<pre id=part1-04-du
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/projects]$ <b>cd $HOME</b>
+[oneils@mbp ~/]$ <b>ls</b>
+<span style="color: blue">apcb    Documents Music       Pictures  Public</span>    todo_list.txt
+<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">projects  Templates Videos</span>
+[oneils@mbp ~/]$ <b>du -sh p450s.fastq</b>
+16K  p450s.fasta
+[oneils@mbp ~/]$ <b>du -sh projects</b>
+4.0K  projects/
+[oneils@mbp ~/]$ <b>du -sh .</b>
+11M  .
+</code></pre>
+<p>As always, <code>.</code> is a handy target, here helping to determine the file space used by the present working directory.</p>
+</div>
+<div id="editing-a-text-file" class="section level3 unnumbered hasAnchor">
+<h3>Editing a (Text) File<a href="working-with-files-and-directories.html#editing-a-text-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There is no shortage of command-line text editors, and while some of them—like <code>vi</code> and <code>emacs</code>—are powerful and can enhance productivity in the long run, they also take a reasonable amount of time to become familiar with. (Entire books have been written about each of these editors.)</p>
+<p>In the meantime, a simple text editor available on most systems is <code>nano</code>; to run it, we simply specify a file name to edit:</p>
+<pre id=part1-04-nano
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/]$ <b>nano todo_list.txt</b>
+</code></pre>
+<p>If the file doesn’t exist already, it will be created when it is first saved, or “written out.” The <code>nano</code> editor opens up an interactive window much like <code>less</code>, but the file contents can be changed. When done, the key sequence <code>Control-o</code> will save the current edits to the file specified (you’ll have to press Enter to confirm), and then <code>Control-x</code> will exit and return control to the command prompt. This information is even presented in a small help menu at the bottom.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-04-working-with-files-directories.Rmd.images/I.4_12_unix_34_nano_2.png" /></p>
+</div>
+<p>Although <code>nano</code> is not as sophisticated as <code>vi</code> or <code>emacs</code>, it does support a number of features, including editing multiple files, cut/copy/paste, find and replace by pattern, and syntax highlighting of code files.</p>
+<p>Code files are the types of files that we will usually want to edit with <code>nano</code>, rather than essays or short stories. By default, on most systems, <code>nano</code> automatically “wraps” long lines (i.e., automatically presses Enter) if they would be longer than the screen width. Unfortunately, this feature would cause an error for most lines of code! To disable it, <code>nano</code> can be started with the <code>-w</code> flag, as in <code>nano -w todo_list.txt</code>.</p>
+</div>
+<div id="command-line-efficiency" class="section level3 unnumbered hasAnchor">
+<h3>Command-Line Efficiency<a href="working-with-files-and-directories.html#command-line-efficiency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While the shell provides a powerful interface for computing, it is certainly true that the heavy reliance on typing can be tedious and prone to errors. Fortunately, most shells provide a number of features that dramatically reduce the amount of typing needed.</p>
+<p>First, wildcard characters like <code>*</code> (which matches any number of arbitrary characters) and <code>?</code> (which matches any single arbitrary character) allow us to refer to a group of files. Suppose we want to move three files ending in <code>.temp</code> into a <code>temp</code> directory. We could run <code>mv</code> listing the files individually:</p>
+<pre id=part1-04-mv-individually
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>ls</b>
+fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
+[oneils@mbp ~/apcb/intro]$ <b>mv fileAA.temp fileA.temp fileB.temp temp/</b>
+</code></pre>
+<p>Alternatively, we could use <code>mv file*.temp temp</code>; the shell will expand <code>file*.temp</code> into the list of files specified above <em>before</em> passing the expanded list to <code>mv</code>.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<pre id=part1-04-mv-wildcard
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro]$ <b>ls</b>
+fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
+[oneils@mbp ~/apcb/intro]$ <b>mv file*.temp temp/</b>
+</code></pre>
+<p>Similarly, we could move only <code>fileA.temp</code> and <code>fileB.temp</code> (but not <code>fileAA.temp</code>) using <code>mv file?.tmp temp</code>, because the <code>?</code> wildcard will only match one of any character. These wildcards may be used anywhere in an absolute or relative path, and more than one may be used in a single path. For example, <code>ls /home/*/*.txt</code> will inspect all files ending in <code>.txt</code> in all users’ home directories (if they are accessible for reading).</p>
+<p>Second, if you want to rerun a command, or run a command similar to a previously run command, you can access the command history by pressing the up arrow. Once you’ve identified which command you want to run or modify, you can modify it using the left and right arrows, backspace or delete, and then typing and pressing Enter again when you are ready to execute the modified command. (You don’t even need to have the cursor at the end of the line to press Enter and execute the command.) For a given login session, you can see part of your command history by running the <code>history</code> command.</p>
+<p>Finally, one of the best ways to navigate the shell and the filesystem is by using <em>tab completion</em>. When typing a path (either absolute or relative), file or directory name, or even a program name, you can press Tab, and the shell will autocomplete the portion of the path or command, up until the autocompletion becomes ambiguous. When the options are ambiguous, the shell will present you with the various matching options so that you can inspect them and keep typing. (If you want to see all options even if you haven’t started typing the next part of a path, you can quickly hit Tab twice.) You can hit Tab as many times as you like while entering a command. Expert command-line users use the Tab key many times a minute!</p>
+</div>
+<div id="getting-help-on-a-command-or-program" class="section level3 unnumbered hasAnchor">
+<h3>Getting Help on a Command or Program<a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although we’ve discussed a few of the options(also known as arguments, or flags) for programs like <code>ls</code>, <code>cp</code>, <code>nano</code>, and others, there are many more you might wish to learn about. Most of these basic commands come with “man pages,” short for “manual pages,” that can be accessed with the <code>man</code> command.</p>
+<pre id=part1-04-man-ls
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>man ls</b>
+</code></pre>
+<p>This command opens up a help page for the command in question (usually in <code>less</code> or a program similar to it), showing the various parameters and flags and what they do, as well as a variety of other information such as related commands and examples. For some commands, there are also “info” pages; try running <code>info ls</code> to read a more complete overview of <code>ls</code>. Either way, as in less, pressing <code>q</code> will exit the help page and return you to the command prompt.</p>
+</div>
+<div id="viewing-the-top-running-programs" class="section level3 unnumbered hasAnchor">
+<h3>Viewing the Top Running Programs<a href="working-with-files-and-directories.html#viewing-the-top-running-programs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>top</code> utility is invaluable for checking what programs are consuming resources on a machine; it shows in an interactive window the various processes (running programs) sorted by the percentage of <a href="context.html#hardware_defs">CPU</a> time they are consuming, as well as which user is running them and how much <a href="context.html#hardware_defs">RAM</a> they are consuming. Running <code>top</code> produces a window like this:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-04-working-with-files-directories.Rmd.images/I.4_16_unix_36_top.png" /></p>
+</div>
+<p>From a users’ perspective, the list of processes below the dark line is most useful. In this example, no processes are currently using a significant amount of CPU or memory (and those processes that are running are owned by the administrator <code>root</code>). But if any user were running processes that required more than a tiny bit of CPU, they would likely be shown. To instead sort by RAM usage, use the key sequence <code>Control-M</code>. When finished, <code>q</code> will quit <code>top</code> and return you to the command prompt.</p>
+<p>Of particular importance are the <code>%CPU</code> and <code>%MEM</code> columns. The first may vary from 0 up to 100 (percent) <em>times the number</em> of CPU cores on the system; thus a value of 3200 would indicate a program using 100% of 32 CPU cores (or perhaps 50% of 64 cores). The <code>%MEM</code> column ranges from 0 to 100 (percent). It is generally a bad thing for the system when the total memory used by all process is near or over 100%—this indicates that the system doesn’t have enough “working memory” and it may be attempting to use the much slower hard drive as working memory. This situation is known as <a href="context.html#swapping">swapping</a>, and the computer may run so slowly as to have effectively crashed.</p>
+</div>
+<div id="killing-rogue-programs" class="section level3 unnumbered hasAnchor">
+<h3>Killing Rogue Programs<a href="working-with-files-and-directories.html#killing-rogue-programs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It sometimes happens that programs that should run quickly, don’t. Perhaps they are in an internal error state, looping forever, or perhaps the data analysis task you had estimated to take a minute or two is taking much longer. Until the program ends, the command prompt will be inaccessible.</p>
+<p>There are two ways to stop such running programs: the “soft” way and the “hard” way. The soft way consists of attempting to run the key combination <code>Control-c</code>, which sends a stop signal to the running process so that it should end.</p>
+<p>But if the rogue program is in a particularly bad error state, it won’t stop even with a <code>Control-c</code>, and a “hard” kill is necessary. To do this requires logging in to the same machine with another terminal window to regain some command-line access. Run <code>top</code>, and note the <code>PID</code> (process ID) of the offending process. If you don’t see it in the <code>top</code> window, you can also try running <code>ps augx</code>, which prints a table of all running processes. Suppose the PID for the process to kill is <code>24516</code>; killing this process can be done by running <code>kill -9 24156</code>. The <code>-9</code> option specifies that the operating system should stop the process in its tracks and immediately clean up any resources used by it. Processes that don’t stop via a <code>kill -9</code> are rare (though you can’t kill a process being run by another user), and likely require either a machine reboot or administrator intervention.</p>
+<div id="exercises-2" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="working-with-files-and-directories.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Create the following directories inside your home directory, if you don’t already have them: <code>downloads</code>, <code>local</code>, and <code>projects</code>. Inside of <code>local</code>, create a directory called <code>bin</code>. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.</p></li>
+<li><p>Open not one but <em>two</em> login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of <code>top</code>.</br></br>
+Create a hidden directory inside of your home directory called <code>.hidden</code>. Inside of this directory, create a file called <code>notes</code>. Edit the file to contain tricks and information you fear you might forget.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p></li>
+<li><p>Spend a few minutes just practicing tab completion while moving around the filesystem using absolute and relative paths. Getting around efficiently via tab-completion is a surprisingly necessary skill.</p></li>
+<li><p>Skim the man page for <code>ls</code>, and try out a few of the options listed there. Read a bit of the <code>info</code> page for <code>nano</code>.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>There is a similar program called <code>more</code>, originally designed to show “more” of a file. The <code>less</code> program was developed as a more full-featured alternative to <code>more</code>, and was so named because “less is more.”<a href="working-with-files-and-directories.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>This is important to consider when combining <code>rm</code> with wildcards; the commands <code>rm -rf *.temp</code> and <code>rm -rf * .temp</code> are very different! The latter will remove all files in the present directory, while the former will only remove those ending in <code>.temp</code>.<a href="working-with-files-and-directories.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like <code>nano</code>, TextEdit on OS X, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters with serif quotes, which don’t work on the command line, leading to headaches.<a href="working-with-files-and-directories.html#fnref11" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-command-line-and-filesystem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="permissions-and-executables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-04-working-with-files-directories.rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

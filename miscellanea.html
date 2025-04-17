@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 Miscellanea | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 13 Miscellanea | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 Miscellanea | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Miscellanea | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="patterns-regular-expressions.html"/>
+<link rel="next" href="version-control-with-git.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="miscellanea" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Miscellanea<a href="miscellanea.html#miscellanea" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Tools like <code>sort</code>, <code>head</code> and <code>tail</code>, <code>grep</code>, <code>awk</code>, and <code>sed</code> represent a powerful toolbox, particularly when used with the <a href="the-standard-streams.html#standard_input">standard input</a> and <a href="using-bioinformatics-software.html#standard_output">standard output</a> streams. There are many other useful command line utilities, and we’ll cover a few more, but we needn’t spend quite as much time with them as we have for <code>awk</code> and <code>sed</code>.</p>
+<div id="manipulating-line-breaks" class="section level3 unnumbered hasAnchor">
+<h3>Manipulating Line Breaks<a href="miscellanea.html#manipulating-line-breaks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All of the features of the tools we’ve covered so far assume the line as the basic unit of processing; <code>awk</code> processes columns within each line, <code>sed</code> matches and replaces patterns in each line (but not easily across lines), and so on. Unfortunately, sometimes the way data break over lines isn’t convenient for these tools. The tool <code>tr</code> translates sets of characters in its input to another set of characters as specified: <code>... | tr '&lt;set1&gt;' '&lt;set2&gt;'</code><a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></p>
+<p>As a brief example, <code>tr 'TA' 'AT' pz_cDNAs.fasta</code> would translate all <code>T</code> characters into <code>A</code> characters, and vice versa (this goes for every <code>T</code> and <code>A</code> in the file, including those in header lines, so this tool wouldn’t be too useful for manipulating FASTA files). In a way, <code>tr</code> is like a simple <code>sed</code>. The major benefit is that, unlike <code>sed</code>, <code>tr</code> does not break its input into a sequence of lines that are operated on individually, but the entire input is treated as a single stream. Thus <code>tr</code> can replace the special “newline” characters that encode the end of each line with some other character.</p>
+<p>On the command line, such newline characters may be represented as <code>\n</code>, so a file with the following three lines</p>
+<pre id=part1-13-lines
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+line 1
+line 2
+line 3
+</b></code></pre>
+<p>could alternatively be represented as <code>line 1\nline 2\nline 3\n</code> (most files end with a final newline character). Supposing this file was called <code>lines.txt</code>, we could replace all of the <code>\n</code> newlines with <code>#</code> characters.</p>
+<pre id=part1-13-swap-newlines
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>cat lines.txt | tr '\n' '#'</b>
+line 1#line 2#line 3#oneils@mbp ~/apcb/intro/fasta_stats$ 
+</b></code></pre>
+<p>Notice in the above that even the final newline has been replaced, and our <a href="the-command-line-and-filesystem.html#command_prompt">command prompt</a> printed on the same line as the output. Similarly, <code>tr</code> (and <code>sed</code>) can replace characters with newlines, so <code>tr '#' '\n'</code> would undo the above.</p>
+<p>Using <code>tr</code> in combination with other utilities can be helpful, particularly for formats like FASTA, where a single “record” is split across multiple lines. Suppose we want to extract all sequences from <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a> with nReads greater than 5. The strategy would be something like:</p>
+<ol>
+<li>
+Identify a character not present in the file, perhaps an <code>@</code> or tab character <code>\t</code> (and check with <code>grep</code> to ensure it is not present before proceeding).
+</li>
+<li>
+Use <code>tr</code> to replace all newlines with that character, for example, <code>tr '\n' '@'</code>.
+</li>
+<li>
+<p>Because <code>&gt;</code> characters are used to indicate the start of each record in FASTA files, use <code>sed</code> to replace record start <code>&gt;</code> characters with newlines followed by those characters: <code>sed -r 's/&gt;/\n&gt;/g'</code>.<br><br></p>
+<p>At this point, the stream would look like so, where each line represents a single sequence record (with extraneous <code>@</code> characters inserted):</p>
+<pre id=part1-13-fasta
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+>PZ7180000027934 nReads=5 cov=2.32231@TTTAATGATCAGTAAAGTTATAGTAGTTGTATGTACAATATT
+>PZ456916 nReads=1 cov=1@AAACTGTCTCTAATTAATTTATAAAATTTAATTTTTTAGTAAAAAAGCTAAAATA
+>PZ7180000037718 nReads=9 cov=6.26448@ACTTTTTTTTTAATTTATTTAATTATATTAACTAATAAATCC
+>PZ7180000000004_TY nReads=86 cov=36.4238@CCAAAGTCAACCATGGCGGCCGGGGTACTTTATACTTA
+</code></pre>
+</li>
+<li>
+Use <code>grep</code>, <code>sed</code>, <code>awk</code>, and so on to select or modify just those lines of interest. (If needed, we could also use <code>sed</code> to remove the inserted <code>@</code> characters so that we can process on the sequence itself.) For our example, use <code>sed -r 's/=/ /1' | awk '{if($3 &gt; 5) {print $0}}'</code> to print only lines where the nReads is greater than 5.
+</li>
+<li>
+Reformat the file back to FASTA by replacing the <code>@</code> characters for newlines, with <code>tr</code> or <code>sed</code>.
+</li>
+<li>
+The resulting stream will have extra blank lines as a result of the extra newlines inserted before each &gt; character. These can be removed in a variety of ways, including <code>awk '{if(NF &gt; 0) print $0}'</code>.
+</li>
+</ol>
+</div>
+<div id="joining-files-on-a-common-column-and-related-rowcolumn-tasks" class="section level3 unnumbered hasAnchor">
+<h3>Joining Files on a Common Column (and Related Row/Column Tasks)<a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Often, the information we want to work with is stored in separate files that share a common column. Consider the result of using <code>blastx</code> to identify top HSPs against the yeast open reading frame set, for example.</p>
+<pre id=part1-13-blastx
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>blastx -query pz_cDNAs.fasta \
+> -subject ../blast/orf_trans.fasta \
+> -evalue 1e-6 \
+> -max_target_seqs 1 \
+> -max_hsps 1 \
+> -outfmt 6 \
+> -out pz_blastx_yeast_top1.txt
+</b></code></pre>
+<p>The resulting file <a href="data/pz_blastx_yeast_top1.txt">pz_blastx_yeast_top1.txt</a> contains the standard BLAST information:</p>
+<pre id=part1-13-top1
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+PZ7180000000004_TX      YPR181C 58.33   36      15      0       891     998     
+PZ7180000000004_TY      YKL081W 31.07   338     197     8       13      993     
+PZ7180000000067_AF      YMR226C 40.00   60      34      1       60      239     
+PZ7180000031592 YGL130W 58.33   36      14      1       478     374     225     
+PZ1082_AB       YHR104W 44.92   118     62      3       4       348     196     
+PZ11_FX YLR406C 53.01   83      38      1       290     42      25      106     
+...</code></pre>
+<p>Similarly, we can save a table of sequence information from the <code>fasta_stats</code> program with the comment lines removed as <a href="data/pz_stats.table">pz_stats.table</a>.</p>
+<pre id=part1-13-pz-stats
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \
+> grep -v '#' > pz_stats.table
+</b></code></pre>
+<p>Viewing the file with <code>less -S</code>:</p>
+<pre id=part1-13-pz-stats-less
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+PZ832049        0.321   218     CTTAA   4       unit:CGT        6       trinucle
+PZ21878_A       0.162   172     ATTAA   8       unit:ATT        6       trinucle
+PZ439397        0.153   111     TTAAT   5       unit:GAAAT      10      pentanuc
+PZ16108_A       0.157   191     ATTAA   7       unit:ATT        6       trinucle
+PZ21537_A       0.158   82      TTATT   3       unit:ATT        6       trinucle
+PZ535325        0.108   120     AATTA   6       unit:TA 6       dinucleotide
+...</code></pre>
+<p>Given such data, we might wish to ask which sequences had a hit to a yeast open reading frame and a GC content of over 50%. We could easily find out with <code>awk</code>, but first we need to invoke <code>join</code>, which merges two row/column text files based on lines with similar values in a specified “key” column. By default, <code>join</code> only outputs rows where data are present in both files. Both input files are required to be similarly sorted (either ascending or descending) on the key columns: <code>join -1 &lt;key column in file1&gt; -2 &lt;key column in file2&gt; &lt;file1&gt; &lt;file2&gt;</code>.</p>
+<p>Like most tools, <code>join</code> outputs its result to standard output, which can be redirected to a file or other tools like <code>less</code> and <code>awk</code>. Ideally, we’d like to say <code>join -1 1 -2 1 pz_stats.txt pz_blastx_yeast_top1.txt</code> to indicate that we wish to join these files by their common first column, but as of yet the files are not similarly sorted. So, we’ll first create sorted versions.</p>
+<pre id=part1-13-sort
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats$ <b>~/apcb/intro/fasta_stats]$ cat pz_stats.txt | \
+> sort -k1,1d > pz_stats.sorted.txt</b>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>cat pz_blastx_yeast_top1.txt | \
+> sort -k1,1d > pz_blastx_yeast_top1.sorted.txt 
+</b></code></pre>
+<p>Now we can run our <code>join -1 1 -2 1 pz_stats.sorted.txt pz_blastx_yeast_top1.sorted.txt</code>, piping the result into <code>less</code>. The output contains all of the columns for the first file, followed by all of the columns of the second file (without the key column), separated by single spaces.</p>
+<pre id=part1-13-join
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+PZ1028_K 0.409 403 TTCAT 4 unit:CTTCT 10 pentanucleotide YDR146C 36.07 61 36 2 1
+PZ1082_AB 0.404 373 TTTGC 4 unit:GCA 6 trinucleotide YHR104W 44.92 118 62 3 4 34
+PZ11_FX 0.435 400 CCCTT 4 unit:CAT 9 trinucleotide YLR406C 53.01 83 38 1 290 42 
+PZ3202_E 0.463 496 AGAGT 5 unit:TGGC 8 tetranucleotide YBR247C 64.00 25 9 0 344 
+PZ483608 0.391 462 AATGT 4 unit:CAAGA 10 pentanucleotide YMR100W 44.44 27 15 0 4
+PZ488295 0.665 428 CGCGC 9 unit:GC 10 dinucleotide YIL106W 35.00 140 87 3 410 3 
+...</code></pre>
+<p>Instead of viewing the output with <code>less</code>, piping it into an <code>awk '{if($1 &gt; 0.5) print $1}'</code> would quickly identify those sequences with BLAST matches and GC content over 50%.</p>
+<p>One difficulty with the above output is that it is quite hard to read, at least for us humans. The same complaint could be made for most files that are separated by tab characters; because of the way tabs are formatted in <code>less</code> and similar tools, different-length entries can cause columns to be misaligned (only visually, of course). The <code>column</code> utility helps in some cases. It reformats <a href="using-bioinformatics-software.html#whitespace">whitespace</a>-separated row/column input so that the output is human readable, by replacing one or more spaces and tabs by an appropriate number of spaces so that columns are visually aligned: <code>column -t &lt;file&gt;</code> or <code>... | column -t</code>.</p>
+<p>By now, it should be no surprise that <code>column</code> writes its output to standard output. Here’s the result of <code>join -1 1 -2 1 pz_stats.sorted.txt pz_blastx_yeast_top1.sorted.txt | column -t | less -S</code>, which contains the same data as above, but with spaces used to pad out the columns appropriately.</p>
+<pre id=part1-13-column
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+PZ1028_K             0.409  403   TTCAT  4   unit:CTTCT   10  pentanucleotide  Y
+PZ1082_AB            0.404  373   TTTGC  4   unit:GCA     6   trinucleotide    Y
+PZ11_FX              0.435  400   CCCTT  4   unit:CAT     9   trinucleotide    Y
+PZ3202_E             0.463  496   AGAGT  5   unit:TGGC    8   tetranucleotide  Y
+PZ483608             0.391  462   AATGT  4   unit:CAAGA   10  pentanucleotide  Y
+PZ488295             0.665  428   CGCGC  9   unit:GC      10  dinucleotide     Y
+...</code></pre>
+<p>Because most tools like <code>awk</code> and <code>sort</code> use any number of whitespace characters as column delimiters, they can also be used on data post-<code>column</code>.</p>
+<p>There are several important caveats when using <code>join</code>. First, if any entries in the key columns are repeated, the output will contain a row for each matching pair of keys.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part1-13-miscellanea.Rmd.images/I.13_10_join_duplicates.png" /></p>
+</div>
+<p>Second, the files must be similarly sorted—if they are not, <code>join</code> will at best produce a difficult-to-see warning. A useful trick when using <code>bash</code>-compatible shells is to make use of the features for “process substitution”. Basically, any command that prints to standard output may be wrapped in <code>&lt;(</code> and <code>)</code> and used in place of a file name—the shell will automatically create a temporary file with the contents of the command’s standard output, and replace the construct with the temporary file name. This example joins the two files as above, without separate sorting steps: <code>join -1 1 -2 1 &lt;(sort -k1,1d pz_stats.txt) &lt;(sort -k1,1d pz_blastx_yeast_top1.txt)</code>. Because the <code>pz_stats.txt</code> file was the result of redirecting standard output from <code>./fasta_stats pz_cDNAs.txt</code> through <code>grep -v '#'</code>, we could equivalently say <code>join -1 1 -2 1 &lt;(./fasta_stats pz_cDNAs.fasta | grep -v '#' | sort -k1,1d) &lt;(sort -k1,1d pz_blastx_yeast_top1.txt)</code>.</p>
+<p>Finally, unless we are willing to supply an inordinate number of arguments, the default for <code>join</code> is to produce only lines where the key information is found in both files. More often, we might wish for all keys to be included, with “missing” values (e.g., <code>NA</code>) assumed for data present in only one file. In database parlance, these operations are known as an “inner join” and “full outer join” (or simply “outer join”), respectively.</p>
+<div class="fig center" style="width: 25%">
+<p><img src="images/part1-13-miscellanea.Rmd.images/I.13_11_join_types.png" /></p>
+</div>
+<p>Where <code>join</code> does not easily produce outer joins, more sophisticated tools can do this and much more. For example, the Python and R programming languages (covered in later chapters) excel at manipulating and merging collections of tabular data. Other tools utilize a specialized language for database manipulation known as Structured Query Language, or SQL. Such databases are often stored in a binary format, and these are queried with software like MySQL and Postgres (both require administrator access to manage), or simpler engines like <code>sqlite3</code> (which can be installed and managed by normal users).<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
+</div>
+<div id="counting-duplicate-lines" class="section level3 unnumbered hasAnchor">
+<h3>Counting Duplicate Lines<a href="miscellanea.html#counting-duplicate-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We saw that <code>sort</code> with the <code>-u</code> flag can be used to remove duplicates (defined by the key columns used). What about isolating duplicates, or otherwise counting or identifying them? Sadly, <code>sort</code> isn’t up to the task, but a tool called <code>uniq</code> can help. It collapses consecutive, identical lines. If the <code>-c</code> flag is used, it prepends each line with the number of lines collapsed: <code>uniq &lt;file&gt;</code> or <code>... | uniq</code>.</p>
+Because <code>uniq</code> considers entire lines in its comparisons, it is somewhat more rigid than <code>sort -u</code>; there is no way to specify that only certain columns should be used in the comparison.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a> The <code>uniq</code> utility will also only collapse identical lines if they are consecutive, meaning the input should already be sorted (unless the goal really is to merge only already-consecutive duplicate lines). Thus, to identify duplicates, the strategy is usually:
+<ol>
+<li>
+Extract columns of interest using <code>awk</code>.
+</li>
+<li>
+Sort the result using <code>sort</code>.
+</li>
+<li>
+Use <code>uniq -c</code> to count duplicates in the resulting lines.
+</li>
+</ol>
+<p>Let’s again consider the output of <code>./fasta_stats pz_cDNAs.fasta</code>, where column 4 lists the most common 5-mer for each sequence. Using this extract/sort/uniq pattern, we can quickly identify how many times each 5-mer was listed.</p>
+<pre id=part1-13-uniq
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats pz_cDNAs.fasta | \
+> grep -v '#' | \
+> awk '{print $4}' | \
+> sort | \
+> uniq -c | \
+> less -S
+</b></code></pre>
+<p>The result lists the counts for each 5-mer. We could continue by sorting the output by the new first column to identify the 5-mers with the largest counts.</p>
+<pre id=part1-13-uniq-result
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+     44 AAAAA
+      1 AAAAG
+     12 AAAAT
+     24 AAATA
+      1 AAATG
+     10 AAATT
+...</code></pre>
+<p>It is often useful to run <code>uniq -c</code> on lists of counts produced by <code>uniq -c</code>. Running the result above through <code>awk '{print $1}' | sort -k1,1n | uniq -c</code> reveals that 90 5-mers are listed once, 18 are listed twice, and so on.</p>
+<pre id=part1-13-uniq-uniq
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+     90 1
+     18 2
+      4 3
+      5 4
+      5 5
+      1 6
+...</code></pre>
+<p>Counting items with <code>uniq -c</code> is a powerful technique for “sanity checking” data. If we wish to check that a given column or combination of columns has no duplicated entries, for example, we could apply the extract/sort/uniq strategy followed by <code>awk '{if($1 &gt; 1) print $0}'</code>. Similarly, if we want to ensure that all rows of a table have the same number of columns, we could run the data through <code>awk '{print NF}'</code> to print the number of columns in each row and then apply extract/sort/uniq, expecting all column counts to be collapsed into a single entry.</p>
+</div>
+<div id="for-loops-in-bash" class="section level3 unnumbered hasAnchor">
+<h3>For-Loops in bash<a href="miscellanea.html#for-loops-in-bash" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes we want to run the same command or similar commands as a set. For example, we may have a directory full of files ending in <code>.tmp</code>, but we wished they ended in <code>.txt</code>.</p>
+<pre id=part1-13-tmp
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls</b>
+file10.tmp  file13.tmp  file16.tmp  file19.tmp  file2.tmp  file5.tmp  file8.tmp
+file11.tmp  file14.tmp  file17.tmp  file1.tmp   file3.tmp  file6.tmp  file9.tmp
+file12.tmp  file15.tmp  file18.tmp  file20.tmp  file4.tmp  file7.tmp
+</code></pre>
+<p>Because of the way command line wildcards work, we can’t use a command like <code>mv *.tmp *.txt</code>; the <code>*.tmp</code> would expand into a list of all the files, and <code>*.txt</code> would expand into nothing (as it matches no existing file names).</p>
+<p>Fortunately, <code>bash</code> provides a looping construct, where elements reported by commands (like <code>ls *.tmp</code>) are associated with a variable (like <code>$i</code>), and other commands (like <code>mv $i $i.txt</code>) are executed for each element.</p>
+<pre id=part1-13-for-loop
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/temp$ <b>for i in $(ls *.tmp); do mv $i ]$i.txt; done</b>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls</b>
+file10.tmp.txt  file14.tmp.txt  file18.tmp.txt  file2.tmp.txt  file6.tmp.txt
+file11.tmp.txt  file15.tmp.txt  file19.tmp.txt  file3.tmp.txt  file7.tmp.txt
+file12.tmp.txt  file16.tmp.txt  file1.tmp.txt   file4.tmp.txt  file8.tmp.txt
+file13.tmp.txt  file17.tmp.txt  file20.tmp.txt  file5.tmp.txt  file9.tmp.txt
+</code></pre>
+<p>It’s more common to see such loops in executable scripts, with the control structure broken over several lines.</p>
+<pre id=part1-13-script
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+<span style="color: CadetBlue">#!/bin/bash</span>
+
+<span style="color: DarkGreen">for</span> i <span style="color: DarkGreen">in $(</span>ls *.tmp<span style="color: DarkGreen">); do</span>
+    <span style="color: Blue">mv</span> <span style="color: Maroon">$i $i</span>.txt<span style="color: DarkGreen">;
+done</span>
+</code></pre>
+<p>This solution works, though often looping and similar programming techniques (like if-statements) in <code>bash</code> become cumbersome, and using a more robust language like Python may be the better choice. Nevertheless, <code>bash</code> does have one more interesting trick up its sleeve: the <code>bash</code> shell can read data on standard input, and when doing so attempts to execute each line. So, rather than using an explicit for-loop, we can use tools like <code>awk</code> and <code>sed</code> to “build” commands as lines. Let’s remove the <code>.tmp</code> from the middle of the files by building <code>mv</code> commands on the basis of a starting input of <code>ls -1 *.tmp*</code> (which lists all the files matching <code>*.tmp*</code> in a single column). First, we’ll build the structure of the commands.</p>
+<pre id=part1-13-mv
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls -1 *.tmp* | \
+> awk '{print "mv "$1" "$1}' </b>
+mv file10.tmp.txt file10.tmp.txt
+mv file11.tmp.txt file11.tmp.txt
+mv file12.tmp.txt file12.tmp.txt
+...
+</code></pre>
+<p>To this we will add a <code>sed -r s/\.tmp//2</code> to replace the second instance of <code>.tmp</code> with nothing (remembering to escape the period in the regular expression), resulting in lines like</p>
+<pre id=part1-13-mv-commands
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+mv file10.tmp.txt file10.txt
+mv file11.tmp.txt file11.txt
+mv file12.tmp.txt file12.txt
+...
+</code></pre>
+<p>After the <code>sed</code>, we’ll pipe this list of commands to <code>bash</code>, and our goal is accomplished.</p>
+<pre id=part1-13-mult-rename
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls -1 *.tmp.* | \
+> awk '{print "mv "$1" "$1}' | \
+> sed -r 's/\.tmp//2' | \
+> bash</b>
+[oneils@mbp ~/apcb/intro/temp]$ <b>ls</b>
+file10.txt  file13.txt  file16.txt  file19.txt  file2.txt  file5.txt  file8.txt
+file11.txt  file14.txt  file17.txt  file1.txt   file3.txt  file6.txt  file9.txt
+file12.txt  file15.txt  file18.txt  file20.txt  file4.txt  file7.txt
+</code></pre>
+<div id="exercises-11" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="miscellanea.html#exercises-11" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>In the file <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a>, sequence IDs are grouped according to common suffixes like <code>_TY</code>, <code>_ACT</code>, and the like. Which group has the largest number of sequences, and how many are in that group?</p></li>
+<li><p>Using the various command line tools, extract all sequences composed of only one read (<code>nReads=1</code>) from <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a> to a FASTA formatted file called <code>pz_cDNAs_singles.fasta</code>.</p></li>
+<li><p>In the annotation file <a href="data/PZ.annot.txt"><code>PZ.annot.txt</code></a>, each sequence ID may be associated with multiple gene ontology (GO) “numbers” (column 2) and a number of different “terms” (column 3). Many IDs are associated with multiple GO numbers, and there is nothing to stop a particular number or term from being associated with multiple IDs.<br></p>
+<pre id=part1-13-mult-rename
+       class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+  <code>
+  ...
+  PZ7180000023260_APN     GO:0005515      btb poz domain containing protein
+  PZ7180000035568_APN     GO:0005515      btb poz domain containing protein
+  PZ7180000020052_APQ     GO:0055114      isocitrate dehydrogenase (nad+)
+  PZ7180000020052_APQ     GO:0006099      isocitrate dehydrogenase (nad+)
+  PZ7180000020052_APQ     GO:0004449      isocitrate dehydrogenase (nad+)
+  ...
+  </code></pre>
+<p>Which GO number is associated with largest number of unique IDs? How many different IDs is it associated with? Next, answer the same questions using the GO term instead of GO number. For the latter, beware that the column separators in this file are tab characters (<code>\t</code>) but <code>awk</code> by default uses any whitespace, including the spaces found in the terms column. In this file, though, <code>isocitrate</code> is not a term, but <code>isocitrate dehydrogenase (nad+)</code> is.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="31">
+<li id="fn31"><p>Unlike other tools, <code>tr</code> can only read its input from stdin.<a href="miscellanea.html#fnref31" class="footnote-back">↩︎</a></p></li>
+<li id="fn32"><p>While binary databases such as those used by <code>sqlite3</code> and Postgres have their place (especially when large tables need to be joined or searched), storing data in simple text files makes for easy access and manipulation. A discussion of SQL syntax and relational databases is beyond the scope of this book; see Jay Kreibich’s Using <em>SQLite</em> (Sebastopol, CA: O’Reilly Media, Inc., 2010) for a friendly introduction to <code>sqlite3</code> and its syntax.<a href="miscellanea.html#fnref32" class="footnote-back">↩︎</a></p></li>
+<li id="fn33"><p>This isn’t quite true: the <code>-f &lt;n&gt;</code> flag for uniq removes the first <code>&lt;n&gt;</code> fields before performing the comparison.<a href="miscellanea.html#fnref33" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="patterns-regular-expressions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="version-control-with-git.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-13-miscellanea.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

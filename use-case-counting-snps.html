@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 26 Use Case: Counting SNPs | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 26 Use Case: Counting SNPs | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 26 Use Case: Counting SNPs | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 26 Use Case: Counting SNPs | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="variables-and-classes.html"/>
+<link rel="next" href="application-programming-interfaces-modules-packages-syntactic-sugar.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="use-case-counting-snps" class="section level1 hasAnchor" number="26">
+<h1><span class="header-section-number">Chapter 26</span> Use Case: Counting SNPs<a href="use-case-counting-snps.html#use-case-counting-snps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As it turns out, multiple classes can be defined that interact with each other: instance variables of a custom class may refer to custom object types. Consider the file <a href="data/trio.sample.vcf"><code>trio.subset.vcf</code></a>, a VCF (variant call format) file for describing single-nucleotide polymorphisms (SNPs, pronounced “snips”) across individuals in a group or population. In this case, the file represents a random sampling of SNPs from three people—a mother, a father, and their daughter—compared to the reference human genome.<a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a></p>
+<pre id=part2-12-vcf
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+##fileformat=VCFv4.0
+##INFO=<ID=AA,Number=1,Type=String,Description="Ancestral Allele, ftp://ftp.1000
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##INFO=<ID=HM2,Number=0,Type=Flag,Description="HapMap2 membership">
+##INFO=<ID=HM3,Number=0,Type=Flag,Description="HapMap3 membership">
+##reference=human_b36_both.fasta
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  NA12891 
+1       799739  rs57181708      A       G       .       PASS    AA=-;DP=141     
+1       805678  .       A       T       .       PASS    AA=a;DP=185     GT:GQ:DP
+1       842827  rs4970461       T       G       .       PASS    AA=G;DP=114     
+1       847591  rs6689107       T       G       .       PASS    AA=G;DP=99      
+1       858267  rs13302914      C       T       .       PASS    AA=.;DP=84      
+1       877161  .       C       T       .       PASS    AA=.;DP=89      GT:GQ:DP
+1       892860  rs7524174       G       A       .       PASS    AA=G;DP=105     
+1       917172  rs2341362       T       C       .       PASS    AA=t;DP=133;HM3 
+...
+</code></pre>
+<p>This file contains a variety of information, including header lines starting with <code>#</code> describing some of the coding found in the file. Columns 1-5 contain the chromosome number of the SNP, the SNP’s position on the chromosome, the ID of the SNP (if it has previously been described in human populations), the base identity of the reference at that position, and an alternative base found in one of the three family members, respectively. Other columns describe various information; this file follows the “VCF 4.0” format, which is described in more detail at <a href="https://www.internationalgenome.org/wiki/Analysis/vcf4.0" class="uri">https://www.internationalgenome.org/wiki/Analysis/vcf4.0</a>. Some columns contain a <code>.</code> entry, which indicates that the information isn’t present; in the case of the ID column, these represent novel polymorphisms identified in this trio.</p>
+<p>For this example, we are interested in the first five columns, and the main questions are:
+- How many transitions (A vs. G or C vs. T) are there within the data for each chromosome?
+- How many transversions (anything else) are there within the data for each chromosome?</p>
+<p>We may in the future have other questions about transitions and transversions on a per-chromosome basis. To answer the questions above, and to prepare for future ones, we’ll start by defining some classes to represent these various entities. This example will prove to be a bit longer than others we’ve studied, partially because it allows us to illustrate answering multiple questions using the same codebase if we do some extra work up front, but also because object-oriented designs tend to result in significantly more code (a common criticism of using classes and objects).</p>
+<div id="snp-class" class="section level3 unnumbered hasAnchor">
+<h3>SNP Class<a href="use-case-counting-snps.html#snp-class" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A SNP object will hold relevant information about a single nonheader line in the VCF file. Instance variables would include the reference allele (a one-character string, e.g., <code>"A"</code>), the alternative allele (a one-character string, e.g., <code>"G"</code>), the name of the chromosome on which it exists (a string, e.g., <code>"1"</code>), the reference position (an integer, e.g., <code>799739</code>), and the ID of the SNP (e.g., <code>"rs57181708"</code> or <code>"."</code>). Because we’ll be parsing lines one at a time, all of this information can be provided in the constructor.</p>
+<p>SNP objects should be able to answer questions: <code>.is_transition()</code> should return <code>True</code> if the SNP is a transition and <code>False</code> otherwise by looking at the two allele instance variables. Similarly, <code>.is_transversion()</code> should return <code>True</code> if the SNP is a transversion and <code>False</code> otherwise.</p>
+</div>
+<div id="chromosome-class" class="section level3 unnumbered hasAnchor">
+<h3>Chromosome Class<a href="use-case-counting-snps.html#chromosome-class" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <code>Chromosome</code> object will hold data for an individual chromosome, including the chromosome name (a string, e.g., <code>"1"</code>), and all of the SNP objects that are located on that chromosome. We could store the SNP objects in a list, but we could also consider storing them in a dictionary, which maps SNP locations (integers) to the SNP objects. Then we can not only gain access to the list of SNPs (using the dictionary’s <code>.values()</code> method) or the list of locations (using the dictionary’s <code>.keys()</code> method), but also, given any location, we can get access to the SNP at that location. (We can even use <code>in</code> to determine whether a SNP exists at a given location.)</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-12-use-case-counting-snps.Rmd.images/II.11_14_chr_snps_fig-3.png" /></p>
+</div>
+<p>The chromosome constructor will initialize the name of the chromosome as <code>self.chrname</code>, but the <code>snps</code> dictionary will start as empty.</p>
+<p>A <code>Chromosome</code> object should be able to answer questions as well: <code>.count_transitions()</code> should tell us the number of transition SNPs, and <code>.count_transversions()</code> should return the number of transversion SNPs. We’re also going to need some way to <em>add</em> a SNP object to a chromosome’s SNP dictionary because it starts empty. We’ll accomplish this with an <code>.add_snp()</code> method, which will take all of the information for a SNP, create the new SNP object, and add it to the dictionary. If a SNP already exists at that location, an error should occur, because our program shouldn’t accept VCF files that have multiple rows with the same position for the same chromosome.</p>
+<p>For overall strategy, once we have our classes defined (and debugged), the “executable” portion of our program will be fairly simple: we’ll need to keep a collection of <code>Chromosome</code> objects that we can interact with to add SNPs, and at the end we’ll just loop through these and ask each how many transitions and transversions it has. It makes sense to keep these <code>Chromosome</code> objects in a dictionary as well, with the keys being the chromosome names (strings) and the values being the <code>Chromosome</code> objects. We’ll call this dictionary <code>chrnames_to_chrs</code>.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-12-use-case-counting-snps.Rmd.images/II.11_15_chrnames_to_chrs_fig.png" /></p>
+</div>
+<p>As we loop through each line of input (reading a file name given in <code>sys.argv[1]</code>), we’ll split it apart and check whether the chromosome name is in the dictionary with <code>in</code>. If so, we’ll ask the object in that slot to add a SNP with <code>.add_snp()</code>. If not, then we’ll need to first create a new <code>Chromosome</code> object, ask it to <code>.add_snp()</code>, and finally add it to the dictionary. Of course, all of this should happen only for nonheader lines.</p>
+<p>We’ll start with the SNP class, and then the <code>Chromosome</code> class. Although it is difficult to show here, it’s a good idea to work on and debug each method in turn (with occasional <code>print()</code> statements), starting with the constructors. Because a SNP is only a SNP if the reference and alternative allele differ, we’ll <code>assert</code> this condition in the constructor so an error is produced if we ever try to create a nonpolymorphic SNP (which wouldn’t actually be a SNP at all).</p>
+<pre id=part2-12-snp
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+## Imports we are likely to need:
+import sys
+import re
+
+## A class representing simple SNPs
+class SNP:
+    def __init__(self, chrname, pos, snpid, refallele, altallele):
+        assert refallele != altallele, f"Error: ref == alt at pos {pos}"
+        self.chrname = chrname
+        self.pos = pos
+        self.snpid = snpid
+        self.refallele = refallele
+        self.altallele = altallele
+
+    ## Returns True if refallele/altallele is A/G, G/A, C/T, or T/C
+    def is_transition(self):
+        if self.refallele == "G" or self.refallele == "A":
+            if self.altallele == "G" or self.altallele == "A":
+                return True
+
+        if self.refallele == "C" or self.refallele == "T":
+            if self.altallele == "C" or self.altallele == "T":
+                return True
+
+        return False
+
+    ## Returns True if the snp is a transversion (ie, not a transition)
+    def is_transversion(self):
+        if self.is_transition():
+            return False
+        return True
+</code></pre>
+<p>Note the shortcut that we took in the above code for the <code>.is_transversion()</code> method, which calls the <code>.is_transition()</code> method and returns the opposite answer. This sort of “shortcut” coding has its benefits and downsides. One benefit is that we can reuse methods rather than copying and pasting to produce many similar chunks of code, reducing the potential surface area for bugs to occur. A downside is that we have to be more careful - in this case, we’ve had to ensure that the alleles differ (via the assert in the constructor), so a SNP must be either a transition or transversion. (Is this actually true? What if someone were to attempt to create a SNP object with non-DNA characters? It’s always wise to consider ways code could be inadvertently misused.)</p>
+<p>The above shows the start of the script and the SNP class; code like this could be tested with just a few lines:</p>
+<pre id=part2-12-tests
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+## transition test; should not result in "Failed Test"
+snp1 = SNP("1", 12351, "rs11345", "C", "T")
+assert snp1.is_transition() == True, "Failed Test"      ## Does not error
+
+## transversion test; should not result in "Failed Test"
+snp2 = SNP("1", 36642, "rs22541", "A", "T")
+assert snp2.is_transversion() == True, "Failed Test"    ## Does not error
+
+## error test; should result in "Error: ref == alt at pos 69835"
+snp3 = SNP("1", 69835, "rs53461", "A", "A")             ## Results in error
+</code></pre>
+<p>Although we won’t ultimately leave these testing lines in, they provide a good sanity check for the code. If these checks were wrapped in a function that could be called whenever we make changes to the code, we would have what is known as a <em>unit test</em>, or a collection of code (often one or more functions), with the specific purpose of testing functionality of other code for correctness.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a> These can be especially useful as code changes over time.</p>
+<p>Let’s continue on with the <code>Chromosome</code> class. Note that the <code>.add_snp()</code> method contains assertions that the SNP location is not a duplicate and that the chromosome name for the new SNP matches the chromosome’s <code>self.chrname</code>.</p>
+<pre id=part2-12-add_snp
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+# ...
+
+## A class representing a chromosome, which has a collection of SNPs
+class Chromosome:
+    def __init__(self, chrname):
+        self.chrname = chrname
+        self.locations_to_snps = dict()
+
+    ## Returns the chromosome name
+    def get_name(self):
+        return self.chrname
+
+    def add_snp(self, chrname, pos, snpid, refallele, altallele):
+        '''Given all necessary information to add a new SNP, create a new SNP object 
+        and add it to the SNPs dictionary. If a SNP already exists at that location, or
+        the given chrname doesn't match self.chrname, an error is reported.'''
+        ## If there is already an entry for that SNP, throw an error
+        open_location = not(pos in self.locations_to_snps)
+        assert open_location, f"Duplicate SNP: {self.chrname}:{pos}"
+        
+        ## If the chrname doesn't match self.chrname, throw an error
+        assert chrname == self.chrname, "Chr name mismatch!"
+
+        ## Otherwise, create the SNP object and add it to the dictionary
+        newsnp = SNP(chrname, pos, snpid, refallele, altallele)
+        self.locations_to_snps[pos] = newsnp
+</code></pre>
+<p>Now we can write the methods for <code>.count_transitions()</code> and <code>.count_transversions()</code>. Because we’ve ensured that each SNP object is either a transition or a transversion, and no locations are duplicated within a chromosome, the <code>.count_transversions()</code> method can make direct use of the <code>.count_transitions()</code> method and the total number of SNPs stored via <code>len(self.locations_to_snps)</code>. (Alternatively, we could make a <code>count_transversions()</code> that operates similarly to <code>count_transitions()</code> by looping over all the SNP objects.)</p>
+<pre id=part2-12-count_trans
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+# ...(inside class Chromosome:)
+
+    def count_transitions(self):
+        '''Returns the number of transition SNPs stored in the chromosome'''
+        count = 0
+        for location in self.locations_to_snps:
+            snp = self.locations_to_snps[location]
+            if snp.is_transition():
+                count += 1
+        return count
+
+    def count_transversions(self):
+        '''Returns the number of transversion SNPs stored in this chromosome'''
+        total_snps = len(self.locations_to_snps)
+        return total_snps - self.count_transitions()
+</code></pre>
+<p>The corresponding test code is below. Here we are using <code>assert</code> statements, but we could also use lines like <code>print(chr1.count_transitions())</code> and ensure the output is as expected.</p>
+<pre id=part2-12-more-tests
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+## A test chromosome
+chr1 = Chromosome("testChr")
+chr1.add_snp("testChr", 24524, "rs15926", "G", "T")
+chr1.add_snp("testChr", 62464, "rs61532", "C", "T")
+
+## These should not fail:
+assert chr1.count_transitions() == 1, "Failed Test"
+assert chr1.count_transversions() == 1, "Failed Test"
+
+## This should fail with a "Duplicate SNP" error:
+chr1.add_snp("testChr", 24524, "rs88664", "A", "C")
+</code></pre>
+<p>With the class definitions created and debugged, we can write the “executable” part of the program, concerned with parsing the input file (from a filename given in <code>sys.argv[1]</code>) and printing the results. First, the portion of code that checks whether the user has given a file name (and produces some help text if not) and reads the data in. Again, we are storing a collection of <code>Chromosome</code> objects in a <code>chrnames_to_chrs</code> dictionary. For each VCF line, we determine whether a <code>Chromosome</code> with that name already exists: if so, we ask that object to <code>.add_snp()</code>. If not, we create a new Chromosome object, ask it to <code>.add_snp()</code>, and add it to the dictionary.</p>
+<pre id=part2-12-executable
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+# ...
+
+## Check usage syntax, read filename 
+if len(sys.argv) != 2:
+    print("This program parses a VCF 4.0 file and counts")
+    print("transitions and transversions on a per-chromosome basis.")
+    print("")
+    print("Usage: ./snps_ex.py <input_vcf_file>")
+    quit()
+
+filename = sys.argv[1]
+
+## Create chrnames_to_chrs dictionary, parse the input file
+chrnames_to_chrs = dict()
+with open(filename, "r") as fhandle:
+    for line in fhandle:
+        # don't attempt to parse header lines
+        if line[0] != "#":
+            line_stripped = line.strip()
+            line_list = re.split(r"\s+", line_stripped)
+
+            chrname = line_list[0]
+            pos = int(line_list[1])
+            snpid = line_list[2]
+            refallele = line_list[3]
+            altallele = line_list[4]
+
+            ## Put the data in the dictionary
+            if chrname in chrnames_to_chrs:
+                chr_obj = chrnames_to_chrs[chrname]
+                chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+            else:
+                chr_obj = Chromosome(chrname)
+                chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+                chrnames_to_chrs[chrname] = chr_obj
+</code></pre>
+<p>In the <code>chr_obj = chrnames_to_chrs[chrname]</code> line above, we are defining a variable referring to the <code>Chromosome</code> object in the dictionary, and after that we are asking that object to add the SNP with <code>.add_snp()</code>. We could have combined these two with syntax like <code>chrnames_to_chrs[chrname].add_snp()</code>.</p>
+<p>Finally, a small block of code prints out the results by looping over the keys in the dictionary, accessing each <code>Chromosome</code> object and asking it the number of transitions and transversions:</p>
+<pre id=part2-12-print
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+# ...
+
+## Print the results!
+print(f"chrom\ttransitions\ttransversions")
+for chrname in chrnames_to_chrs:
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+    print(f"{chrname}\t{trs}\t{trv}")
+</code></pre>
+<p>We’ll have to remove or comment out the testing code (particularly the tests we expected to fail) to see the results. But once we do that, we can run the program (called <a href="data/snps_ex.py"><code>snps_ex.py</code></a>).</p>
+<pre id=part2-12-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/py]$ <b>chmod +x snps_ex.py</b>
+[oneils@mbp ~/apcb/py]$ <b>./snps_ex.py trio.sample.vcf</b>
+chrom   transitions     transversions
+1       9345    4262
+2       10309   5130
+3       8708    4261
+4       9050    4372
+5       7586    3874
+6       7874    3697
+7       6784    3274
+8       6520    3419
+9       5102    2653
+10      6165    2952
+11      5944    2908
+12      5876    2700
+13      4926    2368
+14      4016    1891
+15      3397    1676
+16      3449    1891
+17      3024    1357
+18      3791    1738
+19      2198    962
+20      2656    1187
+21      1773    848
+22      1539    639
+X       3028    1527
+</code></pre>
+<p>What we’ve created here is no small thing, with nearly 150 lines of code! And yet each piece of code is encapsulated in some way; even the long for loop represents the code to parse the input file and populate the <code>chrnames_to_chrs</code> dictionary. By clearly naming our variables, methods, and classes we can quickly see what each entity does. We can reason about this program without too much difficulty at the highest level of abstraction but also delve down to understand each piece individually. As a benefit, we can easily reuse or adapt this code in a powerful way by adding or modifying methods.</p>
+</div>
+<div id="an-extension-searching-for-snp-dense-regions" class="section level3 unnumbered hasAnchor">
+<h3>An Extension: Searching for SNP-Dense Regions<a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Counting transitions and transversions on a per-chromosome basis for this VCF file could have been accomplished without defining classes and objects. But one of the advantages of spending some time organizing the code up front is that we can more easily answer related questions about the same data.</p>
+<p>Suppose that, having determined the number of transitions and transversions per chromosome, we’re now interested in determining the most SNP-dense region of each chromosome. There are a number of ways we could define SNP density, but we’ll choose an easy one: given a region from positions <span class="math inline">\(l\)</span> to <span class="math inline">\(m\)</span>, the density is the number of SNPs occurring within <span class="math inline">\(l\)</span> and <span class="math inline">\(m\)</span> divided by the size of the region, <span class="math inline">\(m – l + 1\)</span>, times 1,000 (for SNPs per 1,000 base pairs).</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-12-use-case-counting-snps.Rmd.images/II.11_24_snp_density_calculation.png" /></p>
+</div>
+<p>For a <code>Chromosome</code> object to be able to tell us the highest-density region, it will need to be able to compute the density for any given region by counting the SNPs in that region. We can start by adding to the chromosome class a method that computes the SNP density between two positions <span class="math inline">\(l\)</span> and <span class="math inline">\(m\)</span>.</p>
+<pre id=part2-12-spk
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+    # ... (inside class Chromosome:)
+
+    def density_region(self, l, m):
+        '''returns the number of snps between l and m, divided by the size of the region'''
+        count = 0
+        for location in self.locations_to_snps:
+            if location >= l and location <= m:
+                count += 1
+        size = m - l  + 1
+        return 1000*count/size
+</code></pre>
+<p>After debugging this method and ensuring it works, we can write a method that finds the highest-density region. But how should we define our regions? Let’s say we want to consider regions of 100,000 bases. Then we might consider bases 1 to 100,000 to be a region, 100,001 to 200,000 to be a region, and so on, up until the start of the region considered is past the last SNP location. We can accomplish this with a while-loop. The strategy will be to keep information on the densest region found so far (including its density as well as start and end location), and update this answer as needed in the loop.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
+<pre id=part2-12-max
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+    # ... (inside class Chromosome:)
+
+    def max_density(self, region_size):
+        '''Given a region size, looks at non-overlapping windows
+        of that size and returns a list of three elements for
+        the region with the highest density:
+        [density of region, start of region, end of region]'''
+        region_start = 1
+        ## default answer if no SNPs exist [density, start, end]:
+        best_answer = [0.0, 1, region_size - 1]
+
+        ## todo: implement this method
+        last_snp_position = self.get_last_snp_position()
+        while region_start < last_snp_position:
+            region_end = region_start + region_size - 1
+            region_density = self.density_region(region_start, region_end)
+            # if this region has a higher density than any we've seen so far:
+            if region_density > best_answer[0]:
+                best_answer = [region_density, region_start, region_end]
+            region_start = region_start + region_size
+
+        return best_answer
+</code></pre>
+<p>In the above, we needed to access the position of the last SNP on the chromosome (so that the code could stop considering regions beyond the last SNP). Rather than write that code directly in the method, we decided that should be its own method, and marked it with a “todo” comment. So, we need to add this method as well:</p>
+<pre id=part2-12-last
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+    # ... (inside class Chromosome:)
+
+    def get_last_snp_position(self):
+        '''returns the position of the last SNP known'''
+        locations = list(self.locations_to_snps.keys())
+        locations.sort()
+        return locations[len(locations) - 1]
+</code></pre>
+<p>In the code that prints the results, we can add the new call to <code>.max_density(100000)</code> for each chromosome, and print the relevant information.</p>
+<pre id=part2-12-print_density
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+# ...
+
+## Print the results!
+print(f"chrom\ttransitions\ttransversions\tdensity\tregion")
+for chrname in chrnames_to_chrs:
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+
+    max_dens_list = chr_obj.max_density(100000)
+    density = max_dens_list[0]
+    region_start = max_dens_list[1]
+    region_end = max_dens_list[2]
+    print(f"{chrname}\t{trs}\t{trv}\t{density}\t{region_start}..{region_end}")
+</code></pre>
+<p>Let’s call our new <a href="data/snps_ex_density.py"><code>snps_ex_density.py</code></a> (piping the result through <code>column -t</code> to more easily see the tab-separated column layout):</p>
+<pre id=part2-12-density-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/py]$ <b>chmod +x snps_ex_density.py</b>
+[oneils@mbp ~/apcb/py]$ <b>./snps_ex_density.py trio.sample.vcf | column -t</b>
+chrom  transitions  transversions  density  region
+1      9345         4262           0.25     105900001..106000000
+2      10309        5130           0.24     225700001..225800000
+3      8708         4261           0.26     166900001..167000000
+4      9050         4372           0.27     162200001..162300000
+5      7586         3874           0.24     8000001..8100000
+6      7874         3697           0.81     32600001..32700000
+7      6784         3274           0.24     2000001..2100000
+8      6520         3419           0.42     4000001..4100000
+9      5102         2653           0.26     11700001..11800000
+10     6165         2952           0.26     2000001..2100000
+11     5944         2908           0.26     6000001..6100000
+12     5876         2700           0.26     130500001..130600000
+13     4926         2368           0.25     88000001..88100000
+14     4016         1891           0.23     40000001..40100000
+15     3397         1676           0.28     96600001..96700000
+16     3449         1891           0.33     12500001..12600000
+17     3024         1357           0.23     61400001..61500000
+18     3791         1738           0.22     49700001..49800000
+19     2198         962            0.21     15600001..15700000
+20     2656         1187           0.22     15000001..15100000
+21     1773         848            0.26     19100001..19200000
+22     1539         639            0.22     47400001..47500000
+X      3028         1527           0.15     800001..900000
+</code></pre>
+<p>Again, none of the individual methods or sections of code are particularly long or complex, yet together they represent a rather sophisticated analysis program.</p>
+</div>
+<div id="summary" class="section level3 unnumbered hasAnchor">
+<h3>Summary<a href="use-case-counting-snps.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Perhaps you find these examples using classes and objects for problem solving to be elegant, or perhaps not. Some programmers think that this sort of organization results in overly verbose and complex code. It is certainly easy to get too ambitious with the idea of classes and objects. Creating custom classes for every little thing risks confusion and needless hassle. In the end, it is up to each programmer to decide what level of encapsulation is right for the project; for most people, good separation of concepts by using classes is an art form that requires practice.</p>
+<p>When should you consider creating a class?
+- When you have many different types of data relating to the same concept, and you’d like to keep them organized into single objects as instance variables.
+- When you have many different functions related to the same concept, and you’d like to keep them organized into single objects as methods.
+- When you have a concept that is simple now, but you suspect might increase in complexity in the future as you add to it. Like functions, classes enable code to be reused, and it is easy to add new methods and instance variables to classes when needed.</p>
+<div id="inheritance-and-polymorphism" class="section level4 unnumbered hasAnchor callout-box">
+<h4>Inheritance and Polymorphism<a href="use-case-counting-snps.html#inheritance-and-polymorphism" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Despite this discussion of objects, there are some unique features of the object-oriented paradigm that we haven’t covered but are sometimes considered integral to the topic. In particular, most object-oriented languages (Python included) support inheritance and polymorphism for objects and classes.</p>
+<p>Inheritance is the idea that some types of classes may be represented as special cases of other types of classes. Consider a class defining a <code>Sequence</code>, which might have instance variables for <code>self.seq</code> and <code>self.id</code>. Sequences might be able to report their length, and so might have a <code>.length_bp()</code> method, returning <code>len(self.seq)</code>. There may also be many other operations a generic <code>Sequence</code> could support, like <code>.get_id()</code>. Now, suppose we wanted to implement an <code>OpenReadingFrame</code> class; it too should have a <code>self.id</code> and a <code>self.seq</code> and be able to report its <code>.length_bp()</code>. Because an object of this type would represent an open reading frame, it probably should also have a <code>.get_translation()</code> method returning the amino-acid translation of its <code>self.seq</code>. By using inheritance, we can define the <code>OpenReadingFrame</code> class as a type of <code>Sequence</code> class, saving us from having to re-implement <code>.length_bp()</code> — we’d only need to implement the class-specific <code>.get_translation()</code> method and any other methods would be automatically inherited from the <code>Sequence</code> class.</p>
+<pre id=part2-12-inherit
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+class Sequence:
+    def __init__(self, gid, seq):
+        self.gid = gid
+        self.seq = seq
+
+    def get_id(self):   
+        return self.gid
+
+    def length_bp(self):
+        return len(self.seq)
+
+# OpenReadingFrame *inherits* from Sequence
+# as well as defines an new method
+class OpenReadingFrame(Sequence):
+    def __init__(self, gid, seq):
+        self.gid = gid
+        self.seq = seq
+
+    def get_translation(self):
+        return dna_to_aa(self.seq)
+
+geneA = Sequence("SeqA", "CATGAG")
+geneB = OpenReadingFrame("SeqB", "ATGCCCTGA")
+print(geneA.length_bp())    # prints 6
+print(geneB.length_bp())    # prints 9
+</code></pre>
+<p>Polymorphism is the idea that inheriting class types don’t have to accept the default methods inherited, and they are free to re-implement (or “override”) specific methods even if their “parent” or “sibling” classes already define them. For example, we might consider another class called <code>AminoAcidSequence</code> that inherits from <code>Sequence</code>, so it too will have a <code>.get_id()</code> and <code>.length_bp()</code>; in this case, though, the inherited <code>.length_bp()</code> would be wrong, because <code>len(self.seq)</code> would be three times too short. So, an <code>AminoAcidSequence</code> could override the <code>.length_bp()</code> method to return <code>3*len(self.seq)</code>. The interesting feature of polymorphism is that given an object like <code>gene_A</code>, we don’t even need to know what “kind” of <code>Sequence</code> object it is: running <code>gene_A.length_bp()</code> will return the right answer if it is any of these three kinds of sequence.</p>
+<pre id=part2-12-poly
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+# ...
+
+## AminoAcidSequence *inherits* from Sequence
+## as well as overrides an existing method
+class AminoAcidSequence(Sequence):
+    def __init__(self, gid, seq):
+        self.gid = gid
+        self.seq = seq
+
+    def length_bp(self):
+        return(3*len(self.seq))
+
+geneC = AminoAcidSequence("SeqC", "RQVDYW")
+print(geneC.length_bp())    # prints 18
+print(geneC.get_id())       # prints "SeqC"
+</code></pre>
+<p>These ideas are considered by many to be the defining points of “object-oriented design,” and they allow programmers to structure their code in hierarchical ways (via inheritance) while allowing interesting patterns of flexibility (via polymorphism). We haven’t covered them in detail here, as making good use of them requires a fair amount of practice. Besides, the simple idea of encapsulating data and functions into objects provides quite a lot of benefit in itself!</p>
+</div>
+<div id="exercises-23" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="use-case-counting-snps.html#exercises-23" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Modify the <code>snps_ex_density.py</code> script to output, for each 100,000 bp region of each chromosome, the percentage of SNPs that are transitions and the number of SNPs in each window. The output should be a format that looks like so:</p>
+<pre id=part2-12-ex-1
+  class="language-txt 
+         line-numbers 
+         linkable-line-numbers">
+ <code>
+ chromosome  region  percent_transitions num_snps
+1   1..100000   0.5646   12
+1   100001..200000   0.5214  16
+1   200001..300000   0.4513  7
+1   300001..400000   0.3126  19
+...
+ </code></pre>
+<p>In the section on R programming (chapter 40, “<a href="#plotting-data-and-ggplot2">Plotting Data and ggplot2</a>”), we’ll discover easy ways to visualize this type of output.</p></li>
+<li><p>The <code>random</code> module (used with <code>import random</code>) allows us to make random choices; for example, <code>random.random()</code> returns a random float between <code>0.0</code> and <code>1.0</code>. The <code>random.randint(a, b)</code> function returns a random integer between <code>a</code> and <code>b</code> (inclusive); for example, <code>random.randint(1, 4)</code> could return <code>1</code>, <code>2</code>, <code>3</code>, or <code>4</code>. There’s also a <code>random.choice()</code> function; given a list, it returns a single element (at random) from it. So, if <code>bases = ["A", "C", "T", "G"]</code>, then <code>random.choice(bases)</code> will return a single string, either <code>"A"</code>, <code>"C"</code>, <code>"T"</code>, or <code>"G"</code>.</p>
+<p>Create a program called <code>pop_sim.py</code>. In this program write a <code>Bug</code> class; a “bug” object will represent an individual organism with a genome, from which a fitness can be calculated. For example, if <code>a = Bug()</code>, perhaps a will have a <code>self.genome</code> as a list of 100 random DNA bases (e.g. <code>["G", "T", "A", "G", ...]</code>; these should be created in the constructor). You should implement a <code>.get_fitness()</code> method which returns a float computed in some way from <code>self.genome</code>, for example the number of G or C bases, plus 5 if the genome contains three <code>"A"</code> characters in a row. <code>Bug</code> objects should also have a <code>.mutate_random_base()</code> method, which causes a random element of <code>self.genome</code> to be set to a random element from <code>["A", "C", "G", "T"]</code>. Finally, implement a <code>.set_base()</code> method, which sets a specific index in the genome to a specific base: <code>a.set_base(3, "T")</code> should set <code>self.genome[3]</code> to <code>"T"</code>.</p>
+<p>Test your program by creating a list of 10 <code>Bug</code> objects, and in a for loop, have each run its <code>.mutate_random_base()</code> method and print its new fitness.</p></li>
+<li><p>Next, create a <code>Population</code> class. <code>Population</code> objects will have a list of <code>Bug</code> objects (say, 50) called <code>self.bug_list</code>.</p>
+<p>This Population class should have a <code>.create_offspring()</code> method, which will:</p>
+<ol style="list-style-type: decimal">
+<li>create a new_pop list</li>
+<li>for each element <code>oldbug</code> of <code>self.bug_list</code>:
+<ol style="list-style-type: lower-alpha">
+<li>create a new <code>Bug</code> object <code>newbug</code></li>
+<li>and set the genome of <code>newbug</code> (one base at a time) to be the same as that of <code>oldbug</code></li>
+<li>call <code>newbug.mutate_random_base()</code></li>
+<li>add <code>oldbug</code> and <code>newbug</code> to <code>new_pop</code>.</li>
+</ol></li>
+<li>Finally, this method should set <code>self.bug_pop</code> to <code>new_pop</code>.</li>
+</ol>
+<p>The <code>Population</code> class will also have a <code>.cull()</code> method; this should reduce <code>self.bug_pop</code> to the top 50% of bug objects by fitness. (You might find the exercise above discussing <code>.__lt__()</code> and similar methods useful, as they will allow you to sort <code>self.bug_pop</code> by fitness if implemented properly.)</p>
+<p>Finally, implement a <code>.get_mean_fitness()</code> method, which should return the average fitness of <code>self.bug_pop</code>.</p>
+<p>To test your code, instantiate a <code>p = Population()</code> object, and in a for-loop:</p>
+<ol style="list-style-type: decimal">
+<li>run <code>p.create_offspring()</code></li>
+<li>run <code>p.cull()</code></li>
+<li>print <code>p.get_mean_fitness()</code>, allowing you to see the evolutionary progress of your simulation.</li>
+</ol></li>
+<li><p>Modify the simulation program above to explore its dynamics. You could consider adding a <code>.get_best_individual()</code> method to the <code>Population</code> class, for example, or implement a “mating” scheme whereby offspring genomes are mixes of two parent genomes. You could also try tweaking the <code>.get_fitness()</code> method. This sort of simulation is known as a <em>genetic algorithm</em>, especially when the evolved individuals represent potential solutions to a computational problem.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a></p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="74">
+<li id="fn74"><p>This file was obtained from the 1000 Human Genomes Project at <a href="https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/release/2010_07/trio/snps/" class="uri">https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/release/2010_07/trio/snps/</a>, in the file <code>CEU.trio.2010_03.genotypes.vcf.gz</code>. After decompressing, we sampled 5% of the SNPs at random with <code>awk '{if($1 ~ "##" || rand() &lt; 0.05) {print $0}}' CEU.trio.2010_03.genotypes.vcf &gt; trio.sample.vcf</code>; see chapter 11, “<a href="rows-and-columns.html#rows-and-columns">Rows and Columns</a>” for details.<a href="use-case-counting-snps.html#fnref74" class="footnote-back">↩︎</a></p></li>
+<li id="fn75"><p>Unit tests are often automated; in fact, Python includes a module for building unit tests called <code>unittest</code>, although we recommend <code>pytest</code>.<a href="use-case-counting-snps.html#fnref75" class="footnote-back">↩︎</a></p></li>
+<li id="fn76"><p>This strategy is not the fastest we could have devised. In order to determine the highest-density region, we have to consider each region, and the computation for each region involves looping over all of the SNP positions (the vast majority of which lie outside the region). More sophisticated algorithms exist that would run much faster, but they are outside the scope of this book. Nevertheless, a slow solution is better than no solution!<a href="use-case-counting-snps.html#fnref76" class="footnote-back">↩︎</a></p></li>
+<li id="fn77"><p>The idea of simulating populations “in silico” is not only quite fun, but has also produced interesting insights into population dynamics. For an example, see Hinton and Nowlan, <a href="https://www.complex-systems.com/abstracts/v01_i03_a06/">“How Learning Can Guide Evolution,” Complex Systems 1 (1987): 495–502</a>. Simulation of complex systems using random sampling is commonly known as a Monte Carlo method. For a more fanciful treatment of simulations of natural systems, see Daniel Shiffman, <a href="https://natureofcode.com/">The Nature of Code</a> (2012).<a href="use-case-counting-snps.html#fnref77" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="variables-and-classes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-12-use-case-counting-snps.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 23 String Tips and Regular Expressions | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 23 String Tips and Regular Expressions | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 23 String Tips and Regular Expressions | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 23 String Tips and Regular Expressions | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dictionaries.html"/>
+<link rel="next" href="variables-and-scope.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="string-tips-and-regular-expressions" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">Chapter 23</span> String Tips and Regular Expressions<a href="string-tips-and-regular-expressions.html#string-tips-and-regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Chapter 16, “<a href="elementary-data-types.html#elementary-data-types">Elementary Data Types</a>”, mentioned that strings in Python are immutable, meaning they can’t be modified after they have been created. For computational biology, this characteristic can be a hindrance. One way to get around this limitation is to convert strings into lists of single-character strings, modify the lists as necessary, and convert the lists of characters back to strings when needed. Python comes with a number of built-in functions that operate on lists and strings which are useful for computational biology.</p>
+<div id="converting-a-string-into-a-list-of-single-character-strings" class="section level3 unnumbered hasAnchor">
+<h3>Converting a String into a List of Single-Character Strings<a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Remember that because Python strings are immutable, we <strong>can’t</strong> run something like</p>
+<pre id=part2-09-error
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACTAG"
+seq[2] = "U"            # Error!
+</code></pre>
+<p>To convert a string into a list of single-character strings, we can pass the string as a parameter to the <code>list()</code> function (when called with no parameters, this function creates an empty list):</p>
+<pre id=part2-09-list-of-char
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACTAG"
+base_list = list(seq)
+base_list[2] = "U"
+print(base_list)        # prints ['A', 'C', 'U', 'A', 'G']
+</code></pre>
+</div>
+<div id="converting-a-list-of-strings-into-a-string" class="section level3 unnumbered hasAnchor">
+<h3>Converting a List of Strings into a String<a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we happen to have a list of strings (such as the list of single-character strings above), we can join them into a single string using the <code>.join()</code> method of whatever string we wish to use as a separator for the output string.</p>
+<pre id=part2-09-join
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+rejoined = ":".join(base_list)      # 'A:C:U:A:G'
+rejoined2 = "".join(base_list)      # 'ACUAG'
+</code></pre>
+<p>The syntax may seem a bit backward, <code>"separator".join(list_variable)</code>, but it makes sense when considering what the method <code>.</code>-syntax says: it asks the string <code>“separator"</code> to produce a string given the input list <code>list_variable</code>. Because the output is of type string, it makes sense that we should ask a string to do this production.</p>
+</div>
+<div id="reverse-a-list" class="section level3 unnumbered hasAnchor">
+<h3>Reverse a List<a href="string-tips-and-regular-expressions.html#reverse-a-list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes we may want to reverse the order of a list. We can do this with the list method <code>.reverse()</code>, reverses the list in place (and returns <code>None</code>).</p>
+<pre id=part2-09-reverse
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+base_list.reverse()          # base_list now: ['G', 'A', 'U', 'C', 'C']
+</code></pre>
+<p>As with the <code>.sort()</code> and <code>.append()</code> methods from chapter 17, “<a href="collections-and-looping-lists-and-for.html#collections-and-looping-lists-and-for">Collections and Looping: Lists and for</a>”, <code>.reverse()</code> returns <code>None</code>, so a line like <code>base_list = base_list.reverse()</code> would almost surely be a bug.</p>
+</div>
+<div id="reverse-a-string" class="section level3 unnumbered hasAnchor">
+<h3>Reverse a String<a href="string-tips-and-regular-expressions.html#reverse-a-string" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two ways to reverse a string in Python: (1) convert it into a list of single-character strings, reverse the list, then join it back into a string, or (2) use “extended slice syntax.” The former solution uses the methods described above, whereas the second method extends the <code>[]</code> slice syntax so that the brackets can contain values for <code>[start:end:step]</code>, where <code>start</code> and <code>end</code> can be empty (to indicate the first and last indices of the string), and step can be <code>-1</code> (to indicate stepping backward in the string).</p>
+<pre id=part2-09-reverse-str
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACTAG"
+seq_list = list(seq)
+seq_list.reverse()
+seq_rev = "".join(seq_list)  # seq_rev: "GATCA"
+# OR
+seq_rev = seq[::-1]              # seq_rev: "GATCA"
+</code></pre>
+<p>The extended slice syntax is quite a bit faster and requires less typing, but it <strong>is</strong> a bit more difficult to read. A search online for “python string reverse” will almost certainly reveal this solution first.</p>
+</div>
+<div id="simple-find-and-replace-in-a-string" class="section level3 unnumbered hasAnchor">
+<h3>Simple Find and Replace in a String<a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve already seen how to split a string into a list of strings with the <code>.split()</code> method. A similar method, <code>.replace()</code>, allows us to replace all matching substrings of a string with another string. Because strings are immutable, this method returns a modified copy of the original string.</p>
+<pre id=part2-09-replace
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "ACGTATATATGG"
+replaced = seq.replace("TAT", "X")  # replaced: "ACGXAXGG"
+rna = seq.replace("U", "T")         # rna: "ACGUAUAUAUGG"
+                                    # seq is still: "ACGTATATATATGG"
+</code></pre>
+<p>Also because strings are immutable, the original data are left unchanged. However, because a variable is simply a name we use to refer to some data, we can make it <em>look</em> like we’ve modified the original string by reassigning the <code>seq</code> variable to whatever is returned by the method.</p>
+<pre id=part2-09-overwrite
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = seq.replace("U", "T")         # seq now: "ACGUAUAUAUGG"
+</code></pre>
+</div>
+<div id="commands-versus-queries" class="section level3 unnumbered hasAnchor">
+<h3>Commands versus Queries<a href="string-tips-and-regular-expressions.html#commands-versus-queries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Why do some operations (like the list method <code>.sort()</code>) change the data in place and return <code>None</code>, while others (like the string method <code>.split()</code> or the function <code>len()</code>) return something and leave the original data alone? Why is it so rare to see operations that do both? The reason is that the designers of Python (usually) try to follow what is known as the <em>principle of command-query separation</em>, a philosophical principle in the design of programming languages that states that single operations should either modify data or return answers to queries, but not both.</p>
+<p>The idea behind this principle is that upon reading code, it should be immediately obvious what it does, a feature that is easily achieved if each operation only has one thing it can do. When operations both change data and return an answer, there is a temptation to “code by side effect”, that is, to make use of simultaneous effects to minimize typing at the cost of clarity. Compared to many other languages, Python makes a stronger attempt to follow this principle.</p>
+</div>
+<div id="regular-expressions-1" class="section level3 hasAnchor" number="23.0.1">
+<h3><span class="header-section-number">23.0.1</span> Regular Expressions<a href="string-tips-and-regular-expressions.html#regular-expressions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Regular expressions, common to many programming languages and even command line tools like <code>sed</code>, are syntax for matching patterns in strings. The simplest patterns are just simple strings; for example, <code>"ATG"</code> is the pattern for a start codon. Because Python treats backslashes as special in strings (e.g., <code>"\t"</code> is not actually <code>"\"</code> followed by a <code>"t"</code>, but rather a tab character), patterns for regular expressions in Python are usually expressed as “raw strings”, indicated by prefixing them with an <code>r</code>. So, <code>r"ATG"</code> is also the pattern for a start codon, but <code>r"\t"</code> is the regular expression for <code>"\"</code> and <code>"t"</code> rather than the tab character.</p>
+<pre id=part2-09-tab
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+print(len("\t"))       # prints 1 (tab character)
+print(len(r"\t"))      # prints 2 (\ character and t character)
+</code></pre>
+<p>Python regular expression functionality is imported with the <code>re</code> module by using <code>import re</code> (remember to import a module before attempting to use it, so near the top of your script is a great place for all your import statements, one per line). There are many functions in the <code>re</code> module for working with strings and regular expression patterns, but we’ll cover just the three most important ones: (1) searching for a pattern in a string, (2) replacing a pattern in a string, and (3) splitting a string into a list of strings based on a pattern.</p>
+</div>
+<div id="searching-for-a-pattern-in-a-string" class="section level3 unnumbered hasAnchor">
+<h3>Searching for a Pattern in a String<a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Searching for a pattern is accomplished with the <code>re.search()</code> function. Most functions in the <code>re</code> module return a special <code>SRE_Match</code> data type, or a list of them (with their own set of methods), or <code>None</code> if no match was found. The <code>if</code> statement (and <code>while</code> loops) in Python treats <code>None</code> as false, so we can easily use <code>re.search()</code> in an <code>if</code> statement. The result of a successful match can tell us the location of the match in the query using the <code>.start()</code> method:</p>
+<pre id=part2-09-search
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+import re
+
+seq = "CCGATGCATGCC"
+if re.search(r"ATG", seq):
+    print("seq has a start codon!")
+    result = re.search(r"ATG", seq)
+    print(f"the start codon is at position: {result.start()}")
+</code></pre>
+</div>
+<div id="replace-a-pattern-in-a-string" class="section level3 unnumbered hasAnchor">
+<h3>Replace a Pattern in a String<a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>re.subn()</code> function can be used to search and replace a pattern within a string. It takes at least four important arguments (and some optional ones we won’t discuss here): (1) the pattern to search for, (2) the replacement string to replace matches with, (3) the string to look in, and (4) the maximum number of replacements to make (<code>0</code> to replace all matches). This function returns a tuple<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a> containing two elements: at index <code>0</code>, the modified copy of the string, and at index <code>1</code>, the number of replacements made.</p>
+<pre id=part2-09-subn
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "CCGATGCATGCC"
+pattern = r"ATG"
+replacement = "*"
+result = re.subn(pattern, replacement, seq, 0)
+print(result[0])                                # prints "CCG*C*CC"
+print(result[1])                                # prints 2
+</code></pre>
+</div>
+<div id="split-a-string-into-a-list-of-strings-based-on-a-pattern" class="section level3 unnumbered hasAnchor">
+<h3>Split a String into a List of Strings Based on a Pattern<a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve already seen that we can split a string based on simple strings with <code>.split()</code>. Being able to split on complex regular expressions is often useful as well, and the <code>re.split()</code> function provides this functionality.</p>
+<pre id=part2-09-split
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+seq = "CCGATGCATGCC"
+between_starts = re.split(r"ATG", seq)
+print(between_starts)                      # prints ['CCG', 'C', 'CC']
+</code></pre>
+<p>We’ll leave it as an exercise for the reader to determine what would be output for a sequence where the matches are back to back, or where the matches overlap, as in <code>re.split(r"ATA", "GCATATAGG")</code>.</p>
+</div>
+<div id="the-language-of-regular-expressions-in-python" class="section level3 unnumbered hasAnchor">
+<h3>The Language of Regular Expressions, in Python<a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In chapter 12, “<a href="patterns-regular-expressions.html#patterns-regular-expressions">Patterns (Regular Expressions)</a>”, we covered regular expressions in some detail when discussing <code>sed</code>. Regular expressions in Python work similarly:</p>
+<table style="width:98%;">
+<colgroup>
+<col width="10%" />
+<col width="19%" />
+<col width="27%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Encoding</th>
+<th>Pattern matches</th>
+<th align="center">Example Regex</th>
+<th>Example Match</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>.</code></td>
+<td>Any character</td>
+<td align="center"><code>r"CC."</code></td>
+<td><code>CCA</code> - <em>Any Proline codon</em></td>
+</tr>
+<tr class="even">
+<td rowspan="2" align="center"><code>[set]</code></td>
+<td rowspan="2">Set of characters</td>
+<td align="center"><code>r"[ATGC]"</code></td>
+<td><code>T</code> - <em>A single DNA nucleotide</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>r"[a-zA-Z]"</code></td>
+<td><code>q</code> - <em>Any letter</em></td>
+</tr>
+<tr class="even">
+<td align="center"><code>[^set]</code></td>
+<td>Not in set</td>
+<td align="center"><code>r"[^a-zA-Z]"</code></td>
+<td><code>305.7</code> - <em>No letters</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>+</code></td>
+<td>1 or more times</td>
+<td align="center"><code>r"[ATGC]+"</code></td>
+<td><code>TGCCGTA</code> - <em>DNA sequence</em></td>
+</tr>
+<tr class="even">
+<td rowspan="2" align="center"><code>*</code></td>
+<td rowspan="2">0 or more times</td>
+<td align="center"><code>r"[0-9]*"</code></td>
+<td><code>42</code> - <em>0 or more numbers</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>r"GC*G"</code></td>
+<td><code>GG</code> - <em>2 Gs with 0 or more Cs inbetween</em></td>
+</tr>
+<tr class="even">
+<td align="center"><code>(.)</code></td>
+<td>Group a pattern</td>
+<td align="center"><code>r"(ATG)+"</code></td>
+<td><code>ATGATG</code> - <em>1 or more ATG codons</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>|</code></td>
+<td>“or”</td>
+<td align="center"><code>r"[ACTG]+(TAG|TAA|TGA)"</code></td>
+<td><code>AAATAA</code> - <em>DNA seq and a stop codon</em></td>
+</tr>
+<tr class="even">
+<td align="center"><code>{n}</code></td>
+<td><em>n</em> times</td>
+<td align="center"><code>r"(AT){3}"</code></td>
+<td><code>ATATAT</code> - <em>exactly 3 ATs</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>{n,m}</code></td>
+<td><em>n</em>-<em>m</em> times</td>
+<td align="center"><code>r"(AT){1,3}"</code></td>
+<td><code>ATAT</code> - <em>AT repeated 1, 2 or 3 times</em></td>
+</tr>
+<tr class="even">
+<td align="center"><code>^</code></td>
+<td>At the start</td>
+<td rowspan="2" align="center"><code>r"^([ACTG])+$"</code></td>
+<td rowspan="2"><em>A string of DNA and only DNA</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>$</code></td>
+<td>At the end</td>
+</tr>
+</tbody>
+</table>
+<p>For more detailed examples of these regular expression constructs, refer to <a href="patterns-regular-expressions.html#patterns-regular-expressions">chapter 12</a>.</p>
+<p>The regular expression syntax of Python provides extended regular expression syntax which supports a number of sophisticated features, two of which are detailed here.</p>
+<p>First, operators that specify that a match should be repeated (such as plus signs, curly brackets, and asterisks) are by default “greedy”. The same is true in the POSIX-extended syntax used by <code>sed</code>. In Python, however, we have the option of making the operator non-greedy, or more accurately, reluctant. Consider the pattern <code>r"([ACTG])+(TAG|TAA|TGA)"</code>, which matches a DNA sequence terminated by a stop codon. The greedy part, <code>([ACTG])+</code>, will consume all but the last stop codon, leaving as little of the remaining string as possible to make the rest of the pattern match.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-09-string-tips-and-regex.Rmd.images/II.9_12_regex_greedy_ex.png" /></p>
+</div>
+<p>In Python, if we want to make the plus sign reluctant, we can follow it with a question mark, which causes the match to leave as much as possible for later parts of the pattern.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-09-string-tips-and-regex.Rmd.images/II.9_13_regex_reluctant_ex.png" /></p>
+</div>
+<p>The reluctance operator can also follow the asterisk and curly brackets, but beware: when used without following one of these three repetition operators, the question mark operator works as an “optional” operator (e.g., <code>r"C(ATG)?C"</code> matches <code>"CC"</code> and <code>"CATGC"</code>).</p>
+<p>The regular expression syntax used by Python introduced a number of shorthand codes for character classes. For example, <code>\w</code> is the shorthand for “any alphanumeric and the underscore”, so <code>r"\w+"</code> is the pattern for a series of these and is equivalent to <code>r"[A-Za-z0-9_]+"</code>. The pattern <code>\W</code> matches any character that is not alphanumeric or the underscore, so <code>r"\W+"</code> matches a series of these (equivalent to <code>r"[^A-Za-z0-9_]+"</code>). Perhaps the most important shorthand class is <code>\s</code>, which matches a single whitespace character: a tab, space, or newline character (<code>\S</code> matches any non-whitespace character). This is most useful when parsing input, where it cannot be guaranteed that words are separated by tabs, spaces, or some combination thereof.</p>
+<pre id=part2-09-white-space
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+import re
+import sys
+
+## Parse input in two columns
+for line in sys.stdin:
+    line_stripped = line.strip()
+    #line_list = line.split("\t") 
+    line_list = re.split(r"\s+", line_stripped) 
+
+    # ...
+</code></pre>
+<p>In the code above, we’ve replaced the split on <code>"\t"</code> that we’re used to with a <code>re.split()</code> on <code>r"\s+"</code>, which will ensure that we correctly parse the pieces of the line even if they are separated with multiple tabs, spaces, or some combination thereof.</p>
+</div>
+<div id="counting-promoter-elements" class="section level3 unnumbered hasAnchor">
+<h3>Counting Promoter Elements<a href="string-tips-and-regular-expressions.html#counting-promoter-elements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider the file <a href="data/grape_promoters.txt">grape_promoters.txt</a>, which contains on each line 1000bp upstream of gene regions in the <em>Vitis vinifera</em> genome:</p>
+<pre id=part2-09-grape
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+GSVIVT01034325001_1      GATTTCAAAAGCATTCTGTTGTTCTTTGAGGTCAGCAACCTGACCAATAAAAACT
+GSVIVT01034326001_2      TACGCTTGACAAGACGTCTCCATGTCCTTTCAAGCGACTTGCTACGCTATGCACC
+GSVIVT01034329001_3      AAAATTGGATGCATAAAACAAAATAAATGTAAATACTAAAATAATGATCATATTC
+GSVIVT01034331001_4      AAAAAATAAAGTGTTTTAAAATAAAATCATTTAATTATTTTCACCTATTTTTTAA
+GSVIVT01034332001_5      CAAAGCCATAGCAAAAATTGCATTCTCGAACAACCAAATAAAATCGAAACTTGTA
+GSVIVT01034334001_6      GATGTTAGGAATAGTGGTTAATGGTTGTTGTCCACGTGTATAGCTTTGTTAGAAT
+GSVIVT01034337001_7      AAGATATTATAATTAAAAAATATTTAATATAATTTTTTTAAAATATTGCATTTTG
+GSVIVT01034340001_8      AAATTTTGGAAACTTATTAATAAAGGAATGACTCACATATTGTTCTTATTCAAAA
+GSVIVT01034341001_9      GTAGTGGTAAACCGTTGAGGTGGATGTCATGCTGTTGTCGACGGCGATTGGTGGT
+GSVIVT01034344001_10     TTGTATCGCATATTCAACCAAATATAAGATATGATAAGTGATGATATATATTATT
+GSVIVT01034346001_11     AACCCATTTCTTATCTCTTTCTTTCTTTCTTTCTTTCTTTCTTCTTCTTCTTCTT
+...
+</code></pre>
+<p>These columns are not separated by a tab character, but rather by a variable number of spaces.</p>
+<p>Promoter motifs are small DNA patterns nearby gene sequences to which the cellular machinery binds in order to help initiate the gene-transcription process. For example, the ABF protein binds to the DNA pattern <code>"CACGTGGC"</code> if it is near a gene in some plants. Some motifs are flexible and can be described by regular expressions; the GATA protein binds to any short DNA sequence matching the pattern <code>"[AT]GATA[GA]"</code>. We wish to analyze the <em>V. vinifera</em> upstream regions above, and count for each the number of occurrences of the GATA motif. Our output should look like so:</p>
+<pre id=part2-09-grape-count
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+GSVIVT01034325001_1     3
+GSVIVT01034326001_2     2
+GSVIVT01034329001_3     2
+GSVIVT01034331001_4     2
+GSVIVT01034332001_5     1
+GSVIVT01034334001_6     2
+...
+</code></pre>
+<p>After importing the <code>re</code> module, we’ll first write a <code>function count_motifs()</code> that takes two parameters: first a sequence in which to count motif matches, and second a motif for which to search. There are a variety of ways we could code this function, but a simple solution will be to use <code>re.split()</code> to split the sequence on the motif regular expression — the number of motifs will then be the length of the result minus one (because if no motifs are found, no split will be done; if one is found, one split will be done, and so on).</p>
+<p>With this function written and tested, we can open the file using <code>open()</code> and loop over each line, calling the <code>count_motifs()</code> function on each sequence with the motif <code>r"[AT]GATA[GA]"</code>. Because the columns are separated with a variable number of spaces instead of single tab or space characters, we’ll use <code>re.split()</code> to split each line into pieces.</p>
+<p>First, we’ll write and test the function that counts motifs and offers an example usage, where the number of matches should be two.</p>
+<pre id=part2-09-count_test
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+import re
+
+def count_motifs(seq, motif):
+    pieces = re.split(motif, seq)
+    return len(pieces) - 1
+
+seq = "AAAAAAATGATAGAAAAAGATAAAAAA"
+print(count_motifs(seq, r"[AT]GATA[GA]"))   # prints 2
+</code></pre>
+<p>Next we can finish the program, using <code>re.split()</code> to process each line.</p>
+<pre id=part2-09-count_motifs
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+import re
+
+def count_motifs(seq, motif):
+    pieces = re.split(motif, seq)
+    return len(pieces) - 1
+
+with open("grape_promoters.txt", "r") as fhandle:
+    for line in fhandle:
+        linestripped = line.strip()
+        line_list = re.split(r"\s+", linestripped)
+        gid = line_list[0]
+        seq = line_list[1]
+
+
+        num_motifs = count_motifs(seq, r"[AT]GATA[GA]")
+        print(f"{gid}\t{num_motifs}")
+</code></pre>
+<p>When run, this simple program (<a href="data/grape_count_gata.py"><code>grape_count_gata.py</code></a>) produces the output desired above. Because the output is sent to standard output, we can further filter the results through the <code>sort</code> and <code>head</code> command line utilities to identify which promoters are most likely to be found by GATA: <code>./grape_count_gata.py | sort -k2,2nr | head -n 10</code>.</p>
+<div id="exercises-20" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="string-tips-and-regular-expressions.html#exercises-20" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Write a function called <code>reverse_complement()</code> that takes a DNA sequence parameter and returns its reverse complement (i.e., reverses the string, switches A’s and T’s, and switches G’s and C’s, so the reverse complement of <code>AAAGC</code> would be <code>GCTTT</code>).</p></li>
+<li><p>DNA sequences that are destined to be turned into proteins are “read” by the cellular machinery in one of six “reading frames” with lengths that are multiples of three. The first three are derived from the sequence itself, starting at index 0, index 1, and index 2; to derive reading frames three, four, and five, we first reverse-complement the sequence and then produce frames from indices 0, 1, and 2:</p>
+<pre id=part2-09-frames
+      class="language-txt 
+           line-numbers 
+           linkable-line-numbers">
+ <code>
+ ACTAGACG            #sequence
+<span style="color: blue">ACTAGA                #reading frame 1 (index 0)
+ CTAGAC               #reading frame 2 (index 1)
+  TAGACG              #reading frame 3 (index 2)</span>
+CGTCTAGT            #reverse complement of sequence
+<span style="color: blue">CGTCTA                #reading frame 4 (index 0 of rev comp)
+ GTCTAG               #reading frame 5 (index 1 of rev comp)
+  TCTAGT              #reading frame 6 (index 2 of rev comp)</span>
+ </code></pre>
+<p>Using the <code>reverse_complement()</code> function from above (and potentially the <code>get_windows()</code> function from chapter 20, “<a href="python-functions.html#python-functions">Python Functions</a>”), write a <code>seq_to_six_frames()</code> function that takes a DNA sequence as a parameter and returns a list of the six reading frames (as strings).</p></li>
+<li><p>Write a function called <code>longest_non_stop()</code> that takes a DNA sequence as a parameter and returns the longest amino acid sequence that can be produced from it. This is done by generating the six reading frames from the sequence, converting each to an amino acid sequence (probably using the <code>dna_to_aa()</code> function from chapter 22, <a href="dictionaries.html#dictionaries">“Dictionaries”</a>), and then trimming the resulting sequences down to the first “stop” codon (<code>"*"</code>) if there are any.</p>
+<p>In the DNA sequence <code>seq = "AGCTACTAGGAAGATAGACGATTAGAC"</code>, for example, the six translations are <code>SY*EDRRLD</code> (Frame 1), <code>ATRKIDD*</code> (Frame 2), <code>LLGR*TIR</code> (Frame 3), <code>V*SSIFLVA</code> (Frame 4), <code>SNRLSS**</code> (Frame 5), and <code>LIVYLPSS</code> (Frame 6). In order of lengths, the possibilities are thus <code>"V"</code>, <code>"SY"</code>, <code>"LLGR"</code>, <code>"SNRLSS"</code>, <code>"ATRKIDD"</code>, and <code>"LIVYLPSS"</code>. As a result, <code>longest_non_stop(seq)</code> should return <code>"LIVYLPSS"</code>.</p></li>
+<li><p>Modify the <code>grape_count_gata.py</code> program, calling it <code>motifs_count.py</code> so that it can read the file name and motifs to process (the latter as a comma-separated list) from <code>sys.argv</code>. When run as <code>./motifs_count.py grape_promoters.txt [AT]GATA[GA],[CGT]ACGTG[GT][AC],TTGAC</code>, the output should look like:</p>
+<pre id=part2-09-new_output
+       class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+  <code>
+  GSVIVT01034325001_1     3       [AT]GATA[GA]
+GSVIVT01034325001_1     0       [CGT]ACGTG[GT][AC]
+GSVIVT01034325001_1     2       TTGAC
+GSVIVT01034326001_2     2       [AT]GATA[GA]
+GSVIVT01034326001_2     0       [CGT]ACGTG[GT][AC]
+GSVIVT01034326001_2     4       TTGAC
+GSVIVT01034329001_3     2       [AT]GATA[GA]
+GSVIVT01034329001_3     0       [CGT]ACGTG[GT][AC]
+  </code></pre></li>
+<li><p>Genotyping by sequencing (GBS) is a method for identifying genetic variants in a DNA sample by first splitting chromosomes in pseudorandom locations through the application of restriction enzymes and then sequencing short reads from the ends of the resulting fragments:</p>
+<div class="fig center" style="width: 100%">
+<img src="images/part2-09-string-tips-and-regex.Rmd.images/II.9_20_gbs_overview-3.png" />
+</div>
+<p>In the above, black lines represent input DNA sequence, red lines are cut sites, and green lines represent output from the sequencing machine. (Some simplifications have been made to the figure above for the sake of clarity.) The result is much higher depth of sequencing at fewer locations, which can be useful in a variety of contexts, including looking for genetic variants between different versions of the same chromosome (which requires many reads from the same location to statistically confirm those variants).</p>
+<p>The restriction enzymes cut on the basis of patterns; for example, the ApeK1 enzyme cuts DNA molecules at the pattern <code>"GC[AT]GC"</code>. Based on the recognized patterns, some enzymes are “frequent cutters” and some are not; more frequent cutters sample more locations in a genome but sacrifice depth of sequencing. For this reason, researchers often want to know, given an enzyme pattern and genome sequence, the distribution of fragment lengths that will result.</p>
+<p>Write a function <code>gbs_cut()</code> that takes a DNA sequence, a regular expression pattern, and a “bin size.” It should return a dictionary mapping sequence lengths, rounded down to the nearest bin size, to the number of fragments produced by the cutter in that bin. As an example, <code>"AAAAGCAGCAAAAAAGCTGCAAGCAGCAAAAA"</code> when processed with <code>"GC[AT]GC"</code> produces fragment sizes of 4, 6, 2, and 5. If grouped in a bin size of 3, the dictionary would have keys <code>0</code>, <code>3</code>, and <code>6</code>, and values <code>1</code>, <code>1</code>, and <code>2</code>.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="66">
+<li id="fn66"><p>Tuples are similar to lists, but <a href="elementary-data-types.html#immutable">immutable</a>, see <a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists">Tuples</a><a href="string-tips-and-regular-expressions.html#fnref66" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dictionaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="variables-and-scope.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-09-string-tips-and-regex.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

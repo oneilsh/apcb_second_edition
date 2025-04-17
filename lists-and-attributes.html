@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 33 Lists and Attributes | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 33 Lists and Attributes | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 33 Lists and Attributes | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 33 Lists and Attributes | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-functions.html"/>
+<link rel="next" href="data-frames.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lists-and-attributes" class="section level1 hasAnchor" number="33">
+<h1><span class="header-section-number">Chapter 33</span> Lists and Attributes<a href="lists-and-attributes.html#lists-and-attributes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The next important data type in our journey through R is the list. Lists are quite similar to vectors—they are ordered collections of data, indexable by index number, logical vector, and name (if the list is named). Lists, however, can hold multiple different types of data (including other lists). Suppose we had three different vectors representing some information about the plant <em>Arabidopsis thaliana</em>.</p>
+<pre id=part3-05-athal-data
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+organism <- "A. thaliana"
+ecotypes <- c("C24", "Col0", "WS2")
+num_chromosomes <- 5
+</code></pre>
+<p>We can then use the <code>list()</code> function to gather these vectors together into a single unit with class <code>"list"</code>.</p>
+<pre id=part3-05-athal-list-def-1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+athal <- list(organism, ecotypes, num_chromosomes)
+print(class(athal))                                  # [1] "list"
+</code></pre>
+<p>Graphically, we might represent this list like so:</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part3-05-lists-and-attributes.Rmd.images/III.5_3_athal_list_1-4.png" /></p>
+</div>
+<p>Here, the <code>[1]</code> syntax is indicating that the elements of the list are vectors (as in when vectors are printed). Like vectors, lists can be indexed by index vector and logical vector.</p>
+<pre id=part3-05-sublist-extract-1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sublist <- athal[c(1,3)]
+sublist <- athal[c(TRUE, FALSE, TRUE)]
+</code></pre>
+<p>Both of the above assign to the variable sublist a list looking like:</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part3-05-lists-and-attributes.Rmd.images/III.5_5_athal_sublist_1-4.png" /></p>
+</div>
+<p>This seems straightforward enough: subsetting a list with an indexing vector returns a smaller list with the requested elements. But this rule can be deceiving if we forget that a vector is the most basic element of data. Because <code>2</code> is the length-one vector <code>c(2)</code>, <code>athal[2]</code> returns not the second element of the <code>athal</code> list, but rather a length-one list with a single element (the vector of ecotypes).</p>
+<pre id=part3-05-sublist-extract-2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+eco_list <- athal[2]
+print(class(eco_list))                               # [1] "list"
+print(length(eco_list))                              # [1] 1 
+</code></pre>
+<p>A graphical representation of this list:</p>
+<div class="fig center" style="width: 50%">
+<p><img src="images/part3-05-lists-and-attributes.Rmd.images/III.5_7_athal_eco_list-4.png" /></p>
+</div>
+<p>We will thus need a different syntax if we wish to extract an individual element from a list. This alternate syntax is <code>athal[[2]]</code>.</p>
+<pre id=part3-05-sublist-extract-3
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ecotypes <- athal[[2]]
+print(class(ecotypes))                               # [1] "character"
+print(ecotypes)                                      # [1] "C24" "Col0" "Ws2"
+</code></pre>
+<p>If we wanted to extract the second ecotype directly, we would need to use the relatively clunky <code>second_ecotype &lt;- athal[[2]][2]</code>, which accesses the second element of the vector (accessed by <code>[2]</code>) inside of the of the second element of the list (accessed by <code>[[2]]</code>).</p>
+<pre id=part3-05-list-print
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(athal)
+</code></pre>
+<p>When we print a list, this structure and the double-bracket syntax is reflected in the output.</p>
+<pre id=part3-05-list-print-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[[1]]
+[1] "A. thaliana"
+
+[[2]]
+[1] "C24"  "Col0" "WS2" 
+
+[[3]]
+[1] 5
+</code></pre>
+<div id="named-lists-lists-within-lists" class="section level3 unnumbered hasAnchor">
+<h3>Named Lists, Lists within Lists<a href="lists-and-attributes.html#named-lists-lists-within-lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like vectors, lists can be named—associated with a character vector of equal length—using the <code>names()</code> function. We can use an index vector of names to extract a sublist, and we can use <code>[[]]</code> syntax to extract individual elements by name.</p>
+<pre id=part3-05-list-names-1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+names(athal) <- c("Species", "Ecotypes", "# Chromosomes")
+sublist <- athal[c("Species", "# Chromosomes")]      # list of length two
+
+ecotypes <- athal[["Ecotypes"]]                      # ecotypes vector
+</code></pre>
+<p>We can even extract elements from a list if the name of the element we want is stored in another variable, using the <code>[[]]</code> syntax.</p>
+<pre id=part3-05-list-names-2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+extract_name <- "Ecotypes"
+ecotypes <- athal[[extract_name]]                    # ecotypes vector
+</code></pre>
+<p>As fun as this double-bracket syntax is, because extracting elements from a list by name is a common operation, there is a shortcut using <code>$</code> syntax.</p>
+<pre id=part3-05-list-names-dollar
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ecotypes <- athal[["Ecotypes"]]
+# same as
+ecotypes <- athal$"Ecotypes"
+</code></pre>
+<p>In fact, if the name doesn’t contain any special characters (spaces, etc.), then the quotation marks can be left off.</p>
+<pre id=part3-05-list-names-dollar-noquotes
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ecotypes <- athal$Ecotypes
+</code></pre>
+<p>This shortcut is widely used and convenient, but, because the quotes are implied, we can’t use <code>$</code> syntax to extract an element by name if that name is stored in an intermediary variable. For example, if <code>extract_name &lt;- "ecotypes"</code>, then <code>athal$extract_name</code> will expand to <code>athal[["extract_name"]]</code>, and we won’t get the ecotypes vector. This common error reflects a misunderstanding of the <a href="">syntactic sugar</a> employed by R. Similarly, the <code>$</code> syntax won’t work for names like <code>"# Chromosomes"</code> because that name contains a space and a special character (for this reason, names of list elements are often simplified).</p>
+<p>Frequently, <code>$</code> syntax is combined with vector syntax if the element of the list being referred to is a vector. For example, we can directly extract the third ecotype, or set the third ecotype.</p>
+<pre id=part3-05-list-names-dollar-vector
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+third_ecotype <- athal$Ecotypes[3]
+athal$Ecotypes[3] <- "WS2b"
+</code></pre>
+<p>Continuing with this example, let’s suppose we have another list that describes information about each chromosome. We can start with an empty list, and assign elements to it by name.</p>
+<pre id=part3-05-list-assign-to-empty
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+chrs <- list()
+chrs$Lengths <- c(34.9, 22.0, 25.4, 20.8, 31.2)
+chrs$GeneCounts <- c(7078, 4245, 5437, 4124, 6318)
+</code></pre>
+<p>This list of two elements relates to <em>A. thaliana</em>, so it makes sense to include it somehow in the <code>athal</code> list. Fortunately, lists can contain other lists, so we’ll assign this <code>chrs</code> list as element of the <code>athal</code> list.</p>
+<pre id=part3-05-list-assign-sublist
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+athal$ChrInfo <- chrs
+</code></pre>
+<p>Lists are an excellent container for general collections of heterogeneous data in a single organized “object.” (These differ from Python <a href="">objects</a> in that they don’t have methods stored in them as well, but we’ll see how R works with methods in later chapters.) If we ran <code>print(athal)</code> at this point, all this information would be printed, but unfortunately in a fairly unfriendly manner:</p>
+<pre id=part3-05-list-complex-print-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+$Species
+[1] "A. thaliana"
+
+$Ecotypes
+[1] "C24"  "Col0" "WS2b"
+
+$`# Chromosomes`
+[1] 5
+
+$ChrInfo
+$ChrInfo$Lengths
+[1] 34.9 22.0 25.4 20.8 31.2
+
+$ChrInfo$GeneCounts
+[1] 7078 4245 5437 4124 6318
+</code></pre>
+<p>This output does illustrate something of interest, however. We can chain the <code>$</code> syntax to access elements of lists and contained lists by name. For example, <code>lengths &lt;- athal$ChrInfo$Lengths</code> extracts the vector of lengths contained in the internal <code>ChrInfo</code> list, and we can even modify elements of these vectors with syntax like <code>athal$ChrInfo$GeneCounts[1] &lt;- 7079</code> (perhaps a new gene was recently discovered on the first chromosome). Expanding the syntax a bit to use double-brackets rather than <code>$</code> notation, these are equivalent to <code>lengths &lt;- athal[["ChrInfo"]][["Lengths"]]</code> and <code>athal[["ChrInfo"]][["GeneCounts"]][1] &lt;- 7079</code>.</p>
+</div>
+<div id="attributes-removing-elements-list-structure" class="section level3 hasAnchor" number="33.0.1">
+<h3><span class="header-section-number">33.0.1</span> Attributes, Removing Elements, List Structure<a href="lists-and-attributes.html#attributes-removing-elements-list-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lists are an excellent way to organize heterogeneous data, especially when data are stored in a Name → Value association,<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a> making it easy to access data by character name. But what if we want to look up some information associated with a piece of data but not represented in the data itself? This would be a type of “metadata,” and R allows us to associate metadata to any piece of data using what are called <em>attributes</em>. Suppose we have a simple vector of normally distributed data:</p>
+<pre id=part3-05-list-attr-1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample <- rnorm(10, mean = 20, sd = 10)
+</code></pre>
+<p>Later, we might want know what type of data this is: is it normally distributed, or something else? We can solve this problem by assigning the term <code>"normal"</code> as an attribute of the data. The attribute also needs a name, which we’ll call <code>"disttype"</code>. Attributes are assigned in a fashion similar to names.</p>
+<pre id=part3-05-list-attr-2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+attr(sample, "disttype") <- "normal"
+print(sample)
+</code></pre>
+<p>When printed, the output shows the attributes that have been assigned as well.</p>
+<pre id=part3-05-list-attr-2-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+ [1] -3.177991  8.676695 10.623292 22.020329  5.497178 10.135908  7.113268
+ [8] 26.784623 16.306509 21.237899
+attr(,"disttype")
+[1] "normal"
+</code></pre>
+<p>We can separately extract a given attribute from a data item, using syntax like <code>sample_dist &lt;- attr(sample, "disttype")</code>. Attributes are used widely in R, though they are rarely modified in day-to-day usage of the language.<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a></p>
+<p>To expand our <em>A. thaliana</em> example, let’s assign a “kingdom” attribute to the species vector.</p>
+<pre id=part3-05-athal-list-attr
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+attr(athal$Species, "kingdom") <- "Plantae"
+</code></pre>
+<p>At this point, we’ve built a fairly sophisticated structure: a list containing vectors (one of which has an attribute) and another list, itself containing vectors, with the various list elements being named. If we were to run <code>print(athal)</code>, we’d see rather messy output. Fortunately, R includes an alternative to <code>print()</code> called <code>str()</code>, which nicely prints the structure of a list (or other data object). Here’s the result of calling <code>str(athal)</code> at this point.</p>
+<pre id=part3-05-athal-str-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+List of 4
+ $ Species      : atomic [1:1] A. thaliana
+  ..- attr(*, "kingdom")= chr "Plantae"
+ $ Ecotypes     : chr [1:3] "C24" "Col0" "WS2b"
+ $ # Chromosomes: num 5
+ $ ChrInfo      :List of 2
+  ..$ Lengths   : num [1:5] 54.2 36.4 19.7 46.3 29.2
+  ..$ GeneCounts: num [1:5] 8621 7215 3124 7219 4140
+</code></pre>
+<p>Removing an element or attribute from a list is as simple as assigning it the special value <code>NULL</code>.</p>
+<pre id=part3-05-list-assign-null
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# delete ChrInfo and Species attribute
+athal$ChrInfo <- NULL
+attr(athal$Species, "kingdom") <- NULL
+str(athal)
+</code></pre>
+<p>The printed structure reveals that this information has been removed.</p>
+<pre id=part3-05-list-assign-null-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+List of 3
+ $ Species      : chr "A. thaliana"
+ $ Ecotypes     : chr [1:3] "C24" "Col0" "WS2b"
+ $ # Chromosomes: num 5
+</code></pre>
+<p>What is the point of all this detailed list making and attribute assigning? It turns out to be quite important, because many R functions return exactly these sorts of complex attribute-laden lists. Consider the <code>t.test()</code> function, which compares the means of two vectors for statistical equality:</p>
+<pre id=part3-05-ttest-1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+samp1 <- rnorm(100, mean = 10, sd = 5)
+samp2 <- rnorm(100, mean = 8, sd = 5)
+tresult <- t.test(samp1, samp2)
+print(tresult)
+</code></pre>
+<p>When printed, the result is a nicely formatted, human-readable result.</p>
+<pre id=part3-05-ttest-1-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Welch Two Sample t-test
+
+data:  samp1 and samp2
+t = 2.8214, df = 197.172, p-value = 0.005271
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.6312612 3.5626936
+sample estimates:
+mean of x mean of y 
+ 9.307440  7.210463 
+</code></pre>
+<p>If we run <code>str(tresult)</code>, however, we find the true nature of <code>tresult</code>: it’s a list!</p>
+<pre id=part3-05-ttest-1-str-out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+List of 9
+ $ statistic  : Named num 5.41
+  ..- attr(*, "names")= chr "t"
+ $ parameter  : Named num 198
+  ..- attr(*, "names")= chr "df"
+ $ p.value    : num 1.84e-07
+ $ conf.int   : atomic [1:2] 2.07 4.45
+  ..- attr(*, "conf.level")= num 0.95
+ $ estimate   : Named num [1:2] 10.41 7.15
+  ..- attr(*, "names")= chr [1:2] "mean of x" "mean of y"
+ $ null.value : Named num 0
+  ..- attr(*, "names")= chr "difference in means"
+ $ alternative: chr "two.sided"
+ $ method     : chr "Welch Two Sample t-test"
+ $ data.name  : chr "samp1 and samp2"
+ - attr(*, "class")= chr "htest"
+</code></pre>
+<p>Given knowledge of this structure, we can easily extract specific elements, such as the <em>p</em> value with <code>pval &lt;- tresult$p.value</code> or <code>pval &lt;- tresult[["p.value"]]</code>.</p>
+<p>One final note about lists: vectors (and other types) can be converted into a list with the <code>as.list()</code> function. This will come in handy later, because lists are one of the most general data types in R, and we can use them for intermediary data representations.</p>
+<pre id=part3-05-as-list-example
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+scores <- c(56.3, 91.7, 87.4)
+scores_list <- as.list(scores)     # A list with 3 single-element vectors
+</code></pre>
+<div id="exercises-33" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="lists-and-attributes.html#exercises-33" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>The following code first generates a random sample called <code>a</code>, and then a sample called <code>response</code>, wherein each element of <code>response</code> is an element of <code>a</code> times 1.5 plus some random noise:</p>
+<pre id=part3-05-ex1-1
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+ <code>
+a <- rnorm(100, mean = 2, sd = 3)
+response <- a * 1.5 + rnorm(100, mean = 0, sd = 1)
+ </code></pre>
+<p>Next, we can easily create a linear model predicting values of response from <code>a</code>:</p>
+<pre id=part3-05-ex1-2
+     class="language-r 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+model <- lm(response ~ a)
+print(model)
+</code></pre>
+<p>When printed, the output nicely describes the parameters of the model.</p>
+<pre id=part3-05-ex1-3
+     class="language-txt
+            line-numbers 
+            linkable-line-numbers">
+<code>
+Call:
+lm(formula = response ~ a)
+&nbsp;
+Coefficients:
+(Intercept)            a  
+-0.06706      1.53367  
+</code></pre>
+<p>We can also easily test the significance of the parameters with the anova() function (to run an analysis of variance test on the model).</p>
+<pre id=part3-05-ex1-4
+     class="language-r
+            line-numbers 
+            linkable-line-numbers">
+<code>
+vartest <- anova(model)
+print(vartest)
+</code></pre>
+<p>The output again shows nicely formatted text:</p>
+<pre id=part3-05-ex1-5
+     class="language-txt
+            line-numbers 
+            linkable-line-numbers">
+<code>
+Analysis of Variance Table
+&nbsp;
+Response: response
+       Df  Sum Sq Mean Sq F value    Pr(>F)    
+a          1 2848.43 2848.43  3827.2 < 2.2e-16 ***
+Residuals 98   72.94    0.74                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</code></pre>
+<p>From the <code>model</code>, extract the coefficient of <code>a</code> into a variable called <code>a_coeff</code> (which would contain just the number <code>1.533367</code> for this random sample). Next, from <code>vartest</code> extract the <em>p</em> value associated with the <code>a</code> coefficient into a vector called <code>a_pval</code> (for this random sample, the p value is <code>2.2e-16</code>).</p></li>
+<li><p>Write a function called <code>simple_lm_pval()</code> that automates the process above; it should take two parameters (two potentially linearly dependent numeric vectors) and return the <em>p</em> value associated with the first (nonintercept) coefficient.</p></li>
+<li><p>Create a list containing three random samples from different distributions (e.g., from <code>rnorm()</code>, <code>runif()</code>, and <code>rexp()</code>), and add an attribute for <code>"disttype"</code> to each. Use <code>print()</code> and <code>str()</code> on the list to examine the attributes you added.</p></li>
+<li><p>Some names can be used with <code>$</code> notation without quotation marks; if <code>l &lt;- list(values = c(20, 30))</code>, then <code>print(l$values)</code> will print the internal vector. On the other hand, if <code>l &lt;- list("val-entries" = c(20, 30))</code>, then quotations are required as in <code>print(l$"val-entries")</code>. By experimentation, determine at least five different characters that require the use of quotation marks when using <code>$</code> notation.</p></li>
+<li><p>Experiment with the <code>is.list()</code> and <code>as.list()</code> functions, trying each of them on both vectors and lists.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="104">
+<li id="fn104"><p>R lists are often used like dictionaries in Python and hash tables in other languages, because of this easy and effective Name → Value lookup operation. It should be noted that (at least as of R 3.3), name lookups in lists are not as efficient as name lookups in Python dictionaries or other true hash tables. For an efficient and more idiomatic hash table/dictionary operation, there is also the package <code>hash</code> available for install with <code>install.packages("hash")</code>.<a href="lists-and-attributes.html#fnref104" class="footnote-back">↩︎</a></p></li>
+<li id="fn105"><p>For example, the names of a vector are stored as an attribute called “names”—the lines <code>names(scores) &lt;- c("Student A", "Student B", "Student C")</code> and <code>attr(scores, "names") &lt;- c("Student A", "Student B", "Student C")</code> are (almost) equivalent. Still, it is recommended to use specialized functions like <code>names()</code> rather than set them with <code>attr()</code> because the <code>names()</code> function includes additional checks on the sanity of the names vector.<a href="lists-and-attributes.html#fnref105" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-frames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-05-lists-and-attributes.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

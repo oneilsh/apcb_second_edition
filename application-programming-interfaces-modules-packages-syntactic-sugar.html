@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 27 Application Programming Interfaces, Modules, Packages, Syntactic Sugar | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 27 Application Programming Interfaces, Modules, Packages, Syntactic Sugar | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 27 Application Programming Interfaces, Modules, Packages, Syntactic Sugar | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 27 Application Programming Interfaces, Modules, Packages, Syntactic Sugar | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="use-case-counting-snps.html"/>
+<link rel="next" href="algorithms-and-data-structures.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="application-programming-interfaces-modules-packages-syntactic-sugar" class="section level1 hasAnchor" number="27">
+<h1><span class="header-section-number">Chapter 27</span> Application Programming Interfaces, Modules, Packages, Syntactic Sugar<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#application-programming-interfaces-modules-packages-syntactic-sugar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We know that objects like lists have methods such as <code>.sort()</code> and <code>.append()</code>. Do they have others? They do, and one way to find them is to run Python in the interactive mode on the command line.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a></p>
+<p>To do this, we execute the <code>python</code> interpreter without specifying a file to interpret. The result is a Python prompt, <code>&gt;&gt;&gt;</code>, where we can type individual lines of Python code and see the results.</p>
+<pre id=part2-13-interactive
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/py]$ <b>python</b>
+Python 3.12.9 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 13:04:33) [Clang 14.0.6 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> <b>a = 3 + 4</b>
+>>> <b>print(a)</b>
+7
+>>> 
+</code></pre>
+<p>The interactive mode, aside from providing an interface for running quick tests of Python functionality, includes a help system! Simply run the <code>help()</code> function on either a class name (like <code>help(list)</code>) or an instance of the class.</p>
+<pre id=part2-13-help-fxn
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+>>> <b>a = list()</b>
+>>> <b>help(a)</b>
+</code></pre>
+<p>This command opens an interactive viewer in which we can scroll to see all the methods that an object of that type provides. Here’s a sample from the help page:</p>
+<pre id=part2-13-help-output
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+ |
+ |  <b>append</b>(self, object, /)
+ |      Append object to the end of the list.
+ |
+ |  <b>clear</b>(self, /)
+ |      Remove all items from list.
+ |
+ |  <b>copy</b>(self, /)
+ |      Return a shallow copy of the list.
+ |
+ |  <b>count</b>(self, value, /)
+ |      Return number of occurrences of value.
+ |
+</code></pre>
+<p>Exit the interactive help page by pressing the <code>q</code> key.</p>
+<p>Browsing through this documentation reveals that Python lists have many methods, including <code>.append()</code>, <code>.count()</code>, and others. Sometimes the documentation isn’t as clear as one would hope. In these cases, some experimentation may be required. Between the description above and some code tests, for example, can you determine what a list’s <code>.count()</code> method does and how to use it effectively?</p>
+<div id="api" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>The set of methods and instance variables belonging to an object or class is known as its <em>API</em>, or Application Programming Interface. The API is the set of functions, methods, or variables provided by an encapsulated collection of code. APIs are an important part of programming because they represent the “user interface” for programming constructs that others have written.</p>
+<p>Sometimes it can be useful to determine what class or “type” to which a variable refers, especially for looking up the API for objects of that type. The <code>type()</code> function comes in handy when combined with a <code>print()</code> call — it prints the type (the class) of data referenced by a variable. The result can then be investigated with <code>help()</code>.</p>
+<pre id=part2-13-type
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/py]$ <b>python</b>
+Python 3.12.9 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 13:04:33) [Clang 14.0.6 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> <b>seq = "ACTAGA"</b>
+>>> <b>print(type(seq))</b>
+<class 'str'>
+>>> <b>help(str)</b>
+</code></pre>
+<p>To exit the interactive Python session, simply call the builtin <code>quit()</code> fuction (or press <code>Ctrl</code> + <code>D</code>, the “end of transmission” character) to return to</p>
+</div>
+<div id="modules" class="section level3 unnumbered hasAnchor">
+<h3>Modules<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider this chunk of code from the example in chapter 26, “<a href="use-case-counting-snps.html#use-case-counting-snps">Use Case: Counting SNPs</a>”, which makes use of the <code>Chromosome</code> and <code>SNP</code> class definitions:</p>
+<pre id=part2-13-read-file
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+## Create chrnames_to_chrs dictionary, parse the input file
+chrnames_to_chrs = dict()
+with open(filename, "r") as fhandle:
+    for line in fhandle:
+        # don't attempt to parse header lines
+        if line[0] != "#":
+            line_stripped = line.strip()
+            line_list = re.split(r"\s+", line_stripped)
+
+            chrname = line_list[0]
+            pos = int(line_list[1])
+            snpid = line_list[2]
+            refallele = line_list[3]
+            altallele = line_list[4]
+
+            ## Put the data in the dictionary
+            if chrname in chrnames_to_chrs:
+                chr_obj = chrnames_to_chrs[chrname]
+                chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+            else:
+                chr_obj = Chromosome(chrname)
+                chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+                chrnames_to_chrs[chrname] = chr_obj
+</code></pre>
+<p>This segment of code takes a file name and produces a dictionary with nicely organized contents of the file. Because this functionality is succinctly defined, it makes sense to turn this into a function that takes the file name as a parameter and returns the dictionary. The code is almost exactly the same, except for being wrapped up in a function definition.</p>
+<pre id=part2-13-fxn
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+def vcf_to_chrnames_dict(filename: str) -> dict[str,tuple]:
+    '''Create chrnames_to_chrs dictionary, parse the input file'''
+    chrnames_to_chrs = dict()
+    with open(filename, "r") as fhandle:
+        for line in fhandle:
+            # don't attempt to parse header lines
+            if line[0] != "#":
+                line_stripped = line.strip()
+                line_list = re.split(r"\s+", line_stripped)
+
+                chrname = line_list[0]
+                pos = int(line_list[1])
+                snpid = line_list[2]
+                refallele = line_list[3]
+                altallele = line_list[4]
+
+                ## Put the data in the dictionary
+                if chrname in chrnames_to_chrs:
+                    chr_obj = chrnames_to_chrs[chrname]
+                    chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+                else:
+                    chr_obj = Chromosome(chrname)
+                    chr_obj.add_snp(chrname, pos, snpid, refallele, altallele)
+                    chrnames_to_chrs[chrname] = chr_obj
+    return chrnames_to_chrs
+</code></pre>
+<p>Later, we can call this function to do all the work of parsing a given file name:</p>
+<pre id=part2-13-fxn-call
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+filename = sys.argv[1]
+chrnames_to_chrs = vcf_to_chrnames_dict(filename)
+
+print(f"chrom\ttransitions\ttransversions")
+for chrname in chrnames_to_chrs:
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+    print(f"{chrname}\t{trs}\t{trv}")
+</code></pre>
+<div id="module" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>Now, what if this function and the two class definitions were things that we wanted to use in other projects? We may wish to make a <em>module</em> out of them—a file containing Python code (usually related to a single topic, such as a set of functions or class definitions related to a particular kind of data or processing).</p>
+<p>We’ve seen a number of modules already, including <code>re</code> and <code>sys</code>. To use a module, we just need to run <code>import &lt;modulename&gt;</code>. As it turns out, modules are simply files of Python code ending in <code>.py</code>! Thus, when we use <code>import modulename</code>, the interpreter searches for a <code>modulename.py</code> containing the various function and class definitions. Module files may either exist in a system-wide location, or be present in the working directory of the program importing them.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
+</div>
+<div id="namespace" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>Importing the module in this way creates a <em>namespace</em> for the module. This namespace categorizes all of the functions and classes contained within that module so that different modules may have functions, classes, and variables with the same name without conflicting.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_8_two_modules.png" /></p>
+</div>
+<p>If we have the above two files in the same directory as our program, source code like the following would print <code>4</code>, <code>64</code>, <code>2.71828</code>, and <code>"TAC"</code>.</p>
+<pre id=part2-13-trunc
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+import moduleA
+import moduleB
+
+print(moduleA.trunc(4.56))         # 4
+print(moduleB.e)                   # 64
+print(moduleA.e)                   # 2.71828
+print(moduleB.trunc("TACTAA", 3))  # "TAC"
+a_node = moduleA.Node()            # Node object defined bn moduleA
+b_node = moduleB.Node()            # Node object defined by moduleB
+</code></pre>
+<p>Unfortunately, Python uses the <code>.</code> operator in multiple similar ways, such as indicating a method belonging to an object (as in <code>a_list.append("ID3")</code>) and to indicate a function, variable, or class definition belonging to a namespace (as above).</p>
+<p>Thus, as a “container” for names, the namespace allows different modules to name functions, classes, and variables the same way without conflicting. Just as a class may be documented by its <a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#api">API</a>, so may modules: a module’s API describes the functions, classes, and variables it defines. These may also be accessed through the interactive help menu (and online). Try running <code>import re</code> followed by <code>help(re)</code> to see all the functions provided by the <code>re</code> module.</p>
+<pre id=part2-13-help-re
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/py]$ <b>python</b>
+Python 3.12.9 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 13:04:33) [Clang 14.0.6 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> <b>import re</b>
+>>> <b>help(re)</b>
+</code></pre>
+<p>There are a huge number of modules (and packages) available for download online, and Python also comes with a wide variety of useful modules by default. Aside from <code>re</code> and <code>sys</code>, discussed previously, some of the potentially more interesting modules include:</p>
+<ul>
+<li><code>string</code>: common string operations (changing case, formatting, etc.)</li>
+<li><code>math</code>: common mathematical functions (square root, trig functions, etc.)</li>
+<li><code>time</code>, <code>datetime</code> and <code>calendar</code>: operations on dates and times</li>
+<li><code>random</code>: generating and working with random numbers</li>
+<li><code>argparse</code>: user-friendly parsing of complex arguments on the command line</li>
+<li><code>Tkinter</code>: creating graphical user interfaces (with buttons, scroll bars, etc.)</li>
+<li><code>unittest</code>: automating the creation and running of <a href="file-input-and-output.html#unit_test">unit tests</a></li>
+<li><code>turtle</code>: a simple interface for displaying line-based graphics<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a></li>
+</ul>
+<p>Tutorials for these specific modules may be found online, as may lists of many other packages and modules that come installed with Python or that are available for download.</p>
+</div>
+</div>
+<div id="creating-a-module" class="section level3 unnumbered hasAnchor">
+<h3>Creating a Module<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s create a module called <a href="data/MyVCFModule.py"><code>MyVCFModule.py</code></a> to hold the two class definitions and parsing function from the last example. While we’re doing so, we’ll also convert the comments that we had created for our classes, methods, and functions into “docstrings.” Docstrings are triple-quoted strings that provide similar functionality to comments, but can be parsed later to produce the module’s <a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#api">API</a>. They may span multiple lines, but should occur immediately inside the corresponding module, class, or function definition. Here we leave out the contents of the methods and functions (which are the same as in the previous chapter) to save space:</p>
+<pre id=part2-13-module
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env Python
+
+''' Personal module for parsing VCF files. '''
+import re
+
+class SNP:
+    ''' A class representing simple SNPs'''   # Docstring
+    def __init__(self, chrname, pos, snpid, refallele, altallele):
+        ''' Constructor method '''
+        # ...
+
+
+    def is_transition(self):
+        ''' Returns True if refallele/altallele is A/G, G/A, C/T, or T/C '''
+        # ...
+
+    def is_transversion(self):
+        '''Returns True if the snp is a transversion (i.e., not a transition)
+        # ...
+
+class Chromosome:
+    ''' A class representing a chromosome, which has a collection of SNPs '''
+    def __init__(self, chrname):
+        # ...
+
+    def get_name(self):
+        # ...
+    
+    def add_snp(self, chrname, pos, snpid, refallele, altallele):
+        # ...
+
+    def count_transitions(self):
+        # ...
+
+    def count_transversions(self):
+        # ...
+
+def vcf_to_chrnames_dict(filename: str) -> dict[str,tuple]:
+    # ...
+</code></pre>
+<p>The program that makes use of this module, which exists in a separate file in the same directory (perhaps called snps_ex2.py), is short and sweet.<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a></p>
+<pre id=part2-13-exc
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+import MyVCFModule
+import sys
+
+## Check usage syntax, read filename 
+if len(sys.argv) != 2:
+    print("This program parses a VCF 4.0 file and counts")
+    print("transitions and transversions on a per-chromosome basis.")
+    print("")
+    print("Usage: ./snps_ex2.py <input_vcf_file>")
+    quit()
+
+filename = sys.argv[1]
+
+chrnames_to_chrs = MyVCFModule.vcf_to_chrnames_dict(filename)
+
+## Print the results!
+print(f"chrom\ttransitions\ttransversions")
+for chrname in chrnames_to_chrs:
+    chr_obj = chrnames_to_chrs[chrname]
+    trs = chr_obj.count_transitions()
+    trv = chr_obj.count_transversions()
+    print(f"{chrname}\t{trs}\t{trv}")
+</code></pre>
+<p>Should other projects need to parse VCF files, this module may again be of use. By the way, because we documented our module with docstrings, its API is readily accessible through the interactive help interface.</p>
+<pre id=part2-13-api
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~/apcb/py]$ <b>python</b>
+Python 3.12.9 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 13:04:33) [Clang 14.0.6 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> <b>import MyVCFModule</b>
+>>> <b>help(MyVCFModule)</b>
+</code></pre>
+<pre id=part2-13-help-myvcf
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+Help on module MyVCFModule:
+
+<b>NAME</b>
+    MyVCFModule - Personal module for parsing VCF files.
+
+<b>CLASSES</b>
+    builtins.object
+        Chromosome
+        SNP
+
+    class <b>Chromosome</b>(builtins.object)
+     |  Chromosome(chrname: str) -> None
+     |
+     |  A class representing a chromosome, which has a collection of SNPs
+     |
+     |  Methods defined here:
+     |
+     |  <b>__init__</b>(self, chrname: str) -> None
+     |      Constructor
+     |
+     |  <b>add_snp</b>(self, chrname, pos, snpid, refallele, altallele)
+     |      Given all necessary information to add a new SNP, create a new SNP object
+     |      and add it to the SNPs dictionary. If a SNP already exists at that location, 
+     |      or the given chrname doesn't match self.chrname, an error is reported.
+     |
+</code></pre>
+</div>
+<div id="packages" class="section level3 unnumbered hasAnchor">
+<h3>Packages<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As if Python didn’t already have enough “boxes” for encapsulation — functions, objects, modules, and so on — there are also packages. In Python, a “package” is a directory containing some module files.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a></p>
+<p>A package directory must also contain a special file called <code>__init__.py</code>, which lets Python know that the directory should be treated as a package from which modules may be imported. (One could put code in this file that would be executed when the <code>import</code> statement is run, but we won’t explore this feature here.)</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_15_package_organization-2.png" /></p>
+</div>
+<p>As an example, suppose that along with our <code>MyVCFModule.py</code>, we also had created a module for parsing gene ontology files called <code>GOParseModule.py</code>. We could put these together into a package (directory) called <code>MyBioParsers</code>.</p>
+<p>To use a module contained in a package, the syntax is f<code>rom packagename import modulename</code>.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a> Our Python program could live in the same directory in which the <code>MyBioParsers</code> directory was found, and might begin like so:</p>
+<pre id=part2-13-mybioparsers
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+import sys
+from MyBioParsers import MyVCFModule
+</code></pre>
+<p>Later, the module itself can be used just as before.</p>
+<pre id=part2-13-mybioparsers
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+crnames_to_chrs = MyVCFModule.vcf_to_chrnames_dict(filename)
+</code></pre>
+</div>
+<div id="parsing-a-fasta-file" class="section level3 unnumbered hasAnchor">
+<h3>Parsing a FASTA File<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Up until this point, we’ve skipped something that is widely considered a “basic” in computational biology: reading a FASTA file. For the most part, the previous examples needing sequence data read that data from simple row/column formatted files.</p>
+<pre id=part2-13-tsv
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+PZ7180000024555 ATAAACTGATCTTAAACTAATTGTCATGTTGAGTTCATAACGAGGTGCATTTTCGATAAATAGT
+PZ7180000000678_B   CATAGTAATGTATAATAATCATATATTTATATGTTAAACCTTCCAAAAATATCTAT
+PZ7180000000003_KK  AACAAGTGCACATTAATAGCAGTGTATCAACATGGGTGTGTGGCTAGAGAACTGAA
+PZ7180000000005_NW  AAATGTACCCGAGTGTTTCGGTTGTGCACACGGGTGTCTAGTTTACCGCAGTATCG
+...
+</code></pre>
+<p>Most sequence data, however, appear in FASTA format, where each sequence has a header line starting with <code>&gt;</code> and an ID, and the sequence is broken up over one or more following lines before the next header line appears.</p>
+<pre id=part2-13-fasta
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+>PZ7180000024555s
+ATAAACTGATCTTAAACTAATTGTCATGTTGAGTTCATAACGAGGTGCATTTTCGATAAATAGTGAAAAT
+TGCAGTATTTTCTATTTAGGCAGTAATAAATATAAGGCTTGCTTTGTGCACATGTTAATATCTACTCTGA
+TAAAATCCTTAACTTAAAAGCAACTACAGCGACACACCTTGAGT
+>PZ7180000000678s_B
+CATAGTAATGTATAATAATCATATATTTATATGTTAAACCTTCCAAAAATATCTATGTACGGATGTAGTG
+TGTATACATCATGGCTGCTCCGTCCCGGACTCTGTCCCACTGAGCTGCATTATCAATAAAACAGGTTATA
+TATA
+>PZ7180000000003s_KK
+TTGCTAGGCATTGGAGATGAGGGAGAAGATGATGGTTACCACACCCTATCTGTACAACAGGTAAAGATAG
+TTGACACAGAAGGTAATTTAAAGAGTGTGTACCCATCGAGGACGGACTGTGTGTACGACGGCACTAATAT
+TAAAGTGTACCGTCTGCCAAAGAAATAAACTTCATTATTAAATAACGACATTACAGTTCTAATTAACGAT
+TTCGGAATTTGAAAAGTTCCAACAAATATGCTTTTGTCAATCTCATTTTGTTACAATCATATATATCTTT
+...
+</code></pre>
+<p>Parsing data in FASTA format isn’t too difficult, but it requires an extra preprocessing step (usually involving a loop and a variable that keeps track of the “current” ID; so long as subsequent lines don’t match the <code>&gt;</code> character, they must be sequence lines and can be appended to a list of strings to be later joined for that ID). While reinventing the FASTA-parsing wheel is good practice for novice coders, the BioPython package provides functions to parse these and many other formats.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a></p>
+<p>BioPython is a large package with many modules and APIs, which you can read more about at <a href="http://biopython.org" class="uri">http://biopython.org</a>. For the specific application of parsing a FASTA file, a good place to start is a simple web search for “biopython fasta,” which leads us to a wiki page describing the SeqIO module, complete with an example.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_20_biopython_wiki_shot.png" /></p>
+</div>
+<p>Given our knowledge of packages, modules, and objects, we can deduce the following from this simple code example:</p>
+<ol style="list-style-type: decimal">
+<li>The <code>SeqIO</code> module can be imported from the <code>Bio</code> package.</li>
+<li>A <a href="file-input-and-output.html#file_handle">file handle</a> is opened.</li>
+<li>The <code>SeqIO.parse()</code> function is called, and it takes two parameters: the file handle from which to read data, and a specification string describing the file format. (Alternatively, in the first box, <code>SeqIO.parse()</code> can be called with a filename and descriptor.)</li>
+<li>This function returns something <a href="collections-and-looping-lists-and-for.html#iterable">iterable</a> (similar to a list, or a regular file handle), so it can be looped over with a for loop.</li>
+<li>The loop accesses a series of objects of some kind, and each gets associated with the variable name <code>record</code>.</li>
+<li>The <code>record.id</code> is printed, which is (apparently) an <a href="variables-and-classes.html#instance_variable">instance variable</a> belonging to the <code>record</code> object.</li>
+</ol>
+<p>If we do some more reading on the <code>SeqIO</code> wiki page, we’d find that the <code>record</code> objects actually have the class <code>SeqRecord</code>, and they also have a <code>seq</code> instance variable providing access to the full sequence.</p>
+<p>Putting this all together, here’s a short program that converts a FASTA file to the row/column format we’ve been dealing with.</p>
+<pre id=part2-13-SeqIO
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+import sys
+from Bio import SeqIO
+
+if len(sys.argv) < 2:
+    print("Converts FASTA format to row/column format,")
+    print("printing the results on standard out.")
+    print("Usage: ./fasta2cols.py <fastafile>")
+    quit()
+
+filename = sys.argv[1]
+with open(filename, "r") as fhandle:
+    for record in SeqIO.parse(fhandle, "fasta"):
+        print(f"{record.id}\t{record.seq}")
+</code></pre>
+</div>
+<div id="syntactic-sugar" class="section level3 unnumbered hasAnchor">
+<h3>Syntactic Sugar<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In Python, nearly everything is an object, even simple integers! By looking at an integer’s API, for example, we discover that they provide a method called <code>.bit_length()</code>.</p>
+<pre id=part2-13-int
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+>>> <b>a = 7</b>
+>>> <b>help(a)</b>
+</code></pre>
+<p>Here’s a portion of the API view:</p>
+<pre id=part2-13-bit-length
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+ |
+ |  <b>bit_length</b>(self, /)
+ |      Number of bits necessary to represent self in binary.
+ |
+ |      >>> bin(37)
+ |      '0b100101'
+ |      >>> (37).bit_length()
+ |      6
+ |
+</code></pre>
+<p>We can try it like so, to discover that the integer <code>7</code> can be represented with three binary bits (as <code>111</code>):</p>
+<pre id=part2-13-seven
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+>>> <b>print(a.bit_length())</b>
+3
+</code></pre>
+<p>If you were to try and view the API for an integer as we’ve done, you’d see a number of odd-looking methods, such as <code>.__add__()</code> and <code>.__abs__()</code>:</p>
+<pre id=part2-13-add
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+ |
+ |  <b>__abs__</b>(self, /)
+ |      abs(self)
+ |
+ |  <b>__add__</b>(self, value, /)
+ |      Return self+value.
+ |
+</code></pre>
+<p>This seems to indicate that we can get the absolute value of an integer by using a method call or by using the standard function call syntax. Similarly, we can apparently add an integer to another by using method call or the standard <code>+</code> operator. These are indeed true, and we can use the standard functions and operators or their method versions:</p>
+<pre id=part2-13-abs
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+>>> <b>b = -5</b>
+>>> <b>print(b.__abs__())</b>
+5
+>>> <b>print(abs(b))</b>
+5
+>>> <b>print(b.__add__(3))</b>
+-2
+>>> <b>print(b + 3)</b>
+-2
+</code></pre>
+<div id="syntactic_sugar" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>Operations like addition look like basic, fundamental operations, and Python accomplishes such operations through method calls on objects.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a> A statement like <code>a = b + c</code> is converted to <code>a = b.__add__(c)</code> behind the scenes. Although we can run such method-oriented operations ourselves, the awkward double-underscore syntax is how the designers let us know that those methods are for internal use, and we should stick with the standard syntax. This automatic syntax conversion is known as <em>syntactic sugar</em>, and it is present in many programming languages so that they can be internally consistent but more pleasant (“sweeter”) for humans to work with.</p>
+</div>
+<div class="exercises">
+<div id="exercises-24" class="section level4 unnumbered hasAnchor">
+<h4>Exercises<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#exercises-24" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Create a module called <code>mymodule.py</code> that includes at least a class definition and function definition, as well as documents the module, class, methods, and functions with docstrings. Create a <code>myprogram.py</code> that imports this module and makes use of the functionality in it. Also try viewing the API for your module in the interactive Python interpreter with <code>import mymodule</code> and <code>help(mymodule)</code>.</p></li>
+<li><p>Browse through the online API at <a href="https://docs.python.org/3/library/" class="uri">https://docs.python.org/3/library/</a> for the “Python Standard Library,” and especially anything related to strings. Also, review the API documentation for the <code>sys</code>, <code>re</code>, <code>math</code>, and <code>random</code> modules.</p></li>
+<li><p>For this exercise, we’re going to install a module from the web and make use of it to parse a VCF file <a href="data/trio.sample.vcf"><code>trio.sample.vcf</code></a>. The VCF-reading module we’re going to install is located on GitHub: <a href="https://github.com/bihealth/vcfpy" class="uri">https://github.com/bihealth/vcfpy</a>.</p></li>
+</ol>
+</div>
+<div id="changeme---httpsanaconda.orgbiocondavcfpy" class="section level2 hasAnchor" number="27.1">
+<h2><span class="header-section-number">27.1</span> CHANGEME - <a href="https://anaconda.org/bioconda/vcfpy" class="uri">https://anaconda.org/bioconda/vcfpy</a><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#changeme---httpsanaconda.orgbiocondavcfpy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="78">
+<li id="fn78"><p>Much of this information is also available online at <a href="http://docs.python.org" class="uri">http://docs.python.org</a>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref78" class="footnote-back">↩︎</a></p></li>
+<li id="fn79"><p>Python modules and packages need not be installed system-wide or be present in the same directory as the program that uses them. The environment variable <code>$PYTHONPATH</code> lists the directories that are searched for modules and packages, to which each user is free to add their own search paths.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref79" class="footnote-back">↩︎</a></p></li>
+<li id="fn80"><p>The <code>turtle</code> graphics module is a fun way to understand and visualize computational processes (and similar packages are available for many programming languages). While this book isn’t the place for such explorations, the reader can learn more about them in Jeffrey Elkner, Allen Downey, and Chris Meyers’s excellent book, <em>How to Think Like a Computer Scientist</em> (Green Tea Press, 2002). As of this writing, a version of the book is available online at <a href="https://openbookproject.net/thinkcs/python/english3e/" class="uri">https://openbookproject.net/thinkcs/python/english3e/</a>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref80" class="footnote-back">↩︎</a></p></li>
+<li id="fn81"><p>In some Python scripts, you may find a line <code>if __name__ == '__main__':</code>. The code within this if statement will run, but only if the file is run as a script. If it is imported as a module, the block will not run. This lets developers write files that can serve both purposes, and many developers include it by default so that their script’s functions and class definitions can be utilized in the future by importing the file as a module. You will notice that the tests in <a href="data/MyVCFModule.py">MyVCFModule.py</a> have been wrapped in such an <code>if</code> statement - they will only run when the file is executed. Try it out!<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref81" class="footnote-back">↩︎</a></p></li>
+<li id="fn82"><p>Packages may also contain other files, like files containing specific data sets or even code written in other languages like C. Thus some modules may need to be installed by more complicated processes than simply decompressing them in the right location.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref82" class="footnote-back">↩︎</a></p></li>
+<li id="fn83"><p>You might occasionally see a line like <code>from modulename import *</code>. This allows one to use the functions and other definitions inside of <code>modulename</code> without prefixing them with <code>modulename.</code>. For example, we can <code>import math</code> and then use <code>print(math.sqrt(3))</code>, or we can <code>from math import *</code> and then <code>print(sqrt(3))</code>. The latter is usually avoided, because if multiple modules contain the same function or other names, then it is not possible to disambiguate them.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref83" class="footnote-back">↩︎</a></p></li>
+<li id="fn84"><p>Depending on the system you are working on, you may already have the BioPython package. If not, you can use the <code>pip</code> install utility to install it: <code>pip install BioPython</code>, or if you don’t have administrator privileges, <code>pip install --user BioPython</code>. Some older versions of Python don’t come with the <code>pip</code> utility, but this can be installed with an older tool: <code>easy_install pip</code> or <code>easy_install --user pip</code>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref84" class="footnote-back">↩︎</a></p></li>
+<li id="fn85"><p>It is safe to say that Python isn’t “merely” object oriented, it is <em>very</em> object oriented.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref85" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="use-case-counting-snps.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="algorithms-and-data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-13-application-programming-interfaces.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

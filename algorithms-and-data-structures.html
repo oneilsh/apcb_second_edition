@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)</title>
-  <meta name="description" content="Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 28 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 28 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:title" content="Chapter 28 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
-  
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="twitter:title" content="Chapter 28 Algorithms and Data Structures | A Primer for Computational Biology (2nd Edition)" />
   
   
   
@@ -30,9 +29,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="acknowledgements.html"/>
-<link rel="next" href="literature.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="application-programming-interfaces-modules-packages-syntactic-sugar.html"/>
+<link rel="next" href="an-introduction.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,20 +48,19 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="packages/prism/prism.js"></script>
 
 <script>
   Prism.plugins.NormalizeWhitespace.setDefaults({
 	'remove-trailing': false,
 	'remove-indent': false,
-	'left-trim': false,
+	'left-trim': true,
 	'right-trim': true,
 	'remove-initial-line-feed': true,
-	'break-lines': 80
+	/*'break-lines': 80*/
 
 	/*'break-lines': 80,
 	'indent': 2,
@@ -106,7 +105,7 @@
   border-right: none;
 }
 
-.callout-box {
+.callout-box,.exercises {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   border-radius: 4px;
   margin: 25px 10px 10px 10px;
@@ -116,6 +115,12 @@
 .book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
   margin-top: 0;
 }
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
 
 .fig.center {
   margin: 0 auto;
@@ -142,6 +147,12 @@
 
 
 
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -155,26 +166,242 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Primer for Computational Biology (2nd Ed.)</a></li>
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i><b>2</b> Acknowledgements</a></li>
-<li class="part"><span><b>Part 0: Custom Bookdown Template for APCB v2.0</b></span></li>
-<li class="chapter" data-level="3" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>3</b> Algorithms and Data Structures</a></li>
-<li class="chapter" data-level="4" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>4</b> Literature</a></li>
-<li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
-<li class="chapter" data-level="6" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>6</b> Applications</a><ul>
-<li class="chapter" data-level="6.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>6.1</b> Example one</a></li>
-<li class="chapter" data-level="6.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>6.2</b> Example two</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="8" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i><b>8</b> Dedication</a></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="23.0.1" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i><b>23.0.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="33.0.1" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i><b>33.0.1</b> Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -195,79 +422,762 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="algorithms-and-data-structures" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Algorithms and Data Structures</h1>
-<p>Having learned so many programming concepts–variables and the data to which they refer, functions, loops, and so on–it would be a shame not to talk about some of the surprising and elegant methods they enable. Computer science students spend years learning about these topics, and the themes in this chapter underlie much of bioinformatics.</p>
-<p>We’ll start with algorithms, which according to a classic book on the topic–<em>Introduction to Algorithms</em> by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein–are:</p>
+<div id="algorithms-and-data-structures" class="section level1 hasAnchor" number="28">
+<h1><span class="header-section-number">Chapter 28</span> Algorithms and Data Structures<a href="algorithms-and-data-structures.html#algorithms-and-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Having learned so many programming concepts — variables and the data to which they refer, functions, loops, and so on — it would be a shame not to talk about some of the surprising and elegant methods they enable. Computer science students spend years learning about these topics, and the themes in this chapter underlie much of bioinformatics.</p>
+<p>We’ll start with algorithms, which according to a classic book on the topic — <em>Introduction to Algorithms</em> by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein—are:</p>
 <blockquote>
 <p>any well-defined computational procedure that takes some value, or set of values, as input and produces some value, or set of values, as output.</p>
 </blockquote>
 <p>With such a broad definition, all of the Python coding we’ve done could accurately be categorized as practice in algorithms. The word “algorithm,” by the way, derives from the name of the eighth-century Persian mathematician al-Khwārizmī, who developed systematic approaches for solving equations (among other accomplishments). Although most functioning code may be characterized as an algorithm, algorithms usually involve more than just collating data and are paired with well-defined <em>problems</em>, providing a specification for what valid inputs are and what the corresponding outputs should be. Some examples of problems include:</p>
-<ul>
-<li>Given a list of <span class="math inline">\(n\)</span> numbers in arbitrary order, return it or a copy of it in sorted order. (The “sorting” problem.)</li>
-<li>Given a list of <span class="math inline">\(n\)</span> numbers in sorted order and a query number <code>q</code>, return <code>True</code> if <code>q</code> is present in the list and <code>False</code> if it is not. (The “searching” problem.)</li>
-<li>Given two strings of <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span>, line them up against each other (inserting dashes where necessary to make them the same length) to maximize a score based on the character matches. (The “string alignment” problem.)</li>
-</ul>
-<div id="figId1" class="fig center" style="width: 50%">
-<img src="images/chapter_demo/II.13_1_string_alignment.png" />
-<p class="caption">
-This is a caption. Clearly, some problems, like the string alignment problem, are of special interest for life scientists. Others, like sorting and searching, are ubiquitous. No matter who cares about the problem, a good algorithm for solving it should do so efficiently.
-</p>
+<ol style="list-style-type: decimal">
+<li>The <strong>sorting</strong> problem: given a list of <span class="math inline">\(n\)</span> numbers in arbitrary order, return it or a copy of it in sorted order.</li>
+<li>The <strong>searching</strong> problem: given a list of <span class="math inline">\(n\)</span> numbers in sorted order and a query number <code>q</code>, return <code>True</code> if <code>q</code> is present in the list and <code>False</code> if it is not.</li>
+<li>The <strong>string alignment</strong> problem: given two strings of length <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span>, line them up against each other (inserting dashes where necessary to make them the same length) to maximize a score based on the character matches.
+<div class="fig center" style="width: 75%">
+<img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_1_string_alignment.png" />
+</div></li>
+</ol>
+<p>Clearly, some problems, like the string alignment problem, are of special interest for life scientists. Others, like sorting and searching, are ubiquitous. No matter who cares about the problem, a good algorithm for solving it should do so efficiently. Usually, “efficiently” means “in a short amount of time”, though with the large data sets produced by modern DNA-sequencing technologies, it often also means “using a small amount of memory”.</p>
+<p>Most bioinformatics problems like string alignment require rather sophisticated methods built from simpler concepts, so we’ll start with the usual introductory topic for algorithms design and analysis: sorting. After all, <em>someone</em> had to write Python’s <code>sorted()</code> function for lists, and it does form a good basis for study.</p>
+Consider a small list of five numbers, in unsorted order.
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_2_sorting_pre.png" /></p>
 </div>
-<p>Link to the <a href="algorithms-and-data-structures.html#figId1">fig</a></p>
-<!-- See the source code for this page for actual usage of the described formatting :) -->
-<!-- # Section Headers and Parts {#section-headers} -->
-<!-- "Part" headers can be included by adding some special syntax; in the below `(PART\*)` is used to indicate that the header is a Part-header for styling, and `{-}` prevents it from being numbered.  -->
-<!-- ``` -->
-<!-- # (PART\*) Part 1: The Unix/Linux Command-Line {-} -->
-<!-- ``` -->
-<!-- Section Headers can be created using standard markdown syntax; section headers are automatically linkable but can be given a friendlier ID by including a `#theid` in the `{}` metadata; using `-` in the same metadata makes the sections unnumbered: -->
-<!-- #### Level 4 Header Default -->
-<!-- #### Level 4 Header Unnumbered {-} -->
-<!-- ### Level 4 Header, Unnumbered + Custom ID {- #custom-id-example} -->
-<!-- Code for the above headers: -->
-<!-- ``` -->
-<!-- ### Level 3 Header Default -->
-<!-- #### Level 4 Header Unnumbered {-} -->
-<!-- #### Level 4 Header, Unnumbered + Custom ID {- #custom-id-example} -->
-<!-- ``` -->
-<!-- <div class="callout-box"> -->
-<!-- #### Exercises {-} -->
-<!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a interdum tortor. Sed in neque vestibulum, placerat velit vel, eleifend tellus. Mauris vel neque ac leo fermentum condimentum. Aenean ipsum orci, vestibulum quis auctor at, lacinia vitae arcu. Integer non venenatis urna. Nulla at elementum nibh. Quisque ut ipsum ornare, consectetur tellus at, ullamcorper urna. Fusce at pharetra sapien. -->
-<!-- 1. Item 1 -->
-<!-- 2. Item 2 -->
-<!--     <pre class="language-r line-numbers linkable-line-numbers" id="linktarget" data-start="1" data-line="2,3,5,7-9"><code> -->
-<!--     x <- function(a, b) { -->
-<!--       return(a+b) -->
-<!--     } -->
-<!--     rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x() %>% rnorm(100) %>% to_lower() %>% x()  -->
-<!--     line 6 -->
-<!--     line 7 -->
-<!--     line 8 -->
-<!--     line 9 -->
-<!--     line 10 -->
-<!--     </code></pre> -->
-<!-- 3. Item 3 -->
-<!-- <pre class="line-numbers" data-start=4><code class="language-txt"> -->
-<!-- This is just some text. -->
-<!-- Nothing to see here, move along, move along. -->
-<!-- </code></pre> -->
-<!-- Aliquam dui purus, convallis ut suscipit vel, scelerisque id mi. Quisque arcu odio, pretium quis risus sed, tempor tristique ipsum. Suspendisse potenti. Quisque est turpis, feugiat quis convallis sit amet, convallis sed ex. Aenean ultrices sapien et augue pulvinar egestas eget vitae ante. Pellentesque bibendum molestie metus, vitae congue elit commodo et. Fusce consequat ac ante eget egestas. Sed ullamcorper augue ut felis convallis, at pharetra dolor blandit. Aenean lacus metus, scelerisque sit amet metus et, dapibus laoreet ipsum. Phasellus euismod egestas consectetur. Aliquam et condimentum nunc. -->
-<!-- </div> -->
-<!-- We can then create links to these anchors with `[some text](#anchor-id)` syntax. For example, [here](#custom-id-example-2) is a link to the last of the headers above created with `[here](#custom-id-example-2)`. These links can be used across chapters or parts.  -->
+<p>What code might we write to sort these numbers? Whatever it is, it might make sense to put it into a function that takes an unsorted list, and returns a copy of it in sorted order (to stay consistent with Python’s use of the <a href="string-tips-and-regular-expressions.html#commands-versus-queries">principle of command-query separation</a>). To start, we’ll make a copy of the list, and then we’ll have the function merely “fix up” some of the out-of-order numbers in this copy by looking at a sliding window of size 2 — pairs of adjacent numbers — and switching their placement if they are out of order.</p>
+<pre id=part2-14-pairs
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+def get_sorted(nums: list) -> list:
+    '''Returns a sorted copy of a list of numbers (almost)'''
+    ## make a copy that we can sort and return
+    c_nums = list()
+    for num in nums:
+        c_nums.append(num)
 
+    ## Look neighboring pairs, swapping where needed
+    for index in range(0, len(c_nums) - 1):
+        leftnum = c_nums[index]
+        rightnum = c_nums[index + 1]
+        if leftnum > rightnum:
+            c_nums[index] = rightnum
+            c_nums[index + 1] = leftnum
+
+    return c_nums
+</code></pre>
+<p>Just fixing up a handful of pairs in this way won’t result in the list being sorted, but it should be obvious that because the pairs of fix-ups overlap, the largest number will have found its way to the last position. In a sense, it “bubbled” to the top. If we were to repeat this process, the second-to-largest number must also find its way to the correct spot. In fact, if we repeat this process as many times as there are numbers, the list will be fully sorted.</p>
+<pre id=part2-14-sorted
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+def get_sorted(nums: list) -> list:
+    '''Returns a sorted copy of a list of numbers (almost)'''
+    ## make a copy that we can sort and return
+    c_nums = list()
+    for num in nums:
+        c_nums.append(num)
+
+    for repetition in range(0, len(c_nums)):
+        ## Look neighboring pairs, swapping where needed
+        for index in range(0, len(c_nums) - 1):
+            leftnum = c_nums[index]
+            rightnum = c_nums[index + 1]
+            if leftnum > rightnum:
+                c_nums[index] = rightnum
+                c_nums[index + 1] = leftnum
+
+    return c_nums
+
+nums = [3, 4, 5, 1, 6, 3, 7, 9]
+print(get_sorted(nums))             # prints [1, 3, 3, 4, 5, 6, 7, 9]
+</code></pre>
+<p>This algorithm for sorting is affectionately known as “bubblesort.” In a rough sense, how many operations will this algorithm perform, in the worst case, for a list of size <span class="math inline">\(n\)</span>? Suppose the if statement always finds <code>True</code>, and numbers need to be swapped. In this case, each operation of the inner loop requires five or so “time steps” (four assignments and an <code>if</code> check). The inner loop runs <span class="math inline">\(n - 1\)</span> times (if there are <span class="math inline">\(n\)</span> numbers), which is itself repeated <span class="math inline">\(n\)</span> times in the outer loop. The copy step to produce the new <code>c_nums</code> list also uses <span class="math inline">\(n\)</span> steps, so the total number of basic operations is, more or less, <span class="math display">\[ n(n-1)5+n = 5n^2-4n \]</span></p>
+<p>When analyzing the running time of an algorithm, however, we only care about the “big stuff”.</p>
+<div id="order-notation" class="section level3 unnumbered hasAnchor">
+<h3>Order Notation<a href="algorithms-and-data-structures.html#order-notation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In computing an algorithm’s run time, we only care about the highest-order terms, and we tend to ignore constants that aren’t related to the “size” of the input. We say that the run time is <em>order</em> of the highest-order term (without constants), which we denote with an uppercase <span class="math inline">\(O\)</span>: <span class="math inline">\(n(n-1)5+n = 5n^2-4n\)</span> is <span class="math inline">\(O(n^2)\)</span>.</p>
+<p>We read this as “five <span class="math inline">\(n\)</span> squared minus four <span class="math inline">\(n\)</span> is order <span class="math inline">\(n\)</span> squared” or “five <span class="math inline">\(n\)</span> squared minus four <span class="math inline">\(n\)</span> is big-oh <span class="math inline">\(n\)</span> squared”. Because this run time talks about a particular algorithm, we might also say “bubblesort is order <span class="math inline">\(n\)</span> squared.” Big-O notation implies that, roughly, an algorithm will run in time <em>less than or equal to</em> the equation interpreted as a function of the input size, in the worst case (ignoring constants and small terms).</p>
+<p>Worst-case analysis assumes that we get unlucky with every input, but in many cases the algorithm might run faster in practice. So, why do we do worst-case analysis? First, it gives the user of an algorithm a guarantee — nobody wants to hear that software <em>might</em> use a certain amount of time. Second, while it is sometimes possible to do average-case analysis, it requires knowledge of the distribution of input data in practice (which is rare) or more sophisticated analysis techniques.</p>
+<p>Why do we use order notation to characterize algorithm run time, dropping small terms and constants? First, although we stated previously that each basic operation is one “computer step,” that’s not really true: the line <code>c_nums[index + 1] = leftnum</code> requires both an addition and an assignment. But no one wants to count each CPU cycle individually, especially if the result won’t change how we compare two algorithms for large data sets, which is the primary purpose of order notation. Dropping off constant terms and lower-order terms makes good mathematical sense in these cases. For large enough input (i.e., all <span class="math inline">\(n\)</span> greater than some size <span class="math inline">\(c\)</span>), even terms that seem like they would make a big difference turn out not to matter, as the following hypothetical comparison demonstrates.</p>
+<p><span class="math display">\[ \begin{align}
+    0.01n^2 - 100n &amp;&gt; 200n^{1.5} + 20n, \text{for }n &gt; \text{some }c \\
+    O(n^2) &amp;&gt; O(n^{1.5}) \\
+    \text{Time Alg A }&amp;&gt; \text{Time Alg B (for large inputs)}
+\end{align} \]</span></p>
+<p>In this case<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a>, <span class="math inline">\(0.01n^2 - 100n\)</span> is larger than <span class="math inline">\(200n^{1.5} + 20n\)</span> when <span class="math inline">\(n\)</span> is larger than <span class="math inline">\(400,024,000\)</span> (which is this example’s <span class="math inline">\(c\)</span>).</p>
+<p>So, although order notation seems like a fuzzy way of looking at the efficiency of an algorithm, it’s a rigorously defined and reasonable way to do so.<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a> Because some programming languages are faster than others—but only by a constant factor (perhaps compiled C code is 100 times faster than Python) — a good algorithm implemented in a slow language often beats a mediocre algorithm implemented in a fast language!</p>
+Now, a run time of <span class="math inline">\(O(n^2)\)</span> isn’t very good: the time taken to sort a list of numbers will grow quadratically with the size of the list.
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_8_n_squared_plot.png" /></p>
+</div>
+<p><span class="math inline">\(O(n^2)\)</span> isn’t great, but for the sorting problem we can do better, and we’ll return to the study of algorithms and sorting a bit later. First, let’s detour and talk about interesting ways we can organize data, using variables and the objects to which they refer.</p>
+</div>
+<div id="data-structures" class="section level3 unnumbered hasAnchor">
+<h3>Data Structures<a href="algorithms-and-data-structures.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A data structure is an organization for a collection of data that ideally allows for fast access and certain operations on the data. We’ve seen a couple of data structures already in Python: lists and dictionaries. Given such a structure, we might ask questions like:</p>
+<ul>
+<li>Does the data structure keep its elements in a specific order (such as sorted order)? If we use <code>.append()</code> to add elements to lists, lists are kept in the order items are added. If we wanted the list to stay sorted, we’d have to ensure new elements are inserted in right spot.</li>
+<li>How long does it take to add a new element? For Python lists, the <code>.append()</code> method operates in time <span class="math inline">\(O(1)\)</span>, which is to say a single element can be added to the end, and the time taken does not depend on how big the list is. Unfortunately, this won’t be true if we need to keep the list sorted, because inserting into the middle requires rearranging the way the data are stored.</li>
+<li>How long does it take to find the smallest element? Because using <code>.append()</code> adds elements to the end of the list (unless we keep the list sorted), we need to search the entire list for the smallest element. This operation takes time <span class="math inline">\(O(n)\)</span>, where <span class="math inline">\(n\)</span> is the length of the list. If the list is sorted, though, it takes only <span class="math inline">\(O(1)\)</span> time to look at the first item of the list.</li>
+</ul>
+There are trade-offs that we can make when thinking about how to use data structures. Suppose, for example, that we wanted to quickly find the smallest element of a list, even as items are added to it. One possibility would be to sort the list after each addition; if we did that, then the smallest element would always be at index <code>0</code> for quick retrieval. But this is a lot of work, and the total time spent sorting would start to outweigh the benefits of keeping the list sorted in the first place! Even better, we could write a function that (1) inserts the new item to the end and then (2) bubbles it backward to its correct location; only one such bubbling would be needed for each insertion, but each is an <span class="math inline">\(O(n)\)</span> operation (unless we could somehow guarantee that only large elements are added).
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_9_list_keep_sorted.png" /></p>
+</div>
+<p>Then finding the smallest item is easy, as we know it is always present at index <code>0</code>.</p>
+<table style="width:69%;">
+<colgroup>
+<col width="29%" />
+<col width="19%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Structure</th>
+<th align="center">Insert Item</th>
+<th align="center">Get Smallest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sorted Simple List</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Instead, let’s do something much more creative, and build our own data structure from scratch. While this data structure is a lot of trouble to create for only a little benefit, it does have its uses and serves as a building block for many other sophisticated structures.</p>
+</div>
+<div id="sorted-linked-lists" class="section level3 unnumbered hasAnchor">
+<h3>Sorted Linked Lists<a href="algorithms-and-data-structures.html#sorted-linked-lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our data structure, called a “sorted linked list”, will keep a collection of items in sorted order, and will do the work of inserting new items in the correct location in that order. These items could be integers, floats, or strings, anything that can be compared with the <code>&lt;</code> operator (which, recall, compares strings in <a href="conditional-control-flow.html#lexicographic_order">lexicographic order</a>; as discussed in previous chapters, we can even define our own object types that are comparable with <code>&gt;</code> by implementing <code>.__lt__()</code>, <code>.__eq__()</code> and similar <a href="variables-and-classes.html#custom_comparable">methods</a>).</p>
+<p>To accomplish this task, we’re going to make heavy use of classes and objects, and the fact that a variable (even an <a href="variables-and-classes.html#instance_variable">instance variable</a>) is a name that refers to an object.</p>
+<p>The strategy will be to have two types of objects: the first, which we’ll call a <code>LinkedList</code>, will be the main type of object with which our programs will interact (much like we interacted with <code>Chromosome</code> objects in previous chapters, while <code>SNP</code> objects were dealt with by the <code>Chromosome</code> objects). The <code>LinkedList</code> object will have methods like <code>.insert_item()</code> and <code>.get_smallest()</code>. The other objects will be of type <code>Node</code>, and each of these will have an instance variable <code>self.item</code> that will refer to the item stored by an individual <code>Node</code>. So, drawing just the objects in RAM, our sorted linked list of three items (<code>4</code>, <code>7</code>, and <code>9</code>) might look something like this:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_10_ll_pre_links.png" /></p>
+</div>
+<p>The objects are unlikely to be neatly organized this way in RAM — we’re showing them in a line for illustration only. The arrows in this figure indicate that after we create a new <code>LinkedList</code> object called <code>itemlist</code>, this variable is a name that refers to an object, and each <code>Node</code> object has a <code>self.item</code> instance variable that refers to a “data” object of some type, like an integer or string.<a href="#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a></p>
+<p>Now, if this collection of objects were to exist as shown, it wouldn’t be that useful. Our program would only be able to interact with the <code>itemlist</code> object, and in fact there are no variables that refer to the individual <code>Node</code> objects, so they would be deleted via <a href="elementary-data-types.html#garbage_collection">garbage collection</a>.</p>
+<p>Here’s the trick: if an instance variable is just a variable (and hence a reference to an object), we can give each <code>Node</code> object a <code>self.next_n</code> instance variable that will refer to the next node in line. Similarly, the <code>LinkedList</code> object will have a <code>self.first_n</code> instance variable that will refer to the first one.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_11_ll_post_links.png" /></p>
+</div>
+<p>The last <code>Node</code> object’s <code>self.next_n</code> refers to <code>None</code>, a placeholder that we can use to allow a variable to reference “nothing here.” Actually, <code>None</code> will be the initial value for <code>self.next_n</code> when a new node is created, and we’ll have to add methods for <code>get_next_n()</code> and <code>set_next_n()</code> that allow us to get or change a <code>Node</code>’s <code>next_n</code> variable at will. The <code>LinkedLists</code>’s <code>first_n</code> variable will similarly be initialized as <code>None</code> in the constructor.</p>
+<p>Suppose that we have this data structure in place, and we want to add the number <code>2</code>; this would be the new “smallest” item. To do this we’d need to run <code>itemlist.insert_item(2)</code>, and this method would consider the following questions to handle all of the possible cases for inserting an item (by using if statements):</p>
+<ol style="list-style-type: decimal">
+<li>Is <code>self.first_n</code> equal to <code>None</code>? If so, then the new item is the only item, so create a new <code>Node</code> holding the new item and set <code>self.first_n</code> to that node.</li>
+<li>If <code>self.first_n</code> is not equal to <code>None</code>:
+<ol style="list-style-type: lower-alpha">
+<li>Is the new item smaller than <code>self.first_n</code>’s item? If so, then
+<ol style="list-style-type: decimal">
+<li>create a new <code>Node</code> holding the new item</li>
+<li>set its <code>next_n</code> to <code>self.first_n</code></li>
+<li>set <code>self.first_n</code> to the new node</li>
+</ol>
+Here’s an illustration for this case:</li>
+</ol>
+<div class="fig center" style="width: 100%; padding-left: 55px">
+<img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_12_ll_2a.png" />
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Otherwise, the new node does not go between the <code>LinkedList</code> object and the first <code>Node</code> object. In this case, we could treat the <code>self.first_n</code> object as though it were itself a <code>LinkedList</code>, if only it had an <code>.insert_item()</code> method.</li>
+</ol></li>
+</ol>
+<p>This case (b) is really the heart of the linked list strategy: each <code>Node</code> object will also have an <code>.insert_item()</code> method. Further, each node’s <code>.insert_item()</code> will follow the same logic as above: if <code>self.next_n</code> is <code>None</code>, the new node goes after that node. If not, the node needs to determine if the new node should go between itself and the next node, or if it should “pass the buck” to the node next in line.</p>
+<p>Now we can turn to the code. First, here’s the code for the <code>LinkedList</code> class.</p>
+<pre id=part2-14-linkedlist
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+
+class LinkedList:
+    def __init__(self):
+        self.first_n = None
+
+    def get_smallest(self):
+        if self.first_n != None:
+            return self.first_n.get_item()
+        else:
+            return None
+
+    def insert_item(self, item):
+        if self.first_n == None:                      # 1.
+            newnode = Node(item)
+            self.first_n = newnode
+        else:
+            if item < self.first_n.get_item():        # 2a.
+<span style="background-color: #fcf3cf;">                newnode = Node(item)                      # 1)
+                newnode.set_next_n(self.first_n)          # 2)
+                self.first_n = newnode                    # 3)</span>
+            else:                                     # 2b.
+                self.first_n.insert_item(item)
+</code></pre>
+<p>The highlighted lines above are those illustrated in step 2a and are crucial; in particular, the order in which the various variables are set makes all the difference. What would happen if <code>self.first_n = newnode</code> was called <em>before</em> <code>newnode.set_next(self.first_n)</code>? We would lose all references to the rest of the list: <code>itemlist.first_n</code> would refer to <code>newnode</code>, the new node’s <code>.next_n</code> would refer to <code>None</code>, and no variable would refer to the node holding <code>3</code> — it would be lost in RAM and eventually <a href="elementary-data-types.html#garbage_collection">garbage collected</a>.</p>
+<p>As mentioned above, the class for a <code>Node</code> is quite similar. In fact, it is possible to build linked lists with only one object type, but this would necessitate a “dummy” node to represent an empty list anyway (perhaps storing <code>None</code> in its <code>self.item</code>).</p>
+<pre id=part2-14-node
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+class Node:
+    def __init__(self, item):
+        self.item = item
+        self.next_n = None
+
+    def get_item(self):
+        return self.item
+
+    def get_next_n(self):
+        return self.next_n
+
+    def set_next_n(self, newnext):
+        self.next_n = newnext
+
+    def insert_item(self, item):
+        if self.next_n == None:
+            newnode = Node(item)
+            self.next_n = newnode
+        else:
+            if item < self.next_n.get_item():
+                newnode = Node(item)
+                newnode.set_next_n(self.next_n)
+                self.next_n = newnode
+            else:
+                self.next_n.insert_item(item)
+</code></pre>
+<p>Our new data structure is relatively easy to use, and it keeps itself sorted nicely:</p>
+<pre id=part2-14-ll-use
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+numlist = LinkedList()
+numlist.insert_item(9)
+numlist.insert_item(3)
+numlist.insert_item(7)
+print(numlist.get_smallest())       # prints 3
+numlist.insert_item(2)
+print(numlist.get_smallest())       # prints 2
+</code></pre>
+</div>
+<div id="linked-list-methods" class="section level3 unnumbered hasAnchor">
+<h3>Linked List Methods<a href="algorithms-and-data-structures.html#linked-list-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This idea of “passing the buck” between nodes is pretty clever, and it allows us to write sophisticated queries on our data structure with ease. Suppose we wanted to ask whether a given item is already present in the list.</p>
+<p>To solve a problem like this, we can think of each node as implementing a decision procedure (using a method, like <code>.is_item_present(query)</code>). The <code>LinkedList</code> interface object would return <code>False</code> if its <code>self.first_n</code> is <code>None</code> (to indicate the list is empty, so the query item can’t be present). If its <code>self.first_n</code> is not <code>None</code>, it calls <code>self.first_n.is_item_present(query)</code>, expecting that node to either return <code>True</code> or <code>False</code>.</p>
+<pre id=part2-14-controller_is_item_present
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+    # ... (inside class LinkedList:)
+
+    def is_item_present(self, query) -> bool:
+        if self.first_n == None:
+            return False
+        else:
+            answer = self.first_n.is_item_present(query)
+            return answer
+</code></pre>
+<p>For a node, the decision procedure is only slightly more complex:</p>
+<ol style="list-style-type: decimal">
+<li>Check whether <code>self.item</code> is equal to the <code>query</code>. If so, a <code>True</code> can safely be returned.</li>
+<li>Otherwise:
+<ol style="list-style-type: lower-alpha">
+<li>If <code>self.next_n</code> is <code>None</code>, then <code>False</code> can be returned, because if the buck got passed to the end of the list, no node has matched the <code>query</code>.</li>
+<li>If <code>self.next_n</code> does exist, on the other hand, just pass the buck down the line, and rely on the answer to come back, which can be returned.</li>
+</ol>
+<pre id=part2-14-node_is_item_present
+  class="language-python 
+         line-numbers 
+         linkable-line-numbers">
+ <code>
+ # ... (inside class Node:)
+     def is_item_present(self, query) -> bool:
+     if self.item == query:                         # 1.
+         return True
+     else:
+         if self.next_n == None:                    # 2a.
+             return False
+         else:                                      # 2b.
+             answer = self.next_n.is_item_present(query)
+             return answer
+ </code></pre></li>
+</ol>
+<p>Here is a quick demonstration of the usage (the whole script can be found in the file <a href="/data/linkedlist.py"><code>linkedlist.py</code></a>):</p>
+<pre id=part2-14-usage-is-present
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+numlist = LinkedList()
+numlist.insert_item(9)
+numlist.insert_item(3)
+numlist.insert_item(7)
+print(numlist.get_smallest())       # prints 3
+numlist.insert_item(2)
+print(numlist.get_smallest())       # prints 2
+<span style="background-color: #fcf3cf;">print(numlist.is_item_present(7))   # prints True
+print(numlist.is_item_present(6))   # prints False</span>
+</code></pre>
+<p>Notice the similarity in all of these methods: each node first determines whether it can answer the problem — if so, it computes and returns the answer. If not, it checks for a node to pass the problem on to, and if one exists, the buck is passed. Notice that at each buck pass the method being called is the same — it’s just being called for a different object. And each time the overall “problem” gets smaller as the number of nodes left to pass the buck to decreases.</p>
+<p>How much time does it take to insert an item into a list that is already of length <span class="math inline">\(n\)</span>? Because the new item might have to go at the end of the list, the buck might need to be passed <span class="math inline">\(n\)</span> times, meaning an insertion is <span class="math inline">\(O(n)\)</span>. What about getting the smallest element? In the <code>LinkedList</code> <code>.get_smallest()</code> method, it only needs to determine whether <code>self.first_n</code> is <code>None</code>, and if not, it returns the element stored in that node. Because there is no buck passing, the time is <span class="math inline">\(O(1)\)</span>.</p>
+<table style="width:69%;">
+<colgroup>
+<col width="29%" />
+<col width="19%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Structure</th>
+<th align="center">Insert Item</th>
+<th align="center">Get Smallest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sorted Simple List</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="even">
+<td>Sorted Linked List</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The creation of the sorted linked list structure didn’t get us much over a more straightforward list kept in sorted order via bubbling, but the ideas implemented here pave the way for much more sophisticated solutions.</p>
+<div id="exercises-25" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="algorithms-and-data-structures.html#exercises-25" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>How much time would it take to insert <span class="math inline">\(n\)</span> sequences into a Python list, and then at the end sort it with bubblesort in the worst-case scenario (using order notation)?</li>
+<li>How much time would it take to insert <span class="math inline">\(n\)</span> elements into a sorted linked list that starts empty, in the worst-case scenario (using order notation)? (Note that the first insertion is quick, but the second item might take two buck-passes, the third may take three, and so on.)</li>
+<li>Add “pass the buck” methods to the <code>LinkedList</code> and <code>Node</code> classes that result in each item being printed in order.</li>
+<li>Write “pass the buck” methods that cause the list of items to be printed, but in <em>reverse</em> order.</li>
+<li>Add methods to the <code>LinkedList</code> and <code>Node</code> classes so that the linked list can be converted into a normal list (in any order, though reverse order is most natural). For example, <code>print(itemlist.collect_to_list())</code> should print something like <code>[9, 3, 7]</code>.</li>
+</ol>
+</div>
+</div>
+<div id="divide-and-conquer" class="section level3 unnumbered hasAnchor">
+<h3>Divide and Conquer<a href="algorithms-and-data-structures.html#divide-and-conquer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far, both the algorithm (bubblesort) and the data structure (sorted linked list) we’ve studied have been linear in nature. Here, we’ll see how these ideas can be extended in “bifurcating” ways.</p>
+<p>Let’s consider the sorted linked list from the last section, which was defined by a “controlling” class (the <code>LinkedList</code>) and a number of nearly identical <code>Nodes</code>, each with a reference to a “next” <code>Node</code> object in the line. So long as certain rules were followed (e.g., that the list was kept in sorted order), this allowed each node to make <em>local</em> decisions that resulted in <em>global</em> answers to questions.</p>
+<div id="binary_tree" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>What if we gave each node a bit more power? Rather than a single <code>self.next_n</code> instance variable, what if there were two: a <code>self.left_n</code> and a <code>self.right_n</code>? We will need a corresponding rule to keep things organized: smaller items go toward the left, and larger (or equal-sized) items go toward the right. This data structure is the well-known <em>binary tree</em>.</p>
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_19_binary_tree.png" /></p>
+</div>
+<p>The illustration above looks quite a bit more complicated. But if we inspect this structure closely, it’s quite similar to the linked list:<a href="#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a> there is a controlling class of <code>BinaryTree</code>, and instead of a <code>self.first_n</code> instance variable, it has an instance variable called <code>self.root_n</code>, because the node it references is the “root” of the tree. Before any items have been inserted, <code>self.root_n</code> will be <code>None</code>. Upon an item insertion, if <code>self.root_n</code> is <code>None</code>, the new item goes there; otherwise, the buck is necessarily passed to <code>self.root_n</code>. We’ll see why in a moment.</p>
+<pre id=part2-14-tree_constructor_insert
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+#!/usr/bin/env python
+
+class BinaryTree:
+    def __init__(self):
+        self.root_n = None
+
+    def insert_item(self, item):
+        if self.root_n == None:
+            newnode = Node(item)
+            self.root_n = newnode
+        else:
+            self.root_n.insert_item(item)
+</code></pre>
+<p>Now, for the <code>Node</code> class, we’ll need a constructor, as well as “get” and “set” methods for both <code>left_n</code> and <code>right_n</code>, which initially are set to <code>None</code>.</p>
+<pre id=part2-14-tree_node_getters_setters
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+class Node:
+    def __init__(self, item):
+        self.item = item
+        self.left_n = None
+        self.right_n = None
+        
+    def get_item(self):
+        return self.item
+    
+    def get_left_n(self):
+        return self.left_n
+    
+    def set_left_n(self, newleft):
+        self.left_n = newleft
+        
+    def get_right_n(self):
+        return self.right_n
+    
+    def set_right_n(self, newright):
+        self.right_n = newright
+</code></pre>
+<p>What about a node’s <code>.insert_item()</code> method? What sort of decision-making process needs to happen? The process is even simpler than for a sorted linked list. If each node always follows the rule that smaller items can be found to the left and larger or equal items can always be found to the right, then new items can always be inserted at the bottom of the tree. In the tree above, for example, a node holding <code>8</code> would be placed to the right of (and “below”) the node holding <code>7</code>. The decision process for a node is thus as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Is the new item to insert less than our <code>self.item</code>? If so, the new item goes to the left:
+<ol style="list-style-type: lower-alpha">
+<li>Is <code>self.left_n</code> equal to <code>None</code>? If so, then we need to create a new node holding the new item, and set <code>self.left_n</code> to that node.</li>
+<li>If not, we can pass the buck to <code>self.left_n</code>.</li>
+</ol></li>
+<li>Otherwise, the item must be larger than or equal to <code>self.item</code>, so it needs to go to the right:
+<ol style="list-style-type: lower-alpha">
+<li>Is <code>self.right_n</code> equal to <code>None</code>? If so, then we need to create a new node holding the new item, and set <code>self.right_n</code> to that node.</li>
+<li>If not, we can pass the buck to <code>self.right_n</code>.</li>
+</ol></li>
+</ol>
+<p>In the previous figure of a tree, <code>8</code> would go to the right of <code>7</code>, <code>6</code> would go to the left of <code>7</code>, <code>18</code> would go the right of <code>11</code>, and so on. The logic for inserting a new item is thus quite simple, from a node’s point of view:</p>
+<pre id=part2-14-tree_node_insert
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+    # ... (inside class Node:)
+        def insert_item(self, item):
+        if item < self.item:                        
+            if self.left_n == None:                 # 1a.  
+                newnode = Node(item)
+                self.left_n = newnode
+            else:                                   # 1b.
+                self.left_n.insert_item(item)
+        else:
+            if self.right_n == None:                # 2a.
+                newnode = Node(item)
+                self.right_n = newnode
+            else:                                   # 2b.
+                self.right_n.insert_item(item)
+</code></pre>
+<p>The remaining method to consider is the tree’s <code>.get_smallest()</code>. In the case of a linked list, the smallest item (if present) was the first node in the list, and so could be accessed with no buck passing. But in the case of a binary tree, this isn’t true: the smallest item can be found all the way to the left. The code for <code>.get_smallest()</code> in the <code>Tree</code> class and the corresponding <code>Node</code> class reflects this.</p>
+<pre id=part2-14-tree_get_smallest
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+    # ... (inside class Tree:)
+
+    def get_smallest(self):
+        if self.root_n == None:
+            return None
+        else:
+            answer = self.root_n.get_smallest()
+            return answer
+</code></pre>
+<pre id=part2-14-node_get_smallest
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+    # ... (inside class Node:)
+    def get_smallest(self):
+        if self.left_n == None:
+            return self.item
+        else:
+            answer = self.left_n.get_smallest()
+            return answer
+</code></pre>
+<p>In the case of a node, if <code>self.left_n</code> is <code>None</code>, then <em>that</em> node’s item must be the smallest one, because it can assume the message was only ever passed toward it to the left. Similar usage code as for the linked list demonstrates that this wonderful structure (<a href="data/binarytree.py"><code>binarytree.py</code></a>) really does work:</p>
+<pre id=part2-14-tree_usage
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+numtree = BinaryTree()
+numtree.insert_item(9)
+numtree.insert_item(3)
+numtree.insert_item(7)
+numtree.insert_item(1000)
+numtree.insert_item(10)
+print(numtree.get_smallest())       # prints 3
+numtree.insert_item(2)
+print(numtree.get_smallest())       # prints 2
+</code></pre>
+<p>The most interesting question is: how much time does it take to insert a new item into a tree that already contains <span class="math inline">\(n\)</span> items? The answer depends on the shape of the tree. Suppose that the tree is nice and “bushy”, meaning that all nodes except those at the bottom have nodes to their left and right.</p>
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_26_binary_tree_bushy.png" /></p>
+</div>
+<p>The time taken to insert an item is the number of times the buck needs to be passed to reach the bottom of the tree. In this case, at each node, the total number of nodes in consideration is reduced by half; first <span class="math inline">\(n\)</span>, then <span class="math inline">\(n/2\)</span>, then <span class="math inline">\(n/4\)</span>, and so on, until there is only a single place the new item could go. How many times can a number <span class="math inline">\(n\)</span> be divided in half until reaching a value of 1 (or smaller)? The formula is <span class="math inline">\(log_2(n)\)</span>. It takes the same amount of time to find the smallest item for a bushy tree, because the length down the left-hand side is the same as any other path to a “leaf” in the tree.</p>
+<table style="width:75%;">
+<colgroup>
+<col width="30%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Structure</th>
+<th align="center">Insert Item</th>
+<th align="center">Get Smallest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sorted Simple List</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="even">
+<td>Sorted Linked List</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>“Bushy” Binary Tree</td>
+<td align="center"><span class="math inline">\(O(log_2(n))\)</span></td>
+<td align="center"><span class="math inline">\(O(log_2(n))\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In general, the logarithm of <span class="math inline">\(n\)</span> is much smaller than <span class="math inline">\(n\)</span> itself, so a binary tree trades off some speed in finding the smallest element for speed in insertion.</p>
+<p>Note, however, that the shape of a tree depends on the order in which the items are inserted; for example if <code>10</code> is inserted into an empty tree, followed by <code>9</code>, the <code>9</code> will go to the left. Further inserting <code>8</code> will put it all the way to the left of <code>9</code>. Thus, it is possible that a tree isn’t in fact bushy, but rather very unbalanced. For an extreme example, if the numbers from <span class="math inline">\(n\)</span>, <span class="math inline">\(n-1\)</span>, <span class="math inline">\(n-2\)</span>, …, <span class="math inline">\(3\)</span>, <span class="math inline">\(2\)</span> were inserted in that order, the tree would look like so:</p>
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_27_binary_tree_unbushy.png" /></p>
+</div>
+<p>In this case, the tree has degenerated into a reverse-sorted linked list. So, the insertion time (for <code>1</code>, for example) is <span class="math inline">\(O(n)\)</span>, and finding the smallest item is also, because the tree is heavily unbalanced in a leftward direction. Unfortunately, in practice, we can’t guarantee the order in which data will be inserted, and such runs of consecutive insertions aren’t uncommon in real-world data.</p>
+<p>More sophisticated structures called “balanced” binary trees have modifications to their insertion methods that ensure the tree stays bushy, no matter what order items are inserted. This is tricky, as it requires manipulating the structure of the tree after insertions, but the structure manipulation itself can’t take too long or the benefit of insertion is lost. Examples of balanced binary trees include so-called red-black trees, and AVL trees (named after Georgy Adelson-Velsky and Evgenii Landis, who first described them).</p>
+<table style="width:79%;">
+<colgroup>
+<col width="34%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Structure</th>
+<th align="center">Insert Item</th>
+<th align="center">Get Smallest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sorted Simple List</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="even">
+<td>Sorted Linked List</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>“Bushy” Binary Tree</td>
+<td align="center"><span class="math inline">\(O(log_2(n))\)</span></td>
+<td align="center"><span class="math inline">\(O(log_2(n))\)</span></td>
+</tr>
+<tr class="even">
+<td>“Un-Bushy” Binary Tree</td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+<td align="center"><span class="math inline">\(O(n)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Balanced Binary Tree</td>
+<td align="center"><span class="math inline">\(O(log_2(n))\)</span></td>
+<td align="center"><span class="math inline">\(O(log_2(n))\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In practice, we don’t make a distinction between “bushy” and “un-bushy” binary trees: simple binary-search trees are <span class="math inline">\(O(n)\)</span> for both <span class="math inline">\(.insert_item()\)</span> and <span class="math inline">\(.get_smallest()\)</span>, because we cannot guarantee bushiness (recall that we assume worst-case performance when analyzing an algorithm). Real applications thus use AVL trees, red-black trees, or other more sophisticated data structures.</p>
+</div>
+<div id="exercises-26" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="algorithms-and-data-structures.html#exercises-26" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Add “pass the buck” methods to <code>BinaryTree</code> and its <code>Node</code> class for <code>.print_in_order()</code> and <code>.print_reverse_order()</code>, causing the items to be printed in sorted and reverse-sorted order, respectively.</li>
+<li>Add <code>.count_nodes()</code> methods that return the total number of items stored in the tree. How long does it take, in order notation? Does this depend on whether the tree is bushy or not? If so, what would be the run time for a bushy versus un-bushy tree?</li>
+<li>Add <code>.count_leaves()</code> methods that return the total number of “leaves” (nodes with <code>None</code> in <code>left_n</code> and <code>right_n</code>).</li>
+<li>Binary search trees are so called because they can easily and efficiently determine whether a query item is present. Add <code>.is_item_present()</code> methods that return <code>True</code> if a query item exists in the tree and <code>False</code> otherwise (similar to the <code>LinkedList</code> <code>.is_item_present()</code>). How long does it take, in order notation? Does this depend on whether the tree is bushy or not? If so, what would be the run time for a bushy versus un-bushy tree?</li>
+<li>Modify the binary tree code so that duplicate items can’t be stored in separate nodes.</li>
+</ol>
+</div>
+</div>
+<div id="back-to-sorting" class="section level3 unnumbered hasAnchor">
+<h3>Back to Sorting<a href="algorithms-and-data-structures.html#back-to-sorting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We previously left the topic of sorting having developed <code>bubblesort</code>, an <span class="math inline">\(O(n^2)\)</span> method for sorting a simple list of items. We can certainly do better.</p>
+<p>One of the interesting features of the <code>insert_item()</code> method used by nodes in both the tree and linked list is that this method, for any given node, calls itself, but in another node. In reality, there aren’t multiple copies of the method stored in RAM; rather, a single method is shared between them, and only the <code>self</code> parameter is really changing. So, this method (which is just a function associated with a class) is actually calling <em>itself</em>.</p>
+<p>In a related way, it turns out that any function (not associated with an object) can call itself. Suppose we wanted to compute the factorial function, defined as</p>
+<p><span class="math display">\[
+    factorial(n) = n \times (n-1) \times (n-2) \times ... \times 2 \times 1
+\]</span></p>
+<p>One of the most interesting features of the factorial function is that it can be defined in terms of itself:</p>
+<p><span class="math display">\[
+    factorial(n) = \begin{cases}
+                    &amp;  1,                       &amp; \text{if } n=1 \\
+                    &amp;  n \times factorial(n-1), &amp; \text{otherwise}
+                    \end{cases}
+\]</span></p>
+<p>If we wanted to compute <code>factorial(7)</code>, a logical way to think would be: “first, I’ll compute the factorial of 6, then multiply it by 7”. This reduces the problem to computing <code>factorial(6)</code>, which we can logically solve in the same way. Eventually we’ll want to compute <code>factorial(1)</code>, and realize that is just 1. The code follows this logic impeccably:</p>
+<pre id=part2-14-factorial
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+def factorial(n:int) -> int:
+    if n == 1:
+        return 1
+    else:
+        subanswer = factorial(n-1)
+        answer = subanswer * n
+        return answer
+
+print(factorial(7))                 # prints 5040
+print(factorial(8))                 # prints 40320
+print(factorial(9))                 # prints 362880
+</code></pre>
+<p>As surprising as it might be, this bit of code really works.<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a> The reason is that the parameter <code>n</code> is a <a href="variables-and-scope.html#local_variable">local variable</a>, and so in each call of the function it is independent of any other <code>n</code> variable that might exist.<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a> The call to <code>factorial(7)</code> has an <code>n</code> equal to <code>7</code>, which calls <code>factorial(6)</code>, which in turn gets its own <code>n</code> equal to <code>6</code>, and so on. Each call waits at the <code>subanswer = factorial(n-1)</code> line, and only when <code>factorial(1)</code> is reached do the returns start percolating back up the chain of calls. Because calling a function is a quick operation (<span class="math inline">\(O(1)\)</span>), the time taken to compute <code>factorial(n)</code> is <span class="math inline">\(O(n)\)</span>, one for each call and addition computed at each level.</p>
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_30_factorial_percolation-1024x442.png" /></p>
+</div>
+<div id="recursion" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>This strategy — a function that calls itself — is called <em>recursion</em>. There are usually at least two cases considered by a recursive function: (1) the <em>base case</em>, which returns an immediate answer if the data are simple enough, and (2) the <em>recursive case</em>, which computes one or more subanswers and modifies them to return the final answer. In the recursive case, the data on which to operate must get “closer” to the base case. If they do not, then the chain of calls will never finish.</p>
+<p>Applying recursion to sorting items is relatively straightforward. The more difficult part will be determining how fast it runs for a list of size <span class="math inline">\(n\)</span>. We’ll illustrate the general strategy with an algorithm called <code>quicksort</code>, first described in 1960 by Tony Hoare.</p>
+<p>For an overall strategy, we’ll implement the recursive sort in a function called <code>quicksort()</code>. The first thing to check is whether the list is of length 1 or 0: if so, we can simply return it since it is already sorted. (This is the base case of the recursive method.) If not, we’ll pick a “pivot” element from the input list; usually, this will be a random element, but we’ll use the first element as the pivot to start with. Next, we’ll break the input list into three lists: <code>lt</code>, containing the elements less than the pivot; <code>eq</code>, containing the elements equal to the pivot; and <code>gt</code>, containing elements greater than the pivot. Next, we’ll sort <code>lt</code> and <code>gt</code> to produce <code>lt_sorted</code> and <code>gt_sorted</code>. The answer, then, is a new list containing first the elements from <code>lt_sorted</code>, then the elements from <code>eq</code>, and finally the elements from <code>gt_sorted</code>.</p>
+<p>The interesting parts of the code below are the highlighted lines: how do we sort <code>lt</code> and <code>gt</code> to produce <code>lt_sorted</code> and <code>gt_sorted</code>?</p>
+<pre id=part2-14-quicksort
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+def quicksort(nums: list) -> list:
+    if len(nums) <= 1:              # base case
+        return nums
+    else:                           # recursive case
+        pivot = nums[0]             # O(1)
+        lt = list()
+        eq = list()
+        gt = list()
+
+        for num in nums:            # O(n)
+            if num < pivot:
+                lt.append(num)
+            elif num == pivot:
+                eq.append(num)
+            else:
+                gt.append(num)
+
+<span style="background-color: #fcf3cf;">        ## producing lt_sorted and gt_sorted
+        lt_sorted = quicksort(lt)  # O(?)
+        gt_sorted = quicksort(gt)  # O(?)</span>
+
+        answer = list()
+        for num in lt_sorted:      # O(n)
+            answer.append(num)
+        for num in eq:             # O(n)
+            answer.append(num)     
+        for num in gt_sorted:      # O(n)
+            answer.append(num)
+
+    return answer
+</code></pre>
+<p>We could use Python’s built-in <code>sorted()</code> function, but that’s clearly cheating. We could use <code>bubblesort</code>, but doing so would result in our function suffering the same time bound as for <code>bubblesort</code> (we say “time bound” because the order notation essentially provides an upper bound on time usage). The answer is to use recursion: because <code>lt</code> and <code>gt</code> must both be smaller than the input list, as subproblems they are getting closer to the base case, and we can call <code>quicksort()</code> on them!</p>
+<pre id=part2-14-quicksort_use
+     class="language-python 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+nums = [4, 6, 8, 1, 2, 8, 9, 2]
+print(quicksort(nums))               # prints [1, 2, 2, 4, 6, 8, 8, 9]
+</code></pre>
+<p>Let’s attempt to analyze the running time of <code>quicksort()</code> — will it be better than, equal to, or worse than <code>bubblesort</code>? As with the binary trees covered previously, it turns out the answer is “it depends.”</p>
+<p>First, we’ll consider how long the function takes to run — not counting the subcalls to <code>quicksort()</code> — on a list of size <span class="math inline">\(n\)</span>. The first step is to pick a pivot, which is quick. Next, we split the input list into three sublists. Because appending to a list is quick, but all <span class="math inline">\(n\)</span> elements need to be appended to one of the three, the time spent in this section is <span class="math inline">\(O(n)\)</span>. After the subcalls, the sorted versions of the lists need to be appended to the <code>answer</code> list, and because there are <span class="math inline">\(n\)</span> things to append, the time there is also <span class="math inline">\(O(n)\)</span>. Thus, not counting the recursive subcalls, the run time is <span class="math inline">\(O(n)\)</span> plus <span class="math inline">\(O(n)\)</span> which is <span class="math inline">\(O(n)\)</span>.</p>
+<p>But that’s not the end of the story — we can’t just ignore the time taken to sort the sublists, even though they are smaller. For the sake of argument, let’s suppose we always get “lucky,” and the pivot happens to be the median element of the input list, so <code>len(lt)</code> and <code>len(gt)</code> are both approximately <span class="math inline">\(n/2\)</span>. We can visualize the execution of the function calls as a sort of “call tree”, where the size of the nodes represents how big the input list is.</p>
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_33_quicksort_optimal.png" /></p>
+</div>
+<p>Here, the top “node” represents the work done by the first call; before it can finish, it must call to sort the <code>lt</code> list on the second layer, which must again call to sort its own <code>lt</code> list, and so on, until the bottom layer, where a base case is reached. The path of execution can be traced in the figure along the line. To analyze the run time of the algorithm, we can note that the amount of work done at each layer is <span class="math inline">\(O(n)\)</span>, so the total amount of work is this value times the number of layers. In the case where the pivots split the lists roughly in half, the result is the same as the number of layers in the bushy binary tree: <span class="math inline">\(O(log_2(n))\)</span>. Thus, in this idealized scenario, the total run time is <span class="math inline">\(O(n log_2(n))\)</span>, which is much better than the <span class="math inline">\(O(n^2)\)</span> of bubblesort.<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a></p>
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_34_nsq_vs_nlogn.png" /></p>
+</div>
+<p>This equation assumes that the pivots split the input lists more or less in half, which is likely to be the case (on average), if we choose the pivots at random. But we didn’t choose at random; we used <code>nums[0]</code>. What would happen if the input to the list happened to be already sorted? In this case, the pivot would always be the first element, <code>lt</code> would always be empty, and <code>gt</code> would have one fewer element. The “work tree” would also be different.</p>
+<div class="fig center" style="width: 75%">
+<p><img src="images/part2-14-algorithms-and-data-structures.Rmd.images/II.13_35_quicksort_suboptimal.png" /></p>
+</div>
+<p>In this “unlucky” case, the work on each level is approximately <span class="math inline">\(n\)</span>, <span class="math inline">\(n - 1\)</span>, <span class="math inline">\(n - 2\)</span>, and so on, so the total work is <span class="math inline">\(n+(n-1)+(n-2)+...1=n(n+1)/2\)</span> which is <span class="math inline">\(O(n^2)\)</span>. Does this mean that in the worst case <code>quicksort()</code> is as slow as bubblesort? Unfortunately, yes. But some very smart people have analyzed <code>quicksort()</code> (assuming the pivot element is chosen at random, rather than using the first element) and proved that in the average case the run time is <span class="math inline">\(O(n\ log_2(n))\)</span>, and the chances of significantly worse performance are astronomically small. Further, a similar method known as “mergesort” operates by guaranteeing an even 50/50 split (of a different kind).</p>
+<table style="width:71%;">
+<colgroup>
+<col width="18%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Algorithm</th>
+<th align="center">Average Case</th>
+<th align="center">Worst Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bubblesort</td>
+<td align="center"><span class="math inline">\(O(n^2)\)</span></td>
+<td align="center"><span class="math inline">\(O(n^2)\)</span></td>
+</tr>
+<tr class="even">
+<td>Quicksort</td>
+<td align="center"><span class="math inline">\(O(n\ log_2(n))\)</span></td>
+<td align="center"><span class="math inline">\(O(n^2)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Mergesort</td>
+<td align="center"><span class="math inline">\(O(n\ log_2(n))\)</span></td>
+<td align="center"><span class="math inline">\(O(n\ log_2(n))\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Using random selection for pivot, <code>quicksort()</code> is fast in practice, though mergesort and similar algorithms are frequently used as well. (Python’s <code>.sort()</code> and <code>sorted()</code> use a variant of mergesort called “Timsort”.) Although as mentioned above worst-case analysis is most prevalent in algorithms analysis, <code>quicksort()</code> is one of the few exceptions to this rule.</p>
+<p>These discussions of algorithms and data structures might seem esoteric, but they should illustrate the beauty and creativeness possible in programming. Further, recursively defined methods and sophisticated data structures underlie many methods in bioinformatics, including pairwise sequence alignment, reference-guided alignment, and Hidden Markov Models.</p>
+</div>
+<div id="exercises-27" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="algorithms-and-data-structures.html#exercises-27" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>The first step for writing <code>mergesort()</code> is to write a function called <code>merge()</code>; it should take two sorted lists (together comprising <span class="math inline">\(n\)</span> elements) and return a merged sorted version. For example, <code>merge([1, 2, 4, 5, 8, 9, 10, 15], [2, 3, 6, 11, 12, 13])</code> should return the list <code>[1, 2, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15]</code>, and it should do so in time <span class="math inline">\(O(n)\)</span>, where <span class="math inline">\(n\)</span> is the total number of elements from both lists. (Note that <code>.append()</code> on a Python list is time <span class="math inline">\(O(1)\)</span>, as are mathematical expressions like <code>c = a + b</code>, but other list operations like <code>.insert()</code> are not.)</p>
+<p>The <code>mergesort()</code> function should first split the input list into two almost-equal-sized pieces (e.g., <code>first_half = input_list[0:len(input_list)//2]</code>); these can then be sorted recursively with <code>mergesort()</code>, and finally the <code>merge()</code> function can be used to combine the sorted pieces into a single answer. If all steps in the function (not counting the recursive calls) are <span class="math inline">\(O(n)\)</span>, then the total time will be <span class="math inline">\(O(n\ log_2(n))\)</span>.</p>
+<p>Implement <code>merge()</code> and <code>mergesort()</code>.</p></li>
+<li><p>The Fibonacci numbers (1, 1, 2, 3, 5, 8, 13, etc.) are, like the factorials, recursively defined:</p>
+<p><span class="math display">\[
+Fib(n) = \begin{cases}
+     &amp;  1,                       &amp; \text{if } n=1 \\
+     &amp;  1,                       &amp; \text{if } n=2 \\
+     &amp;  Fib(n-1)+Fib(n-2),       &amp; \text{otherwise}
+     \end{cases}
+\]</span></p>
+<p>Write a recursive function <code>fib()</code> that returns the <span class="math inline">\(n\)</span>th Fibonacci number (<code>fib(1)</code> should return <code>1</code>, <code>fib(3)</code> should return <code>2</code>, <code>fib(10)</code> should return <code>55</code>).</p></li>
+<li><p>Next, write a function called <code>fib_loop()</code> that returns the <span class="math inline">\(n\)</span>th Fibonacci by using a simple loop. What is the run time, in order notation, in terms of <span class="math inline">\(n\)</span>? Compare how long it takes to compute <code>fib(35)</code> versus <code>fib_loop(35)</code>, and then try <code>fib(40)</code> versus <code>fib_loop(40)</code>. Why do you think <code>fib()</code> takes so much longer? Try drawing the “call trees” for <code>fib(1)</code>, <code>fib(2)</code>, <code>fib(3)</code>, <code>fib(4)</code>, <code>fib(5)</code>, and <code>fib(6)</code>. Could you make a guess as to what the run time of this function is in order notation? Can you imagine any ways it could be sped up?</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="86">
+<li id="fn86"><p>Technically <span class="math inline">\(O(n^2) &gt; O(n^{1.5})\)</span> is an abuse of notation; we <strong>should</strong> say <span class="math inline">\(O(n^{1.5})\)</span> is <span class="math inline">\(O(n^2)\)</span>, based on the definition of the notation.<a href="algorithms-and-data-structures.html#fnref86" class="footnote-back">↩︎</a></p></li>
+<li id="fn87"><p>When analyzing an algorithm in Python, however, not all lines are a single computational step. For example, Python has a built-in <code>sorted()</code> function for sorting, and although it is not as slow as bubblesort, it takes much longer than one step to sort millions of numbers. If an algorithm makes use of a function like <code>sorted()</code>, the run time of that (based on the size of the input given) also needs to be considered. A function that calls our bubblesort function <span class="math inline">\(n\)</span> times, for example, would run in time <span class="math inline">\(O(n^3)\)</span><a href="algorithms-and-data-structures.html#fnref87" class="footnote-back">↩︎</a></p></li>
+<li id="fn88"><p>There is no reason a <code>Node</code> object couldn’t also hold other information. For example, nodes could have a <code>self.snp</code> to hold an SNP object as well, with <code>self.item</code> being the location of the SNP, so SNPs are stored in order of their locations.<a href="algorithms-and-data-structures.html#fnref88" class="footnote-back">↩︎</a></p></li>
+<li id="fn89"><p>If we ignore all the nodes’ <code>self.left_n</code> references (i.e., the entire left side of the tree), then the <code>self.right_n</code> path from top to the lower right is a sorted linked list! Similarly, the path from the top to the lower left is a reverse-sorted linked list.<a href="algorithms-and-data-structures.html#fnref89" class="footnote-back">↩︎</a></p></li>
+<li id="fn90"><p>Factorials can be easily (and slightly more efficiently) computed with a loop, but we’re more interested in illustrating the concept of a self-calling function.<a href="algorithms-and-data-structures.html#fnref90" class="footnote-back">↩︎</a></p></li>
+<li id="fn91"><p>Additionally, the operations of defining a function and executing it are disjoint, so there’s nothing to stop a function being defined in terms of itself.<a href="algorithms-and-data-structures.html#fnref91" class="footnote-back">↩︎</a></p></li>
+<li id="fn92"><p>This proof is a visually oriented one, and not terribly rigorous. A more formalized proof would develop what is known as a recurrence relation for the behavior of the algorithm, in the form of <span class="math inline">\(T(n) = 2 T (n/2) + c,\ T(1) = d\)</span>, to be solved for <span class="math inline">\(T(n)\)</span>, representing the time taken to sort <span class="math inline">\(n\)</span> items.<a href="algorithms-and-data-structures.html#fnref92" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="acknowledgements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="an-introduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -278,38 +1188,42 @@ This is a caption. Clearly, some problems, like the string alignment problem, ar
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
-"toc": {
-"collapse": "section"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part2-14-algorithms-and-data-structures.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
 });
 });
 </script>
@@ -320,7 +1234,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
