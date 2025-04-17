@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+.Rprofile
 _publish.R
 rsconnect
 .DS_Store
@@ -10,3 +11,5 @@ packages.bib
 dummy
 *.Rproj
 ignore/
+renv/
+
