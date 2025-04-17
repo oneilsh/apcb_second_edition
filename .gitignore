@@ -1,7 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
-.Rprofile
+# .Rprofile
 _publish.R
 rsconnect
 .DS_Store
