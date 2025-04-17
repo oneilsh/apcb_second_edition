@@ -11,5 +11,4 @@ packages.bib
 dummy
 *.Rproj
 ignore/
-renv/
-
+# renv/
