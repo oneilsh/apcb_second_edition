@@ -79,6 +79,8 @@ value = value + 1
 print(value)        # prints 8
 </code></pre>
 
+###### {- #modulus}
+
 Aside from the usual addition and subtraction, other mathematical operators of note include `**` for exponential powers and `%` for modulus (to indicate a remainder after integer division, e.g., `7 % 3` is `1`, `8 % 3` is `2`, `9 % 3` is `0`, and so on).
 
 <pre id=part2-02-modulo
