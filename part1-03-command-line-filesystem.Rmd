@@ -1,14 +1,12 @@
-
 # The Command Line and Filesystem
 
-Computer users are used to interacting with a “user interface.” On many computers, this interface displays the desktop or task bar, icons, file previews, and so on. It takes input from the user in the form of keystrokes, mouse movements, and in some cases voice commands, and presents the results of the user’s actions. Perhaps most importantly, the user interface is itself a *program* (it is software running on a computer, after all) we interact with to *execute other programs*.
-
+Computer users are used to interacting with a "user interface." On many computers, this interface displays the desktop or task bar, icons, file previews, and so on. It takes input from the user in the form of keystrokes, mouse movements, and in some cases voice commands, and presents the results of the user's actions. Perhaps most importantly, the user interface is itself a *program* (it is software running on a computer, after all) we interact with to *execute other programs*.
 
 ###### {- #shell} 
 ###### {- #command_prompt} 
-The same thing happens when we use SSH to log in to a remote machine, or open up the Terminal application on a Linux or OS X desktop. In this case, however, instead of interacting with a GUI (Graphical User Interface), we interact with a CLI (Command-Line Interface), or *shell*, which does the job of displaying the command prompt. The shell is the software we interact with on the command line. In some sense it is the command line, as it displays the command prompt, accepts input via typed text, runs other programs on our behalf, and displays the results textually. A *command prompt* is a line of status information provided in a text-based interface, indicating that commands are to be entered and run by pressing Enter. Command prompts often include information about what computer or network one is logged in to, the username one is logged in with, and an indication of the “present working directory” (discussed below).
+The same thing happens when we use SSH to log in to a remote machine, or open up the Terminal application on a Linux or MacOS desktop. In this case, however, instead of interacting with a GUI (Graphical User Interface), we interact with a CLI (Command-Line Interface), or *shell*, which does the job of displaying the command prompt. The shell is the software we interact with on the command line. In some sense it is the command line, as it displays the command prompt, accepts input via typed text, runs other programs on our behalf, and displays the results textually. A *command prompt* is a line of status information provided in a text-based interface, indicating that commands are to be entered and run by pressing Enter. Command prompts often include information about what computer or network one is logged in to, the username one is logged in with, and an indication of the "present working directory" (discussed below).
 
-The first command that we’ll learn for the Linux command line is `echo`, which prints the parameters we give it.
+The first command that we'll learn for the Linux command line is `echo`, which prints the parameters we give it.
 
 <pre id=part1-03-echo-example
      class="language-txt 
@@ -19,7 +17,7 @@ The first command that we’ll learn for the Linux command line is `echo`, which
 hello there
 </code></pre>
 
-Let’s break down the command prompt and the program that we ran, which consisted of a program name and several parameters, separated by spaces. In the figure below, the command prompt consists of `oneils@mpb ~$`.
+Let's break down the command prompt and the program that we ran, which consisted of a program name and several parameters, separated by spaces. In the code below, the command prompt consists of `[oneils@mpb ~]$`.
 
 <pre id=part1-03-export-echo
      class="language-txt 
@@ -51,7 +49,7 @@ oneils
 
 ### Setting Environment Variables, Dealing with Spaces {-}
 
-Setting environment variables is something we’ll have to know how to do eventually, but learning now will give us an opportunity to discuss some of the finer points of how the shell interprets our commands. In `bash`, the most commonly used shell, setting environment variables is done with the `export` command, taking as the first parameter what the variable name should be (without the `$`) and what it should be set to.
+Setting environment variables is something we'll have to know how to do eventually, but learning now will give us an opportunity to discuss some of the finer points of how the shell interprets our commands. In `bash`, one of the most commonly used shells, setting environment variables is done with the `export` command. The first parameter we pass to `export` is what the variable name should be (without the `$`) and what it should be set to.
 
 <pre id=part1-03-export-greeting
      class="language-txt 
@@ -63,7 +61,7 @@ Setting environment variables is something we’ll have to know how to do eventu
 hello
 </code></pre>
 
-Because `export` expects as its first parameter the variable description, we’ll get an odd result if we include a space in our greeting, as the shell uses spaces to separate parameters.
+Because `export` expects the variable description as its first parameter, we'll get an odd result if we include a space in our greeting, as the shell uses spaces to separate parameters.
 
 <pre id=part1-03-export-greeting-space
      class="language-txt 
@@ -77,7 +75,7 @@ hello
 
 ###### {- #quote_wrap}
 
-In the above, `GREETING=hello` was taken to be first parameter, and the second, `everyone`, was ignored by the `export` command. There are at least two ways to get around this problem. The first is to prefix any character that the shell deems special (like spaces) with a backslash, or `\`, thereby “escaping” it so that it is ignored by the shell as a special character. Alternatively, we can wrap a string in quotation marks to have it treated literally by the shell.
+In the above, `GREETING=hello` was taken to be first parameter, and the second, `everyone`, was ignored by the `export` command. There are at least two ways to get around this problem. The first is to prefix any character that the shell deems special (like spaces) with a backslash, or `\`, thereby "escaping" it so that it is ignored by the shell as a special character. Alternatively, we can wrap a string in quotation marks to have it treated literally by the shell.
 
 <pre id=part1-03-export-greeting-excape
      class="language-txt 
@@ -107,7 +105,7 @@ hello $USER
 hello oneils
 </code></pre>
 
-Note that when setting an environment variable, we do not use the `$`. By convention, environment variable names contain only capital letters.^[There is another type of variable known as a "shell variable", which operates similar to environment variables. There are some differences: (1) by convention, these have lowercase names; (2) they are set differently, in `bash` by using `declare` instead of `export`; and (3) they are available only to the shell, not other programs that you might run. The distinction between these two types can cause headaches on occasion, but it isn’t crucial enough to worry about now.] Further, this expansion (from environment variables to their contents) is done by the shell; the command itself is changed from `export GREETING="hello $USER"` to `export GREETING="hello oneils"`.
+Note that when setting an environment variable, we do not use the `$`. By convention, environment variable names contain only capital letters.^[There is another type of variable known as a "shell variable", which operates similar to environment variables. There are some differences: (1) by convention, these have lowercase names; (2) they are set differently, in `bash` by using `declare` instead of `export`; and (3) they are available only to the shell, not other programs that you might run. The distinction between these two types can cause headaches on occasion, but it isn't crucial enough to worry about now.] Further, this expansion (from environment variables to their contents) is done by the shell; the command itself is changed from `export GREETING="hello $USER"` to `export GREETING="hello oneils"`.
 
 ### Alternative Shells {-}
 
@@ -122,7 +120,7 @@ There is a special environment variable, `$0`, that generally holds the name of 
 -bash
 </code></pre>
 
-The above command illustrates that we are running `bash`, the most commonly used shell.^[Because `$0` holds the name of the currently running program, one might expect `echo $0` to result in `echo` being reported, but this isn’t the case. As mentioned previously, the shell replaces the environment variables with their contents *before* the command is executed.]
+The above command illustrates that we are running `bash`.^[Because `$0` holds the name of the currently running program, one might expect `echo $0` to result in `echo` being reported, but this isn't the case. As mentioned previously, the shell replaces the environment variables with their contents *before* the command is executed.]
 
 Depending on the system you are logged in to, running `echo $0` may not report `bash`. The reason is (although it may seem odd) that there are a variety of shells available, owing to the long history of Unix and Linux. In the beginning, the interfaces were quite simple, but over time better interfaces/shells were developed that included new features (consider how the "Start" menu has changed over the years on Microsoft Windows versions). We can run a different shell, if it is installed, by simply running it like any other program. The `tcsh` shell, itself an outgrowth of the `csh` shell, is sometimes the default instead of `bash`. (Both `csh` and `tcsh` are older than `bash`.)
 
@@ -167,11 +165,11 @@ In general, it can be difficult to determine which shell is running on the basis
 
 ### Files, Directories, and Paths {-}
 
-With some of the more difficult concepts of the shell out of the way, let’s turn to something a bit more practical: understanding how directories (also known as folders) and files are organized.
+With some of the more difficult concepts of the shell out of the way, let's turn to something a bit more practical: understanding how directories (also known as folders) and files are organized.
 
 ###### {- #root}
 
-Most filesystems are hierarchical, with files and directories stored inside other directories. In Unix-like operating systems, the “top level” directory in which everything can be found is known as `/` (a forward slash). This top-level directory is sometimes called the *root* of the filesystem, as in the root of the filesystem tree. Within the root directory, there are commonly directories with names like `bin`, `etc`, `media`, and `home`; the last of these is often where users will store their own individual data.^[Computer scientists and mathematicians usually draw trees upside down. One theory is that trees are easier to draw upside down when working on a blackboard, the traditional (and still considered by many the best) medium of exposition for those fields. Our language reflects this thinking: when we move a file, we move it “down” into a subdirectory, or “up” into a directory “above” the current one.]
+Most filesystems are hierarchical, with files and directories stored inside other directories. In Unix-like operating systems, the "top level" directory in which everything can be found is known as `/` (a forward slash). This top-level directory is sometimes called the *root* of the filesystem, as in the root of the filesystem tree. Within the root directory, there are commonly directories with names like `bin`, `etc`, `media`, and `home`; the last of these is often where users will store their own individual data.^[Computer scientists and mathematicians usually draw trees upside down. One theory is that trees are easier to draw upside down when working on a blackboard, the traditional (and still considered by many the best) medium of exposition for those fields. Our language reflects this thinking: when we move a file, we move it "down" into a subdirectory, or "up" into a directory "above" the current one.]
 
 <div class="fig center" style="width: 80%">
   <img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_12_filesystem_ex.png" />
@@ -187,15 +185,15 @@ Note that an absolute path must start with the leading forward slash, indicating
 
 Every user normally has a *home directory*, serving as a personal storage locker for files and directories. (Often the amount of space available this location is not as much as users would like.) The shell and other programs can find out the absolute path to your home directory via the environment variable `$HOME`; try running `echo $HOME` to see the absolute path to your own home directory.
 
-What about special devices like CD-ROM drives and network drives? On a Windows operating system, these would get their own “root” directory with names like `D:` and `E:` (with the main hard drive usually having the name `C:`). On Unix-based operating systems, there is only ever one filesystem hierarchy, and the top level is always `/`. Special devices like CD-ROM drives and network drives are mounted somewhere in the filesystem. It may be that the directory `/media` remains empty, for example, but when a CD-ROM is inserted, a new directory may appear inside that directory, perhaps with the absolute path `/media/cdrom0`, and the files on the CD-ROM will appear in that location.
+What about special devices like CD-ROM drives^[Wow - the authors are really showing our age here!] and network drives? On a Windows operating system, these would get their own "root" directory with names like `D:` and `E:` (with the main hard drive usually having the name `C:`). On Unix-based operating systems, there is only ever one filesystem hierarchy, and the top level is always `/`. Special devices like CD-ROM drives and network drives are mounted somewhere in the filesystem. It may be that the directory `/media` remains empty, for example, but when a CD-ROM is inserted, a new directory may appear inside that directory, perhaps with the absolute path `/media/cdrom0`, and the files on the CD-ROM will appear in that location.
 
-Determining how and where such devices are mounted is the job of the system administrator. On OS X machines, inserted devices appear in `/Volumes`. If you are logged in to a large computational infrastructure, your home directory likely isn’t located on the internal hard drive of the remote computer, but rather mounted from a network drive present on yet another remote computer. This configuration allows users to “see” the same filesystem hierarchy and files no matter which remote computer they happen to log in to, if more than one is available. (For example, even `/home` might be a network mount, and so all users’ home directories might be available on a number of machines.)
+Determining how and where such devices are mounted is the job of the system administrator. On MacOS machines, inserted devices appear in `/Volumes`. If you are logged in to a large computational infrastructure, your home directory likely isn't located on the internal hard drive of the remote computer, but rather mounted from a network drive present on yet another remote computer. This configuration allows users to "see" the same filesystem hierarchy and files no matter which remote computer they happen to log in to, if more than one is available. (For example, even `/home` might be a network mount, and so all users' home directories might be available on a number of machines.)
 
 ### Getting around the Filesystem {-}
 
 ###### {- #present_working_directory}
 
-It is vitally important to understand that, as we are working in the command-line environment, we always have a “place”, a directory (or folder) in which we are working called the *present working directory*, or PWD. The shell keeps track of the present working directory in an environment variable, `$PWD`.
+It is vitally important to understand that, as we are working in the command-line environment, we always have a "place", a directory (or folder) in which we are working called the *present working directory*, or PWD. The shell keeps track of the present working directory in an environment variable, `$PWD`.
 
 When you first log in, your present working directory is set to your home directory; `echo $PWD` and `echo $HOME` will likely display the same result. There is also a dedicated program for displaying the present working directory, called `pwd`.
 
@@ -226,7 +224,7 @@ We can list the files and directories that are stored in the present working dir
 
 This command reveals that I have a number of directories in my home directory (`/home/oneils`) with names like `Music` and `Pictures` (helpfully colored blue) and a file called `todo_list.txt`.
 
-We can change the present working directory—that is, move to another directory—by using the `cd` command, giving it the path that we’d like to move to.
+We can change the present working directory — that is, move to another directory — by using the `cd` command, giving it the path that we'd like to move to.
 
 <pre id=part1-03-pwd
      class="language-txt 
@@ -258,7 +256,7 @@ Notice that the command prompt has changed to illustrate the present working dir
 
 ###### {- #relative_path}
 
-It isn’t always necessary to specify the full, absolute path to locate a file or directory; rather, we can use a *relative path*. A relative path locates a file or directory *relative* to the present working directory. If the present working directory is `/home/oneils`, for example, a file located at the absolute path `/home/oneils/Pictures/profile.jpg` would have relative path P`ictures/profile.jpg`. For the file `/home/oneils/todo_list.txt`, the relative path is just `todo_list.txt`. If the present working directory was `/home`, on the other hand, the relative paths would be `oneils/Pictures/profile.jpg` and `oneils/todo_list.txt`.
+It isn't always necessary to specify the full, absolute path to locate a file or directory; rather, we can use a *relative path*. A relative path locates a file or directory *relative* to the present working directory. If the present working directory is `/home/oneils`, for example, a file located at the absolute path `/home/oneils/Pictures/profile.jpg` would have relative path `Pictures/profile.jpg`. For the file `/home/oneils/todo_list.txt`, the relative path is just `todo_list.txt`. If the present working directory was `/home`, on the other hand, the relative paths would be `oneils/Pictures/profile.jpg` and `oneils/todo_list.txt`.
 
 Because relative paths are always relative to the present working directory (rather than the root directory `/`), they *cannot* start with a forward slash, whereas absolute paths *must* start with a leading forward slash. This distinction occasionally confuses new users.
 
@@ -277,7 +275,11 @@ We can use the `cd` command with relative paths as well, and this is most common
 profile.jpg
 </code></pre>
 
-A few notes about moving around directories: (1) Unix-like operating systems are nearly always case sensitive, for commands, parameters, and file and directory names. (2) Because of the way spaces are treated on the command line, it is uncommon to see spaces in file or directory names. The command `cd mydocuments` is much easier to type than `cd my\ documents` or `cd 'my documents'`. (3) If you forget to specify `cd` before specifying a path, a cryptic `permission denied` error will occur, rather than an error specific to the lack of `cd` command.
+A few notes about moving around directories: 
+
+1. Unix-like operating systems are nearly always case sensitive, for commands, parameters, and file and directory names. 
+2. Because of the way spaces are treated on the command line, it is uncommon to see spaces in file or directory names. The command `cd mydocuments` is much easier to type than `cd my\ documents` or `cd 'my documents'`. 
+3. If you forget to specify `cd` before specifying a path, a cryptic `permission denied` error will occur, rather than an error specific to the lack of `cd` command.
 
 ###### {- #hidden}
 
@@ -294,15 +296,15 @@ By default, when running the `ls` program to list the contents of the present wo
 <span style="color: blue">..            .dbus       .gvfs             Public</span>        .viminfo
 <span style="color: blue">apcb          Desktop</span>     .ICEauthority     <span style="color: blue">.pulse</span>        .vimrc
 .bash_history <span style="color: blue">Documents   .local</span>            .pulse-cookie <span style="color: blue">.vnc</span>
-.bash_login   <span style="color: blue">Downloads   Music             .ssh</span>     .Xauthority
-.bash_logout  <span style="color: blue">.gconf</span>      .netrc            <span style="color: blue">Templates</span>             .Xdefaults
-.bashrc       <span style="color: blue">.gnome2      Pictures</span>         Todo_list.txt        .xscreensaver
-<span style="color: blue">.cache        .gnupg      .pip              Videos</span>                .xsession-errors
+.bash_login   <span style="color: blue">Downloads   Music             .ssh</span>          .Xauthority
+.bash_logout  <span style="color: blue">.gconf</span>      .netrc            <span style="color: blue">Templates</span>     .Xdefaults
+.bashrc       <span style="color: blue">.gnome2      Pictures</span>         Todo_list.txt .xscreensaver
+<span style="color: blue">.cache        .gnupg      .pip              Videos</span>        .xsession-errors
 </code></pre>
 
-It turns out there are quite a few hidden files here! Many of those starting with a `.`, like `.bash_login`, are actually configuration files used by various programs. We’ll spend some time with those in later chapters.
+It turns out there are quite a few hidden files here! Many of those starting with a `.`, like `.bash_login`, are actually configuration files used by various programs. We'll spend some time with those in later chapters.
 
-On the topic of `ls`, there are many additional parameters we can give to `ls`: include `-l` to show “long” file information including file sizes, and `-h` to make those file sizes “human readable” (e.g., 4K versus 4,196 bytes). For `ls`, we can specify this combination of options as `ls -l -a -h` (where the parameters may be given in any order), or with a single parameter as `ls -lah`, though not all utilities provide this flexibility.
+On the topic of `ls`, there are many additional parameters we can give to `ls`: include `-l` to show "long" file information including file sizes, and `-h` to make those file sizes "human readable" (e.g., 4K versus 4,196 bytes). For `ls`, we can specify this combination of options as `ls -l -a -h` (where the parameters may be given in any order), or with a single parameter as `ls -lah`, though not all utilities provide this flexibility.
 
 <pre id=part1-03-ls-lah
      class="language-txt 
@@ -321,18 +323,18 @@ drwxr-xr-x   4  oneils  iplant-everyone 4.0K  Sep 15 11:19 <span style="color: b
 drwx------   7  oneils  iplant-everyone 4.0K  Sep 15 09:52 <span style="color: blue">.cache</span>
 </code></pre>
 
-Some of these columns of information are describing the permissions associated with the various files and directories; we’ll look at the permissions scheme in detail in later chapters.
+Some of these columns of information are describing the permissions associated with the various files and directories; we'll look at the permissions scheme in detail in later chapters.
+
+###### {- #dot}
+###### {- #dot_dot}
+
+When using `ls -a`, we see two "special" directories: `.` and `..` are their names. These directories don't really exist per se but are instead shortcuts that refer to special locations relative to the directory they are contained in. The `.` directory is a shortcut for the same directory it is contained in. Colloquially, it means "here." The `..` directory is a shortcut for the directory *above* the directory containing it. Colloquially, it means "up."
 
 <div class="fig center" style="width: 30%">
   <img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_20_dot_dotdot.png" />
 </div>
 
-###### {- #dot}
-###### {- #dot_dot}
-
-When using `ls -a`, we see two “special” directories: `.` and `..` are their names. These directories don’t really exist per se but are instead shortcuts that refer to special locations relative to the directory they are contained in. The `.` directory is a shortcut for the same directory it is contained in. Colloquially, it means “here.” The `..` directory is a shortcut for the directory *above* the directory containing it. Colloquially, it means “up.”
-
-Every directory has these “virtual” links, and they can be used as relative paths themselves or in relative or absolute paths. Here, for example, we can `cd .` to stay where we are, or `cd ..` to go up one directory:
+Every directory has these "virtual" links, and they can be used as relative paths themselves or in relative or absolute paths. Here, for example, we can `cd .` to stay where we are, or `cd ..` to go up one directory:
 
 <pre id=part1-03-cd
      class="language-txt 
@@ -360,7 +362,7 @@ If we like, we can go up two directories with `cd ../..`:
 [oneils@mbp ~]$ <b>echo $PWD</b>
 /home/oneils
 [oneils@mbp ~]$ <b>cd ../..</b>
-[oneils@mbp /$ <b>echo $PWD</b>
+[oneils@mbp /]$ <b>echo $PWD</b>
 /
 </code></pre>
 
@@ -373,7 +375,7 @@ We can even use `.` and `..` in longer relative or absolute paths (number 2 in t
 <div class="exercises">
 #### Exercises {-}
 
-1. Practice moving about the filesystem with `cd` and listing directory contents with `ls`, including navigating by relative path, absolute path, `.` and `..`. Use `echo $PWD` and `pwd` frequently to list your present working directory. Practice navigating home with `cd ~`, `cd $HOME`, and just `cd` with no arguments. You might find it useful to draw a “map” of the filesystem, or at least the portions relevant to you, on a piece of paper.
+1. Practice moving about the filesystem with `cd` and listing directory contents with `ls`, including navigating by relative path, absolute path, `.`, and `..`. Use `echo $PWD` and `pwd` frequently to list your present working directory. Practice navigating home with `cd ~`, `cd $HOME`, and just `cd` with no arguments. You might find it useful to draw a "map" of the filesystem, or at least the portions relevant to you, on a piece of paper.
 
 2. Without explicitly typing your username, create another environment variable called `$CHECKCASH`, such that when `echo $CHECKCASH` is run, a string like `oneils has $20` is printed (except that `oneils` would be your username and should be set by reading from `$USER`).
 
@@ -381,5 +383,5 @@ We can even use `.` and `..` in longer relative or absolute paths (number 2 in t
 
 4. What happens if you are in the top-level directory `/` and you run `cd ..`?
 
-5. Users’ home directories are normally located in `/home`. Is this the case for you? Are there any other home directories belonging to other users that you can find, and if so, can you `cd` to them and run `ls`?
+5. Users' home directories are normally located in `/home`. Is this the case for you? Are there any other home directories belonging to other users that you can find, and if so, can you `cd` to them and run `ls`?
 </div>
