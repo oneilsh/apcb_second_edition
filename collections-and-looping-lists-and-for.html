@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -468,7 +467,7 @@ new_list.append("A")                     # new_list now refers to ["A"
 new_list.append("G")                     # new_list now refers to ["A", "G"]
 </code></pre>
 <p>This syntax might seem a bit odd compared to what we’ve seen so far. Here <code>new_list.append("G")</code> is telling the list object the <code>new_list</code> variable refers to to run its <code>.append()</code> method, taking as a parameter the string <code>"G"</code>. We’ll explore the concepts of objects and methods more formally in later chapters. For now, consider the list not just a collection of data, but a “smart” object with which we can interact using methods.</p>
-<p>Note that the <code>.append()</code> method asks the list to modify itself (which it can do, because lists are mutable), but this operation doesn’t return anything of use.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
+<p>Note that the <code>.append()</code> method asks the list to modify itself (which it can do, because lists are mutable), but this operation doesn’t return anything of use.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-03-collections-looping.images/II.3_5_list_append_return_none.png" /></p>
 </div>
@@ -515,7 +514,7 @@ ids = tuple()                            # empty tuple
 ids = ("CYP6B",)                         # a tuple of length 1, note the comma
 ids = ("CYP6B", "AGP4", "CATB")          # a tuple of length 3
 </code></pre>
-<p>Tuples work much like lists – we can call <code>len()</code> on them and extract elements or slices with <code>[]</code> syntax. We can’t change, remove, or insert elements.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
+<p>Tuples work much like lists – we can call <code>len()</code> on them and extract elements or slices with <code>[]</code> syntax. We can’t change, remove, or insert elements.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
 </div>
 </div>
 <div id="looping-with-for" class="section level3 unnumbered hasAnchor">
@@ -713,9 +712,9 @@ This problem is a bit tricky, but it will help you organize your thoughts around
 </div>
 <div class="footnotes">
 <hr />
-<ol start="44">
-<li id="fn44"><p>It returns a special data type known as <code>None</code>, which allows for a (variable)[#variables] to exist but not reference any data. (Technically, <code>None</code> is a type of data, albeit a very simple one.) <code>None</code> can be used as a type of placeholder, and so in some situations isn’t entirely useless.<a href="collections-and-looping-lists-and-for.html#fnref44" class="footnote-back">↩︎</a></p></li>
-<li id="fn45"><p>Tuples are a cause of one of the more confusing parts of Python, because they are created by enclosing a list of elements inside of parentheses, but function calls also take parameters listed inside of parentheses, and mathematical expressions are grouped by parentheses, too! Consider the expression <code>(4 + 3) * 2</code>. Is <code>(4 + 3)</code> an integer, or a single-element tuple? Actually, it’s an integer. By default, Python looks for a comma to determine whether a tuple should be created, so <code>(4 + 3)</code> is an integer, while <code>(4 + 3, 8)</code> is a two-element tuple and <code>(4 + 3,)</code> is a single-element tuple. Use parentheses deliberately in Python: either to group mathematical expressions, create tuples, or call functions – where the function name and opening parenthesis are neighboring, as in <code>print(a)</code> rather than <code>print (a)</code>. Needlessly adding parentheses (and thereby accidentally creating tuples) has been the cause of some difficult-to-find bugs.<a href="collections-and-looping-lists-and-for.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<ol start="45">
+<li id="fn45"><p>It returns a special data type known as <code>None</code>, which allows for a (variable)[#variables] to exist but not reference any data. (Technically, <code>None</code> is a type of data, albeit a very simple one.) <code>None</code> can be used as a type of placeholder, and so in some situations isn’t entirely useless.<a href="collections-and-looping-lists-and-for.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>Tuples are a cause of one of the more confusing parts of Python, because they are created by enclosing a list of elements inside of parentheses, but function calls also take parameters listed inside of parentheses, and mathematical expressions are grouped by parentheses, too! Consider the expression <code>(4 + 3) * 2</code>. Is <code>(4 + 3)</code> an integer, or a single-element tuple? Actually, it’s an integer. By default, Python looks for a comma to determine whether a tuple should be created, so <code>(4 + 3)</code> is an integer, while <code>(4 + 3, 8)</code> is a two-element tuple and <code>(4 + 3,)</code> is a single-element tuple. Use parentheses deliberately in Python: either to group mathematical expressions, create tuples, or call functions – where the function name and opening parenthesis are neighboring, as in <code>print(a)</code> rather than <code>print (a)</code>. Needlessly adding parentheses (and thereby accidentally creating tuples) has been the cause of some difficult-to-find bugs.<a href="collections-and-looping-lists-and-for.html#fnref46" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

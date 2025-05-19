@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -474,7 +473,7 @@ last_sample <- samples2[length(samples2)]        # numeric 37.6
 <div class="fig center" style="width: 100%">
 <p><img src="images/part3-03-vectors.Rmd.images/III.3_6_r_22_2_char_vec.png" /></p>
 </div>
-<p>This explains quite a lot about R, including some curiosities such as why <code>print(gc_content)</code> prints <code>[1] 0.34</code>. This output is indicating that <code>gc_content</code> is a vector, the first element of which is <code>0.34</code>. Consider the <code>seq()</code> function, which returns a vector of numerics; it takes three parameters:<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a> (1) the number at which to start, (2) the number at which to end, and (3) the step size.</p>
+<p>This explains quite a lot about R, including some curiosities such as why <code>print(gc_content)</code> prints <code>[1] 0.34</code>. This output is indicating that <code>gc_content</code> is a vector, the first element of which is <code>0.34</code>. Consider the <code>seq()</code> function, which returns a vector of numerics; it takes three parameters:<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a> (1) the number at which to start, (2) the number at which to end, and (3) the step size.</p>
 <pre id=part3-03-seq-example
      class="language-r
             line-numbers
@@ -562,7 +561,7 @@ print(subvector)                            # [1] 30 20
 numbers[c(3,2)] <- c(35, 25)
 print(numbers)                              # [1] 10 25 35 40 50
 </code></pre>
-<p><em>Selective replacement</em> is the process of replacing selected elements of a vector (or similar structure) by specifying which elements to replace with <code>[]</code> indexing syntax combined with assignment <code>&lt;-</code>.<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a></p>
+<p><em>Selective replacement</em> is the process of replacing selected elements of a vector (or similar structure) by specifying which elements to replace with <code>[]</code> indexing syntax combined with assignment <code>&lt;-</code>.<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a></p>
 <p>R vectors (and many other data container types) can be named, that is, associated with a character vector of the same length. We can set and subsequently get this names vector using the <code>names()</code> function, but the syntax is a little odd.</p>
 <pre id=part3-03-named-vec1
      class="language-r
@@ -1005,7 +1004,7 @@ mean of x mean of y
 <div id="reading-and-writing-tabular-data-wrapping-long-lines" class="section level3 unnumbered hasAnchor">
 <h3>Reading and Writing Tabular Data, Wrapping Long Lines<a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before we go much further, we’re going to want to be able to import data into our R programs from external files (which we’ll assume to be rows and columns of data in text files). We’ll do this with <code>read.table()</code>, and the result will be a type of data known as a “data frame” (or <code>data.frame</code> in code). We’ll cover the nuances of data frames later, but note for now that they can be thought of as a collection of vectors (of equal length), one for each column in the table.</p>
-<p>As an example, let’s suppose we have a tab-separated text file in our present working directory called <code>states.txt</code>.<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a> Each row represents one of the US states along with information on population, per capita income, illiteracy rate, murder rate (per 100,000), percentage of high school graduates, and region (all measured in the 1970s). The first row contains a “header” line with column names.</p>
+<p>As an example, let’s suppose we have a tab-separated text file in our present working directory called <code>states.txt</code>.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a> Each row represents one of the US states along with information on population, per capita income, illiteracy rate, murder rate (per 100,000), percentage of high school graduates, and region (all measured in the 1970s). The first row contains a “header” line with column names.</p>
 <pre id=part3-03-states-txt-example
      class="language-txt
             line-numbers
@@ -1091,7 +1090,7 @@ print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
 incomes <- states$income
 print(incomes)                    # [1] 3624 6315 4530 3378 5114 4884 ...
 </code></pre>
-<p>Although this syntax can be used to extract a column from a data frame as a vector, note that it refers to the vector within the data frame as well. In a sense, <code>states$income</code> <em>is</em> the vector stored in the <code>states</code> data frame. Thus we can use techniques like <a href="">selective replacement</a> to work with them just like any other vectors. Here, we’ll replace all instances of “North Central” in the <code>states$region</code> vector with just the term “Central,” effectively renaming the region.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a></p>
+<p>Although this syntax can be used to extract a column from a data frame as a vector, note that it refers to the vector within the data frame as well. In a sense, <code>states$income</code> <em>is</em> the vector stored in the <code>states</code> data frame. Thus we can use techniques like <a href="">selective replacement</a> to work with them just like any other vectors. Here, we’ll replace all instances of “North Central” in the <code>states$region</code> vector with just the term “Central,” effectively renaming the region.<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a></p>
 <pre id=part3-03-states-rename-region
      class="language-r
             line-numbers
@@ -1102,7 +1101,7 @@ states$region[nrth_cntrl_logical] <- "Central"          # Selective replacement
 # OR
 states$region[states$region == "North Central"] <- "Central"
 </code></pre>
-<p>Writing a data frame to a tab-separated file is accomplished with the <code>write.table()</code> function.<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a> As with <code>read.table()</code>, <code>write.table()</code> can take quite a few parameters, most of which have reasonable defaults. But there are six or so we’ll want to set more often than others. Let’s write the modified <code>states</code> data frame to a file called <code>states_modified.txt</code> as a tab-separated file.</p>
+<p>Writing a data frame to a tab-separated file is accomplished with the <code>write.table()</code> function.<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a> As with <code>read.table()</code>, <code>write.table()</code> can take quite a few parameters, most of which have reasonable defaults. But there are six or so we’ll want to set more often than others. Let’s write the modified <code>states</code> data frame to a file called <code>states_modified.txt</code> as a tab-separated file.</p>
 <pre id=part3-03-write-table
      class="language-r
             line-numbers
@@ -1171,12 +1170,12 @@ states$newpop[!highmurder] <- states$population[!highmurder] * 1.1
 </div>
 <div class="footnotes">
 <hr />
-<ol start="98">
-<li id="fn98"><p>Most R functions take a large number of parameters, but many of them are optional. In the next chapter, we’ll see what such optional parameters look like, and how to get an extensive list of all the parameters that built-in R functions can take.<a href="vectors.html#fnref98" class="footnote-back">↩︎</a></p></li>
-<li id="fn99"><p>The term “selective replacement” is not widely used outside of this book. In some situations, the term “conditional replacement” is used, but we wanted to define some concrete terminology to capture the entirety of the idea.<a href="vectors.html#fnref99" class="footnote-back">↩︎</a></p></li>
-<li id="fn100"><p>When running on the command line, the present working directory is inherited from the shell. In RStudio, the present working directory is set to the “project” directory if the file is part of a project folder. In either case, it is possible to change the working directory from within R using the <code>setwd()</code> function, as in <code>setwd("/home/username/rproject")</code> in Unix/Linux and <code>setwd("C:/Documents and Settings/username/My Documents/rproject")</code> in Windows. It is also possible to specify file names by absolute path, as in <code>/home/username/rproject/states.txt</code>, no matter the present working directory.<a href="vectors.html#fnref100" class="footnote-back">↩︎</a></p></li>
-<li id="fn101"><p>If you have any familiarity with R, you might have run across the <code>attach()</code> function, which takes a data frame and results in the creation of a separate vector for each column. Generally, “disassembling” a data frame this way is a bad idea—after all, the columns of a data frame are usually associated with each other for a reason! Further, this function results in the creation of many variables with names based on the column names of the data frame. Because these names aren’t clearly delimited in the code, it’s easy to create hard-to-find bugs and mix up columns from multiple data frames this way.<a href="vectors.html#fnref101" class="footnote-back">↩︎</a></p></li>
-<li id="fn102"><p>There are also more specialized functions for both reading and writing tabular data, such as <code>read.csv()</code> and <code>write.csv()</code>. We’ve focused on <code>read.table()</code> and <code>write.table()</code> because they are flexible enough to read and write tables in a variety of formats, including comma separated, tab separated, and so on.<a href="vectors.html#fnref102" class="footnote-back">↩︎</a></p></li>
+<ol start="99">
+<li id="fn99"><p>Most R functions take a large number of parameters, but many of them are optional. In the next chapter, we’ll see what such optional parameters look like, and how to get an extensive list of all the parameters that built-in R functions can take.<a href="vectors.html#fnref99" class="footnote-back">↩︎</a></p></li>
+<li id="fn100"><p>The term “selective replacement” is not widely used outside of this book. In some situations, the term “conditional replacement” is used, but we wanted to define some concrete terminology to capture the entirety of the idea.<a href="vectors.html#fnref100" class="footnote-back">↩︎</a></p></li>
+<li id="fn101"><p>When running on the command line, the present working directory is inherited from the shell. In RStudio, the present working directory is set to the “project” directory if the file is part of a project folder. In either case, it is possible to change the working directory from within R using the <code>setwd()</code> function, as in <code>setwd("/home/username/rproject")</code> in Unix/Linux and <code>setwd("C:/Documents and Settings/username/My Documents/rproject")</code> in Windows. It is also possible to specify file names by absolute path, as in <code>/home/username/rproject/states.txt</code>, no matter the present working directory.<a href="vectors.html#fnref101" class="footnote-back">↩︎</a></p></li>
+<li id="fn102"><p>If you have any familiarity with R, you might have run across the <code>attach()</code> function, which takes a data frame and results in the creation of a separate vector for each column. Generally, “disassembling” a data frame this way is a bad idea—after all, the columns of a data frame are usually associated with each other for a reason! Further, this function results in the creation of many variables with names based on the column names of the data frame. Because these names aren’t clearly delimited in the code, it’s easy to create hard-to-find bugs and mix up columns from multiple data frames this way.<a href="vectors.html#fnref102" class="footnote-back">↩︎</a></p></li>
+<li id="fn103"><p>There are also more specialized functions for both reading and writing tabular data, such as <code>read.csv()</code> and <code>write.csv()</code>. We’ve focused on <code>read.table()</code> and <code>write.table()</code> because they are flexible enough to read and write tables in a variety of formats, including comma separated, tab separated, and so on.<a href="vectors.html#fnref103" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

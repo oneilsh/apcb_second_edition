@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -424,7 +423,7 @@
             <section class="normal" id="section-">
 <div id="command-line-blast" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Command Line BLAST<a href="command-line-blast.html#command-line-blast" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>While the previous chapters covered installing and using a few bioinformatics tools as examples of the process, there is one nearly ubiquitous tool: BLAST, or Basic Local Alignment Search Tool.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
+<p>While the previous chapters covered installing and using a few bioinformatics tools as examples of the process, there is one nearly ubiquitous tool: BLAST, or Basic Local Alignment Search Tool.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></p>
 <p>Given one or more <em>query</em> sequences (usually in FASTA format), BLAST looks for matching sequence regions between them and a <em>subject</em> set.</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-08-command-line-BLAST.Rmd.images/I.8_1_blast_illustration.png" /></p>
@@ -547,7 +546,7 @@ orf_trans.fasta
 orf_trans.fasta  orf_trans.pin  orf_trans.psd  orf_trans.psq
 orf_trans.phr    orf_trans.pog  orf_trans.psi
 </code></pre>
-<p>Now we need to determine what options we will use for the <code>blastp</code>. In particular, do we want to limit the number of HSPs and target sequences reported for each query? Because we’re mostly interested in determining which proteins match others, we probably only need to keep one hit. But each protein’s best hit will likely be to itself! So we’d better keep the top two with <code>-max_target_seqs 2</code> and only the best HSP per hit with <code>-max_hsps 1</code>. We’ll also use an <code>-evalue 1e-6</code>, a commonly used cutoff.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></p>
+<p>Now we need to determine what options we will use for the <code>blastp</code>. In particular, do we want to limit the number of HSPs and target sequences reported for each query? Because we’re mostly interested in determining which proteins match others, we probably only need to keep one hit. But each protein’s best hit will likely be to itself! So we’d better keep the top two with <code>-max_target_seqs 2</code> and only the best HSP per hit with <code>-max_hsps 1</code>. We’ll also use an <code>-evalue 1e-6</code>, a commonly used cutoff.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
 <p>For the output, we’ll create a tab-separated output with comment lines (<code>-outfmt 7</code>), creating columns for the query sequence ID, subject sequence ID, HSP alignment length, percentage identity of the alignment, subject sequence length, query sequence length, start and end positions in the query and subject, and the <em>E</em> value. (The coded names—<code>qseqid</code>, <code>sseqid</code>, <code>length</code>, etc.—can be found by running <code>blastp -help</code>.) Finally, we’ll call the output file <a href="data/yeast_blastp_yeast_top2.txt"><code>yeast_blastp_yeast_top2.txt</code></a> and use four processors to speed the computation (which will only really help if the machine we are logged in to has at least that many).</p>
 <pre id=part1-08-blastp
      class="language-txt 
@@ -585,9 +584,9 @@ What do these various output columns represent?
 </div>
 <div class="footnotes">
 <hr />
-<ol start="23">
-<li id="fn23"><p>The original BLAST paper is by Stephen F. Altschul, Warren Gish, Webb Miller, Eugene W. Myers, and David J. Lipman, “Basic Local Alignment Search Tool,” <em>Journal of Molecular Biology</em> 215 (1990): 403–404. I’m convinced that naming bioinformatics tools exciting verbs like BLAST and HMMER results in greater usage.<a href="command-line-blast.html#fnref23" class="footnote-back">↩︎</a></p></li>
-<li id="fn24"><p>Using an E-value cutoff of <code>1e-6</code> may not be the best choice; as with all analyses, some evaluations or literature guidance may be necessary, depending on the task at hand.<a href="command-line-blast.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<ol start="24">
+<li id="fn24"><p>The original BLAST paper is by Stephen F. Altschul, Warren Gish, Webb Miller, Eugene W. Myers, and David J. Lipman, “Basic Local Alignment Search Tool,” <em>Journal of Molecular Biology</em> 215 (1990): 403–404. I’m convinced that naming bioinformatics tools exciting verbs like BLAST and HMMER results in greater usage.<a href="command-line-blast.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>Using an E-value cutoff of <code>1e-6</code> may not be the best choice; as with all analyses, some evaluations or literature guidance may be necessary, depending on the task at hand.<a href="command-line-blast.html#fnref25" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -449,7 +448,7 @@ PZ7180000000004_TX 0.279 1000 AAATA 12 unit:TAA 12 trinucleotide
 <div class="fig center" style="width: 50%">
 <p><img src="images/part1-10-sorting-first-last.Rmd.images/I.10_2_sort_syntax.png" /></p>
 </div>
-<p>The <code>sort</code> utility takes many potential parameters, though the most important are the <code>-k</code> parameters that specify the columns by which to sort and how that sorting should be done, and occasionally the <code>-u</code> flag. The <code>-k</code> (key) parameters are considered in order; the above specifies that the sorting should be done on columns 2 through 4 (conglomerated into a single “column”), considering them in dictionary order, and sorting them in reverse. In the case of ties, only the first column is considered in normal dictionary order, and in the case of further ties, the fifth column is considered in numeric order.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> (The difference between <code>n</code> and <code>g</code> ordering is that <code>g</code> can handle entries in scientific notation like <code>1e-6</code>, but generally <code>n</code> is preferred because it is faster and not subject to small rounding errors.)</p>
+<p>The <code>sort</code> utility takes many potential parameters, though the most important are the <code>-k</code> parameters that specify the columns by which to sort and how that sorting should be done, and occasionally the <code>-u</code> flag. The <code>-k</code> (key) parameters are considered in order; the above specifies that the sorting should be done on columns 2 through 4 (conglomerated into a single “column”), considering them in dictionary order, and sorting them in reverse. In the case of ties, only the first column is considered in normal dictionary order, and in the case of further ties, the fifth column is considered in numeric order.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> (The difference between <code>n</code> and <code>g</code> ordering is that <code>g</code> can handle entries in scientific notation like <code>1e-6</code>, but generally <code>n</code> is preferred because it is faster and not subject to small rounding errors.)</p>
 <p>The optional <code>-u</code> flag (which may be specified before or after the keys, or even mixed in) specifies that after all the keys are considered, if there are still any ties between rows, then only the first row should be output. It outputs only “unique” lines according to the overall sorting order.</p>
 <p>By default, <code>sort</code> uses <a href="using-bioinformatics-software.html#whitespace">whitespace</a> as the column separator, though it can be changed (run <code>man sort</code> for more information). To view information about the longest perfect repeat, we will use <code>sort -k7,7nr</code>, indicating that we wish sort on the seventh column only, in reverse numeric order.</p>
 <pre id=part1-10-sort
@@ -549,8 +548,8 @@ BCCDFFEFHHHHHJJJJJIJIJJIJJJJJIIGIIIDFIIJIJIFHIJGGIGIJJJIJHJIGHGDIJCEEGHIGIGCACEF
 </div>
 <div class="footnotes">
 <hr />
-<ol start="26">
-<li id="fn26"><p>A word of caution: if a column contains an entry that cannot be interpreted as an integer or general number, it will be treated as <code>0</code> in the sorting order.<a href="sorting-first-and-last-lines.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<ol start="27">
+<li id="fn27"><p>A word of caution: if a column contains an entry that cannot be interpreted as an integer or general number, it will be treated as <code>0</code> in the sorting order.<a href="sorting-first-and-last-lines.html#fnref27" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

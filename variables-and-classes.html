@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -425,7 +424,7 @@
 <div id="variables-and-classes" class="section level1 hasAnchor" number="25">
 <h1><span class="header-section-number">Chapter 25</span> Variables and Classes<a href="variables-and-classes.html#variables-and-classes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This book, when initially introducing Python, mentioned some of the features of the language, such as its emphasis on “one best way” and readable code. Python also provides quite a bit of built-in functionality through importable modules such as <code>sys</code>, <code>re</code>, and <code>subprocess</code>.</p>
-<p>Python provides another advantage: it is naturally “object oriented”, even though we haven’t discussed this point yet. Although there are competing paradigms for the best way to architect programs, the object-oriented paradigm is commonly used for software engineering and large-project management.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a> Even for small programs, though, the basic concepts of object orientation can make the task of programming easier.</p>
+<p>Python provides another advantage: it is naturally “object oriented”, even though we haven’t discussed this point yet. Although there are competing paradigms for the best way to architect programs, the object-oriented paradigm is commonly used for software engineering and large-project management.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a> Even for small programs, though, the basic concepts of object orientation can make the task of programming easier.</p>
 <div id="object" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
 </div>
@@ -434,7 +433,7 @@
 </div>
 <div id="instance_variable" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>An <em>object</em>, practically speaking, is a segment of memory (RAM) that references both data (referred to by <em>instance variables</em>) of various types and associated functions that can operate on the data.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a> Functions belonging to objects are called methods. Said another way, a <em>method</em> is a function that is associated with an object, and an <em>instance variable</em> is a variable that belongs to an object.</p>
+<p>An <em>object</em>, practically speaking, is a segment of memory (RAM) that references both data (referred to by <em>instance variables</em>) of various types and associated functions that can operate on the data.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a> Functions belonging to objects are called methods. Said another way, a <em>method</em> is a function that is associated with an object, and an <em>instance variable</em> is a variable that belongs to an object.</p>
 </div>
 <div id="class" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
@@ -446,7 +445,7 @@
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-11-objects-and-classes.Rmd.images/II.11_2_class_to_objects-3.png" /></p>
 </div>
-<p>In a sense, calling object methods makes a request of the object: <code>nums_list.sort()</code> might be interpreted as “object referred to by <code>nums_list</code>, please run your <code>sort()</code> method”. Upon receiving this message, the object will reorder its data.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
+<p>In a sense, calling object methods makes a request of the object: <code>nums_list.sort()</code> might be interpreted as “object referred to by <code>nums_list</code>, please run your <code>sort()</code> method”. Upon receiving this message, the object will reorder its data.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a></p>
 </div>
 <div id="creating-new-classes" class="section level3 unnumbered hasAnchor">
 <h3>Creating New Classes<a href="variables-and-classes.html#creating-new-classes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -458,7 +457,7 @@
 <li><a href="#instance-variable">Instance variables</a> referring to data.</li>
 <li>A special method called a <em>constructor</em>. This method will be called automatically whenever a new object of the class is created, and must have the name <code>__init__</code>.</li>
 </ol>
-<p>One peculiarity of Python is that each method of an object must take as its first argument a parameter called self,<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a> which we use to access the instance variables. Let’s start by defining a class, <code>Gene</code> (class names traditionally begin with a capital letter): each <code>Gene</code> object will have (1) an <code>id</code> (string) and (2) a <code>sequence</code> (also a string). When creating a <code>Gene</code> object, we should define its <code>id</code> and <code>sequence</code> by passing them as parameters to the <code>__init__</code>method.</p>
+<p>One peculiarity of Python is that each method of an object must take as its first argument a parameter called self,<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a> which we use to access the instance variables. Let’s start by defining a class, <code>Gene</code> (class names traditionally begin with a capital letter): each <code>Gene</code> object will have (1) an <code>id</code> (string) and (2) a <code>sequence</code> (also a string). When creating a <code>Gene</code> object, we should define its <code>id</code> and <code>sequence</code> by passing them as parameters to the <code>__init__</code>method.</p>
 <p>Outside of the block defining the class, we can make use of it to create and interact with <code>Gene</code> objects.</p>
 <pre id=part2-11-class
      class="language-python 
@@ -636,7 +635,7 @@ geneA = Gene("AY342", "CATTGAC")
         self.sequence = newseq 
 </code></pre>
 <p>When using an <code>assert</code>, if the check doesn’t evaluate to <code>True</code>, then the program will stop and report the specified error. The complete code for this example can be found in the file <a href="data/gene_class.py"><code>gene_class.py</code></a>.</p>
-<p>Using methods when working with objects is about encapsulation and letting the objects do as much work as possible. That way, they can ensure correct results so that you (or whomever you are sharing code with, which might be “future you”) don’t have to. Objects can have any number of instance variables, and the methods may access and modify them, but it’s a good idea to ensure that all instance variables are left in a coherent state for a given object. For example, if a <code>Gene</code> object has an instance variable for the sequence, and another holding its GC content, then the GC content should be updated whenever the sequence is. Even better is to compute such quantities as needed, like we did above.<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a></p>
+<p>Using methods when working with objects is about encapsulation and letting the objects do as much work as possible. That way, they can ensure correct results so that you (or whomever you are sharing code with, which might be “future you”) don’t have to. Objects can have any number of instance variables, and the methods may access and modify them, but it’s a good idea to ensure that all instance variables are left in a coherent state for a given object. For example, if a <code>Gene</code> object has an instance variable for the sequence, and another holding its GC content, then the GC content should be updated whenever the sequence is. Even better is to compute such quantities as needed, like we did above.<a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a></p>
 <p>The steps for writing a class definition are as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Decide what concept or entity the objects of that class will represent, as well as what data (instance variables) and methods (functions) they will have.</li>
@@ -706,12 +705,12 @@ print(geneA == geneB)       # True
 </div>
 <div class="footnotes">
 <hr />
-<ol start="69">
-<li id="fn69"><p>Another prominent methodology for programming is the “functional” paradigm, wherein functions are the main focus and data are usually immutable. While Python also supports functional programming, we won’t focus on this topic. On the other hand, the R programming language emphasizes functional programming, so we’ll explore this paradigm in more detail in later chapters.<a href="variables-and-classes.html#fnref69" class="footnote-back">↩︎</a></p></li>
-<li id="fn70"><p>This definition is not precise, and in fact intentionally misrepresents how objects are stored in RAM. (In reality, all objects of the same type share a single set of functions/methods.) But this definition will serve us well conceptually.<a href="variables-and-classes.html#fnref70" class="footnote-back">↩︎</a></p></li>
-<li id="fn71"><p>Although some have criticized the anthropomorphization of objects this way, it’s perfectly fine—so long as we always say “please!”<a href="variables-and-classes.html#fnref71" class="footnote-back">↩︎</a></p></li>
-<li id="fn72"><p>This first parameter doesn’t technically need to be named <code>self</code>, but it is a widely accepted standard.<a href="variables-and-classes.html#fnref72" class="footnote-back">↩︎</a></p></li>
-<li id="fn73"><p>One might ask whether a <code>Gene</code> object would ever need to allow its sequence to change at all. One possible reason would be if we were simulating mutations over time; a method like <code>.mutate(0.05)</code> might ask a gene to randomly change 5% of its bases.<a href="variables-and-classes.html#fnref73" class="footnote-back">↩︎</a></p></li>
+<ol start="70">
+<li id="fn70"><p>Another prominent methodology for programming is the “functional” paradigm, wherein functions are the main focus and data are usually immutable. While Python also supports functional programming, we won’t focus on this topic. On the other hand, the R programming language emphasizes functional programming, so we’ll explore this paradigm in more detail in later chapters.<a href="variables-and-classes.html#fnref70" class="footnote-back">↩︎</a></p></li>
+<li id="fn71"><p>This definition is not precise, and in fact intentionally misrepresents how objects are stored in RAM. (In reality, all objects of the same type share a single set of functions/methods.) But this definition will serve us well conceptually.<a href="variables-and-classes.html#fnref71" class="footnote-back">↩︎</a></p></li>
+<li id="fn72"><p>Although some have criticized the anthropomorphization of objects this way, it’s perfectly fine—so long as we always say “please!”<a href="variables-and-classes.html#fnref72" class="footnote-back">↩︎</a></p></li>
+<li id="fn73"><p>This first parameter doesn’t technically need to be named <code>self</code>, but it is a widely accepted standard.<a href="variables-and-classes.html#fnref73" class="footnote-back">↩︎</a></p></li>
+<li id="fn74"><p>One might ask whether a <code>Gene</code> object would ever need to allow its sequence to change at all. One possible reason would be if we were simulating mutations over time; a method like <code>.mutate(0.05)</code> might ask a gene to randomly change 5% of its bases.<a href="variables-and-classes.html#fnref74" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -499,7 +498,7 @@ ids_vec <- gene_info$ids
 subframe <- gene_info[c(3, 1), c("lengths", "ids")]
 print(subframe)
 </code></pre>
-<p>Here’s the resulting output, illustrating that <code>"3"</code> and <code>"1"</code> were the row names, which now occur at the first and second row, respectively.<a href="#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a></p>
+<p>Here’s the resulting output, illustrating that <code>"3"</code> and <code>"1"</code> were the row names, which now occur at the first and second row, respectively.<a href="#fn107" class="footnote-ref" id="fnref107"><sup>107</sup></a></p>
 <pre id=part3-06-df-select-rowcol-ex1-out
      class="language-r
             line-numbers
@@ -735,10 +734,11 @@ print(m)
 
 
 
+
 <div class="footnotes">
 <hr />
-<ol start="106">
-<li id="fn106"><p>Unfortunately, when printed, quotation marks are left off of row names, commonly leading programmers to think that the row indexes are what is being displayed. Similarly, quotation marks are left off of columns that are character vectors (like the <code>ids</code> column in this example), which can cause confusion if the column is a character type with elements like <code>"1"</code>, <code>"2"</code>, and so on, potentially leading the programmer to think the column is numeric. In a final twist of confusion, using <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> syntax breaks a common pattern: <code>[]</code> indexing of a vector always returns a vector, <code>[]</code> indexing of a list always returns a list, and <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> indexing of a data frame always returns a data frame, <em>unless</em> it would have only one column, in which case the column/vector is returned. The remedy for this is <code>[&lt;row_selector&gt;, &lt;column_selector&gt;, drop = FALSE]</code>, which instructs R not to “drop” a dimension.<a href="data-frames.html#fnref106" class="footnote-back">↩︎</a></p></li>
+<ol start="107">
+<li id="fn107"><p>Unfortunately, when printed, quotation marks are left off of row names, commonly leading programmers to think that the row indexes are what is being displayed. Similarly, quotation marks are left off of columns that are character vectors (like the <code>ids</code> column in this example), which can cause confusion if the column is a character type with elements like <code>"1"</code>, <code>"2"</code>, and so on, potentially leading the programmer to think the column is numeric. In a final twist of confusion, using <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> syntax breaks a common pattern: <code>[]</code> indexing of a vector always returns a vector, <code>[]</code> indexing of a list always returns a list, and <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> indexing of a data frame always returns a data frame, <em>unless</em> it would have only one column, in which case the column/vector is returned. The remedy for this is <code>[&lt;row_selector&gt;, &lt;column_selector&gt;, drop = FALSE]</code>, which instructs R not to “drop” a dimension.<a href="data-frames.html#fnref107" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

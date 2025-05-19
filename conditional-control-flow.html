@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -432,7 +431,7 @@
 <p><img src="images/part2-05-conditional-control-flow.Rmd.images/II.5_1_py_43_if_example.png" /></p>
 </div>
 <p>All the lines from the starting <code>if</code> to the last line in an <code>elif</code> or <code>else:</code> block are part of the same logical construct. Such a construct <em>must</em> have exactly one <code>if</code> conditional block, <em>may</em> have one or more <code>elif</code> blocks (they are optional), and <em>may</em> have exactly one catchall <code>else</code> block at the end (also optional). Each conditional is evaluated in order: the first one that evaluates to <code>True</code> will run, and the rest will be skipped. If an <code>else</code> block is present, it will run if none of the earlier <code>if</code> or <code>elif</code> blocks did as a “last resort.”</p>
-<p>Just like with for-loops, if-statements can be nested inside of other blocks, and other blocks can occur inside if-statement blocks. Also just like for-loops, Python uses indentation (standard practice is four spaces per indentation level) to indicate block structure, so you will get an error if you needlessly indent (without a corresponding control flow line like <code>for</code>, <code>if</code>, <code>elif</code>, or <code>else</code>) or forget to indent when an indentation is expected.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
+<p>Just like with for-loops, if-statements can be nested inside of other blocks, and other blocks can occur inside if-statement blocks. Also just like for-loops, Python uses indentation (standard practice is four spaces per indentation level) to indicate block structure, so you will get an error if you needlessly indent (without a corresponding control flow line like <code>for</code>, <code>if</code>, <code>elif</code>, or <code>else</code>) or forget to indent when an indentation is expected.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
 <pre id=part2-05-if
      class="language-python 
             line-numbers 
@@ -502,7 +501,7 @@ for base_index, base in enumerate(seq):
 
 print("Done")
 </code></pre>
-<p>This code will print <code>base at position 0 is: A</code>, <code>then base at position 1 is: C</code>, etc. The <code>enumerate()</code> function returns pairs of data: 1. a counter (here equivalent to the index position) and 2. each item of the iterable (here, a character in the string) in turn. We can then assign these values to two variables.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
+<p>This code will print <code>base at position 0 is: A</code>, <code>then base at position 1 is: C</code>, etc. The <code>enumerate()</code> function returns pairs of data: 1. a counter (here equivalent to the index position) and 2. each item of the iterable (here, a character in the string) in turn. We can then assign these values to two variables.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
 </div>
 <div id="boolean-operators-and-connectives" class="section level3 unnumbered hasAnchor">
 <h3>Boolean Operators and Connectives<a href="conditional-control-flow.html#boolean-operators-and-connectives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -679,7 +678,7 @@ Evaluates to (with <code>a=7</code>, <code>b=3</code>)
 </td>
 </tr>
 </table>
-<p>These can be grouped with parentheses, and usually should be to avoid confusion, especially when more than one test follow a <code>not</code>.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
+<p>These can be grouped with parentheses, and usually should be to avoid confusion, especially when more than one test follow a <code>not</code>.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-05-conditional-control-flow.Rmd.images/II.5_6_boolean_logic-3.png" /></p>
 </div>
@@ -688,7 +687,7 @@ Evaluates to (with <code>a=7</code>, <code>b=3</code>)
 </div>
 <div id="logical-dangers" class="section level3 unnumbered hasAnchor">
 <h3>Logical Dangers<a href="conditional-control-flow.html#logical-dangers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Notice the similarity between <code>=</code> and <code>==</code>, and yet they have dramatically different meanings: the former is the variable assignment operator, while the latter is an equality test.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a> Accidentally using one where the other is meant is an easy way to produce erroneous code. Here <code>count == 1</code> won’t initialize <code>count</code> to <code>1</code>; rather, it will return whether it already is <code>1</code> (or result in an error if count doesn’t exist as a variable at that point). The reverse mistake is harder to make, as Python does not allow variable assignment in if-statement and while-loop definitions.</p>
+<p>Notice the similarity between <code>=</code> and <code>==</code>, and yet they have dramatically different meanings: the former is the variable assignment operator, while the latter is an equality test.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a> Accidentally using one where the other is meant is an easy way to produce erroneous code. Here <code>count == 1</code> won’t initialize <code>count</code> to <code>1</code>; rather, it will return whether it already is <code>1</code> (or result in an error if count doesn’t exist as a variable at that point). The reverse mistake is harder to make, as Python does not allow variable assignment in if-statement and while-loop definitions.</p>
 <pre id=part2-05-if
      class="language-python 
             line-numbers 
@@ -704,7 +703,7 @@ if remainder = 0:
 <p>Still, a certain class of dangerous comparison is common to nearly every language, Python included: the comparison of two float types for equality or inequality.</p>
 <p>Although integers can be represented exactly in binary arithmetic (e.g., <code>751</code> in binary is represented exactly as <code>1011101111</code>), floating-point numbers can only be represented approximately. This shouldn’t be an entirely unfamiliar concept; for example, we might decide to round fractions to four decimal places when doing calculations on pencil and paper, working with $ $ as 0.3333. The trouble is that these rounding errors can compound in difficult-to-predict ways. If we decide to compute $ <em>/ $ as $ 0.3333</em>0.3333/0.3333 $, working left to right we’d start with $ 0.3333<em>0.3333 $ rounded to four digits as 0.1110. This is then divided by 0.3333 and rounded again to produce an answer of 0.3330. So, even though we know that $ </em>/ == $, our calculation process would call them unequal because it ultimately tests 0.3330 against 0.3333!</p>
 <p>Modern computers have many more digits of precision (about 15 decimal digits at a minimum, in most cases), but the problem remains the same. Worse, numbers that don’t need rounding in our Base-10 arithmetic system do require rounding in the computer’s Base-2 system. Consider 0.2, which in binary is 0.001100110011, and so on. Indeed, <code>0.2 * 0.2 / 0.2 == 0.2</code> results in <code>False</code>!</p>
-<p>While comparing floats with <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code> is usually safe (within extremely small margins of error), comparison of floats with <code>==</code> and <code>!=</code> usually indicates a misunderstanding of how floating-point numbers work.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a> In practice, we’d determine if two floating-point values are sufficiently similar, within some defined margin of error.</p>
+<p>While comparing floats with <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code> is usually safe (within extremely small margins of error), comparison of floats with <code>==</code> and <code>!=</code> usually indicates a misunderstanding of how floating-point numbers work.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a> In practice, we’d determine if two floating-point values are sufficiently similar, within some defined margin of error.</p>
 <pre id=part2-05-margin_of_error
      class="language-python 
             line-numbers 
@@ -727,7 +726,7 @@ if a + epsilon > b and a - epsilon < b:
 <div class="fig right" style="width: 50%">
 <p><img src="images/part2-05-conditional-control-flow.Rmd.images/II.5_9_seq_stop_windows.png" /></p>
 </div>
-<p>Given a starting index <code>index</code>, the 3bp subsequence is defined as <code>seq[index:index + 3]</code>. For the sequence above, <code>len(seq)</code> would return <code>15</code>. The first start index we are interested in is <code>0</code>, while the last start index we want to include is <code>12</code>, or <code>len(seq) - 3</code>. If we were to use the <code>range()</code> function to return a list of start sequences we are interested in, we would use <code>range(0, len(seq) - 3 + 1)</code>, where the <code>+ 1</code> accounts for the fact that <code>range()</code> is <code>range(inclusive:exclusive)</code>.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
+<p>Given a starting index <code>index</code>, the 3bp subsequence is defined as <code>seq[index:index + 3]</code>. For the sequence above, <code>len(seq)</code> would return <code>15</code>. The first start index we are interested in is <code>0</code>, while the last start index we want to include is <code>12</code>, or <code>len(seq) - 3</code>. If we were to use the <code>range()</code> function to return a list of start sequences we are interested in, we would use <code>range(0, len(seq) - 3 + 1)</code>, where the <code>+ 1</code> accounts for the fact that <code>range()</code> is <code>range(inclusive:exclusive)</code>.<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></p>
 <p>We should also remember to run <code>.strip()</code> on the read sequence, as we don’t want the inclusion of any <code>\n</code> newline characters messing up the correct computation of the sequence length!</p>
 <p>Notice in the code below (which can be found in the file <a href="data/stop_count_seq.py"><code>stop_count_seq.py</code></a>) the commented-out line number 10: <code>#print(codon)</code>.</p>
 <pre id=part2-05-stop_count_seq
@@ -819,13 +818,13 @@ PZ7180000000005_NW  416120.04</code></pre></li>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="48">
-<li id="fn48"><p>Python is one of the only languages that require blocks to be delineated by indentation. Most other languages use pairs of curly brackets to delineate blocks. Many programmers feel this removes too much creativity in formatting of Python code, while others like that it enforces a common method for visually distinguishing blocks.<a href="conditional-control-flow.html#fnref48" class="footnote-back">↩︎</a></p></li>
-<li id="fn49"><p>This process of assigning a tuple (which is the data type that <code>enumerate</code> returns) to multiple variables, is referred to as <em>tuple unpacking</em>.<a href="conditional-control-flow.html#fnref49" class="footnote-back">↩︎</a></p></li>
-<li id="fn50"><p>In the absence of parentheses for grouping, <code>and</code> takes precedence over <code>or</code>, much like multiplication takes precedence over addition in numeric algebra. Boolean logic, by the way, is named after the nineteenth-century mathematician and philosopher George Boole, who first formally described the “logical algebra” of combining truth values with connectives like “and,” “or,” and “not.”<a href="conditional-control-flow.html#fnref50" class="footnote-back">↩︎</a></p></li>
-<li id="fn51"><p>The best CS instructor I ever had always pronouced <code>=</code> as “takes on the value of” and <code>==</code> as “is equal to?” (that is <code>count = 3</code> would be read as “count takes on the value of 3” and <code>count == 3</code> would be “count is equal to 3?”). That was the one term I never switched the two.<a href="conditional-control-flow.html#fnref51" class="footnote-back">↩︎</a></p></li>
-<li id="fn52"><p>You can see this for yourself: <code>print(0.2*0.2/0.2 == 0.2)</code> prints <code>False</code>! Some mathematically oriented languages are able to work entirely symbolically with such equations, bypassing the need to work with numbers at all. This requires a sophisticated parsing engine but enables such languages to evaluate even generic expressions like <code>x*x/x == x</code> as <code>True</code>.<a href="conditional-control-flow.html#fnref52" class="footnote-back">↩︎</a></p></li>
-<li id="fn53"><p>Yes, this sort of detailed logical thinking can be tedious, but it becomes easier with practice. Drawing pictures and considering small examples is also invaluable when working on programming problems, so keep a pencil and piece of paper, or a dry erase board and markers, handy.<a href="conditional-control-flow.html#fnref53" class="footnote-back">↩︎</a></p></li>
+<ol start="49">
+<li id="fn49"><p>Python is one of the only languages that require blocks to be delineated by indentation. Most other languages use pairs of curly brackets to delineate blocks. Many programmers feel this removes too much creativity in formatting of Python code, while others like that it enforces a common method for visually distinguishing blocks.<a href="conditional-control-flow.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<li id="fn50"><p>This process of assigning a tuple (which is the data type that <code>enumerate</code> returns) to multiple variables, is referred to as <em>tuple unpacking</em>.<a href="conditional-control-flow.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>In the absence of parentheses for grouping, <code>and</code> takes precedence over <code>or</code>, much like multiplication takes precedence over addition in numeric algebra. Boolean logic, by the way, is named after the nineteenth-century mathematician and philosopher George Boole, who first formally described the “logical algebra” of combining truth values with connectives like “and,” “or,” and “not.”<a href="conditional-control-flow.html#fnref51" class="footnote-back">↩︎</a></p></li>
+<li id="fn52"><p>The best CS instructor I ever had always pronouced <code>=</code> as “takes on the value of” and <code>==</code> as “is equal to?” (that is <code>count = 3</code> would be read as “count takes on the value of 3” and <code>count == 3</code> would be “count is equal to 3?”). That was the one term I never switched the two.<a href="conditional-control-flow.html#fnref52" class="footnote-back">↩︎</a></p></li>
+<li id="fn53"><p>You can see this for yourself: <code>print(0.2*0.2/0.2 == 0.2)</code> prints <code>False</code>! Some mathematically oriented languages are able to work entirely symbolically with such equations, bypassing the need to work with numbers at all. This requires a sophisticated parsing engine but enables such languages to evaluate even generic expressions like <code>x*x/x == x</code> as <code>True</code>.<a href="conditional-control-flow.html#fnref53" class="footnote-back">↩︎</a></p></li>
+<li id="fn54"><p>Yes, this sort of detailed logical thinking can be tedious, but it becomes easier with practice. Drawing pictures and considering small examples is also invaluable when working on programming problems, so keep a pencil and piece of paper, or a dry erase board and markers, handy.<a href="conditional-control-flow.html#fnref54" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

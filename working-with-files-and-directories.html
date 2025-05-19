@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -427,7 +426,7 @@
 <p>Now that we know how to locate files and directories in the filesystem, let’s learn a handful of important tools for working with them and the system in general.</p>
 <div id="viewing-the-contents-of-a-text-file" class="section level3 unnumbered hasAnchor">
 <h3>Viewing the Contents of a (Text) File<a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Although there are many tools to view and edit text files, one of the most efficient for viewing them is called <code>less</code>, which takes as a parameter a path to the file to view, which of course may just be a file name in the present working directory (which is a type of relative path).<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>Although there are many tools to view and edit text files, one of the most efficient for viewing them is called <code>less</code>, which takes as a parameter a path to the file to view, which of course may just be a file name in the present working directory (which is a type of relative path).<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 <pre id=part1-04-ls
      class="language-txt 
             line-numbers 
@@ -498,7 +497,7 @@
 [oneils@mbp ~]$ <b>mv projects_dir/p450s.fa p450s.fasta</b>
 [oneils@mbp ~]$ <b>mv projects_dir/ projects</b>
 </code></pre>
-<p>A few other notes: First, when specifying a path that is a directory, the trailing <code>/</code> is optional: <code>mv projects_dir/ projects</code> is the same as <code>mv projects_dir projects</code> if <code>projects_dir</code> is a directory (similarly, <code>projects</code> could have been specified as <code>projects/</code>). Second, it is possible to move multiple files into the same directory, for example, with <code>mv p450s.fasta todo_list.txt projects</code>. Third, it is quite common to see <a href="the-command-line-and-filesystem.html#dot"><code>.</code></a> referring to the present working directory as the destination, as in <code>mv ../file.txt .</code> for example, which would move <code>file.txt</code> from the directory <em>above</em> the present working directory (<a href="the-command-line-and-filesystem.html#dot_dot"><code>..</code></a>) <em>into</em> the present working directory (<code>.</code>, or “here”).</p>
+<p>A few other notes: first, when specifying a path that is a directory, the trailing <code>/</code> is optional: <code>mv projects_dir/ projects</code> is the same as <code>mv projects_dir projects</code> if <code>projects_dir</code> is a directory (similarly, <code>projects</code> could have been specified as <code>projects/</code>). Second, it is possible to move multiple files into the same directory, for example, with <code>mv p450s.fasta todo_list.txt projects</code>. Third, it is quite common to see <a href="the-command-line-and-filesystem.html#dot"><code>.</code></a> referring to the present working directory as the destination, as in <code>mv ../file.txt .</code> for example, which would move <code>file.txt</code> from the directory <em>above</em> the present working directory (<a href="the-command-line-and-filesystem.html#dot_dot"><code>..</code></a>) <em>into</em> the present working directory (<code>.</code>, or “here”).</p>
 </div>
 <div id="copy-a-file-or-directory" class="section level3 unnumbered hasAnchor">
 <h3>Copy a File or Directory<a href="working-with-files-and-directories.html#copy-a-file-or-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -591,7 +590,7 @@ p450s.fasta
 fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
 [oneils@mbp ~/apcb/intro]$ <b>mv fileAA.temp fileA.temp fileB.temp temp/</b>
 </code></pre>
-<p>Alternatively, we could use <code>mv file*.temp temp</code>; the shell will expand <code>file*.temp</code> into the list of files specified above <em>before</em> passing the expanded list to <code>mv</code>.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>Alternatively, we could use <code>mv file*.temp temp</code>; the shell will expand <code>file*.temp</code> into the list of files specified above <em>before</em> passing the expanded list to <code>mv</code>.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
 <pre id=part1-04-mv-wildcard
      class="language-txt 
             line-numbers 
@@ -636,7 +635,7 @@ fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
 <ol style="list-style-type: decimal">
 <li><p>Create the following directories inside your home directory, if you don’t already have them: <code>downloads</code>, <code>local</code>, and <code>projects</code>. Inside of <code>local</code>, create a directory called <code>bin</code>. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.</p></li>
 <li><p>Open not one but <em>two</em> login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of <code>top</code>.</br></br>
-Create a hidden directory inside of your home directory called <code>.hidden</code>. Inside of this directory, create a file called <code>notes</code>. Edit the file to contain tricks and information you fear you might forget.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p></li>
+Create a hidden directory inside of your home directory called <code>.hidden</code>. Inside of this directory, create a file called <code>notes</code>. Edit the file to contain tricks and information you fear you might forget.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p></li>
 <li><p>Spend a few minutes just practicing tab completion while moving around the filesystem using absolute and relative paths. Getting around efficiently via tab-completion is a surprisingly necessary skill.</p></li>
 <li><p>Skim the man page for <code>ls</code>, and try out a few of the options listed there. Read a bit of the <code>info</code> page for <code>nano</code>.</p></li>
 </ol>
@@ -646,10 +645,10 @@ Create a hidden directory inside of your home directory called <code>.hidden</co
 </div>
 <div class="footnotes">
 <hr />
-<ol start="9">
-<li id="fn9"><p>There is a similar program called <code>more</code>, originally designed to show “more” of a file. The <code>less</code> program was developed as a more full-featured alternative to <code>more</code>, and was so named because “less is more.”<a href="working-with-files-and-directories.html#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p>This is important to consider when combining <code>rm</code> with wildcards; the commands <code>rm -rf *.temp</code> and <code>rm -rf * .temp</code> are very different! The latter will remove all files in the present directory, while the former will only remove those ending in <code>.temp</code>.<a href="working-with-files-and-directories.html#fnref10" class="footnote-back">↩︎</a></p></li>
-<li id="fn11"><p>You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like <code>nano</code>, TextEdit on OS X, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters with serif quotes, which don’t work on the command line, leading to headaches.<a href="working-with-files-and-directories.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<ol start="10">
+<li id="fn10"><p>There is a similar program called <code>more</code>, originally designed to show “more” of a file. The <code>less</code> program was developed as a more full-featured alternative to <code>more</code>, and was so named because “less is more.”<a href="working-with-files-and-directories.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>This is important to consider when combining <code>rm</code> with wildcards; the commands <code>rm -rf *.temp</code> and <code>rm -rf * .temp</code> are very different! The latter will remove all files in the present directory, while the former will only remove those ending in <code>.temp</code>.<a href="working-with-files-and-directories.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like <code>nano</code>, TextEdit on OS X, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters with serif quotes, which don’t work on the command line, leading to headaches.<a href="working-with-files-and-directories.html#fnref12" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

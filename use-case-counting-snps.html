@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -424,7 +423,7 @@
             <section class="normal" id="section-">
 <div id="use-case-counting-snps" class="section level1 hasAnchor" number="26">
 <h1><span class="header-section-number">Chapter 26</span> Use Case: Counting SNPs<a href="use-case-counting-snps.html#use-case-counting-snps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>As it turns out, multiple classes can be defined that interact with each other: instance variables of a custom class may refer to custom object types. Consider the file <a href="data/trio.sample.vcf"><code>trio.subset.vcf</code></a>, a VCF (variant call format) file for describing single-nucleotide polymorphisms (SNPs, pronounced “snips”) across individuals in a group or population. In this case, the file represents a random sampling of SNPs from three people—a mother, a father, and their daughter—compared to the reference human genome.<a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a></p>
+<p>As it turns out, multiple classes can be defined that interact with each other: instance variables of a custom class may refer to custom object types. Consider the file <a href="data/trio.sample.vcf"><code>trio.subset.vcf</code></a>, a VCF (variant call format) file for describing single-nucleotide polymorphisms (SNPs, pronounced “snips”) across individuals in a group or population. In this case, the file represents a random sampling of SNPs from three people—a mother, a father, and their daughter—compared to the reference human genome.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a></p>
 <pre id=part2-12-vcf
      class="language-txt 
             line-numbers 
@@ -530,7 +529,7 @@ assert snp2.is_transversion() == True, "Failed Test"    ## Does not error
 ## error test; should result in "Error: ref == alt at pos 69835"
 snp3 = SNP("1", 69835, "rs53461", "A", "A")             ## Results in error
 </code></pre>
-<p>Although we won’t ultimately leave these testing lines in, they provide a good sanity check for the code. If these checks were wrapped in a function that could be called whenever we make changes to the code, we would have what is known as a <em>unit test</em>, or a collection of code (often one or more functions), with the specific purpose of testing functionality of other code for correctness.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a> These can be especially useful as code changes over time.</p>
+<p>Although we won’t ultimately leave these testing lines in, they provide a good sanity check for the code. If these checks were wrapped in a function that could be called whenever we make changes to the code, we would have what is known as a <em>unit test</em>, or a collection of code (often one or more functions), with the specific purpose of testing functionality of other code for correctness.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a> These can be especially useful as code changes over time.</p>
 <p>Let’s continue on with the <code>Chromosome</code> class. Note that the <code>.add_snp()</code> method contains assertions that the SNP location is not a duplicate and that the chromosome name for the new SNP matches the chromosome’s <code>self.chrname</code>.</p>
 <pre id=part2-12-add_snp
      class="language-python 
@@ -722,7 +721,7 @@ X       3028    1527
         size = m - l  + 1
         return 1000*count/size
 </code></pre>
-<p>After debugging this method and ensuring it works, we can write a method that finds the highest-density region. But how should we define our regions? Let’s say we want to consider regions of 100,000 bases. Then we might consider bases 1 to 100,000 to be a region, 100,001 to 200,000 to be a region, and so on, up until the start of the region considered is past the last SNP location. We can accomplish this with a while-loop. The strategy will be to keep information on the densest region found so far (including its density as well as start and end location), and update this answer as needed in the loop.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
+<p>After debugging this method and ensuring it works, we can write a method that finds the highest-density region. But how should we define our regions? Let’s say we want to consider regions of 100,000 bases. Then we might consider bases 1 to 100,000 to be a region, 100,001 to 200,000 to be a region, and so on, up until the start of the region considered is past the last SNP location. We can accomplish this with a while-loop. The strategy will be to keep information on the densest region found so far (including its density as well as start and end location), and update this answer as needed in the loop.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a></p>
 <pre id=part2-12-max
      class="language-python 
             line-numbers 
@@ -928,7 +927,7 @@ print(geneC.get_id())       # prints "SeqC"
 <li>run <code>p.cull()</code></li>
 <li>print <code>p.get_mean_fitness()</code>, allowing you to see the evolutionary progress of your simulation.</li>
 </ol></li>
-<li><p>Modify the simulation program above to explore its dynamics. You could consider adding a <code>.get_best_individual()</code> method to the <code>Population</code> class, for example, or implement a “mating” scheme whereby offspring genomes are mixes of two parent genomes. You could also try tweaking the <code>.get_fitness()</code> method. This sort of simulation is known as a <em>genetic algorithm</em>, especially when the evolved individuals represent potential solutions to a computational problem.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a></p></li>
+<li><p>Modify the simulation program above to explore its dynamics. You could consider adding a <code>.get_best_individual()</code> method to the <code>Population</code> class, for example, or implement a “mating” scheme whereby offspring genomes are mixes of two parent genomes. You could also try tweaking the <code>.get_fitness()</code> method. This sort of simulation is known as a <em>genetic algorithm</em>, especially when the evolved individuals represent potential solutions to a computational problem.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a></p></li>
 </ol>
 </div>
 
@@ -936,11 +935,11 @@ print(geneC.get_id())       # prints "SeqC"
 </div>
 <div class="footnotes">
 <hr />
-<ol start="74">
-<li id="fn74"><p>This file was obtained from the 1000 Human Genomes Project at <a href="https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/release/2010_07/trio/snps/" class="uri">https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/release/2010_07/trio/snps/</a>, in the file <code>CEU.trio.2010_03.genotypes.vcf.gz</code>. After decompressing, we sampled 5% of the SNPs at random with <code>awk '{if($1 ~ "##" || rand() &lt; 0.05) {print $0}}' CEU.trio.2010_03.genotypes.vcf &gt; trio.sample.vcf</code>; see chapter 11, “<a href="rows-and-columns.html#rows-and-columns">Rows and Columns</a>” for details.<a href="use-case-counting-snps.html#fnref74" class="footnote-back">↩︎</a></p></li>
-<li id="fn75"><p>Unit tests are often automated; in fact, Python includes a module for building unit tests called <code>unittest</code>, although we recommend <code>pytest</code>.<a href="use-case-counting-snps.html#fnref75" class="footnote-back">↩︎</a></p></li>
-<li id="fn76"><p>This strategy is not the fastest we could have devised. In order to determine the highest-density region, we have to consider each region, and the computation for each region involves looping over all of the SNP positions (the vast majority of which lie outside the region). More sophisticated algorithms exist that would run much faster, but they are outside the scope of this book. Nevertheless, a slow solution is better than no solution!<a href="use-case-counting-snps.html#fnref76" class="footnote-back">↩︎</a></p></li>
-<li id="fn77"><p>The idea of simulating populations “in silico” is not only quite fun, but has also produced interesting insights into population dynamics. For an example, see Hinton and Nowlan, <a href="https://www.complex-systems.com/abstracts/v01_i03_a06/">“How Learning Can Guide Evolution,” Complex Systems 1 (1987): 495–502</a>. Simulation of complex systems using random sampling is commonly known as a Monte Carlo method. For a more fanciful treatment of simulations of natural systems, see Daniel Shiffman, <a href="https://natureofcode.com/">The Nature of Code</a> (2012).<a href="use-case-counting-snps.html#fnref77" class="footnote-back">↩︎</a></p></li>
+<ol start="75">
+<li id="fn75"><p>This file was obtained from the 1000 Human Genomes Project at <a href="https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/release/2010_07/trio/snps/" class="uri">https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/release/2010_07/trio/snps/</a>, in the file <code>CEU.trio.2010_03.genotypes.vcf.gz</code>. After decompressing, we sampled 5% of the SNPs at random with <code>awk '{if($1 ~ "##" || rand() &lt; 0.05) {print $0}}' CEU.trio.2010_03.genotypes.vcf &gt; trio.sample.vcf</code>; see chapter 11, “<a href="rows-and-columns.html#rows-and-columns">Rows and Columns</a>” for details.<a href="use-case-counting-snps.html#fnref75" class="footnote-back">↩︎</a></p></li>
+<li id="fn76"><p>Unit tests are often automated; in fact, Python includes a module for building unit tests called <code>unittest</code>, although we recommend <code>pytest</code>.<a href="use-case-counting-snps.html#fnref76" class="footnote-back">↩︎</a></p></li>
+<li id="fn77"><p>This strategy is not the fastest we could have devised. In order to determine the highest-density region, we have to consider each region, and the computation for each region involves looping over all of the SNP positions (the vast majority of which lie outside the region). More sophisticated algorithms exist that would run much faster, but they are outside the scope of this book. Nevertheless, a slow solution is better than no solution!<a href="use-case-counting-snps.html#fnref77" class="footnote-back">↩︎</a></p></li>
+<li id="fn78"><p>The idea of simulating populations “in silico” is not only quite fun, but has also produced interesting insights into population dynamics. For an example, see Hinton and Nowlan, <a href="https://www.complex-systems.com/abstracts/v01_i03_a06/">“How Learning Can Guide Evolution,” Complex Systems 1 (1987): 495–502</a>. Simulation of complex systems using random sampling is commonly known as a Monte Carlo method. For a more fanciful treatment of simulations of natural systems, see Daniel Shiffman, <a href="https://natureofcode.com/">The Nature of Code</a> (2012).<a href="use-case-counting-snps.html#fnref78" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

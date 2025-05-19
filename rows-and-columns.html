@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -589,7 +588,7 @@ YAL002W YAL002W 1275    1275    1275    1    1275    1     1275   
 YAL003W YAL003W 207     207     207     1    207     1     207     2e-148
 ...
 </code></pre>
-<p>Notice that the organization of the curly brackets produces a nested block structure; although for this simple case the inside set of brackets could be omitted, it’s usually best practice to include them, as they illustrate exactly which statement is controlled by the preceding <code>if</code>.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
+<p>Notice that the organization of the curly brackets produces a nested block structure; although for this simple case the inside set of brackets could be omitted, it’s usually best practice to include them, as they illustrate exactly which statement is controlled by the preceding <code>if</code>.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a></p>
 <p>If-statements can control multiple conditions, and sometimes it helps to break <code>awk</code> programs over multiple lines to help with their readability, especially when they are included in executable scripts. This sophisticated statement adds a new first column that categorizes each HSP as either “great,” “good,” or “ok,” depending on the E value, printing only the two IDs and the E value (columns 1, 2, and 10):</p>
 <pre id=part1-11-awk-mult-line
      class="language-txt 
@@ -653,7 +652,7 @@ There are a variety of mathematical functions built into <code>awk</code>. Here�
 </li>
 <ul style="list-style-type:none;">
 <li>
-Returns the natural logarithm of its argument, as in <code>print $10 * log($3 * $4)</code> for printing the log of the multiplication of the third and fourth columns times the tenth column.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>
+Returns the natural logarithm of its argument, as in <code>print $10 * log($3 * $4)</code> for printing the log of the multiplication of the third and fourth columns times the tenth column.<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>
 </li>
 </ul>
 <li>
@@ -754,9 +753,9 @@ When given no arguments, returns a random number between 0 (inclusive) and 1 (ex
 </div>
 <div class="footnotes">
 <hr />
-<ol start="27">
-<li id="fn27"><p>This nested construct, a controlled block inside of another block that is executed for each element of a set (in this case, for each line), is one of our first examples of programming! One hint for reducing confusion when producing such structures is to fill in their structure from the outside in, adding pairs of symbols and then “backing up” into them as needed. In this example, we might have started with <code>awk ''</code>, and then added the curly brackets to produce <code>awk '{}'</code>, next<code>awk '{if() {}}'</code>, and finally filled in the logic with <code>awk '{if($10 &lt; 1e-10) {print $0}}'</code>.<a href="rows-and-columns.html#fnref27" class="footnote-back">↩︎</a></p></li>
-<li id="fn28"><p>If you are concerned about where spaces are allowed in <code>awk</code> statements, try not to be: for the most part, they are allowed anywhere, and you may feel free to use them to enhance the readability of your statements. They are not allowed in keywords and variables: <code>i f($ 1 &gt; $2) {print N R}</code> would be an invalid expression because <code>i f</code>, <code>$ 1</code>, and <code>N R</code> have erroneous spaces.<a href="rows-and-columns.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<ol start="28">
+<li id="fn28"><p>This nested construct, a controlled block inside of another block that is executed for each element of a set (in this case, for each line), is one of our first examples of programming! One hint for reducing confusion when producing such structures is to fill in their structure from the outside in, adding pairs of symbols and then “backing up” into them as needed. In this example, we might have started with <code>awk ''</code>, and then added the curly brackets to produce <code>awk '{}'</code>, next<code>awk '{if() {}}'</code>, and finally filled in the logic with <code>awk '{if($10 &lt; 1e-10) {print $0}}'</code>.<a href="rows-and-columns.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p>If you are concerned about where spaces are allowed in <code>awk</code> statements, try not to be: for the most part, they are allowed anywhere, and you may feel free to use them to enhance the readability of your statements. They are not allowed in keywords and variables: <code>i f($ 1 &gt; $2) {print N R}</code> would be an invalid expression because <code>i f</code>, <code>$ 1</code>, and <code>N R</code> have erroneous spaces.<a href="rows-and-columns.html#fnref29" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

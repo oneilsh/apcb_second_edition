@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -475,7 +474,7 @@ eq <- equalish(vec1, vec2)
 print(eq)                         # [1] TRUE FALSE
 </code></pre>
 <p>There are many things to note here. First, when defining a function, we define the parameters it can take. Parameters in R functions have a <em>position</em> (<code>a</code> is at position 1, <code>b</code> is at position 2, and <code>epsilon</code> is at position 3) and a <em>name</em> (<code>a</code>, <code>b</code>, and <code>epsilon</code>). Some parameters may have a default value: the value they should have if unspecified otherwise, while other parameters may be required: the user of the function must specify them. Default values are assigned within the parameter list with <code>=</code> (not <code>&lt;-</code> as in standard variable assignment).</p>
-<p>The block that defines the operations performed by the function is enclosed in curly brackets, usually with the opening bracket on the same line as the function/parameter list definition, and the closing bracket on its own line. We’ve indented the lines that belong to the function block by two spaces (an R convention). Although not required, this is a good idea, as it makes code much more readable. The value that is returned by the function is specified with a call to a special <code>return()</code> function—functions can only return one value, though it might be something sophisticated like a vector or data frame.<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a></p>
+<p>The block that defines the operations performed by the function is enclosed in curly brackets, usually with the opening bracket on the same line as the function/parameter list definition, and the closing bracket on its own line. We’ve indented the lines that belong to the function block by two spaces (an R convention). Although not required, this is a good idea, as it makes code much more readable. The value that is returned by the function is specified with a call to a special <code>return()</code> function—functions can only return one value, though it might be something sophisticated like a vector or data frame.<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a></p>
 <p>After a function has been defined, it can be called, as in <code>eq &lt;- equalish(vec1, vec2)</code>. The variable names associated with the data outside the function (in this case <code>vec1</code> and <code>vec2</code>) needn’t match the parameter names inside the function (<code>a</code> and <code>b</code>). This is an important point to which we will return.</p>
 <p>In the call above, we let the <code>epsilon</code> parameter take its default value of <code>0.00001</code>. We could alternatively use a stricter comparison.</p>
 <pre id=part3-04-equalish-change-epsilon
@@ -832,8 +831,8 @@ print(answer)
 </div>
 <div class="footnotes">
 <hr />
-<ol start="103">
-<li id="fn103"><p>Any variable that is simply stated (without assignment) in a function will be returned. So instead of <code>return(result)</code>, we could have simply said <code>result</code>. Some R programmers prefer this syntax; for this text, however, we’ll stick to using the more explicit <code>return()</code>. This also helps differentiate between such “returnless returns” and “printless prints” (see the footnote in Chapter 27, <a href="">Variables and Data</a>).<a href="r-functions.html#fnref103" class="footnote-back">↩︎</a></p></li>
+<ol start="104">
+<li id="fn104"><p>Any variable that is simply stated (without assignment) in a function will be returned. So instead of <code>return(result)</code>, we could have simply said <code>result</code>. Some R programmers prefer this syntax; for this text, however, we’ll stick to using the more explicit <code>return()</code>. This also helps differentiate between such “returnless returns” and “printless prints” (see the footnote in Chapter 27, <a href="">Variables and Data</a>).<a href="r-functions.html#fnref104" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

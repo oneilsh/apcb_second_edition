@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -428,7 +427,7 @@
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-08-dictionaries.Rmd.images/II.8_1_dict_list_indices_values.png" /></p>
 </div>
-<p>A dictionary works in much the same way, except instead of indices, dictionaries use “keys”, which may be integers or strings.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a> We’ll usually draw dictionaries longwise, and include the keys within the illustrating brackets, because they are as much a part of the dictionary structure as the values:</p>
+<p>A dictionary works in much the same way, except instead of indices, dictionaries use “keys”, which may be integers or strings.<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a> We’ll usually draw dictionaries longwise, and include the keys within the illustrating brackets, because they are as much a part of the dictionary structure as the values:</p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-08-dictionaries.Rmd.images/II.8_2_dict_keys_values.png" /></p>
 </div>
@@ -484,7 +483,7 @@ for idkey in ids_sorted:     # for each key
     gc = ids_to_gcs[idkey]   # get the value
     print("id " + idkey + " has GC content " + str(gc))
 </code></pre>
-<p>Similarly, we can get a list of all the values using <code>.values()</code>, again in no particular order. So, <code>ids_to_gcs.values()</code> will return a list of three floats.<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
+<p>Similarly, we can get a list of all the values using <code>.values()</code>, again in no particular order. So, <code>ids_to_gcs.values()</code> will return a list of three floats.<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a></p>
 <p>If we try to get a value for a key that isn’t present in the dictionary, we’ll get a <code>KeyError</code>. So, we will usually want to test whether a key is present before attempting to read its value. We can do this using the <code>in</code> keyword.</p>
 <pre id=part2-08-in
      class="language-python 
@@ -610,7 +609,7 @@ PZ7180000029134_AHQ GO:0003964  reverse transcriptase
 3   PZ7180000029134_AHQ
 1   PZ492962
 </code></pre>
-<p>Finally, we could pipe the results through <code>wc</code> to count these lines and determine how many IDs were annotated at least once with that term (21). If we wanted to instead see which eight genes had the most annotations matching “transcriptase”, we could do that, too, by sorting on the counts and using <code>head</code> to print the top eight lines (here we’re breaking up the long command with backslashes, which allow us to continue typing on the next line in the terminal).<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a></p>
+<p>Finally, we could pipe the results through <code>wc</code> to count these lines and determine how many IDs were annotated at least once with that term (21). If we wanted to instead see which eight genes had the most annotations matching “transcriptase”, we could do that, too, by sorting on the counts and using <code>head</code> to print the top eight lines (here we’re breaking up the long command with backslashes, which allow us to continue typing on the next line in the terminal).<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a></p>
 <pre id=part2-08-txn-output
      class="language-txt 
             line-numbers 
@@ -634,7 +633,7 @@ PZ7180000029134_AHQ GO:0003964  reverse transcriptase
 </div>
 <div id="extracting-all-lines-matching-a-set-of-ids" class="section level3 unnumbered hasAnchor">
 <h3>Extracting All Lines Matching a Set of IDs<a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Another useful property of dictionaries is that they are very efficient to search. Suppose we had an unordered list of strings, and we wanted to determine whether a particular string occurred in the list. This can be done, but it would require looking at each element (in a <code>for</code> loop, perhaps) to see if it equaled the one we are searching for. If we instead stored the strings as keys in a dictionary (storing <code>"present"</code>, or the number <code>1</code>, or anything else in the value<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a>), we could use <code>in</code>, which takes a single time step (effectively, on average) no matter how many keys are in the dictionary.<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a></p>
+<p>Another useful property of dictionaries is that they are very efficient to search. Suppose we had an unordered list of strings, and we wanted to determine whether a particular string occurred in the list. This can be done, but it would require looking at each element (in a <code>for</code> loop, perhaps) to see if it equaled the one we are searching for. If we instead stored the strings as keys in a dictionary (storing <code>"present"</code>, or the number <code>1</code>, or anything else in the value<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a>), we could use <code>in</code>, which takes a single time step (effectively, on average) no matter how many keys are in the dictionary.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
 <p>Returning to the GO/ID list from the last example, suppose that we had the following problem: we wish to first identify all those genes (rows in the table) that were labeled with <code>GO:0001539</code> (which we can do easily with <code>grep</code> on the command line), and then we wish to extract all rows from the table matching those IDs to get an idea of what other annotations those genes might have.</p>
 <p>In essence, we want to print all entries of a file:</p>
 <pre id=part2-08-go-0001539
@@ -667,7 +666,7 @@ PZ7180000000045_AP GO:0001539 troponin c 25d
 PZ7180000000046_AP GO:0001539 troponin c 25d
 ...
 </code></pre>
-<p>As it turns out, the above problem is common in data analysis (subsetting lines on the basis of an input “query” set), so we’ll be careful to design a program that is not specific to this data set, except that the IDs in question are found in the first column.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
+<p>As it turns out, the above problem is common in data analysis (subsetting lines on the basis of an input “query” set), so we’ll be careful to design a program that is not specific to this data set, except that the IDs in question are found in the first column.<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a></p>
 <p>We’ll write a program called <code>match_1st_cols.py</code> that takes two inputs: on standard input, it will read a number of lines that have the query IDs we wish to extract, and it will also take a parameter that specifies the file from which matching lines should be printed. For this instance, we would like to be able to execute our program as follows:</p>
 <pre id=part2-08-fxn_call
      class="language-txt 
@@ -745,13 +744,13 @@ PZ7180000000043_AP GO:0009288 troponin c 25d
 </div>
 <div class="footnotes">
 <hr />
-<ol start="60">
-<li id="fn60"><p>Dictionary keys may be any <a href="elementary-data-types.html#immutable">immutable</a> type, which includes integers and strings, but they also include a number of other more exotic types, like <a href="collections-and-looping-lists-and-for.html#tuples">tuples</a> (immutable lists). Although floats are also immutable, because keys are looked up on the basis of equality and rounding errors can compound, it is generally not recommended to use them as dictionary keys.<a href="dictionaries.html#fnref60" class="footnote-back">↩︎</a></p></li>
-<li id="fn61"><p>In Python 3.0 and later, what is returned by <code>.keys()</code> and <code>.values()</code> is not technically a list but a “view”, which operates similarly to a list without using any additional memory. The code shown still works, but <code>ids.sort()</code> (the sort-in-place version) would not, as views do not have a <code>.sort()</code> method.<a href="dictionaries.html#fnref61" class="footnote-back">↩︎</a></p></li>
-<li id="fn62"><p>For simple problems like this, if we know the command line tools well enough, we don’t even need to use Python. This version of the problem can be solved with a pipeline like <code>cat PZ.annot.txt | grep 'transcriptase' | awk '{print $1}' | sort | uniq -c | sort -k1,1nr | head</code>.<a href="dictionaries.html#fnref62" class="footnote-back">↩︎</a></p></li>
-<li id="fn63"><p>In practice, if we don’t have a value we’re interested in storing, we should use a set instead of a dictionary.<a href="dictionaries.html#fnref63" class="footnote-back">↩︎</a></p></li>
-<li id="fn64"><p>In computer science terms, we say that searching an unordered list runs in time <span class="math inline">\(O(n)\)</span>, or “big <span class="math inline">\(O\)</span> of <span class="math inline">\(n\)</span>” where <span class="math inline">\(n\)</span> is the size of the list. Looking up a dictionary key using <code>in</code>, is <span class="math inline">\(O(1)\)</span> (for the average case), which is to say that the time taken is independent of the size of the dictionary. If we need to do such a search many times, these differences can add up significantly. More information on run-time considerations is covered in chapter 27, “<a href="algorithms-and-data-structures.html#algorithms-and-data-structures">Algorithms and Data Structures</a>”.<a href="dictionaries.html#fnref64" class="footnote-back">↩︎</a></p></li>
-<li id="fn65"><p>The <code>grep</code> utility can perform a similar operation; <code>grep -f query_patterns.txt subject_file.txt</code> will print all lines in <code>subject_file.txt</code> that are matched by any of the patterns in <code>query_patterns.txt</code>. But this requires that all patterns are compared to all lines (even if the patterns are simple), and so our custom Python solution is much faster when the number of queries is large (because dictionary key lookup is so fast).<a href="dictionaries.html#fnref65" class="footnote-back">↩︎</a></p></li>
+<ol start="61">
+<li id="fn61"><p>Dictionary keys may be any <a href="elementary-data-types.html#immutable">immutable</a> type, which includes integers and strings, but they also include a number of other more exotic types, like <a href="collections-and-looping-lists-and-for.html#tuples">tuples</a> (immutable lists). Although floats are also immutable, because keys are looked up on the basis of equality and rounding errors can compound, it is generally not recommended to use them as dictionary keys.<a href="dictionaries.html#fnref61" class="footnote-back">↩︎</a></p></li>
+<li id="fn62"><p>In Python 3.0 and later, what is returned by <code>.keys()</code> and <code>.values()</code> is not technically a list but a “view”, which operates similarly to a list without using any additional memory. The code shown still works, but <code>ids.sort()</code> (the sort-in-place version) would not, as views do not have a <code>.sort()</code> method.<a href="dictionaries.html#fnref62" class="footnote-back">↩︎</a></p></li>
+<li id="fn63"><p>For simple problems like this, if we know the command line tools well enough, we don’t even need to use Python. This version of the problem can be solved with a pipeline like <code>cat PZ.annot.txt | grep 'transcriptase' | awk '{print $1}' | sort | uniq -c | sort -k1,1nr | head</code>.<a href="dictionaries.html#fnref63" class="footnote-back">↩︎</a></p></li>
+<li id="fn64"><p>In practice, if we don’t have a value we’re interested in storing, we should use a set instead of a dictionary.<a href="dictionaries.html#fnref64" class="footnote-back">↩︎</a></p></li>
+<li id="fn65"><p>In computer science terms, we say that searching an unordered list runs in time <span class="math inline">\(O(n)\)</span>, or “big <span class="math inline">\(O\)</span> of <span class="math inline">\(n\)</span>” where <span class="math inline">\(n\)</span> is the size of the list. Looking up a dictionary key using <code>in</code>, is <span class="math inline">\(O(1)\)</span> (for the average case), which is to say that the time taken is independent of the size of the dictionary. If we need to do such a search many times, these differences can add up significantly. More information on run-time considerations is covered in chapter 27, “<a href="algorithms-and-data-structures.html#algorithms-and-data-structures">Algorithms and Data Structures</a>”.<a href="dictionaries.html#fnref65" class="footnote-back">↩︎</a></p></li>
+<li id="fn66"><p>The <code>grep</code> utility can perform a similar operation; <code>grep -f query_patterns.txt subject_file.txt</code> will print all lines in <code>subject_file.txt</code> that are matched by any of the patterns in <code>query_patterns.txt</code>. But this requires that all patterns are compared to all lines (even if the patterns are simple), and so our custom Python solution is much faster when the number of queries is large (because dictionary key lookup is so fast).<a href="dictionaries.html#fnref66" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -424,7 +423,7 @@
             <section class="normal" id="section-">
 <div id="logging-in" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Logging In<a href="logging-in.html#logging-in" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book assumes that you have access to an account on a Unix-like operating system (such as Linux) that you can use directly or log in to remotely via the SSH (Secure-SHell) login protocol. Accounts of this type are frequently available at universities and research institutions, though you may also consider using or installing Linux on your own hardware. Additionally, the CyVerse Collaborative provides free command-line access to biological researchers through their Atmosphere system; see the end of this chapter for information on how to access this system using your web browser.</p>
+<p>This book assumes that you have access to an account on a Unix-like operating system (such as Linux) that you can use directly or log in to remotely via the SSH (Secure-SHell) login protocol. Accounts of this type are frequently available at universities and research institutions, though you may also consider using or installing Linux on your own hardware.</p>
 <p>Before explaining anything in detail, let’s cover the actual process of logging in to a remote computer via SSH. To do this, you will need four things:</p>
 <ol style="list-style-type: decimal">
 <li>Client software on your own computer.</li>
@@ -432,50 +431,37 @@
 <li>A username on the remote computer with which to log in.</li>
 <li>A corresponding password on the remote machine with which to log in.</li>
 </ol>
-<p>If you are using a computer running Mac OS X, the client software will be command line oriented and is accessible from the Terminal utility. The Terminal is located in the Utilities folder, inside of the Applications folder.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>If you are using a computer running MacOS, the client software will be command line oriented and is accessible from the Terminal utility. The Terminal is located in the Utilities folder, inside of the Applications folder.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-02-logging-in.Rmd.images/Updated_CompbioFinder.png" /></p>
 </div>
 <p>In the window that opens up, you will see a prompt for entering commands. On my computer it looks like this (except for the lines numbers along the left):</p>
-<pre id=block_2e081f
+<pre id=part1-02-prompt
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
 [oneils@mbp ~]$
 </code></pre>
-<p>At this prompt, enter the following: <code>ssh &lt;username&gt;@&lt;hostname or ip&gt;</code>. Note that you don’t actually type the angle brackets; angle brackets are just some commonly used nomenclature to indicate a field you need to specify. To log in to my account with username <code>oneils</code> at the Oregon State University’s main Linux computer (<code>shell.onid.oregonstate.edu</code>), for example, I would type:</p>
-<pre id=block_284655
+<p>At this prompt, enter the following: <code>ssh &lt;username&gt;@&lt;hostname or ip&gt;</code>. Note that you don’t actually type the angle brackets; angle brackets are commonly used nomenclature to indicate a field you need to specify. To log in to my account with username <code>oneils</code> at the Oregon State University’s main Linux computer (<code>shell.onid.oregonstate.edu</code>), for example, I would type:</p>
+<pre id=part1-02-ssh
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
 [oneils@mbp ~]$ <b>ssh oneils@shell.onid.oregonstate.edu</b>
 </code></pre>
-<p>To log in to a CyVerse instance with IP address <code>128.196.64.193</code> (and username <code>oneils</code>), however, I would use:</p>
-<pre id=block_58f691
-     class="language-txt 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-[oneils@mbp ~]$ <b>ssh oneils@128.196.64.193</b>
-</code></pre>
-<p>After pressing Enter to run the command, you may be asked to “verify the key fingerprint” of the remote computer. Each computer running the SSH login system uses a unique pair of “keys” for cryptographic purposes: the public key is accessible to the world, and only the remote computer knows the private key. Messages encrypted with the public key can only be decrypted with the private key—if you cared to verify with the owner of the remote computer that the public key “fingerprint” was correct, then you could be assured that no one between you and the correct remote computer could see your login session. Unless you have a reason to suspect espionage of some sort, it’s usually safe to enter yes at this prompt. Normally, you will be prompted once for each fingerprint, unless your local computer forgets the fingerprint or the system administrator changes it (or there is indeed an espionage attempt!).</p>
+<p>After pressing Enter to run the command, you may be asked to “verify the key fingerprint” of the remote computer. Each computer running the SSH login system uses a unique pair of “keys” for cryptographic purposes: the public key is accessible to the world, and only the remote computer knows the private key. Messages encrypted with the public key can only be decrypted with the private key — if you cared to verify with the owner of the remote computer that the public key “fingerprint” was correct, then you could be assured that no one between you and the correct remote computer could see your login session. Unless you have a reason to suspect espionage of some sort, it’s <strong>usually</strong> safe to enter yes at this prompt. Normally, you will be prompted once for each fingerprint, unless your local computer forgets the fingerprint or the system administrator changes it (or there is indeed an espionage attempt!).</p>
 <p>In any case, you will next be asked to enter your password. Note that <em>as you type the password, you won’t see any characters being shown on the screen</em>. This is another security feature, so that no passersby can see the contents or even the length of your password. It does make password entry more difficult, however, so take care when entering it. After logging in to a remote computer, the command prompt will usually change to reflect the login:</p>
-<pre id=block_b7ac5e
+<pre id=part1-02-logged-in
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~]$
+[oneils@shell.onid.oregonstate.edu ~]$
 </code></pre>
-<p>If you are running Microsoft Windows, you will need to download the client SSH software from the web, install it, and run it. One option is PuTTy.exe, which is available at <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a>.</p>
-<p>Once downloaded, it will need to be installed and run. In the <code>Host Name (or IP address)</code> field, enter the host name or IP address, as discussed above. Leave the port number to the default of <code>22</code>, and click Open.</p>
-<div class="fig center" style="width: 60%">
-<p><img src="images/part1-02-logging-in.Rmd.images/I.2_6_putty_blank.png" /></p>
-</div>
-<p>If you have successfully entered the host name or IP, you will be prompted for your username and password (and potentially to verify the key fingerprint).</p>
-<p>Finally, if you are already running a Linux or other Unix-like operating system, the steps for logging in remotely via SSH will be similar to those for Mac OS X, though you’ll need to find the Terminal utility on your own. If you are using CyVerse Atmosphere, then you can utilize a terminal window right in the web browser by clicking on the Access By Shell tab or Open Web Shell link. In all cases, the text-based interface will be identical, because the remote computer, rather than your local desktop, determines the display.</p>
+<p>If you are running Microsoft Windows, you should install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux (WSL)</a>. After correctly installing, restarting your computer, opening the Ubuntu app, and <a href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password">creating a username and password</a>, the steps for logging in remotely via SSH will be similar to those for MacOS.</p>
+<p>Finally, if you are already running a Linux or other Unix-like operating system, you’ll need to find the Terminal utility on your own and log in as above.</p>
 <div id="logging-in-further-changing-your-password" class="section level4 unnumbered hasAnchor callout-box">
 <h4>Logging in Further, Changing Your Password<a href="logging-in.html#logging-in-further-changing-your-password" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Depending on where you are logging in to, you may not be done with the login process. At many universities and research centers, the administrator would prefer that you not do any work on the computer you initially logged in to, because that computer may be reserved just for initial logins by dozens or even hundreds of researchers. As a result, you may need to “check out” a secondary, internal computer for your actual computational needs. Sometimes this can be done by SSHing on the command line to the secondary computer, but at some institutions, you will be asked to run other commands for this checkout process. Check with your local system administrator.</p>
@@ -494,39 +480,10 @@
 </div>
 <p>Other protocols of note include FTP (file transfer protocol) and its secure version, SFTP (secure file transfer protocol), designed specifically for transferring files.</p>
 </div>
-<div id="command-line-access-with-cyverse-atmosphere" class="section level3 unnumbered hasAnchor">
-<h3>Command-Line Access with CyVerse Atmosphere<a href="logging-in.html#command-line-access-with-cyverse-atmosphere" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Readers of this book will ideally have access to a Unix-based operating system (e.g., Linux) with command-line access. This is often the case for individuals at universities and other research or educational institutions. Many users have access to such systems but don’t even realize it, as the service is not often widely advertised.</p>
-<p>For those without institutional access, there are a few alternatives. First, Mac OS X machines are themselves Unix-based and come with a command-line interface (via the Terminal application), though the command-line tools differ vary slightly from the GNU-based tools found on most Linux distributions. A web search for “OS-X GNU core utils” will turn up some instructions for remedying this discrepancy. Second, it is possible to install a Linux distribution (like Ubuntu Linux) on most desktops and laptops by configuring the computer to “dual boot” Linux and the primary operating system. Alternatively, Linux distributions can be installed within “virtual machine” software, like VirtualBox (<a href="http://virtualbox.org">http://virtualbox.org</a>).</p>
-<p>A rather exciting, relatively recent addition to these options is the Atmosphere system, run by the CyVerse (previously iPlant) collaborative, a cyber-infrastructure project founded in 2008 to support the computational needs of researchers in the life sciences. CyVerse as a whole hosts a variety of projects, from educational resources to guided bioinformatics analyses. The Atmosphere system is the most relevant for us here, as it provides cloud-based access to systems running Linux. To get started using one of these systems, navigate to <a href="http://cyverse.org/atmosphere">http://cyverse.org/atmosphere</a> and click on the link for “Create an Account” or “Launch Atmosphere.” If you need to create a new account, do so—CyVerse requests a variety of information for account creation to help gauge user interest and garner funding support. You may also need to request special access to the Atmosphere system through your account on the Atmosphere homepage, as Atmosphere is more resource intensive than other tools provided by CyVerse.</p>
-<div class="fig center" style="width: 60%">
-<p><img src="images/part1-02-logging-in.Rmd.images/I.2_9_atmosphere_home.png" /></p>
-</div>
-<p>After clicking on the “Launch” link, you will have the opportunity to enter your username and password (if you have been granted one).</p>
-<p>The Atmosphere system works by divvying up clusters of physical computers (located at one of various providers around the country) into user-accessible virtual machines of various sizes. When performing a computation that requires many CPU cores, for example, one might wish to access a new “instance” with 16 CPUs, 64 gigabytes (GB) of RAM, and 800 GB of hard disk space. On the other hand, for learning purposes, you will likely only need a small instance with 1 CPU and 4 GB of RAM. This is an important consideration, as CyVerse limits users to a certain quota of resources. Users are limited by the number of “atmosphere units” (AUs) they can use per month, defined roughly as using a single CPU for an hour. Users are also limited in the total number of CPUs and total amount of RAM they can use simultaneously.</p>
-<p>After determining the instance size needed, one needs to determine which operating system “image” should be loaded onto the virtual machine. All users can create such images—some users create images with software preinstalled to analyze RNA sequencing data, perform de novo genome assembly, and so on. We’ve created an image specifically to accompany this book: it is fairly simple and includes NCBI Blast+ (the most modern version of BLAST produced by the National Center for Biotechnology Information), R, Python, <code>git</code>, and a few other tools. It is called “APCB Image.”</p>
-<p>To activate a new instance with this image, click on the “New -&gt; Instance” button in the Atmosphere interface. You may first need to create a “Project” for the instance to live in. You can search for “APCB Image” in the search box of instance types. Here’s the view of my APCB project after creating and starting the instance:</p>
-<div class="fig center" style="width: 60%">
-<p><img src="images/part1-02-logging-in.Rmd.images/I.2_10_atmosphere_started_instance.png" /></p>
-</div>
-<p>After creating the instance, it may be in one of several states; usually it will be either “running” (i.e., available for login and consuming resources) or “suspended” (effectively paused and not consuming resources). The interface for a given instance has buttons for suspending or resuming a suspended instance, as well as buttons for “Stop” (shutting an instance down), “Reboot” (rebooting the instance), and “Delete” (removing the instance and all data stored in it).</p>
-<div class="fig center" style="width: 60%">
-<p><img src="images/part1-02-logging-in.Rmd.images/I.2_11_atmosphere_instance_running.png" /></p>
-</div>
-<p>Once an instance is up and running, there are several ways to access it. First, it is accessible via SSH at the IP address provided. Note that this IP address is likely to change each time the instance is resumed. Above, the IP address is shown as <code>128.196.64.36</code>, so we could access it from the OS X Terminal application:</p>
-<pre id=block_1a286d
-     class="language-txt 
-            line-numbers 
-            linkable-line-numbers">
-<code>
-[oneils@mbp ~]$ <b>ssh oneils@128.196.64.36</b>
-</code></pre>
-<p>The Atmosphere Web interface also provides an “Open Web Shell” button, providing command-line access right in your browser. When you are done working with your Atmosphere instance, it’s important to suspend the instance, otherwise you’ll be wasting computational resources that others could be using (as well as your own quota).</p>
-</div>
 <div id="logging-out" class="section level3 unnumbered hasAnchor">
 <h3>Logging Out<a href="logging-in.html#logging-out" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Once finished working with the remote computer, we should log out of the SSH session. Logging out is accomplished by running the command <code>exit</code> on the command line until returned to the local desktop or the SSH client program closes the connection. Alternatively, it suffices to close the SSH client program or window—SSH will close the connection, and no harm will be done. Note, however, than any currently executing program will be killed on logout.</p>
-<p>If you are working on an Atmosphere instance or similar remotely hosted virtual machine, it’s a good idea to also suspend the instance so that time spent not working isn’t counted against your usage limit.</p>
+<p>Once finished working with the remote computer, we should log out of the SSH session. Logging out is accomplished by running the command <code>exit</code> on the command line until returned to the local desktop or the SSH client program closes the connection. Alternatively, it suffices to close the SSH client program or window — SSH will close the connection, and no harm will be done. Note, however, than any currently executing program will be killed on logout.</p>
+<p>If you are working on a remotely hosted virtual machine, it’s a good idea to also suspend the instance so that time spent not working isn’t counted against your usage limit.</p>
 <div id="exercises" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="logging-in.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">

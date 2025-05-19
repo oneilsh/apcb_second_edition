@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -519,13 +518,13 @@ Notice the difference: the function takes no parameters and so must use the same
 <pre><code>&lt;img src=&quot;images/part2-06-python-functions.Rmd.images/II.6_2_VSCode_linting.png&quot; /&gt;</code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Utilize type annotations to further document parameter and return data types, and pair with a text editor that offers linting<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a>. Our current favorite is VS Code with the Python Extension, which includes a whole host of useful tools.</p>
+<li><p>Utilize type annotations to further document parameter and return data types, and pair with a text editor that offers linting<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a>. Our current favorite is VS Code with the Python Extension, which includes a whole host of useful tools.</p>
 <p>For example, notice that when we attempt to pass <code>base_compostion</code> an integer for <code>query_base</code> on the last line, VS Code underlines it with a zigzag red line. When we hover over this with our mouse, we see the problem:</p>
 <div class="fig right" style="width: 100%">
 <img src="images/part2-06-python-functions.Rmd.images/II.6_3_problem.png" />
 </div>
 <p>Our use of type annotations in the function header lets our text editor know we intended to pass two strings to <code>base_composition</code>, and it can then alert us to the fact that we are trying to pass a string and an int: probably an error. However, note that type annotations are in no way (currently!) enforced by the Python interpreter, and this code runs with zero errors and returns <code>0</code>, as the <code>query_base</code> of <code>2</code> never appears in <code>seq</code>.</p></li>
-<li><p>Functions shouldn’t be “too long”. This is subjective and dependent on context, but most programmers are uncomfortable with functions that are more than one page long in their editor window.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a> The idea is that a function encapsulates a single, small, reusable idea. If you find yourself writing a function that is hard to read or understand, consider breaking it into two functions that need to be called in sequence, or into one short function that calls another short function.</p></li>
+<li><p>Functions shouldn’t be “too long”. This is subjective and dependent on context, but most programmers are uncomfortable with functions that are more than one page long in their editor window.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> The idea is that a function encapsulates a single, small, reusable idea. If you find yourself writing a function that is hard to read or understand, consider breaking it into two functions that need to be called in sequence, or into one short function that calls another short function.</p></li>
 <li><p>Write lots of functions! Even if a section of code is only going to be called once, it is completely acceptable to make a function out of it if it encapsulates some idea or well-separable block. After all, you never know if you might need to use it again, and just the act of encapsulating the code helps you ensure its correctness, allowing you to forget about it when working on the rest of your program.</p></li>
 </ol>
 </div>
@@ -606,9 +605,9 @@ with open("ids_seqs.txt", "r") as fhandle:
 </div>
 <div class="footnotes">
 <hr />
-<ol start="54">
-<li id="fn54"><p>Linting is a form of static code analysis. Essentially, it’s used to try to find errors, bugs, and other potentially problematic code BEFORE your code is run.<a href="python-functions.html#fnref54" class="footnote-back">↩︎</a></p></li>
-<li id="fn55"><p>With the advent of large monitors, perhaps this is no longer a good rule of thumb! Personally, I find that few of my functions need to exceed 30 lines in length, depending only somewhat on the language I’m writing in.<a href="python-functions.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<ol start="55">
+<li id="fn55"><p>Linting is a form of static code analysis. Essentially, it’s used to try to find errors, bugs, and other potentially problematic code BEFORE your code is run.<a href="python-functions.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<li id="fn56"><p>With the advent of large monitors, perhaps this is no longer a good rule of thumb! Personally, I find that few of my functions need to exceed 30 lines in length, depending only somewhat on the language I’m writing in.<a href="python-functions.html#fnref56" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

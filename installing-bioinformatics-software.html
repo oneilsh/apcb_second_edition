@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -449,7 +448,7 @@
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_3_source_vs_binary-3.png" /></p>
 </div>
-<p>For the sake of completeness, we’ll do a source install of HMMER; later, we’ll get some other software as binaries.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
+<p>For the sake of completeness, we’ll do a source install of HMMER; later, we’ll get some other software as binaries.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
 </div>
 <div id="downloading-and-unpacking" class="section level3 unnumbered hasAnchor">
 <h3>Downloading and Unpacking<a href="installing-bioinformatics-software.html#downloading-and-unpacking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -464,7 +463,7 @@
 [oneils@mbp ~]$ <b>cd downloads</b>
 [oneils@mbp ~/downloads]$
 </code></pre>
-<p>If we were to click on the link in the HMMER download page, the web browser would attempt to download the file located at the corresponding URL (<a href="http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz" class="uri">http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz</a>) to the local desktop. Because we want the file downloaded to the remote system, clicking on the download button won’t work. What we need is a tool called <code>wget</code>, which can download files from the Internet on the command line.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> The <code>wget</code> utility takes at least one important parameter, the URL, to download. It’s usually a good idea to put URLs in quotes, because they often have characters that confuse the shell and would need to be escaped or quoted. Additionally, we can specify <code>-O &lt;filename&gt;</code>, where <code>&lt;filename&gt;</code> is the name to use when saving the file. Although not required in this instance, it can be useful for URLs whose ending file names aren’t reasonable (like <code>index.php?query=fasta&amp;search=drosophila</code>).</p>
+<p>If we were to click on the link in the HMMER download page, the web browser would attempt to download the file located at the corresponding URL (<a href="http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz" class="uri">http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz</a>) to the local desktop. Because we want the file downloaded to the remote system, clicking on the download button won’t work. What we need is a tool called <code>wget</code>, which can download files from the Internet on the command line.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> The <code>wget</code> utility takes at least one important parameter, the URL, to download. It’s usually a good idea to put URLs in quotes, because they often have characters that confuse the shell and would need to be escaped or quoted. Additionally, we can specify <code>-O &lt;filename&gt;</code>, where <code>&lt;filename&gt;</code> is the name to use when saving the file. Although not required in this instance, it can be useful for URLs whose ending file names aren’t reasonable (like <code>index.php?query=fasta&amp;search=drosophila</code>).</p>
 <pre id=part1-06-wget
      class="language-txt 
             line-numbers 
@@ -477,7 +476,7 @@ mmer-3.1b1.tar.gz' -O hmmer-3.1b1.tar.gz</b>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_6_gzipped_tarball-2.png" /></p>
 </div>
-<p>To get the contents out, we have to reverse this process. First, we’ll un-gzip the file with <code>gunzip hmmer-3.1b1.tar.gz</code><a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>, which will replace the file with the un-gzipped <code>hmmer-3.1b1.tar</code>.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> From there, we can un-tar the tarball with <code>tar -xf hmmer-3.1b1.tar</code> (the <code>-x</code> indicates extract, and the <code>f</code> indicates that the data will be extracted from the specified file name).<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+<p>To get the contents out, we have to reverse this process. First, we’ll un-gzip the file with <code>gunzip hmmer-3.1b1.tar.gz</code><a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>, which will replace the file with the un-gzipped <code>hmmer-3.1b1.tar</code>.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> From there, we can un-tar the tarball with <code>tar -xf hmmer-3.1b1.tar</code> (the <code>-x</code> indicates extract, and the <code>f</code> indicates that the data will be extracted from the specified file name).<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
 <pre id=part1-06-untar
      class="language-txt 
             line-numbers 
@@ -630,7 +629,7 @@ make[1]: Entering directory `/home/oneils/downloads/hmmer-3.1b1/easel'
 hmmalign  hmmconvert  hmmlogo   hmmscan    hmmstat    nhmmer
 hmmbuild  hmmemit     hmmpgmd   hmmsearch  jackhmmer  nhmmscan</span>
 </code></pre>
-<p>Because these executable files exist in a directory listed in the <code>$PATH</code> variable, we can, as always, type their names on the command prompt when working in any directory to run them. (Though, again, we may need to log out and back in to get the shell to see these new programs.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>)</p>
+<p>Because these executable files exist in a directory listed in the <code>$PATH</code> variable, we can, as always, type their names on the command prompt when working in any directory to run them. (Though, again, we may need to log out and back in to get the shell to see these new programs.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>)</p>
 </div>
 <div id="installation-from-binaries" class="section level3 unnumbered hasAnchor">
 <h3>Installation from Binaries<a href="installing-bioinformatics-software.html#installation-from-binaries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -725,13 +724,13 @@ This software is donated to the public domain.
 </div>
 <div class="footnotes">
 <hr />
-<ol start="17">
-<li id="fn17"><p>If you have administrator privileges on the machine, software repositories curated with many packages are also available. Depending on the system, if you log in as root, installing HMMER may be as simple as running <code>apt-get install hmmer</code> or <code>yum install hmmer</code>.<a href="installing-bioinformatics-software.html#fnref17" class="footnote-back">↩︎</a></p></li>
-<li id="fn18"><p>A similar tool called <code>curl</code> can be used for the same purpose. The feature sets are slightly different, so in some cases <code>curl</code> is preferred over <code>wget</code> and vice versa. For the simple downloading tasks in this book, either will suffice.<a href="installing-bioinformatics-software.html#fnref18" class="footnote-back">↩︎</a></p></li>
-<li id="fn19"><p>Alternatively, <code>gzip -d hmmer-3.1b1.tar.gz</code>.<a href="installing-bioinformatics-software.html#fnref19" class="footnote-back">↩︎</a></p></li>
-<li id="fn20"><p>The <code>gzip</code> utility is one of the few programs that care about file extensions. While most programs will work with a file of any extension, <code>gzip</code> requires a file that ends in <code>.gz</code>. If you are unsure of a file’s type, the <code>file</code> utility can help; for example, <code>file hmmer-3.1b1.tar.gz</code> reports that the file is gzip-compressed data, and would do so even if the file did not end in <code>.gz</code>.<a href="installing-bioinformatics-software.html#fnref20" class="footnote-back">↩︎</a></p></li>
-<li id="fn21"><p>Note that it is not strictly necessary to unzip and then un-tar in two separate steps. We can unzip and un-tar with the single command <code>tar -xfz hmmer-3.1b1.tar.gz</code>, where <code>z</code> will filter the file through gzip.<a href="installing-bioinformatics-software.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p>t’s not strictly necessary to log back out and back in; when working in <code>bash</code>, running <code>hash -r</code> will cause the shell to update its list of software found in $<code>PATH</code>.<a href="installing-bioinformatics-software.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<ol start="18">
+<li id="fn18"><p>If you have administrator privileges on the machine, software repositories curated with many packages are also available. Depending on the system, if you log in as root, installing HMMER may be as simple as running <code>apt-get install hmmer</code> or <code>yum install hmmer</code>.<a href="installing-bioinformatics-software.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>A similar tool called <code>curl</code> can be used for the same purpose. The feature sets are slightly different, so in some cases <code>curl</code> is preferred over <code>wget</code> and vice versa. For the simple downloading tasks in this book, either will suffice.<a href="installing-bioinformatics-software.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Alternatively, <code>gzip -d hmmer-3.1b1.tar.gz</code>.<a href="installing-bioinformatics-software.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>The <code>gzip</code> utility is one of the few programs that care about file extensions. While most programs will work with a file of any extension, <code>gzip</code> requires a file that ends in <code>.gz</code>. If you are unsure of a file’s type, the <code>file</code> utility can help; for example, <code>file hmmer-3.1b1.tar.gz</code> reports that the file is gzip-compressed data, and would do so even if the file did not end in <code>.gz</code>.<a href="installing-bioinformatics-software.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>Note that it is not strictly necessary to unzip and then un-tar in two separate steps. We can unzip and un-tar with the single command <code>tar -xfz hmmer-3.1b1.tar.gz</code>, where <code>z</code> will filter the file through gzip.<a href="installing-bioinformatics-software.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>t’s not strictly necessary to log back out and back in; when working in <code>bash</code>, running <code>hash -r</code> will cause the shell to update its list of software found in $<code>PATH</code>.<a href="installing-bioinformatics-software.html#fnref23" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

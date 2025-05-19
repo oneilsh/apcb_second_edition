@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -501,7 +500,7 @@ Typing line two, then control-d</b>
 line 1 is: Typing line one, then enter
 line 2 is: Typing line two, then control-d
 </code></pre>
-<p>This hints at some interesting possibilities for interactive programs,<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> but in this case it would likely be confusing for someone wanting to utilize our program by piping data to it. Fortunately, <code>sys.stdin</code> has a method called <code>.isatty()</code> that returns <code>True</code> if there are no data present on the input stream when it is called. (TTY is short for “TeleTYpewriter,” a common name for a keyboard-connected input device of decades past.) So, we can fairly easily modify our program to quit with some helpful usage text if it detects that there are no data present on standard input.</p>
+<p>This hints at some interesting possibilities for interactive programs,<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> but in this case it would likely be confusing for someone wanting to utilize our program by piping data to it. Fortunately, <code>sys.stdin</code> has a method called <code>.isatty()</code> that returns <code>True</code> if there are no data present on the input stream when it is called. (TTY is short for “TeleTYpewriter,” a common name for a keyboard-connected input device of decades past.) So, we can fairly easily modify our program to quit with some helpful usage text if it detects that there are no data present on standard input.</p>
 <pre id=part2-07-tty
      class="language-python 
             line-numbers 
@@ -537,7 +536,7 @@ line 2 is: AGP4
 line 3 is: CATB
 line 1 is: CYP6B
 </code></pre>
-<p>However, the <code>sys</code> module also provides access to the standard output file handle, <code>sys.stdout</code>. Just like other output-oriented file handles, we can call <code>.write()</code> on this file handle to print. The main difference between this method and calling <code>print()</code> is that while <code>print()</code> by default adds a <code>"\n"</code> newline character, <code>sys.stdout.write()</code> does not.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> This feature can be particularly useful when we wish to print a table in an element-by-element fashion because the data are not stored in strings representing individual rows.</p>
+<p>However, the <code>sys</code> module also provides access to the standard output file handle, <code>sys.stdout</code>. Just like other output-oriented file handles, we can call <code>.write()</code> on this file handle to print. The main difference between this method and calling <code>print()</code> is that while <code>print()</code> by default adds a <code>"\n"</code> newline character, <code>sys.stdout.write()</code> does not.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a> This feature can be particularly useful when we wish to print a table in an element-by-element fashion because the data are not stored in strings representing individual rows.</p>
 <pre id=part2-07-stdout.write
      class="language-python 
             line-numbers 
@@ -631,7 +630,7 @@ cluster_AC.fasta
 cluster_AG.fasta
 cluster_D.fasta
 </code></pre>
-<p>There are a few ways to get this information in a Python program, but one of the easiest is to run the <code>ls -1 cluster*.fasta</code> command from within our program, capturing the result as a string.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a> The subprocess module allows us to do exactly this by using the <code>subprocess.check_output()</code> function. This function takes a number of potential parameters, but we’ll run it with just two: (1) the command we wish to execute (as a string) and (2) <code>shell = True</code>, which indicates that the Python interpreter should run the command as though we had run it on the command line.</p>
+<p>There are a few ways to get this information in a Python program, but one of the easiest is to run the <code>ls -1 cluster*.fasta</code> command from within our program, capturing the result as a string.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a> The subprocess module allows us to do exactly this by using the <code>subprocess.check_output()</code> function. This function takes a number of potential parameters, but we’ll run it with just two: (1) the command we wish to execute (as a string) and (2) <code>shell = True</code>, which indicates that the Python interpreter should run the command as though we had run it on the command line.</p>
 <p>The result of the function call is a single string containing whatever the command printed to standard output. Because it’s a single string, if we want it represented as a list of lines, we need to first .strip() off any newline characters at the end, and then split it on the characters that separate the lines.</p>
 <pre id=part2-07-subprocess
      class="language-python 
@@ -684,7 +683,7 @@ for filename in result_lines:
     print("Running: " + cmd)
     #subprocess.check_output(cmd, shell = True)
 </code></pre>
-<p>This version of the program reports the commands that will be run.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
+<p>This version of the program reports the commands that will be run.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
 <pre id=part2-07-commands
      class="language-txt 
             line-numbers 
@@ -737,11 +736,11 @@ E    F
 </div>
 <div class="footnotes">
 <hr />
-<ol start="56">
-<li id="fn56"><p>Try using a line of code like <code>value = input("What is your name? ")</code> followed by <code>print(value)</code>. Note that when running the program and prompted, you’ll need to include quotes when typing your name (e.g., <code>"Shawn"</code>).<a href="command-line-interfacing.html#fnref56" class="footnote-back">↩︎</a></p></li>
-<li id="fn57"><p>In Python 3.0 and above, the <code>print()</code> function can also take some parameters to specify whether the <code>"\n"</code> should be printed or not, or even be replaced by some other character, i.e., <code>print("Cool", end="!")</code><a href="command-line-interfacing.html#fnref57" class="footnote-back">↩︎</a></p></li>
-<li id="fn58"><p>An alternative method to get a list of files is to use the <code>os</code> module and the <code>os.listdir()</code> function, which will return a list of file names. For listing and working with file names and paths, the functions in the <code>os</code> module are are preferred, because they will work whether the program is run on a Windows system or a Unix-like system. For running shell commands more generally, the subprocess module is useful. Here we’re illustrating that on the Unix/Linux command line, it can do both jobs by calling out to system utilities.<a href="command-line-interfacing.html#fnref58" class="footnote-back">↩︎</a></p></li>
-<li id="fn59"><p>Here we are splitting filenames into a [name, extension] list with <code>filename.split(".")</code>. This method won’t work if there are multiple <code>.</code>s in the file. A more robust alternative is found in the <code>os</code> module: <code>os.path.splitext("this.file.txt")</code> would return <code>["this.file", ".txt"]</code>.<a href="command-line-interfacing.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<ol start="57">
+<li id="fn57"><p>Try using a line of code like <code>value = input("What is your name? ")</code> followed by <code>print(value)</code>. Note that when running the program and prompted, you’ll need to include quotes when typing your name (e.g., <code>"Shawn"</code>).<a href="command-line-interfacing.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p>In Python 3.0 and above, the <code>print()</code> function can also take some parameters to specify whether the <code>"\n"</code> should be printed or not, or even be replaced by some other character, i.e., <code>print("Cool", end="!")</code><a href="command-line-interfacing.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<li id="fn59"><p>An alternative method to get a list of files is to use the <code>os</code> module and the <code>os.listdir()</code> function, which will return a list of file names. For listing and working with file names and paths, the functions in the <code>os</code> module are are preferred, because they will work whether the program is run on a Windows system or a Unix-like system. For running shell commands more generally, the subprocess module is useful. Here we’re illustrating that on the Unix/Linux command line, it can do both jobs by calling out to system utilities.<a href="command-line-interfacing.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p>Here we are splitting filenames into a [name, extension] list with <code>filename.split(".")</code>. This method won’t work if there are multiple <code>.</code>s in the file. A more robust alternative is found in the <code>os</code> module: <code>os.path.splitext("this.file.txt")</code> would return <code>["this.file", ".txt"]</code>.<a href="command-line-interfacing.html#fnref60" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

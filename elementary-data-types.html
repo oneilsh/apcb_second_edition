@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -447,7 +446,7 @@ exons = 10              # an int
 theta = 5.64            # a float
 </code></pre>
 <p>While we’re on the topic of variables, variable names in Python should always start with a letter (lowercase by convention) and contain only letters, underscores, and numbers.</p>
-<p>Note that the interpreter ignores <code>#</code> characters and anything after them on the line.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a> This allows us to put “comments” in our code. Blank lines don’t matter, either, allowing the insertion of blank lines in the code for ease of reading.</p>
+<p>Note that the interpreter ignores <code>#</code> characters and anything after them on the line.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a> This allows us to put “comments” in our code. Blank lines don’t matter, either, allowing the insertion of blank lines in the code for ease of reading.</p>
 <p>We can convert an int type into a float type using the <code>float()</code> function, which takes one parameter inside the parentheses:</p>
 <pre id=part2-02-float
      class="language-python 
@@ -504,7 +503,7 @@ c = a % b          # modulus ("remainder"): 1
 c = a ** b         # exponent: 343
 </code></pre>
 <p>Notice that we’ve reused the variables <code>a</code>, <code>b</code>, and <code>c</code>; this is completely allowable, but we must remember that they now refer to different data. (Recall that a variable in Python is a name that refers to, or references, some data.) In general, execution of lines within the same file (or cell in a Jupyter Notebook) happens in an orderly top-to-bottom fashion, though later we’ll see “control structures” that alter this flow.</p>
-<p>In summary, there are seven binary operators<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a> that can be used on ints and floats in Python:
+<p>In summary, there are seven binary operators<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a> that can be used on ints and floats in Python:
 - <code>+</code> : addition
 - <code>-</code> : subtraction
 - <code>*</code> : multiplication
@@ -531,7 +530,7 @@ test = 2 < -3                   # boolean False
 <h3>Strings<a href="elementary-data-types.html#strings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="escape" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>Strings, which hold sequences of letters, digits, and other characters, are the most interesting basic data type.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a> We can specify the contents using either single or double quotes, which can be useful if we want the string itself to contain a quote. Alternatively, we can <em>escape</em> odd characters like quotes if they would confuse the interpreter as it attempts to parse the file.</p>
+<p>Strings, which hold sequences of letters, digits, and other characters, are the most interesting basic data type.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> We can specify the contents using either single or double quotes, which can be useful if we want the string itself to contain a quote. Alternatively, we can <em>escape</em> odd characters like quotes if they would confuse the interpreter as it attempts to parse the file.</p>
 <pre id=part2-02-escape
      class="language-python 
             line-numbers 
@@ -679,7 +678,7 @@ seqa = "ATG" + seqa                    # redefine seqa, "ATGACTAG"
 </div>
 <div id="garbage_collection" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>Because the string <code>"ACTAG"</code> is immutable, redefining <code>seqa</code> results in an entirely different piece of data being created. The original string <code>"ACTAG"</code> will still exist in memory (RAM) for a short time, but because it is not accessible via any variables, Python will eventually clean it out to make room in memory in a process known as <em>garbage collection</em>.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> Garbage collection is an automatic, periodic process of de-allocating memory used by data that are no longer accessible (and hence no longer needed) by the program.</p>
+<p>Because the string <code>"ACTAG"</code> is immutable, redefining <code>seqa</code> results in an entirely different piece of data being created. The original string <code>"ACTAG"</code> will still exist in memory (RAM) for a short time, but because it is not accessible via any variables, Python will eventually clean it out to make room in memory in a process known as <em>garbage collection</em>.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> Garbage collection is an automatic, periodic process of de-allocating memory used by data that are no longer accessible (and hence no longer needed) by the program.</p>
 <p>This immutability of strings could result in code that takes much longer to execute than expected, because concatenating strings results in copying of data (see the results of <code>seqc = seqa + seqb</code> above). For example, if we had a command that concatenated chromosome strings (millions of letters each) to create a genome string, <code>genome = chr1 + chr2 + chr3 + chr4</code>, the result would be a copy of all four chromosomes being created in memory! On the other hand, in many cases, Python can use the immutability of strings to its advantage. Suppose, for example, that we wanted to get a large substring from a large string, <code>centromere_region = chr1[0:1500000]</code>. In this case, Python doesn’t need to make a copy of the substring in memory. Because the original string can never change, all it needs is some bookkeeping behind the scenes to remember that the <code>centromere_region</code> variable is associated with part of string <code>chr1</code> references. This is why <code>seqd</code> in the figure above does not duplicate data from <code>seqc</code>.</p>
 <p>None of this discussion is to imply that you should worry about the computational efficiency of these operations at this point. Rather, the concept of immutability and the definition of a variable (in Python) as a “name that refers to some data” are important enough to warrant formal discussion.</p>
 </div>
@@ -713,11 +712,11 @@ print(second_half)                    # should print "GATGA"
 </div>
 <div class="footnotes">
 <hr />
-<ol start="40">
-<li id="fn40"><p>The <code>#</code> symbols are ignored unless they occur within a pair of quotes. Technically, the interpreter also ignores the <code>#!</code> line, but it is needed to help the system find the interpreter in the execution process if running the program as a script.<a href="elementary-data-types.html#fnref40" class="footnote-back">↩︎</a></p></li>
-<li id="fn41"><p>There is a single “unary operator”, <code>-</code> which negates an int or float, i.e., <code>-5</code>.<a href="elementary-data-types.html#fnref41" class="footnote-back">↩︎</a></p></li>
-<li id="fn42"><p>Unlike C and some other languages, Python does not have a “char” datatype specifically for storing a single character.<a href="elementary-data-types.html#fnref42" class="footnote-back">↩︎</a></p></li>
-<li id="fn43"><p>Garbage collection is a common feature of high-level languages like Python, though some compiled languages support it as well. C does not: programmers are required to ensure that all unused data are erased during program execution. Failure to do so is known as a “memory leak” and causes many real-world software crashes.<a href="elementary-data-types.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<ol start="41">
+<li id="fn41"><p>The <code>#</code> symbols are ignored unless they occur within a pair of quotes. Technically, the interpreter also ignores the <code>#!</code> line, but it is needed to help the system find the interpreter in the execution process if running the program as a script.<a href="elementary-data-types.html#fnref41" class="footnote-back">↩︎</a></p></li>
+<li id="fn42"><p>There is a single “unary operator”, <code>-</code> which negates an int or float, i.e., <code>-5</code>.<a href="elementary-data-types.html#fnref42" class="footnote-back">↩︎</a></p></li>
+<li id="fn43"><p>Unlike C and some other languages, Python does not have a “char” datatype specifically for storing a single character.<a href="elementary-data-types.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p>Garbage collection is a common feature of high-level languages like Python, though some compiled languages support it as well. C does not: programmers are required to ensure that all unused data are erased during program execution. Failure to do so is known as a “memory leak” and causes many real-world software crashes.<a href="elementary-data-types.html#fnref44" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

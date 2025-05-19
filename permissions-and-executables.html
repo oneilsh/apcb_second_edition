@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -424,7 +423,7 @@
             <section class="normal" id="section-">
 <div id="permissions-and-executables" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Permissions and Executables<a href="permissions-and-executables.html#permissions-and-executables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>As mentioned previously, the administrator <code>root</code> configures most things on the system, like where network drives are mounted and how access to the system is granted.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> Most of the files that are important for these configurations are “owned” by root, and for security purposes, other users can’t tamper with them. In fact, all users of the system usually own the files in their own home directory, and these files can’t be tampered with by other users (except for root, who has access to everything). These security settings are controlled via <em>permissions</em> associated with every file and directory.</p>
+<p>As mentioned previously, the administrator <code>root</code> configures most things on the system, like where network drives are mounted and how access to the system is granted.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> Most of the files that are important for these configurations are “owned” by root, and for security purposes, other users can’t tamper with them. In fact, all users of the system usually own the files in their own home directory, and these files can’t be tampered with by other users (except for root, who has access to everything). These security settings are controlled via <em>permissions</em> associated with every file and directory.</p>
 <p>Root can also put users together into <em>groups</em>, allowing users in the same group to share files with each other but not outsiders, if they so choose. Groups may have more than one user, and a single user may be part of more than one group, as in the following example illustrating three groups and eight users.</p>
 <div class="fig center" style="width: 50%">
 <p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_1_groups_ex.png" /></p>
@@ -637,7 +636,7 @@ hello
 hello
 </code></pre>
 <p>Now for the rule-breaking part: we already know that we can just run <code>echo</code> <em>without</em> specifying a path to the program. This means that when we attempt to run a program, the shell must be able to find the executable file somehow. How is this done?</p>
-<p>The answer, as with so many questions involving the shell, is an <a href="the-command-line-and-filesystem.html#environment_variable">environment variable</a> called <code>$PATH</code>. Let’s check the contents of this variable:<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+<p>The answer, as with so many questions involving the shell, is an <a href="the-command-line-and-filesystem.html#environment_variable">environment variable</a> called <code>$PATH</code>. Let’s check the contents of this variable:<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 <pre id=part1-05-$PATH
      class="language-txt 
             line-numbers 
@@ -648,7 +647,7 @@ hello
 </code></pre>
 <p>The <code>$PATH</code> environment variable contains a simple string, describing a list of absolute paths separated by <code>:</code> characters. When we specify what looks to the shell like the name of a program, it searches this list of paths, in order, for an executable file of that name. When we type <code>echo</code>, it tries <code>/usr/local/sbin/echo</code>, then <code>/usr/local/bin/echo</code>, and so on, until it finds it in <code>/bin/echo</code>.</p>
 <p>The first matching executable file the shell finds in the directories listed in <code>$PATH</code> is the one that is executed. This could lead to some mischief: if a coworker with a penchant for practical jokes could modify your <code>$PATH</code> variable, they could add their own home directory as the first entry. From there, they could create an executable file called, say, <code>ls</code> that did whatever they wanted, and you would unknowingly be running that! It is possible for anyone with access to your account to modify your <code>$PATH</code>, so it’s a good idea not to leave your terminal window open around anyone with a dastardly sense of humor.</p>
-<p>If there are multiple executable files with the same name in this list of paths, can we discover which one the shell will execute? Yes: in <code>bash</code> we can make this determination using the <code>which</code> command.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p>If there are multiple executable files with the same name in this list of paths, can we discover which one the shell will execute? Yes: in <code>bash</code> we can make this determination using the <code>which</code> command.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
 <pre id=part1-05-which-echo
      class="language-txt 
             line-numbers 
@@ -777,7 +776,7 @@ This is a bit weird...
 [oneils@mbp ~]$ <b>echo $PATH</b>
 /home/oneils/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/games
 </code></pre>
-<p>Because the right-hand side of the <code>=</code> is evaluated before the assignment happens, the <code>$PATH</code> variable now contains the full path to the <code>~/local/bin</code> directory, followed by the previous contents of <code>$PATH</code>.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> If we type a program name without specifying a path to it, the shell will search our own install location first!</p>
+<p>Because the right-hand side of the <code>=</code> is evaluated before the assignment happens, the <code>$PATH</code> variable now contains the full path to the <code>~/local/bin</code> directory, followed by the previous contents of <code>$PATH</code>.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> If we type a program name without specifying a path to it, the shell will search our own install location first!</p>
 <pre id=part1-05-myprog-in-path
      class="language-txt 
             line-numbers 
@@ -787,7 +786,7 @@ This is a bit weird...
 Hello!
 This is a bit weird...
 </code></pre>
-<p>There’s only one problem: every time we log out and log back in, modifications of environment variables that we’ve made are forgotten. Fortunately, <code>bash</code> looks for two important files when it starts:<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> (1) commands in the <code>.bash_login</code> file (in your home directory) are executed whenever <code>bash</code> starts as a consequence of a login session (e.g., when entering a password causes <code>bash</code> to start), and (2) commands in the <code>.bashrc</code> file (in your home directory) are executed whenever <code>bash</code> starts (e.g., on login <em>and</em> when <code>bash</code> is executed via a <code>#!</code> script).</p>
+<p>There’s only one problem: every time we log out and log back in, modifications of environment variables that we’ve made are forgotten. Fortunately, <code>bash</code> looks for two important files when it starts:<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> (1) commands in the <code>.bash_login</code> file (in your home directory) are executed whenever <code>bash</code> starts as a consequence of a login session (e.g., when entering a password causes <code>bash</code> to start), and (2) commands in the <code>.bashrc</code> file (in your home directory) are executed whenever <code>bash</code> starts (e.g., on login <em>and</em> when <code>bash</code> is executed via a <code>#!</code> script).</p>
 <p>If you want to see a friendly greeting every time you log in, for example, you might add the line echo <code>"Hello $USER, nice to see you again!"</code> to your <code>.bash_login</code> file. Because we want our <code>$PATH</code> to be modified even if <code>bash</code> somehow starts without our logging in, we’ll add the <code>export</code> command to the <code>.bashrc</code> file.</p>
 <p>The <code>.bashrc</code> file may have information in it already, representing a default shell configuration placed there when the administrator created the account. While we can add our own commands to this file, we should do so at the end, and we should be careful to not disturb the other configuration commands that are likely there for a good reason. Also, the commands in this file should be free of errors and typos—some errors are bad enough to prevent you from logging in! Using the <code>-w</code> when editing the file with <code>nano</code> will help ensure that the editor does not attempt to autowrap long commands that shouldn’t be broken over multiple lines.</p>
 <pre id=part1-05-ls-a
@@ -827,12 +826,12 @@ Try creating a bash script where the first line is <code>#!/usr/bin/env bash</co
 </div>
 <div class="footnotes">
 <hr />
-<ol start="12">
-<li id="fn12"><p>The administrator, or <code>root</code> user, is sometimes also called the “superuser.” This has been known to go to some administrators’ heads.<a href="permissions-and-executables.html#fnref12" class="footnote-back">↩︎</a></p></li>
-<li id="fn13"><p>The <code>tcsh</code> and <code>csh</code> shells do not use the <code>$PATH</code> environment variable. Instead, they look in a shell variable called <code>$path</code>.<a href="permissions-and-executables.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p>In <code>tcsh</code> and <code>csh</code>, the closest approximation to <code>which</code> is <code>where</code>, though <code>which</code> may also work.<a href="permissions-and-executables.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p>The corresponding command to set the <code>tcsh</code> or <code>csh</code> <code>$path</code> variable is: <code>set path = ("$HOME/local/bin" $path)</code>.<a href="permissions-and-executables.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p>The corresponding files for <code>tcsh</code> and <code>csh</code> shells are <code>.login</code> and <code>.cshrc</code>, respectively.<a href="permissions-and-executables.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<ol start="13">
+<li id="fn13"><p>The administrator, or <code>root</code> user, is sometimes also called the “superuser.” This has been known to go to some administrators’ heads.<a href="permissions-and-executables.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>The <code>tcsh</code> and <code>csh</code> shells do not use the <code>$PATH</code> environment variable. Instead, they look in a shell variable called <code>$path</code>.<a href="permissions-and-executables.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>In <code>tcsh</code> and <code>csh</code>, the closest approximation to <code>which</code> is <code>where</code>, though <code>which</code> may also work.<a href="permissions-and-executables.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>The corresponding command to set the <code>tcsh</code> or <code>csh</code> <code>$path</code> variable is: <code>set path = ("$HOME/local/bin" $path)</code>.<a href="permissions-and-executables.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>The corresponding files for <code>tcsh</code> and <code>csh</code> shells are <code>.login</code> and <code>.cshrc</code>, respectively.<a href="permissions-and-executables.html#fnref17" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

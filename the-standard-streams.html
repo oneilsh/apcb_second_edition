@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -499,7 +498,7 @@ PZ7180000000004_TX      0.279   1000    AAATA   12      unit:TAA    
 <h6 class="unnumbered"></h6>
 <p>So what is going on? It turns out that programs can produce output (other than writing to files) on <em>two</em> streams. We are already familiar with the first, <a href="using-bioinformatics-software.html#standard_output">standard output</a>, which is by default printed to the terminal but can be redirected to a file with &gt;. The second, called <em>standard error</em>, is also by default printed to the terminal but is not redirected with <code>&gt;</code>.</p>
 <p>By default, like standard output, standard error (also known as “standard err” or “stderr”) is printed to the terminal.</p>
-<p>Because standard error usually contains diagnostic information, we may not be interested in capturing it into its own file. Still, if we wish, <code>bash</code> can redirect the standard error to a file by using the <code>2&gt;</code> redirect.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
+<p>Because standard error usually contains diagnostic information, we may not be interested in capturing it into its own file. Still, if we wish, <code>bash</code> can redirect the standard error to a file by using the <code>2&gt;</code> redirect.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
 <pre id=part1-09-stderr-redirect
      class="language-txt 
             line-numbers 
@@ -694,8 +693,8 @@ PZ22453_A       0.267   269     ATTAA   8       unit:AT 4       din
 </div>
 <div class="footnotes">
 <hr />
-<ol start="25">
-<li id="fn25"><p>The <code>tcsh</code> and <code>csh</code> shells unfortunately cannot natively separately redirect stdout and stderr to files. A potential workaround looks like: <code>( ./fasta_stats pz_cDNAs_sample.fasta &gt; pz_sample_stats.txt ) &gt; &amp; pz_sample_stats.err.txt</code>. This command runs two independent redirects; using parentheses causes the redirect of stdout to happen first, then the further redirect of stderr can occur next. How <code>bash</code>-compatible shells handle standard output and standard error is one of the primary reasons they are preferred over the older <code>csh</code>-compatible shells.<a href="the-standard-streams.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<ol start="26">
+<li id="fn26"><p>The <code>tcsh</code> and <code>csh</code> shells unfortunately cannot natively separately redirect stdout and stderr to files. A potential workaround looks like: <code>( ./fasta_stats pz_cDNAs_sample.fasta &gt; pz_sample_stats.txt ) &gt; &amp; pz_sample_stats.err.txt</code>. This command runs two independent redirects; using parentheses causes the redirect of stdout to happen first, then the further redirect of stderr can occur next. How <code>bash</code>-compatible shells handle standard output and standard error is one of the primary reasons they are preferred over the older <code>csh</code>-compatible shells.<a href="the-standard-streams.html#fnref26" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

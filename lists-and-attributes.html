@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -601,7 +600,7 @@ $ChrInfo$GeneCounts
 </div>
 <div id="attributes-removing-elements-list-structure" class="section level3 hasAnchor" number="33.0.1">
 <h3><span class="header-section-number">33.0.1</span> Attributes, Removing Elements, List Structure<a href="lists-and-attributes.html#attributes-removing-elements-list-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Lists are an excellent way to organize heterogeneous data, especially when data are stored in a Name → Value association,<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a> making it easy to access data by character name. But what if we want to look up some information associated with a piece of data but not represented in the data itself? This would be a type of “metadata,” and R allows us to associate metadata to any piece of data using what are called <em>attributes</em>. Suppose we have a simple vector of normally distributed data:</p>
+<p>Lists are an excellent way to organize heterogeneous data, especially when data are stored in a Name → Value association,<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a> making it easy to access data by character name. But what if we want to look up some information associated with a piece of data but not represented in the data itself? This would be a type of “metadata,” and R allows us to associate metadata to any piece of data using what are called <em>attributes</em>. Suppose we have a simple vector of normally distributed data:</p>
 <pre id=part3-05-list-attr-1
      class="language-r
             line-numbers
@@ -629,7 +628,7 @@ print(sample)
 attr(,"disttype")
 [1] "normal"
 </code></pre>
-<p>We can separately extract a given attribute from a data item, using syntax like <code>sample_dist &lt;- attr(sample, "disttype")</code>. Attributes are used widely in R, though they are rarely modified in day-to-day usage of the language.<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a></p>
+<p>We can separately extract a given attribute from a data item, using syntax like <code>sample_dist &lt;- attr(sample, "disttype")</code>. Attributes are used widely in R, though they are rarely modified in day-to-day usage of the language.<a href="#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a></p>
 <p>To expand our <em>A. thaliana</em> example, let’s assign a “kingdom” attribute to the species vector.</p>
 <pre id=part3-05-athal-list-attr
      class="language-r
@@ -806,9 +805,9 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 <div class="footnotes">
 <hr />
-<ol start="104">
-<li id="fn104"><p>R lists are often used like dictionaries in Python and hash tables in other languages, because of this easy and effective Name → Value lookup operation. It should be noted that (at least as of R 3.3), name lookups in lists are not as efficient as name lookups in Python dictionaries or other true hash tables. For an efficient and more idiomatic hash table/dictionary operation, there is also the package <code>hash</code> available for install with <code>install.packages("hash")</code>.<a href="lists-and-attributes.html#fnref104" class="footnote-back">↩︎</a></p></li>
-<li id="fn105"><p>For example, the names of a vector are stored as an attribute called “names”—the lines <code>names(scores) &lt;- c("Student A", "Student B", "Student C")</code> and <code>attr(scores, "names") &lt;- c("Student A", "Student B", "Student C")</code> are (almost) equivalent. Still, it is recommended to use specialized functions like <code>names()</code> rather than set them with <code>attr()</code> because the <code>names()</code> function includes additional checks on the sanity of the names vector.<a href="lists-and-attributes.html#fnref105" class="footnote-back">↩︎</a></p></li>
+<ol start="105">
+<li id="fn105"><p>R lists are often used like dictionaries in Python and hash tables in other languages, because of this easy and effective Name → Value lookup operation. It should be noted that (at least as of R 3.3), name lookups in lists are not as efficient as name lookups in Python dictionaries or other true hash tables. For an efficient and more idiomatic hash table/dictionary operation, there is also the package <code>hash</code> available for install with <code>install.packages("hash")</code>.<a href="lists-and-attributes.html#fnref105" class="footnote-back">↩︎</a></p></li>
+<li id="fn106"><p>For example, the names of a vector are stored as an attribute called “names”—the lines <code>names(scores) &lt;- c("Student A", "Student B", "Student C")</code> and <code>attr(scores, "names") &lt;- c("Student A", "Student B", "Student C")</code> are (almost) equivalent. Still, it is recommended to use specialized functions like <code>names()</code> rather than set them with <code>attr()</code> because the <code>names()</code> function includes additional checks on the sanity of the names vector.<a href="lists-and-attributes.html#fnref106" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

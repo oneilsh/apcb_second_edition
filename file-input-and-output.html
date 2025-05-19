@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -551,7 +550,7 @@ mean_gc = (gc1 + gc2 + gc3)/3
 print(mean_gc)
 </code></pre>
 <p>The above prints the average GC content of the three lines as <code>0.523333333</code>. (Because <code>.strip()</code> also returns a string, we could have further chained methods, as in <code>line1_list = fhandle.readline().strip().split("\t")</code>. Or to take it even further, <code>gc1 = fhandle.readline().strip().split("\t")[1]</code>.)</p>
-<p>Because file handles work like a pipe, they don’t allow for “random access”; we can get the next bit of data out of the end of the pipe, but that’s it.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> One might think that a command like <code>line5 = fhandle[4]</code> would work, but instead it would produce an error like <code>TypeError: '_io.TextIOWrapper' object is not subscriptable</code>.</p>
+<p>Because file handles work like a pipe, they don’t allow for “random access”; we can get the next bit of data out of the end of the pipe, but that’s it.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a> One might think that a command like <code>line5 = fhandle[4]</code> would work, but instead it would produce an error like <code>TypeError: '_io.TextIOWrapper' object is not subscriptable</code>.</p>
 <p>On the other hand, like lists, file handles are <a href="#id_#iterable">iterable</a>, meaning we can use a for-loop to access each line in order. A simple program to read lines of a file and print them one at a time (without extra blank lines) might look like this:</p>
 <pre id=part2-04-for_loop
      class="language-python 
@@ -568,7 +567,7 @@ print("Done")
 </div>
 <div id="writing-data" class="section level3 unnumbered hasAnchor">
 <h3>Writing Data<a href="file-input-and-output.html#writing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Writing data to a file works much the same way as reading data: we open a file handle (which again works like a pipe), and call a method on the handle called <code>.write()</code> to write strings to it. In this case, instead of using the “r” parameter in calling <code>open()</code>, we’ll use <code>"w"</code> to indicate that we want to write to the file. Be warned: when you open a file handle for writing in this manner, it overwrites any existing contents of the file. If you’d rather append to the file, you can instead use <code>"a"</code>.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
+<p>Writing data to a file works much the same way as reading data: we open a file handle (which again works like a pipe), and call a method on the handle called <code>.write()</code> to write strings to it. In this case, instead of using the “r” parameter in calling <code>open()</code>, we’ll use <code>"w"</code> to indicate that we want to write to the file. Be warned: when you open a file handle for writing in this manner, it overwrites any existing contents of the file. If you’d rather append to the file, you can instead use <code>"a"</code>.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
 <p>Unlike the <code>print()</code> function, the <code>.write()</code> method of a file handle does not automatically include an additional newline character <code>"\n"</code>. Thus, if you wish to write multiple lines to a file handle, you have to add them yourself. Here’s an example that prints the numbers <code>0</code> through <code>9</code> to a file, one per line.</p>
 <pre id=part2-04-for_loop
      class="language-python 
@@ -678,9 +677,9 @@ To compute the square root of a float, you will need to import the math module b
 </div>
 <div class="footnotes">
 <hr />
-<ol start="46">
-<li id="fn46"><p>In more sophisticated usage of file handles, our pipe analogy breaks down. It’s possible to “rewind” or “fast-forward” the operating system’s current position in the file being read, if we know how far the “read head” needs to move to get to the data we want. Perhaps a better analogy for file handles would be an old-fashioned magnetic cassette tape, perhaps a fitting analogy given that files were once stored on such tapes.<a href="file-input-and-output.html#fnref46" class="footnote-back">↩︎</a></p></li>
-<li id="fn47"><p>It’s also possible to open a file handle for simultaneous reading and writing. We won’t cover it here, as that functionality is less often needed.<a href="file-input-and-output.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<ol start="47">
+<li id="fn47"><p>In more sophisticated usage of file handles, our pipe analogy breaks down. It’s possible to “rewind” or “fast-forward” the operating system’s current position in the file being read, if we know how far the “read head” needs to move to get to the data we want. Perhaps a better analogy for file handles would be an old-fashioned magnetic cassette tape, perhaps a fitting analogy given that files were once stored on such tapes.<a href="file-input-and-output.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn48"><p>It’s also possible to open a file handle for simultaneous reading and writing. We won’t cover it here, as that functionality is less often needed.<a href="file-input-and-output.html#fnref48" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

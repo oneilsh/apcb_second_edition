@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -438,7 +437,7 @@ p450s.fasta                       p450s.fasta.aln.hmm  <span style="
 <div id="version_control" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
 <p>An alternative is to use <em>version control</em>, which is a system for managing changes to files (especially programs and scripts) over time and across various contributors to a project. A version control system thus allows a user to log <strong>who</strong> made <strong>which</strong> changes <strong>when</strong>, and provides the ability to examine differences between the various edits. There are a number of popular version control programs, like <code>svn</code> (subversion) and <code>cvs</code> (concurrent versioning system). Because the job of tracking changes in files across time and users is quite complex (especially when multiple users may be simultaneously making independent edits), using version control software can be a large skill set in itself.</p>
-<p>One of the more recently developed version control systems is <code>git</code>, which has gained popularity for a number of reasons, including its use in managing popular software projects like the Linux kernel.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a> The <code>git</code> system (which is managed by a program called <code>git</code>) uses a number of vocabulary words we should define first.</p>
+<p>One of the more recently developed version control systems is <code>git</code>, which has gained popularity for a number of reasons, including its use in managing popular software projects like the Linux kernel.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a> The <code>git</code> system (which is managed by a program called <code>git</code>) uses a number of vocabulary words we should define first.</p>
 <ul style="list-style-type:none;">
 <li>
 <em>Repository</em>
@@ -485,7 +484,7 @@ Not all files need to be included in a version; staging a set of files marks the
 [oneils@mbp ~/projects/p450s]$ <b>git config --global user.name "Shawn O'Neil"</b>
 [oneils@mbp ~/projects/p450s]$ <b>git config --global user.email "shawn.oneil@cgrb.oregonstate.edu"</b>
 </b></code></pre>
-<p>This will edit the <code>~/.gitconfig</code> file so that <code>git</code> can include your information in all of your commits. It may also be helpful to change your default text editor with the command <code>git config --global core.editor nano</code>.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
+<p>This will edit the <code>~/.gitconfig</code> file so that <code>git</code> can include your information in all of your commits. It may also be helpful to change your default text editor with the command <code>git config --global core.editor nano</code>.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
 </div>
 <div id="initializing-a-repo" class="section level3 unnumbered hasAnchor">
 <h3>Initializing a Repo<a href="version-control-with-git.html#initializing-a-repo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -530,7 +529,7 @@ Untracked files:
       p450s.fasta.aln.hmm
       p450s_hmmsearch_dmel.txt</span>
 </code></pre>
-<p>The status information shows that we have one new file to track, <code>runhmmer.sh</code>, and a number of untracked files (which we’ve left untracked for a reason). Now we can “commit” these staged files to a new version, which causes the staged files to be stored for later reference. When committing, we need to enter a commit message, which gives us a chance to summarize the changes that are being committed.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
+<p>The status information shows that we have one new file to track, <code>runhmmer.sh</code>, and a number of untracked files (which we’ve left untracked for a reason). Now we can “commit” these staged files to a new version, which causes the staged files to be stored for later reference. When committing, we need to enter a commit message, which gives us a chance to summarize the changes that are being committed.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a></p>
 <pre id=part1-14-commit
      class="language-txt 
             line-numbers 
@@ -691,10 +690,10 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 <div class="footnotes">
 <hr />
-<ol start="34">
-<li id="fn34"><p>Linus Torvalds, who also started the Linux kernel project, developed the <code>git</code> system. Quoting Linus: “I’m an egotistical bastard, and I name all my projects after myself. First ‘Linux’, now ‘Git’.” (Here “git” refers to the British slang for a “pig-headed and argumentative” person.)<a href="version-control-with-git.html#fnref34" class="footnote-back">↩︎</a></p></li>
-<li id="fn35"><p>There are many options for default text editor, see <a href="https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config#ch_core_editor" class="uri">https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config#ch_core_editor</a> for more details.<a href="version-control-with-git.html#fnref35" class="footnote-back">↩︎</a></p></li>
-<li id="fn36"><p>Commit messages are composed of two parts: the header (72 characters max) and the description. There is an art to writing informative yet brief commit messages. See <a href="https://xkcd.com/1296/">https://xkcd.com/1296/</a> for examples of what NOT to write.<a href="version-control-with-git.html#fnref36" class="footnote-back">↩︎</a></p></li>
+<ol start="35">
+<li id="fn35"><p>Linus Torvalds, who also started the Linux kernel project, developed the <code>git</code> system. Quoting Linus: “I’m an egotistical bastard, and I name all my projects after myself. First ‘Linux’, now ‘Git’.” (Here “git” refers to the British slang for a “pig-headed and argumentative” person.)<a href="version-control-with-git.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<li id="fn36"><p>There are many options for default text editor, see <a href="https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config#ch_core_editor" class="uri">https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config#ch_core_editor</a> for more details.<a href="version-control-with-git.html#fnref36" class="footnote-back">↩︎</a></p></li>
+<li id="fn37"><p>Commit messages are composed of two parts: the header (72 characters max) and the description. There is an art to writing informative yet brief commit messages. See <a href="https://xkcd.com/1296/">https://xkcd.com/1296/</a> for examples of what NOT to write.<a href="version-control-with-git.html#fnref37" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

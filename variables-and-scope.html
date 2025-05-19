@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -457,7 +456,7 @@ def gc_content(<span style="background-color: #FFC0CB;">seq: str</span>) -> floa
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-10-variables-and-scope.Rmd.images/II.10_3_scope_ram_cloud-4.png" /></p>
 </div>
-<p>Outside of the function, the string data <code>"ACCCTAGACTG"</code> was assigned to the variable <code>seq3</code>, but inside the function, it was assigned to the variable <code>seq</code>. Inside the function, the data value <code>0.54</code> was referenced by the variable <code>gc</code>, and outside it was referenced by <code>seq3_gc</code>.<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a></p>
+<p>Outside of the function, the string data <code>"ACCCTAGACTG"</code> was assigned to the variable <code>seq3</code>, but inside the function, it was assigned to the variable <code>seq</code>. Inside the function, the data value <code>0.54</code> was referenced by the variable <code>gc</code>, and outside it was referenced by <code>seq3_gc</code>.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a></p>
 <p>We know that we <em>could</em> access the variable <code>seq3</code> from inside the function, even if we shouldn’t. But what about the other way around? Could we access the <code>gc</code> variable, which was defined within the function, outside the function?</p>
 <pre id=part2-10-gc_content-error
      class="language-python 
@@ -505,7 +504,7 @@ def gc_content(<span style="background-color: #FFC0CB;">seq: str</span>) -> floa
 <span style="background-color: #CCCCFF;">seq3_gc</span> = gc_content(<span style="background-color: #CCCCFF;">seq3</span>)                   # 0.5454
 print(<span style="background-color: #CCCCFF;">gc</span>)
 </code></pre>
-<p>What do you think the last line, <code>print(gc)</code>, will print? If you guessed <code>"Measure of G and C bases in a sequence"</code>, you are right! Even though the <code>gc_content()</code> function defines its own <code>gc</code> variable, because this variable is local, it does not “step on” the outside <code>gc</code> variable.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a> In summary:</p>
+<p>What do you think the last line, <code>print(gc)</code>, will print? If you guessed <code>"Measure of G and C bases in a sequence"</code>, you are right! Even though the <code>gc_content()</code> function defines its own <code>gc</code> variable, because this variable is local, it does not “step on” the outside <code>gc</code> variable.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a> In summary:</p>
 <ul>
 <li>Variables defined within a function (and parameters to a function) are local to the function call.</li>
 <li>These local variables “shadow” any other variables that might exist during the execution of the function.</li>
@@ -626,9 +625,9 @@ print(answer)
 </div>
 <div class="footnotes">
 <hr />
-<ol start="67">
-<li id="fn67"><p>Many languages work like Python and allow different variables to refer to the same data, but in some languages this is impossible or less common. In some languages, all data are immutable, making the point moot. R is an example where most variables end up referring to unique data; see the box in chapter 31, “<a href="r-functions.html#r-functions">R Functions</a>”, for a more detailed comparison.<a href="variables-and-scope.html#fnref67" class="footnote-back">↩︎</a></p></li>
-<li id="fn68"><p>Even though the Python interpreter has no trouble handling variables with the same name in different scopes, many humans do struggle with this, so we recommend against it as a general rule.<a href="variables-and-scope.html#fnref68" class="footnote-back">↩︎</a></p></li>
+<ol start="68">
+<li id="fn68"><p>Many languages work like Python and allow different variables to refer to the same data, but in some languages this is impossible or less common. In some languages, all data are immutable, making the point moot. R is an example where most variables end up referring to unique data; see the box in chapter 31, “<a href="r-functions.html#r-functions">R Functions</a>”, for a more detailed comparison.<a href="variables-and-scope.html#fnref68" class="footnote-back">↩︎</a></p></li>
+<li id="fn69"><p>Even though the Python interpreter has no trouble handling variables with the same name in different scopes, many humans do struggle with this, so we recommend against it as a general rule.<a href="variables-and-scope.html#fnref69" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

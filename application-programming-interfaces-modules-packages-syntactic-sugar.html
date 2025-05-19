@@ -186,7 +186,6 @@
 <li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
 <ul>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#command-line-access-with-cyverse-atmosphere"><i class="fa fa-check"></i>Command-Line Access with CyVerse Atmosphere</a></li>
 <li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
@@ -424,7 +423,7 @@
             <section class="normal" id="section-">
 <div id="application-programming-interfaces-modules-packages-syntactic-sugar" class="section level1 hasAnchor" number="27">
 <h1><span class="header-section-number">Chapter 27</span> Application Programming Interfaces, Modules, Packages, Syntactic Sugar<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#application-programming-interfaces-modules-packages-syntactic-sugar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>We know that objects like lists have methods such as <code>.sort()</code> and <code>.append()</code>. Do they have others? They do, and one way to find them is to run Python in the interactive mode on the command line.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a></p>
+<p>We know that objects like lists have methods such as <code>.sort()</code> and <code>.append()</code>. Do they have others? They do, and one way to find them is to run Python in the interactive mode on the command line.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
 <p>To do this, we execute the <code>python</code> interpreter without specifying a file to interpret. The result is a Python prompt, <code>&gt;&gt;&gt;</code>, where we can type individual lines of Python code and see the results.</p>
 <pre id=part2-13-interactive
      class="language-txt 
@@ -572,7 +571,7 @@ for chrname in chrnames_to_chrs:
 <div id="module" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
 <p>Now, what if this function and the two class definitions were things that we wanted to use in other projects? We may wish to make a <em>module</em> out of them—a file containing Python code (usually related to a single topic, such as a set of functions or class definitions related to a particular kind of data or processing).</p>
-<p>We’ve seen a number of modules already, including <code>re</code> and <code>sys</code>. To use a module, we just need to run <code>import &lt;modulename&gt;</code>. As it turns out, modules are simply files of Python code ending in <code>.py</code>! Thus, when we use <code>import modulename</code>, the interpreter searches for a <code>modulename.py</code> containing the various function and class definitions. Module files may either exist in a system-wide location, or be present in the working directory of the program importing them.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
+<p>We’ve seen a number of modules already, including <code>re</code> and <code>sys</code>. To use a module, we just need to run <code>import &lt;modulename&gt;</code>. As it turns out, modules are simply files of Python code ending in <code>.py</code>! Thus, when we use <code>import modulename</code>, the interpreter searches for a <code>modulename.py</code> containing the various function and class definitions. Module files may either exist in a system-wide location, or be present in the working directory of the program importing them.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a></p>
 </div>
 <div id="namespace" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
@@ -618,7 +617,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <li><code>argparse</code>: user-friendly parsing of complex arguments on the command line</li>
 <li><code>Tkinter</code>: creating graphical user interfaces (with buttons, scroll bars, etc.)</li>
 <li><code>unittest</code>: automating the creation and running of <a href="file-input-and-output.html#unit_test">unit tests</a></li>
-<li><code>turtle</code>: a simple interface for displaying line-based graphics<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a></li>
+<li><code>turtle</code>: a simple interface for displaying line-based graphics<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a></li>
 </ul>
 <p>Tutorials for these specific modules may be found online, as may lists of many other packages and modules that come installed with Python or that are available for download.</p>
 </div>
@@ -671,7 +670,7 @@ class Chromosome:
 def vcf_to_chrnames_dict(filename: str) -> dict[str,tuple]:
     # ...
 </code></pre>
-<p>The program that makes use of this module, which exists in a separate file in the same directory (perhaps called snps_ex2.py), is short and sweet.<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a></p>
+<p>The program that makes use of this module, which exists in a separate file in the same directory (perhaps called snps_ex2.py), is short and sweet.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a></p>
 <pre id=part2-13-exc
      class="language-python 
             line-numbers 
@@ -747,13 +746,13 @@ Help on module MyVCFModule:
 </div>
 <div id="packages" class="section level3 unnumbered hasAnchor">
 <h3>Packages<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As if Python didn’t already have enough “boxes” for encapsulation — functions, objects, modules, and so on — there are also packages. In Python, a “package” is a directory containing some module files.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a></p>
+<p>As if Python didn’t already have enough “boxes” for encapsulation — functions, objects, modules, and so on — there are also packages. In Python, a “package” is a directory containing some module files.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a></p>
 <p>A package directory must also contain a special file called <code>__init__.py</code>, which lets Python know that the directory should be treated as a package from which modules may be imported. (One could put code in this file that would be executed when the <code>import</code> statement is run, but we won’t explore this feature here.)</p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_15_package_organization-2.png" /></p>
 </div>
 <p>As an example, suppose that along with our <code>MyVCFModule.py</code>, we also had created a module for parsing gene ontology files called <code>GOParseModule.py</code>. We could put these together into a package (directory) called <code>MyBioParsers</code>.</p>
-<p>To use a module contained in a package, the syntax is f<code>rom packagename import modulename</code>.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a> Our Python program could live in the same directory in which the <code>MyBioParsers</code> directory was found, and might begin like so:</p>
+<p>To use a module contained in a package, the syntax is f<code>rom packagename import modulename</code>.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a> Our Python program could live in the same directory in which the <code>MyBioParsers</code> directory was found, and might begin like so:</p>
 <pre id=part2-13-mybioparsers
      class="language-python 
             line-numbers 
@@ -806,7 +805,7 @@ TAAAGTGTACCGTCTGCCAAAGAAATAAACTTCATTATTAAATAACGACATTACAGTTCTAATTAACGAT
 TTCGGAATTTGAAAAGTTCCAACAAATATGCTTTTGTCAATCTCATTTTGTTACAATCATATATATCTTT
 ...
 </code></pre>
-<p>Parsing data in FASTA format isn’t too difficult, but it requires an extra preprocessing step (usually involving a loop and a variable that keeps track of the “current” ID; so long as subsequent lines don’t match the <code>&gt;</code> character, they must be sequence lines and can be appended to a list of strings to be later joined for that ID). While reinventing the FASTA-parsing wheel is good practice for novice coders, the BioPython package provides functions to parse these and many other formats.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a></p>
+<p>Parsing data in FASTA format isn’t too difficult, but it requires an extra preprocessing step (usually involving a loop and a variable that keeps track of the “current” ID; so long as subsequent lines don’t match the <code>&gt;</code> character, they must be sequence lines and can be appended to a list of strings to be later joined for that ID). While reinventing the FASTA-parsing wheel is good practice for novice coders, the BioPython package provides functions to parse these and many other formats.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a></p>
 <p>BioPython is a large package with many modules and APIs, which you can read more about at <a href="http://biopython.org" class="uri">http://biopython.org</a>. For the specific application of parsing a FASTA file, a good place to start is a simple web search for “biopython fasta,” which leads us to a wiki page describing the SeqIO module, complete with an example.</p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part2-13-application-programming-interfaces.Rmd.images/II.12_20_biopython_wiki_shot.png" /></p>
@@ -911,7 +910,7 @@ with open(filename, "r") as fhandle:
 </code></pre>
 <div id="syntactic_sugar" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>Operations like addition look like basic, fundamental operations, and Python accomplishes such operations through method calls on objects.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a> A statement like <code>a = b + c</code> is converted to <code>a = b.__add__(c)</code> behind the scenes. Although we can run such method-oriented operations ourselves, the awkward double-underscore syntax is how the designers let us know that those methods are for internal use, and we should stick with the standard syntax. This automatic syntax conversion is known as <em>syntactic sugar</em>, and it is present in many programming languages so that they can be internally consistent but more pleasant (“sweeter”) for humans to work with.</p>
+<p>Operations like addition look like basic, fundamental operations, and Python accomplishes such operations through method calls on objects.<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a> A statement like <code>a = b + c</code> is converted to <code>a = b.__add__(c)</code> behind the scenes. Although we can run such method-oriented operations ourselves, the awkward double-underscore syntax is how the designers let us know that those methods are for internal use, and we should stick with the standard syntax. This automatic syntax conversion is known as <em>syntactic sugar</em>, and it is present in many programming languages so that they can be internally consistent but more pleasant (“sweeter”) for humans to work with.</p>
 </div>
 <div class="exercises">
 <div id="exercises-24" class="section level4 unnumbered hasAnchor">
@@ -931,15 +930,15 @@ with open(filename, "r") as fhandle:
 </div>
 <div class="footnotes">
 <hr />
-<ol start="78">
-<li id="fn78"><p>Much of this information is also available online at <a href="http://docs.python.org" class="uri">http://docs.python.org</a>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref78" class="footnote-back">↩︎</a></p></li>
-<li id="fn79"><p>Python modules and packages need not be installed system-wide or be present in the same directory as the program that uses them. The environment variable <code>$PYTHONPATH</code> lists the directories that are searched for modules and packages, to which each user is free to add their own search paths.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref79" class="footnote-back">↩︎</a></p></li>
-<li id="fn80"><p>The <code>turtle</code> graphics module is a fun way to understand and visualize computational processes (and similar packages are available for many programming languages). While this book isn’t the place for such explorations, the reader can learn more about them in Jeffrey Elkner, Allen Downey, and Chris Meyers’s excellent book, <em>How to Think Like a Computer Scientist</em> (Green Tea Press, 2002). As of this writing, a version of the book is available online at <a href="https://openbookproject.net/thinkcs/python/english3e/" class="uri">https://openbookproject.net/thinkcs/python/english3e/</a>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref80" class="footnote-back">↩︎</a></p></li>
-<li id="fn81"><p>In some Python scripts, you may find a line <code>if __name__ == '__main__':</code>. The code within this if statement will run, but only if the file is run as a script. If it is imported as a module, the block will not run. This lets developers write files that can serve both purposes, and many developers include it by default so that their script’s functions and class definitions can be utilized in the future by importing the file as a module. You will notice that the tests in <a href="data/MyVCFModule.py">MyVCFModule.py</a> have been wrapped in such an <code>if</code> statement - they will only run when the file is executed. Try it out!<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref81" class="footnote-back">↩︎</a></p></li>
-<li id="fn82"><p>Packages may also contain other files, like files containing specific data sets or even code written in other languages like C. Thus some modules may need to be installed by more complicated processes than simply decompressing them in the right location.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref82" class="footnote-back">↩︎</a></p></li>
-<li id="fn83"><p>You might occasionally see a line like <code>from modulename import *</code>. This allows one to use the functions and other definitions inside of <code>modulename</code> without prefixing them with <code>modulename.</code>. For example, we can <code>import math</code> and then use <code>print(math.sqrt(3))</code>, or we can <code>from math import *</code> and then <code>print(sqrt(3))</code>. The latter is usually avoided, because if multiple modules contain the same function or other names, then it is not possible to disambiguate them.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref83" class="footnote-back">↩︎</a></p></li>
-<li id="fn84"><p>Depending on the system you are working on, you may already have the BioPython package. If not, you can use the <code>pip</code> install utility to install it: <code>pip install BioPython</code>, or if you don’t have administrator privileges, <code>pip install --user BioPython</code>. Some older versions of Python don’t come with the <code>pip</code> utility, but this can be installed with an older tool: <code>easy_install pip</code> or <code>easy_install --user pip</code>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref84" class="footnote-back">↩︎</a></p></li>
-<li id="fn85"><p>It is safe to say that Python isn’t “merely” object oriented, it is <em>very</em> object oriented.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref85" class="footnote-back">↩︎</a></p></li>
+<ol start="79">
+<li id="fn79"><p>Much of this information is also available online at <a href="http://docs.python.org" class="uri">http://docs.python.org</a>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref79" class="footnote-back">↩︎</a></p></li>
+<li id="fn80"><p>Python modules and packages need not be installed system-wide or be present in the same directory as the program that uses them. The environment variable <code>$PYTHONPATH</code> lists the directories that are searched for modules and packages, to which each user is free to add their own search paths.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref80" class="footnote-back">↩︎</a></p></li>
+<li id="fn81"><p>The <code>turtle</code> graphics module is a fun way to understand and visualize computational processes (and similar packages are available for many programming languages). While this book isn’t the place for such explorations, the reader can learn more about them in Jeffrey Elkner, Allen Downey, and Chris Meyers’s excellent book, <em>How to Think Like a Computer Scientist</em> (Green Tea Press, 2002). As of this writing, a version of the book is available online at <a href="https://openbookproject.net/thinkcs/python/english3e/" class="uri">https://openbookproject.net/thinkcs/python/english3e/</a>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref81" class="footnote-back">↩︎</a></p></li>
+<li id="fn82"><p>In some Python scripts, you may find a line <code>if __name__ == '__main__':</code>. The code within this if statement will run, but only if the file is run as a script. If it is imported as a module, the block will not run. This lets developers write files that can serve both purposes, and many developers include it by default so that their script’s functions and class definitions can be utilized in the future by importing the file as a module. You will notice that the tests in <a href="data/MyVCFModule.py">MyVCFModule.py</a> have been wrapped in such an <code>if</code> statement - they will only run when the file is executed. Try it out!<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref82" class="footnote-back">↩︎</a></p></li>
+<li id="fn83"><p>Packages may also contain other files, like files containing specific data sets or even code written in other languages like C. Thus some modules may need to be installed by more complicated processes than simply decompressing them in the right location.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref83" class="footnote-back">↩︎</a></p></li>
+<li id="fn84"><p>You might occasionally see a line like <code>from modulename import *</code>. This allows one to use the functions and other definitions inside of <code>modulename</code> without prefixing them with <code>modulename.</code>. For example, we can <code>import math</code> and then use <code>print(math.sqrt(3))</code>, or we can <code>from math import *</code> and then <code>print(sqrt(3))</code>. The latter is usually avoided, because if multiple modules contain the same function or other names, then it is not possible to disambiguate them.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref84" class="footnote-back">↩︎</a></p></li>
+<li id="fn85"><p>Depending on the system you are working on, you may already have the BioPython package. If not, you can use the <code>pip</code> install utility to install it: <code>pip install BioPython</code>, or if you don’t have administrator privileges, <code>pip install --user BioPython</code>. Some older versions of Python don’t come with the <code>pip</code> utility, but this can be installed with an older tool: <code>easy_install pip</code> or <code>easy_install --user pip</code>.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref85" class="footnote-back">↩︎</a></p></li>
+<li id="fn86"><p>It is safe to say that Python isn’t “merely” object oriented, it is <em>very</em> object oriented.<a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#fnref86" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
