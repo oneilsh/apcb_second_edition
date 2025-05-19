@@ -1,8 +1,8 @@
 # Data Frames
 
-In chapter 32, “[Vectors](),” we briefly introduced data frames as storing tables of data. Now that we have a clear understanding of both vectors and lists, we can easily describe data frames. (If you hastily skipped chapters [28]() and [30]() to learn about data frames, now’s the time to return to them!) Data frames are essentially named lists, where the elements are vectors representing columns. But data frames provide a few more features than simple lists of vectors. They ensure that the component column vectors are always the same length, and they allow us to work with the data by row as well as by column. Data frames are some of the most useful and ubiquitous data types in R.
+In chapter 31, "[Vectors](#vectors)," we briefly introduced data frames as storing tables of data. Now that we have a clear understanding of both vectors and lists, we can easily describe data frames. (If you hastily skipped chapters [32](#r-functions) and [33](#lists-and-attributes) to learn about data frames, now's the time to return to them!) Data frames are essentially named lists, where the elements are vectors representing columns. But data frames provide a few more features than simple lists of vectors. They ensure that the component column vectors are always the same length, and they allow us to work with the data by row as well as by column. Data frames are some of the most useful and ubiquitous data types in R.
 
-While we’ve already covered using the `read.table()` function to produce a data frame based on the contents of a text file, it’s also possible to create a data frame from a set of vectors.
+While we've already covered using the `read.table()` function to produce a data frame based on the contents of a text file, it's also possible to create a data frame from a set of vectors.
 
 <pre id=part3-06-df-from-vectors
      class="language-r
@@ -20,11 +20,12 @@ print(gene_info)
 <div class="fig right" style="width: 30%; margin-left: 20px">
   <img src="images/part3-06-data-frames.Rmd.images/III.6_2_data_frame_names-3.png" />
 </div>
+
 When printed, the contents of the column vectors are displayed neatly, with the column names along the top and row names along the left-hand side.
 
-As with `read.table()`, the `data.frame()` function takes an optional `stringsAsFactors` argument, which specifies whether character vectors (like `ids`) should be converted to factor types (we’ll cover these in detail later). For now, we’ll disable this conversion.
+As with `read.table()`, the `data.frame()` function takes an optional `stringsAsFactors` argument, which specifies whether character vectors (like `ids`) should be converted to factor types (we'll cover these in detail later). For now, we'll disable this conversion.
 
-Running `str(gene_info)` reveals the data frame’s list-like nature:
+Running `str(gene_info)` reveals the data frame's list-like nature:
 
 <pre id=part3-06-df-from-vectors-str-out
      class="language-txt
@@ -37,7 +38,7 @@ Running `str(gene_info)` reveals the data frame’s list-like nature:
  $ gcs    : num  0.21 0.34 0.41 0.65
 </code></pre>
 
-Like elements of lists, the columns of data frames don’t have to have names, but not having them is uncommon. Most data frames get column names when they are created (either by `read.table()` or `data.frame()`), and if unset, they usually default to `V1`, `V2`, and so on. The column names can be accessed and set with the `names()` function, or with the more appropriate `colnames()` function.
+Like elements of lists, the columns of data frames don't have to have names, but not having them is uncommon. Most data frames get column names when they are created (either by `read.table()` or `data.frame()`), and if unset, they usually default to `V1`, `V2`, and so on. The column names can be accessed and set with the `names()` function, or with the more appropriate `colnames()` function.
 
 <pre id=part3-06-df-colnames
      class="language-r
@@ -64,7 +65,7 @@ sub_info <- gene_info[c("ids", "gcs")]
 sub_info <- gene_info[c(TRUE, FALSE, TRUE)]
 </code></pre>
 
-An expression like `gene_info[2]` thus would not return a numeric vector of lengths, but rather a single-column data frame containing the numeric vector. We can use `[[]] `syntax and `$` syntax to refer to the vectors contained within data frames as well (the latter is much more common).
+An expression like `gene_info[2]` thus would not return a numeric vector of lengths, but rather a single-column data frame containing the numeric vector. We can use `[[]]` syntax and `$` syntax to refer to the vectors contained within data frames as well (the latter is much more common).
 
 <pre id=part3-06-df-select-single-col-like-list
      class="language-r
@@ -82,7 +83,6 @@ The real charm of data frames is that we can extract and otherwise work with the
 
 Data frames are indexable using an extended `[]` syntax: `[<row_selector>, <column_selector>]`, where `<row_selector>` and `<column_selector>` are vectors. Just as with vectors and lists, these indexing/selection vectors may be integers (to select by index), characters (to select by name), or logicals (to select logically). Also as with vectors, when indexing by index position or name, the requested order is respected.
 
-
 <pre id=part3-06-df-select-rowcol-ex1
      class="language-r
             line-numbers
@@ -93,7 +93,7 @@ subframe <- gene_info[c(3, 1), c("lengths", "ids")]
 print(subframe)
 </code></pre>
 
-Here’s the resulting output, illustrating that `"3"` and `"1"` were the row names, which now occur at the first and second row, respectively.^[Unfortunately, when printed, quotation marks are left off of row names, commonly leading programmers to think that the row indexes are what is being displayed. Similarly, quotation marks are left off of columns that are character vectors (like the `ids` column in this example), which can cause confusion if the column is a character type with elements like `"1"`, `"2"`, and so on, potentially leading the programmer to think the column is numeric. In a final twist of confusion, using `[<row_selector>, <column_selector>]` syntax breaks a common pattern: `[]` indexing of a vector always returns a vector, `[]` indexing of a list always returns a list, and `[<row_selector>, <column_selector>]` indexing of a data frame always returns a data frame, *unless* it would have only one column, in which case the column/vector is returned. The remedy for this is `[<row_selector>, <column_selector>, drop = FALSE]`, which instructs R not to “drop” a dimension.]
+Here's the resulting output, illustrating that `"3"` and `"1"` were the row names, which now occur at the first and second row, respectively.^[Unfortunately, when printed, quotation marks are left off of row names, commonly leading programmers to think that the row indexes are what is being displayed. Similarly, quotation marks are left off of columns that are character vectors (like the `ids` column in this example), which can cause confusion if the column is a character type with elements like `"1"`, `"2"`, and so on, potentially leading the programmer to think the column is numeric. In a final twist of confusion, using `[<row_selector>, <column_selector>]` syntax breaks a common pattern: `[]` indexing of a vector always returns a vector, `[]` indexing of a list always returns a list, and `[<row_selector>, <column_selector>]` indexing of a data frame always returns a data frame, *unless* it would have only one column, in which case the column/vector is returned. The remedy for this is `[<row_selector>, <column_selector>, drop = FALSE]`, which instructs R not to "drop" a dimension.]
 
 <pre id=part3-06-df-select-rowcol-ex1-out
      class="language-r
@@ -173,7 +173,7 @@ g1 AGP     256 0.21
 g4 IXL     421 0.65
 </code></pre>
 
-Because data frames force all column vectors to be the same length, we can create new columns by assigning to them by name, and relying on [vector recycling]() to fill out the column as necessary. Let’s create a new column called `gc_categories`, which is initially filled with `NA` values, and then use [selective replacement]() to assign values `"low"` or `"high"` depending on the contents of the `gcs` column.
+Because data frames force all column vectors to be the same length, we can create new columns by assigning to them by name, and relying on [vector recycling](#vector_recycling) to fill out the column as necessary. Let's create a new column called `gc_categories`, which is initially filled with `NA` values, and then use [selective replacement](#selective_replacement) to assign values `"low"` or `"high"` depending on the contents of the `gcs` column.
 
 <pre id=part3-06-df-gc-category-col-add
      class="language-r
@@ -201,7 +201,6 @@ g4 IXL     421 0.65        high
 </code></pre>
 
 One final note: while the `head()` function returns the first few elements of a vector or list, when applied to a data frame, it returns a similar data frame with only the first few rows.
-
 
 <div class="callout-box">
 #### Matrices and Arrays {-}
@@ -233,14 +232,10 @@ Arrays generalize the concept of multidimensional data; where matrices have only
 
 </div>
 
-
-
-
-
 <div class="exercises">
 #### Exercises {-}
 
-1. Read the `states.txt` file into a data frame, as discussed in Chapter 28, [Vectors](). Extract a new data frame called `states_name_pop` containing only the columns for `name` and `population`.
+1. Read the [`states.txt`](data/states.txt) file into a data frame, as discussed in Chapter 31, [Vectors](#vectors). Extract a new data frame called `states_name_pop` containing only the columns for `name` and `population`.
 
 2. Using `subset()`, extract a data frame called `states_gradincome_high` containing all columns, and all rows where the income is greater than the median of income or where `hs_grad` is greater than the median of `hs_grad`. (There are 35 such states listed in the table.) Next, do the same extraction with `[<row_selector>, <column_selector>]` syntax.
 
@@ -253,5 +248,3 @@ Arrays generalize the concept of multidimensional data; where matrices have only
 6. Try converting the `states` data frame to a matrix by running it through the `as.matrix()` function. What happens to the data, and why do you think that is?
 
 </div>
-
-
