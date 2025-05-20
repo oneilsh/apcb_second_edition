@@ -1,0 +1,541 @@
+# Character and Categorical Data
+
+Scientific data sets, especially those to be analyzed statistically, commonly contain "categorical" entries. If each row in a data frame represents a single measurement, then one column might represent whether the measured value was from a "male" or "female," or from the "control" group or "treatment" group. Sometimes these categories, while not numeric, have an intrinsic order, like "low," "medium," and "high" dosages.
+
+Sadly, more often than not, these entries are not encoded for easy analysis. Consider the tab-separated file [`expr_long_coded.txt`](data/expr_long_coded.txt), where each line represents an (normalized) expression reading for a gene (specified by the ID column) in a given sample group. This experiment tested the effects of a chemical treatment on an agricultural plant species. The sample group encodes information about what genotype was tested (either `C6` or `L4`), the treatment applied to the plants (either `control` or `chemical`), the tissue type measured (either `A`, `B`, or `C` for leaf, stem, or root), and numbers for statistical replicates (`1`, `2`, or `3`).
+
+<pre id=part3-07-data
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+id	annotation	expression	sample
+LQ00X000020	Hypothetical protein	5.024142433	C6_control_A1
+LQ00X000020	Hypothetical protein	4.646697026	C6_control_A3
+LQ00X000020	Hypothetical protein	4.986591902	C6_control_B1
+LQ00X000020	Hypothetical protein	5.164291761	C6_control_B2
+LQ00X000020	Hypothetical protein	5.348809843	C6_control_B3
+LQ00X000020	Hypothetical protein	5.519392911	C6_control_C1
+LQ00X000020	Hypothetical protein	5.305463561	C6_control_C2
+LQ00X000020	Hypothetical protein	5.535279863	C6_control_C3
+LQ00X000020	Hypothetical protein	4.831259167	C6_chemical_A1
+LQ00X000020	Hypothetical protein	4.784184435	C6_chemical_A3
+LQ00X000020	Hypothetical protein	5.577740866	C6_chemical_B1
+</code></pre>
+
+Initially, we'll read the table into a data frame. For this set of data, we'll likely want to work with the categorical information independently, for example, by extracting only values for the chemical treatment. This would be much easier if the data frame had individual columns for `genotype`, `treatment`, `tissue`, and `replicate` as opposed to a single, all-encompassing `sample` column.
+
+A basic installation of R includes a number of functions for working with character vectors, but the `stringr` package (available via `install.packes("stringr")` on the interactive console) collects many of these into a set of nicely named functions with common options. For an overview, see `help(package = "stringr")`, but in this chapter we'll cover a few of the most important functions from that package.
+
+<pre id=part3-07-read_table
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+library(stringr)
+
+expr_long <- read.table("expr_long_coded.txt",
+                        header = TRUE,
+                        sep = "\t",
+                        stringsAsFactors = FALSE)
+</code></pre>
+
+### Splitting and Binding Columns {-}
+
+The `str_split_fixed()` function from the `stringr` package operates on each element of a character vector, splitting it into pieces based on a pattern. With this function, we can split each element of the `expr_long$sample` vector into three pieces based on the pattern `"_"`. The "pattern" could be a regular expression, using the same syntax as used by [Python](#regular-expressions) (and similar to that used by [sed](#sed)).
+
+<pre id=part3-07-split
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_split <- str_split_fixed(expr_long$sample, "_", 3)
+print(head(sample_split))
+</code></pre>
+
+The value returned by the `str_split_fixed()` function is a matrix: like vectors, matrices can only contain a single data type (in fact, they are vectors with attributes specifying the number of rows and columns), but like data frames they can be accessed with `[<row_selector>, <column_selector>]` syntax. They may also have row and column names.
+
+<pre id=part3-07-post_split
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+     [,1] [,2]      [,3]
+[1,] "C6" "control" "A1"
+[2,] "C6" "control" "A3"
+[3,] "C6" "control" "B1"
+[4,] "C6" "control" "B2"
+[5,] "C6" "control" "B3"
+[6,] "C6" "control" "C1"
+</code></pre>
+
+Anyway, we'll likely want to convert the matrix into a data frame using the `data.frame()` function, and assign some reasonable column names to the result.
+
+<pre id=part3-07-rename
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_split_df <- data.frame(sample_split)
+colnames(sample_split_df) <- c("genotype", "treatment", "tissuerep")
+</code></pre>
+
+At this point, we have a data frame `expr_long` as well as `sample_split_df`. These two have the same number of rows in a corresponding order, but with different columns. To get these into a single data frame, we can use the `cbind()` function, which binds such data frames by their columns, and only works if they contain the same number of rows.
+
+<pre id=part3-07-cbind
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split <- cbind(expr_long, sample_split_df)
+</code></pre>
+
+A quick `print(head(expr_long_split))` lets us know if we're headed in the right direction.
+
+<pre id=part3-07-cbind_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id           annotation expression        sample genotype treatment
+1 LQ00X000020 Hypothetical protein   5.024142 C6_control_A1       C6   control
+2 LQ00X000020 Hypothetical protein   4.646697 C6_control_A3       C6   control
+3 LQ00X000020 Hypothetical protein   4.986592 C6_control_B1       C6   control
+4 LQ00X000020 Hypothetical protein   5.164292 C6_control_B2       C6   control
+5 LQ00X000020 Hypothetical protein   5.348810 C6_control_B3       C6   control
+6 LQ00X000020 Hypothetical protein   5.519393 C6_control_C1       C6   control
+  tissuerep
+1        A1
+2        A3
+3        B1
+4        B2
+5        B3
+6        C1
+</code></pre>
+
+At this point, the number of columns in the data frame has grown large, so `print()` has elected to wrap the final column around in the printed output.
+
+### Detecting and %in% {-}
+
+We still don't have separate columns for `tissue` and `replicate`, but we do have this information encoded together in a `tissuerep` column. Because these values are encoded without a pattern to obviously split on, `str_split_fixed()` may not be the most straightforward solution.
+
+Although any solution assuming *a priori* knowledge of large data set contents is dangerous (as extraneous values have ways of creeping into data sets), a quick inspection of the data reveals that the tissue types are encoded as either `A`, `B`, or `C`, with apparently no other possibilities. Similarly, the replicate numbers are `1`, `2`, and `3`.
+
+A handy function in the `stringr` package detects the presence of a pattern in every entry of a character vector, returning a logical vector. For the column `tissuerep` containing `"A1", "A3", "B1", "B2", "B3", "C1", ...`, for example, str_detect(expr_long_split$tissuerep, "A") would return the logical vector `TRUE, TRUE, FALSE, FALSE, FALSE, ...`. Thus we can start by creating a new `tissue` column, initially filled with `NA` values.
+
+<pre id=part3-07-tissue_na
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split$tissue <- NA
+</code></pre>
+
+Then we'll use selective replacement to fill this column with the value `"A"` where the `tissuerep` column has an `"A"` as identified by `str_detect()`. Similarly for `"B"` and `"C"`.
+
+<pre id=part3-07-tissue_str_det
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "A")] <- "A"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "B")] <- "B"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "C")] <- "C"
+</code></pre>
+
+In chapter 37, "[Reshaping and Joining Data Frames](#reshaping-and-joining-data-frames)," we'll also consider more advanced methods for this sort of pattern-based column splitting. As well, although we're working with columns of data frames, it's important to remember that they are still vectors (existing as columns), and that the functions we are demonstrating primarily operate on and return vectors.
+
+If our assumption, that `"A"`, `"B"`, and `"C"` were the only possible tissue types, was correct, there should be no `NA` values left in the `tissue` column. We should verify this assumption by attempting to print all rows where the tissue column is `NA` (using the `is.na()` function, which returns a logical vector).
+
+<pre id=part3-07-tissue_str_check
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(expr_long_split[is.na(expr_long_split$tissue), ]) # should print 0 rows
+</code></pre>
+
+In this case, a data frame with zero rows is printed. There is a possibility that tissue types like `"AA"` have been recoded as simple `"A"` values using this techniqu — to avoid this outcome, we could use a more restrictive regular expression in the `str_detect()`, such as `"^A\d$"`, which will only match elements that start with a single `"A"` followed by a single digit. See chapter 12, "[Patterns (Regular Expressions)](#patterns-regular-expressio0ns)," and chapter 23, "[String Tips and Regular Expressions](#string-tips-and-regular-expressions)," for more information on regular-expression patterns.
+
+A similar set of commands can be used to fill a new replicate column.
+
+<pre id=part3-07-rep_col
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split$rep <- NA
+
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "1")] <- "1"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "2")] <- "2"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "3")] <- "3"
+
+print(expr_long_split[is.na(expr_long_split$rep), ]) # should print 0 rows
+</code></pre>
+
+Again we search for leftover `NA` values, and find that this time there *are* some rows where the rep column is reported as `NA`, apparently because a few entries in the table have a replicate number of `0`.
+
+<pre id=part3-07-whoops
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+              id                                           annotation
+260  LQ00X000370              Putative Beta-hexosaminidase subunit B2
+590  LQ00X001530                    Putative Peptide transporter PTR1
+855  LQ00X002040           Probable adenylate kinase 2, chloroplastic
+1827 LQ00X004320 Putative Serine/threonine-protein kinase BRI1-like 2
+2135 LQ00X004780                          Phenylalanine ammonia-lyase
+     expression         sample genotype treatment tissuerep tissue  rep
+260   11.731868  C6_control_B0       C6   control        B0      B <NA>
+590   12.982069 C6_chemical_C0       C6  chemical        C0      C <NA>
+855    5.327353  L4_control_C0       L4   control        C0      C <NA>
+1827   7.596899  C6_control_B0       C6   control        B0      B <NA>
+2135   6.165839  L4_control_C0       L4   control        C0      C <NA>
+</code></pre>
+
+There are a few ways we could handle this. We could determine what these five samples' replicate numbers *should* be; perhaps they were miscoded somehow. Second, we could add `"0"` as a separate replicate possibility (so a few groups were represented by four replicates, rather than three). Alternatively, we could remove these mystery entries.
+
+Finally, we could remove all measurements for these gene IDs, including the other replicates. For this data set, we'll opt for the latter, as the existence of these "mystery" measurements throws into doubt the accuracy of the other measurements, at least for this set of five IDs.
+
+To do this, we'll first extract a vector of the "bad" gene IDs, using logical selection on the `id` column based on `is.na()` on the rep column.
+
+<pre id=part3-07-detect_bad
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+bad_ids <- expr_long_split$id[is.na(expr_long_split$rep)]
+print(bad_ids)
+</code></pre>
+
+<pre id=part3-07-detect_bad_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "LQ00X000370" "LQ00X001530" "LQ00X002040" "LQ00X004320" "LQ00X004780"
+</code></pre>
+
+Now, for each element of the `id` column, which ones are equal to one of the elements in the `bad_ids` vector? Fortunately, R provides a `%in%` operator for this many-versus-many sort of comparison. Given two vectors, `%in%` returns a logical vector indicating which elements of the left vector match one of the elements in the right. For example, `c(3, 2, 5, 1) %in% c(1, 2)` returns the logical vector `FALSE, TRUE, FALSE, TRUE`. This operation requires comparing each of the elements in the left vector against each of the elements of the right vector, so the number of comparisons is roughly the length of the first times the length of the second. If both are very large, such an operation could take quite some time to finish.
+
+Nevertheless, we can use the `%in%` operator along with logical selection to remove all rows containing a "bad" gene ID.
+
+<pre id=part3-07-remove_bad
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+bad_rows <- expr_long_split$id %in% bad_ids        # logical vector
+expr_long_split <- expr_long_split[!bad_rows, ]    # logical selection
+</code></pre>
+
+At this point, we could again check for `NA` values in the `rep` column to ensure the data have been cleaned up appropriately. If we wanted, we could also check `length(bad_rows[bad_rows])` to see how many bad rows were identified and removed. (Do you see why?)
+
+### Pasting {-}
+
+While above we discussed splitting contents of character vectors into multiple vectors, occasionally we want to do the opposite: join the contents of character vectors together into a single character vector, element by element. The `str_c()` function from the `stringr` library accomplishes this task.
+
+<pre id=part3-07-str_c
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+first <- c("Tom", "Bob")
+last <- c("Waits", "Dylan")
+full <- str_c(first, last, sep = "_")
+print(full)                                      # [1] "Tom_Waits" "Bob_Dylan"
+</code></pre>
+
+The `str_c()` function is also useful for printing nicely formatted sentences for debugging.
+
+<pre id=part3-07-str_c_debug
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(str_c("Number of names: ", length(full)))  # [1] "Number of names: 2"
+</code></pre>
+
+The Base-R function equivalent to `str_c()` is `paste()`, but while the default separator for `str_c()` is an empty string, `""`, the default separator for `paste()` is a single space, `" "`. The equivalent Base-R function for `str_detect()` is `grepl()`, and the closest equivalent to `str_split_fixed()` in Base-R is `strsplit()`. As mentioned previously, however, using these and other `stringr` functions for this type of character-vector manipulation is recommended.
+
+### Factors {-}
+
+By now, factors have been mentioned a few times in passing, mostly in the context of using `stringsAsFactors = FALSE`, to prevent character vectors from being converted into factor types when data frames are created. Factors are a type of data relatively unique to R, and provide an alternative for storing categorical data compared with simple character vectors.
+
+A good method for understanding factors might be to understand one of the historical reasons for their development, even if the reason is no longer relevant today. How much space would the `treatment` column of the experimental data frame above require to store in memory, if the storage was done naively? Usually, a single character like `"c"` can be stored in a single byte (8 bits, depending on the encoding), so an entry like `"chemical"` would require 8 bytes, and `"control"` would require 7. Given that there are ~360,000 entries in the full table, the total space required would be ~0.36 megabytes. Obviously, the amount of space would be greater for a larger table, and decades ago even a few megabytes of data could represent a challenge.
+
+But that's for a naive encoding of the data. An alternative could be to encode `"chemical"` and `"control"` as simple integers `1` and `2` (4 bytes can encode integers from -2.1 to 2.1 billion), as well as a separate lookup table mapping the integer `1` to `"chemical"` and `2` to `"control"`. This would be a space savings of about two times, or more if the terms were longer. This type of storage and mapping mechanism is exactly what factors provide.^[Although character vectors are also efficiently stored in modern-day versions of R, factors still have unique uses.]
+
+We can convert a character vector (or factor) into a factor using the `factor()` function, and as usual the `head()` function can be used to extract the first few elements.
+
+<pre id=part3-07-factor_create
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+treatment_factor <- factor(expr_long_split$treatment)
+print(head(treatment_factor, n = 10))
+</code></pre>
+
+When printed, factors display their `levels` as well as the individual data elements encoded to levels. Notice that the quote marks usually associated with character vectors are not shown.
+
+<pre id=part3-07-factor_create_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+ [1] control  control  control  control  control  control  control  control 
+ [9] chemical chemical
+Levels: chemical control
+</code></pre>
+
+It is illustrating to attempt to use the `str()` and `class()` and `attr()` functions to dig into how factors are stored. Are they lists, like the results of the `t.test()` function, or something else? Unfortunately, they are relatively immune to the `str()` function; `str(treatment_factor)` reports:
+
+<pre id=part3-07-factor_str
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+ Factor w/ 2 levels "chemical","control": 2 2 2 2 2 2 2 2 1 1 ...
+</code></pre>
+
+This result illustrates that the data appear to be coded as integers. If we were to run `print(class(treatment_factor))`, we would discover its class is `"factor"`.
+
+As it turns out, the class of a data type is stored as an attribute.
+
+<pre id=part3-07-factor_class
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(attr(treatment_factor, "class"))           # [1] "factor"
+</code></pre>
+
+Above, we learned that we could remove an attribute by setting it to `NULL`. Let's set the `"class"` attribute to `NULL`, and then run `str()` on it.
+
+<pre id=part3-07-null_str
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+attr(treatment_factor, "class") <- NULL
+str(treatment_factor)
+</code></pre>
+
+<pre id=part3-07-null_str_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+atomic [1:366016] 2 2 2 2 2 2 2 2 1 1 ...
+ - attr(*, "levels")= chr [1:2] "chemical" "control"
+</code></pre>
+
+Aha! This operation reveals a factor's true nature: an integer vector, with an attribute of `"levels"` storing a character vector of labels, and an attribute for `"class"` that specifies the class of the vector as a factor. The data itself are stored as either `1` or `2`, but the levels attribute has `"chemical"` as its first element (and hence an integer of `1` encodes `"chemical"`) and `"control"` as its second (so `2` encodes `"control"`).
+
+This special `"class"` attribute controls how functions like `str()` and `print()` operate on an object, and if we want to change it, this is better done by using the `class()` accessor function rather than the `attr()` function as above. Let's change the class back to factor.
+
+<pre id=part3-07-reset_class
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+class(treatment_factor) <- "factor"
+</code></pre>
+
+### Renaming Factor Levels {-}
+
+Because levels are stored as an attribute of the data, we can easily change the names of the levels by modifying the attribute. We can do this with the `attr()` function, but as usual, a specific accessor function called `levels()` is preferred.
+
+<pre id=part3-07-change_levels
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+attr(treatment_factor, "levels") <- c("Chemical", "Water")
+# better:
+levels(treatment_factor) <- c("Chemical", "Water")
+</code></pre>
+
+Why is the `levels()` function preferred over using `attr()`? Because when using `attr()`, there would be nothing to stop us from doing something irresponsible, like setting the levels to identical values, as in `c("Water", "Water")`. The `levels()` function will check for this and other absurdities.
+
+What the `levels()` function can't check for, however, is the semantic meaning of the levels themselves. It would not be a good idea to mix up the names, so that `"Chemical"` would actually be referring to plants treated with water, and vice versa:
+
+<pre id=part3-07-change_levels_bad
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+levels(treatment_factor) <- c("Water", "Chemical")   # Ack!
+</code></pre>
+
+The reason this is a bad idea is that using `levels()` only modifies the `"levels"` attribute but does nothing to the underlying integer data, breaking the mapping.
+
+### Reordering Factor Levels {-}
+
+Although we motivated factors on the basis of memory savings, in modern versions of R, even character vectors are stored internally using a sophisticated strategy, and modern computers generally have larger stores of RAM besides. Still, there is another motivation for factors: the fact that the levels may have a meaningful order. Some statistical tests might like to compare certain subsets of a data frame as defined by a factor; for example, numeric values associated with factor levels `"low"` might be compared to those labeled `"medium"`, and those in turn should be compared to values labeled `"high"`. But, given these labels, it makes no sense to compare the `"low"` readings directly to the `"high"` readings. Factors provide a way to specify that the data are categorical, but also that `"low" < "medium" < "high"`.
+
+Thus we might like to specify or change the order of the levels within a factor, to say, for example, that the `"Water"` treatment is somehow less than the `"Chemical"` treatment. But we can't do this by just renaming the levels.
+
+The most straightforward way to specify the order of a character vector or factor is to convert it to a factor with `factor()` (even if it already is a factor) and specify the order of the levels with the optional `levels =` parameter. Usually, if a specific order is being supplied, we'll want to specify `ordered = TRUE` as well. The levels specified by the `levels =` parameter must match the existing entries. To simultaneously rename the levels, the `labels =` parameter can be used as well.
+
+<pre id=part3-07-factor_ordered
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+treatment_factor <- factor(expr_long_split$treatment,
+                           levels = c("control", "chemical"), # existing levels
+                           labels = c("Water", "Chemical"),   # new names
+                           ordered = TRUE)                    # specify ordered
+
+print(head(treatment_factor))
+</code></pre>
+
+Now, `"Water"` is used in place of `"control"`, and the factor knows that `"Water" < "Chemical"`. If we wished to have `"Chemical" < "Water"`, we would have needed to use `levels = c("chemical", "control")` and labels = `c("Chemical", "Water")` in the call to `factor()`.
+
+<pre id=part3-07-factor_ordered_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] Water Water Water Water Water Water
+Levels: Water < Chemical
+</code></pre>
+
+Disregarding the `labels =` argument (used only when we want to rename levels while reordering), because the `levels =` argument takes a character vector of the unique entries in the input vector, these could be precomputed to hold the levels in a given order. Perhaps we'd like to order the tissue types in reverse alphabetical order, for example:
+
+<pre id=part3-07-factor_ordered_tissues
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+tissues <- unique(expr_long_split$tissue)                     # B C A
+tissues_sorted <- tissues[order(tissues)]                     # A B C
+tissues_reversed <- rev(tissues_sorted)                       # C B A
+
+tissues_factor <- factor(expr_long_split$tissue, 
+                         levels = tissues_reversed,
+                         ordered = TRUE)
+
+print(head(tissues_factor))
+</code></pre>
+
+<pre id=part3-07-factor_ordered_tissues_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] A A B B B C
+Levels: C < B < A
+</code></pre>
+
+Rather than assigning to a separate `tissues_factor` variable, we could replace the data frame column with the ordered vector by assigning to `expr_long_split$tissue`.
+
+We often wish to order the levels of a factor according to some other data. In our example, we might want the "first" tissue type to be the one with the smallest mean expression, and the last to be the one with the highest mean expression. A specialized function, `reorder()`, makes this sort of ordering quick and relatively painless. It takes three important parameters (among other optional ones):
+
+1. The factor or character vector to convert to a factor with reordered levels.
+2. A (generally numeric) vector of the same length to use as reordering data.
+3. A function to use in determining what to do with argument 2.
+
+Here's a quick canonical example. Suppose we have two vectors (or columns in a data frame), one of sampled fish species (`"bass"`, `"salmon"`, or `"trout"`) and another of corresponding weights. Notice that the salmon are generally heavy, the trout are light, and the bass are in between.
+
+<pre id=part3-07-input
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+species <- c("salmon", "trout", "salmon", "bass", "bass")
+weights <- c(10.2, 3.5, 12.6, 6.2, 6.7)
+</code></pre>
+
+If we were to convert the species vector into a factor with `factor(species)`, we would get the default alphabetical ordering: bass, salmon, trout. If we'd prefer to organize the levels according to the mean of the group weights, we can use `reorder()`:
+
+<pre id=part3-07-reorder
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+species_factor <- reorder(species, weights, mean, order = TRUE)
+</code></pre>
+
+With this assignment, `species_factor` will be an ordered factor with `trout < bass < salmon`. This small line of code does quite a lot, actually. It runs the `mean()` function on each group of weights defined by the different species labels, sorts the results by those means, and uses the corresponding group ordering to set the factor levels. What is even more impressive is that we could have just as easily used `median` instead of `mean`, or any other function that operates on a numeric vector to produce a numeric summary. This idea of specifying functions as parameters in other functions is one of the powerful "functional" approaches taken by R, and we'll be seeing more of it.
+
+### Final Notes about Factors {-}
+
+In many ways, factors work much like character vectors and vice versa; `%in%` and `==` can be used to compare elements of factors just as they can with character vectors (e.g., `tissues_factor == "A"` returns the expected logical vector).
+
+Factors enforce that all elements are treated as one of the levels named in the `levels` attribute, or `NA` otherwise. A factor encoding `1` and `2` as `male` and `female`, for example, will treat any other underlying integer as `NA`. To get a factor to accept novel levels, the levels attribute must first be modified with the `levels()` function.
+
+Finally, because factors work much like character vectors, but don't print their quotes, it can be difficult to tell them apart from other types when printed. This goes for simple character vectors when they are part of data frames. Consider the following printout of a data frame:
+
+<pre id=part3-07-df_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+   id tissue count group
+1 AG4      A     1     2
+2 T35      C     2     1
+3 CX1      A     3     2
+4 L56      B     2     1
+</code></pre>
+
+Because quotation marks are left off when printing data frames, it's impossible to tell from this simple output that the `id` column is a character vector, the `tissue` column is a factor, the `count` column is an integer vector, and the `group` column is a factor.^[Factors created from integer vectors are a special kind of headache. Consider a line like `h <- factor(c(4, 1, 5, 6, 4))`; because factors are treated like character types, this would be converted so it is based on `c("4", "1", "5", "6", "4")`, where the underlying mapping and storage have an almost arbitrary relationship to the elements. Try `print(as.numeric(h))` to see the trouble one can get into when mixing up these types, as well as `class(h) <- NULL` followed by `str(h)` to see the underlying mapping and why this occurs.] Using `class()` on individual columns of a data frame can be useful for determining what types they actually are.
+
+<div class="exercises">
+
+#### Exercises {-}
+
+1. In the annotation file [`PZ.annot.txt`](data/PZ.annot.txt), each sequence ID (column 1) may be associated with multiple gene ontology (GO) "numbers" (column 2) and a number of different "terms" (column 3). Many IDs are associated with multiple GO numbers, and there is nothing to stop a particular number or term from being associated with multiple IDs.
+
+     <pre id=part3-07-ex1
+          class="language-txt
+               line-numbers
+               linkable-line-numbers">
+<code>
+...
+PZ7180000023260_APN     GO:0005515      btb poz domain containing protein
+PZ7180000035568_APN     GO:0005515      btb poz domain containing protein
+PZ7180000020052_APQ     GO:0055114      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0006099      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0004449      isocitrate dehydrogenase (nad+)
+...
+</code></pre>
+
+     While most of the sequence IDs have an underscore suffix, not all do. Start by reading in this file (columns are tab separated) and then extracting a `suffix_only` data frame containing just those rows where the sequence ID contains an underscore. Similarly, extract a `no_suffix` data frame for rows where sequence IDs do not contain an underscore.
+     
+     Next, add to the `suffix_only` data frame columns for `base_id` and `suffix`, where base IDs are the parts before the underscore and suffices are the parts after the underscore (e.g., `base_id` is `"PZ7180000023260"` and `suffix` is `"APN"` for the ID `"PZ7180000023260_APN"`).
+     
+     Finally, produce versions of these two data frames where the `GO:` prefix has been removed from all entries of the second column.
+
+2. The line `s <- sample(c("0", "1", "2", "3", "4"), size = 100, replace = TRUE)` generates a character vector of 100 random `"0"`s, `"1"`s, `"2"`s, `"3"`s, and `"4"`s. Suppose that `"0"` means "Strongly Disagree," `"1"` means "Disagree," `"2"` means "Neutral," `"3"` means "Agree," and `"4"` means "Strongly Agree." Convert `s` into an ordered factor with levels `Strongly Disagree < Disagree < Neutral < Agree < Strongly Agree`.
+
+3. Like vectors, data frames (both rows and columns) can be selected by index number (numeric vector), logical vector, or name (character vector). Suppose that `grade_current` is a character vector generated by `grade_current <- sample(c("A", "B", "C", "D", "E"), size = 100, replace = TRUE)`, and `gpa` is a numeric vector, as in `gpa <- runif(100, min = 0.0, max = 4.0)`. Further, we add these as columns to a data frame, `grades <- data.frame(current_grade, gpa, stringsAsFactors = FALSE)`.
+
+     We are interested in pulling out all rows that have `"A"`, `"B"`, or `"C"` in the `current_grade` column. Describe, in detail, what each of the three potential solutions does:
+     
+     <pre id=part3-07-in_test_confusing
+          class="language-r
+               line-numbers
+               linkable-line-numbers">
+<code>
+abc_grades <- grades[grades$current_grade %in% c("A", "B", "C"), ]
+abc_grades <- grades[grades$current_grade == c("A", "B", "C"), ]
+abc_grades <- grades[c("A", "B", "C"), ]
+</code></pre>
+     
+     How does R interpret each one (i.e., what will R try to do for each), and what would the result be? Which one(s) is (are) correct? Which will report errors? Are the following three lines any different from the above three in what R tries to do?
+     
+     <pre id=part3-07-in_test_confusing_subset
+          class="language-r
+               line-numbers
+               linkable-line-numbers">
+<code>
+abc_grades <- subset(grades, current_grade %in% c("A", "B", "C"))
+abc_grades <- subset(grades, current_grade == c("A", "B", "C"))
+abc_grades <- subset(grades, c("A", "B", "C"))
+</code></pre>
+
+</div>

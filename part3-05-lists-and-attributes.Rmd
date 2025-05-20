@@ -212,7 +212,7 @@ $ChrInfo$GeneCounts
 
 This output does illustrate something of interest, however. We can chain the `$` syntax to access elements of lists and contained lists by name. For example, `lengths <- athal$ChrInfo$Lengths` extracts the vector of lengths contained in the internal `ChrInfo` list, and we can even modify elements of these vectors with syntax like `athal$ChrInfo$GeneCounts[1] <- 7079` (perhaps a new gene was recently discovered on the first chromosome). Expanding the syntax a bit to use double-brackets rather than `$` notation, these are equivalent to `lengths <- athal[["ChrInfo"]][["Lengths"]]` and `athal[["ChrInfo"]][["GeneCounts"]][1] <- 7079`.
 
-### Attributes, Removing Elements, List Structure
+### Attributes, Removing Elements, List Structure {-}
 
 ###### {- attribute}
 
