@@ -92,6 +92,8 @@ The numbers in brackets indicate that the first element of the printed vector is
 
 By the way, to produce a sequence of integers (rather than numerics), the step-size argument can be left off, as in `seq(1, 20)`. This is equivalent to a commonly seen shorthand, `1:20`.
 
+###### {- #type_mixing}
+
 If all of our integers, logicals, and so on are actually vectors, and we can tell their type by running the `class()` function on them, then vectors must be the things that we are examining the class of. So, what if we attempt to mix types within a vector, for example, by including an integer with some logicals?
 
 <pre id=part3-03-vec-class-mix1

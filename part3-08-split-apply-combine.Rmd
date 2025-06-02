@@ -382,7 +382,7 @@ To get the result for our `expr1` sub–data frame, we'd simply need to call som
 
     Next, extract a sub–data frame containing rows where `conc` values are `1000`, and run your function on it. Do the same for a sub–data frame containing `conc` value of `675`.
 
-</dif>
+</div>
 
 ### Attack of the Functions! {-}
 
@@ -1034,4 +1034,4 @@ For grouped data frames, `print()` will omit printing some columns if they don't
 
 3. While functions called by `do()` must take a data frame as their first parameter and must return a data frame, they are free to perform any other actions as well, like generating a plot or writing a file. Use `group_by()`, `do()`, and `write.table()` to write the contents of the `CO2` data frame into seven text files, one for each `conc` level. Name them `conc_95.txt`, `conc_175.txt`, and so on. You may need `paste()` or `str_c()` (from the `stringr` library) to generate the file names.
 
-</dif>
+</div>
