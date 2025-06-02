@@ -6,7 +6,7 @@ For many (perhaps most) languages, control-flow structures like `for`-loops and 
 
 A while-loop executes a [block](#block) of code over and over again, testing a given condition (which should be or return a logical vector) before each execution. In R, blocks are delineated with a pair of curly brackets. Standard practice is to place the first opening bracket on the line, defining the loop and the closing bracket on a line by itself, with the enclosing block indented by two spaces.
 
-<pre id=part3-09-while
+<pre id=part3-10-while
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -24,7 +24,7 @@ print("Done!")
 
 In the execution of the above, when the `while(count < 4)` line is reached, `count < 4` is run and returns the single-element logical vector `TRUE`, resulting in the block being run and printing `"Count is: "` and `1`, and then incrementing `count` by 1. Then the loop returns to the check; `count` being 2 is still less than 4, so the printing happens and `count` is incremented again to 3. The loop starts over, the check is executed, output is printed, and count is incremented to 4. The loop returns back to the top, but this time `count < 4` results in `FALSE`, so the block is skipped, and finally execution moves on to print `"Done!"`.
 
-<pre id=part3-09-while_out
+<pre id=part3-10-while_out
      class="language-txt
             line-numbers
             linkable-line-numbers">
@@ -42,7 +42,7 @@ Because the check happens at the start, if `count` were to start at some larger 
 
 Because no "naked data" exist in R and vectors are the most basic unit, the logical check inside the `while()` works with a logical vector. In the above, that vector just happened to have only a single element. What if the comparison returned a longer vector? In that case, only the first element of the logical vector will be considered by the `while()`, and a warning will be issued to the effect of `condition has length > 1`. This can have some strange consequences. Consider if instead of `count <- 1`, we had `count <- c(1, 100)`. Because of the vectorized nature of addition, the output would be:
 
-<pre id=part3-09-while2_out
+<pre id=part3-10-while2_out
      class="language-txt
             line-numbers
             linkable-line-numbers">
@@ -71,7 +71,7 @@ Two handy functions can provide a measure of safety from such errors when used w
 
 The unique statistical features of R can be combined with control-flow structures like `while`-loops in interesting ways. R excels at generating random data from a given distribution; for example, `rnorm(1000, mean = 20, sd = 10)` returns a 100-element numeric vector with values sampled from a normal distribution with mean 20 and standard deviation 10.
 
-<pre id=part3-09-rnorm_hist
+<pre id=part3-10-rnorm_hist
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -90,7 +90,7 @@ What if we wanted to sample numbers originally from this distribution, but limit
 
 Ideally, we'd like a function that encapsulates this idea, so we can say `sample <- rnorm_trunc(0, 30, 1000, mean = 20, sd = 10)`. We'll start by defining our function, and inside the function we'll first produce an initial sample.
 
-<pre id=part3-09-rnorm_trunc_1
+<pre id=part3-10-rnorm_trunc_1
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -106,7 +106,7 @@ Note the usage of `mean = mean` in the call to `rnorm()`. The right-hand side re
 
 Now, we'll need to "fix" the sample so long as any of the values are less than `lower` or greater than `upper`. We'll check as many times as needed using a `while`-loop.
 
-<pre id=part3-09-rnorm_trunc_2
+<pre id=part3-10-rnorm_trunc_2
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -125,7 +125,7 @@ rnorm_trunc <- function(lower, upper, count, mean, sd) {
 
 If any values are outside the desired range, we don't want to just try an entirely new sample set, because the probability of generating just the right sample (within the range) is incredibly small, and we'd be looping for quite a while. Rather, we'll only resample those values that need it, by first generating a logical vector of "bad" elements. After that, we can generate a resample of the needed size and use [selective replacement](#selective_replacement) to replace the bad elements.
 
-<pre id=part3-09-rnorm_trunc_3
+<pre id=part3-10-rnorm_trunc_3
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -149,7 +149,7 @@ rnorm_trunc <- function(lower, upper, count, mean, sd) {
 
 Let's try it:
 
-<pre id=part3-09-rnorm_trunc_3_run
+<pre id=part3-10-rnorm_trunc_3_run
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -168,7 +168,7 @@ The plotted histogram reflects the truncated nature of the data set:
 
 An if-statement executes a block of code based on a conditional (like a while-loop, but the block can only be executed once). Like the check for `while`, only the first element of a logical vector is checked, so using `any()` and `all()` is suggested for safety unless we are sure the comparison will result in a single-element logical vector.
 
-<pre id=part3-09-if_basic
+<pre id=part3-10-if_basic
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -197,7 +197,7 @@ In R, if we want to include one or more `else if` blocks or a single `else` bloc
 
 One of the issues with our `rnorm_trunc()` function is that if the desired range is small, it might still require many resampling efforts to produce a result. For example, calling `sample_trunc <- rnorm_trunc(15, 15.01, 1000, 20, 10)` will take a long time to finish, because it is rare to randomly generate values between 15 and 15.01 from the given distribution. Instead, what we might like is for the function to give up after some number of resamplings (say, 100,000) and return a vector containing `NA`, indicating a failed computation. Later, we can check the returned result with `is.na()`.
 
-<pre id=part3-09-rnorm_trunc_na
+<pre id=part3-10-rnorm_trunc_na
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -240,7 +240,7 @@ The example so far illustrates a few different things:
 
 For-loops are the last control-flow structure we'll study for R. Much like while-loops, they repeat a block of code. For-loops, however, repeat a block of code once for each element of a vector (or list), setting a given variable name to each element of the vector (or list) in turn.
 
-<pre id=part3-09-for_loop_basic
+<pre id=part3-10-for_loop_basic
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -255,7 +255,7 @@ for(id_el in ids) {
 print("Done!")
 </code></pre>
 
-<pre id=part3-09-for_loop_basic_out
+<pre id=part3-10-for_loop_basic_out
      class="language-txt
             line-numbers
             linkable-line-numbers">
@@ -273,7 +273,7 @@ While for-loops are important in many other languages, they are not as crucial i
 
 There's a bit of lore holding that for-loops are slower in R than in other languages. One way to determine whether this is true (and to what extent) is to write a quick loop that iterates one million times, perhaps printing on every 1,000th iteration. (We accomplish this by keeping a loop counter and using the modulus operator `%%` to check whether the remainder of `counter` divided by `1000` is `0`.)
 
-<pre id=part3-09-for_one_million
+<pre id=part3-10-for_one_million
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -301,7 +301,7 @@ While R is the slowest of the bunch, it is "merely" twice as slow as the other i
 
 The trouble with R is not that for-loops are slow, but that one of the most common uses for them — iteratively lengthening a vector with `c()` or a data frame with `rbind()` — is very slow. If we wanted to illustrate this problem, we could modify the loop above such that, instead of adding one to `counter`, we increase the length of the `counter` vector by one with `counter <- c(counter, 1)`. We'll also modify the printing to reflect the interest in the length of the counter vector rather than its contents.
 
-<pre id=part3-09-for_one_million_append
+<pre id=part3-10-for_one_million_append
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -320,7 +320,7 @@ In this case, we find that the loop starts just as fast as before, but as the `c
 
 To understand why this is the case, we have to inspect the line `counter <- c(counter, 1)`, which appends a new element to the `counter` vector. Let's consider a related set of lines, wherein two vectors are concatenated to produce a third.
 
-<pre id=part3-09-concat_slow
+<pre id=part3-10-concat_slow
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -346,7 +346,7 @@ The total amount of time taken to append n elements to a vector in a for-loop th
 
 One solution to this problem in R is to "preallocate" a vector (or data frame) of the appropriate size, and use replacement to assign to the elements in order using a carefully constructed loop.
 
-<pre id=part3-09-prealloc
+<pre id=part3-10-prealloc
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -376,7 +376,7 @@ Does this mean we should never use loops in R? Certainly not! Sometimes looping 
 
 3. A paired student's *t*-test assesses whether two vectors reveal a significant mean element-wise difference. For example, we might have a list of student scores before a training session and after.
 
-    <pre id=part3-09-ttest_paired
+    <pre id=part3-10-ttest_paired
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -389,7 +389,7 @@ print(improvement_test)
 
     But the paired *t*-test should only be used when the differences (which in this case could be computed with `scores_after - scores`) are normally distributed. If they aren't, a better test is the Wilcoxon signed-rank test:
 
-    <pre id=part3-09-wilcoxon_paired
+    <pre id=part3-10-wilcoxon_paired
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -410,7 +410,7 @@ print(improvement_test)
 
 Having reviewed the procedural control-flow structures `if`, `while`, and `for`, let's expand on our truncated random sampling example to explore more "functional" features of R and how they might be used. The function we designed, `rnorm_trunc()`, returns a random sample that is normally distributed but limited to a given range via resampling. The original sampling distribution is specified by the `mean =` and `sd =` parameters, which are passed to the call to `rnorm()` within `rnorm_trunc()`.
 
-<pre id=part3-09-rnorm_trunc_review
+<pre id=part3-10-rnorm_trunc_review
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -439,7 +439,7 @@ rnorm_trunc <- function(lower, upper, count, mean, sd) {
 
 What if we wanted to do the same thing, but for `rexp()`, which samples from an exponential distribution taking a `rate =` parameter?
 
-<pre id=part3-09-rexp
+<pre id=part3-10-rexp
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -456,7 +456,7 @@ The distribution normally ranges from 0 to infinity, but we might want to resamp
 
 One possibility would be to write an `rexp_trunc()` function that operates similarly to the `rnorm_trunc()` function, with changes specific for sampling from the exponential distribution.
 
-<pre id=part3-09-rexp_trunc
+<pre id=part3-10-rexp_trunc
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -496,7 +496,7 @@ Here, we'll use `...` to collect an arbitrary set of parameters and pass them on
 4. The function to call to generate samples, `sample_func`.
 5. Additional parameters to pass on to `sample_func`, `...`.
 
-<pre id=part3-09-sample_trunc
+<pre id=part3-10-sample_trunc
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -525,7 +525,7 @@ sample_trunc <- function(lower, upper, count, sample_func, ...) {
 
 We can call our `sample_trunc()` function using any number of sampling functions. We've seen `rnorm()`, which takes `mean =` and `sd =` parameters, and `rexp()`, which takes a `rate =` parameter, but there are many others, like `dpois()`, which generates Poisson distributions and takes a `lambda =` parameter.
 
-<pre id=part3-09-sample_trunc_use
+<pre id=part3-10-sample_trunc_use
      class="language-r
             line-numbers
             linkable-line-numbers">
@@ -561,7 +561,7 @@ In the first example above, `mean = 20, sd = 10` is collated into `...` in the c
 
     We should then be able to run the test like so:
 
-    <pre id=part3-09-functional_ttest_wilcox_test
+    <pre id=part3-10-functional_ttest_wilcox_test
      class="language-r
             line-numbers
             linkable-line-numbers">
