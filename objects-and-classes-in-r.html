@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 39 Objects and Classes in R | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 39 Objects and Classes in R | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 39 Objects and Classes in R | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 39 Objects and Classes in R | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="procedural-programming.html"/>
+<link rel="next" href="plotting-data-and-ggplot2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i>Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html"><i class="fa fa-check"></i><b>35</b> Character and Categorical Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#splitting-and-binding-columns"><i class="fa fa-check"></i>Splitting and Binding Columns</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#detecting-and-in"><i class="fa fa-check"></i>Detecting and %in%</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#pasting"><i class="fa fa-check"></i>Pasting</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#renaming-factor-levels"><i class="fa fa-check"></i>Renaming Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#reordering-factor-levels"><i class="fa fa-check"></i>Reordering Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#final-notes-about-factors"><i class="fa fa-check"></i>Final Notes about Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="split-apply-combine.html"><a href="split-apply-combine.html"><i class="fa fa-check"></i><b>36</b> Split, Apply, Combine</a>
+<ul>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#a-single-gene-test-formulas"><i class="fa fa-check"></i>A Single Gene Test, Formulas</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#attack-of-the-functions"><i class="fa fa-check"></i>Attack of the Functions!</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#collecting-parameters-with"><i class="fa fa-check"></i>Collecting Parameters with …</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#functions-are-everywhere"><i class="fa fa-check"></i>Functions Are Everywhere</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#sugary-data-frame-split-apply-combine"><i class="fa fa-check"></i>Sugary Data Frame Split-Apply-Combine</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#more-sugar-optional-parameters-summarize"><i class="fa fa-check"></i>More Sugar, Optional Parameters, Summarize</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#gene-expression-finished"><i class="fa fa-check"></i>Gene Expression, Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html"><i class="fa fa-check"></i><b>37</b> Reshaping and Joining Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#gathering-for-tidiness"><i class="fa fa-check"></i>Gathering for Tidiness</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#ungathering-with-spread"><i class="fa fa-check"></i>Ungathering with <code>spread()</code></a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#splitting-columns"><i class="fa fa-check"></i>Splitting Columns</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#joiningmerging-data-frames-cbind-and-rbind"><i class="fa fa-check"></i>Joining/Merging Data Frames, <code>cbind()</code> and <code>rbind()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="procedural-programming.html"><a href="procedural-programming.html"><i class="fa fa-check"></i><b>38</b> Procedural Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#conditional-looping-with-while-loops"><i class="fa fa-check"></i>Conditional Looping with While-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-i"><i class="fa fa-check"></i>Generating Truncated Random Data, Part I</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#if-statements"><i class="fa fa-check"></i>If-Statements</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-ii"><i class="fa fa-check"></i>Generating Truncated Random Data, Part II</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#for-loops"><i class="fa fa-check"></i>For-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#a-functional-extension"><i class="fa fa-check"></i>A Functional Extension</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html"><i class="fa fa-check"></i><b>39</b> Objects and Classes in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html#creating-our-own-classes"><i class="fa fa-check"></i>Creating Our Own Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html"><i class="fa fa-check"></i><b>40</b> Plotting Data and ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#a-brief-introduction-to-base-r-graphics"><i class="fa fa-check"></i>A Brief Introduction to Base-R Graphics</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#overview-of-ggplot2-and-layers"><i class="fa fa-check"></i>Overview of ggplot2 and Layers</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#smart-defaults-specialized-layer-functions"><i class="fa fa-check"></i>Smart Defaults, Specialized Layer Functions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#more-aesthetics-and-mathematical-expressions"><i class="fa fa-check"></i>More Aesthetics and Mathematical Expressions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#faceting"><i class="fa fa-check"></i>Faceting</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#scales"><i class="fa fa-check"></i>Scales</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#coordinates"><i class="fa fa-check"></i>Coordinates</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#theming-annotations-text-and-jitter"><i class="fa fa-check"></i>Theming, Annotations, Text, and Jitter</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="objects-and-classes-in-r" class="section level1 hasAnchor" number="39">
+<h1><span class="header-section-number">Chapter 39</span> Objects and Classes in R<a href="objects-and-classes-in-r.html#objects-and-classes-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the chapters covering Python, we spent a fair amount of time discussing <a href="variables-and-classes.html#object">objects</a> and their blueprints, known as classes. Generally speaking, an object is a collection of data along with functions (called “methods” in this context) designed specifically to work on that data. Classes comprise the definitions of those methods and data.</p>
+<p>As it turns out, while functions are the major focus in R, objects are also an important part of the language. (By no means are any of these concepts mutually exclusive.) While class definitions are nicely encapsulated in Python, in R, the pieces are more distributed, at least for the oldest and most commonly used “S3” system we’ll discuss here.<a href="#fn120" class="footnote-ref" id="fnref120"><sup>120</sup></a> With this in mind, it is best to examine some existing objects and methods before attempting to design our own. Let’s consider the creation of a small, linear model for some sample data.</p>
+<pre id=part3-11-small_lm_anova
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+treatments <- c("w", "w", "p", "p")
+heights <- c(4.2, 5.4, 2.1, 3.2)
+lm_result <- lm(heights ~ treatments)
+anova_result <- anova(lm_result)
+</code></pre>
+<p>In chapter 33, “<a href="lists-and-attributes.html#lists-and-attributes">Lists and Attributes</a>,” we learned that functions like <code>lm()</code> and <code>anova()</code> generally return a list (or a data frame, which is a type of list), and we can inspect the structure with <code>str()</code>.</p>
+<pre id=part3-11-small_lm_anova_str
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print("Structure of lm_result:")
+str(lm_result)
+print("Structure of anova_result:")
+str(anova_result)
+</code></pre>
+<p>Here’s a sampling of the output lines for each call (there are quite a few pieces of data contained in the <code>lm_result</code> list):</p>
+<pre id=part3-11-small_lm_anova_str_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "Structure of lm_result:"
+List of 13
+ $ coefficients : Named num [1:2] 2.65 2.15
+  ..- attr(*, "names")= chr [1:2] "(Intercept)" "treatmentsw"
+...
+  .. .. .. ..- attr(*, "names")= chr [1:2] "heights" "treatments"
+ - attr(*, "class")= chr "lm"
+[1] "Structure of anova_result:"
+Classes ‘anova’ and 'data.frame': 2 obs. of  5 variables:
+ $ Df     : int  1 2
+ $ Sum Sq : num  4.62 1.33
+ $ Mean Sq: num  4.622 0.663
+ $ F value: num  6.98 NA
+ $ Pr(>F) : num  0.118 NA
+ - attr(*, "heading")= chr  "Analysis of Variance Table\n" "Response: heights"
+</code></pre>
+<p>If these two results are so similar—both types of lists—then why are the outputs so different when we call <code>print(lm_result)</code></p>
+<pre id=part3-11-print_lm
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Call:
+lm(formula = heights ~ treatments)
+
+Coefficients:
+(Intercept)  treatmentsw  
+       2.65         2.15
+</code></pre>
+<p>and <code>print(anova_result)</code>?</p>
+<pre id=part3-11-print_anova
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Analysis of Variance Table
+
+Response: heights
+           Df Sum Sq Mean Sq F value Pr(>F)
+treatments  1 4.6225  4.6225  6.9774 0.1184
+Residuals   2 1.3250  0.6625
+</code></pre>
+<p>How these printouts are produced is dictated by the <code>"class"</code> attribute of these lists, <code>"lm"</code> for <code>lm_result</code> and <code>"anova"</code> for <code>anova_result</code>. If we were to remove this attribute, we would get a default printed output similar to the result of <code>str()</code>. There are several ways to modify or remove the class attribute of a piece of data: using the <code>attr()</code> accessor function with <code>attr(lm_result, "class") &lt;- NULL</code>, setting it using the more preferred <code>class()</code> accessor, as in <code>class(lm_result) &lt;- NULL</code>, or using the even more specialized <code>unclass()</code> function, as in <code>lm_result &lt;- unclass(lm_result)</code>. In any case, running <code>print(lm_result)</code> after one of these three options will result in <code>str()</code>-like default printout.</p>
+<p>Now, how does R produce different output based on this class attribute? When we call <code>print(lm_result)</code>, the interpreter notices that the <code>"class"</code> attribute is set to <code>"lm"</code>, and searches for another function with a different name to actually run: <code>print.lm()</code>. Similarly, <code>print(anova_result)</code> calls <code>print.anova()</code> on the basis of the class of the input. These specialized functions assume that the input list will have certain elements and produce an output specific to that data. We can see this by trying to confuse R by setting the class attribute incorrectly with <code>class(anova_result) &lt;- "lm"</code> and then <code>print(anova_result)</code>:</p>
+<pre id=part3-11-print_anova_broken_class
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Call:
+NULL
+
+No coefficients
+</code></pre>
+<div id="generic_function" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>Notice that the class names are part of the function names. This is R’s way of creating methods, stating that objects with class <code>"x"</code> should be printed with <code>print.x()</code>; this is known as dispatching and the general <code>print()</code> function is known as a <em>generic function</em>, whose purpose is to dispatch to an appropriate method (class-specific function) based on the class attribute of the input.</p>
+<p>In summary, when we call <code>print(result)</code> in R, because <code>print()</code> is a generic function, the interpreter checks the <code>"class"</code> attribute of <code>result</code>; suppose the class is <code>"x"</code>. If a <code>print.x()</code> exists, that function will be called; otherwise, the print will fall back to <code>print.default()</code>, which produces output similar to <code>str()</code>.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-11-objects-and-classes-in-r.Rmd.images/III.11_7_dispatch_flow.png" /></p>
+</div>
+<p>There are many different <code>"print."</code> methods; we can see them with <code>methods("print")</code>.</p>
+<pre id=part3-11-print_methods
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  [1] print.acf*                                   
+  [2] print.anova*                                 
+  [3] print.aov*                                   
+  [4] print.aovlist*                               
+  [5] print.ar*                                    
+  [6] print.Arima*                                 
+...
+</code></pre>
+<p>Similarly, there are a variety of <code>".lm"</code> methods specializing in dealing with data that have a <code>"class"</code> attribute of <code>"lm"</code>. We can view these with <code>methods(class = "lm")</code>.</p>
+<pre id=part3-11-lm_methods
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+ [1] add1.lm*           alias.lm*          anova.lm*          case.names.lm*    
+ [5] confint.lm         cooks.distance.lm* deviance.lm*       dfbeta.lm*        
+ [9] dfbetas.lm*        drop1.lm*          dummy.coef.lm      effects.lm*       
+[13] extractAIC.lm*     family.lm*         formula.lm*        hatvalues.lm*     
+[17] influence.lm*      kappa.lm           labels.lm*         logLik.lm*        
+[21] model.frame.lm*    model.matrix.lm    nobs.lm*           plot.lm*          
+[25] predict.lm         print.lm*          proj.lm*           qr.lm*            
+[29] residuals.lm       rstandard.lm*      rstudent.lm*       simulate.lm*      
+[33] summary.lm         variable.names.lm* vcov.lm*          
+
+   Non-visible functions are asterisked
+</code></pre>
+<p>The message about nonvisible functions being asterisked indicates that, while these functions exist, we can’t call them directly as in <code>print.lm(lm_result)</code>; we must use the generic <code>print()</code>. Many functions that we’ve dealt with are actually generics, including <code>length()</code>, <code>mean()</code>, <code>hist()</code>, and even <code>str()</code>.</p>
+<p>So, in its own way R, is also quite “object oriented.” A list (or other type, like a vector or data frame) with a given class attribute constitutes an object, and the various specialized methods are part of the class definition.</p>
+</div>
+<div id="creating-our-own-classes" class="section level3 unnumbered hasAnchor">
+<h3>Creating Our Own Classes<a href="objects-and-classes-in-r.html#creating-our-own-classes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Creating novel object types and methods is not something beginning R programmers are likely to do often. Still, an example will uncover more of the inner workings of R and might well be useful.</p>
+<p>First, we’ll need some type of data that we wish to represent with an object. For illustrative purposes, we’ll use the data returned by the <code>nrorm_trunc()</code> function defined in chapter 38, “<a href="procedural-programming.html#procedural-programming">Procedural Programming</a>.” Rather than producing a vector of samples, we might also want to store with that vector the original sampling mean and standard deviation (because the truncated data will have a different actual mean and standard deviation). We might also wish to store in this object the requested upper and lower limits. Because all of these pieces of data are of different types, it makes sense to store them in a list.</p>
+<pre id=part3-11-trunc_sample_constructor
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+truncated_normal_sample <- function(lower, upper, count, mean, sd) {
+  obj <- list()
+  obj$sample <- rnorm_trunc(lower, upper, count, mean, sd)
+  obj$lower <- lower
+  obj$upper <- upper
+  obj$original_mean <- mean
+  obj$original_sd <- sd
+  class(obj) <- "truncated_normal_sample"
+  return(obj)
+} 
+</code></pre>
+<div id="constructor" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>The function above returns a list with the various elements, including the sample itself. It also sets the class attribute of the list to <code>truncated_normal_sample</code> — by convention, this class attribute is the same as the name of the function. Such a function that creates and returns an object with a defined class is called a <em>constructor</em>.</p>
+<p>Now, we can create an instance of a <code>"truncated_normal_sample"</code> object and print it.</p>
+<pre id=part3-11-trunc_norm_print
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+trsamp <- truncated_normal_sample(0, 30, 25, 20, 10)
+print(trsamp)
+</code></pre>
+<p>Because there is no <code>print.truncated_normal_sample()</code> function, however, the generic <code>print()</code> dispatches to <code>print.default()</code>, and the output is not pleasant.</p>
+<pre id=part3-11-trunc_norm_print_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+$sample
+ [1] 18.570116 28.058587 18.988116 23.923216 21.362590 27.071478  9.017976
+ [8] 13.627638 14.859320  2.023175  1.335886 24.238769 19.714821  8.070529
+[15]  5.084282 13.383528 22.007093  8.546593 11.442850 17.214193 17.037683
+[22] 13.786232  7.832597 16.553821 17.877895
+
+$lower
+[1] 0
+
+$upper
+[1] 30
+
+$original_mean
+[1] 20
+
+$original_sd
+[1] 10
+
+attr(,"class")
+[1] "truncated_normal_sample"
+</code></pre>
+<p>If we want to stylize the printout, we need to create the customized method. We might also want to create a customized <code>mean()</code> function that returns the mean of the stored sample.</p>
+<pre id=part3-11-trunc_norm_methods
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print.truncated_normal_sample <- function(obj) {
+  print("Truncated normal sample, limited to:")
+  print(c(obj$lower, obj$upper))
+  print("Original sampling mean and sd:")
+  print(c(obj$original_mean, obj$original_sd))
+  print("First 10 elements:")
+  print(head(obj$sample, n = 10))
+}
+
+mean.truncated_normal_sample <- function(obj) {
+  answer = mean(obj$sample)
+  return(answer)
+}
+
+print("Printing trsamp")
+print(trsamp)
+print("Calling mean(trsamp)")
+</code></pre>
+<p>The output:</p>
+<pre id=part3-11-trunc_norm_methods_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "Printing trsamp"
+[1] "Truncated normal sample, limited to:"
+[1]  0 30
+[1] "Original sampling mean and sd:"
+[1] 20 10
+[1] "First 10 elements:"
+ [1] 15.21184 26.31239 11.38106 19.10591 24.98551 14.89133 23.83144 15.57210
+ [9] 29.12310 20.32704
+[1] "Calling mean(trsamp)"
+[1] 19.20806
+</code></pre>
+<p>This customized print function is rather crude; more sophisticated printing techniques (like <code>cat()</code> and <code>paste()</code>) could be used to produce friendlier output.</p>
+<p>So far, we’ve defined a custom <code>mean.truncated_normal_sample()</code> method, which returns the mean of the sample when we call the generic function <code>mean()</code>. This works because the generic function <code>mean()</code> already exists in R. What if we wanted to call a generic called <code>originalmean()</code>, which returns the object’s <code>original_mean</code>? In this case, we need to create our own specialized method as well as the generic function that dispatches to that method. Here’s how that looks:</p>
+<pre id=part3-11-originalmean
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# generic function, will dispatch based on class of obj
+originalmean <- function(obj) {
+  UseMethod("originalmean", obj)
+}
+
+# method, dispatched to for objects of class "truncated_normal_sample"
+originalmean.truncated_normal_sample <- function(obj) {
+  answer = obj$original_mean
+  return(answer)
+}
+
+print(originalmean(trsamp))            # [1] 20
+</code></pre>
+<p>These functions — the constructor, specialized methods, and generic functions that don’t already exist in R — need to be defined only once, but they can be called as many times as we like. In fact, packages in R that are installed using <code>install.packages()</code> are often just such a collection of functions, along with documentation and other materials.</p>
+<p>Object-oriented programming is a large topic, and we’ve only scratched the surface. In particular, we haven’t covered topics like polymorphism, where an object may have multiple classes listed in the <code>"class"</code> attribute. In R, the topic of polymorphism isn’t difficult to describe in a technical sense, though making effective use of it is a challenge in software engineering. If an object has multiple classes, like <code>"anova"</code> and <code>"data.frame"</code>, and a generic like <code>print()</code> is called on it, the interpreter will first look for <code>print.anova()</code>, and if that fails, it will try <code>print.data.frame()</code>, and failing that will fall back on <code>print.default()</code>. This allows objects to capture “is a type of” relationships, so methods that work with data frames don’t have to be rewritten for objects of class anova.</p>
+</div>
+<div id="exercises-42" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="objects-and-classes-in-r.html#exercises-42" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Many functions in R are generic, including (as we’ll explore in chapter 40, “<a href="plotting-data-and-ggplot2.html#plotting-data-and-ggplot2">Plotting Data and ggplot2</a>”) the <code>plot()</code> function, which produces graphical output. What are all of the different classes that can be plotted with the generic <code>plot()</code>? An example is <code>plot.lm()</code>; use <code>help("plot.lm")</code> to determine what is plotted when given an input with class attribute of <code>"lm"</code>.</p></li>
+<li><p>What methods are available for data with a class attribute of <code>"matrix"</code>? (For example, is there a <code>plot.matrix()</code> or <code>lm.matrix()</code>? What others are there?)</p></li>
+<li><p>Create your own class of some kind, complete with a constructor returning a list with its class attribute set, a specialized method for <code>print()</code>, and a new generic and associated method.</p></li>
+<li><p>Explore, using other resources, the difference between R’s S3 object system and its S4 object system.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="120">
+<li id="fn120"><p>Modern versions of R have not one, not two, but <em>three</em> different systems for creating and working with objects. We’ll be discussing only the oldest and still most heavily used, known as S3. The other two are called S4 and Reference Classes, the latter of which is most similar to the class/object system used by Python. For more information on these and other object systems (and many other advanced R topics), see Norman Matloff, <em>The Art of R Programming</em> (San Francisco: No Starch Press, 2011), and Hadley Wickham, <em>Advanced R</em> (London: Chapman and Hall/CRC, 2014).<a href="objects-and-classes-in-r.html#fnref120" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="procedural-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting-data-and-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-11-objects-and-classes-in-r.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 40 Plotting Data and ggplot2 | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 40 Plotting Data and ggplot2 | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 40 Plotting Data and ggplot2 | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 40 Plotting Data and ggplot2 | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="objects-and-classes-in-r.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i>Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html"><i class="fa fa-check"></i><b>35</b> Character and Categorical Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#splitting-and-binding-columns"><i class="fa fa-check"></i>Splitting and Binding Columns</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#detecting-and-in"><i class="fa fa-check"></i>Detecting and %in%</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#pasting"><i class="fa fa-check"></i>Pasting</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#renaming-factor-levels"><i class="fa fa-check"></i>Renaming Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#reordering-factor-levels"><i class="fa fa-check"></i>Reordering Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#final-notes-about-factors"><i class="fa fa-check"></i>Final Notes about Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="split-apply-combine.html"><a href="split-apply-combine.html"><i class="fa fa-check"></i><b>36</b> Split, Apply, Combine</a>
+<ul>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#a-single-gene-test-formulas"><i class="fa fa-check"></i>A Single Gene Test, Formulas</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#attack-of-the-functions"><i class="fa fa-check"></i>Attack of the Functions!</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#collecting-parameters-with"><i class="fa fa-check"></i>Collecting Parameters with …</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#functions-are-everywhere"><i class="fa fa-check"></i>Functions Are Everywhere</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#sugary-data-frame-split-apply-combine"><i class="fa fa-check"></i>Sugary Data Frame Split-Apply-Combine</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#more-sugar-optional-parameters-summarize"><i class="fa fa-check"></i>More Sugar, Optional Parameters, Summarize</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#gene-expression-finished"><i class="fa fa-check"></i>Gene Expression, Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html"><i class="fa fa-check"></i><b>37</b> Reshaping and Joining Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#gathering-for-tidiness"><i class="fa fa-check"></i>Gathering for Tidiness</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#ungathering-with-spread"><i class="fa fa-check"></i>Ungathering with <code>spread()</code></a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#splitting-columns"><i class="fa fa-check"></i>Splitting Columns</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#joiningmerging-data-frames-cbind-and-rbind"><i class="fa fa-check"></i>Joining/Merging Data Frames, <code>cbind()</code> and <code>rbind()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="procedural-programming.html"><a href="procedural-programming.html"><i class="fa fa-check"></i><b>38</b> Procedural Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#conditional-looping-with-while-loops"><i class="fa fa-check"></i>Conditional Looping with While-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-i"><i class="fa fa-check"></i>Generating Truncated Random Data, Part I</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#if-statements"><i class="fa fa-check"></i>If-Statements</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-ii"><i class="fa fa-check"></i>Generating Truncated Random Data, Part II</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#for-loops"><i class="fa fa-check"></i>For-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#a-functional-extension"><i class="fa fa-check"></i>A Functional Extension</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html"><i class="fa fa-check"></i><b>39</b> Objects and Classes in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html#creating-our-own-classes"><i class="fa fa-check"></i>Creating Our Own Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html"><i class="fa fa-check"></i><b>40</b> Plotting Data and ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#a-brief-introduction-to-base-r-graphics"><i class="fa fa-check"></i>A Brief Introduction to Base-R Graphics</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#overview-of-ggplot2-and-layers"><i class="fa fa-check"></i>Overview of ggplot2 and Layers</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#smart-defaults-specialized-layer-functions"><i class="fa fa-check"></i>Smart Defaults, Specialized Layer Functions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#more-aesthetics-and-mathematical-expressions"><i class="fa fa-check"></i>More Aesthetics and Mathematical Expressions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#faceting"><i class="fa fa-check"></i>Faceting</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#scales"><i class="fa fa-check"></i>Scales</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#coordinates"><i class="fa fa-check"></i>Coordinates</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#theming-annotations-text-and-jitter"><i class="fa fa-check"></i>Theming, Annotations, Text, and Jitter</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plotting-data-and-ggplot2" class="section level1 hasAnchor" number="40">
+<h1><span class="header-section-number">Chapter 40</span> Plotting Data and ggplot2<a href="plotting-data-and-ggplot2.html#plotting-data-and-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>R provides some of the most powerful and sophisticated data visualization tools of any program or programming language (Python is catching up with increasingly powerful libraries like <code>matplotlib</code>). A basic installation of R provides an entire set of tools for plotting, and there are many libraries available for installation that extend or supplement this core set. One of these is <code>ggplot2</code>, which differs from many other data visualization packages in that it is designed around a well-conceived “grammar” of graphics.<a href="#fn121" class="footnote-ref" id="fnref121"><sup>121</sup></a></p>
+<p>The <code>ggplot2</code> package is not the most powerful or flexible — the graphics provided by default with R may take that title. Neither is <code>ggplot2</code> the easiest — simpler programs like Microsoft Excel are much easier to use. What <code>ggplot2</code> provides is a remarkable balance of power and ease of use. As a bonus, the results are usually professional looking with little tweaking, and the integration into R makes data visualization a natural extension of data analysis.</p>
+<div id="a-brief-introduction-to-base-r-graphics" class="section level3 unnumbered hasAnchor">
+<h3>A Brief Introduction to Base-R Graphics<a href="plotting-data-and-ggplot2.html#a-brief-introduction-to-base-r-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although this chapter focuses on the <code>ggplot2</code> package, it is worth having at least passing familiarity with some of the basic plotting tools included with R. First, how plots are generated depends on whether we are running R through a graphical user interface (like RStudio) or on the command line via the interactive R console or executable script. Although writing a noninteractive program for producing plots might seem counterintuitive, it is beneficial as a written record of how the plot was produced for future reference. Further, plotting is often the end result of a complex analysis, so it makes sense to think of graphical output much like any other program output that needs to be reproducible.</p>
+<p>When working with a graphical interface like RStudio, plots are by default shown in a pop-up window or in a special plotting panel for review. Alternatively, or if we are producing plots via a remote command line login, each plot will be saved to a PDF file called <code>Rplots.pdf</code>. The name of this file can be changed by calling the <code>pdf()</code> function, giving a file name to write to. To finish writing the PDF file, a call to <code>dev.off()</code> is required (it takes no parameters).</p>
+<p>The most basic plotting function (other than <code>hist()</code>, which we’ve already seen) is <code>plot()</code>. Like <code>hist()</code>, <code>plot()</code> is a <a href="objects-and-classes-in-r.html#generic_function">generic function</a> that determines what the plot should look like on the basis of class attributes of the data given to it. For example, given two numeric vectors of equal length, it produces a dotplot.</p>
+<pre id=part3-11-base_r_dotplot
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+vecx <- rnorm(20, mean = 5, sd = 2)
+vecy <- rnorm(20, mean = 10, sd = 1)
+
+
+pdf("dotplot.pdf")  # not necessary if using a graphical interface
+plot(vecx, vecy)
+dev.off()           # not necessary if using a graphical interface
+</code></pre>
+<p>The contents of <code>dotplot.pdf</code>:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_2_dotplot_baser-3.png" /></p>
+</div>
+<p>For the rest of this chapter, the <code>pdf()</code> and <code>dev.off()</code> calls are not specified in code examples.</p>
+<p>We can give the <code>plot()</code> function a hint about the type of plot we want by using the <code>type =</code> parameter, setting it to <code>"p"</code> for points, <code>"l"</code> for lines, <code>"b"</code> for both, and so on. For basic vector plotting like the above, <code>plot()</code> respects the order in which the data appear. Here’s the output of <code>plot(vecx, vecy, type = "l")</code>:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_3_dotplot_baser_lines-3.png" /></p>
+</div>
+<p>We would have had to sort one or both input vectors to get something more reasonable, if that makes sense for the data.</p>
+<p>Other plotting functions like <code>hist()</code>, <code>curve()</code>, and <code>boxplot()</code> can be used to produce other plot types. Some plot types (though not all) can be added to previously plotted results as an additional layer by setting <code>add = TRUE</code>. For example, we can produce a dotplot of two random vectors, along with a histogram with normalized bar heights by using <code>hist()</code> with <code>probability = TRUE</code> and <code>add = TRUE</code>.</p>
+<pre id=part3-11-base_r_dotplot_hist_add
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+vecx <- rnorm(100, mean = 5, sd = 2)
+vecy <- rnorm(100, mean = 0.5, sd = 0.2)
+plot(vecx, vecy)
+hist(vecx, probability = TRUE, add = TRUE)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_5_dotplot_hist_add-3.png" /></p>
+</div>
+<p>A plot like this will only look reasonable if the axes ranges are appropriate for both layers, which we must ensure ourselves. We do this by specifying ranges with the <code>xlim =</code> and <code>ylim =</code> parameters in the call to <code>plot()</code>, specifying length-two vectors.</p>
+<pre id=part3-11-base_r_dotplot_hist_add_limits
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+vecx <- rnorm(100, mean = 5, sd = 2)
+vecy <- rnorm(100, mean = 0.5, sd = 0.2)
+plot(vecx, vecy, xlim = c(-4, 14), ylim = c(0, 1))
+hist(vecx, probability = TRUE, add = TRUE)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_7_dotplot_hist_add_limits-3.png" /></p>
+</div>
+<p>There are a number of hidden rules here. For example, <code>plot()</code> must be called before <code>hist()</code>, as <code>add = TRUE</code> isn’t accepted by the <code>plot()</code> function. Although <code>hist()</code> accepts <code>xlim</code> and <code>ylim</code> parameters, they are ignored when <code>hist()</code> is used with <code>add = TRUE</code>, so they must be specified in the <code>plot()</code> call in this example. There are many individual plotting functions like <code>plot()</code> and <code>hist()</code>, and each takes dozens of parameters with names like <code>"las"</code>, <code>"cex"</code>, <code>"pch"</code>, and <code>"tck"</code> (these control the orientation of y-axis labels, font size, dot shapes, and tick-mark size, respectively). Unfortunately, the documentation of all of these functions and parameters oscillates between sparse and confusingly complex, though there are a number of books dedicated solely to the topic of plotting in R.</p>
+<p>Despite its complexities, one of the premier benefits of using <code>plot()</code> is that, as a generic, the plotted output is often customized for the type of input. As an example, let’s quickly create some linearly dependent data and run them through the <code>lm()</code> linear modeling function.</p>
+<pre id=part3-11-base_r_plot_lm
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+vecx <- rnorm(100, mean = 10, sd = 2)
+vecy <- 2 * vecx + rnorm(100, mean = 1, sd = 1)
+lm_result <- lm(vecy ~ vecx)
+plot(vecx, vecy)
+plot(lm_result)
+</code></pre>
+<p>If we give the <code>lm_result</code> (a list with class attribute <code>"lm"</code>) to <code>plot()</code>, the call will be dispatched to <code>plot.lm()</code>, producing a number of plots appropriate for linear model parameters and data. The first of the five plots below was produced by the call to <code>plot(vecx, vecy)</code>, while the remaining four are plots specific to linear models and were produced by the single call to <code>plot(lm_result)</code> as a multipage PDF file.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_9_lm_plot-3.png" /></p>
+</div>
+</div>
+<div id="overview-of-ggplot2-and-layers" class="section level3 unnumbered hasAnchor">
+<h3>Overview of ggplot2 and Layers<a href="plotting-data-and-ggplot2.html#overview-of-ggplot2-and-layers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As mentioned previously, the <code>ggplot2</code> package seeks to simplify the process of plotting while still providing a large amount of flexibility and power by implementing a “grammar” of graphical construction. Given this structure, we’re going to have to start by learning some (more) specialized vocabulary, followed by some (more) specialized syntax. There are several ways of interacting with <code>ggplot2</code> of various complexity. We’ll start with the most complex first, to understand the structure of the grammar, and then move on to simpler methods that are easier to use (once framed in terms of the grammar).</p>
+<p>Unlike the generic <code>plot()</code> function, which can plot many different types of data (such as in the linear model example above), <code>ggplot2</code> specializes in plotting data stored in data frames.</p>
+<p>A “plot” in <code>ggplot2</code> is made up of the following components:</p>
+<div id="layers" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<ol style="list-style-type: decimal">
+<li><p>One or more <em>layers</em>, each representing how some data should be plotted. Plot layers are the most important pieces, and they consist of five subparts:</p>
+<ol style="list-style-type: lower-alpha">
+<li>The <code>data</code> (a data frame), which contains the data to plot.</li>
+<li>A <code>stat</code>, which stands for “statistical mapping.” By default, this is the <code>"identity"</code> stat (for no modification) but could be some other mapping that processes the <code>data</code> data frame and produces a new data set that is actually plotted.</li>
+<li>A <code>geom</code>, short for “geometric object,” which specifies the shape to be drawn. For example, <code>"point"</code> specifies that data should be plotted with points (as in a dotplot), <code>"line"</code> specifies that data should be plotted with lines (as in a line plot), and <code>"bar"</code> specifies that data should be plotted with bars (as in a histogram).</li>
+<li>A <code>mapping</code> of “aesthetics,” describing how properties of the <code>geom</code> (e.g., <code>x</code> and <code>y</code> position of points, or their <code>color</code>, <code>size</code>, and so on) relate to columns of the <code>stat</code>-transformed data. Each <code>geom</code> type cares about a specific set of aesthetics, though many are common.</li>
+<li>A <code>position</code> for the <code>geom</code>; usually, this is <code>"identity"</code> to suggest that the position of the <code>geom</code> should not be altered. Alternatives include <code>"jitter"</code>, which adds some random noise to the location (so overlapping <code>geom</code> shapes are more easily viewable).</li>
+</ol></li>
+<li><p>One <code>scale</code> for each aesthetic used in layers. For example, each point’s <code>x</code> value occurs on a horizontal scale that we might wish to limit to a given range, and each point’s <code>color</code> value occurs on a color scale that we might wish to range from purple to orange, or black to blue.</p></li>
+<li><p>A <code>facet</code> specification, describing how paneling data across multiple similar plots should occur.</p></li>
+</ol>
+<div class="fig right" style="width: 30%; margin-left: 20px">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_10_cartesian_polar-3.png" /></p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>A <code>coordinate</code> system to which to apply some scales. Usually, we won’t modify these from the defaults. For example, the default for <code>x</code> and <code>y</code> is to use a <code>cartesian</code> coordinate system, though <code>polar</code> is an option.</li>
+<li>Some <code>theme</code> information, such as font sizes and rotations, axis ticks, aspect ratios, background colors, and the like.</li>
+<li>A set of defaults. Defaults are an odd thing to list as a specific part of a plot, as these are the properties we <em>don’t</em> specify, but <code>ggplot2</code> makes heavy use of them, so they are worth mentioning.</li>
+</ol>
+<p>When installed with <code>install.packages("ggplot2")</code> (in the interactive console) and loaded with <code>library(ggplot2)</code>, the package comes with a data frame called <code>diamonds</code>. Each row of this data frame specifies some information about a single diamond; with about 54,000 rows and many types of columns (including numeric and categorical), it is an excellent data set with which to explore plotting.</p>
+<pre id=part3-11-head_diamonds
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+library(ggplot2)
+print(head(diamonds))
+</code></pre>
+<pre id=part3-11-head_diamonds_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  carat       cut color clarity depth table price    x    y    z
+1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
+2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
+3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48
+</code></pre>
+<p>Let’s start by exploring the most important concept in the list of definitions above: the layer and its five components. To create a layer, we can start by creating an “empty” <code>gg</code> object by calling <code>ggplot()</code> with no parameters. To this we’ll add a layer with <code>+</code> and calling the <code>layer()</code> function, specifying the five components we want.<a href="#fn122" class="footnote-ref" id="fnref122"><sup>122</sup></a> Because these plotting commands become fairly long, we break them up over multiple lines (ending broken lines with <code>+</code> or <code>,</code> to let the interpreter know the command isn’t finished) and indent them to help indicate where different pieces are contributing.</p>
+<pre id=part3-11-first_layer
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     layer(data = diamonds, 
+           stat = "identity",
+           geom = "point",
+           mapping = aes(x = carat, y = price, color = cut),
+           position = "identity")
+plot(p)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_14_ggplot_layer_1.png" /></p>
+</div>
+<p>Here, we’ve specified each of the five layer components described above. For the <code>mapping</code> of aesthetics, there is an internal call to an <code>aes()</code> function that describes how aesthetics of the geoms (<code>x</code>, <code>y</code>, and <code>color</code> in this case) relate to columns of the <code>stat</code>-adjusted <code>data</code> (in this case, the output columns from the stat are identical to the input columns).<a href="#fn123" class="footnote-ref" id="fnref123"><sup>123</sup></a> Finally, we note that <code>ggplot2</code> has seamlessly handled the categorical column of <code>cut</code>.</p>
+<p>To save the result to a file or when not working in a graphical interface, we can use the <code>pdf()</code> function before the call to <code>plot()</code> followed by <code>dev.off()</code>, as we did for the Base-R graphics. Alternatively, we can use the specialized <code>ggsave()</code> function, which also allows us to specify the overall size of the plot (in inches at 300 dpi by default for PDFs).</p>
+<pre id=part3-11-ggsave
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ggsave("diamond_layer1.pdf", p, width = 7, height = 4)
+</code></pre>
+<p>Let’s add a layer to our plot that will also plot points on the <code>x</code> and <code>y</code> axes, by <code>carat</code> and <code>price</code>. This additional layer, however, will use a <code>"smooth"</code> stat, and we won’t color the points. (In recent versions of <code>ggplot2</code>, this layer example also requires a <code>params = list(method = "auto")</code> which sets the stat’s smoothing method. Below we’ll see how to write more compact code with this and other parameters set automatically.)</p>
+<pre id=part3-11-ggplot_layer_2smooth
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     layer(data = diamonds, 
+           stat = "identity",
+           geom = "point",
+           mapping = aes(x = carat, y = price, color = cut),
+           position = "identity") +
+     layer(data = diamonds,
+           stat = "smooth",
+           geom = "point",
+           mapping = aes(x = carat, y = price),
+           position = "identity")
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_17_ggplot_layer_2smooth-1.png" /></p>
+</div>
+<p>In this case, the original data have been transformed by the <code>"smooth"</code> stat, so <code>x = carat, y = price</code> now specifies the columns in the stat-transformed data frame. If we were to switch this layer’s <code>geom</code> to <code>"line"</code>, we would get a plot like below on the left, and if we add a <code>color = cut</code> in the <code>aes()</code> call, we would get a plot like below on the right.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_18_ggplot_layer_2smooth_lines.png" /></p>
+</div>
+<p>In the right plot above, multiple lines have been created; they are a bit difficult to see, but we’ll see how to fix that in a bit. Note that the order of the layers matters: the second layer was plotted on <em>top</em> of the first.</p>
+<p>This second layer illustrates one of the more confusing aspects of <code>ggplot2</code>, namely, that aesthetic mappings (properties of geoms) and stat mappings interact. In the second layer above, we specified <code>aes(x = carat, y = price)</code>, but we also specified the <code>"smooth"</code> stat. As a consequence, the underlying data representing <code>carat</code> and <code>price</code> were modified by the stat, and the stat knew which variables to smooth on the basis of this aesthetic mapping.</p>
+<p>For a second example, let’s look at the <code>"bin"</code> stat and the <code>"bar"</code> geom, which together create a histogram. The <code>"bin"</code> stat checks the <code>x</code> aesthetic mapping to determine which column to bin into discrete counts, and also creates some entirely new columns in the stat-transformed data, including one called <code>..count..</code>. The extra dots indicate to the user that the column produced by the stat is novel. The <code>"bar"</code> geom pays attention to the <code>x</code> aesthetic (to determine each bar’s location on the horizontal axis) and the <code>y</code> aesthetic (to determine each bar’s height).</p>
+<pre id=part3-11-ggplot_bin_bar
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     layer(data = diamonds,
+           stat = "bin",
+           geom = "bar",
+           mapping = aes(x = carat, y = ..count..),
+           position = "identity")
+</code></pre>
+<p>The result of plotting the above is shown below on the left. To complete the example, below on the right shows the same plot with <code>geom = "point"</code>. We can easily see that the stat-transformed data contain only about 30 rows, with columns for bin centers (<code>carat</code> mapped on <code>x</code>) and counts (<code>..count..</code>). The <code>"bin"</code> stat also generates a <code>..density..</code> column you can explore.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_20_ggplot_bin_pointbar.png" /></p>
+</div>
+</div>
+</div>
+<div id="smart-defaults-specialized-layer-functions" class="section level3 unnumbered hasAnchor">
+<h3>Smart Defaults, Specialized Layer Functions<a href="plotting-data-and-ggplot2.html#smart-defaults-specialized-layer-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most of us are probably familiar with the standard plot types: histograms, fitted-line plots, scatterplots, and so on. Usually, the statistical mapping used will determine the common plot type and the geom to use. For example, a binning statistic likely goes with a bar geom to produce a histogram, and the point geom is most commonly paired with the identity statistic. (In fact, in older versions of <code>ggplot2</code>, if a stat or <code>geom</code> was unspecified in the call to <code>layer()</code>, a default was used on the basis of the other. Newer versions require both <code>geom =</code> and <code>stat =</code> to be specified when calling <code>layer()</code>.) Similarly, when a binning statistic is used, the <code>y</code> aesthetic mapping defaults to <code>..count..</code> if unspecified.</p>
+<p>Because it is so common to specify a plot by specifying the statistical mapping to use, <code>ggplot2()</code> provides specialized layer functions that effectively move the specification of the stat to the function name and use the default geom (though it can still be changed). Similarly, we often wish to specify a plot by the geom type and accept the default stat for that geom (though, again, this can be changed by adding a <code>stat =</code> parameter.) Here are two more ways to plot the left histogram above:</p>
+<pre id=part3-11-ggplot_hist_bar_bin
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() + stat_bin(data = diamonds, mapping = aes(x = carat))
+p <- ggplot() + geom_histogram(data = diamonds, mapping = aes(x = carat))
+</code></pre>
+<p>(There is a <code>geom_bar()</code> layer function, but its default is not the binning statistic; hence the alternative <code>geom_histogram()</code>.) To reproduce the plot above on the right, we could use <code>stat_bin(data = diamonds, mapping = aes(x = carat), geom = "point")</code>.</p>
+<p>With so many defaults being set, the plotting commands can become quite small. These specialized layer functions represent the most commonly used methods for plotting in <code>ggplot2</code>, being both flexible and quick.</p>
+<p>Another example of defaults being set is the <code>geom_boxplot()</code> layer function, which uses a <code>"boxplot"</code> geom (a box with whiskers) and a default <code>"boxplot"</code> stat. The boxplot geom recognizes a number of aesthetics for the various pieces that position the box and whiskers, including <code>x</code>, <code>y</code>, <code>middle</code>, <code>upper</code>, <code>lower</code>, <code>ymin</code>, and <code>ymax</code>. Fortunately, most of these required values are created by the boxplot stat and set accordingly (much like the <code>y</code> aesthetic defaults to <code>..count..</code> for histograms); only the <code>x</code> and <code>y</code> aesthetics are required to determine the others.</p>
+<pre id=part3-11-ggplot_boxplot
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# default stat chosen by geom, many aesthetics autoset accordingly
+p <- ggplot() + geom_boxplot(data = diamonds,
+                             mapping = aes(x = color, y = price))
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_23_ggplot_boxplot.png" /></p>
+</div>
+<p>We’ve mapped a discrete variable to <code>x</code> and a continuous variable to <code>y</code> — a boxplot would make considerably less sense the other way around! There is also a corresponding <code>stat_boxplot()</code> layer function, which specifies the stat and uses the default corresponding geom (boxplot).</p>
+<p>So far, we’ve been individually specifying the <code>data =</code> and <code>mapping =</code> parameters for each layer. It is common to see them set only once in the call to <code>ggplot()</code>, in which case they are inherited for all subsequent layers. We can also leave off the <code>data =</code> and <code>mapping =</code> names if we first specify the data.</p>
+<pre id=part3-11-ggplot_more_defaults
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# data and default mappings set in call to ggplot()
+p <- ggplot(diamonds, aes(x = carat, y = price)) +
+     geom_point(aes(color = cut)) +
+     geom_smooth()
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_25_ggplot_more_defaults.png" /></p>
+</div>
+<p>Most users of <code>ggplot2</code> prefer to utilize many of these “fall-through” settings and defaults, though we’ll specify all data and mappings for each layer for clarity. (And yes, different layers can use different data frames for their <code>data =</code> parameter.)</p>
+<p>There are many specialized layer functions for specific stats and geoms. Documentation for them and other features of <code>ggplot2</code> can be found at <a href="https://ggplot2.tidyverse.org/">https://ggplot2.tidyverse.org/</a>.</p>
+<div id="exercises-43" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="plotting-data-and-ggplot2.html#exercises-43" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Use the Base-R <code>plot()</code> function to produce a PDF plot that looks like the following:</p>
+<div class="fig center" style="width: 100%">
+<img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_26_log_scatterplot_baser.png" />
+</div>
+<p>There are 1,000 <em>x</em> values randomly (and uniformly) distributed between 0 and 100, and the <em>y</em> values follow a curve defined by the <code>log()</code> of <em>x</em> plus some random noise.</p></li>
+<li><p>R’s <code>hist()</code> function is a convenient way to produce a quick histogram. Try running <code>hist(rnorm(1000, mean = 0, sd = 3))</code>. Read the help for <code>hist()</code> to determine how to increase the number of “bins.”</p></li>
+<li><p>Use the <code>layer()</code> function in <code>ggplot2</code> to produce a histogram of diamond prices. Next, try using <code>geom_histogram()</code> and <code>stat_bin()</code>. For these latter plots, try changing the number of bins from the default of 30.</p></li>
+<li><p>Try creating a dotplot of diamonds (point geom, identity stat) using <code>layer()</code> with <code>x</code> mapped to <code>color</code> and <code>y</code> mapped to <code>price</code>. What happens when you change the <code>position</code> to <code>"jitter"</code>? Next, add a boxplot layer on top of this dotplot layer.</p></li>
+</ol>
+</div>
+</div>
+<div id="more-aesthetics-and-mathematical-expressions" class="section level3 unnumbered hasAnchor">
+<h3>More Aesthetics and Mathematical Expressions<a href="plotting-data-and-ggplot2.html#more-aesthetics-and-mathematical-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>geom_point()</code> layer function deserves some special attention, not only because scatterplots are a particularly useful plot type for data exploration, but also because we can use it to illustrate more features of the <code>ggplot2</code> package. Unfortunately, scatterplots tend to suffer from “overplotting” issues when the number of data points is large, as in previous examples. For now, we’ll get around this issue by generating a random subset of 1,000 diamonds for plotting, placing the sample in a data frame called <code>dd</code>.</p>
+<pre id=part3-11-ggplot_diamonds_subsample
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+dd <- diamonds[sample(seq(1, nrow(diamonds)), 1000), ]
+</code></pre>
+<p>First, the <code>geom_point()</code> layer accepts a number of aesthetics that might be useful in other situations as well.</p>
+<pre id=part3-11-ggplot_points_too_many_aesthetics
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = dd, 
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat,
+                              size = table,
+                              alpha = cut))
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_29_ggplot_diamonds_too_many_aesthetics.png" /></p>
+</div>
+<p>The result is probably too many aesthetics to map to values from the data, but sometimes for exploratory purposes (rather than publication), this isn’t a bad thing. In this plot we can see a few interesting features of the data:
+1. Diamonds are usually cut to carat sizes that are round numbers (0.25, 0.5, 1.0, etc.).
+2. The price per carat (mapped to color) is generally higher for larger diamonds. This means that not only are larger diamonds more expensive, but they are also more expensive on a per carat basis (they are rarer, after all).
+3. Although it’s a bit difficult to see in this plot, it appears that points with the best cut (mapped to alpha, or “transparency”) are also of intermediate depth (mapped to the <em>y</em> axis). Or, at the very least, outliers in depth tend to have poorer “cut” values.</p>
+<p>This plot also illustrates that aesthetics can generally be mapped to continuous or discrete data, and <code>ggplot2</code> will handle the data with grace. Further, we can specify the data as mathematical expressions of the columns in the input data frame (or even other data), as we did with <code>color = price/carat</code>. Doing so allows us to explore data sets in a powerful and flexible way. We could quickly discretize the price per carat by setting <code>color = price/carat &gt; 5000</code>, for example, or we could reduce the range of these values by plotting with <code>color = log(price/carat)</code>. In the subsection on scales, however, we’ll see that <code>ggplot2</code> contains some friendly features for plotting data on log-adjusted and similar scales.</p>
+<p>Because this plot is far too busy, let’s fix it by removing the alpha and size mapping, remembering the possibility of a relationship between cut and depth for future exploration. We’ll also add a layer for a smoothed fit line.</p>
+<pre id=part3-11-ggplot_diamonds_carat_depth
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat)) +
+     stat_smooth(data = dd, 
+                 mapping = aes(x = carat,
+                               y = depth))
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_31_ggplot_diamonds_carat_depth.png" /></p>
+</div>
+<p>Layer functions like <code>layer()</code> and <code>geom_point()</code> accept additional options on top of <code>data</code>, <code>stat</code>, <code>geom</code>, and <code>mapping</code>. In this example, the first layer would look better if it were partially transparent, so that the top layer could stand out. But we don’t want to map the alpha aesthetic to a property of the data — we just want it to set it to a constant for all the geoms in the layer. Thus we can set <code>alpha = 0.2</code> outside the <code>aes()</code> mapping as an option for the layer itself. Similarly, we might want our fit line to be red, and we note from the documentation that the <code>stat_smooth()</code> layer takes a method argument that can be set; <code>"auto"</code> is the default for a non-linear smooth and <code>"lm"</code> will produce a linear fit.</p>
+<pre id=part3-11-ggplot_diamonds_carat_depth_mod_layers
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat),
+                alpha = 0.2) +
+     stat_smooth(data = dd,
+                 mapping = aes(x = carat,
+                               y = depth),
+                 color = "red",
+                 method = "lm")
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_33_ggplot_diamonds_carat_depth_mod_layers.png" /></p>
+</div>
+<p>As a general note, <code>ggplot2</code> enforces that all layers share the same scales. For this reason, we would not want to plot in one layer <code>x = carat, y = depth</code> and in another <code>x = carat, y = price</code>; all of the <code>y</code> values will be forced into a single scale, and because depth ranges up to ~70 while prices range up to ~18,000, the depth values would be indiscernible. This also applies to color mappings, if multiple layers utilize them.</p>
+<p>The <code>ggplot2</code> package enforces these rules for ease of understanding of plots that use multiple layers. For the same reasons, <code>ggplot2</code> doesn’t support multiple <em>y</em> axes (i.e., a “left” <em>y</em> axis and “right” <em>y</em> axis), nor does it natively support three-dimensional plots that are difficult to read on a two-dimensional surface, like paper or a computer monitor.<a href="#fn124" class="footnote-ref" id="fnref124"><sup>124</sup></a></p>
+</div>
+<div id="faceting" class="section level3 unnumbered hasAnchor">
+<h3>Faceting<a href="plotting-data-and-ggplot2.html#faceting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Faceting is one of the techniques that can be fairly difficult to do in other graphics packages, but is easy in <code>ggplot2</code>. Facets implement the idea of “small multiples” championed by Edward Tufte.<a href="#fn125" class="footnote-ref" id="fnref125"><sup>125</sup></a> Different subsets of the data are plotted in independent panels, but each panel uses the same axes (scales), allowing for easy comparisons across panels. In <code>ggplot2()</code>, we can add a facet specification by adding another function call to the “chain” of layer functions defining the plot. Faceting is almost always done on discrete columns of the input data frame, though below are some techniques for discretizing continuous columns.</p>
+<p>The first facet-specification function is <code>facet_wrap()</code>. It takes one required parameter, three less often used but occasionally helpful parameters, and a few more that we won’t discuss here.</p>
+<ol style="list-style-type: decimal">
+<li>The first parameter is a formula specifying the columns of the input data frame to facet by. For <code>facet_wrap()</code>, this formula is usually of the form <code>~ &lt;column&gt;</code>, with no “variable” specified to the left of the <code>~</code>. If we wish to facet on all combinations of multiple input columns, we can use <code>~ &lt;column_1&gt; + &lt;column_2&gt; + ...</code>.</li>
+<li>The <code>nrow =</code> parameter controls the number of rows of panels that should appear in the output.</li>
+<li>The <code>ncol =</code> parameter controls the number of columns of panels that should appear in the output. (The <code>nrow</code> times <code>ncol</code> parameters should be large enough to hold all of the needed panels. By default, <code>nrow</code> and <code>ncol</code> are determined automatically.)</li>
+<li>The <code>scales =</code> parameter can be set to <code>"fixed"</code> (the default), which specifies that all axes should be similarly scaled across panels. Setting this parameter to <code>"free_x"</code> allows the <em>x</em> axes to vary across panels, <code>"free_y"</code> allows the <em>y</em> axes to vary, and <code>"free"</code> allows both scales to vary. Because facets are usually designed to allow comparisons between panels, settings other than <code>"fixed"</code> should be avoided in most situations.</li>
+</ol>
+<p>Returning to the dotplots of the diamonds data, recall that there appeared to be some relationship between the “cut” and “depth” of diamonds, but in the previous plots, this relationship was difficult to see. Let’s plot the same thing as above, but this time facet on the cut column.</p>
+<pre id=part3-11-ggplot_diamonds_carat_depth_mod_layers_facet
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat),
+                alpha = 0.2) +
+     stat_smooth(data = dd,
+                 mapping = aes(x = carat,
+                               y = depth),
+                 color = "red",
+                 method = "lm") +
+     facet_wrap(~ cut)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_35_ggplot_diamonds_carat_depth_mod_layers_facet.png" /></p>
+</div>
+<p>Faceting this way produces a separate panel for each cut type, all on the same axes, but anything plot-specific (such as the fit lines) are computed independently. This reveals that “ideal” cut diamonds tend to have a depth of around 62, whereas lower-quality cuts deviate from this value. To facet on cut and color, the formula would be <code>~ cut + color</code>, and a panel would be created for each cut/color combination.</p>
+<p>The <code>facet_grid()</code> function works much like <code>facet_wrap()</code> but allows us to facet according to not one but two variables (or two combinations of multiple variables) simultaneously. One of the variables will vary across rows of panels, and the other will vary across columns. The first parameter is still a formula, but usually of the form <code>&lt;column_1&gt; ~ &lt;column_2&gt;</code>. Let’s replace the <code>facet_wrap(~ cut)</code> with <code>facet_grid(cut ~ color)</code>:</p>
+<pre id=part3-11-ggplot_diamonds_carat_depth_mod_layers_facet2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat),
+                alpha = 0.2) +
+     stat_smooth(data = dd,
+                 mapping = aes(x = carat,
+                               y = depth),
+                 color = "red",
+                 method = "lm") +
+     facet_grid(cut ~ color)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_37_ggplot_diamonds_carat_depth_mod_layers_facet2.png" /></p>
+</div>
+<p>As the number of facets increases, readability can decrease, but having cut along the rows and color along the columns certainly helps reveal trends. In this facet specification, we see that “fair” diamonds are relatively rare in the data set, and the largest diamonds tend to be premium or ideal cuts in poor colors (I and J). Producing PDFs with larger dimensions in <code>ggsave()</code> can make plots with many features more readable.</p>
+<p>Like <code>facet_wrap()</code>, <code>facet_grid()</code> can take a <code>scales =</code> parameter to allow panel <em>x</em> and <em>y</em> axes to vary, though again this isn’t generally recommended, as it makes panels difficult to compare visually. The <code>facet_grid()</code> function includes another optional parameter, <code>margins =</code>, which when set to <code>TRUE</code> adds “aggregate” panels for each column and row of panels. Here’s the plot with <code>facet_grid(cut ~ color, margins = TRUE)</code>:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_38_ggplot_diamonds_carat_depth_mod_layers_facet2_margins.png" /></p>
+</div>
+<p>When plotting a grid of facets, we can also use a period in the specification to indicate that the grid should consist of only a single row or column of panels. While <code>facet_wrap()</code> can also produce only a single row or grid, the <code>margins = TRUE</code> option can be used with <code>facet_grid()</code> to produce a row or column while simultaneously producing an aggregate panel. Here’s the same plot with <code>facet_grid(. ~ cut, margins = TRUE)</code>.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_39_ggplot_diamonds_carat_depth_grid_one_layer.png" /></p>
+</div>
+<p>Facets are usually created for different values of categorical data. An attempt to facet over all the different values in a continuous column could result in millions of panels! (Or, more likely, a crashed instance of R.) Still, occasionally we do want to facet over continuous data by producing individual discretized “bins” for values. Consider if we wanted to facet on diamond price/carat, categorized as “high” (at least $10,000) or “low” (less than $10,000). Unfortunately, the formulas taken by <code>facet_wrap()</code> and <code>facet_grid()</code> do not allow for vectorized expressions, so <code>facet_wrap(~ price/carat &lt; 10000)</code> won’t work.</p>
+<p>The solution is to first create a new column of the data frame before plotting, as in <code>dd$price_carat_low &lt;- dd$price/dd$carat &lt; 10000</code>, to create a new logical column, and then facet on the newly created column with <code>facet_wrap(~ price_carat_low)</code>.</p>
+<p>R also includes a function called <code>cut()</code> specifically for discretizing continuous vectors into factors. The first parameter is the vector to discretize, and the second parameter is either a number of (equal-sized) bins to break the input into, or a vector of breakpoints for the bins.</p>
+<pre id=part3-11-ggplot_diamonds_carat_depth_cut
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+dd$price_per_carat_category <- cut(dd$price/dd$carat, breaks = 6)
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = carat,
+                              y = depth,
+                              color = price/carat)) +
+     facet_wrap(~ price_per_carat_category)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_41_ggplot_diamonds_carat_depth_cut.png" /></p>
+</div>
+<p>The <code>cut()</code> can take a <code>labels =</code> parameter as well, for cases when the default labels aren’t sufficient.</p>
+</div>
+<div id="scales" class="section level3 unnumbered hasAnchor">
+<h3>Scales<a href="plotting-data-and-ggplot2.html#scales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each aesthetic used in a plot is associated with a scale, whether it be the <code>x</code> and <code>y</code> or even <code>color</code> or <code>size</code>. For faceted plots, usually any scale adjustments are shared across facets, and for each layer in a plot, all scale properties must be shared as well. The different types of scales — continuous for <code>x</code> and <code>y</code>, color values for <code>color</code>, sizes for <code>size</code> — can all be modified to change the scale name, range, locations of breaks (or tick-marks) and labels of the breaks. There’s more to say about scales than can be covered in this book, but we’ll try to hit the high points.</p>
+<p>Rather than continue plotting the diamonds data set, let’s load up a data frame more biologically relevant. This table, stored in a file called <a href="data/contig_stats.txt"><code>contig_stats.txt</code></a>, summarizes sequence statistics from a de novo genome assembly. Each row represents a “contig” from the assembly (a single sequence meant to represent a contiguous piece of the genome sequence produced from many overlapping sequenced pieces).</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_42_contig_stats.png" /></p>
+</div>
+<p>Each contig has an <code>Average_coverage</code> value, representing the average number of sequence reads covering each base in the assembled contig. These values can vary widely, potentially because of duplicated regions of the genome that were erroneously assembled into a single contig. The <code>Consensus_length</code> column indicates the length of the contig (in base pairs), and the <code>gccontent</code> column shows the percentage of G or C bases of the contig.</p>
+<pre id=part3-11-ggplot_contig_stats_table
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ctg_stats <- read.table("contig_stats.txt",
+                        header = TRUE,
+                        stringsAsFactors = FALSE)
+print(head(ctg_stats))
+</code></pre>
+<pre id=part3-11-ggplot_contig_stats_table_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+      ID Average_coverage Consensus_length gccontent
+1 NODE_2       49011.9000              604  0.206954
+2 NODE_3         319.4400              298  0.251678
+3 NODE_4         194.6960             8141  0.148508
+4 NODE_5         166.2010              338  0.248521
+5 NODE_6       15913.8000             2184  0.459249
+6 NODE_7          76.3737             5023  0.227752
+</code></pre>
+<p>Let’s produce a dotplot for this data with <code>Average_coverage</code> on the <code>x</code> axis and <code>Consensus_length</code> on the <code>y</code>.</p>
+<pre id=part3-11-ggplot_contig_stats_plot1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = ctg_stats, 
+                mapping = aes(x = Average_coverage,
+                              y = Consensus_length))
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_46_ggplot_ctg_stats1-2.png" /></p>
+</div>
+<p>The result isn’t very good. There are outliers on both axes, preventing us from seeing any trends in the data. Let’s adjust the <code>x</code> scale by adding a <code>scale_x_continuous()</code>, setting <code>name =</code> to fix up the name of the scale, and using <code>limits =</code> to set the limits of the scale to <code>c(0, 1000)</code>. We’ll also use the corresponding <code>scale_y_continuous()</code> to set a proper name for the <em>y</em> axis. (For discrete scales, such as in the boxplot example above, the corresponding functions are <code>scale_x_discrete()</code> and <code>scale_y_discrete()</code>.)</p>
+<pre id=part3-11-ggplot_contig_stats_plot2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = ctg_stats, 
+                mapping = aes(x = Average_coverage,
+                              y = Consensus_length)) +
+     scale_x_continuous(name = "Coverage", limits = c(0, 1000)) +
+     scale_y_continuous(name = "Length")
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_48_ggplot_ctg_stats2-2.png" /></p>
+</div>
+<p>This is much better. It appears that most of the longer contigs have a coverage of about 100X. Sadly, this strategy leaves out many large data points to show the trends in the small majority. Instead, we should either log-adjust the data by plotting <code>aes(x = log(Average_coverage), y = Consensus_length)</code>, or log-adjust the scale. If we log-adjusted the data, we’d have to remember that the values are adjusted. It makes better sense to modify the scale itself, and plot the original data on the nonlinear scale. This can be done by supplying a <code>trans =</code> parameter to the scale, and specifying the name of a supported transformation function to apply to the scale as a single-element character vector. In fact, let’s make both the <code>x</code> and <code>y</code> scales log-adjusted. While we’re at it, we’ll specify explicit break marks for the scales, as well as custom labels for those break marks.</p>
+<pre id=part3-11-ggplot_contig_stats_plot3
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = ctg_stats, 
+                mapping = aes(x = Average_coverage,
+                              y = Consensus_length)) +
+     scale_x_continuous(name = "Coverage",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_y_continuous(name = "Length",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K"))
+</code></pre>
+<p>The result is below left, and it looks quite good. For a flourish, we can add an <code>annotation_logticks(base = 10)</code> to get logarithmically scaled tick-marks, shown below right.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_50_ggplot_ctg_stats3-2.png" /></p>
+</div>
+<p>Other adjustment functions we could have used for the <code>trans =</code> parameter include <code>"log2"</code> or <code>"sqrt"</code>, though <code>"log10"</code> is a common choice with which most viewers will be familiar.</p>
+<p>One of the issues left with our plot is that there are far too many data points to fit into this small space; this plot has an “overplotting” problem. There are a variety of solutions for overplotting, including random sampling, setting transparency of points, or using a different plot type altogether. We’ll turn this plot into a type of heat map, where points near each other will be grouped into a single “cell,” the color of which will represent some statistic of the points in that cell.<a href="#fn126" class="footnote-ref" id="fnref126"><sup>126</sup></a></p>
+<p>There are two layer functions we can use for such a heat map, <code>stat_summary_2d()</code> and <code>stat_summary_hex()</code>. The former produces square cells, and the latter hexagons. (The <code>stat_summary_hex()</code> layer requires that we have the <code>"binhex"</code> package installed via <code>install.packages("binhex")</code> in the interactive console.) We’ll use <code>stat_summary_hex()</code>, as it’s a bit more fun. This layer function requires more than the usual number of parameters and aesthetics:</p>
+<ol style="list-style-type: decimal">
+<li>The <code>data =</code> data frame to plot (as usual).</li>
+<li>The <code>mapping =</code> aesthetics to set via <code>aes()</code> (as usual), requiring <code>x</code>, the variable to bin by on the <em>x</em> axis; <code>y</code>, the variable to bin by on the <em>y</em> axis; and <code>z</code>, the variable to color cells by.</li>
+<li>A <code>fun =</code> parameter, specifying the function to apply to the <code>z</code> values for each cell to determine the color.</li>
+</ol>
+<p>This might be a bit confusing without an example, so let’s replace the dotplot layer with a <code>stat_summary_hex()</code> layer plotting <code>x</code> and <code>y</code> the same way, but coloring cells by the mean <code>gccontent</code> of dots within that cell.</p>
+<pre id=part3-11-ggplot_contig_stats_plot4
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     stat_summary_hex(data = ctg_stats,
+                      mapping = aes(x = Average_coverage,
+                                    y = Consensus_length,
+                                    z = gccontent),
+                      fun = mean) +
+     scale_x_continuous(name = "Coverage",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_y_continuous(name = "Length",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     annotation_logticks(base = 10)
+</code></pre>
+<p>The result, below left, has cells colored by the <code>mean</code> function applied to all of the <code>gccontent</code> values (from the <code>z</code> aesthetic), but it doesn’t reveal how many points are present in each cell. For this, we can use <code>fun = length</code>, which returns the number of elements in a vector rather than the mean, resulting in the plot below right.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_52_ggplot_ctg_stats4-2.png" /></p>
+</div>
+<p>Like the <code>x</code> and <code>y</code> locations on the scales, the colors of the cells also exist on a scale. In this case, we can control it with the modifier <code>scale_fill_gradient()</code>. (Lines and other unfilled colors are controlled with <code>scale_color_gradient()</code>, and discrete color scales are controlled with <code>scale_fill_descrete()</code> and <code>scale_color_discrete()</code>.) This means that color scales can be named, transformed, and be given limits, breaks, and labels. Below, the string <code>"#BFBCFF"</code> specifies the light purple color at the top of the scale, based on the RGB color-coding scheme.</p>
+<pre id=part3-11-ggplot_contig_stats_plot5
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     stat_summary_hex(data = ctg_stats,
+                      mapping = aes(x = Average_coverage,
+                                    y = Consensus_length,
+                                    z = gccontent),
+                      fun = length) +
+     scale_x_continuous(name = "Coverage",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_y_continuous(name = "Length",
+                        trans = "log10",
+                        breaks = c(100, 1000, 10000, 100000),
+                        labels = c("100", "1K", "10K", "100K")) +
+     scale_fill_gradient(name = "Count",
+                         trans = "log10",
+                         breaks = c(1, 10, 100, 1000),
+                         low = "black",
+                         high = "#BFBCFF") +
+     annotation_logticks(base = 10)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_54_ggplot_ctg_stats5-2.png" /></p>
+</div>
+<p>We’ve also included a <code>trans = "log10"</code> adjustment in this color scale, indicating that it can be transformed just as other continuous scales. Using a <code>log10</code> adjustment on a color scale may or may not be a good idea. For this data set, it more clearly illustrates the distribution of contigs in the plotted space, but makes comparisons between cells and to the legend more difficult.</p>
+<div id="the-rgb-color-system" class="section level4 unnumbered hasAnchor callout-box">
+<h4>The RGB Color System<a href="plotting-data-and-ggplot2.html#the-rgb-color-system" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>RBG stands for red, green, blue. Computer monitors and other digital devices display colors by the varying intensities of tiny red, green, and blue light-emitting devices. A triplet of these makes up a single pixel in the display. The RGB scheme encodes a color as <code>#&lt;RR&gt;&lt;GG&gt;&lt;BB&gt;</code>, where <code>&lt;RR&gt;</code> encodes the amount of red light, <code>&lt;GG&gt;</code> the amount of green, and <code>&lt;BB&gt;</code> the amount of blue. These values can range from <code>00</code> (off) to <code>FF</code> (fully on); these are numbers encoded in hexadecimal format, meaning that after <code>9</code>, the next digit is <code>A</code>, then <code>B</code>, and so on, up to <code>F</code>. (Counting from <code>49</code>, for example, the next numbers are <code>4A</code>, <code>4B</code>, . . . <code>4F</code>, <code>50</code>, <code>51</code>, etc.) Why red, green, and blue? Most humans have three types of cone cells in their eyes, and each is most responsive to either red, green, or blue light! An RGB scheme can thus represent nearly all colors that humans can see, though in the end we are limited by the gradations (<code>#&lt;RR&gt;&lt;GG&gt;&lt;BB&gt;</code> format can only take about 16.7 million different values) and the quality of the light-emitting devices (many of which can’t produce very bright light or be fully turned off in operation). Color blindness is a genetic anomaly caused by having only one or two of the three cone types, and a few rare but lucky individuals possess four cone types along with greater acuity in color vision (tetrachromacy).</p>
+</div>
+<p>Something to consider when devising color scales is that not all of them are created equally—a fair percentage of viewers will have some form of color blindness, and another fair percentage of viewers will prefer to print a plot on a black-and-white printer. The <code>scale_color_brewer()</code> function helps the user select good color palettes; it is based on the work found at <a href="colorbrewer2.org">colorbrewer2.org</a>. Other scale types can be similarly adjusted, including alpha (transparency), and the sizes of points and lines.</p>
+</div>
+<div id="coordinates" class="section level3 unnumbered hasAnchor">
+<h3>Coordinates<a href="plotting-data-and-ggplot2.html#coordinates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In addition to modifying properties of the scales, we can also modify how those scales are interpreted in the overall plot and in relation to each other. Some of the coordinate modifications are less common, but others (like <code>coord_equal()</code>, below) are handy. Often, coordinate adjustments are illustrated by considering a dotplot or barplot in polar coordinates.</p>
+<pre id=part3-11-ggplot_diamonds_polar
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = diamonds,
+                mapping = aes(x = carat,
+                              y = price,
+                              color = cut)) +
+     coord_polar(theta = "x")
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_56_ggplot_diamonds_polar-2.png" /></p>
+</div>
+<p>The <code>coord_polar()</code> function requires a <code>theta =</code> parameter to indicate which axis (<code>x</code> or <code>y</code>) should be mapped to the rotation angle; the remaining axis is mapped to the radius. This coordinate modification can be used to produce interesting plots, especially when the geom used is <code>"bar"</code> or <code>"line"</code>.</p>
+<p>The <code>coord_flip()</code> function can be used to flip the <code>x</code> and <code>y</code> axes. This feature is especially useful when the desire is to produce a horizontal histogram or boxplot.</p>
+<pre id=part3-11-ggplot_diamonds_flip
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_bar(data = diamonds,
+              mapping = aes(x = cut, fill = clarity)) +
+     coord_flip()
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_58_ggplot_diamonds_flip-2.png" /></p>
+</div>
+<p>When setting the <code>fill</code> aesthetic, the subbars are stacked, which is the default. For a plot with bars presented side by side, one can add the <code>position = "dodge"</code> argument to the <code>geom_bar()</code> layer call.</p>
+<p>For one last coordinate adjustment, the values mapped to the horizontal and vertical axes are sometimes directly comparable, but the range is different. In our random subsample of diamonds <code>dd</code>, for example, the <code>x</code> and <code>z</code> columns are both measured in millimeters (representing the “width” and “height” of the diamond), but the <code>z</code> values are generally smaller. For illustration, a single unit on the horizontal axis should be the same size as a single unit on the vertical axis, but <code>ggplot2</code> doesn’t ensure such sizing by default. We can specify the size by adding a <code>coord_equal()</code> coordinate adjustment.</p>
+<pre id=part3-11-ggplot_diamonds_equal
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = dd,
+                mapping = aes(x = x, y = z)) +
+     coord_equal()
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_60_ggplot_diamonds_equal-1.png" /></p>
+</div>
+<p>Notice that without <code>coord_equal()</code> in the above left, the axes sizes aren’t quite comparable, but the grid marks are perfect squares in the above right. The <code>coord_equal()</code> adjustment can also be made with log-adjusted plots, and can sometimes produce nicer output even if the two axes aren’t in the same units. Here’s a comparison with and without <code>coord_equal()</code> applied to the final version of the contig length-versus-coverage plot above.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_61_ggplot_ctg_stats_equal-2.png" /></p>
+</div>
+<p>As always, there are a number of other coordinate adjustments that are possible, and we’ve only covered some of the most useful or interesting. See <a href="https://ggplot2.tidyverse.org/reference/index.html" class="uri">https://ggplot2.tidyverse.org/reference/index.html</a> for the full documentation.</p>
+</div>
+<div id="theming-annotations-text-and-jitter" class="section level3 unnumbered hasAnchor">
+<h3>Theming, Annotations, Text, and Jitter<a href="plotting-data-and-ggplot2.html#theming-annotations-text-and-jitter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far, we’ve covered customizing how data are plotted and axes/coordinates are represented, but we haven’t touched on “ancillary” properties of the plot like titles, background colors, and font sizes. These are part of the “theme” of the plot, and many aspects of the theme are adjusted by the <code>theme()</code> function. The exception is the addition of a title to a plot, which is accomplished with the <code>ggtitle()</code> function.</p>
+<p>The text-based parts of a plot are organized hierarchically (see the documentation for <code>theme()</code> for the full list). For example, modifying the <code>text =</code> parameter will modify all text elements, while modifying <code>axis.text =</code> adjusts the tick labels along both axes, and <code>axis.text.x =</code> specifies properties of only the <em>x</em>-axis tick labels. Other text-theme elements include <code>legend.text</code>, <code>axis.title</code> (for axis names), <code>plot.title</code>, and <code>strip.text</code> (for facet labels).</p>
+<p>To adjust properties of these elements, we use a call to <code>element_text()</code> within the call to <code>theme()</code>. We can produce a quick plot counting diamonds by their cut and clarity, for example, setting a plot title and changing the overall text size to <code>16</code>, and just the title size to <code>20</code>. Shrinking text can be especially helpful for cases when facet labels or theme labels are too large to fit their respective boxes.</p>
+<pre id=part3-11-ggplot_count_theme
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_bar(data = dd, mapping = aes(x = clarity, fill = cut)) +
+     ggtitle("Diamond Counts by Clarity and Cut") +
+     theme(text = element_text(size = 16)) +
+     theme(plot.title = element_text(size = 20))
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_63_ggplot_counts_theme-2.png" /></p>
+</div>
+<p>The labels used for breaks are sometimes longer than will comfortably fit on the axes. Aside from changing their size, it sometimes helps to angle them by 30 or 45 degrees. When doing so, it also looks best to set <code>hjust = 1</code> to right-justify the labels.</p>
+<pre id=part3-11-ggplot_count_theme_angle
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_bar(data = dd, mapping = aes(x = clarity, fill = cut)) +
+     ggtitle("Diamond Counts by Clarity and Cut") +
+     theme(text = element_text(size = 16)) +
+     theme(plot.title = element_text(size = 20)) +
+     theme(axis.text.x = element_text(angle = 45, hjust = 1))
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_65_ggplot_counts_theme_angle-2.png" /></p>
+</div>
+<p>As this example might suggest, theming is itself a complex topic within <code>ggplot2</code>, and there are many options and special internal functions modifying nearly all aspects of a plot.</p>
+<p>Although <code>ggsave()</code> accepts <code>width =</code> and <code>height =</code> parameters specifying the overall size of the output file, because these parameters include the legend and axis labels, the plotting region has its aspect ratio determined automatically. Indicating that the plotting region should take a specific aspect ratio (defined as the height of the region over the width) also occurs within a <code>theme()</code> call.</p>
+<pre id=part3-11-ggplot_count_theme_aspect
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_bar(data = dd, mapping = aes(x = clarity, fill = cut)) +
+     ggtitle("Diamond Counts by Clarity and Cut") +
+     theme(text = element_text(size = 16)) +
+     theme(plot.title = element_text(size = 20)) +
+     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+     theme(aspect.ratio = 1.5)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_67_ggplot_counts_theme_aspect-2.png" /></p>
+</div>
+<p>The observant reader might have noticed that, by default, all plotting regions in <code>ggplot2</code> use a light gray background. This is intentional: the idea is that a plot with a white background, when embedded into a manuscript, will leave a visual “hole,” interrupting the flow of the text. The shade of gray chosen for the default background is meant to blend in with the overall shade of a column of text.</p>
+<p>Some users prefer to use a more traditional white background, but doing so requires adjusting multiple elements, including the background itself, grid lines, and so on. So, <code>ggplot2</code> includes a number of functions that can change the overall theme, such as <code>theme_bw()</code>.</p>
+<pre id=part3-11-ggplot_points_theme_bw
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_point(data = dd, mapping = aes(x = price, 
+                                         y = carat, color = clarity)) +
+     facet_wrap(~ cut) +
+     theme_bw()
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_69_ggplot_points_theme_styles-2.png" /></p>
+</div>
+<p>Because calls to <code>theme_bw()</code> et al. modify all theme elements, if we wish to also modify individual theme elements with <code>theme()</code>, those must be added to the chain after the call to <code>theme_bw()</code>.</p>
+<p>One feature of <code>ggplot2</code> not yet covered is the use of text within plots, which are not theme adjustments but rather special types of plot layers. The <code>geom_text()</code> layer function makes it easy to create “dotplots” where each point is represented by a text label rather than a point. Here’s an example plotting the first 30 diamonds by carat and price, labeled by their cut.</p>
+<pre id=part3-11-ggplot_geom_text
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+     geom_text(data = diamonds[1:30, ], 
+               mapping = aes(x = carat, y = price, label = cut))
+</code></pre>
+<p>In the result (below left), it’s difficult to see that multiple diamonds are plotted in the same location in some cases. This type of overplotting can happen with points as well; adding a <code>position = "jitter"</code> option to the <code>geom_text()</code> layer slightly modifies the location of all the geoms so that they stand out (below right).</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_71_ggplot_diamonds_geom_text.png" /></p>
+</div>
+<p>Various aesthetics of the text can be mapped to values of the data, including <code>size</code>, <code>angle</code>, <code>color</code>, and <code>alpha</code>. As with other layers, to change the font size (or other property) for all points to a constant value, the instruction should be given outside of the <code>aes()</code> call.</p>
+<p>Individual text labels — as well as individual line segments, rectangles, points, and other geoms — can be added with an <code>annotate()</code> layer. Such a layer takes as its first argument the name of the geom that will be added, and subsequently any aesthetics that should be set for that geom (without a call to <code>aes()</code>). Here’s an illustration, finishing out the previous length/coverage plot example. (The <code>hjust = 0</code> in the text annotation indicates that the text should be left-justified with respect to the reference <code>x</code> and <code>y</code>.)</p>
+<pre id=part3-11-ggplot_contigs_annotated
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+p <- ggplot() +
+  stat_summary_hex(data = ctg_stats,
+                   mapping = aes(x = Average_coverage,
+                                 y = Consensus_length,
+                                 z = gccontent),
+                   fun = length) +
+  scale_x_continuous(name = "Coverage",
+                     trans = "log10",
+                     breaks = c(100, 1000, 10000, 100000),
+                     labels = c("100", "1K", "10K", "100K")) +
+  scale_y_continuous(name = "Length",
+                     trans = "log10",
+                     breaks = c(100, 1000, 10000, 100000),
+                     labels = c("100", "1K", "10K", "100K")) +
+  scale_fill_gradient(name = "Count",
+                      trans = "log10",
+                      breaks = c(1, 10, 100, 1000),
+                      low = "black",
+                      high = "#BFBCFF") +
+  annotation_logticks(base = 10) +
+  coord_equal() +
+  theme_bw() +
+  annotate("rect", xmin = 80, xmax = 150,
+                   ymin = 1000, ymax = 400000,
+                   alpha = 0.2, fill = "red") +
+  annotate("text", x = 200, y = 100000,
+                   color = "darkred",
+                   label = "Main Assembly Contigs", hjust = 0)
+</code></pre>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_73_ggplot_contig_stats_equal_annotated-2.png" /></p>
+</div>
+<p>Ideally, we would strive to produce publication-ready graphics with well-documented and easily editable code. In some cases, however, adjustments or annotations are more easily added in graphical editing programs like Adobe Photoshop or Illustrator (or open-source alternatives like Inkscape), so long as the interpretation and meaning of the data are not altered.</p>
+<div id="exercises-44" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="plotting-data-and-ggplot2.html#exercises-44" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Use <code>ggplot2</code> to explore the <a href="data/trio.sample.vcf"><code>trio.sample.vcf</code></a> we analyzed in previous chapters. Can you effectively visualize the distribution of SNP locations across the chromosomes?</p></li>
+<li><p>Running the <code>data()</code> function (with no parameters) in the interactive R console will list the built-in data sets that are available. For example, <code>USArrests</code> describes arrest statistics in US states in 1973, with columns for per-capita rates of murder, rape, and assault, and also one for percentage of state residents in urban areas (see <code>help(USArrests)</code> for details).</p>
+<p>First, see if you can reproduce this plot, where there is a facet for each state, and a bar for each crime type:</p>
+<div class="fig center" style="width: 100%">
+<img src="images/part3-12-plotting-data-and-ggplot2.Rmd.images/III.12_74_ggplot_crime_ex1.png" />
+</div>
+<p>You might need to first manipulate the data by creating a column for state names (rather than using the row names) and “gathering” some of the columns with <code>tidyr</code>.</p>
+<p>Next, see if you can reproduce the plot, but in such a way that the panels are ordered by the overall crime rate (Murder + Rape + Assault).</p></li>
+<li><p>Find at least one other way to illustrate the same data. Then, find a way to incorporate each state’s percentage of population in urban areas in the visualization.</p></li>
+<li><p>Generate a data set by using observation or experimentation, and visualize it!</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="121">
+<li id="fn121"><p>The idea of a grammar of graphics was first introduced in 1967 by Jacques Bertin in his book <em>Semiologie Graphique</em> (Paris: Gauthier-Villars, 1967) and later expanded upon in 2005 by Leland Wilkinson et al. in <em>The Grammar of Graphics</em> (New York: Springer, 2005). Hadley Wickham, “A Layered Grammar of Graphics,” <em>Journal of Computational and Graphical Statistics</em> 19 (2010): 3–28, originally described the R implementation.<a href="plotting-data-and-ggplot2.html#fnref121" class="footnote-back">↩︎</a></p></li>
+<li id="fn122"><p>Given the information in previous chapters on objects, you might have guessed that the type of object returned by <code>ggplot()</code> is a list with class attribute set, where the class is set to <code>"gg"</code> and <code>"ggplot"</code>. Further, a specialized `<code>+.gg`()</code> method is defined for objects of the <code>"gg"</code> class, and <code>+</code> is not just syntactic sugar for <code>`+`()</code>, but also a generic function that is dispatched!<a href="plotting-data-and-ggplot2.html#fnref122" class="footnote-back">↩︎</a></p></li>
+<li id="fn123"><p>If you are reading this in black-and-white, then you’ll have to trust that the colors differentiate the points. Later we’ll discuss the importance of choosing color schemes that work in both grayscale and for colorblind readers, though we haven’t covered the code concepts yet to do so.<a href="plotting-data-and-ggplot2.html#fnref123" class="footnote-back">↩︎</a></p></li>
+<li id="fn124"><p>Yet we can quickly explore multidimensional data by using additional aesthetics like color, size, shape, alpha, and so on. If multiple <em>y</em> axes or three-dimensional plots are required, some other R packages can provide these features.<a href="plotting-data-and-ggplot2.html#fnref124" class="footnote-back">↩︎</a></p></li>
+<li id="fn125"><p>Many in the data visualization community consider Tufte’s books, especially <em>The Visual Display of Quantitative Information</em> (Cheshire, CT: Graphics Press, 1983), to be staples. These volumes are beautiful in their own right as examples of information presentation.<a href="plotting-data-and-ggplot2.html#fnref125" class="footnote-back">↩︎</a></p></li>
+<li id="fn126"><p>These functions can be used to create heat maps, but generally the rows and columns of a heat map are orderable in different ways. Many packages are available for plotting heat maps of various sorts in R, perhaps one of the more interesting is the <code>NeatMap</code> package, which is based on <code>ggplot2</code>.<a href="plotting-data-and-ggplot2.html#fnref126" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="objects-and-classes-in-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-12-plotting-data-and-ggplot2.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

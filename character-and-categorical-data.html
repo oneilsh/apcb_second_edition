@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 35 Character and Categorical Data | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 35 Character and Categorical Data | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 35 Character and Categorical Data | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 35 Character and Categorical Data | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-frames.html"/>
+<link rel="next" href="split-apply-combine.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i>Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html"><i class="fa fa-check"></i><b>35</b> Character and Categorical Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#splitting-and-binding-columns"><i class="fa fa-check"></i>Splitting and Binding Columns</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#detecting-and-in"><i class="fa fa-check"></i>Detecting and %in%</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#pasting"><i class="fa fa-check"></i>Pasting</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#renaming-factor-levels"><i class="fa fa-check"></i>Renaming Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#reordering-factor-levels"><i class="fa fa-check"></i>Reordering Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#final-notes-about-factors"><i class="fa fa-check"></i>Final Notes about Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="split-apply-combine.html"><a href="split-apply-combine.html"><i class="fa fa-check"></i><b>36</b> Split, Apply, Combine</a>
+<ul>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#a-single-gene-test-formulas"><i class="fa fa-check"></i>A Single Gene Test, Formulas</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#attack-of-the-functions"><i class="fa fa-check"></i>Attack of the Functions!</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#collecting-parameters-with"><i class="fa fa-check"></i>Collecting Parameters with …</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#functions-are-everywhere"><i class="fa fa-check"></i>Functions Are Everywhere</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#sugary-data-frame-split-apply-combine"><i class="fa fa-check"></i>Sugary Data Frame Split-Apply-Combine</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#more-sugar-optional-parameters-summarize"><i class="fa fa-check"></i>More Sugar, Optional Parameters, Summarize</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#gene-expression-finished"><i class="fa fa-check"></i>Gene Expression, Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html"><i class="fa fa-check"></i><b>37</b> Reshaping and Joining Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#gathering-for-tidiness"><i class="fa fa-check"></i>Gathering for Tidiness</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#ungathering-with-spread"><i class="fa fa-check"></i>Ungathering with <code>spread()</code></a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#splitting-columns"><i class="fa fa-check"></i>Splitting Columns</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#joiningmerging-data-frames-cbind-and-rbind"><i class="fa fa-check"></i>Joining/Merging Data Frames, <code>cbind()</code> and <code>rbind()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="procedural-programming.html"><a href="procedural-programming.html"><i class="fa fa-check"></i><b>38</b> Procedural Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#conditional-looping-with-while-loops"><i class="fa fa-check"></i>Conditional Looping with While-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-i"><i class="fa fa-check"></i>Generating Truncated Random Data, Part I</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#if-statements"><i class="fa fa-check"></i>If-Statements</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-ii"><i class="fa fa-check"></i>Generating Truncated Random Data, Part II</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#for-loops"><i class="fa fa-check"></i>For-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#a-functional-extension"><i class="fa fa-check"></i>A Functional Extension</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html"><i class="fa fa-check"></i><b>39</b> Objects and Classes in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html#creating-our-own-classes"><i class="fa fa-check"></i>Creating Our Own Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html"><i class="fa fa-check"></i><b>40</b> Plotting Data and ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#a-brief-introduction-to-base-r-graphics"><i class="fa fa-check"></i>A Brief Introduction to Base-R Graphics</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#overview-of-ggplot2-and-layers"><i class="fa fa-check"></i>Overview of ggplot2 and Layers</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#smart-defaults-specialized-layer-functions"><i class="fa fa-check"></i>Smart Defaults, Specialized Layer Functions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#more-aesthetics-and-mathematical-expressions"><i class="fa fa-check"></i>More Aesthetics and Mathematical Expressions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#faceting"><i class="fa fa-check"></i>Faceting</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#scales"><i class="fa fa-check"></i>Scales</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#coordinates"><i class="fa fa-check"></i>Coordinates</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#theming-annotations-text-and-jitter"><i class="fa fa-check"></i>Theming, Annotations, Text, and Jitter</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="character-and-categorical-data" class="section level1 hasAnchor" number="35">
+<h1><span class="header-section-number">Chapter 35</span> Character and Categorical Data<a href="character-and-categorical-data.html#character-and-categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Scientific data sets, especially those to be analyzed statistically, commonly contain “categorical” entries. If each row in a data frame represents a single measurement, then one column might represent whether the measured value was from a “male” or “female,” or from the “control” group or “treatment” group. Sometimes these categories, while not numeric, have an intrinsic order, like “low,” “medium,” and “high” dosages.</p>
+<p>Sadly, more often than not, these entries are not encoded for easy analysis. Consider the tab-separated file <a href="data/expr_long_coded.txt"><code>expr_long_coded.txt</code></a>, where each line represents an (normalized) expression reading for a gene (specified by the ID column) in a given sample group. This experiment tested the effects of a chemical treatment on an agricultural plant species. The sample group encodes information about what genotype was tested (either <code>C6</code> or <code>L4</code>), the treatment applied to the plants (either <code>control</code> or <code>chemical</code>), the tissue type measured (either <code>A</code>, <code>B</code>, or <code>C</code> for leaf, stem, or root), and numbers for statistical replicates (<code>1</code>, <code>2</code>, or <code>3</code>).</p>
+<pre id=part3-07-data
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+id  annotation  expression  sample
+LQ00X000020 Hypothetical protein    5.024142433 C6_control_A1
+LQ00X000020 Hypothetical protein    4.646697026 C6_control_A3
+LQ00X000020 Hypothetical protein    4.986591902 C6_control_B1
+LQ00X000020 Hypothetical protein    5.164291761 C6_control_B2
+LQ00X000020 Hypothetical protein    5.348809843 C6_control_B3
+LQ00X000020 Hypothetical protein    5.519392911 C6_control_C1
+LQ00X000020 Hypothetical protein    5.305463561 C6_control_C2
+LQ00X000020 Hypothetical protein    5.535279863 C6_control_C3
+LQ00X000020 Hypothetical protein    4.831259167 C6_chemical_A1
+LQ00X000020 Hypothetical protein    4.784184435 C6_chemical_A3
+LQ00X000020 Hypothetical protein    5.577740866 C6_chemical_B1
+</code></pre>
+<p>Initially, we’ll read the table into a data frame. For this set of data, we’ll likely want to work with the categorical information independently, for example, by extracting only values for the chemical treatment. This would be much easier if the data frame had individual columns for <code>genotype</code>, <code>treatment</code>, <code>tissue</code>, and <code>replicate</code> as opposed to a single, all-encompassing <code>sample</code> column.</p>
+<p>A basic installation of R includes a number of functions for working with character vectors, but the <code>stringr</code> package (available via <code>install.packes("stringr")</code> on the interactive console) collects many of these into a set of nicely named functions with common options. For an overview, see <code>help(package = "stringr")</code>, but in this chapter we’ll cover a few of the most important functions from that package.</p>
+<pre id=part3-07-read_table
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+library(stringr)
+
+expr_long <- read.table("expr_long_coded.txt",
+                        header = TRUE,
+                        sep = "\t",
+                        stringsAsFactors = FALSE)
+</code></pre>
+<div id="splitting-and-binding-columns" class="section level3 unnumbered hasAnchor">
+<h3>Splitting and Binding Columns<a href="character-and-categorical-data.html#splitting-and-binding-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>str_split_fixed()</code> function from the <code>stringr</code> package operates on each element of a character vector, splitting it into pieces based on a pattern. With this function, we can split each element of the <code>expr_long$sample</code> vector into three pieces based on the pattern <code>"_"</code>. The “pattern” could be a regular expression, using the same syntax as used by <a href="patterns-regular-expressions.html#regular-expressions">Python</a> (and similar to that used by <a href="patterns-regular-expressions.html#sed">sed</a>).</p>
+<pre id=part3-07-split
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_split <- str_split_fixed(expr_long$sample, "_", 3)
+print(head(sample_split))
+</code></pre>
+<p>The value returned by the <code>str_split_fixed()</code> function is a matrix: like vectors, matrices can only contain a single data type (in fact, they are vectors with attributes specifying the number of rows and columns), but like data frames they can be accessed with <code>[&lt;row_selector&gt;, &lt;column_selector&gt;]</code> syntax. They may also have row and column names.</p>
+<pre id=part3-07-post_split
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+     [,1] [,2]      [,3]
+[1,] "C6" "control" "A1"
+[2,] "C6" "control" "A3"
+[3,] "C6" "control" "B1"
+[4,] "C6" "control" "B2"
+[5,] "C6" "control" "B3"
+[6,] "C6" "control" "C1"
+</code></pre>
+<p>Anyway, we’ll likely want to convert the matrix into a data frame using the <code>data.frame()</code> function, and assign some reasonable column names to the result.</p>
+<pre id=part3-07-rename
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_split_df <- data.frame(sample_split)
+colnames(sample_split_df) <- c("genotype", "treatment", "tissuerep")
+</code></pre>
+<p>At this point, we have a data frame <code>expr_long</code> as well as <code>sample_split_df</code>. These two have the same number of rows in a corresponding order, but with different columns. To get these into a single data frame, we can use the <code>cbind()</code> function, which binds such data frames by their columns, and only works if they contain the same number of rows.</p>
+<pre id=part3-07-cbind
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split <- cbind(expr_long, sample_split_df)
+</code></pre>
+<p>A quick <code>print(head(expr_long_split))</code> lets us know if we’re headed in the right direction.</p>
+<pre id=part3-07-cbind_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id           annotation expression        sample genotype treatment
+1 LQ00X000020 Hypothetical protein   5.024142 C6_control_A1       C6   control
+2 LQ00X000020 Hypothetical protein   4.646697 C6_control_A3       C6   control
+3 LQ00X000020 Hypothetical protein   4.986592 C6_control_B1       C6   control
+4 LQ00X000020 Hypothetical protein   5.164292 C6_control_B2       C6   control
+5 LQ00X000020 Hypothetical protein   5.348810 C6_control_B3       C6   control
+6 LQ00X000020 Hypothetical protein   5.519393 C6_control_C1       C6   control
+  tissuerep
+1        A1
+2        A3
+3        B1
+4        B2
+5        B3
+6        C1
+</code></pre>
+<p>At this point, the number of columns in the data frame has grown large, so <code>print()</code> has elected to wrap the final column around in the printed output.</p>
+</div>
+<div id="detecting-and-in" class="section level3 unnumbered hasAnchor">
+<h3>Detecting and %in%<a href="character-and-categorical-data.html#detecting-and-in" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We still don’t have separate columns for <code>tissue</code> and <code>replicate</code>, but we do have this information encoded together in a <code>tissuerep</code> column. Because these values are encoded without a pattern to obviously split on, <code>str_split_fixed()</code> may not be the most straightforward solution.</p>
+<p>Although any solution assuming <em>a priori</em> knowledge of large data set contents is dangerous (as extraneous values have ways of creeping into data sets), a quick inspection of the data reveals that the tissue types are encoded as either <code>A</code>, <code>B</code>, or <code>C</code>, with apparently no other possibilities. Similarly, the replicate numbers are <code>1</code>, <code>2</code>, and <code>3</code>.</p>
+<p>A handy function in the <code>stringr</code> package detects the presence of a pattern in every entry of a character vector, returning a logical vector. For the column <code>tissuerep</code> containing <code>"A1", "A3", "B1", "B2", "B3", "C1", ...</code>, for example, str_detect(expr_long_split$tissuerep, “A”) would return the logical vector <code>TRUE, TRUE, FALSE, FALSE, FALSE, ...</code>. Thus we can start by creating a new <code>tissue</code> column, initially filled with <code>NA</code> values.</p>
+<pre id=part3-07-tissue_na
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split$tissue <- NA
+</code></pre>
+<p>Then we’ll use selective replacement to fill this column with the value <code>"A"</code> where the <code>tissuerep</code> column has an <code>"A"</code> as identified by <code>str_detect()</code>. Similarly for <code>"B"</code> and <code>"C"</code>.</p>
+<pre id=part3-07-tissue_str_det
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "A")] <- "A"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "B")] <- "B"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "C")] <- "C"
+</code></pre>
+<p>In chapter 37, “<a href="reshaping-and-joining-data-frames.html#reshaping-and-joining-data-frames">Reshaping and Joining Data Frames</a>,” we’ll also consider more advanced methods for this sort of pattern-based column splitting. As well, although we’re working with columns of data frames, it’s important to remember that they are still vectors (existing as columns), and that the functions we are demonstrating primarily operate on and return vectors.</p>
+<p>If our assumption, that <code>"A"</code>, <code>"B"</code>, and <code>"C"</code> were the only possible tissue types, was correct, there should be no <code>NA</code> values left in the <code>tissue</code> column. We should verify this assumption by attempting to print all rows where the tissue column is <code>NA</code> (using the <code>is.na()</code> function, which returns a logical vector).</p>
+<pre id=part3-07-tissue_str_check
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(expr_long_split[is.na(expr_long_split$tissue), ]) # should print 0 rows
+</code></pre>
+<p>In this case, a data frame with zero rows is printed. There is a possibility that tissue types like <code>"AA"</code> have been recoded as simple <code>"A"</code> values using this techniqu — to avoid this outcome, we could use a more restrictive regular expression in the <code>str_detect()</code>, such as <code>"^A\d$"</code>, which will only match elements that start with a single <code>"A"</code> followed by a single digit. See chapter 12, “<a href="#patterns-regular-expressio0ns">Patterns (Regular Expressions)</a>,” and chapter 23, “<a href="string-tips-and-regular-expressions.html#string-tips-and-regular-expressions">String Tips and Regular Expressions</a>,” for more information on regular-expression patterns.</p>
+<p>A similar set of commands can be used to fill a new replicate column.</p>
+<pre id=part3-07-rep_col
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_long_split$rep <- NA
+
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "1")] <- "1"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "2")] <- "2"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "3")] <- "3"
+
+print(expr_long_split[is.na(expr_long_split$rep), ]) # should print 0 rows
+</code></pre>
+<p>Again we search for leftover <code>NA</code> values, and find that this time there <em>are</em> some rows where the rep column is reported as <code>NA</code>, apparently because a few entries in the table have a replicate number of <code>0</code>.</p>
+<pre id=part3-07-whoops
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+              id                                           annotation
+260  LQ00X000370              Putative Beta-hexosaminidase subunit B2
+590  LQ00X001530                    Putative Peptide transporter PTR1
+855  LQ00X002040           Probable adenylate kinase 2, chloroplastic
+1827 LQ00X004320 Putative Serine/threonine-protein kinase BRI1-like 2
+2135 LQ00X004780                          Phenylalanine ammonia-lyase
+     expression         sample genotype treatment tissuerep tissue  rep
+260   11.731868  C6_control_B0       C6   control        B0      B <NA>
+590   12.982069 C6_chemical_C0       C6  chemical        C0      C <NA>
+855    5.327353  L4_control_C0       L4   control        C0      C <NA>
+1827   7.596899  C6_control_B0       C6   control        B0      B <NA>
+2135   6.165839  L4_control_C0       L4   control        C0      C <NA>
+</code></pre>
+<p>There are a few ways we could handle this. We could determine what these five samples’ replicate numbers <em>should</em> be; perhaps they were miscoded somehow. Second, we could add <code>"0"</code> as a separate replicate possibility (so a few groups were represented by four replicates, rather than three). Alternatively, we could remove these mystery entries.</p>
+<p>Finally, we could remove all measurements for these gene IDs, including the other replicates. For this data set, we’ll opt for the latter, as the existence of these “mystery” measurements throws into doubt the accuracy of the other measurements, at least for this set of five IDs.</p>
+<p>To do this, we’ll first extract a vector of the “bad” gene IDs, using logical selection on the <code>id</code> column based on <code>is.na()</code> on the rep column.</p>
+<pre id=part3-07-detect_bad
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+bad_ids <- expr_long_split$id[is.na(expr_long_split$rep)]
+print(bad_ids)
+</code></pre>
+<pre id=part3-07-detect_bad_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "LQ00X000370" "LQ00X001530" "LQ00X002040" "LQ00X004320" "LQ00X004780"
+</code></pre>
+<p>Now, for each element of the <code>id</code> column, which ones are equal to one of the elements in the <code>bad_ids</code> vector? Fortunately, R provides a <code>%in%</code> operator for this many-versus-many sort of comparison. Given two vectors, <code>%in%</code> returns a logical vector indicating which elements of the left vector match one of the elements in the right. For example, <code>c(3, 2, 5, 1) %in% c(1, 2)</code> returns the logical vector <code>FALSE, TRUE, FALSE, TRUE</code>. This operation requires comparing each of the elements in the left vector against each of the elements of the right vector, so the number of comparisons is roughly the length of the first times the length of the second. If both are very large, such an operation could take quite some time to finish.</p>
+<p>Nevertheless, we can use the <code>%in%</code> operator along with logical selection to remove all rows containing a “bad” gene ID.</p>
+<pre id=part3-07-remove_bad
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+bad_rows <- expr_long_split$id %in% bad_ids        # logical vector
+expr_long_split <- expr_long_split[!bad_rows, ]    # logical selection
+</code></pre>
+<p>At this point, we could again check for <code>NA</code> values in the <code>rep</code> column to ensure the data have been cleaned up appropriately. If we wanted, we could also check <code>length(bad_rows[bad_rows])</code> to see how many bad rows were identified and removed. (Do you see why?)</p>
+</div>
+<div id="pasting" class="section level3 unnumbered hasAnchor">
+<h3>Pasting<a href="character-and-categorical-data.html#pasting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While above we discussed splitting contents of character vectors into multiple vectors, occasionally we want to do the opposite: join the contents of character vectors together into a single character vector, element by element. The <code>str_c()</code> function from the <code>stringr</code> library accomplishes this task.</p>
+<pre id=part3-07-str_c
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+first <- c("Tom", "Bob")
+last <- c("Waits", "Dylan")
+full <- str_c(first, last, sep = "_")
+print(full)                                      # [1] "Tom_Waits" "Bob_Dylan"
+</code></pre>
+<p>The <code>str_c()</code> function is also useful for printing nicely formatted sentences for debugging.</p>
+<pre id=part3-07-str_c_debug
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(str_c("Number of names: ", length(full)))  # [1] "Number of names: 2"
+</code></pre>
+<p>The Base-R function equivalent to <code>str_c()</code> is <code>paste()</code>, but while the default separator for <code>str_c()</code> is an empty string, <code>""</code>, the default separator for <code>paste()</code> is a single space, <code>" "</code>. The equivalent Base-R function for <code>str_detect()</code> is <code>grepl()</code>, and the closest equivalent to <code>str_split_fixed()</code> in Base-R is <code>strsplit()</code>. As mentioned previously, however, using these and other <code>stringr</code> functions for this type of character-vector manipulation is recommended.</p>
+</div>
+<div id="factors" class="section level3 unnumbered hasAnchor">
+<h3>Factors<a href="character-and-categorical-data.html#factors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>By now, factors have been mentioned a few times in passing, mostly in the context of using <code>stringsAsFactors = FALSE</code>, to prevent character vectors from being converted into factor types when data frames are created. Factors are a type of data relatively unique to R, and provide an alternative for storing categorical data compared with simple character vectors.</p>
+<p>A good method for understanding factors might be to understand one of the historical reasons for their development, even if the reason is no longer relevant today. How much space would the <code>treatment</code> column of the experimental data frame above require to store in memory, if the storage was done naively? Usually, a single character like <code>"c"</code> can be stored in a single byte (8 bits, depending on the encoding), so an entry like <code>"chemical"</code> would require 8 bytes, and <code>"control"</code> would require 7. Given that there are ~360,000 entries in the full table, the total space required would be ~0.36 megabytes. Obviously, the amount of space would be greater for a larger table, and decades ago even a few megabytes of data could represent a challenge.</p>
+<p>But that’s for a naive encoding of the data. An alternative could be to encode <code>"chemical"</code> and <code>"control"</code> as simple integers <code>1</code> and <code>2</code> (4 bytes can encode integers from -2.1 to 2.1 billion), as well as a separate lookup table mapping the integer <code>1</code> to <code>"chemical"</code> and <code>2</code> to <code>"control"</code>. This would be a space savings of about two times, or more if the terms were longer. This type of storage and mapping mechanism is exactly what factors provide.<a href="#fn109" class="footnote-ref" id="fnref109"><sup>109</sup></a></p>
+<p>We can convert a character vector (or factor) into a factor using the <code>factor()</code> function, and as usual the <code>head()</code> function can be used to extract the first few elements.</p>
+<pre id=part3-07-factor_create
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+treatment_factor <- factor(expr_long_split$treatment)
+print(head(treatment_factor, n = 10))
+</code></pre>
+<p>When printed, factors display their <code>levels</code> as well as the individual data elements encoded to levels. Notice that the quote marks usually associated with character vectors are not shown.</p>
+<pre id=part3-07-factor_create_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+ [1] control  control  control  control  control  control  control  control 
+ [9] chemical chemical
+Levels: chemical control
+</code></pre>
+<p>It is illustrating to attempt to use the <code>str()</code> and <code>class()</code> and <code>attr()</code> functions to dig into how factors are stored. Are they lists, like the results of the <code>t.test()</code> function, or something else? Unfortunately, they are relatively immune to the <code>str()</code> function; <code>str(treatment_factor)</code> reports:</p>
+<pre id=part3-07-factor_str
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+ Factor w/ 2 levels "chemical","control": 2 2 2 2 2 2 2 2 1 1 ...
+</code></pre>
+<p>This result illustrates that the data appear to be coded as integers. If we were to run <code>print(class(treatment_factor))</code>, we would discover its class is <code>"factor"</code>.</p>
+<p>As it turns out, the class of a data type is stored as an attribute.</p>
+<pre id=part3-07-factor_class
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(attr(treatment_factor, "class"))           # [1] "factor"
+</code></pre>
+<p>Above, we learned that we could remove an attribute by setting it to <code>NULL</code>. Let’s set the <code>"class"</code> attribute to <code>NULL</code>, and then run <code>str()</code> on it.</p>
+<pre id=part3-07-null_str
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+attr(treatment_factor, "class") <- NULL
+str(treatment_factor)
+</code></pre>
+<pre id=part3-07-null_str_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+atomic [1:366016] 2 2 2 2 2 2 2 2 1 1 ...
+ - attr(*, "levels")= chr [1:2] "chemical" "control"
+</code></pre>
+<p>Aha! This operation reveals a factor’s true nature: an integer vector, with an attribute of <code>"levels"</code> storing a character vector of labels, and an attribute for <code>"class"</code> that specifies the class of the vector as a factor. The data itself are stored as either <code>1</code> or <code>2</code>, but the levels attribute has <code>"chemical"</code> as its first element (and hence an integer of <code>1</code> encodes <code>"chemical"</code>) and <code>"control"</code> as its second (so <code>2</code> encodes <code>"control"</code>).</p>
+<p>This special <code>"class"</code> attribute controls how functions like <code>str()</code> and <code>print()</code> operate on an object, and if we want to change it, this is better done by using the <code>class()</code> accessor function rather than the <code>attr()</code> function as above. Let’s change the class back to factor.</p>
+<pre id=part3-07-reset_class
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+class(treatment_factor) <- "factor"
+</code></pre>
+</div>
+<div id="renaming-factor-levels" class="section level3 unnumbered hasAnchor">
+<h3>Renaming Factor Levels<a href="character-and-categorical-data.html#renaming-factor-levels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Because levels are stored as an attribute of the data, we can easily change the names of the levels by modifying the attribute. We can do this with the <code>attr()</code> function, but as usual, a specific accessor function called <code>levels()</code> is preferred.</p>
+<pre id=part3-07-change_levels
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+attr(treatment_factor, "levels") <- c("Chemical", "Water")
+# better:
+levels(treatment_factor) <- c("Chemical", "Water")
+</code></pre>
+<p>Why is the <code>levels()</code> function preferred over using <code>attr()</code>? Because when using <code>attr()</code>, there would be nothing to stop us from doing something irresponsible, like setting the levels to identical values, as in <code>c("Water", "Water")</code>. The <code>levels()</code> function will check for this and other absurdities.</p>
+<p>What the <code>levels()</code> function can’t check for, however, is the semantic meaning of the levels themselves. It would not be a good idea to mix up the names, so that <code>"Chemical"</code> would actually be referring to plants treated with water, and vice versa:</p>
+<pre id=part3-07-change_levels_bad
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+levels(treatment_factor) <- c("Water", "Chemical")   # Ack!
+</code></pre>
+<p>The reason this is a bad idea is that using <code>levels()</code> only modifies the <code>"levels"</code> attribute but does nothing to the underlying integer data, breaking the mapping.</p>
+</div>
+<div id="reordering-factor-levels" class="section level3 unnumbered hasAnchor">
+<h3>Reordering Factor Levels<a href="character-and-categorical-data.html#reordering-factor-levels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although we motivated factors on the basis of memory savings, in modern versions of R, even character vectors are stored internally using a sophisticated strategy, and modern computers generally have larger stores of RAM besides. Still, there is another motivation for factors: the fact that the levels may have a meaningful order. Some statistical tests might like to compare certain subsets of a data frame as defined by a factor; for example, numeric values associated with factor levels <code>"low"</code> might be compared to those labeled <code>"medium"</code>, and those in turn should be compared to values labeled <code>"high"</code>. But, given these labels, it makes no sense to compare the <code>"low"</code> readings directly to the <code>"high"</code> readings. Factors provide a way to specify that the data are categorical, but also that <code>"low" &lt; "medium" &lt; "high"</code>.</p>
+<p>Thus we might like to specify or change the order of the levels within a factor, to say, for example, that the <code>"Water"</code> treatment is somehow less than the <code>"Chemical"</code> treatment. But we can’t do this by just renaming the levels.</p>
+<p>The most straightforward way to specify the order of a character vector or factor is to convert it to a factor with <code>factor()</code> (even if it already is a factor) and specify the order of the levels with the optional <code>levels =</code> parameter. Usually, if a specific order is being supplied, we’ll want to specify <code>ordered = TRUE</code> as well. The levels specified by the <code>levels =</code> parameter must match the existing entries. To simultaneously rename the levels, the <code>labels =</code> parameter can be used as well.</p>
+<pre id=part3-07-factor_ordered
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+treatment_factor <- factor(expr_long_split$treatment,
+                           levels = c("control", "chemical"), # existing levels
+                           labels = c("Water", "Chemical"),   # new names
+                           ordered = TRUE)                    # specify ordered
+
+print(head(treatment_factor))
+</code></pre>
+<p>Now, <code>"Water"</code> is used in place of <code>"control"</code>, and the factor knows that <code>"Water" &lt; "Chemical"</code>. If we wished to have <code>"Chemical" &lt; "Water"</code>, we would have needed to use <code>levels = c("chemical", "control")</code> and labels = <code>c("Chemical", "Water")</code> in the call to <code>factor()</code>.</p>
+<pre id=part3-07-factor_ordered_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] Water Water Water Water Water Water
+Levels: Water < Chemical
+</code></pre>
+<p>Disregarding the <code>labels =</code> argument (used only when we want to rename levels while reordering), because the <code>levels =</code> argument takes a character vector of the unique entries in the input vector, these could be precomputed to hold the levels in a given order. Perhaps we’d like to order the tissue types in reverse alphabetical order, for example:</p>
+<pre id=part3-07-factor_ordered_tissues
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+tissues <- unique(expr_long_split$tissue)                     # B C A
+tissues_sorted <- tissues[order(tissues)]                     # A B C
+tissues_reversed <- rev(tissues_sorted)                       # C B A
+
+tissues_factor <- factor(expr_long_split$tissue, 
+                         levels = tissues_reversed,
+                         ordered = TRUE)
+
+print(head(tissues_factor))
+</code></pre>
+<pre id=part3-07-factor_ordered_tissues_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] A A B B B C
+Levels: C < B < A
+</code></pre>
+<p>Rather than assigning to a separate <code>tissues_factor</code> variable, we could replace the data frame column with the ordered vector by assigning to <code>expr_long_split$tissue</code>.</p>
+<p>We often wish to order the levels of a factor according to some other data. In our example, we might want the “first” tissue type to be the one with the smallest mean expression, and the last to be the one with the highest mean expression. A specialized function, <code>reorder()</code>, makes this sort of ordering quick and relatively painless. It takes three important parameters (among other optional ones):</p>
+<ol style="list-style-type: decimal">
+<li>The factor or character vector to convert to a factor with reordered levels.</li>
+<li>A (generally numeric) vector of the same length to use as reordering data.</li>
+<li>A function to use in determining what to do with argument 2.</li>
+</ol>
+<p>Here’s a quick canonical example. Suppose we have two vectors (or columns in a data frame), one of sampled fish species (<code>"bass"</code>, <code>"salmon"</code>, or <code>"trout"</code>) and another of corresponding weights. Notice that the salmon are generally heavy, the trout are light, and the bass are in between.</p>
+<pre id=part3-07-input
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+species <- c("salmon", "trout", "salmon", "bass", "bass")
+weights <- c(10.2, 3.5, 12.6, 6.2, 6.7)
+</code></pre>
+<p>If we were to convert the species vector into a factor with <code>factor(species)</code>, we would get the default alphabetical ordering: bass, salmon, trout. If we’d prefer to organize the levels according to the mean of the group weights, we can use <code>reorder()</code>:</p>
+<pre id=part3-07-reorder
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+species_factor <- reorder(species, weights, mean, order = TRUE)
+</code></pre>
+<p>With this assignment, <code>species_factor</code> will be an ordered factor with <code>trout &lt; bass &lt; salmon</code>. This small line of code does quite a lot, actually. It runs the <code>mean()</code> function on each group of weights defined by the different species labels, sorts the results by those means, and uses the corresponding group ordering to set the factor levels. What is even more impressive is that we could have just as easily used <code>median</code> instead of <code>mean</code>, or any other function that operates on a numeric vector to produce a numeric summary. This idea of specifying functions as parameters in other functions is one of the powerful “functional” approaches taken by R, and we’ll be seeing more of it.</p>
+</div>
+<div id="final-notes-about-factors" class="section level3 unnumbered hasAnchor">
+<h3>Final Notes about Factors<a href="character-and-categorical-data.html#final-notes-about-factors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In many ways, factors work much like character vectors and vice versa; <code>%in%</code> and <code>==</code> can be used to compare elements of factors just as they can with character vectors (e.g., <code>tissues_factor == "A"</code> returns the expected logical vector).</p>
+<p>Factors enforce that all elements are treated as one of the levels named in the <code>levels</code> attribute, or <code>NA</code> otherwise. A factor encoding <code>1</code> and <code>2</code> as <code>male</code> and <code>female</code>, for example, will treat any other underlying integer as <code>NA</code>. To get a factor to accept novel levels, the levels attribute must first be modified with the <code>levels()</code> function.</p>
+<p>Finally, because factors work much like character vectors, but don’t print their quotes, it can be difficult to tell them apart from other types when printed. This goes for simple character vectors when they are part of data frames. Consider the following printout of a data frame:</p>
+<pre id=part3-07-df_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+   id tissue count group
+1 AG4      A     1     2
+2 T35      C     2     1
+3 CX1      A     3     2
+4 L56      B     2     1
+</code></pre>
+<p>Because quotation marks are left off when printing data frames, it’s impossible to tell from this simple output that the <code>id</code> column is a character vector, the <code>tissue</code> column is a factor, the <code>count</code> column is an integer vector, and the <code>group</code> column is a factor.<a href="#fn110" class="footnote-ref" id="fnref110"><sup>110</sup></a> Using <code>class()</code> on individual columns of a data frame can be useful for determining what types they actually are.</p>
+<div id="exercises-35" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="character-and-categorical-data.html#exercises-35" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>In the annotation file <a href="data/PZ.annot.txt"><code>PZ.annot.txt</code></a>, each sequence ID (column 1) may be associated with multiple gene ontology (GO) “numbers” (column 2) and a number of different “terms” (column 3). Many IDs are associated with multiple GO numbers, and there is nothing to stop a particular number or term from being associated with multiple IDs.</p>
+<pre id=part3-07-ex1
+       class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+...
+PZ7180000023260_APN     GO:0005515      btb poz domain containing protein
+PZ7180000035568_APN     GO:0005515      btb poz domain containing protein
+PZ7180000020052_APQ     GO:0055114      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0006099      isocitrate dehydrogenase (nad+)
+PZ7180000020052_APQ     GO:0004449      isocitrate dehydrogenase (nad+)
+...
+</code></pre>
+<p>While most of the sequence IDs have an underscore suffix, not all do. Start by reading in this file (columns are tab separated) and then extracting a <code>suffix_only</code> data frame containing just those rows where the sequence ID contains an underscore. Similarly, extract a <code>no_suffix</code> data frame for rows where sequence IDs do not contain an underscore.</p>
+<p>Next, add to the <code>suffix_only</code> data frame columns for <code>base_id</code> and <code>suffix</code>, where base IDs are the parts before the underscore and suffices are the parts after the underscore (e.g., <code>base_id</code> is <code>"PZ7180000023260"</code> and <code>suffix</code> is <code>"APN"</code> for the ID <code>"PZ7180000023260_APN"</code>).</p>
+<p>Finally, produce versions of these two data frames where the <code>GO:</code> prefix has been removed from all entries of the second column.</p></li>
+<li><p>The line <code>s &lt;- sample(c("0", "1", "2", "3", "4"), size = 100, replace = TRUE)</code> generates a character vector of 100 random <code>"0"</code>s, <code>"1"</code>s, <code>"2"</code>s, <code>"3"</code>s, and <code>"4"</code>s. Suppose that <code>"0"</code> means “Strongly Disagree,” <code>"1"</code> means “Disagree,” <code>"2"</code> means “Neutral,” <code>"3"</code> means “Agree,” and <code>"4"</code> means “Strongly Agree.” Convert <code>s</code> into an ordered factor with levels <code>Strongly Disagree &lt; Disagree &lt; Neutral &lt; Agree &lt; Strongly Agree</code>.</p></li>
+<li><p>Like vectors, data frames (both rows and columns) can be selected by index number (numeric vector), logical vector, or name (character vector). Suppose that <code>grade_current</code> is a character vector generated by <code>grade_current &lt;- sample(c("A", "B", "C", "D", "E"), size = 100, replace = TRUE)</code>, and <code>gpa</code> is a numeric vector, as in <code>gpa &lt;- runif(100, min = 0.0, max = 4.0)</code>. Further, we add these as columns to a data frame, <code>grades &lt;- data.frame(current_grade, gpa, stringsAsFactors = FALSE)</code>.</p>
+<p>We are interested in pulling out all rows that have <code>"A"</code>, <code>"B"</code>, or <code>"C"</code> in the <code>current_grade</code> column. Describe, in detail, what each of the three potential solutions does:</p>
+<pre id=part3-07-in_test_confusing
+       class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+abc_grades <- grades[grades$current_grade %in% c("A", "B", "C"), ]
+abc_grades <- grades[grades$current_grade == c("A", "B", "C"), ]
+abc_grades <- grades[c("A", "B", "C"), ]
+</code></pre>
+<p>How does R interpret each one (i.e., what will R try to do for each), and what would the result be? Which one(s) is (are) correct? Which will report errors? Are the following three lines any different from the above three in what R tries to do?</p>
+<pre id=part3-07-in_test_confusing_subset
+       class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+abc_grades <- subset(grades, current_grade %in% c("A", "B", "C"))
+abc_grades <- subset(grades, current_grade == c("A", "B", "C"))
+abc_grades <- subset(grades, c("A", "B", "C"))
+</code></pre></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="109">
+<li id="fn109"><p>Although character vectors are also efficiently stored in modern-day versions of R, factors still have unique uses.<a href="character-and-categorical-data.html#fnref109" class="footnote-back">↩︎</a></p></li>
+<li id="fn110"><p>Factors created from integer vectors are a special kind of headache. Consider a line like <code>h &lt;- factor(c(4, 1, 5, 6, 4))</code>; because factors are treated like character types, this would be converted so it is based on <code>c("4", "1", "5", "6", "4")</code>, where the underlying mapping and storage have an almost arbitrary relationship to the elements. Try <code>print(as.numeric(h))</code> to see the trouble one can get into when mixing up these types, as well as <code>class(h) &lt;- NULL</code> followed by <code>str(h)</code> to see the underlying mapping and why this occurs.<a href="character-and-categorical-data.html#fnref110" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="split-apply-combine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-07-character-and-categorical-data.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

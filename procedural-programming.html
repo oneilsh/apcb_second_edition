@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 38 Procedural Programming | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 38 Procedural Programming | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 38 Procedural Programming | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 38 Procedural Programming | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reshaping-and-joining-data-frames.html"/>
+<link rel="next" href="objects-and-classes-in-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i>Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html"><i class="fa fa-check"></i><b>35</b> Character and Categorical Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#splitting-and-binding-columns"><i class="fa fa-check"></i>Splitting and Binding Columns</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#detecting-and-in"><i class="fa fa-check"></i>Detecting and %in%</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#pasting"><i class="fa fa-check"></i>Pasting</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#renaming-factor-levels"><i class="fa fa-check"></i>Renaming Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#reordering-factor-levels"><i class="fa fa-check"></i>Reordering Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#final-notes-about-factors"><i class="fa fa-check"></i>Final Notes about Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="split-apply-combine.html"><a href="split-apply-combine.html"><i class="fa fa-check"></i><b>36</b> Split, Apply, Combine</a>
+<ul>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#a-single-gene-test-formulas"><i class="fa fa-check"></i>A Single Gene Test, Formulas</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#attack-of-the-functions"><i class="fa fa-check"></i>Attack of the Functions!</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#collecting-parameters-with"><i class="fa fa-check"></i>Collecting Parameters with …</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#functions-are-everywhere"><i class="fa fa-check"></i>Functions Are Everywhere</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#sugary-data-frame-split-apply-combine"><i class="fa fa-check"></i>Sugary Data Frame Split-Apply-Combine</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#more-sugar-optional-parameters-summarize"><i class="fa fa-check"></i>More Sugar, Optional Parameters, Summarize</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#gene-expression-finished"><i class="fa fa-check"></i>Gene Expression, Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html"><i class="fa fa-check"></i><b>37</b> Reshaping and Joining Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#gathering-for-tidiness"><i class="fa fa-check"></i>Gathering for Tidiness</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#ungathering-with-spread"><i class="fa fa-check"></i>Ungathering with <code>spread()</code></a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#splitting-columns"><i class="fa fa-check"></i>Splitting Columns</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#joiningmerging-data-frames-cbind-and-rbind"><i class="fa fa-check"></i>Joining/Merging Data Frames, <code>cbind()</code> and <code>rbind()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="procedural-programming.html"><a href="procedural-programming.html"><i class="fa fa-check"></i><b>38</b> Procedural Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#conditional-looping-with-while-loops"><i class="fa fa-check"></i>Conditional Looping with While-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-i"><i class="fa fa-check"></i>Generating Truncated Random Data, Part I</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#if-statements"><i class="fa fa-check"></i>If-Statements</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-ii"><i class="fa fa-check"></i>Generating Truncated Random Data, Part II</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#for-loops"><i class="fa fa-check"></i>For-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#a-functional-extension"><i class="fa fa-check"></i>A Functional Extension</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html"><i class="fa fa-check"></i><b>39</b> Objects and Classes in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html#creating-our-own-classes"><i class="fa fa-check"></i>Creating Our Own Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html"><i class="fa fa-check"></i><b>40</b> Plotting Data and ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#a-brief-introduction-to-base-r-graphics"><i class="fa fa-check"></i>A Brief Introduction to Base-R Graphics</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#overview-of-ggplot2-and-layers"><i class="fa fa-check"></i>Overview of ggplot2 and Layers</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#smart-defaults-specialized-layer-functions"><i class="fa fa-check"></i>Smart Defaults, Specialized Layer Functions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#more-aesthetics-and-mathematical-expressions"><i class="fa fa-check"></i>More Aesthetics and Mathematical Expressions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#faceting"><i class="fa fa-check"></i>Faceting</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#scales"><i class="fa fa-check"></i>Scales</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#coordinates"><i class="fa fa-check"></i>Coordinates</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#theming-annotations-text-and-jitter"><i class="fa fa-check"></i>Theming, Annotations, Text, and Jitter</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="procedural-programming" class="section level1 hasAnchor" number="38">
+<h1><span class="header-section-number">Chapter 38</span> Procedural Programming<a href="procedural-programming.html#procedural-programming" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>For many (perhaps most) languages, control-flow structures like <code>for</code>-loops and <code>if</code>-statements are fundamental building blocks for writing useful programs. By contrast, in R, we can accomplish a lot by making use of vectorized operations, vector recycling, logical indexing, split-apply-combine, and so on. In general, R heavily emphasizes vectorized and functional operations, and these approaches should be used when possible; they are also usually optimized for speed. Still, R provides the standard repertoire of loops and conditional structures (which form the basis of the “procedural programming” paradigm) that can be used when other methods are clumsy or difficult to design. We’ve already seen functions, of course, which are incredibly important in the vast majority of programming languages.</p>
+<div id="conditional-looping-with-while-loops" class="section level3 unnumbered hasAnchor">
+<h3>Conditional Looping with While-Loops<a href="procedural-programming.html#conditional-looping-with-while-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A while-loop executes a <a href="collections-and-looping-lists-and-for.html#block">block</a> of code over and over again, testing a given condition (which should be or return a logical vector) before each execution. In R, blocks are delineated with a pair of curly brackets. Standard practice is to place the first opening bracket on the line, defining the loop and the closing bracket on a line by itself, with the enclosing block indented by two spaces.</p>
+<pre id=part3-10-while
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+count <- 1
+
+while(count < 4) {
+  print("Count is: ")
+  print(count)
+  count <- count + 1
+}
+
+print("Done!")
+</code></pre>
+<p>In the execution of the above, when the <code>while(count &lt; 4)</code> line is reached, <code>count &lt; 4</code> is run and returns the single-element logical vector <code>TRUE</code>, resulting in the block being run and printing <code>"Count is: "</code> and <code>1</code>, and then incrementing <code>count</code> by 1. Then the loop returns to the check; <code>count</code> being 2 is still less than 4, so the printing happens and <code>count</code> is incremented again to 3. The loop starts over, the check is executed, output is printed, and count is incremented to 4. The loop returns back to the top, but this time <code>count &lt; 4</code> results in <code>FALSE</code>, so the block is skipped, and finally execution moves on to print <code>"Done!"</code>.</p>
+<pre id=part3-10-while_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "Count is: "
+[1] 1
+[1] "Count is: "
+[1] 2
+[1] "Count is: "
+[1] 3
+[1] "Done!"
+</code></pre>
+<p>Because the check happens at the start, if <code>count</code> were to start at some larger number like <code>5</code>, then the loop block would be skipped entirely and only <code>"Done!"</code> would be printed.</p>
+<p>Because no “naked data” exist in R and vectors are the most basic unit, the logical check inside the <code>while()</code> works with a logical vector. In the above, that vector just happened to have only a single element. What if the comparison returned a longer vector? In that case, only the first element of the logical vector will be considered by the <code>while()</code>, and a warning will be issued to the effect of <code>condition has length &gt; 1</code>. This can have some strange consequences. Consider if instead of <code>count &lt;- 1</code>, we had <code>count &lt;- c(1, 100)</code>. Because of the vectorized nature of addition, the output would be:</p>
+<pre id=part3-10-while2_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "Count is: "
+[1]   1 100
+[1] "Count is: "
+[1]   2 101
+[1] "Count is: "
+[1]   3 102
+Warning messages:
+1: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+2: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+3: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+4: In while (count < 4) { :
+  the condition has length > 1 and only the first element will be used
+[1] "Done!"
+</code></pre>
+<p>Two handy functions can provide a measure of safety from such errors when used with simple conditionals: <code>any()</code> and <code>all()</code>. Given a logical vector, these functions return a single-element logical vector indicating whether any, or all, of the elements in the input vector are <code>TRUE</code>. Thus our <code>while</code>-loop conditional above might better be coded as <code>while(any(count &lt; 4))</code>. (Can you tell the difference between this and <code>while(any(count) &lt; 4)</code>?)</p>
+</div>
+<div id="generating-truncated-random-data-part-i" class="section level3 unnumbered hasAnchor">
+<h3>Generating Truncated Random Data, Part I<a href="procedural-programming.html#generating-truncated-random-data-part-i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The unique statistical features of R can be combined with control-flow structures like <code>while</code>-loops in interesting ways. R excels at generating random data from a given distribution; for example, <code>rnorm(1000, mean = 20, sd = 10)</code> returns a 100-element numeric vector with values sampled from a normal distribution with mean 20 and standard deviation 10.</p>
+<pre id=part3-10-rnorm_hist
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample <- rnorm(1000, mean = 20, sd = 10)
+hist(sample)
+</code></pre>
+<p>Although we’ll cover plotting in more detail later, the <code>hist()</code> function allows us to produce a basic histogram from a numeric vector. (Doing so requires a graphical interface like Rstudio for easily displaying the output. See chapter 40, “<a href="plotting-data-and-ggplot2.html#plotting-data-and-ggplot2">Plotting Data and <code>ggplot2</code></a>,” for details on plotting in R.)</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-10-procedural-programming.Rmd.images/III.10_5_rnorm_sample_hist.png" /></p>
+</div>
+<p>What if we wanted to sample numbers originally from this distribution, but limited to the range 0 to 30? One way to do this is by “resampling” any values that fall outside of this range. This will effectively truncate the distribution at these values, producing a new distribution with altered mean and standard deviation. (These sorts of “truncated by resampling” distributions are sometimes needed for simulation purposes.)</p>
+<p>Ideally, we’d like a function that encapsulates this idea, so we can say <code>sample &lt;- rnorm_trunc(0, 30, 1000, mean = 20, sd = 10)</code>. We’ll start by defining our function, and inside the function we’ll first produce an initial sample.</p>
+<pre id=part3-10-rnorm_trunc_1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+rnorm_trunc <- function(lower, upper, count, mean, sd) { 
+  sample <- rnorm(count, mean = mean, sd = sd)
+  
+  return(sample)
+}
+</code></pre>
+<p>Note the usage of <code>mean = mean</code> in the call to <code>rnorm()</code>. The right-hand side refers to the parameter passed to the <code>rnorm_trunc()</code> function, the left-hand side refers to the parameter taken by <code>rnorm()</code>, and the interpreter has no problem with this usage.</p>
+<p>Now, we’ll need to “fix” the sample so long as any of the values are less than <code>lower</code> or greater than <code>upper</code>. We’ll check as many times as needed using a <code>while</code>-loop.</p>
+<pre id=part3-10-rnorm_trunc_2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+  
+  }
+
+  return(sample)
+}
+</code></pre>
+<p>If any values are outside the desired range, we don’t want to just try an entirely new sample set, because the probability of generating just the right sample (within the range) is incredibly small, and we’d be looping for quite a while. Rather, we’ll only resample those values that need it, by first generating a logical vector of “bad” elements. After that, we can generate a resample of the needed size and use <a href="vectors.html#selective_replacement">selective replacement</a> to replace the bad elements.</p>
+<pre id=part3-10-rnorm_trunc_3
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+    new_vals <- rnorm(count_bad, mean = mean, sd = sd)
+    sample[bad] <- new_vals
+  }
+
+  return(sample)
+}
+</code></pre>
+<p>Let’s try it:</p>
+<pre id=part3-10-rnorm_trunc_3_run
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_trunc <- rnorm_trunc(0, 30, 1000, mean = 20, sd = 10)
+hist(sample_trunc)
+</code></pre>
+<p>The plotted histogram reflects the truncated nature of the data set:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-10-procedural-programming.Rmd.images/III.10_10_rnorm_sample_hist_trunc_out.png" /></p>
+</div>
+</div>
+<div id="if-statements" class="section level3 unnumbered hasAnchor">
+<h3>If-Statements<a href="procedural-programming.html#if-statements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An if-statement executes a block of code based on a conditional (like a while-loop, but the block can only be executed once). Like the check for <code>while</code>, only the first element of a logical vector is checked, so using <code>any()</code> and <code>all()</code> is suggested for safety unless we are sure the comparison will result in a single-element logical vector.</p>
+<pre id=part3-10-if_basic
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# a single random number between 1 and 50
+rand <- runif(1, min = 1, max = 50)
+
+if(rand < 10) {
+  print("The random number is less than 10")
+} else if(rand < 20) {
+  print("The random number is 10 or higher")
+  print("But it's also less than 20")
+} else if(rand < 30) {
+  print("The random number is 20 or higher")
+  print("And it's less than 30")
+} else {
+  print("The random number is 30 or higher")
+}
+</code></pre>
+<p>Like <a href="conditional-control-flow.html#conditional-control-flow">if-statements in Python</a>, each conditional is checked in turn. As soon as one evaluates to <code>TRUE</code>, that block is executed and all the rest are skipped. Only one block of an if/else chain will be executed, and perhaps none will be. The <code>if</code>-controlled block is required to start the chain, but one or more <code>else if</code>-controlled blocks and the final <code>else</code>-controlled block are optional.</p>
+<p>In R, if we want to include one or more <code>else if</code> blocks or a single <code>else</code> block, the <code>else if()</code> or <code>else</code> keywords must appear on the same line as the previous closing curly bracket. This differs slightly from other languages and is a result of the way the R interpreter parses the code.</p>
+</div>
+<div id="generating-truncated-random-data-part-ii" class="section level3 unnumbered hasAnchor">
+<h3>Generating Truncated Random Data, Part II<a href="procedural-programming.html#generating-truncated-random-data-part-ii" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the issues with our <code>rnorm_trunc()</code> function is that if the desired range is small, it might still require many resampling efforts to produce a result. For example, calling <code>sample_trunc &lt;- rnorm_trunc(15, 15.01, 1000, 20, 10)</code> will take a long time to finish, because it is rare to randomly generate values between 15 and 15.01 from the given distribution. Instead, what we might like is for the function to give up after some number of resamplings (say, 100,000) and return a vector containing <code>NA</code>, indicating a failed computation. Later, we can check the returned result with <code>is.na()</code>.</p>
+<pre id=part3-10-rnorm_trunc_na
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+  looped <- 0
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+    new_vals <- rnorm(count_bad, mean = mean, sd = sd)
+    sample[bad] <- new_vals
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+
+sample_trunc <- rnorm_trunc(0, 30, 1000, mean = 20, sd = 10)
+if(!is.na(sample_trunc)) {
+  hist(sample_trunc)
+}
+</code></pre>
+<p>The example so far illustrates a few different things:</p>
+<ol style="list-style-type: decimal">
+<li><code>NA</code> can act as a placeholder in our own functions, much like <code>mean()</code> will return <code>NA</code> if any of the input elements are themselves <code>NA</code>.</li>
+<li>If-statements may use <code>else if</code> and <code>else</code>, but they don’t have to.</li>
+<li>Functions may return from more than one point; when this happens, the function execution stops even if it’s inside of a loop.<a href="#fn118" class="footnote-ref" id="fnref118"><sup>118</sup></a></li>
+<li>Blocks of code, such as those used by while-loops, if-statements, and functions, may be nested. It’s important to increase the indentation level for all lines within each nested block; otherwise, the code would be difficult to read.</li>
+</ol>
+</div>
+<div id="for-loops" class="section level3 unnumbered hasAnchor">
+<h3>For-Loops<a href="procedural-programming.html#for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For-loops are the last control-flow structure we’ll study for R. Much like while-loops, they repeat a block of code. For-loops, however, repeat a block of code once for each element of a vector (or list), setting a given variable name to each element of the vector (or list) in turn.</p>
+<pre id=part3-10-for_loop_basic
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ids <- c("CYP6B", "CATB", "AGP4")
+
+for(id_el in ids) {
+  print("id_el is now: ")
+  print(id_el)
+}
+
+print("Done!")
+</code></pre>
+<pre id=part3-10-for_loop_basic_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "id_el is now: "
+[1] "CYP6B"
+[1] "id_el is now: "
+[1] "CATB"
+[1] "id_el is now: "
+[1] "AGP4"
+[1] "Done!"
+</code></pre>
+<p>While for-loops are important in many other languages, they are not as crucial in R. The reason is that many operations are vectorized, and functions like <code>lapply()</code> and <code>do()</code> provide for repeated computation in an entirely different way.</p>
+<p>There’s a bit of lore holding that for-loops are slower in R than in other languages. One way to determine whether this is true (and to what extent) is to write a quick loop that iterates one million times, perhaps printing on every 1,000th iteration. (We accomplish this by keeping a loop counter and using the modulus operator <code>%%</code> to check whether the remainder of <code>counter</code> divided by <code>1000</code> is <code>0</code>.)</p>
+<pre id=part3-10-for_one_million
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+counter <- 1
+for(i in seq(1, 1000000)) {
+  if(counter%%1000 == 0) {
+    print("Counter is now")
+    print(counter)
+  }
+  counter <- counter + 1
+}
+</code></pre>
+<p>When we run this operation we find that, while not quite instantaneous, this loop doesn’t take long at all. Here’s a quick comparison measuring the time to execute similar code for a few different languages (without printing, which itself takes some time) on a 2013 MacBook Pro.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Language</th>
+<th align="left">Loop 1 Million</th>
+<th align="left">Loop 100 Million</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">R (version 3.1)</td>
+<td align="left">0.39 seconds</td>
+<td align="left">~30 seconds</td>
+</tr>
+<tr class="even">
+<td align="left">Python (version 3.2)</td>
+<td align="left">0.16 seconds</td>
+<td align="left">~12 seconds</td>
+</tr>
+<tr class="odd">
+<td align="left">Perl (version 5.16)</td>
+<td align="left">0.14 seconds</td>
+<td align="left">~13 seconds</td>
+</tr>
+<tr class="even">
+<td align="left">C (g++ version 4.2.1)</td>
+<td align="left">0.0006 seconds</td>
+<td align="left">0.2 seconds</td>
+</tr>
+</tbody>
+</table>
+<p>While R is the slowest of the bunch, it is “merely” twice as slow as the other interpreted languages, Python and Perl.</p>
+<p>The trouble with R is not that for-loops are slow, but that one of the most common uses for them — iteratively lengthening a vector with <code>c()</code> or a data frame with <code>rbind()</code> — is very slow. If we wanted to illustrate this problem, we could modify the loop above such that, instead of adding one to <code>counter</code>, we increase the length of the <code>counter</code> vector by one with <code>counter &lt;- c(counter, 1)</code>. We’ll also modify the printing to reflect the interest in the length of the counter vector rather than its contents.</p>
+<pre id=part3-10-for_one_million_append
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+counter <- 1
+for(i in seq(1, 1000000)) {
+  if(length(counter)%%1000 == 0) {
+    print("Length of counter is now")
+    print(length(counter))
+  }
+  counter <- c(counter, 1)
+}
+</code></pre>
+<p>In this case, we find that the loop starts just as fast as before, but as the <code>counter</code> vector gets longer, the time between printouts grows. And it continues to grow and grow, because the time it takes to do a single iteration of the loop is depending on the length of the <code>counter</code> vector (which is growing).</p>
+<p>To understand why this is the case, we have to inspect the line <code>counter &lt;- c(counter, 1)</code>, which appends a new element to the <code>counter</code> vector. Let’s consider a related set of lines, wherein two vectors are concatenated to produce a third.</p>
+<pre id=part3-10-concat_slow
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+first_names <- c("Joseph", "Robert")
+last_names <- c("Anderson", "Wilson")
+names <- c(first_names, last_names)
+
+print(names)          # [1] "Joseph" "Robert" "Anderson" "Wilson"
+print(first_names)    # [1] "Joseph" "Robert"
+print(last_names)     # [1] "Anderson" "Wilson"
+</code></pre>
+<p>In the above, <code>names</code> will be the expected four-element vector, but the <code>first_names</code> and <code>last_names</code> have not been removed or altered by this operation — they persist and can still be printed or otherwise accessed later. In order to remove or alter items, the R interpreter copies information from each smaller vector into a new vector that is associated with the variable <code>names</code>.</p>
+<p>Now, we can return to <code>counter &lt;- c(counter, 1)</code>. The right-hand side copies information from both inputs to produce a new vector; this is then assigned to the variable <code>counter</code>. It makes little difference to the interpreter that the variable name is being reused and the original vector will no longer be accessible: the <code>c()</code> function (almost) always creates a new vector in RAM. The amount of time it takes to do this copying thus grows along with the length of the <code>counter</code> vector.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-10-procedural-programming.Rmd.images/III.10_18_vector_for_append-3.png" /></p>
+</div>
+<p>The total amount of time taken to append n elements to a vector in a for-loop this way is roughly <span class="math inline">\(n^2/2\)</span>, meaning the time taken to grow a list of n elements grows quadratically in its final length! This problem is exacerbated when using <code>rbind()</code> inside of a for-loop to grow a data frame row by row (as in something like <code>df &lt;- rbind(df, c(val1, val2, val3))</code>), as data frame columns are usually vectors, making <code>rbind()</code> a repeated application of <code>c()</code>.</p>
+<p>One solution to this problem in R is to “preallocate” a vector (or data frame) of the appropriate size, and use replacement to assign to the elements in order using a carefully constructed loop.</p>
+<pre id=part3-10-prealloc
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# pre-allocate a counter vector of length 1 million
+counter <- rep(0, 1000000)
+for(i in seq(1, 1000000)) {
+  counter[i] <- 1
+}
+</code></pre>
+<p>(Here we’re simply placing values of <code>1</code> into the vector, but more sophisticated examples are certainly possible.) This code runs much faster but has the downside of requiring that the programmer know in advance how large the data set will need to be.<a href="#fn119" class="footnote-ref" id="fnref119"><sup>119</sup></a></p>
+<p>Does this mean we should never use loops in R? Certainly not! Sometimes looping is a natural fit for a problem, especially when it doesn’t involve dynamically growing a vector, list, or data frame.</p>
+<div id="exercises-40" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="procedural-programming.html#exercises-40" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Using a for-loop and a preallocated vector, generate a vector of the first 100 Fibonacci numbers, 1, 1, 2, 3, 5, 8, and so on (the first two Fibonacci numbers are 1; otherwise, each is the sum of the previous two).</p></li>
+<li><p>A line like <code>result &lt;- readline(prompt = "What is your name?")</code> will prompt the user to enter their name, and store the result as a character vector in <code>result</code>. Using this, a while-loop, and an if-statement, we can create a simple number-guessing game.</p>
+<p>Start by setting <code>input &lt;- 0</code> and <code>rand</code> to a random integer between 1 and 100 with <code>rand &lt;- sample(seq(1,100), size = 1)</code>. Next, while <code>input != rand</code>: Read a guess from the user and convert it to an integer, storing the result in <code>input</code>. If <code>input &lt; rand</code>, print <code>"Higher!"</code>, otherwise if <code>input &gt; rand</code>, print <code>"Lower!"</code>, and otherwise report <code>"You got it!"</code>.</p></li>
+</ol>
+<div id="wilcox_vs_test" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<ol start="3" style="list-style-type: decimal">
+<li><p>A paired student’s <em>t</em>-test assesses whether two vectors reveal a significant mean element-wise difference. For example, we might have a list of student scores before a training session and after.</p>
+<pre id=part3-10-ttest_paired
+  class="language-r
+         line-numbers
+         linkable-line-numbers">
+<code>
+scores <- c(50, 35, 56, 36, 90)
+scores_after <- c(70, 45, 50, 42, 91)
+improvement_test <- t.test(scores, scores_after, paired = TRUE)
+print(improvement_test)
+</code></pre>
+<p>But the paired <em>t</em>-test should only be used when the differences (which in this case could be computed with <code>scores_after - scores</code>) are normally distributed. If they aren’t, a better test is the Wilcoxon signed-rank test:</p>
+<pre id=part3-10-wilcoxon_paired
+  class="language-r
+         line-numbers
+         linkable-line-numbers">
+<code>
+improvement_test <- wilcox.test(scores, scores_after, paired = TRUE)
+print(improvement_test)
+</code></pre>
+<p>(While the <em>t</em>-test checks to determine whether the mean difference is significantly different from <code>0</code>, the Wilcoxon signed-rank test checks to determine whether the median difference is significantly different from <code>0</code>.)</p>
+<p>The process of determining whether data are normally distributed is not an easy one. But a function known as the Shapiro test is available in R, and it tests the null hypothesis that a numeric vector is not normally distributed. Thus the <em>p</em> value is small when data are not normal. The downside to a Shapiro test is that it and similar tests tend to be oversensitive to non-normality when given large samples. The <code>shapiro.test()</code> function can be explored by running <code>print(shapiro.test(rnorm(100, mean = 10, sd = 4)))</code> and <code>print(shapiro.test(rexp(100, rate = 2.0)))</code>.</p>
+<p>Write a function called <code>wilcox_or_ttest()</code> that takes two equal-length numeric vectors as parameters and returns a <em>p</em> value. If the <code>shapiro.test()</code> reports a <em>p</em> value of less than 0.05 on the difference of the vectors, the returned <em>p</em> value should be the result of a Wilcoxon rank-signed test. Otherwise, the returned <em>p</em> value should be the result of a <code>t.test()</code>. The function should also print information about which test is being run. Test your function with random data generated from <code>rexp()</code> and <code>rnorm()</code>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="a-functional-extension" class="section level3 unnumbered hasAnchor">
+<h3>A Functional Extension<a href="procedural-programming.html#a-functional-extension" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Having reviewed the procedural control-flow structures <code>if</code>, <code>while</code>, and <code>for</code>, let’s expand on our truncated random sampling example to explore more “functional” features of R and how they might be used. The function we designed, <code>rnorm_trunc()</code>, returns a random sample that is normally distributed but limited to a given range via resampling. The original sampling distribution is specified by the <code>mean =</code> and <code>sd =</code> parameters, which are passed to the call to <code>rnorm()</code> within <code>rnorm_trunc()</code>.</p>
+<pre id=part3-10-rnorm_trunc_review
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+rnorm_trunc <- function(lower, upper, count, mean, sd) {
+  sample <- rnorm(count, mean = mean, sd = sd)
+  looped <- 0
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+    new_vals <- rnorm(count_bad, mean = mean, sd = sd)
+    sample[bad] <- new_vals
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+</code></pre>
+<p>What if we wanted to do the same thing, but for <code>rexp()</code>, which samples from an exponential distribution taking a <code>rate =</code> parameter?</p>
+<pre id=part3-10-rexp
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample <- rexp(1000, rate = 1.5)
+hist(sample)
+</code></pre>
+<p>The distribution normally ranges from 0 to infinity, but we might want to resample to, say, 1 to 4.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-10-procedural-programming.Rmd.images/III.10_24_rexp_dist.png" /></p>
+</div>
+<p>One possibility would be to write an <code>rexp_trunc()</code> function that operates similarly to the <code>rnorm_trunc()</code> function, with changes specific for sampling from the exponential distribution.</p>
+<pre id=part3-10-rexp_trunc
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+rexp_trunc <- function(lower, upper, count, rate) {
+  sample <- rexp(count, rate = rate)
+  looped <- 0
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+    new_vals <- rexp(count_bad, rate = rate)
+    sample[bad] <- new_vals
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+</code></pre>
+<p>The two functions <code>rnorm_trunc()</code> and <code>rexp_trunc()</code> are incredibly similar — they differ only in the sampling function used and the parameters passed to them. Can we write a single function to do both jobs? We can, if we remember two important facts we’ve learned about functions and parameters in R.</p>
+<ol style="list-style-type: decimal">
+<li>Functions like <code>rnorm()</code> and <code>rexp()</code> are a type of data like any other and so can be passed as parameters to other functions (as in the split-apply-combine strategy).</li>
+<li>The special parameter <code>...</code> “collects” parameters so that functions can take arbitrary parameters.</li>
+</ol>
+<p>Here, we’ll use <code>...</code> to collect an arbitrary set of parameters and pass them on to internal function calls. When defining a function to take <code>...</code>, it is usually specified last. So, we’ll write a function called <code>sample_trunc()</code> that takes five parameters:</p>
+<ol style="list-style-type: decimal">
+<li>The lower limit, <code>lower</code>.</li>
+<li>The upper limit, <code>upper</code>.</li>
+<li>The sample size to generate, <code>count</code>.</li>
+<li>The function to call to generate samples, <code>sample_func</code>.</li>
+<li>Additional parameters to pass on to <code>sample_func</code>, <code>...</code>.</li>
+</ol>
+<pre id=part3-10-sample_trunc
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_trunc <- function(lower, upper, count, sample_func, ...) {
+  sample <- sample_func(count, ...)
+  looped <- 0
+
+  while(any(sample < lower | sample > upper)) {
+    # fix the sample
+    bad <- sample < lower | sample > upper # logical
+    bad_values <- sample[bad]
+    count_bad <- length(bad_values)
+
+    new_vals <- sample_func(count_bad, ...)
+    sample[bad] <- new_vals
+
+    if(looped > 100000) {
+      return(NA)
+    }
+    looped <- looped + 1
+  }
+  return(sample)
+}
+</code></pre>
+<p>We can call our <code>sample_trunc()</code> function using any number of sampling functions. We’ve seen <code>rnorm()</code>, which takes <code>mean =</code> and <code>sd =</code> parameters, and <code>rexp()</code>, which takes a <code>rate =</code> parameter, but there are many others, like <code>dpois()</code>, which generates Poisson distributions and takes a <code>lambda =</code> parameter.</p>
+<pre id=part3-10-sample_trunc_use
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample1 <- sample_trunc(0, 30, 1000, rnorm, mean = 20, sd = 10)
+sample2 <- sample_trunc(1, 4, 1000, rexp, rate = 1.5)
+sample3 <- sample_trunc(3, 6, 1000, rpois, lambda = 2)
+
+if(!is.na(sample1)) {
+  hist(sample1)
+}
+
+if(!is.na(sample2)) {
+  hist(sample2)
+}
+
+if(!is.na(sample3)) {
+  hist(sample3)
+}
+</code></pre>
+<p>In the first example above, <code>mean = 20, sd = 10</code> is collated into <code>...</code> in the call to <code>sample_trunc()</code>, as is <code>rate = 1.5</code> in the second example and <code>lambda = 2</code> in the third example.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-10-procedural-programming.Rmd.images/III.10_28_sample_trunc_hists.png" /></p>
+</div>
+<div id="exercises-41" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="procedural-programming.html#exercises-41" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>As discussed in a <a href="procedural-programming.html#wilcox_vs_test">previous exercise</a>, the <code>t.test()</code> and <code>wilcox.test()</code> functions both take two numeric vectors as their first parameters, and return a list with a <code>$p.value</code> entry. Write a function <code>pval_from_test()</code> that takes four parameters: the first two should be two numeric vectors (as in the <code>t.test()</code> and <code>wilcox.test()</code> functions), the third should be a test function (either <code>t.test</code> or <code>wilcox.test</code>), and the fourth should be any optional parameters to pass on (<code>...</code>). It should return the <em>p</em> value of the test run.</p>
+<p>We should then be able to run the test like so:</p>
+<pre id=part3-10-functional_ttest_wilcox_test
+  class="language-r
+         line-numbers
+         linkable-line-numbers">
+<p><code>
+sample1 &lt;- rnorm(20, mean = 10, sd = 3)
+sample2 &lt;- rnorm(20, mean = 20, sd = 3)</p></li>
+</ol>
+pval1 &lt;- pval_from_test(sample1, sample2, t.test)
+pval2 &lt;- pval_from_test(sample1, sample2, wilcox.test)
+pval3 &lt;- pval_from_test(sample1, sample2, t.test, paired = TRUE)
+pval4 &lt;- pval_from_test(sample1, sample2, wilcox.test, paired = TRUE)
+</code>
+</pre>
+<pre><code>The four values `pval1`, `pval2`, `pval3`, and `pval4` should contain simple *p* values.</code></pre>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="118">
+<li id="fn118"><p>Some programmers believe that functions should have only one return point, and it should always go at the end of a function. This can be accomplished by initializing the variable to return at the start of the function, modifying it as needed in the body, and finally returning at the end. This pattern is more difficult to implement in this type of function, though, where execution of the function needs to be broken out of from a loop.<a href="procedural-programming.html#fnref118" class="footnote-back">↩︎</a></p></li>
+<li id="fn119"><p>Another way to lengthen a vector or list in R is to assign to the index just off of the end of it, as in <code>counter[length(counter) + 1] &lt;- val</code>. One might be tempted to use such a construction in a for-loop, thinking that the result will be the <code>counter</code> vector being modified “in place” and avoiding the expensive copying. One would be wrong, at least as of the time of this writing, because this line is actually syntactic sugar for a function call and assignment: <code>counter &lt;- `[&lt;-`(counter, length(counter) + 1, val)</code>, which suffers the same problem as the <code>c()</code> function call.<a href="procedural-programming.html#fnref119" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reshaping-and-joining-data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="objects-and-classes-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-10-procedural-programming.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

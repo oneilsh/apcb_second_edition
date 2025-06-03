@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 37 Reshaping and Joining Data Frames | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 37 Reshaping and Joining Data Frames | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 37 Reshaping and Joining Data Frames | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 37 Reshaping and Joining Data Frames | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="split-apply-combine.html"/>
+<link rel="next" href="procedural-programming.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i>Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html"><i class="fa fa-check"></i><b>35</b> Character and Categorical Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#splitting-and-binding-columns"><i class="fa fa-check"></i>Splitting and Binding Columns</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#detecting-and-in"><i class="fa fa-check"></i>Detecting and %in%</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#pasting"><i class="fa fa-check"></i>Pasting</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#renaming-factor-levels"><i class="fa fa-check"></i>Renaming Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#reordering-factor-levels"><i class="fa fa-check"></i>Reordering Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#final-notes-about-factors"><i class="fa fa-check"></i>Final Notes about Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="split-apply-combine.html"><a href="split-apply-combine.html"><i class="fa fa-check"></i><b>36</b> Split, Apply, Combine</a>
+<ul>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#a-single-gene-test-formulas"><i class="fa fa-check"></i>A Single Gene Test, Formulas</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#attack-of-the-functions"><i class="fa fa-check"></i>Attack of the Functions!</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#collecting-parameters-with"><i class="fa fa-check"></i>Collecting Parameters with …</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#functions-are-everywhere"><i class="fa fa-check"></i>Functions Are Everywhere</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#sugary-data-frame-split-apply-combine"><i class="fa fa-check"></i>Sugary Data Frame Split-Apply-Combine</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#more-sugar-optional-parameters-summarize"><i class="fa fa-check"></i>More Sugar, Optional Parameters, Summarize</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#gene-expression-finished"><i class="fa fa-check"></i>Gene Expression, Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html"><i class="fa fa-check"></i><b>37</b> Reshaping and Joining Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#gathering-for-tidiness"><i class="fa fa-check"></i>Gathering for Tidiness</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#ungathering-with-spread"><i class="fa fa-check"></i>Ungathering with <code>spread()</code></a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#splitting-columns"><i class="fa fa-check"></i>Splitting Columns</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#joiningmerging-data-frames-cbind-and-rbind"><i class="fa fa-check"></i>Joining/Merging Data Frames, <code>cbind()</code> and <code>rbind()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="procedural-programming.html"><a href="procedural-programming.html"><i class="fa fa-check"></i><b>38</b> Procedural Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#conditional-looping-with-while-loops"><i class="fa fa-check"></i>Conditional Looping with While-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-i"><i class="fa fa-check"></i>Generating Truncated Random Data, Part I</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#if-statements"><i class="fa fa-check"></i>If-Statements</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-ii"><i class="fa fa-check"></i>Generating Truncated Random Data, Part II</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#for-loops"><i class="fa fa-check"></i>For-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#a-functional-extension"><i class="fa fa-check"></i>A Functional Extension</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html"><i class="fa fa-check"></i><b>39</b> Objects and Classes in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html#creating-our-own-classes"><i class="fa fa-check"></i>Creating Our Own Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html"><i class="fa fa-check"></i><b>40</b> Plotting Data and ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#a-brief-introduction-to-base-r-graphics"><i class="fa fa-check"></i>A Brief Introduction to Base-R Graphics</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#overview-of-ggplot2-and-layers"><i class="fa fa-check"></i>Overview of ggplot2 and Layers</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#smart-defaults-specialized-layer-functions"><i class="fa fa-check"></i>Smart Defaults, Specialized Layer Functions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#more-aesthetics-and-mathematical-expressions"><i class="fa fa-check"></i>More Aesthetics and Mathematical Expressions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#faceting"><i class="fa fa-check"></i>Faceting</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#scales"><i class="fa fa-check"></i>Scales</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#coordinates"><i class="fa fa-check"></i>Coordinates</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#theming-annotations-text-and-jitter"><i class="fa fa-check"></i>Theming, Annotations, Text, and Jitter</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reshaping-and-joining-data-frames" class="section level1 hasAnchor" number="37">
+<h1><span class="header-section-number">Chapter 37</span> Reshaping and Joining Data Frames<a href="reshaping-and-joining-data-frames.html#reshaping-and-joining-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Looking back at the split-apply-combine analysis for the gene expression data, it’s clear that the organization of the data worked in our favor (after we split the <code>sample</code> column into <code>genotype</code>, <code>treatment</code>, and other columns, at least). In particular, each row of the data frame represented a single measurement, and each column represented a variable (values that vary across measurements). This allowed us to easily group measurements by the ID column. It also worked well when building the linear model, as <code>lm()</code> uses a formula describing the relationship of equal-length vectors or columns (e.g., <code>expr$expression ~ expr$treatment + expr$genotype</code>), which are directly accessible as columns of the data frame.</p>
+<p>Data are often not organized in this “tidy” format. This data set, for example, was originally in a file called <a href="data/expr_wide.txt"><code>expr_wide.txt</code></a> with the following format:</p>
+<pre id=part3-09-data_wide
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+         id C6_chemical_A1 C6_chemical_A3 C6_chemical_B1 C6_chemical_B2 ...
+LQ00X000020       4.831259       4.784184       5.577741       5.143742 ...
+LQ00X000200      14.046963      14.045607      14.448088      14.927930 ...
+LQ00X000210      12.546436      12.410848      12.566147      12.638267 ...
+LQ00X000280      10.002939      10.162578       9.425349       9.774258 ...
+LQ00X000290      11.930745      10.757338      11.769187      12.391130 ...
+LQ00X000300       5.146014       5.386916       6.048761       5.263776 ...
+...
+</code></pre>
+<p>Data formats like this are frequently more convenient for human readers than machines. Here, the <code>id</code> and <code>annotation</code> columns (the latter not shown) are variables as before, but the other column names each encode a variety of variables, and each row represents a large number of measurements. Data in this “shape” would be much more difficult to analyze with the tools we’ve covered so far.</p>
+<p>Converting between this format and the preferred format (and back) is the primary goal of the <code>tidyr</code> package. As usual, this package can be installed in the interactive interpreter with <code>install.packages("tidyr")</code>. The older <code>reshape2</code> package also handles this sort of data reorganization, and while the functions provided there are more flexible and powerful, <code>tidyr</code> covers the majority of needs while being easier to use.</p>
+<div id="gathering-for-tidiness" class="section level3 unnumbered hasAnchor">
+<h3>Gathering for Tidiness<a href="reshaping-and-joining-data-frames.html#gathering-for-tidiness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>gather()</code> function in the <code>tidyr</code> package makes most untidy data frames tidier. The first parameter taken is the data frame to fix up, and the second and third are the “key” and “value” names for the newly created columns, respectively (without quotes). The remaining parameters specify the column names that need to be tidied (again, without quotes). Suppose we had a small, untidy data frame called <code>expr_small</code>, with columns for <code>id</code>, <code>annotation</code>, and columns for expression in the <code>C6</code> and <code>L4</code> genotypes.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-09-reshaping-and-joining-data-frames.Rmd.images/III.9_2_needs_gathering-3.png" /></p>
+</div>
+<p>In this case, we would run the <code>gather()</code> function as follows, where <code>sample</code> and <code>expression</code> are the new column names to create, and <code>C6</code> and <code>L4</code> are the columns that need tidying. (Notice the lack of quotation marks on all column names; this is common to both the <code>tidyr</code> and <code>dplyr</code> packages’ syntactic sugar.)</p>
+<pre id=part3-09-gather_small
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+library(tidyr)
+
+expr_gathered_small <- gather(expr_small, sample, expression, C6, L4)
+print(expr_gathered_small)
+</code></pre>
+<pre id=part3-09-gather_small_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id           annotation sample expression
+1 LQ00X000020 Hypothetical Protein     C6     7.3562
+2 LQ00X000200    Predicted Protein     C6    10.1934
+3 LQ00X000210 Biotin carboxylase 1     C6     5.6224
+4 LQ00X000020 Hypothetical Protein     L4     8.2451
+5 LQ00X000200    Predicted Protein     L4     9.6261
+6 LQ00X000210 Biotin carboxylase 1     L4    11.1614
+</code></pre>
+<p>Notice that the data in the nongathered, nontidied columns (<code>id</code> and <code>annotation</code>) have been repeated as necessary. If no columns to tidy have been specified (<code>C6</code> and <code>L4</code> in this case), the <code>gather()</code> assumes that all columns need to be reorganized, resulting in only two output columns (<code>sample</code> and <code>expression</code>). This would be obviously incorrect in this case.</p>
+<p>Listing all of the column names that need tidying presents a challenge when working with wide data frames like the full expression data set. To gather this table, we’d need to run <code>gather(expr_wide, sample, expression, C6_chemical_A1, C6_chemical_A3, C6_chemical_B1,</code> and so on, listing each of the 35 column names. Fortunately, <code>gather()</code> accepts an additional bit of syntactic sugar: using <code>-</code> and specifying the columns that don’t need to be gathered. We could thus gather the full data set with</p>
+<pre id=part3-09-gather_full_minus
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_gathered <- gather(expr_wide, sample, expression, -id, -annotation)
+</code></pre>
+<p>The <code>gather()</code> function takes a few other optional parameters, for example, for removing rows with <code>NA</code> values. See <code>help("gather")</code> in the interactive interpreter for more information.</p>
+</div>
+<div id="ungathering-with-spread" class="section level3 unnumbered hasAnchor">
+<h3>Ungathering with <code>spread()</code><a href="reshaping-and-joining-data-frames.html#ungathering-with-spread" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While this organization of the data — with each row being an observation and each column being a variable — is usually most convenient for analysis in R, sharing data with others often isn’t. People have an affinity for reading data tables where many measurements are listed in a single row, whereas “tidy” versions of data tables are often long with many repeated entries. Even when programmatically analyzing data tables, sometimes it helps to have multiple measurements in a single row. If we wanted to compute the difference between the <code>C6</code> and <code>L4</code> genotype expressions for each treatment condition, we might wish to have <code>C6_expression</code> and <code>L4_expression</code> columns, so that we can later use vectorized subtraction to compute a <code>C6_L4_difference</code> column.</p>
+<p>The <code>spread()</code> function in the <code>tidyr</code> provides this, and in fact is the complement to the <code>gather()</code> function. The three important parameters are (1) the data frame to spread, (2) the column to use as the “key,” and (3) the column to use as the “values.” Consider the <code>expr_gathered_small</code> data frame from above.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-09-reshaping-and-joining-data-frames.Rmd.images/III.9_6_needs_spreading-3.png" /></p>
+</div>
+<p>Converting this data frame back into the “wide” version is as simple as:</p>
+<pre id=part3-09-spread
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_small <- spread(expr_gathered_small, sample, expression)
+print(expr_small)
+</code></pre>
+<pre id=part3-09-spread_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id           annotation      C6      L4
+1 LQ00X000020 Hypothetical Protein  7.3562  8.2451
+2 LQ00X000200    Predicted Protein 10.1934  9.6261
+3 LQ00X000210 Biotin carboxylase 1  5.6224 11.1614
+</code></pre>
+<p>Because the entries in the “key” column name become new column names, it would usually be a mistake to use a numeric column here. In particular, if we were to mix up the order and instead run <code>spread(expr_gathered_small, expression, sample)</code>, we’d end up with a column for each unique value in the <code>expression</code> column, which could easily number in the hundreds of thousands and would likely crash the interpreter.</p>
+<p>In combination with <code>group_by()</code>, <code>do()</code>, and <code>summarize()</code> from the <code>dplyr</code> package, <code>gather()</code> and <code>spread()</code> can be used to aggregate and analyze tabular data in an almost limitless number of ways. Both the <code>dplyr</code> and <code>tidyr</code> packages include a number of other functions for working with data frames, including filtering rows or columns by selection criteria and organizing rows and columns.</p>
+</div>
+<div id="splitting-columns" class="section level3 unnumbered hasAnchor">
+<h3>Splitting Columns<a href="reshaping-and-joining-data-frames.html#splitting-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In chapter 35, “<a href="character-and-categorical-data.html#character-and-categorical-data">Character and Categorical Data</a>,” we learned how to work with character vectors using functions like <code>str_split_fixed()</code> to split them into pieces based on a pattern, and <code>str_detect()</code> to produce a logical vector indicating which elements matched a pattern. The <code>tidyr</code> package also includes some specialized functions for these types of operations. Consider a small data frame <code>expr_sample</code> with columns for <code>id</code>, <code>expression</code>, and <code>sample</code>, like the precleaned data frame considered in previous chapters.</p>
+<pre id=part3-09-expr_sample
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id expression        sample
+1 LQ00X000020   5.024142 C6_control_A1
+2 LQ00X000020   4.646697 C6_control_A3
+3 LQ00X000020   4.986592 C6_control_B1
+4 LQ00X000020   5.164292 C6_control_B2
+5 LQ00X000020   5.348810 C6_control_B3
+6 LQ00X000020   5.519393 C6_control_C1
+</code></pre>
+<p>The <code>tidyr</code> function <code>separate()</code> can be used to quickly split a (character or factor) column into multiple columns based on a pattern. The first parameter is the data frame to work on, the second is the column to split within that data frame, the third specifies a character vector of newly split column names, and the fourth optional <code>sep =</code> parameter specifies the pattern (<a href="patterns-regular-expressions.html#regular-expressions">regular expression</a>) to split on.</p>
+<pre id=part3-09-expr_sample_separate
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_sample_separated <- separate(expr_sample,
+                                 sample,
+                                 c("genotype", "treatment", "tissuerep"),
+                                 sep = "_")
+print(expr_sample_separated)
+</code></pre>
+<pre id=part3-09-expr_sample_separate_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id expression genotype treatment tissuerep
+1 LQ00X000020   5.024142       C6   control        A1
+2 LQ00X000020   4.646697       C6   control        A3
+3 LQ00X000020   4.986592       C6   control        B1
+4 LQ00X000020   5.164292       C6   control        B2
+5 LQ00X000020   5.348810       C6   control        B3
+6 LQ00X000020   5.519393       C6   control        C1
+</code></pre>
+<p>Similarly, the <code>extract()</code> function splits a column into multiple columns based on a pattern (regular expression), but the pattern is more general and requires an understanding of regular expressions and <a href="patterns-regular-expressions.html#back-referencing">back-referencing</a> using <code>()</code> capture groups. Here, we’ll use the regular expression pattern <code>"([A-Z])([0-9])"</code> to match any single capital letter followed by a single digit, each of which get captured by a pair of parentheses. These values will become the entries for the newly created columns.</p>
+<pre id=part3-09-expr_sample_extract
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+expr_sample_extracted <- extract(expr_sample_separated,
+                                 tissuerep,
+                                 c("tissue", "rep"),
+                                 regex = "([A-Z])([0-9])")
+print(expr_sample_extracted)
+</code></pre>
+<pre id=part3-09-expr_sample_extract_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id expression genotype treatment tissue rep
+1 LQ00X000020   5.024142       C6   control      A   1
+2 LQ00X000020   4.646697       C6   control      A   3
+3 LQ00X000020   4.986592       C6   control      B   1
+4 LQ00X000020   5.164292       C6   control      B   2
+5 LQ00X000020   5.348810       C6   control      B   3
+6 LQ00X000020   5.519393       C6   control      C   1
+</code></pre>
+<p>Although we covered regular expressions in earlier chapters, for entries like <code>C6_control_b3</code> where we assume the encoding is well-described, we could use a regular expression like <code>"(C6|L4)_(control|chemical)_(A|B|C)(1|2|3)"</code>.</p>
+<p>While these functions are convenient for working with columns of data frames, an understanding of <code>str_split_fixed()</code> and <code>str_detect()</code> is nevertheless useful for working with character data in general.</p>
+</div>
+<div id="joiningmerging-data-frames-cbind-and-rbind" class="section level3 unnumbered hasAnchor">
+<h3>Joining/Merging Data Frames, <code>cbind()</code> and <code>rbind()</code><a href="reshaping-and-joining-data-frames.html#joiningmerging-data-frames-cbind-and-rbind" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Even after data frames have been reshaped and otherwise massaged to make analyses easy, occasionally similar or related data are present in two different data frames. Perhaps the annotations for a set of gene IDs are present in one data frame, while the p values from statistical results are present in another. Usually, such tables have one or more columns in common, perhaps an <code>id</code> column.</p>
+<p>Sometimes, each entry in one of the tables has a corresponding entry in the other, and vice versa. More often, some entries are shared, but others are not. Here’s an example of two small data frames where this is the case, called <code>heights</code> and <code>ages</code>.</p>
+<pre id=part3-09-height_age
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+<b>heights</b>
+     first     last           height
+1    Joe       Withermore     5.5
+2    Mary      O'Leary        5.2
+3    Brent     Liston         6.1
+4    Karen     Streeter       5.3
+
+<b>ages</b>
+     first     last      age
+1    Brent     Liston    27
+2    Joe       Jones     19
+3    Karen     Streeter  22
+4    Chris     Peterson  34
+</code></pre>
+<p>The <code>merge()</code> function (which comes with the basic installation of R) can quickly join these two data frames into one. By default, it finds all columns that have common names, and uses all entries that match in all of those columns. Here’s the result of <code>merge(heights, ages)</code>:</p>
+<pre id=part3-09-merge_height_age
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  first     last height age
+1 Brent   Liston    6.1  27
+2 Karen Streeter    5.3  22
+</code></pre>
+<p>This is much easier to use than the command line <a href="miscellanea.html#join">join</a> program: it can join on multiple columns, and the rows do not need to be in any common order. If we like, we can optionally specify a <code>by =</code> parameter, to specify which column names to join by as a character vector of column names. Here’s <code>merge(heights, ages, by = c("first"))</code>:</p>
+<pre id=part3-09-merge_heights_ages_by_first
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  first   last.x height   last.y age
+1 Brent   Liston    6.1   Liston  27
+2   Joe Withmore    5.5    Jones  19
+3 Karen Streeter    5.3 Streeter  22
+</code></pre>
+<p>Because we specified that the joining should only happen by the first column, <code>merge()</code> assumed that the two columns named <code>last</code> could contain different data and thus should be represented by two different columns in the output.</p>
+<p>By default, <code>merge()</code> produces an “inner join,” meaning that rows are present in the output only if entries are present for both the left (<code>heights</code>) and right (<code>ages</code>) inputs. We can specify <code>all = TRUE</code> to perform a full “outer join.” Here’s <code>merge(heights, ages, all = TRUE)</code>.</p>
+<pre id=part3-09-merge_heights_ages_all
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  first     last height age
+1 Brent   Liston    6.1  27
+2   Joe Withmore    5.5  NA
+3   Joe    Jones     NA  19
+4 Karen Streeter    5.3  22
+5  Mary  O'Leary    5.2  NA
+6 Chris Peterson     NA  34
+</code></pre>
+<p>In this example, <code>NA</code> values have been placed for entries that are unspecified. From here, rows with <code>NA</code> entries in either the <code>height</code> or <code>age</code> column can be removed with row-based selection and <code>is.na()</code>, or a “left outer join” or “right outer join,” can be performed with <code>all.x = TRUE</code> or <code>all.y = TRUE</code>, respectively.</p>
+<p>In <a href="character-and-categorical-data.html#character-and-categorical-data">chapter 35</a>, we also looked at <code>cbind()</code> after splitting character vectors into multicolumn data frames. This function binds two data frames into a single one on a column basis. It won’t work if the two data frames don’t have the same number of rows, but it will work if the two data frames have column names that are identical, in which case the output data frame might confusingly have multiple columns of the same name. This function will also leave the data frame rows in their original order, so be careful that the order of rows is consistent before binding. Generally, using <code>merge()</code> to join data frames by column is preferred to <code>cbind()</code>, even if it means ensuring some identifier column is always present to serve as a binding column.</p>
+<p>The <code>rbind()</code> function combines two data frames that may have different numbers of rows but have the same number of columns. Further, the column names of the two data frames must be identical. If the types of data are different, then after being combined with <code>rbind()</code>, columns of different types will be converted to the most general type using the same rules when <a href="vectors.html#type_mixing">mixing</a> types within vectors.</p>
+<p>Using <code>rbind()</code> requires that the data from each input vector be copied to produce the output data frame, even if the variable name is to be reused as in <code>df &lt;- rbind(df, df2)</code>. Wherever possible, data frames should be generated with a split-apply-combine strategy (such as with <code>group_by()</code> and <code>do()</code>) or a reshaping technique, rather than with many repeated applications of <code>rbind()</code>.</p>
+<div id="exercises-39" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="reshaping-and-joining-data-frames.html#exercises-39" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>As discussed in exercises in Chapter 36, <a href="split-apply-combine.html#split-apply-combine">Split, Apply, Combine</a>, the built-in <code>CO2</code> data frame contains measurements of CO2 uptake rates for different plants in different locations under different ambient CO2 concentrations.</p>
+<p>Use the <code>spread()</code> function in the <code>tidyr</code> library to produce a <code>CO2_spread</code> data frame that looks like so:</p>
+<pre id=part3-09-ex1
+  class="language-txt
+         line-numbers
+         linkable-line-numbers">
+<code>
+Plant        Type  Treatment   95  175  250  350  500  675 1000
+1    Qn1      Quebec nonchilled 16.0 30.4 34.8 37.2 35.3 39.2 39.7
+2    Qn2      Quebec nonchilled 13.6 27.3 37.1 41.8 40.6 41.4 44.3
+3    Qn3      Quebec nonchilled 16.2 32.4 40.3 42.1 42.9 43.9 45.5
+4    Qc1      Quebec    chilled 14.2 24.1 30.3 34.6 32.5 35.4 38.7
+5    Qc3      Quebec    chilled 15.1 21.0 38.1 34.0 38.9 39.6 41.4
+...
+</code></pre>
+<p>Next, undo this operation with a <code>gather()</code>, re-creating the <code>CO2</code> data frame as <code>CO2_recreated</code>.</p></li>
+<li><p>Occasionally, we want to “reshape” a data frame while simultaneously computing summaries of the data. The <code>reshape2</code> package provides some sophisticated functions for this type of computation (specifically <code>melt()</code> and <code>cast()</code>), but we can also accomplish these sorts of tasks with <code>group_by()</code> and <code>do()</code> (or <code>summarize()</code>) from the <code>dplyr</code> package in combination with <code>gather()</code> and <code>spread()</code> from <code>tidyr</code>.</p>
+<p>From the <code>CO2</code> data frame, generate a data frame like the following, where the last two columns report mean uptake for each <code>Type</code>/<code>conc</code> combination:</p>
+<pre id=part3-09-ex2
+  class="language-txt
+         line-numbers
+         linkable-line-numbers">
+<code>
+       Type conc nonchilled_mean_uptake chilled_mean_uptake
+1       Quebec   95               15.26667            12.86667
+2       Quebec  175               30.03333            24.13333
+3       Quebec  250               37.40000            34.46667
+4       Quebec  350               40.36667            35.80000
+5       Quebec  500               39.60000            36.66667
+6       Quebec  675               41.50000            37.50000
+7       Quebec 1000               43.16667            40.83333
+8  Mississippi   95               11.30000             9.60000
+9  Mississippi  175               20.20000            14.76667
+10 Mississippi  250               27.53333            16.10000
+...
+</code></pre>
+<p>You’ll likely want to start by computing appropriate group-wise means from the original <code>CO2</code> data.</p></li>
+<li><p>The built-in data frames <code>beaver1</code> and <code>beaver2</code> describe body temperature and activity observations of two beavers. Merge these two data frames into a single one that contains all the data and looks like so:</p>
+<pre id=part3-09-ex3
+  class="language-txt
+         line-numbers
+         linkable-line-numbers">
+<code>
+ day time  temp activ    name
+1   307  930 36.58     0 beaver2
+2   307  940 36.73     0 beaver2
+3   307  950 36.93     0 beaver2
+4   307 1000 37.15     0 beaver2
+5   307 1010 37.23     0 beaver2
+...
+</code></pre>
+<p>Notice the column for <code>name</code> — be sure to include this column so it is clear to which beaver each measurement corresponds!</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="split-apply-combine.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="procedural-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-09-reshaping-and-joining-data-frames.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

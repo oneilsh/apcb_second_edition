@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 36 Split, Apply, Combine | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 36 Split, Apply, Combine | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 36 Split, Apply, Combine | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 36 Split, Apply, Combine | A Primer for Computational Biology (2nd Edition)" />
+  
+  
+  
+
+<meta name="author" content="Shawn T. O’Neil, Matthew Peterson, Leslie Coonrod" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="character-and-categorical-data.html"/>
+<link rel="next" href="reshaping-and-joining-data-frames.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="packages/prism/prism.js"></script>
+
+<script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': false,
+	'remove-indent': false,
+	'left-trim': true,
+	'right-trim': true,
+	'remove-initial-line-feed': true,
+	/*'break-lines': 80*/
+
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</script>
+
+<link rel="stylesheet" href="packages/prism/prism.css">
+
+<style>
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background: #fafafa;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  display: block;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3em;
+    counter-reset: linenumber;
+}
+
+.line-highlight {
+  margin-top: 0.7em;
+}
+
+.temporary {
+  background: none; /*linear-gradient(to right, rgba(100, 150, 180, .5) 70%, rgba(100, 150, 180, 0)); */
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.command-line-prompt {
+  margin-right: 0.2em;
+  border-right: none;
+}
+
+.callout-box,.exercises {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 4px;
+  margin: 25px 10px 10px 10px;
+  padding: 10px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .callout-box h4 {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal .exercises h4 {
+  margin-top: 0;
+  color: #960018;
+}
+
+
+.fig.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.fig.left {
+  display: inline-block;
+  float: left;
+}
+
+.fig.right {
+  display: inline-block;
+  float: right;
+}
+
+.fig>p.caption {
+  color: #AAAAAA;
+  text-align: left;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>A Primer for Computational Biology <br />(2nd Edition)</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-few-goals"><i class="fa fa-check"></i>A Few Goals</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#organization"><i class="fa fa-check"></i>Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="part"><span><b>Part 1: The UNIX/Linux Command-Line</b></span></li>
+<li class="chapter" data-level="1" data-path="context.html"><a href="context.html"><i class="fa fa-check"></i><b>1</b> Context</a>
+<ul>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
+<li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<ul>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-contents-of-a-text-file"><i class="fa fa-check"></i>Viewing the Contents of a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#creating-new-directories"><i class="fa fa-check"></i>Creating New Directories</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#move-or-rename-a-file-or-directory"><i class="fa fa-check"></i>Move or Rename a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#copy-a-file-or-directory"><i class="fa fa-check"></i>Copy a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory"><i class="fa fa-check"></i>Remove (Delete) a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory"><i class="fa fa-check"></i>Checking the Size of a File or Directory</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#editing-a-text-file"><i class="fa fa-check"></i>Editing a (Text) File</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#command-line-efficiency"><i class="fa fa-check"></i>Command-Line Efficiency</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program"><i class="fa fa-check"></i>Getting Help on a Command or Program</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#viewing-the-top-running-programs"><i class="fa fa-check"></i>Viewing the Top Running Programs</a></li>
+<li class="chapter" data-level="" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html#killing-rogue-programs"><i class="fa fa-check"></i>Killing Rogue Programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
+<ul>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html"><i class="fa fa-check"></i><b>6</b> Installing (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#using-a-package-manager"><i class="fa fa-check"></i>Using a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager"><i class="fa fa-check"></i>Installing Software without a Package Manager</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#source-or-binary"><i class="fa fa-check"></i>Source or Binary?</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#downloading-and-unpacking"><i class="fa fa-check"></i>Downloading and Unpacking</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#other-download-and-compression-methods"><i class="fa fa-check"></i>Other Download and Compression Methods</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#compiling-the-source"><i class="fa fa-check"></i>Compiling the Source</a></li>
+<li class="chapter" data-level="" data-path="installing-bioinformatics-software.html"><a href="installing-bioinformatics-software.html#installation-from-binaries"><i class="fa fa-check"></i>Installation from Binaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html"><i class="fa fa-check"></i><b>7</b> Using (Bioinformatics) Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#getting-data"><i class="fa fa-check"></i>Getting Data</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+<li class="chapter" data-level="" data-path="using-bioinformatics-software.html"><a href="using-bioinformatics-software.html#reproducibility-with-scripts"><i class="fa fa-check"></i>Reproducibility with Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="command-line-blast.html"><a href="command-line-blast.html"><i class="fa fa-check"></i><b>8</b> Command Line BLAST</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-types"><i class="fa fa-check"></i>BLAST Types</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#blast-databases"><i class="fa fa-check"></i>BLAST Databases</a></li>
+<li class="chapter" data-level="" data-path="command-line-blast.html"><a href="command-line-blast.html#running-a-self-blast"><i class="fa fa-check"></i>Running a Self-BLAST</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-standard-streams.html"><a href="the-standard-streams.html"><i class="fa fa-check"></i><b>9</b> The Standard Streams</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#filtering-lines-standard-input"><i class="fa fa-check"></i>Filtering Lines, Standard Input</a></li>
+<li class="chapter" data-level="" data-path="the-standard-streams.html"><a href="the-standard-streams.html#counting-simple-at-repeats"><i class="fa fa-check"></i>Counting Simple AT Repeats</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html"><i class="fa fa-check"></i><b>10</b> Sorting, First and Last Lines</a>
+<ul>
+<li class="chapter" data-level="" data-path="sorting-first-and-last-lines.html"><a href="sorting-first-and-last-lines.html#first-and-last-lines"><i class="fa fa-check"></i>First and Last Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="rows-and-columns.html"><a href="rows-and-columns.html"><i class="fa fa-check"></i><b>11</b> Rows and columns</a>
+<ul>
+<li class="chapter" data-level="" data-path="rows-and-columns.html"><a href="rows-and-columns.html#basic-syntax-for-awk"><i class="fa fa-check"></i>Basic Syntax for awk</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Patterns (Regular Expressions)</a>
+<ul>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools"><i class="fa fa-check"></i>Character Classes and Regular Expressions in Other Tools</a></li>
+<li class="chapter" data-level="" data-path="patterns-regular-expressions.html"><a href="patterns-regular-expressions.html#back-referencing"><i class="fa fa-check"></i>Back-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="miscellanea.html"><a href="miscellanea.html"><i class="fa fa-check"></i><b>13</b> Miscellanea</a>
+<ul>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#manipulating-line-breaks"><i class="fa fa-check"></i>Manipulating Line Breaks</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#joining-files-on-a-common-column-and-related-rowcolumn-tasks"><i class="fa fa-check"></i>Joining Files on a Common Column (and Related Row/Column Tasks)</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#counting-duplicate-lines"><i class="fa fa-check"></i>Counting Duplicate Lines</a></li>
+<li class="chapter" data-level="" data-path="miscellanea.html"><a href="miscellanea.html#for-loops-in-bash"><i class="fa fa-check"></i>For-Loops in bash</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>14</b> Version Control with git</a>
+<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
+</ul></li>
+<li class="part"><span><b>Part 2: Programming in Python</b></span></li>
+<li class="chapter" data-level="15" data-path="hello-world.html"><a href="hello-world.html"><i class="fa fa-check"></i><b>15</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#hello-world-1"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="hello-world.html"><a href="hello-world.html#making-the-file-executable"><i class="fa fa-check"></i>Making the File Executable</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="elementary-data-types.html"><a href="elementary-data-types.html"><i class="fa fa-check"></i><b>16</b> Elementary Data Types</a>
+<ul>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#integers-and-floats"><i class="fa fa-check"></i>Integers and Floats</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#booleans"><i class="fa fa-check"></i>Booleans</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#strings"><i class="fa fa-check"></i>Strings</a></li>
+<li class="chapter" data-level="" data-path="elementary-data-types.html"><a href="elementary-data-types.html#immutability"><i class="fa fa-check"></i>Immutability</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html"><i class="fa fa-check"></i><b>17</b> Collections and Looping: Lists and for</a>
+<ul>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#tuples-immutable-lists"><i class="fa fa-check"></i>Tuples (Immutable Lists)</a></li>
+<li class="chapter" data-level="" data-path="collections-and-looping-lists-and-for.html"><a href="collections-and-looping-lists-and-for.html#looping-with-for"><i class="fa fa-check"></i>Looping with for</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="file-input-and-output.html"><a href="file-input-and-output.html"><i class="fa fa-check"></i><b>18</b> File Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#computing-a-mean"><i class="fa fa-check"></i>Computing a Mean</a></li>
+<li class="chapter" data-level="" data-path="file-input-and-output.html"><a href="file-input-and-output.html#the-process-of-programming"><i class="fa fa-check"></i>The Process of Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html"><i class="fa fa-check"></i><b>19</b> Conditional Control Flow</a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-if-statements"><i class="fa fa-check"></i>Using If-Statements</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#using-while-loops"><i class="fa fa-check"></i>Using While-Loops</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#boolean-operators-and-connectives"><i class="fa fa-check"></i>Boolean Operators and Connectives</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#logical-dangers"><i class="fa fa-check"></i>Logical Dangers</a></li>
+<li class="chapter" data-level="" data-path="conditional-control-flow.html"><a href="conditional-control-flow.html#counting-stop-codons"><i class="fa fa-check"></i>Counting Stop Codons</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="python-functions.html"><a href="python-functions.html"><i class="fa fa-check"></i><b>20</b> Python Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#important-notes-about-functions"><i class="fa fa-check"></i>Important Notes about Functions</a></li>
+<li class="chapter" data-level="" data-path="python-functions.html"><a href="python-functions.html#gc-content-over-sequences-in-a-file"><i class="fa fa-check"></i>GC Content over Sequences in a File</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html"><i class="fa fa-check"></i><b>21</b> Command Line Interfacing</a>
+<ul>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-input-is-a-file-handle"><i class="fa fa-check"></i>Standard Input is a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#standard-output-as-a-file-handle"><i class="fa fa-check"></i>Standard Output as a File Handle</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#command-line-parameters"><i class="fa fa-check"></i>Command Line Parameters</a></li>
+<li class="chapter" data-level="" data-path="command-line-interfacing.html"><a href="command-line-interfacing.html#executing-shell-commands-within-python"><i class="fa fa-check"></i>Executing Shell Commands within Python</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="dictionaries.html"><a href="dictionaries.html"><i class="fa fa-check"></i><b>22</b> Dictionaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#counting-gene-ontology-terms"><i class="fa fa-check"></i>Counting Gene Ontology Terms</a></li>
+<li class="chapter" data-level="" data-path="dictionaries.html"><a href="dictionaries.html#extracting-all-lines-matching-a-set-of-ids"><i class="fa fa-check"></i>Extracting All Lines Matching a Set of IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html"><i class="fa fa-check"></i><b>23</b> String Tips and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-string-into-a-list-of-single-character-strings"><i class="fa fa-check"></i>Converting a String into a List of Single-Character Strings</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#converting-a-list-of-strings-into-a-string"><i class="fa fa-check"></i>Converting a List of Strings into a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-list"><i class="fa fa-check"></i>Reverse a List</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#reverse-a-string"><i class="fa fa-check"></i>Reverse a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#simple-find-and-replace-in-a-string"><i class="fa fa-check"></i>Simple Find and Replace in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#commands-versus-queries"><i class="fa fa-check"></i>Commands versus Queries</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#regular-expressions-1"><i class="fa fa-check"></i>Regular Expressions</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#searching-for-a-pattern-in-a-string"><i class="fa fa-check"></i>Searching for a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#replace-a-pattern-in-a-string"><i class="fa fa-check"></i>Replace a Pattern in a String</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#split-a-string-into-a-list-of-strings-based-on-a-pattern"><i class="fa fa-check"></i>Split a String into a List of Strings Based on a Pattern</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#the-language-of-regular-expressions-in-python"><i class="fa fa-check"></i>The Language of Regular Expressions, in Python</a></li>
+<li class="chapter" data-level="" data-path="string-tips-and-regular-expressions.html"><a href="string-tips-and-regular-expressions.html#counting-promoter-elements"><i class="fa fa-check"></i>Counting Promoter Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="variables-and-scope.html"><a href="variables-and-scope.html"><i class="fa fa-check"></i><b>24</b> Variables and Scope</a></li>
+<li class="chapter" data-level="25" data-path="variables-and-classes.html"><a href="variables-and-classes.html"><i class="fa fa-check"></i><b>25</b> Variables and Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-classes.html"><a href="variables-and-classes.html#creating-new-classes"><i class="fa fa-check"></i>Creating New Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html"><i class="fa fa-check"></i><b>26</b> Use Case: Counting SNPs</a>
+<ul>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#snp-class"><i class="fa fa-check"></i>SNP Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#chromosome-class"><i class="fa fa-check"></i>Chromosome Class</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#an-extension-searching-for-snp-dense-regions"><i class="fa fa-check"></i>An Extension: Searching for SNP-Dense Regions</a></li>
+<li class="chapter" data-level="" data-path="use-case-counting-snps.html"><a href="use-case-counting-snps.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html"><i class="fa fa-check"></i><b>27</b> Application Programming Interfaces, Modules, Packages, Syntactic Sugar</a>
+<ul>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#modules"><i class="fa fa-check"></i>Modules</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#creating-a-module"><i class="fa fa-check"></i>Creating a Module</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#packages"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#parsing-a-fasta-file"><i class="fa fa-check"></i>Parsing a FASTA File</a></li>
+<li class="chapter" data-level="" data-path="application-programming-interfaces-modules-packages-syntactic-sugar.html"><a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic-sugar"><i class="fa fa-check"></i>Syntactic Sugar</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html"><i class="fa fa-check"></i><b>28</b> Algorithms and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#order-notation"><i class="fa fa-check"></i>Order Notation</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#sorted-linked-lists"><i class="fa fa-check"></i>Sorted Linked Lists</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#linked-list-methods"><i class="fa fa-check"></i>Linked List Methods</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#divide-and-conquer"><i class="fa fa-check"></i>Divide and Conquer</a></li>
+<li class="chapter" data-level="" data-path="algorithms-and-data-structures.html"><a href="algorithms-and-data-structures.html#back-to-sorting"><i class="fa fa-check"></i>Back to Sorting</a></li>
+</ul></li>
+<li class="part"><span><b>Part 3: Programming in R</b></span></li>
+<li class="chapter" data-level="29" data-path="an-introduction.html"><a href="an-introduction.html"><i class="fa fa-check"></i><b>29</b> An Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#hello-world-2"><i class="fa fa-check"></i>Hello, World</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="" data-path="an-introduction.html"><a href="an-introduction.html#librariespackages"><i class="fa fa-check"></i>Libraries/Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variables-and-data.html"><a href="variables-and-data.html"><i class="fa fa-check"></i><b>30</b> Variables and Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables-and-data.html"><a href="variables-and-data.html#numerics-integers-characters-and-logicals"><i class="fa fa-check"></i>Numerics, Integers, Characters, and Logicals</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>31</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#no-naked-data-vectors-have-a-class"><i class="fa fa-check"></i>No “Naked Data”: Vectors Have (a) Class</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors-selective-replacement"><i class="fa fa-check"></i>Subsetting Vectors, Selective Replacement</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectorized-operations-na-values"><i class="fa fa-check"></i>Vectorized Operations, <code>NA</code> Values</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vector-recycling"><i class="fa fa-check"></i>Vector Recycling</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#common-vector-functions"><i class="fa fa-check"></i>Common Vector Functions</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#generating-random-data"><i class="fa fa-check"></i>Generating Random Data</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#reading-and-writing-tabular-data-wrapping-long-lines"><i class="fa fa-check"></i>Reading and Writing Tabular Data, Wrapping Long Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>32</b> R Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#variables-and-scope-1"><i class="fa fa-check"></i>Variables and Scope</a></li>
+<li class="chapter" data-level="" data-path="r-functions.html"><a href="r-functions.html#getting-help"><i class="fa fa-check"></i>Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html"><i class="fa fa-check"></i><b>33</b> Lists and Attributes</a>
+<ul>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#named-lists-lists-within-lists"><i class="fa fa-check"></i>Named Lists, Lists within Lists</a></li>
+<li class="chapter" data-level="" data-path="lists-and-attributes.html"><a href="lists-and-attributes.html#attributes-removing-elements-list-structure"><i class="fa fa-check"></i>Attributes, Removing Elements, List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>34</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#data-frame-operations"><i class="fa fa-check"></i>Data Frame Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html"><i class="fa fa-check"></i><b>35</b> Character and Categorical Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#splitting-and-binding-columns"><i class="fa fa-check"></i>Splitting and Binding Columns</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#detecting-and-in"><i class="fa fa-check"></i>Detecting and %in%</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#pasting"><i class="fa fa-check"></i>Pasting</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#renaming-factor-levels"><i class="fa fa-check"></i>Renaming Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#reordering-factor-levels"><i class="fa fa-check"></i>Reordering Factor Levels</a></li>
+<li class="chapter" data-level="" data-path="character-and-categorical-data.html"><a href="character-and-categorical-data.html#final-notes-about-factors"><i class="fa fa-check"></i>Final Notes about Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="split-apply-combine.html"><a href="split-apply-combine.html"><i class="fa fa-check"></i><b>36</b> Split, Apply, Combine</a>
+<ul>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#a-single-gene-test-formulas"><i class="fa fa-check"></i>A Single Gene Test, Formulas</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#attack-of-the-functions"><i class="fa fa-check"></i>Attack of the Functions!</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#collecting-parameters-with"><i class="fa fa-check"></i>Collecting Parameters with …</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#functions-are-everywhere"><i class="fa fa-check"></i>Functions Are Everywhere</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#sugary-data-frame-split-apply-combine"><i class="fa fa-check"></i>Sugary Data Frame Split-Apply-Combine</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#more-sugar-optional-parameters-summarize"><i class="fa fa-check"></i>More Sugar, Optional Parameters, Summarize</a></li>
+<li class="chapter" data-level="" data-path="split-apply-combine.html"><a href="split-apply-combine.html#gene-expression-finished"><i class="fa fa-check"></i>Gene Expression, Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html"><i class="fa fa-check"></i><b>37</b> Reshaping and Joining Data Frames</a>
+<ul>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#gathering-for-tidiness"><i class="fa fa-check"></i>Gathering for Tidiness</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#ungathering-with-spread"><i class="fa fa-check"></i>Ungathering with <code>spread()</code></a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#splitting-columns"><i class="fa fa-check"></i>Splitting Columns</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-joining-data-frames.html"><a href="reshaping-and-joining-data-frames.html#joiningmerging-data-frames-cbind-and-rbind"><i class="fa fa-check"></i>Joining/Merging Data Frames, <code>cbind()</code> and <code>rbind()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="procedural-programming.html"><a href="procedural-programming.html"><i class="fa fa-check"></i><b>38</b> Procedural Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#conditional-looping-with-while-loops"><i class="fa fa-check"></i>Conditional Looping with While-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-i"><i class="fa fa-check"></i>Generating Truncated Random Data, Part I</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#if-statements"><i class="fa fa-check"></i>If-Statements</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#generating-truncated-random-data-part-ii"><i class="fa fa-check"></i>Generating Truncated Random Data, Part II</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#for-loops"><i class="fa fa-check"></i>For-Loops</a></li>
+<li class="chapter" data-level="" data-path="procedural-programming.html"><a href="procedural-programming.html#a-functional-extension"><i class="fa fa-check"></i>A Functional Extension</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html"><i class="fa fa-check"></i><b>39</b> Objects and Classes in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="objects-and-classes-in-r.html"><a href="objects-and-classes-in-r.html#creating-our-own-classes"><i class="fa fa-check"></i>Creating Our Own Classes</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html"><i class="fa fa-check"></i><b>40</b> Plotting Data and ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#a-brief-introduction-to-base-r-graphics"><i class="fa fa-check"></i>A Brief Introduction to Base-R Graphics</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#overview-of-ggplot2-and-layers"><i class="fa fa-check"></i>Overview of ggplot2 and Layers</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#smart-defaults-specialized-layer-functions"><i class="fa fa-check"></i>Smart Defaults, Specialized Layer Functions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#more-aesthetics-and-mathematical-expressions"><i class="fa fa-check"></i>More Aesthetics and Mathematical Expressions</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#faceting"><i class="fa fa-check"></i>Faceting</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#scales"><i class="fa fa-check"></i>Scales</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#coordinates"><i class="fa fa-check"></i>Coordinates</a></li>
+<li class="chapter" data-level="" data-path="plotting-data-and-ggplot2.html"><a href="plotting-data-and-ggplot2.html#theming-annotations-text-and-jitter"><i class="fa fa-check"></i>Theming, Annotations, Text, and Jitter</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer for Computational Biology (2nd Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="split-apply-combine" class="section level1 hasAnchor" number="36">
+<h1><span class="header-section-number">Chapter 36</span> Split, Apply, Combine<a href="split-apply-combine.html#split-apply-combine" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Although we touched briefly on writing functions, the discussion has so far been largely about the various types of data used by R and the syntax and functions for working with them. These include vectors of various types, lists, data frames, factors, indexing, replacement, and vector recycling.</p>
+<p>At some point won’t we discuss analyzing a meaningful data set? Yes, and that point is now. We’ll continue to work with the gene expression data from chapter 35, “<a href="character-and-categorical-data.html#character-and-categorical-data">Character and Categorical Data</a>,” after it’s been processed to include the appropriate individual columns using the functions in the <code>stringr</code> library. Here’s the code from the last chapter which pre-processed the input data:</p>
+<pre id=part3-08-processesed_exp
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+library(stringr)
+
+expr_long <- read.table("expr_long_coded.txt",
+                        header = TRUE,
+                        sep = "\t",
+                        stringsAsFactors = FALSE)
+
+# Split sample column into 3-column matrix on _'s
+sample_split <- str_split_fixed(expr_long$sample, "_", 3)
+
+# Turn the matrix into a data frame with appropriate column names
+# and combine it with the original data frame into a larger set
+sample_split_df <- data.frame(sample_split)
+colnames(sample_split_df) <- c("genotype", "treatment", "tissuerep")
+expr_long_split <- cbind(expr_long, sample_split_df)
+
+# Create an individual tissue column
+expr_long_split$tissue <- NA
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "A")] <- "A"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "B")] <- "B"
+expr_long_split$tissue[str_detect(expr_long_split$tissuerep, "C")] <- "C"
+
+# We've already checked for NAs
+#print(expr_long_split[is.na(expr_long_split$tissue), ]) # should print 0 rows
+
+# Create a new rep column
+expr_long_split$rep <- NA
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "1")] <- "1"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "2")] <- "2"
+expr_long_split$rep[str_detect(expr_long_split$tissuerep, "3")] <- "3"
+
+# We've already checked for NAs, but a few were left
+#print(expr_long_split[is.na(expr_long_split$rep), ]) # should print 0 rows
+
+# So we remove all rows with such "bad" IDs
+bad_ids <- expr_long_split$id[is.na(expr_long_split$rep)]
+bad_rows <- expr_long_split$id %in% bad_ids      # logical vector
+expr_long_split <- expr_long_split[!bad_rows, ]  # logical selection
+</code></pre>
+<p>As we continue, we’ll likely want to rerun our analysis script in different ways, without having to rerun all of the code above, as it takes a few minutes to run this preprocessing script. One good strategy would be to write this “cleaned” data frame out to a text file using <code>write.table()</code>, and read it back in to an analysis-only script with <code>read.table()</code>. Just for variety, though, let’s use the <code>save()</code> function, which stores any R object (such as a list, vector, or data frame) to a file in a compressed binary format.</p>
+<pre id=part3-08-save
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+save(expr_long_split, file = "expr_long_split.Rdata")
+</code></pre>
+<p>The traditional file extension for such an R-object file is <code>.Rdata</code>. Such data files are often shared among R programmers.</p>
+<p>The first few lines of the saved data frame are all readings for the same gene. There are ~360,000 lines in the full data frame, with readings for over 11,000 genes. (The script above, which processes the <a href="data/expr_long_coded.txt"><code>expr_long_coded.txt</code></a> file, can be found in the file <a href="data/expr_preprocess.R"><code>expr_preprocess.R</code></a>.) The figure below shows the results of <code>print(head(expr_long_split))</code>:</p>
+<pre id=part3-08-head
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+           id           annotation expression        sample genotype treatment
+1 LQ00X000020 Hypothetical protein   5.024142 C6_control_A1       C6   control
+2 LQ00X000020 Hypothetical protein   4.646697 C6_control_A3       C6   control
+3 LQ00X000020 Hypothetical protein   4.986592 C6_control_B1       C6   control
+4 LQ00X000020 Hypothetical protein   5.164292 C6_control_B2       C6   control
+5 LQ00X000020 Hypothetical protein   5.348810 C6_control_B3       C6   control
+6 LQ00X000020 Hypothetical protein   5.519393 C6_control_C1       C6   control
+  tissuerep tissue rep
+1        A1      A   1
+2        A3      A   3
+3        B1      B   1
+4        B2      B   2
+5        B3      B   3
+6        C1      C   1
+</code></pre>
+<p>Let’s start a new analysis script that loads this data frame before we begin our analysis of it. For this script we may also need the <code>stringr</code> library, and we’re going to include the <code>dplyr</code> library as well (which we assume has been separately installed with <code>install.packages("dplyr")</code> in the interactive console).</p>
+<pre id=part3-08-load
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+library(stringr)
+library(dplyr)
+
+## This script analyzes the data stored in the data frame
+## expr_long_split.Rdata, containing gene expression data
+
+load("expr_long_split.Rdata")
+expr <- expr_long_split
+</code></pre>
+<p>The <code>load()</code> function creates a variable with the same name that was used in <code>save()</code>, and for convenience we’ve created a copy of the data frame with a shorter variable name, <code>expr</code>. While these sorts of R data files are convenient for R users, the benefit of a <code>write.table()</code> approach would be that other users and languages would have more direct access to the data (e.g., in Python or even Microsoft Excel).</p>
+<p>This data set represents a multifactor analysis of gene expression<a href="#fn111" class="footnote-ref" id="fnref111"><sup>111</sup></a> in two genotypes of a plant, where a control treatment (water) and a chemical treatment (pesticide) have been applied to each. Further, three tissue types were tested (A, B, and C, for leaf, stem, and root, respectively) and two or three replicates were tested for each combination for statistical power. These data represent microarray readings and have already been normalized and so are ready for analysis.<a href="#fn112" class="footnote-ref" id="fnref112"><sup>112</sup></a> (These data are also anonymized for this publication at the request of the researchers.)</p>
+<p>For now, we’ll focus on the genotype and treatment variables. Ignoring other variables, this gives us around 24 expression readings for each gene.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_5_experiment_design_expressions.png" /></p>
+</div>
+<p>This sort of design is quite common in gene expression studies. It is unsurprising that gene expression will differ between two genotypes, and that gene expression will differ between two treatments. But genotypes and treatments frequently react in interesting ways. In this case, perhaps the L4 genotype is known to grow larger than the C6 genotype, and the chemical treatment is known to be harmful to the plants. Interestingly, it seems that the chemical treatment is less harmful to the L4 genotype.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_6_experiment_design_plants-3.png" /></p>
+</div>
+<p>The natural question is: which genes might be contributing to the increased durability of L4 under chemical exposure? We can’t simply look for the differences in mean expression between genotypes (with, say, <code>t.test()</code>), as that would capture many genes involved in plant size. Nor can we look for those with mean expression differences that are large between treatments, because we know many genes will react to a chemical treatment no matter what. Even both signals together (left side of the image below) are not that interesting, as they represent genes that are affected by the chemical and are involved with plant size, but may have nothing at all to do with unique features of L4 in the chemical treatment. What we are really interested in are genes with a <em>differential</em> response to the chemical between two the two genotypes (right side of the image below).</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_7_experiment_interaction_1-3.png" /></p>
+</div>
+<p>Does that mean that we can look for genes where the mean difference is large in one genotype, but not the other? Or within one treatment, but not that other? No, because many of these interesting scenarios would be missed:</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_8_experiment_interaction_2-3.png" /></p>
+</div>
+<p>For each gene’s expression measurements, we need a classic ANOVA (analysis of variance) model. After accounting for the variance explained by the genotype difference (to which we can assign a <em>p</em> value indicating whether there is a difference) as well as the variance explained by the treatment (which will also have a <em>p</em> value), is the leftover variance — for the interaction/differential response — significant?</p>
+<div id="a-single-gene-test-formulas" class="section level3 unnumbered hasAnchor">
+<h3>A Single Gene Test, Formulas<a href="split-apply-combine.html#a-single-gene-test-formulas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To get started, we’ll run an ANOVA for just a single gene.<a href="#fn113" class="footnote-ref" id="fnref113"><sup>113</sup></a> First, we’ll need to isolate a sub-data frame consisting of readings for only a single ID. We can use the <code>unique()</code> function to get a vector of unique IDs, and then the <code>%in%</code> operator to select rows matching only the first of those.</p>
+<pre id=part3-08-extract_one_gene
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+uniq_ids <- unique(expr$id)
+expr1 <- expr[expr$id %in% uniq_ids[1], ]
+</code></pre>
+<p>This data frame contains rows for a single gene and columns for expression, genotype, treatment, and others (we could verify this with a simple <code>print()</code> if needed). We wish to run an ANOVA for these variables, based on a linear model predicting expression values from genotype, treatment, and the interaction of these terms.</p>
+<p>The next step is to build a simple linear model using the <code>lm()</code> function, which takes as its only required parameter a “formula” describing how the predictor values should be related to the predicted values. Note the format of the formula: <code>response_vector ~ predictor_vector1 + predictor_vector2 + predictor_vector1 : predictor_vector2</code>, indicating that we wish to determine how to predict values in the response vector using elements from the predictor vectors.</p>
+<pre id=part3-08-lm1a
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+lm1 <- lm(expr1$expression ~ expr1$genotype +                   # genotype
+                             expr1$treatment +                  # treatment
+                             expr1$genotype : expr1$treatment)  # interaction
+</code></pre>
+<p>If the vectors or factors of interest exist within a data frame (as is the case here), then the <code>lm()</code> function can work with column names only and a <code>data =</code> argument.</p>
+<pre id=part3-08-lm1b
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+lm1 <- lm(expression ~ genotype + treatment + genotype:treatment, data = expr1)
+</code></pre>
+<p>We can then print the linear model returned with <code>print(lm1)</code>, as well as its structure with <code>str(lm1)</code>, to see that it contains quite a bit of information as a named list:</p>
+<pre id=part3-08-lm1_print_str
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Call:
+lm(formula = expression ~ genotype + treatment + genotype:treatment, 
+    data = expr1)
+
+Coefficients:
+                (Intercept)                   genotypeL4  
+                    5.38363                     -0.08384  
+           treatmentcontrol  genotypeL4:treatmentcontrol  
+                   -0.19230                      0.16046  
+
+List of 13
+ $ coefficients : Named num [1:4] 5.3836 -0.0838 -0.1923 0.1605
+  ..- attr(*, "names")= chr [1:4] "(Intercept)" "genotypeL4" "treatmentcontrol"
+"genotypeL4:treatmentcontrol"
+ $ residuals    : Named num [1:32] -0.167 -0.545 -0.205 -0.027 0.157 ...
+  ..- attr(*, "names")= chr [1:32] "1" "2" "3" "4" ...
+ $ effects      : Named num [1:32] -29.9003 -0.0102 0.317 0.2269 0.2552 ...
+...
+</code></pre>
+<p>Before we continue, what is this <code>expression ~ genotype + treatment + genotype : treatment</code> “formula”? As usual, we can investigate a bit more by assigning it to a variable and using <code>class()</code> and <code>str()</code>.</p>
+<pre id=part3-08-formula
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+f <- expression ~ genotype + treatment + genotype : treatment
+str(f)
+</code></pre>
+<pre id=part3-08-formula_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Class 'formula' length 3 expression ~ genotype + treatment + genotype:treatment
+  ..- attr(*, ".Environment")=<environment: R_GlobalEnv>
+</code></pre>
+<p>The output indicates that the class is of type <code>"formula"</code> and that it has an <code>".Environment"</code> attribute. It’s a bit opaque, but a formula type in R is a container for a character vector of variable names and a syntax for relating them to each other. The environment attribute specifies where those variables should be searched for by default, though functions are free to ignore that (as in the case of <code>data =</code> for <code>lm()</code>, which specifies that the variables should be considered column names in the given data frame). Formulas don’t even need to specify variables that actually exist. Consider the following formula and the <code>all.vars()</code> function, which inspects a formula and returns a character vector of the unique variable names appearing in the formula.</p>
+<pre id=part3-08-formula_b
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+f <- alpha ~ beta + beta : gamma
+print(all.vars(f))                               # [1] "alpha" "beta" "gamma"
+</code></pre>
+<p>Anyway, let’s return to running the statistical test for the single gene we’ve isolated. The <code>lm1</code> result contains the model predicting expressions from the other terms (where this “model” is a list with a particular set of elements). To get the associated <em>p</em> values, we’ll need to run it through R’s <code>anova()</code> function.</p>
+<pre id=part3-08-gene_one_anova
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+anova1 <- anova(lm1)
+print("Printed Result: ")
+print(anova1)
+
+print("Structure:")
+str(anova1)
+</code></pre>
+<p>Printing the result shows that the <em>p</em> values (labeled <code>"Pr(&gt;F)"</code>) for the genotype, treatment, and interaction terms are 0.97, 0.41, and 0.56, respectively. If we want to extract the <em>p</em> values individually, we’ll need to first inspect its structure with <code>str()</code>, revealing that the result is both a list and a data frame — unsurprising because a data frame is a type of list. The three <em>p</em> values are stored in the <code>"Pr(&gt;F)"</code> name of the list.</p>
+<pre id=part3-08-printout
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+[1] "Printed Result: "
+Analysis of Variance Table
+
+Response: expression
+                   Df Sum Sq  Mean Sq F value Pr(>F)
+genotype            1 0.0001 0.000104  0.0007 0.9790
+treatment           1 0.1005 0.100465  0.6770 0.4176
+genotype:treatment  1 0.0515 0.051498  0.3470 0.5605
+Residuals          28 4.1550 0.148395               
+[1] "Structure:"
+Classes ‘anova’ and 'data.frame': 4 obs. of  5 variables:
+ $ Df     : int  1 1 1 28
+ $ Sum Sq : num  0.000104 0.100465 0.051498 4.155049
+ $ Mean Sq: num  0.000104 0.100465 0.051498 0.148395
+ $ F value: num  0.000704 0.677016 0.347033 NA
+ $ Pr(>F) : num  0.979 0.418 0.561 NA
+ - attr(*, "heading")= chr  "Analysis of Variance Table\n" "Response: expression"
+</code></pre>
+<p>We can thus extract the <em>p</em> values vector as <code>pvals1 &lt;- anova1$"Pr(&gt;F)"</code>; notice that we must use the quotations to select from this list by name because of the special characters (<code>(</code>, <code>&gt;</code>, and <code>)</code>) in the name. For the sake of argument, let’s store these three values in a data frame with a single row, and column names <code>"genotype"</code>, <code>"treatment"</code>, and <code>"genotype:treatment"</code> to indicate what the values represent.</p>
+<pre id=part3-08-pvals_df
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+pvals1 <- anova1$"Pr(>F)"
+pvals_df1 <- data.frame(pvals1[1], pvals1[2], pvals1[3])
+colnames(pvals_df1) <- c("genotype", "treatment", "genotype:treatment")
+
+print(pvals_df1)
+</code></pre>
+<p>Output:</p>
+<pre id=part3-08-pvals_df_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+   genotype treatment genotype:treatment
+1 0.9790277 0.4175689          0.5605206
+</code></pre>
+<p>This isn’t bad, but ideally we wouldn’t be “hard coding” the names of these <em>p</em> values into the column names. The information is, after all, represented in the printed output of the <code>print(anova1)</code> call above. Because <code>anova1</code> is a data frame as well as a list, these three names are actually the row names of the data frame. (Sometimes useful data hide in strange places!)</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_20_anova1_rownames-3.png" /></p>
+</div>
+<p>So, given any result of a call to <code>anova()</code>, no matter the formula used in the linear model, we should be able to computationally produce a single-row <em>p</em>-values data frame. But we’ve got to be clever. We can’t just run <code>pvals_df1 &lt;- data.frame(pvals1)</code>, as this will result in a single-column data frame with three rows, rather than a single-row data frame with three columns. Rather, we’ll first convert the <em>p</em>-values vector into a list with <code>as.list()</code>, the elements of which will become the columns of the data frame because data frames are a type of list. From there, we can assign the <code>rownames()</code> of <code>anova1</code> to the <code>colnames()</code> of the <code>pvals_df1</code> data frame.<a href="#fn114" class="footnote-ref" id="fnref114"><sup>114</sup></a></p>
+<pre id=part3-08-pvals_df2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+pvals1 <- anova1$"Pr(>F)"                # vector of p-values
+pvals_list1 <- as.list(pvals1)           # list of p-values
+pvals_df1 <- data.frame(pvals_list1)     # single-row data frame
+colnames(pvals_df1) <- rownames(anova1)  # column names from rownames(anova1)
+
+print(pvals_df1)
+</code></pre>
+<p>The programmatically generated output is as follows:</p>
+<pre id=part3-08-pvals_df2_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+   genotype treatment genotype:treatment Residuals
+1 0.9790277 0.4175689          0.5605206        NA
+</code></pre>
+<p>This time, there’s an extra column for the residuals, but that’s of little significance.</p>
+<p>This whole process — taking a sub–data frame representing expression values for a single gene and producing a single-row data frame of <em>p</em> values — is a good candidate for encapsulating with a function. After all, there are well-defined inputs (the sub–data frame of data for a single gene) and well-defined outputs (the <em>p</em>-values data frame), and we’re going to want to run it several thousand times, once for each gene ID.</p>
+<pre id=part3-08-pvals_df_fxn
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+## Given a data frame with columns for expression,
+## genotype, and treatement, runs a linear model
+## and returns a single-row data frame with p-values in columns
+sub_df_to_pvals_df <- function(sub_df) {
+  lm1 <- lm(expression ~ genotype + treatment + genotype:treatment,
+            data = sub_df)
+
+  anova1 <- anova(lm1)
+  pvals1 <- anova1$"Pr(>F)"
+  pvals_list1 <- as.list(pvals1)
+  pvals_df1 <- data.frame(pvals_list1)
+  colnames(pvals_df1) <- rownames(anova1)
+
+  return(pvals_df1)
+}
+</code></pre>
+<p>To get the result for our <code>expr1</code> sub–data frame, we’d simply need to call something like <code>pvals_df1 &lt;- sub_df_to_pvals_df(exp1)</code>. The next big question is: how are we going to run this function not for a single gene, but for all 11,000 in the data set? Before we can answer that question, we must learn more about the amazing world of functions in R.</p>
+<div id="exercises-36" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="split-apply-combine.html#exercises-36" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Generate a data frame with a large amount of data (say, one with two numeric columns, each holding 1,000,000 entries). Write the data frame to a text file with <code>write.table()</code> and save the data frame to an R data file with <code>save()</code>. Check the size of the resulting files. Is one smaller than the other? By how much?</p></li>
+<li><p>The example we’ve covered — generating a small data frame of results (<em>p</em> values) from a frame of data (expression values) by using a function — is fairly complex owing to the nature of the experimental design and the test we’ve chosen. Still, the basic pattern is quite common and very useful.</p>
+<p>A default installation of R includes a number of example data sets. Consider the <code>CO2</code> data frame, which describes CO2 uptake rates of plants in different treatments (<code>"chilled"</code> and <code>"nonchilled"</code>; see <code>help(CO2)</code> for more detailed information). Here’s the output of <code>print(head(CO2))</code>:</p>
+<pre id=part3-08-CO2
+  class="language-txt
+         line-numbers
+         linkable-line-numbers">
+<code>
+  Plant   Type  Treatment conc uptake
+1   Qn1 Quebec nonchilled   95   16.0
+2   Qn1 Quebec nonchilled  175   30.4
+3   Qn1 Quebec nonchilled  250   34.8
+4   Qn1 Quebec nonchilled  350   37.2
+5   Qn1 Quebec nonchilled  500   35.3
+6   Qn1 Quebec nonchilled  675   39.2
+</code></pre>
+<p>The conc column lists different ambient CO2 concentrations under which the experiment was performed. Ultimately, we will want to test, for each concentration level, whether the uptake rate is different in chilled versus nonchilled conditions. We’ll use a simple <em>t</em> test for this.</p>
+<p>Start by writing a function that takes a data frame with these five columns as a parameter and returns a single-row, single-column data frame containing a <em>p</em> value (reported by <code>t.test()</code>) for chilled uptake rates versus nonchilled uptake rates. (Your function will need to extract two vectors of update rates to provide to <code>t.test()</code>, one for chilled values and one for nonchilled.)</p>
+<p>Next, extract a sub–data frame containing rows where <code>conc</code> values are <code>1000</code>, and run your function on it. Do the same for a sub–data frame containing <code>conc</code> value of <code>675</code>.</p></li>
+</ol>
+</div>
+</div>
+<div id="attack-of-the-functions" class="section level3 unnumbered hasAnchor">
+<h3>Attack of the Functions!<a href="split-apply-combine.html#attack-of-the-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While R has a dedicated function for computing the interquartile range (the range of data values between the 25th percentile and the 75th), let’s write our own so that we can explore functions more generally. We’ll call it <code>ipercentile_range</code>, to note that it computes an interpercentile range (where the percentiles just happen to be quartiles, for now).</p>
+<pre id=part3-08-ipercentile_range
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ipercentile_range <- function(x) {
+  lower_value <- quantile(x, 0.25)
+  upper_value <- quantile(x, 0.75)
+  return(upper_value - lower_value)
+}
+</code></pre>
+<p>Next, let’s make a list containing some samples of random data.</p>
+<pre id=part3-08-3samples_list
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+samples <- list()
+samples$s1 <- rnorm(100, mean = 10, sd = 4)
+samples$s2 <- rnorm(100, mean = 5, sd = 2)
+samples$s3 <- rnorm(100, mean = 20, sd = 8)
+</code></pre>
+<p>To compute the three interquartile ranges, we could call the function three times, once per element of the list, and store the results in another list.</p>
+<pre id=part3-08-3samples_call
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+iqr1 <- ipercentile_range(samples$s1)              # 5.44
+iqr2 <- ipercentile_range(samples$s2)              # 2.22
+iqr3 <- ipercentile_range(samples$s3)              # 10.15
+sample_iqrs <- list(iqr1, iqr2, iqr3)              # list of 5.44 2.22 10.15
+</code></pre>
+<p>Not too bad, but we can do better. Notice the declaration of the function — we’ve used the assignment operator <code>&lt;-</code> to assign to <code>ipercentile_range</code>, just as we do with other variables. In fact, <code>ipercentile_range</code> is a variable! And just as with other data, we can check its class and print it.</p>
+<pre id=part3-08-print_fxn
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+print(class(ipercentile_range))          # [1] "function"
+print(ipercentile_range)
+</code></pre>
+<p>When it is printed, we see the source code for the function:</p>
+<pre id=part3-08-print_fxn_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+function (x) 
+{
+    lower_value <- quantile(x, 0.25)
+    upper_value <- quantile(x, 0.75)
+    return(upper_value - lower_value)
+}
+</code></pre>
+<p>In R, functions are a type of data just like any other. Thus R is an example of a “functional” programming language.<a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a> One of the important implications is that functions can be passed as parameters to other functions; after all, they are just a type of data. This is a pretty tricky idea. Let’s explore it a bit with the <code>lapply()</code> function. This function takes two parameters: first, a list, and second, a function to apply to each element of the list. The return value is a list representing the collated outputs of each function application. So, instead of using the four lines above to apply <code>ipercentile_range()</code> to each element of <code>samples</code>, we can say:</p>
+<pre id=part3-08-lapply
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+sample_irqs <- lapply(samples, ipercentile_range)  # list of 5.44 2.22 10.15
+</code></pre>
+<p>The resulting list will have the same three values as above, and the names of the elements in the output list will be inherited from the input list (so <code>sample_irqs$s1</code> will hold the first range or 5.44, for this random sample anyway).</p>
+<p>This is an example of the powerful “split-apply-combine” strategy for data analysis. In general, this strategy involves splitting a data set into pieces, applying an operation or function to each, and then combining the results into a single output set in some way.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_31_split_apply_combine-4.png" /></p>
+</div>
+<p>When the input and output are both lists, this operation is also known as a “map.” In fact, this paradigm underlies some parallel processing supercomputer frameworks like Google’s MapReduce and the open-source version of Hadoop (although these programs aren’t written in R).</p>
+<p>Because lists are such a flexible data type, <code>lapply()</code> is quite useful. Still, in some cases — like this one — we’d prefer the output to be a vector instead of a list. This is common enough to warrant a conversion function called <code>unlist()</code> that extracts all of the elements and subelements of a list to produce a vector.</p>
+<pre id=part3-08-unlist
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+irqs_vec <- unlist(sample_irqs)
+print(irqs_vec)                                     # [1] 5.44 2.22 10.15
+</code></pre>
+<p>Be warned: because lists are more flexible than vectors, if the list given to <code>unlist()</code> is not simple, the elements may be present in the vector in an odd order and they will be coerced into a common data type.</p>
+<p>The <code>lapply()</code> function can also take as input a vector instead of a list, and it is but one of the many “apply” functions in R. Other examples include <code>apply()</code>, which applies a function to each row or column of a matrix,<a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a> and <code>sapply()</code> (for “simple apply”), which detects whether the return type should be a vector or matrix depending on the function applied. It’s easy to get confused with this diversity, so to start, it’s best to focus on <code>lapply()</code> given its relatively straightforward (but useful) nature.</p>
+</div>
+<div id="collecting-parameters-with" class="section level3 unnumbered hasAnchor">
+<h3>Collecting Parameters with …<a href="split-apply-combine.html#collecting-parameters-with" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The help page for <code>lapply()</code> is interesting. It specifies that the function takes three parameters: <code>X</code> (the list to apply over), <code>FUN</code> (the function to apply), and <code>...</code>, which the help page details as “optional arguments to <code>FUN</code>.”</p>
+<pre id=part3-08-dotdotdot
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Usage:
+
+     lapply(X, FUN, ...)
+</code></pre>
+<p>The <code>...</code> parameter is common in R, if a bit mysterious at times. This “parameter” collects any number of named parameters supplied to the function in a single unit. This collection can then be used by the function; often they are passed on to functions called by the function.</p>
+<p>To illustrate this parameter, let’s modify our <code>ipercentile_range()</code> function to take two optional parameters, a <code>lower</code> and <code>upper</code> percentile from which the range should be computed. While the interquartile range is defined as the range in the data from the 25th to the 75th percentile, our function will be able to compute the range from any lower or upper percentile.</p>
+<pre id=part3-08-ipercentile_range_exp
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ipercentile_range <- function(x, lower = 0.25, upper = 0.75) {
+  lower_value <- quantile(x, lower)
+  upper_value <- quantile(x, upper)
+  return(upper_value - lower_value)
+}
+</code></pre>
+<p>Now we can call our function as <code>ipercentile_range(sample$s1)</code> to get the default interquartile range of the first sample, or as <code>ipercentile_range(samples$s2, lower = 0.05, upper = 0.95)</code>, to get the middle 90th percentile range. Similarly, we have the ability to supply the optional parameters through the <code>...</code> of <code>lapply()</code>, which will in turn supply them to every call of the <code>ipercentile_range</code> function during the apply step.</p>
+<pre id=part3-08-lapply_dotdotdot
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+inter_90s <- lapply(samples, ipercentile_range, lower = 0.05, upper = 0.95)
+print(unlist(inter_90s))                           # [1] 12.12 6.30 22.08
+</code></pre>
+<p>This syntax might seem a bit awkward, but something like it is necessary if we hope to pass functions that take multiple parameters as parameters to other functions. This also should help illuminate one of the commonly misunderstood features of R.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_36_lapply_dotdotdot-3.png" /></p>
+</div>
+</div>
+<div id="functions-are-everywhere" class="section level3 unnumbered hasAnchor">
+<h3>Functions Are Everywhere<a href="split-apply-combine.html#functions-are-everywhere" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although mostly hidden from view, most (if not all) operations in R are actually function calls. Sometimes function names might contain nonalphanumeric characters. In these cases, we can enclose the function name in backticks, as in <code>iqr1 &lt;- `ipercentile_range`(samples$s1)</code>. (In chapter 30, “<a href="variables-and-data.html#variables-and-data">Variables and Data</a>,” we learned that any variable name can be enclosed in backticks this way, though it’s rarely recommended.)</p>
+<p>What about something like the lowly addition operator, <code>+</code>? It works much like a function: given two inputs (left-hand-side and right-hand-side vectors), it returns an output (the element-by-element sum).</p>
+<pre id=part3-08-plus_fxn1
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+s <- c(1, 2) + c(6, 3)                             # 7 5
+</code></pre>
+<p>In fact, <code>+</code> really <em>is</em> a function that takes two parameters, but to call it that way we need to use backticks.</p>
+<pre id=part3-08-plus_fxn2
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+s <- `+`(c(1, 2), c(6, 3))                         # 7 5
+</code></pre>
+<p>This might be considered somewhat amazing — the “human-readable” version is converted into a corresponding function call behind the scenes by the interpreter. The latter, functional representation is easier for the interpreter to make use of than the human-friendly representation. This is an example of <a href="application-programming-interfaces-modules-packages-syntactic-sugar.html#syntactic_sugar">syntactic sugar</a>: adjustments to a language that make it “sweeter” for human programmers. R contains quite a lot of syntactic sugar. Even the assignment operator <code>&lt;-</code> is a function call! The line <code>a &lt;- c(1, 2, 3)</code> is actually syntactic sugar for `<code>&lt;-`("a", c(1, 2, 3))</code>.</p>
+<p>Because functions are just a type of data and function names are variables, we can easily reassign new functions to old names. Perhaps a colleague has left her R session open, so we decide to redefine <code>+</code> to mean “to the power of”:</p>
+<pre id=part3-08-plus_redef
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+# Redefines + to mean power! Mwahaha
+`+` <- function(a, b) {
+  value <- a ^ b
+  return(value)
+}
+
+print(3 + 7)                                       # [1] 2187
+</code></pre>
+<p>Ok, maybe that’s a bit <em>too</em> evil. Another feature of R is that function names that begin and end with <code>%</code> and take two parameters signals that the function can be used as an infix function via syntactic sugar.</p>
+<pre id=part3-08-equalish
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+`%equalish%` <- function(a, b, epsilon = 0.00001) {
+  result <- abs(a - b) < epsilon
+  return(result)
+}
+
+answer <- c(4.00000001, 6) %equalish% c(4, 2)
+print(answer)                                      # [1] TRUE FALSE
+</code></pre>
+</div>
+<div id="sugary-data-frame-split-apply-combine" class="section level3 unnumbered hasAnchor">
+<h3>Sugary Data Frame Split-Apply-Combine<a href="split-apply-combine.html#sugary-data-frame-split-apply-combine" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although the basic units of data in R are vectors, and lists are used to store heterogeneous data, data frames are important as a storage mechanism for tabular data. Because <code>lapply()</code> can apply a function to each element of a list, it can also apply a function to each column of a data frame. This fact can be used, for example, to extract all numeric columns from a data frame with an application of <code>lapply()</code> and <code>is.numeric()</code> (the latter returns <code>TRUE</code> when its input is a numeric type; we’ll leave the details as an exercise).</p>
+<p>For most tabular data, though, we aren’t interested in independently applying a function to each column. Rather, we more often wish to apply a function to different sets of rows grouped by one or more of the columns. (This is exactly what we want to do with the <code>sub_df_to_pvals()</code> function we wrote for our gene expression analysis.) The <code>dplyr</code> package (<code>install.packages("dplyr")</code>) provides this ability and is both powerful and easy to use, once we get used to its specialized syntactic sugar.</p>
+<p>Initially, we’ll cover two functions in the <code>dplyr</code> package, <code>group_by()</code> and <code>do()</code>: <code>group_by()</code> adds metadata (as attributes) to a data frame indicating which categorical columns define groups of rows and returns such a “grouped” data frame, while <code>do()</code> applies a given function to each group of a grouped data frame, and returns a data frame of results with grouping information included.</p>
+<p>To illustrate, we’ll first create a simple data frame on which to work, representing samples of fish from one of two different lakes: Green Lake or Detroit Lake.</p>
+<pre id=part3-08-fish_df
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+species <- c("bass", "bass", "trout", "bass", "trout", "bass")
+lake <- c("detroit", "green", "green", "detroit", "detroit", "green")
+weight <- c(10.4, 9.6, 4.2, 12.2, 6.5, 8.4)
+
+fish <- data.frame(species, lake, weight)
+print(fish)
+</code></pre>
+<p>The nicely formatted printout:</p>
+<pre id=part3-08-fish_df_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  species    lake weight
+1    bass detroit   10.4
+2    bass   green    9.6
+3   trout   green    4.2
+4    bass detroit   12.2
+5   trout detroit    6.5
+6    bass   green    8.4
+</code></pre>
+<p>First, we’ll group the data frame by the species column using <code>group_by()</code>. This function takes a data frame (or column-named matrix or similar) and a listing of column names (without quotes) that define the groups as additional parameters. As with using the <code>data =</code> parameter for <code>lm()</code>, the function looks within the data frame for the columns specified.</p>
+<pre id=part3-08-fish_df_group
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+fish_by_species <- group_by(fish, species)
+print(fish_by_species)
+</code></pre>
+<p>Is this data frame different from the original? Yes, but mostly in the attributes/metadata. When printed, we get some information on the “source” (where the data are stored — <code>dplyr</code> can access data from remote databases) and the groups:</p>
+<pre id=part3-08-fish_df_group_print
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Source: local data frame [6 x 3]
+Groups: species
+
+  species    lake weight
+1    bass detroit   10.4
+2    bass   green    9.6
+...
+</code></pre>
+<p>Handily, unlike regular data frames, “grouped” data frames print only the first few rows and columns, even if they are many thousands of rows long. Sometimes this is an undesirable feature — fortunately, running <code>data.frame()</code> on a grouped data frame returns an ungrouped version. The <code>class()</code> of a grouped data frame returns <code>"data.frame"</code> as well as <code>"tbl"</code>, <code>"tbl_df"</code>, and <code>"grouped_df"</code>. Because a grouped data frame is also a regular data frame (and is also a list!), we can still do all of the fancy indexing operations on them covered in previous chapters.</p>
+<p>The <code>do()</code> function applies a function to each group of rows of a grouped data frame using a split-apply-combine strategy. The function applied must take as its first parameter a data frame, and it must return a data frame. Let’s write a function that, given a data frame or sub-data frame (group) of the fish data, returns a single-row data frame with columns for <code>mean_weight</code> and <code>sd_weight</code>. Both the <code>mean()</code> and <code>sd()</code> functions can take an <code>na.rm</code> argument to strip out any potential <code>NA</code> values in their inputs, so perhaps our function should take a similar optional parameter.</p>
+<pre id=part3-08-mean_sd_weight
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+mean_sd_weight <- function(sub_df, remove_nas = FALSE) {
+  weights <- sub_df$weight
+  meanw <- mean(weights, na.rm = remove_nas)
+  sdw <- sd(weights, na.rm = remove_nas)
+  ret_df <- data.frame(mean_weight = meanw, sd_weight = sdw)
+  return(ret_df)
+}
+</code></pre>
+<p>This function takes as input a data frame with a column for <code>weight</code> and returns a data frame with summary statistics. We can run it on the original data frame:</p>
+<pre id=part3-08-mean_sd_weight_run
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+stats <- mean_sd_weight(fish)
+print(stats)
+</code></pre>
+<pre id=part3-08-mean_sd_weight_run_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  mean_weight sd_weight
+1        8.55   2.86339
+</code></pre>
+<p>Alternatively, we can call <code>do()</code> on the grouped data frame, telling it to run <code>mean_sd_weight()</code> on each group (sub-data frame). The syntax for <code>do()</code> differs slightly from that of <code>lapply()</code> in that we specify a <code>.</code> for the positional argument representing the sub-data frame.</p>
+<pre id=part3-08-mean_sd_weight_do
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+stats_by_species <- do(fish_by_species, mean_sd_weight(.))
+print(stats_by_species)
+</code></pre>
+<p>The result of the <code>do()</code> is another grouped data frame, made up of the rows returned by the applied function. Notice that the grouping columns have been added, even though we didn’t specify them in the <code>ret_df</code> inside the function.</p>
+<pre id=part3-08-mean_sd_weight_do_out
+     class="language-txxt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Source: local data frame [2 x 3]
+Groups: species
+
+  species mean_weight sd_weight
+1    bass       10.15  1.594783
+2   trout        5.35  1.626346
+</code></pre>
+<p>When developing functions that work with <code>do()</code>, you might run into an error like <code>Error: Results are not data frames at positions: 1, 2</code>. This error message indicates that the function is not returning a data frame type, which is required for <code>do()</code>. To diagnose problems like this, you can add <code>print()</code> statements inside of the function to inspect the contents of variables as the function is applied.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_50_dplyr_do.png" /></p>
+</div>
+<p>We can also group data frames by multiple columns, resulting in a single group per combination of column entries.<a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a></p>
+<pre id=part3-08-two_col_group_do
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+fish_by_species_lake <- group_by(fish, species, lake)
+stats_by_species_lake <- do(fish_by_species_lake, mean_sd_weight(.))
+print(stats_by_species_lake)
+</code></pre>
+<pre id=part3-08-two_col_group_do_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  species    lake mean_weight sd_weight
+1    bass detroit        11.3 1.2727922
+2    bass   green         9.0 0.8485281
+3   trout detroit         6.5        NA
+4   trout   green         4.2        NA
+</code></pre>
+<p>The <code>NA</code> values for some standard deviations are the result of calling <code>sd()</code> on a vector of length one (because there was only one trout measurement per lake).</p>
+<p>Although the applied function must take a data frame and return a data frame, there are no restrictions on the nature of the returned data frame. Here our function returns a single-row data frame, but it could return multiple rows that would be stitched together in the combine step. As an example, here’s a function that, given a data frame, computes the <code>mean()</code> of the weight column, and subtracts that mean from all of the entries, returning the modified data frame (so-called “mean normalization” of the data).</p>
+<pre id=part3-08-mean_norm
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+mean_normalize_weight <- function(sub_df, remove_nas = FALSE) {
+  ret_df <- sub_df
+  meanw <- mean(sub_df$weight)
+  ret_df$weight <- sub_df$weight - meanw
+  return(ret_df)
+} 
+</code></pre>
+<p>And then we can easily mean-normalize the data on a <em>per group</em> basis!</p>
+<pre id=part3-08-mean_norm_do
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+mean_norm_by_species <- do(fish_by_species, mean_normalize_weight(.))
+print(mean_norm_by_species)
+</code></pre>
+<pre id=part3-08-mean_norm_do_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  species    lake weight
+1    bass detroit   0.25
+2    bass   green  -0.55
+3    bass detroit   2.05
+4    bass   green  -1.75
+5   trout   green  -1.15
+6   trout detroit   1.15
+</code></pre>
+<p>In the above output, <code>-1.15</code> and <code>1.15</code> are the deviations from the mean of the trout group, and the others are deviations from the mean for the bass group.</p>
+</div>
+<div id="more-sugar-optional-parameters-summarize" class="section level3 unnumbered hasAnchor">
+<h3>More Sugar, Optional Parameters, Summarize<a href="split-apply-combine.html#more-sugar-optional-parameters-summarize" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Something to note about the call to <code>do()</code> is that it differs syntactically from the call to <code>lapply()</code>. In <code>do()</code>, we specify not only the function to apply to each group, but also <em>how</em> that function will be called, using <code>.</code> to denote the input group data frame. This is somewhat clearer when we want to specify optional arguments to the applied function. In this case, we may want to specify that <code>NA</code> values should be removed by setting <code>remove_nas = TRUE</code> in each call to <code>mean_sd_weight()</code>.</p>
+<pre id=part3-08-do_opt_param
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+stats_by_species <- do(fish_by_species, mean_sd_weight(., remove_nas = TRUE))
+</code></pre>
+<p>Speaking of syntactic sugar, the <code>magrittr</code> package (which is installed and loaded along with <code>dplyr</code>, though written by a different author) provides an interesting infix function, <code>%&gt;%</code>. Consider the common pattern above; after the creation of a data frame (<code>fish</code>), we run it through a function to create an intermediary result (<code>fish_by_species</code> from <code>group_by()</code>), run that through another function to get another result (<code>stats_by_species</code> from <code>mean_sd_weight()</code>), and so on. While this process is clear, we could avoid the creation of multiple lines of code if we were willing to nest some of the function calls.</p>
+<pre id=part3-08-do_nested
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+stats_by_species <- do(group_by(fish, species), mean_sd_weight(.))
+</code></pre>
+<p>This line of code certainly suffers from some readability problems. The infix <code>%&gt;%</code> function supplies its left-hand side to its right-hand side (located by <code>.</code> in the right-hand side), returning the result of the call to the right-hand function. Thus we can rewrite the above as follows.</p>
+<div class="fig center" style="width: 100%">
+<p><img src="images/part3-08-split-apply-combine.Rmd.images/III.8_58_magrittr_chaining-3.png" /></p>
+</div>
+<p>Notice the similarity between this and <a href="file-input-and-output.html#method_chaining">method chaining</a> in Python and <a href="the-standard-streams.html#pipeline">stdin/stdout pipes</a> on the command line. (It’s also possible to omit the <code>.</code> if it would be the first parameter, as in <code>fish %&gt;% group_by(species) %&gt;% do(mean_sd_weight(.))</code>.)</p>
+<p>We demonstrated that functions applied by <code>do()</code> can return multiple-row data frames (in the mean-normalization example), but our <code>mean_sd_weight()</code> function only returns a single-row data frame with columns made of simple summary statistics. For this sort of simplified need, the <code>dplyr</code> package provides a specialized function called <code>summarize()</code>, taking a grouped data frame and other parameters indicating how such group-wise summary statistics should be computed. This example produces the same output as above, without the need for the intermediary <code>mean_sd_weight()</code> function.</p>
+<pre id=part3-08-summarize
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+fish_by_species <- group_by(fish, species)
+stats_by_species <- summarize(fish_by_species, 
+                              mean_weight = mean(weight),
+                              sd_weight = sd(weight))
+</code></pre>
+<p>The <code>dplyr</code> package provides quite a few other features and functions to explore, but even the simple combination of <code>group_by()</code> and <code>do()</code> represent a powerful paradigm. Because R is such a flexible language, the sort of advanced syntactic sugar used by <code>dplyr</code> is likely to become more common. Although some effort is required to understand these domain-specific languages (DSLs) and how they relate to “normal” R, the time spent is often worth it.</p>
+<div id="exercises-37" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="split-apply-combine.html#exercises-37" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>The primary purpose of <code>lapply()</code> is to run a function on each element of a list and collate the results into a list. With some creativity, it can also be used to run an identical function call a large number of times. In this exercise we’ll look at how <em>p</em> values are distributed under the “null” model—when two random samples from the same distribution are compared.</p>
+<p>Start by writing a function <code>null_pval()</code> that generates two random samples with <code>rnorm(100, mean = 0, sd = 1)</code>, compares them with <code>t.test()</code>, and returns the <em>p</em> value. The function should take a single parameter, say, <code>x</code>, but not actually make any use of it.</p>
+<p>Next, generate a list of 10,000 numbers with <code>10k_nums_list &lt;- as.list(seq(1,10000))</code>, and call <code>10k_pvals_list &lt;- lapply(10k_nums, null_pval)</code>. Turn this into a vector with <code>10k_pvals_vec &lt;- unlist(10k_pvals_list)</code> and inspect the distribution with <code>hist(10k_pvals_vec)</code>.</p>
+<p>What does this test reveal? What is the code you wrote doing, and why does it work? Why does the function need to take an <code>x</code> parameter that isn’t even used? What happens if you change one of the random samples to use <code>rnorm(100, mean = 0.1, sd = 1)</code>?</p></li>
+<li><p>If <code>df</code> is a data frame, using <code>[]</code> indexing treats it like a list of elements (columns). Write a function called <code>numeric_cols()</code> that takes a data frame as a parameter, and returns a version of the data frame with only the numeric columns kept. You may want to make use of <code>lapply()</code>, <code>unlist()</code>, <code>as.numeric()</code>, and the fact that lists (and data frames when treated like lists) can be indexed by logical vector.</p>
+<p>As an example, if <code>df1 &lt;- data.frame(id = c("PRQ", "XL2", "BB4"), val = c(23, 45.6, 62))</code>, then <code>print(numeric_cols(df1))</code> should print a data frame with only the <code>val</code> column. If <code>df2 &lt;- data.frame(srn = c(461, 514), name = c("Mel", "Ben"), age = c(27, 24))</code>, then <code>print(numeric_cols(df2))</code> should print a data frame with only <code>srn</code> and <code>age</code> columns.</p></li>
+<li><p>Write a function called <code>subset_rows()</code> that takes two parameters: first, a data frame <code>df</code>, and second, an integer <code>n</code>. The function should return a data frame consisting of <code>n</code> random rows from <code>df</code> (you may find the <code>sample()</code> function of use).</p>
+<p>The <code>iris</code> data frame is a commonly-referenced built-in R data set, describing measurements of petals for a variety of iris species. Here’s the output of <code>print(head(iris))</code>:</p>
+<pre id=part3-07-iris_summary
+       class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+...
+</code></pre>
+<p>Use <code>group_by()</code> to group the <code>iris</code> data frame by the <code>Species</code> column, and then <code>do()</code> along with your <code>subset_rows()</code> function to generate a data frame consisting of 10 random rows per species.</p></li>
+<li><p>Interestingly, there’s nothing stopping a function called by <code>do()</code> (or <code>lapply()</code>) from itself calling <code>do()</code> (and/or <code>lapply()</code>). Write a set of functions that compares every species in the <code>iris</code> data frame to every other species, reporting the mean difference in <code>Petal.Width</code>. (In this printout the difference in means compares <code>SpeciesA</code> to <code>SpeciesB</code>.)</p>
+<pre id=part3-07-double_do
+       class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+  Species   SpeciesA   SpeciesB diff_mean_petal_width
+1     setosa     setosa     setosa                  0.00
+2 versicolor versicolor     setosa                  1.08
+3  virginica  virginica     setosa                  1.78
+4     setosa     setosa versicolor                 -1.08
+...
+</code></pre>
+<p>To accomplish this, you will want to write a function <code>compare_petal_widths()</code> that takes two sub-data frames, one containing data for species A (<code>sub_dfa</code>) and the other for species B (<code>sub_dfb</code>), and returns a data frame containing the name of the A species, the name of the B species, and the difference of mean <code>Petal.Width</code>. You can test your function by manually extracting data frames representing <code>setosa</code> and <code>versicolor</code>.</p>
+<p>Next, write a function <code>one_vs_all_by_species()</code> that again takes two parameters; the first will be a sub-data frame representing a single species (<code>sub_df</code>), but the second will be a data frame with data for all species (<code>all_df</code>). This function should group <code>all_df</code> by species, and use <code>do()</code> to call <code>compare_petal_widths()</code> on each group sending along <code>sub_df</code> as a secondary parameter. It should return the result.</p>
+<p>Finally, a function <code>all_vs_all_by_species()</code> can take a single data frame <code>df</code>, group it by <code>species</code>, and call <code>one_vs_all_by_species()</code> on each group, sending along df as a secondary parameter, returning the result. In the end, all that is needed is to call this function on <code>iris</code>.</p></li>
+</ol>
+</div>
+</div>
+<div id="gene-expression-finished" class="section level3 unnumbered hasAnchor">
+<h3>Gene Expression, Finished<a href="split-apply-combine.html#gene-expression-finished" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With the discussion of split-apply-combine and <code>dplyr</code> under our belts, let’s return to the task of creating and analyzing a linear model for each ID in the gene expression data set. As a reminder, we had left off having read in the “cleaned” data set, extracting a sub-data frame representing a single ID, and writing a function that takes such a sub-data frame and returns a single-row data frame of <em>p</em> values. (It should now be clear why we went through the trouble of ensuring our function takes a data frame as a parameter and returns one as well.)</p>
+<pre id=part3-08-gene_exp_review
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+library(stringr)
+library(dplyr)
+
+## This script analyzes the data stored in the data frame
+## expr_long_split.Rdata, containing gene expression data
+
+load("expr_long_split.Rdata")
+expr <- expr_long_split
+
+## Given a data frame with columns for expression,
+## genotype, and treatement, runs a linear model
+## and returns a single-row data frame with p-values in columns
+sub_df_to_pvals_df <- function(sub_df) {
+  lm1 <- lm(expression ~ genotype + treatment + genotype:treatment,
+            data = sub_df)
+
+  anova1 <- anova(lm1)
+  pvals1 <- anova1$"Pr(>F)"
+  pvals_list1 <- as.list(pvals1)
+  pvals_df1 <- data.frame(pvals_list1)
+  colnames(pvals_df1) <- rownames(anova1)
+
+  return(pvals_df1)
+}
+
+uniq_ids <- unique(expr$id)
+expr1 <- expr[expr$id %in% uniq_ids[1], ]
+
+pvals_df1 <- sub_df_to_pvals_df(expr1)
+</code></pre>
+<p>Now, we can use <code>group_by()</code> on the <code>expr</code> data frame to group by the <code>id</code> column, and <code>do()</code> to apply the <code>sub_df_to_pvals_df()</code> function to each group. Rather than work on the entire data set, though, let’s create a <code>expr10</code> to hold a data frame representing measurements for 10 IDs; if we are satisfied with the results, we can always instead analyze the full <code>expr</code> table (though the full data set takes only a couple of minutes to analyze).</p>
+<pre id=part3-08-gene_exp_group_by_do
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+ten_ids <- head(uniq_ids, n = 10)
+expr10 <- expr[expr$id %in% ten_ids, ]
+
+expr10_by_id <- group_by(expr10, id)
+pvals_df <- do(expr10_by_id, sub_df_to_pvals_df(.))
+
+print(pvals_df)
+</code></pre>
+<p>The result is a nicely organized table of <em>p</em> values for each gene in the data set:</p>
+<pre id=part3-08-gene_exp_group_by_do_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Source: local data frame [10 x 5]
+Groups: id
+
+
+            id     genotype treatment genotype:treatment Residuals
+1  LQ00X000020 0.9790276672 0.4175689          0.5605206        NA
+2  LQ00X000200 0.9563376003 0.6023259          0.5273140        NA
+3  LQ00X000210 0.3882136652 0.1738578          0.1057537        NA
+4  LQ00X000280 0.5574234253 0.5687726          0.6549019        NA
+5  LQ00X000290 0.0003209239 0.5995250          0.2806888        NA
+...
+</code></pre>
+<div id="multiple-test-correction" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>There is one more important issue to consider for an analysis like this: <em>multiple test correction</em>. Suppose for a moment that none of the ~11,000 genes are differentially expressed in any way. Because <em>p</em> values are distributed evenly between zero and one under the null hypothesis (no difference), for the <code>genotype</code> column alone we could expect ~11,000 * 0.05 = 550 apparently (but erroneously) significant differences. Altering the scenario, suppose there were about 50 genes that truly were differentially expressed in the experiment: these would likely have small <em>p</em> values, but it is difficult to separate them from the other 550 apparently significant values.</p>
+<p>There are a variety of solutions to this problem. First, we could consider a much smaller threshold for significance. What threshold should that be? Well, if we wanted the number of apparently — but not really — significant <em>p</em> values to be small (on average), say, 0.05, we could solve for 11,000 * α = 0.05, suggesting a cutoff of α = 0.000004545. This is known as Bonferroni correction. The trouble is, this is a conservative correction, and it’s likely that even our 50 significant genes won’t pass that small threshold.</p>
+<p>The reason Bonferroni correction is so conservative is that we’ve specified that we’ll only accept the average number of false positives to be 0.05, which is quite small. We might alternatively say we would accept 10 false positives (and solve for 11,000 * α = 10); if the number of kept results is 100, that’s only a 10% false discovery rate (FDR), and so we can expect 90% of the kept results to be real (but we won’t know which are which!). On the other hand, if the number of kept results ends up being 15, that’s a 75% false discovery rate, indicating that we can expect most of the kept results to be false positives.</p>
+<p>Instead of specifying the <em>number</em> of false positives we’re willing to accept, we can instead specify the <em>rate</em> and deal with whatever number of kept results come out. There are several of these “FDR-controlling” methods available, and some make more assumptions about the data than others. For example, the methods of Benjamini and Hochberg (described in 1995 and known by the acronym “BH”) and Benjamini, Hochberg, and Yekutieli (from 2001, known as “BY”) differ in the amount of independence the many tests are assumed to have. The BY method assumes less independence between tests but generally results in more results for a given FDR rate. (Consult your local statistician or statistics textbook for details.)</p>
+<p>The <code>p.adjust()</code> function allows us to run either the Bonferroni, BH, or BY correction methods. It takes two arguments: first, a vector of <em>p</em> values to adjust, and, second, a <code>method =</code> parameter that can be set to <code>"bonferroni"</code>, <code>"BH"</code>, or <code>"BY"</code>. (There are other possibilities, but these three are the most commonly used.) Returned is a vector of the same length of adjusted FDR values—selecting all entries with values less than Q is equivalent to setting an FDR rate cutoff of Q.</p>
+<p>In the final analysis of all genes, we will produce a BY-adjusted column for the interaction <em>p</em> values, and then select from the data set only those rows where the FDR rate is less than 0.05. (The full analysis script is located in the file <a href="data/expr_analyze.R"><code>expr_analyze.R</code></a>.)</p>
+<pre id=part3-08-full_p_adj
+     class="language-r
+            line-numbers
+            linkable-line-numbers">
+<code>
+## Run all data
+expr_by_id <- group_by(expr, id)
+pvals_df <- do(expr_by_id, sub_df_to_pvals_df(.))
+
+## Add BY-adjusted column
+pvals_df$interaction_BY <- p.adjust(pvals_df$"genotype:treatment")
+
+## Extract with BY-adjusted FDR < 0.05
+pvals_interaction_sig <- pvals_df[pvals_df$interaction_BY < 0.05, ]
+print(pvals_interaction_sig)
+</code></pre>
+<p>Unfortunately (or fortunately, depending on how much data one hopes to further analyze), only one gene is identified as having a significant interaction after BY correction in this analysis. (If 100 were returned, we would expect 5 of them to be false positives due to the 0.05 FDR cutoff used.)</p>
+<pre id=part3-08-full_p_adj_out
+     class="language-txt
+            line-numbers
+            linkable-line-numbers">
+<code>
+Source: local data frame [1 x 6]
+Groups: id
+
+           id   genotype    treatment genotype:treatment Residuals
+1 LQ00X058430 0.01177861 7.113263e-07        4.24831e-06        NA
+Variables not shown: interaction_BY (dbl)
+</code></pre>
+<p>For grouped data frames, <code>print()</code> will omit printing some columns if they don’t fit in the display window. To see all the columns (including our new <code>interaction_BY</code> column), we can convert the grouped table back into a regular data frame and print the <code>head()</code> of it with <code>print(head(data.frame(pvals_interaction_sig)))</code>. For the curious, the <code>interaction_BY</code> value of this ID is <code>0.048</code>.</p>
+</div>
+<div id="exercises-38" class="section level4 unnumbered hasAnchor exercises">
+<h4>Exercises<a href="split-apply-combine.html#exercises-38" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>We spent a fair amount of work ensuring that the data frame generated and returned by <code>sub_df_to_pvals_df()</code> was programmatically generated. Take advantage of this fact by making the formula a secondary parameter of the function, that is, as <code>function(sub_df, form)</code>, so that within the function the linear model can be produced as <code>lm1 &lt;- lm(form, data = sub_df)</code>. Next, run the analysis with <code>group_by()</code> and <code>do()</code>, but specify some other formula in the <code>do()</code> call (perhaps something like <code>expression ~ genotype + treatment + tissue</code>).</p></li>
+<li><p>In a previous exercise in this chapter, we wrote a function that took a portion of the <code>CO2</code> data frame and returned a data frame with a <em>p</em> value for a comparison of CO2 uptake values between chilled and nonchilled plants. Now, use <code>group_by()</code> and <code>do()</code> to run this test for each <code>conc</code> group, producing a data frame of <em>p</em> values. Use <code>p.adjust()</code> with Bonferroni correction to add an additional column of multiply-corrected values.</p></li>
+<li><p>While functions called by <code>do()</code> must take a data frame as their first parameter and must return a data frame, they are free to perform any other actions as well, like generating a plot or writing a file. Use <code>group_by()</code>, <code>do()</code>, and <code>write.table()</code> to write the contents of the <code>CO2</code> data frame into seven text files, one for each <code>conc</code> level. Name them <code>conc_95.txt</code>, <code>conc_175.txt</code>, and so on. You may need <code>paste()</code> or <code>str_c()</code> (from the <code>stringr</code> library) to generate the file names.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="111">
+<li id="fn111"><p>Here we’ll be using the colloquial term “gene” to refer to a genetic locus producing messenger RNA and its expression to be represented by the amount of mRNA (of the various isoforms) present in the cell at the sampling time.<a href="split-apply-combine.html#fnref111" class="footnote-back">↩︎</a></p></li>
+<li id="fn112"><p>Microarrays are an older technology for measuring gene expression that have been largely supplanted by direct RNA-seq methods. For both technologies, the overall levels of expression vary between samples (e.g., owing to measurement efficiency) and must be modified so that values from different samples are comparable; microarray data are often _2 transformed as well in preparation for statistical analysis. Both steps have been performed for these data; we’ve avoided discussion of these preparatory steps as they are specific to the technology used and an area of active research for RNA-seq. Generally, RNA-seq analyses involve work at both the command line for data preprocessing and using functions from specialized R packages.<a href="split-apply-combine.html#fnref112" class="footnote-back">↩︎</a></p></li>
+<li id="fn113"><p>There are many interesting ways we could analyze these data. For the sake of focusing on R rather than statistical methods, we’ll stick to a relatively simple per gene 2x2 ANOVA model.<a href="split-apply-combine.html#fnref113" class="footnote-back">↩︎</a></p></li>
+<li id="fn114"><p>For almost all data type conversions, R has a default interpretation (e.g., vectors are used as columns of data frames). As helpful as this is, it sometimes means nonstandard conversions require more creativity. Having a good understanding of the basic data types is thus useful in day-to-day analysis.<a href="split-apply-combine.html#fnref114" class="footnote-back">↩︎</a></p></li>
+<li id="fn115"><p>Not all programming languages are “functional” in this way, and some are only partially functional. Python is an example of a mostly functional language, in that functions defined with the <code>def</code> keyword are also data just like any other. This book does not highlight the functional features of Python, however, preferring instead to focus on Python’s object-oriented nature. Here, R’s functional nature is the focus, and objects in R will be discussed only briefly later.<a href="split-apply-combine.html#fnref115" class="footnote-back">↩︎</a></p></li>
+<li id="fn116"><p>Because the <code>apply()</code> function operates on matrices, it will silently convert any data frame given to it into a matrix. Because matrices can hold only a single type (whereas data frames can hold different types in different columns), using <code>apply()</code> on a data frame will first force an autoconversion so that all columns are the same type. As such, it is almost never correct to use <code>apply()</code> on a data frame with columns of different types.<a href="split-apply-combine.html#fnref116" class="footnote-back">↩︎</a></p></li>
+<li id="fn117"><p>Because <code>group_by()</code> and similar functions take “bare” or “unquoted” column names, they can be difficult to call given a character vector. For functions in the <code>dplyr</code> and <code>tidyr</code> packages (covered later), versions with <code>_</code> as part of the function name support this. For example, <code>fish_by_species_lake &lt;- group_by(fish, species, lake)</code> can be replaced with <code>fish_by_species_lake &lt;- group_by_(fish, c("species", "lake"))</code>.<a href="split-apply-combine.html#fnref117" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="character-and-categorical-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reshaping-and-joining-data-frames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part3-08-split-apply-combine.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": {},
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

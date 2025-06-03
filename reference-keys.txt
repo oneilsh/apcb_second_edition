@@ -21,7 +21,6 @@ python-functions
 command-line-interfacing
 dictionaries
 string-tips-and-regular-expressions
-regular-expressions-1
 variables-and-scope
 variables-and-classes
 use-case-counting-snps
@@ -33,5 +32,11 @@ variables-and-data
 vectors
 r-functions
 lists-and-attributes
-attributes-removing-elements-list-structure
+attribute
 data-frames
+character-and-categorical-data
+split-apply-combine
+reshaping-and-joining-data-frames
+procedural-programming
+objects-and-classes-in-r
+plotting-data-and-ggplot2
