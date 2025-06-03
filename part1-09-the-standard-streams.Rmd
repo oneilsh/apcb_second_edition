@@ -229,6 +229,8 @@ At this point, the longish nature of the commands and the fact that our terminal
 <span style="background-color:LemonChiffon">> </span><b>wc</b>
 </code></pre>
 
+###### {- #pipeline}
+
 A chain of commands like the above, separated by pipe characters, is often called a “pipeline.” More generally, though, a pipeline can describe any series of steps from input data to output data (as in the Muscle/HMMER series covered in chapter 7).
 
 ### Counting Simple AT Repeats {-}

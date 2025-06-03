@@ -116,6 +116,8 @@ PZ21537_A       0.158   82      TTATT   3       unit:ATT        6
 PZ535325        0.108   120     AATTA   6       unit:TA 6       dinucleotide
 ...</code></pre>
 
+###### {- #join}
+
 Given such data, we might wish to ask which sequences had a hit to a yeast open reading frame and a GC content of over 50%. We could easily find out with `awk`, but first we need to invoke `join`, which merges two row/column text files based on lines with similar values in a specified “key” column. By default, `join` only outputs rows where data are present in both files. Both input files are required to be similarly sorted (either ascending or descending) on the key columns: `join -1 <key column in file1> -2 <key column in file2> <file1> <file2>`.
 
 Like most tools, `join` outputs its result to standard output, which can be redirected to a file or other tools like `less` and `awk`. Ideally, we’d like to say `join -1 1 -2 1 pz_stats.txt pz_blastx_yeast_top1.txt` to indicate that we wish to join these files by their common first column, but as of yet the files are not similarly sorted. So, we’ll first create sorted versions.

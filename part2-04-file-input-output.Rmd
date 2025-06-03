@@ -119,7 +119,9 @@ CATB 0.37
 Done.
 </code></pre>
 
-If you feel adventurous (and you should!), you can try method chaining, where the dot syntax for methods can be appended so long as the previous method returned the correct type.
+###### {- #method_chaining}
+
+If you feel adventurous (and you should!), you can try *method chaining*, where the dot syntax for methods can be appended so long as the previous method returned the correct type.
 
 <div class="fig center" style="width: 100%">
   <img src="images/part2-04-file-input-output.Rmd.images/II.4_8_py_38_method_chaining.png" />

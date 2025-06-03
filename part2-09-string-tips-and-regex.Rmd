@@ -107,7 +107,7 @@ Why do some operations (like the list method `.sort()`) change the data in place
 
 The idea behind this principle is that upon reading code, it should be immediately obvious what it does, a feature that is easily achieved if each operation only has one thing it can do. When operations both change data and return an answer, there is a temptation to “code by side effect”, that is, to make use of simultaneous effects to minimize typing at the cost of clarity. Compared to many other languages, Python makes a stronger attempt to follow this principle.
 
-### Regular Expressions
+### Regular Expressions {-}
 
 Regular expressions, common to many programming languages and even command line tools like `sed`, are syntax for matching patterns in strings. The simplest patterns are just simple strings; for example, `"ATG"` is the pattern for a start codon. Because Python treats backslashes as special in strings (e.g., `"\t"` is not actually `"\"` followed by a `"t"`, but rather a tab character), patterns for regular expressions in Python are usually expressed as “raw strings”, indicated by prefixing them with an `r`. So, `r"ATG"` is also the pattern for a start codon, but `r"\t"` is the regular expression for `"\"` and `"t"` rather than the tab character.
 

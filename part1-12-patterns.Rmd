@@ -40,6 +40,8 @@ And here is some of the output, where only sequences in groups are represented a
 ...
 </b></code></pre>
 
+###### {- #sed}
+
 The `sed` tool is a sophisticated program for modifying input (either from a file or standard input) and printing the results to standard output: `sed '<program>' <file>` or` ... | sed '<program>'`.
 
 Like `awk`, `sed` hails from the 1970s and provides a huge variety of powerful features and syntax, only a tiny fraction of which we’ll cover here. In particular, we’ll focus on the `s`, or substitution, operation.
