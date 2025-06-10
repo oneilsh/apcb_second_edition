@@ -124,7 +124,19 @@ There is a special environment variable, `$0`, that generally holds the name of 
 
 The above command illustrates that we are running `bash`.^[Because `$0` holds the name of the currently running program, one might expect `echo $0` to result in `echo` being reported, but this isn't the case. As mentioned previously, the shell replaces the environment variables with their contents *before* the command is executed.]
 
-Depending on the system you are logged in to, running `echo $0` may not report `bash`. In fact, if you're using a Mac, you'll most likely see `zsh` as the default shell was changed from `bash` to `zsh` in 2019. Luckily, it's not hard to [change the default shell](https://support.apple.com/guide/terminal/change-the-default-shell-trml113/mac) if you'd like.
+###### {- #change_default_shell}
+
+Depending on the system you are logged in to, running `echo $0` may not report `bash`. In fact, if you're using a Mac, you'll most likely see `zsh` as the default shell was changed from `bash` to `zsh` in 2019. Luckily, it's not hard to [change the default shell](https://support.apple.com/guide/terminal/change-the-default-shell-trml113/mac). We recommend Mac users set `bash` as the default shell like so:
+
+<pre id=part1-03-bash
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>chsh -s /bin/bash</b>
+</code></pre>
+
+After running this command, you will probably be asked to enter your password. Then, when you open a fresh terminal window, running `echo $0` should show you are indeed running `bash`.
 
 There are a variety of shells available, owing to the long history of Unix and Linux. In the beginning, the interfaces were quite simple, but over time better interfaces/shells were developed that included new features (consider how the "Start" menu has changed over the years on Microsoft Windows versions). We can run a different shell, if it is installed, by simply running it like any other program. The `tcsh` shell, itself an outgrowth of the `csh` shell, is sometimes the default instead of `bash`. (Both `csh` and `tcsh` are older than `bash`.)
 
