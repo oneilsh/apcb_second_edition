@@ -183,17 +183,19 @@
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
 <ul>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+<li class="chapter" data-level="2.0.1" data-path="getting-set-up.html"><a href="getting-set-up.html#opening-a-terminal"><i class="fa fa-check"></i><b>2.0.1</b> Opening a terminal</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-in"><i class="fa fa-check"></i>Logging in</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
 <ul>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
-<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-file-system"><i class="fa fa-check"></i>Getting Around the File System</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
@@ -212,7 +214,7 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
 <ul>
-<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and <code>$PATH</code></a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
 </ul></li>
@@ -475,10 +477,55 @@
 <div id="installing-bioinformatics-software" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Installing (Bioinformatics) Software<a href="installing-bioinformatics-software.html#installing-bioinformatics-software" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Ideally, the computational infrastructure to which you have access already includes a host of specialized software packages needed for your work, and the software installations are kept up to date as developers make improvements. If this isn’t the case, you might consider bribing your local system administrator with sweets and caffeine. Failing that, you’re likely to have to install the software you need yourself.</p>
-<p>Installing more sophisticated software than the simple scripts described in chapter 5, “<a href="permissions-and-executables.html#permissions-and-executables">Permissions and Executables</a>,” will follow the same basic pattern: (1) obtain executable files, (2) get them into <code>$HOME/local/bin</code>, and (3) ensure that <code>$HOME/local/bin</code> is present in the <code>$PATH</code> environment variable. Chapter 5 covered step 3, which needs to be done only once for our account. Steps 2 and 3, however, are often quite different depending on how the software is distributed.</p>
+<p>Installing more sophisticated software than the simple scripts described in chapter 5, “<a href="permissions-and-executables.html#permissions-and-executables">Permissions and Executables</a>,” will follow the same basic pattern:</p>
+<ol style="list-style-type: decimal">
+<li>obtain executable files,</li>
+<li>get them into <code>$HOME/local/bin</code>, and</li>
+<li>ensure that <code>$HOME/local/bin</code> is present in the <code>$PATH</code> environment variable.</li>
+</ol>
+<p>Chapter 5 covered step 3, which needs to be done only once for our account. Steps 1 and 2, however, are often quite different depending on how the software is distributed.</p>
 <p>In this chapter, we’re going to run through an example of installing a bioinformatics suite known as HMMER. This software searches for protein sequence matches (from a set of sequences) based on a probabilistic hidden Markov model (HMM) of a set of similar protein sequences, as in orthologous proteins from different species. The motivation for choosing this example is not so we can learn about HMM modeling or this software suite specifically, but rather that it is a representative task requiring users to download files, install software in different ways, and obtain data from public repositories.</p>
 <div id="using-a-package-manager" class="section level3 unnumbered hasAnchor">
 <h3>Using a Package Manager<a href="installing-bioinformatics-software.html#using-a-package-manager" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Arguably, one of the fastest and easiest ways to install software is to use a package manager. Here we’ll be discussing mamba, but there are many options.</p>
+<p>Of course, to <em>use</em> a package manager, one must first <em>install</em> a package manager. We’ll installing mamba by following the directions on the <a href="https://conda-forge.org/download/">Miniforge site</a>. On the command line, we will first download the installation script using <code>curl</code> and then run it.</p>
+<pre id=part1-06-curl_miniforge
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>cd $HOME</b>
+[oneils@mbp ~]$ <b>curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"</b>
+[oneils@mbp ~]$ <b>bash Miniforge3-$(uname)-$(uname -m).sh</b>
+</code></pre>
+<p>Observe that the <code>uname</code> command is used to get information about your operating system so that the above commands <em>should</em> work for any Unix-like system (MacOS, WSL, and Linux). During the execution of the install script, it will probably ask you to agree to the license agreement. Additionally, installing into the default location is typically fine. The final question to respond to during installation asks if you want to update your shell profile to automatically initialize conda - be sure to answer <code>yes</code> to this question and verify that mamba got added to your <code>.bash_profile</code>.</p>
+<p>Now that we have our package manager installed, we’re ready to install <a href="https://bioconda.github.io/recipes/hmmer/README.html">HMMER</a>. Notice that after we successfully installed and initialized mamba, our command prompt changed:</p>
+<pre id=part1-06-base
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+(base) [oneils@mbp ~]$
+</code></pre>
+<p>The <code>(base)</code> notation in front of our prompt lets us know that we are in our <code>base</code> environment. Generally, it’s not recommended to install packages (besides conda/mamba) into your base environment. We’ll make a “APCB” environment and install things there. As you become more advanced, you should consider creating an environment for each project you work on, to improve reproducibility and minimize the possibility of package incompatability.</p>
+<pre id=part1-06-env
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+(base) [oneils@mbp ~]$ <b>mamba create -n APCB bioconda::hmmer</b>
+</code></pre>
+<p>This command creates a new environment called <code>APCB</code> and installs hmmer into it. During the process <code>mamba</code> will tell you what packages will be installed/upgraded/downgraded/etc. and you can confirm the changes it will make. This is one of the benifits of using a package manager - all the necessary dependancies are checked and installed (or updated) for you.</p>
+<p>We can then activate the <code>APCB</code> environment and we’re ready to use our new installation!</p>
+<pre id=part1-06-env
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+(base) [oneils@mbp ~]$ <b>mamba activate APCB</b>
+(APCB) [oneils@mbp ~]$ 
+</code></pre>
+<p>Notice that <code>base</code> changes to <code>APCB</code> so we can see what environment we’re using. You might consider making a <code>main</code> environment that will serve as a default environment to work in.</p>
 </div>
 <div id="installing-software-without-a-package-manager" class="section level3 unnumbered hasAnchor">
 <h3>Installing Software without a Package Manager<a href="installing-bioinformatics-software.html#installing-software-without-a-package-manager" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -486,11 +533,11 @@
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_1_hmmer_screenshot-4.png" /></p>
 </div>
-<p>Conveniently, we see a nice large “Download” button, but the button indicates that the download is made for MacOS X/Intel, the operating system running on my personal laptop. Because we are remotely logged in to a Linux computer, this download won’t work for us. Clicking the “Alternative Download Options” link reveals options that might work for the Linux system we’re using.</p>
+<p>Conveniently, we see a nice large “Download” button, but the button indicates that the download is made for MacOS/Intel, the operating system running on my personal laptop. If we are remotely logged in to a Linux computer, simply clicking this button won’t work for us. Clicking the “archived older versions” link reveals all our options.</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_2_hmmer_screenshot_2-3.png" /></p>
 </div>
-<p>In this screenshot, we see a number of interesting download options, including one for “Source,” two for “Linux binaries,” and below a suggestion of some documentation, to which we’ll return later.</p>
+<p>In this screenshot, we see a number of interesting download options, including one for the current “Source,” and many previous releases.</p>
 </div>
 <div id="source-or-binary" class="section level3 unnumbered hasAnchor">
 <h3>Source or Binary?<a href="installing-bioinformatics-software.html#source-or-binary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -503,46 +550,46 @@
 </div>
 <div id="downloading-and-unpacking" class="section level3 unnumbered hasAnchor">
 <h3>Downloading and Unpacking<a href="installing-bioinformatics-software.html#downloading-and-unpacking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For the following examples, I’ll be working on the University of Oregon’s compute cluster: Talapas.</p>
 <p>We’re going to download the source files for HMMER; first, we are going to create a new directory to store downloads, called <code>downloads</code>, in our home directory (you may already have such a directory).</p>
 <pre id=part1-06-downloads
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~]$ <b>cd $HOME</b>
-[oneils@mbp ~]$ <b>mkdir downloads</b>
-[oneils@mbp ~]$ <b>cd downloads</b>
-[oneils@mbp ~/downloads]$
+[coonrod@login1 ~]$ <b>cd $HOME</b>
+[coonrod@login1 ~]$ <b>mkdir downloads</b>
+[coonrod@login1 ~]$ <b>cd downloads</b>
+[coonrod@login1 ~/downloads]$
 </code></pre>
-<p>If we were to click on the link in the HMMER download page, the web browser would attempt to download the file located at the corresponding URL (<a href="http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz" class="uri">http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2.tar.gz</a>) to the local desktop. Because we want the file downloaded to the remote system, clicking on the download button won’t work. What we need is a tool called <code>wget</code>, which can download files from the Internet on the command line.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> The <code>wget</code> utility takes at least one important parameter, the URL, to download. It’s usually a good idea to put URLs in quotes, because they often have characters that confuse the shell and would need to be escaped or quoted. Additionally, we can specify <code>-O &lt;filename&gt;</code>, where <code>&lt;filename&gt;</code> is the name to use when saving the file. Although not required in this instance, it can be useful for URLs whose ending file names aren’t reasonable (like <code>index.php?query=fasta&amp;search=drosophila</code>).</p>
+<p>If we were to click on the link in the HMMER download page, the web browser would attempt to download the file located at the corresponding URL (<a href="http://eddylab.org/software/hmmer/hmmer.tar.gz" class="uri">http://eddylab.org/software/hmmer/hmmer.tar.gz</a> at the time of this writing) to the local system. If we want the file downloaded to a remote system, clicking on the download button won’t work. What we need is a tool called <code>wget</code>, which can download files from the Internet on the command line.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> The <code>wget</code> utility takes at least one important parameter, the URL, to download. It’s usually a good idea to put URLs in quotes, because they often have characters that confuse the shell and would need to be escaped or quoted. Additionally, we can specify <code>-O &lt;filename&gt;</code>, where <code>&lt;filename&gt;</code> is the name to use when saving the file. Although not required in this instance, it can be useful for URLs whose ending file names aren’t reasonable (like <code>index.php?query=fasta&amp;search=drosophila</code>).</p>
 <pre id=part1-06-wget
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads]$ <b>wget 'http://eddylab.org/software/hmmer3/3.1b1/h
-mmer-3.1b1.tar.gz' -O hmmer-3.1b1.tar.gz</b>
+[coonrod@login1 ~/downloads]$ <b>wget 'http://eddylab.org/software/hmmer/hmmer.tar.gz' -O hmmer-3.4.tar.gz</b>
 </code></pre>
 <p>At this point, we have a file ending in <code>.tar.gz</code>, known as a “gzipped tarball,” representing a collection of files that have first been combined into a single file (a tarball), and then compressed (with the <code>gzip</code> utility).</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_6_gzipped_tarball-2.png" /></p>
 </div>
-<p>To get the contents out, we have to reverse this process. First, we’ll un-gzip the file with <code>gunzip hmmer-3.1b1.tar.gz</code><a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>, which will replace the file with the un-gzipped <code>hmmer-3.1b1.tar</code>.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> From there, we can un-tar the tarball with <code>tar -xf hmmer-3.1b1.tar</code> (the <code>-x</code> indicates extract, and the <code>f</code> indicates that the data will be extracted from the specified file name).<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
+<p>To get the contents out, we have to reverse this process. First, we’ll un-gzip the file with <code>gunzip hmmer-3.4.tar.gz</code><a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>, which will replace the file with the un-gzipped <code>hmmer-3.4.tar</code>.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> From there, we can un-tar the tarball with <code>tar -xf hmmer-3.4.tar</code> (the <code>-x</code> indicates extract, and the <code>f</code> indicates that the data will be extracted from the specified file name).<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
 <pre id=part1-06-untar
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads]$ <b>ls</b>
-<span style="color: red">hmmer-3.1b1.tar.gz</span>
-[oneils@mbp ~/downloads]$ <b>gunzip -d hmmer-3.1b1.tar.gz</b>
-[oneils@mbp ~/downloads]$ <b>ls</b>
-<span style="color: red">hmmer-3.1b1.tar</span>
-[oneils@mbp ~/downloads]$ <b>tar -xf hmmer-3.1b1.tar</b>
-[oneils@mbp ~/downloads]$ <b>ls</b>
-<span style="color: blue">hmmer-3.1b1</span>  <span style="color: red">hmmer-3.1b1.tar</span>
+[coonrod@login1 ~/downloads]$ <b>ls</b>
+<span style="color: red">hmmer-3.4.tar.gz</span>
+[coonrod@login1 ~/downloads]$ <b>gunzip -d hmmer-3.4.tar.gz</b>
+[coonrod@login1 ~/downloads]$ <b>ls</b>
+<span style="color: red">hmmer-3.4.tar</span>
+[coonrod@login1 ~/downloads]$ <b>tar -xf hmmer-3.4.tar</b>
+[coonrod@login1 ~/downloads]$ <b>ls</b>
+<span style="color: blue">hmmer-3.4</span>  <span style="color: red">hmmer-3.4.tar</span>
 </code></pre>
-<p>It looks like the gzipped tarball contained a directory, called <code>hmmer-3.1b1</code>.</p>
+<p>It looks like the gzipped tarball contained a directory, called <code>hmmer-3.4</code>.</p>
 </div>
 <div id="other-download-and-compression-methods" class="section level3 unnumbered hasAnchor">
 <h3>Other Download and Compression Methods<a href="installing-bioinformatics-software.html#other-download-and-compression-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -581,8 +628,8 @@ Decompress Command
 </td>
 </tr>
 </table>
-<p>The most common syntax for creating a gzipped tarball uses the <code>tar</code> utility, which can do both jobs of tarring and gzipping the inputs. As an example, the command <code>tar -cvzf hmmer_compress_copy.tar.gz</code> hmmer-3.1b1 would create (<code>c</code>), with verbose output (<code>v</code>), a gzipped (<code>z</code>) tarball in a file (<code>f</code>) called <code>hmmer_compress_copy.tar.gz</code> from the input <code>directory hmmer-3.1b1</code>.</p>
-<p>Traditionally, zipped files of source code were the most common way to distribute software. More recently, version control systems (used by developers to track changes to their software over time) have become web-enabled as a way to distribute software to end-users. One such system is <code>git</code>, which allows users to download entire directories of files using a “clone URL” over the web. GitHub is a similarly popular page for hosting these projects (see chapter 14, <a href="#version-control-git">“Version Control with git”</a>, for more information on <code>git</code> and GitHub).</p>
+<p>The most common syntax for creating a gzipped tarball uses the <code>tar</code> utility, which can do both jobs of tarring and gzipping the inputs. As an example, the command <code>tar -cvzf hmmer_compress_copy.tar.gz hmmer-3.4</code> would create (<code>c</code>), with verbose output (<code>v</code>), a gzipped (<code>z</code>) tarball in a file (<code>f</code>) called <code>hmmer_compress_copy.tar.gz</code> from the input <code>directory hmmer-3.4</code>.</p>
+<p>Traditionally, zipped files of source code were the most common way to distribute software. More recently, version control systems (used by developers to track changes to their software over time) have become web-enabled as a way to distribute software to end-users. One such system is <code>git</code>, which allows users to download entire directories of files using a “clone URL” over the web. GitHub is a similarly popular page for hosting these projects (see chapter 14, <a href="version-control-with-git.html#version-control-with-git">“Version Control with git”</a>, for more information on <code>git</code> and GitHub).</p>
 </div>
 <div id="compiling-the-source" class="section level3 unnumbered hasAnchor">
 <h3>Compiling the Source<a href="installing-bioinformatics-software.html#compiling-the-source" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -592,55 +639,47 @@ Decompress Command
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads]$ <b>cd hmmer-3.1b1</b>
-[oneils@mbp ~/hmmer-3.1b1]$ <b>ls</b>
-<span style="color: darkcyan">aclocal.m4</span>    configure.ac   INSTALL        Makefile.in    <span style="color: blue">src</span>
-config.guess  COPYRIGHT      install-sh     <span style="color: blue">profmark       testsuite</span>
-config.sub    <span style="color: blue">documentation  libdivsufsort</span>  README         <span style="color: blue">tutorial</span>
-<span style="color: green">configure</span>     <span style="color: blue">easel</span>          LICENSE        RELEASE-NOTES  Userguide.pdf
+[coonrod@login1 ~/downloads]$ <b>cd hmmer-3.4</b>
+[coonrod@login1 ~/hmmer-3.4]$ <b>ls</b>
+config.guess   <span style="color: blue">documentation   libdivsufsort   profmark         test-speed</span>
+config.sub     <span style="color: blue">easel</span>           LICENSE         README.md        <span style="color: blue">testsuite</span>
+<span style="color: green">configure</span>      INSTALL         Makefile.in     RELEASE-3.4.md   <span style="color: blue">tutorial</span>
+configure.ac   install-sh      <span style="color: green">makeTAGS.sh</span>     <span style="color: blue">src</span>              Userguide.pdf
 </code></pre>
-<p>Taking a look at the contents of the <code>hmmer-3.1b1</code> directory, there is an <code>INSTALL</code> file, which we should read with <code>less</code>. Here’s the top part of the file:</p>
+<p>Taking a look at the contents of the <code>hmmer-3.4</code> directory, there is an <code>INSTALL</code> file, which we should read with <code>less</code>.</p>
 <pre id=part1-06-INSTALL
      class="language-txt">
-<code><b>Brief installation instructions 
-HMMER 3.1b1; May 2013
--------------------------------------------------------------
+<code><b>Brief installation instructions 
+HMMER 3.4 (Aug 2023)
 
+Starting from a source distribution, hmmer-3.4.tar.gz:
+   uncompress hmmer-3.4.tar.gz  
+   tar xf hmmer-3.4.tar
+   cd hmmer-3.4
+   ./configure
+   make
+   make check                        # optional: automated tests
+   make install                      # optional: install HMMER programs and man pages
+   (cd easel; make install)          # optional: install Easel tools too
 
-These are quick installation instructions. For complete documentation,
-including customization and troubleshooting, please see the
-Installation chapter in the HMMER User's Guide (Userguide.pdf).
-
-
-Starting from a source distribution, hmmer-3.1b1.tar.gz:
- uncompress:                uncompress hmmer-3.1b1.tar.gz  
- unpack:                    tar xf hmmer-3.1b1.tar
- move into new directory:   cd hmmer-3.1b1
- configure:                 ./configure
- build:                     make
- automated tests:           make check
- automated install:         make install
+For more details including customization, supported platforms, and
+troubleshooting, see the Installation chapter in the HMMER User's
+Guide (Userguide.pdf).
 </b></code></pre>
-<p>The installation documentation describes a number of commands, including many we’ve already run (for extracting the data from the gzipped tarball). There are also four more commands listed: <code>./configure</code>, <code>make</code>, <code>make check</code>, and <code>make install</code>. Three of these comprise the “canonical install process”—<code>make check</code> is an optional step to check the success of the process midway through. The three important steps are: (1) <code>./configure</code>, (2) <code>make</code>, and (3) <code>make install</code>.</p>
-<ol>
-<li>
-The contents of the directory (above) include <code>configure</code> as an executable script, and the command <code>./configure</code> executes the script from the <a href="the-command-line-and-filesystem.html#present_working_directory">present working directory</a>. This script usually verifies that all of the prerequisite libraries and programs are installed on the system. More importantly, this step may set some environment variables or create a file called <code>Makefile</code>, within which will be instructions detailing how the compilation and installation process should proceed, customized for the system.
-</li>
-<li>
-Actually, <code>make</code> is an interpreting program much like <code>bash</code> (<code>which make</code> is likely to return <code>/usr/bin/make</code>—it’s a binary program). When running <code>make</code>, its default behavior is to look for a file called <code>Makefile</code> in the current directory, and run a default set of commands specified in the <code>Makefile</code> in the order specified. In this case, these default commands run the compilation programs that turn the source code into executable binaries.
-</li>
-<li>
-The make <code>install command</code> again executes make, which looks for the <code>Makefile</code>, but this time we are specifying that the “install” set of commands in the <code>Makefile</code> should run. This step copies the binary executable files (and other supporting files, if necessary) to the install location.
-</li>
+<p>The installation documentation describes a number of commands, including many we’ve already run (for extracting the data from the gzipped tarball). There are also four more commands listed: <code>./configure</code>, <code>make</code>, <code>make check</code>, and <code>make install</code>. Three of these comprise the “canonical install process” — <code>make check</code> is an optional step to check the success of the process midway through. The three important steps are: (1) <code>./configure</code>, (2) <code>make</code>, and (3) <code>make install</code>.</p>
+<ol style="list-style-type: decimal">
+<li>The contents of the directory (above) include <code>configure</code> as an executable script, and the command <code>./configure</code> executes the script from the <a href="the-command-line-and-filesystem.html#present_working_directory">present working directory</a>. This script usually verifies that all of the prerequisite libraries and programs are installed on the system. More importantly, this step may set some environment variables or create a file called <code>Makefile</code>, within which will be instructions detailing how the compilation and installation process should proceed, customized for the system.</li>
+<li>Actually, <code>make</code> is an interpreting program much like <code>bash</code> (<code>which make</code> is likely to return <code>/usr/bin/make</code> — it’s a binary program). When running <code>make</code>, its default behavior is to look for a file called <code>Makefile</code> in the current directory, and run a default set of commands specified in the <code>Makefile</code> in the order specified. In this case, these default commands run the compilation programs that turn the source code into executable binaries.</li>
+<li>The make <code>install command</code> again executes make, which looks for the <code>Makefile</code>, but this time we are specifying that the “install” set of commands in the <code>Makefile</code> should run. This step copies the binary executable files (and other supporting files, if necessary) to the install location.</li>
 </ol>
-<p>This final step, <code>make install</code>, may lead us to ask: what is the install location? By default, it will be something like <code>/usr/bin</code>—a system-wide location writable to by only the administrator. So, unless we are logged in as <code>root</code> (the administrator), the final step in the process will fail. We must specify the install location, and although the install itself happens in the third step, the entire process is configured in the first step. There may be many options that we can specify in the <code>./configure</code> step, though the install location (known as the <code>PREFIX</code>) is by far the most commonly used. Running <code>./configure --help</code> prints a lot of information; here’s the relevant section:</p>
+<p>This final step, <code>make install</code>, may lead us to ask: what is the install location? By default, it will be something like <code>/usr/bin</code> — a system-wide location writable to by only the administrator. So, unless we are logged in as <code>root</code> (the administrator), the final step in the process will fail. We must specify the install location, and although the install itself happens in the third step, the entire process is configured in the first step. There may be many options that we can specify in the <code>./configure</code> step, though the install location (known as the <code>PREFIX</code>) is by far the most commonly used. Running <code>./configure --help</code> prints a lot of information; here’s the relevant section:</p>
 <pre id=part1-06-configure
      class="language-txt">
 <code><b>Installation directories:
-  --prefix=PREFIX         install architecture-independent files in PREFIX
-                          [/usr/local]
-  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
-                          [PREFIX]
+  --prefix=PREFIX         install architecture-independent files in PREFIX
+                          [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+                          [PREFIX]
 </b></code></pre>
 <p>The <code>--prefix</code> option is the one we’ll use to determine where the binaries should be located. Although our executable <strong>bin</strong>aries will eventually go in <code>$HOME/local/bin</code>, for this option we’re going to specify <code>$HOME/local</code>, because the <code>bin</code> portion of the path is implied (and other directories like <code>lib</code> and <code>share</code> might also be created alongside the <code>bin</code> directory). Finally, our modified canonical install process will consist of three steps: <code>./configure --prefix=$HOME/local</code>, <code>make</code>, and <code>make install</code>.</p>
 <pre id=part1-06-make
@@ -648,37 +687,36 @@ The make <code>install command</code> again executes make, which looks for the <
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads/hmmer-3.1b1]$ <b>./configure --prefix=$HOME/local</b>
-configure: Configuring HMMER for your system.
-checking build system type... x86_64-unknown-linux-gnu
-checking host system type... x86_64-unknown-linux-gnu
+[coonrod@login1 ~/downloads/hmmer-3.4]$ <b>./configure --prefix=$HOME/local</b>
+configure: Configuring HMMER3 for your system.
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
 ...
-[oneils@mbp ~/hmmer-3.1b1]$ <b>make</b>
-     SUBDIR easel
-make[1]: Entering directory `/home/oneils/downloads/hmmer-3.1b1/easel'
-     CC easel.o
-     CC esl_alphabet.o
+[coonrod@login1 ~/downloads/hmmer-3.4]$ <b>make</b>
+     SUBDIR easel
+     CC easel.o
+     CC esl_alloc.o
 ...
-[oneils@mbp ~/hmmer-3.1b1]$ <b>make install</b>
-/usr/bin/install -c -d /home/oneils/local/bin
-/usr/bin/install -c -d /home/oneils/local/lib
-/usr/bin/install -c -d /home/oneils/local/include
+[coonrod@login1 ~/downloads/hmmer-3.4]$ <b>make install</b>
+     SUBDIR easel
+     SUBDIR miniapps
+     SUBDIR libdivsufsort
 ...
 </code></pre>
-<p>At this point, if we navigate to our $HOME/local directory, we will see the added directories and binary files.</p>
+<p>At this point, if we navigate to our <code>$HOME/local</code> directory, we will see the added directories and binary files.</p>
 <pre id=part1-06-local
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads/hmmer-3.1b1]$ <b>cd $HOME/local</b>
-[oneils@mbp ~/hmmer-3.1b1]$ <b>ls</b>
-<span style="color: blue">bin  include  lib  share</span>
-[oneils@mbp ~/hmmer-3.1b1]$ <b>cd bin</b>
-[oneils@mbp ~/hmmer-3.1b1]$ <b>ls</b>
-<span style="color: green">alimask   hmmc2       hmmfetch  hmmpress   hmmsim     myprog.sh  phmmer
-hmmalign  hmmconvert  hmmlogo   hmmscan    hmmstat    nhmmer
-hmmbuild  hmmemit     hmmpgmd   hmmsearch  jackhmmer  nhmmscan</span>
+[coonrod@login1 ~/downloads/hmmer-3.4]$ <b>cd $HOME/local</b>
+[coonrod@login1 ~/local]$ <b>ls</b>
+<span style="color: blue">bin     include     lib     share</span>
+[coonrod@login1 ~/local]$ <b>cd bin</b>
+[coonrod@login1 ~/local/bin]$ <b>ls</b>
+<span style="color: green">alimask   hmmconvert  hmmlogo        hmmpress   hmmsim     makehmmerdb  phmmer
+hmmalign  hmmemit     hmmpgmd        hmmscan    hmmstat    nhmmer
+hmmbuild  hmmfetch    hmmpgmd_shard  hmmsearch  jackhmmer  nhmmscan</span>
 </code></pre>
 <p>Because these executable files exist in a directory listed in the <code>$PATH</code> variable, we can, as always, type their names on the command prompt when working in any directory to run them. (Though, again, we may need to log out and back in to get the shell to see these new programs.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>)</p>
 </div>
@@ -690,66 +728,56 @@ hmmbuild  hmmemit     hmmpgmd   hmmsearch  jackhmmer  nhmmscan</span>
 </div>
 <p>We’ll soon get to downloading query and target sequence sets, but we’ll quickly come to realize that although the programs in the HMMER suite can produce the profile and search it against the target set, they cannot produce a multiple alignment from a set of sequences that are similar but not all the same length. Although there are many multiple-alignment tools with different features, we’ll download the relatively popular <code>muscle</code>. This time, we’ll install it from binaries.</p>
 <p>It’s worth discussing how one goes about discovering these sequences of steps, and which tools to use. The following strategies generally work well, though creativity is almost always rewarded.</p>
-<ol>
-<li>
-Read the methods sections of papers with similar goals.
-</li>
-<li>
-Ask your colleagues.
-</li>
-<li>
-Search the Internet.
-</li>
-<li>
-Read the documentation and published papers for tools you are already familiar with, as well as those publications that cite them.
-</li>
-<li>
-Don’t let the apparent complexity of an analysis prevent you from taking the first steps. Most types of analyses employ a number of steps and many tools, and you may not have a clear picture of what the final procedure will be. Experiment with alternative tools, and look for help when you get stuck. Be sure to document your work, as you will inevitably want to retrace your steps.
-</li>
+<ol style="list-style-type: decimal">
+<li>Read the methods sections of papers with similar goals.</li>
+<li>Ask your colleagues.</li>
+<li>Search the Internet.</li>
+<li>Read the documentation and published papers for tools you are already familiar with, as well as those publications that cite them.</li>
+<li>Don’t let the apparent complexity of an analysis prevent you from taking the first steps. Most types of analyses employ a number of steps and many tools, and you may not have a clear picture of what the final procedure will be. Experiment with alternative tools, and look for help when you get stuck. Be sure to document your work, as you will inevitably want to retrace your steps.</li>
 </ol>
-<p>If we visit the <code>muscle</code> homepage, we’ll see a variety of download options, including binaries for our system, Linux.</p>
+<p>If we visit the <a href="https://www.drive5.com/muscle/"><code>muscle</code> homepage</a>, we’ll see a variety of <a href="https://github.com/rcedgar/muscle/releases/tag/v5.3">download options</a>, including binaries for our system, Linux.</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-06-installing-bioinfo-software.Rmd.images/I.6_17_muscle_download.png" /></p>
 </div>
-<p>Unfortunately, there appear to be two options for Linux binaries: 32-bit and 64-bit. How do we know which of these we want? We can get a hint by running the <code>uname</code> program, along with the <code>-a</code> parameter to give as much information as possible.</p>
+<p>How do we know which of these we want? We can get a hint by running the <code>uname</code> program, along with the <code>-a</code> parameter to give as much information as possible.</p>
 <pre id=part1-06-uname
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~]$ <b>uname -a</b>
-Linux 172.31.88.3 3.2.0-37-virtual #58-Ubuntu SMP Thu Jan 24 15:48:03 UTC 2013
-x86_64 x86_64 x86_64 GNU/Linux
+[coonrod@login1 ~]$ <b>uname -a</b>
+Linux login1.talapas.uoregon.edu 4.18.0-477.27.1.el8_8.x86_64 
+     #1 SMP Thu Aug 31 10:29:22 EDT 2023 x86_64 x86_64 x86_64 GNU/Linux
 </code></pre>
-<p>The <code>uname</code> program gives information about the operating system, which in this case appears to be GNU/Linux for a 64-bit, x86 CPU. If any of the binaries are likely to work, it will be the “i86linux64” set. We’ll <code>wget</code> that gzipped tarball in the <code>downloads</code> directory.</p>
+<p>The <code>uname</code> program gives information about the operating system, which in this case appears to be GNU/Linux for a 64-bit, x86 CPU. If any of the binaries are likely to work, it will be the “linux-x86” option. (Yours will vary based upon <code>uname</code> output.) We’ll <code>wget</code> that gzipped tarball in the <code>downloads</code> directory.</p>
 <pre id=part1-06-wget-muscle
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~]$ <b>cd downloads</b>
-[oneils@mbp ~/downloads]$ <b>wget'http://www.drive5.com/muscle/downloads3.8.31/muscle3.8.31_i86linux64.tar.gz'</b>
+[coonrod@login1 ~]$ <b>cd downloads</b>
+[coonrod@login1 ~/downloads]$ <b>wget 'https://github.com/rcedgar/muscle/releases/download/v5.3/muscle-linux-x86.v5.3'</b>
 </code></pre>
-<p>Note that in this case we haven’t used the <code>-O</code> option for <code>wget</code>, because the file name described by the URL (muscle3.8.31_i86linux64.tar.gz) is what we would like to call the file when it is downloaded anyway. Continuing on to unpack it, we find it contains only an executable that we can attempt to run.</p>
+<p>Note that in this case we haven’t used the <code>-O</code> option for <code>wget</code>, because the file name described by the URL (muscle3.8.31_i86linux64) is what we would like to call the file when it is downloaded anyway. Continuing on to unpack it, we find it contains only an executable that we can <code>chmod</code> and attempt to run.</p>
 <pre id=part1-06-untar-muscle
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads]$ <b>ls</b>
-<span style="color: blue">hmmer-3.1b1</span>  <span style="color: red">hmmer-3.1b1.tar  muscle3.8.31_i86linux64.tar.gz</span>
-[oneils@mbp ~/downloads]$ <b>tar -xfz muscle3.8.31_i86linux64.tar.gz</b>
-[oneils@mbp ~/downloads]$ <b>ls</b>
-<span style="color: blue">hmmer-3.1b1</span>      <span style="color: green">muscle3.8.31_i86linux64</span>
-<span style="color: red">hmmer-3.1b1.tar  muscle3.8.31_i86linux64.tar.gz</span>
-[oneils@mbp ~/downloads]$ <b>./muscle3.8.31_i86linux64</b>
+[coonrod@login1 ~/downloads]$ <b>ls</b>
+<span style="color: blue">hmmer-3.4</span>   <span style="color: red">hmmer-3.4.tar</span>  muscle-linux-x86.v5.3
+[coonrod@login1 ~/downloads]$ <b>chmod u+x muscle-linux-x86.v5.3</b>
+[coonrod@login1 ~/downloads]$ <b>ls</b>
+<span style="color: blue">hmmer-3.4</span>   <span style="color: red">hmmer-3.4.tar</span>    <span style="color: green">muscle3.8.31_i86linux64</span>
+[coonrod@login1 ~/downloads]$ <b>./muscle3.8.31_i86linux64</b>
 
+muscle 5.3.linux64 [d9725ac]  131Gb RAM, 48 cores
+Built Nov 10 2024 22:58:59
+(C) Copyright 2004-2021 Robert C. Edgar.
+https://drive5.com
 
-MUSCLE v3.8.31 by Robert C. Edgar
-
-
-http://www.drive5.com/muscle
-This software is donated to the public domain.
+Align FASTA input, write aligned FASTA (AFA) output:
+    muscle -align input.fa -output aln.afa
 ...
 </code></pre>
 <p>Because it didn’t report an execution error, we can install it by copying it to our <code>$HOME/local/bin</code> directory. While doing so, we’ll give it a simpler name, <code>muscle</code>.</p>
@@ -758,16 +786,16 @@ This software is donated to the public domain.
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads]$ <b>cp muscle3.8.31_i86linux64 $HOME/local/bin/muscle</b>
-[oneils@mbp ~/downloads]$
+[coonrod@login1 ~/downloads]$ <b>cp muscle-linux-x86.v5.3 $HOME/local/bin/muscle</b>
+[coonrod@login1 ~/downloads]$
 </code></pre>
 <p>Now our multiple aligner, <code>muscle</code>, is installed!</p>
 <div id="exercises-4" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="installing-bioinformatics-software.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li><p>Follow the steps above to install the HMMER suite (from source) as well as <code>muscle</code> (from binaries) in your <code>$HOME/local/bin</code> directory. Ensure that you can run them from anywhere (including from your home directory) by running <code>muscle --help</code> and <code>hmmsearch --help</code>. Both commands should display help text instead of an error. Further, check that the versions being found by the shell are from your home directory by running <code>which hmmsearch</code> and <code>which muscle</code>.</p></li>
-<li><p>Determine whether you have the “NCBI Blast+” tools installed by searching for the <code>blastn</code> program. If they are installed, where are they located? If they are not installed, find them and install them from binaries.</p></li>
-<li><p>Install <code>sickle</code> from the <code>git</code> repo at <a href="https://github.com/najoshi/sickle" class="uri">https://github.com/najoshi/sickle</a>. To install it, you will need to follow the custom instructions inside of the <code>README.md</code> file. If you don’t have the <code>git</code> program, it is available for binary and source install at <a href="http://git-scm.com" class="uri">http://git-scm.com</a>.</p></li>
+<li><p>Determine whether you have the “NCBI Blast+” tools installed by searching for the <code>blastn</code> program. If they are installed, where are they located? If they are not installed, find them and install them, either from binaries or using a package manager.</p></li>
+<li><p>Install <code>sickle</code> from the <code>git</code> repo at <a href="https://github.com/najoshi/sickle" class="uri">https://github.com/najoshi/sickle</a>. To install it, you will need to follow the custom instructions inside of the <code>README.md</code> file. If you don’t have the <code>git</code> program, it is available for binary and source install at <a href="http://git-scm.com" class="uri">http://git-scm.com</a> (or by installing developer tools on a Mac).</p></li>
 </ol>
 </div>
 
@@ -777,11 +805,11 @@ This software is donated to the public domain.
 <hr />
 <ol start="18">
 <li id="fn18"><p>If you have administrator privileges on the machine, software repositories curated with many packages are also available. Depending on the system, if you log in as root, installing HMMER may be as simple as running <code>apt-get install hmmer</code> or <code>yum install hmmer</code>.<a href="installing-bioinformatics-software.html#fnref18" class="footnote-back">↩︎</a></p></li>
-<li id="fn19"><p>A similar tool called <code>curl</code> can be used for the same purpose. The feature sets are slightly different, so in some cases <code>curl</code> is preferred over <code>wget</code> and vice versa. For the simple downloading tasks in this book, either will suffice.<a href="installing-bioinformatics-software.html#fnref19" class="footnote-back">↩︎</a></p></li>
-<li id="fn20"><p>Alternatively, <code>gzip -d hmmer-3.1b1.tar.gz</code>.<a href="installing-bioinformatics-software.html#fnref20" class="footnote-back">↩︎</a></p></li>
-<li id="fn21"><p>The <code>gzip</code> utility is one of the few programs that care about file extensions. While most programs will work with a file of any extension, <code>gzip</code> requires a file that ends in <code>.gz</code>. If you are unsure of a file’s type, the <code>file</code> utility can help; for example, <code>file hmmer-3.1b1.tar.gz</code> reports that the file is gzip-compressed data, and would do so even if the file did not end in <code>.gz</code>.<a href="installing-bioinformatics-software.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p>Note that it is not strictly necessary to unzip and then un-tar in two separate steps. We can unzip and un-tar with the single command <code>tar -xfz hmmer-3.1b1.tar.gz</code>, where <code>z</code> will filter the file through gzip.<a href="installing-bioinformatics-software.html#fnref22" class="footnote-back">↩︎</a></p></li>
-<li id="fn23"><p>t’s not strictly necessary to log back out and back in; when working in <code>bash</code>, running <code>hash -r</code> will cause the shell to update its list of software found in $<code>PATH</code>.<a href="installing-bioinformatics-software.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>A similar tool called <code>curl</code> can be used for the same purpose. The feature sets are slightly different, so in some cases <code>curl</code> is preferred over <code>wget</code> and vice versa. For the simple downloading tasks in this book, either will suffice, UNLESS you are working on a Mac - <code>wget</code> is not included by default, so <code>curl</code> will be more straightforward to use.<a href="installing-bioinformatics-software.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Alternatively, <code>gzip -d hmmer-3.4.tar.gz</code>.<a href="installing-bioinformatics-software.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>The <code>gzip</code> utility is one of the few programs that care about file extensions. While most programs will work with a file of any extension, <code>gzip</code> requires a file that ends in <code>.gz</code>. If you are unsure of a file’s type, the <code>file</code> utility can help; for example, <code>file hmmer-3.4.tar.gz</code> reports that the file is gzip-compressed data, and would do so even if the file did not end in <code>.gz</code>.<a href="installing-bioinformatics-software.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>Note that it is not strictly necessary to unzip and then un-tar in two separate steps. We can unzip and un-tar with the single command <code>tar -xfz hmmer-3.4.tar.gz</code>, where <code>z</code> will filter the file through gzip.<a href="installing-bioinformatics-software.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>t’s not strictly necessary to log back out and back in; when working in <code>bash</code>, running <code>hash -r</code> will cause the shell to update its list of software found in <code>$PATH</code>.<a href="installing-bioinformatics-software.html#fnref23" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

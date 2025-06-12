@@ -183,17 +183,19 @@
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
 <ul>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+<li class="chapter" data-level="2.0.1" data-path="getting-set-up.html"><a href="getting-set-up.html#opening-a-terminal"><i class="fa fa-check"></i><b>2.0.1</b> Opening a terminal</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-in"><i class="fa fa-check"></i>Logging in</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
 <ul>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
-<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-file-system"><i class="fa fa-check"></i>Getting Around the File System</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
@@ -212,7 +214,7 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
 <ul>
-<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and <code>$PATH</code></a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
 </ul></li>
@@ -484,8 +486,8 @@
             linkable-line-numbers">
 <code>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures Templates  Videos</span>
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">Public</span>   todo_list.txt
+<span style="color: blue">apcb    Documents  Music        Pictures  Templates  Videos</span>
+<span style="color: blue">Desktop Downloads</span>  p450s.fasta  <span style="color: blue">Public</span>    todo_list.txt
 </code></pre>
 <p>The invocation of <code>less</code> on the file <a href="data/p450s.fasta"><code>p450s.fasta</code></a> opens an “interactive window” within the terminal window, wherein we can scroll up and down (and left and right) in the file with the arrow keys. (As usual, the mouse is not very useful on the command line.) We can also search for a pattern by typing <code>/</code> and then typing the pattern before pressing Enter.</p>
 <div class="fig center" style="width: 100%">
@@ -506,12 +508,12 @@
             linkable-line-numbers">
 <code>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures Templates  Videos</span>
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">Public</span>   todo_list.txt
+<span style="color: blue">apcb     Documents  Music        Pictures  Templates       Videos</span>
+<span style="color: blue">Desktop  Downloads</span>  p450s.fasta  <span style="color: blue">Public</span>    todo_list.txt
 [oneils@mbp ~]$ <b>mkdir projects</b>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures  Public</span>    todo_list.txt
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">projects  Templates Videos</span>
+<span style="color: blue">apcb     Documents  Music        Pictures  Public</span>     todo_list.txt
+<span style="color: blue">Desktop  Downloads</span>  p450s.fasta  <span style="color: blue">projects  Templates  Videos</span>
 </code></pre>
 </div>
 <div id="move-or-rename-a-file-or-directory" class="section level3 unnumbered hasAnchor">
@@ -527,8 +529,8 @@
 [oneils@mbp ~]$ <b>mv p450s.fa projects</b>
 [oneils@mbp ~]$ <b>mv projects projects_dir</b>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music    projects_dir Templates     Videos</span>
-<span style="color: blue">Desktop Downloads Pictures Public</span>       todo_list.txt
+<span style="color: blue">apcb     Documents  Music     projects_dir  Templates      Videos</span>
+<span style="color: blue">Desktop  Downloads  Pictures  Public</span>        todo_list.txt
 </code></pre>
 <p>Because <code>mv</code> serves a dual role, the semantics are important to remember:</p>
 <ul>
@@ -573,7 +575,7 @@
 </div>
 <div id="remove-delete-a-file-or-directory" class="section level3 unnumbered hasAnchor">
 <h3>Remove (Delete) a File or Directory<a href="working-with-files-and-directories.html#remove-delete-a-file-or-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Files may be deleted with the <code>rm</code> command, as in <code>rm &lt;target_file&gt;</code>. If you wish to remove an entire directory and everything inside, you need to specify the <code>-r</code> flag for recursive, as in <code>rm -r &lt;target_dir&gt;</code>. Depending on the configuration of your system, you may be asked “are you sure?” for each file, to which you can reply with a y. To avoid this checking, you can also specify the <code>-f</code> (force) flag, as in <code>rm -r -f &lt;target_dir&gt;</code> or <code>rm -rf &lt;target_dir&gt;</code>. Let’s create a temporary directory alongside the file copies from above, inside the <code>projects</code> folder, and then remove the <code>p450s.fasta</code> file and the <code>todo_list.txt</code> file as well as the temporary folder.</p>
+<p>Files may be deleted with the <code>rm</code> command, as in <code>rm &lt;target_file&gt;</code>. If you wish to remove an entire directory and everything inside, you need to specify the <code>-r</code> flag for recursive, as in <code>rm -r &lt;target_dir&gt;</code>. Depending on the configuration of your system, you <strong>may</strong> be asked “are you sure?” for each file, to which you can reply with a <code>y</code> (or <code>n</code>, if you prefer to <em>not</em> delete). To avoid this checking, you can also specify the <code>-f</code> (force) flag, as in <code>rm -r -f &lt;target_dir&gt;</code> or <code>rm -rf &lt;target_dir&gt;</code>. Let’s create a temporary directory alongside the file copies from above, inside the <code>projects</code> folder, and then remove the <code>p450s.fasta</code> file and the <code>todo_list.txt</code> file as well as the temporary folder.</p>
 <pre id=part1-04-rm
      class="language-txt 
             line-numbers 
@@ -587,7 +589,7 @@ p450s.fasta   <span style="color: blue">tempdir</span>   todo_list.txt
 [oneils@mbp ~/projects]$ <b>ls</b>
 p450s.fasta
 </code></pre>
-<p>Beware! <em>Deleted files are gone forever</em>. There is no undo, and there is no recycle bin. Whenever you use the <code>rm</code> command, double-check your syntax. There’s a world of difference between <code>rm -rf project_copy</code> (which deletes the folder project_copy) and <code>rm -rf project _copy</code> (which removes the folders <code>project</code> and <code>_copy</code>, if they exist). If you’re nervous about using <code>rm</code>, consider utilizing the <code>-i</code> option, which will ask for confirmation before removing each file.</p>
+<p>Beware! <em>Deleted files are gone forever</em>. There is no undo, and there is no recycle bin. Whenever you use the <code>rm</code> command, double-check your syntax. There’s a world of difference between <code>rm -rf project_copy</code> (which deletes the folder project_copy) and <code>rm -rf project _copy</code> (which removes the folders <code>project</code> and <code>_copy</code>, if they exist). If you’re nervous about using <code>rm</code>, consider utilizing the <code>-i</code> option, which will ask for confirmation before removing each file, or testing your command by using <code>ls</code> in place of <code>rm</code> first.</p>
 </div>
 <div id="checking-the-size-of-a-file-or-directory" class="section level3 unnumbered hasAnchor">
 <h3>Checking the Size of a File or Directory<a href="working-with-files-and-directories.html#checking-the-size-of-a-file-or-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -599,8 +601,8 @@ p450s.fasta
 <code>
 [oneils@mbp ~/projects]$ <b>cd $HOME</b>
 [oneils@mbp ~/]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures  Public</span>    todo_list.txt
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">projects  Templates Videos</span>
+<span style="color: blue">apcb     Documents  Music        Pictures  Public</span>     todo_list.txt
+<span style="color: blue">Desktop  Downloads</span>  p450s.fasta  <span style="color: blue">projects  Templates  Videos</span>
 [oneils@mbp ~/]$ <b>du -sh p450s.fastq</b>
 16K  p450s.fasta
 [oneils@mbp ~/]$ <b>du -sh projects</b>
@@ -612,7 +614,7 @@ p450s.fasta
 </div>
 <div id="editing-a-text-file" class="section level3 unnumbered hasAnchor">
 <h3>Editing a (Text) File<a href="working-with-files-and-directories.html#editing-a-text-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>There is no shortage of command-line text editors, and while some of them—like <code>vi</code> and <code>emacs</code>—are powerful and can enhance productivity in the long run, they also take a reasonable amount of time to become familiar with. (Entire books have been written about each of these editors.)</p>
+<p>There is no shortage of command-line text editors, and while some of them — like <code>vi</code> and <code>emacs</code> — are powerful and can enhance productivity in the long run, they also take a reasonable amount of time to become familiar with. (Entire books have been written about each of these editors.)</p>
 <p>In the meantime, a simple text editor available on most systems is <code>nano</code>; to run it, we simply specify a file name to edit:</p>
 <pre id=part1-04-nano
      class="language-txt 
@@ -627,6 +629,7 @@ p450s.fasta
 </div>
 <p>Although <code>nano</code> is not as sophisticated as <code>vi</code> or <code>emacs</code>, it does support a number of features, including editing multiple files, cut/copy/paste, find and replace by pattern, and syntax highlighting of code files.</p>
 <p>Code files are the types of files that we will usually want to edit with <code>nano</code>, rather than essays or short stories. By default, on most systems, <code>nano</code> automatically “wraps” long lines (i.e., automatically presses Enter) if they would be longer than the screen width. Unfortunately, this feature would cause an error for most lines of code! To disable it, <code>nano</code> can be started with the <code>-w</code> flag, as in <code>nano -w todo_list.txt</code>.</p>
+<p>If you’re going to be doing serious file editing, you’ll eventually want a more fully-featured text editor or integrated development environment (IDE). Our current favorite is VS Code, but there are many options.</p>
 </div>
 <div id="command-line-efficiency" class="section level3 unnumbered hasAnchor">
 <h3>Command-Line Efficiency<a href="working-with-files-and-directories.html#command-line-efficiency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -652,12 +655,18 @@ fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
 [oneils@mbp ~/apcb/intro]$ <b>mv file*.temp temp/</b>
 </code></pre>
 <p>Similarly, we could move only <code>fileA.temp</code> and <code>fileB.temp</code> (but not <code>fileAA.temp</code>) using <code>mv file?.tmp temp</code>, because the <code>?</code> wildcard will only match one of any character. These wildcards may be used anywhere in an absolute or relative path, and more than one may be used in a single path. For example, <code>ls /home/*/*.txt</code> will inspect all files ending in <code>.txt</code> in all users’ home directories (if they are accessible for reading).</p>
-<p>Second, if you want to rerun a command, or run a command similar to a previously run command, you can access the command history by pressing the up arrow. Once you’ve identified which command you want to run or modify, you can modify it using the left and right arrows, backspace or delete, and then typing and pressing Enter again when you are ready to execute the modified command. (You don’t even need to have the cursor at the end of the line to press Enter and execute the command.) For a given login session, you can see part of your command history by running the <code>history</code> command.</p>
+<div id="bash_history" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>Second, if you want to rerun a command, or run a command similar to a previously run command, you can access the <em>command history</em> by pressing the up arrow. Once you’ve identified which command you want to run or modify, you can modify it using the left and right arrows, backspace or delete, and then typing and pressing Enter again when you are ready to execute the modified command. (You don’t even need to have the cursor at the end of the line to press Enter and execute the command.) For a given login session, you can see part of your command history by running the <code>history</code> command.</p>
+</div>
+<div id="tab_completion" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
 <p>Finally, one of the best ways to navigate the shell and the filesystem is by using <em>tab completion</em>. When typing a path (either absolute or relative), file or directory name, or even a program name, you can press Tab, and the shell will autocomplete the portion of the path or command, up until the autocompletion becomes ambiguous. When the options are ambiguous, the shell will present you with the various matching options so that you can inspect them and keep typing. (If you want to see all options even if you haven’t started typing the next part of a path, you can quickly hit Tab twice.) You can hit Tab as many times as you like while entering a command. Expert command-line users use the Tab key many times a minute!</p>
+</div>
 </div>
 <div id="getting-help-on-a-command-or-program" class="section level3 unnumbered hasAnchor">
 <h3>Getting Help on a Command or Program<a href="working-with-files-and-directories.html#getting-help-on-a-command-or-program" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Although we’ve discussed a few of the options(also known as arguments, or flags) for programs like <code>ls</code>, <code>cp</code>, <code>nano</code>, and others, there are many more you might wish to learn about. Most of these basic commands come with “man pages,” short for “manual pages,” that can be accessed with the <code>man</code> command.</p>
+<p>Although we’ve discussed a few of the options (also known as arguments, or flags) for programs like <code>ls</code>, <code>cp</code>, <code>nano</code>, and others, there are many more you might wish to learn about. Most of these basic commands come with “man pages,” short for “manual pages,” that can be accessed with the <code>man</code> command.</p>
 <pre id=part1-04-man-ls
      class="language-txt 
             line-numbers 
@@ -674,7 +683,7 @@ fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
 <p><img src="images/part1-04-working-with-files-directories.Rmd.images/I.4_16_unix_36_top.png" /></p>
 </div>
 <p>From a users’ perspective, the list of processes below the dark line is most useful. In this example, no processes are currently using a significant amount of CPU or memory (and those processes that are running are owned by the administrator <code>root</code>). But if any user were running processes that required more than a tiny bit of CPU, they would likely be shown. To instead sort by RAM usage, use the key sequence <code>Control-M</code>. When finished, <code>q</code> will quit <code>top</code> and return you to the command prompt.</p>
-<p>Of particular importance are the <code>%CPU</code> and <code>%MEM</code> columns. The first may vary from 0 up to 100 (percent) <em>times the number</em> of CPU cores on the system; thus a value of 3200 would indicate a program using 100% of 32 CPU cores (or perhaps 50% of 64 cores). The <code>%MEM</code> column ranges from 0 to 100 (percent). It is generally a bad thing for the system when the total memory used by all process is near or over 100%—this indicates that the system doesn’t have enough “working memory” and it may be attempting to use the much slower hard drive as working memory. This situation is known as <a href="context.html#swapping">swapping</a>, and the computer may run so slowly as to have effectively crashed.</p>
+<p>Of particular importance are the <code>%CPU</code> and <code>%MEM</code> columns. The first may vary from 0 up to 100 (percent) <em>times the number</em> of CPU cores on the system; thus a value of 3200 would indicate a program using 100% of 32 CPU cores (or perhaps 50% of 64 cores). The <code>%MEM</code> column ranges from 0 to 100 (percent). It is generally a bad thing for the system when the total memory used by all process is near or over 100% — this indicates that the system doesn’t have enough “working memory” and it may be attempting to use the much slower hard drive as working memory. This situation is known as <a href="context.html#swapping">swapping</a>, and the computer may run so slowly as to have effectively crashed.</p>
 </div>
 <div id="killing-rogue-programs" class="section level3 unnumbered hasAnchor">
 <h3>Killing Rogue Programs<a href="working-with-files-and-directories.html#killing-rogue-programs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -684,9 +693,9 @@ fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
 <div id="exercises-2" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="working-with-files-and-directories.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
-<li><p>Create the following directories inside your home directory, if you don’t already have them: <code>downloads</code>, <code>local</code>, and <code>projects</code>. Inside of <code>local</code>, create a directory called <code>bin</code>. These folders are a common and useful set to have in your home directory—we’ll be using them in future chapters to work in, download files to, and install software to.</p></li>
-<li><p>Open not one but <em>two</em> login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of <code>top</code>.</br></br>
-Create a hidden directory inside of your home directory called <code>.hidden</code>. Inside of this directory, create a file called <code>notes</code>. Edit the file to contain tricks and information you fear you might forget.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p></li>
+<li><p>Create the following directories inside your home directory, if you don’t already have them: <code>downloads</code>, <code>local</code>, and <code>projects</code>. Inside of <code>local</code>, create a directory called <code>bin</code>. These folders are a common and useful set to have in your home directory — we’ll be using them in future chapters to work in, download files to, and install software to.</p></li>
+<li><p>Open not one but <em>two</em> login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of <code>top</code>.</p>
+<p>Create a hidden directory inside of your home directory called <code>.hidden</code>. Inside of this directory, create a file called <code>notes</code>. Edit the file to contain tricks and information you fear you might forget.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p></li>
 <li><p>Spend a few minutes just practicing tab completion while moving around the filesystem using absolute and relative paths. Getting around efficiently via tab-completion is a surprisingly necessary skill.</p></li>
 <li><p>Skim the man page for <code>ls</code>, and try out a few of the options listed there. Read a bit of the <code>info</code> page for <code>nano</code>.</p></li>
 </ol>
@@ -699,7 +708,7 @@ Create a hidden directory inside of your home directory called <code>.hidden</co
 <ol start="10">
 <li id="fn10"><p>There is a similar program called <code>more</code>, originally designed to show “more” of a file. The <code>less</code> program was developed as a more full-featured alternative to <code>more</code>, and was so named because “less is more.”<a href="working-with-files-and-directories.html#fnref10" class="footnote-back">↩︎</a></p></li>
 <li id="fn11"><p>This is important to consider when combining <code>rm</code> with wildcards; the commands <code>rm -rf *.temp</code> and <code>rm -rf * .temp</code> are very different! The latter will remove all files in the present directory, while the former will only remove those ending in <code>.temp</code>.<a href="working-with-files-and-directories.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p>You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like <code>nano</code>, TextEdit on OS X, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters with serif quotes, which don’t work on the command line, leading to headaches.<a href="working-with-files-and-directories.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like <code>nano</code>, VS Code, TextEdit on MacOS, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters (<code>"</code>) with serif quotes (<code>“</code> or <code>”</code>), which don’t work on the command line, leading to headaches.<a href="working-with-files-and-directories.html#fnref12" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

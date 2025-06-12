@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="logging-in.html"/>
+<link rel="prev" href="getting-set-up.html"/>
 <link rel="next" href="working-with-files-and-directories.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -183,17 +183,19 @@
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
 <ul>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+<li class="chapter" data-level="2.0.1" data-path="getting-set-up.html"><a href="getting-set-up.html#opening-a-terminal"><i class="fa fa-check"></i><b>2.0.1</b> Opening a terminal</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-in"><i class="fa fa-check"></i>Logging in</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
 <ul>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
-<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-file-system"><i class="fa fa-check"></i>Getting Around the File System</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
@@ -212,7 +214,7 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
 <ul>
-<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and <code>$PATH</code></a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
 </ul></li>
@@ -474,14 +476,17 @@
             <section class="normal" id="section-">
 <div id="the-command-line-and-filesystem" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> The Command Line and Filesystem<a href="the-command-line-and-filesystem.html#the-command-line-and-filesystem" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="program" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
 <p>Computer users are used to interacting with a “user interface.” On many computers, this interface displays the desktop or task bar, icons, file previews, and so on. It takes input from the user in the form of keystrokes, mouse movements, and in some cases voice commands, and presents the results of the user’s actions. Perhaps most importantly, the user interface is itself a <em>program</em> (it is software running on a computer, after all) we interact with to <em>execute other programs</em>.</p>
+</div>
 <div id="shell" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
 </div>
 <div id="command_prompt" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
 <p>The same thing happens when we use SSH to log in to a remote machine, or open up the Terminal application on a Linux or MacOS desktop. In this case, however, instead of interacting with a GUI (Graphical User Interface), we interact with a CLI (Command-Line Interface), or <em>shell</em>, which does the job of displaying the command prompt. The shell is the software we interact with on the command line. In some sense it is the command line, as it displays the command prompt, accepts input via typed text, runs other programs on our behalf, and displays the results textually. A <em>command prompt</em> is a line of status information provided in a text-based interface, indicating that commands are to be entered and run by pressing Enter. Command prompts often include information about what computer or network one is logged in to, the username one is logged in with, and an indication of the “present working directory” (discussed below).</p>
-<p>The first command that we’ll learn for the Linux command line is <code>echo</code>, which prints the parameters we give it.</p>
+<p>The first command that we’ll learn for the Unix command line is <code>echo</code>, which prints the parameters we give it.</p>
 <pre id=part1-03-echo-example
      class="language-txt 
             line-numbers 
@@ -582,7 +587,18 @@ hello oneils
 -bash
 </code></pre>
 <p>The above command illustrates that we are running <code>bash</code>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
-<p>Depending on the system you are logged in to, running <code>echo $0</code> may not report <code>bash</code>. The reason is (although it may seem odd) that there are a variety of shells available, owing to the long history of Unix and Linux. In the beginning, the interfaces were quite simple, but over time better interfaces/shells were developed that included new features (consider how the “Start” menu has changed over the years on Microsoft Windows versions). We can run a different shell, if it is installed, by simply running it like any other program. The <code>tcsh</code> shell, itself an outgrowth of the <code>csh</code> shell, is sometimes the default instead of <code>bash</code>. (Both <code>csh</code> and <code>tcsh</code> are older than <code>bash</code>.)</p>
+<div id="change_default_shell" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<p>Depending on the system you are logged in to, running <code>echo $0</code> may not report <code>bash</code>. In fact, if you’re using a Mac, you’ll most likely see <code>zsh</code> as the default shell was changed from <code>bash</code> to <code>zsh</code> in 2019. Luckily, it’s not hard to <a href="https://support.apple.com/guide/terminal/change-the-default-shell-trml113/mac">change the default shell</a>. We recommend Mac users set <code>bash</code> as the default shell like so:</p>
+<pre id=part1-03-bash
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>chsh -s /bin/bash</b>
+</code></pre>
+<p>After running this command, you will probably be asked to enter your password. Then, when you open a fresh terminal window, running <code>echo $0</code> should show you are indeed running <code>bash</code>.</p>
+<p>There are a variety of shells available, owing to the long history of Unix and Linux. In the beginning, the interfaces were quite simple, but over time better interfaces/shells were developed that included new features (consider how the “Start” menu has changed over the years on Microsoft Windows versions). We can run a different shell, if it is installed, by simply running it like any other program. The <code>tcsh</code> shell, itself an outgrowth of the <code>csh</code> shell, is sometimes the default instead of <code>bash</code>. (Both <code>csh</code> and <code>tcsh</code> are older than <code>bash</code>.)</p>
 <pre id=part1-03-tcsh
      class="language-txt 
             line-numbers 
@@ -616,30 +632,31 @@ exit
 </code></pre>
 <p>In general, it can be difficult to determine which shell is running on the basis of the look of the command prompt; using <code>echo $0</code> right on the command line is the most reliable way.</p>
 </div>
+</div>
 <div id="files-directories-and-paths" class="section level3 unnumbered hasAnchor">
 <h3>Files, Directories, and Paths<a href="the-command-line-and-filesystem.html#files-directories-and-paths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With some of the more difficult concepts of the shell out of the way, let’s turn to something a bit more practical: understanding how directories (also known as folders) and files are organized.</p>
 <div id="root" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>Most filesystems are hierarchical, with files and directories stored inside other directories. In Unix-like operating systems, the “top level” directory in which everything can be found is known as <code>/</code> (a forward slash). This top-level directory is sometimes called the <em>root</em> of the filesystem, as in the root of the filesystem tree. Within the root directory, there are commonly directories with names like <code>bin</code>, <code>etc</code>, <code>media</code>, and <code>home</code>; the last of these is often where users will store their own individual data.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<p>Most file systems are hierarchical, with files and directories stored inside other directories. In Unix-like operating systems, the “top level” directory in which everything can be found is known as <code>/</code> (a forward slash). This top-level directory is sometimes called the <em>root</em> of the file system, as in the root of the file system tree. Within the root directory, there are commonly directories with names like <code>bin</code>, <code>etc</code>, <code>media</code>, and <code>home</code>; the last of these is often where users will store their own individual data.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_12_filesystem_ex.png" /></p>
 </div>
 </div>
 <div id="absolute_path" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>Each file and directory in the filesystem can be uniquely identified by its <em>absolute path</em>, a unique locator for a file or directory in the filesystem, starting with the root folder <code>/</code> and listing each directory on the way to the file. In the figure above, the absolute path to the <code>todo_list.txt</code> file is <code>/home/oneils/documents/todo_list.txt</code>.</p>
+<p>Each file and directory in the file system can be uniquely identified by its <em>absolute path</em>, a unique locator for a file or directory in the file system, starting with the root folder <code>/</code> and listing each directory on the way to the file. In the figure above, the absolute path to the <code>todo_list.txt</code> file is <code>/home/oneils/documents/todo_list.txt</code>.</p>
 <p>Note that an absolute path must start with the leading forward slash, indicating that the path starts at the root folder <code>/</code>, and contain a valid path of folder names from there. (If you prefer to consider <code>/</code> as a folder name itself, an absolute path can also be specified like <code>//home/oneils/documents/todo_list.txt</code>, though using two forward slashes is considered redundant.)</p>
 </div>
 <div id="home_directory" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
 <p>Every user normally has a <em>home directory</em>, serving as a personal storage locker for files and directories. (Often the amount of space available this location is not as much as users would like.) The shell and other programs can find out the absolute path to your home directory via the environment variable <code>$HOME</code>; try running <code>echo $HOME</code> to see the absolute path to your own home directory.</p>
-<p>What about special devices like CD-ROM drives<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> and network drives? On a Windows operating system, these would get their own “root” directory with names like <code>D:</code> and <code>E:</code> (with the main hard drive usually having the name <code>C:</code>). On Unix-based operating systems, there is only ever one filesystem hierarchy, and the top level is always <code>/</code>. Special devices like CD-ROM drives and network drives are mounted somewhere in the filesystem. It may be that the directory <code>/media</code> remains empty, for example, but when a CD-ROM is inserted, a new directory may appear inside that directory, perhaps with the absolute path <code>/media/cdrom0</code>, and the files on the CD-ROM will appear in that location.</p>
-<p>Determining how and where such devices are mounted is the job of the system administrator. On MacOS machines, inserted devices appear in <code>/Volumes</code>. If you are logged in to a large computational infrastructure, your home directory likely isn’t located on the internal hard drive of the remote computer, but rather mounted from a network drive present on yet another remote computer. This configuration allows users to “see” the same filesystem hierarchy and files no matter which remote computer they happen to log in to, if more than one is available. (For example, even <code>/home</code> might be a network mount, and so all users’ home directories might be available on a number of machines.)</p>
+<p>What about special devices like CD-ROM drives<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> and network drives? On a Windows operating system, these would get their own “root” directory with names like <code>D:</code> and <code>E:</code> (with the main hard drive usually having the name <code>C:</code>). On Unix-based operating systems, there is only ever one file system hierarchy, and the top level is always <code>/</code>. Special devices like CD-ROM drives and network drives are mounted somewhere in the file system. It may be that the directory <code>/media</code> remains empty, for example, but when a CD-ROM is inserted, a new directory may appear inside that directory, perhaps with the absolute path <code>/media/cdrom0</code>, and the files on the CD-ROM will appear in that location.</p>
+<p>Determining how and where such devices are mounted is the job of the system administrator. On MacOS machines, inserted devices appear in <code>/Volumes</code>. If you are logged in to a large computational infrastructure, your home directory likely isn’t located on the internal hard drive of the remote computer, but rather mounted from a network drive present on yet another remote computer. This configuration allows users to “see” the same file system hierarchy and files no matter which remote computer they happen to log in to, if more than one is available. (For example, even <code>/home</code> might be a network mount, and so all users’ home directories might be available on a number of machines.)</p>
 </div>
 </div>
-<div id="getting-around-the-filesystem" class="section level3 unnumbered hasAnchor">
-<h3>Getting around the Filesystem<a href="the-command-line-and-filesystem.html#getting-around-the-filesystem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="getting-around-the-file-system" class="section level3 unnumbered hasAnchor">
+<h3>Getting Around the File System<a href="the-command-line-and-filesystem.html#getting-around-the-file-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="present_working_directory" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
 <p>It is vitally important to understand that, as we are working in the command-line environment, we always have a “place”, a directory (or folder) in which we are working called the <em>present working directory</em>, or PWD. The shell keeps track of the present working directory in an environment variable, <code>$PWD</code>.</p>
@@ -682,7 +699,7 @@ exit
 </div>
 <div id="tilda" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>Notice that the command prompt has changed to illustrate the present working directory: now it shows <code>oneils@mpb /home$</code>, indicating that I am in <code>/home</code>. This is a helpful reminder of where I am in the filesystem as I work. Previously, it showed only <code>~</code>, which is actually a shortcut for <code>$HOME</code>, itself a shortcut for the absolute path to my home directory. Consequently, there are a number of ways to go back to my home directory: <code>cd /home/oneils</code>, or <code>cd $HOME</code>, or <code>cd ~</code>, or even just <code>cd</code> with no arguments, which defaults to moving to <code>$HOME</code>.</p>
+<p>Notice that the command prompt has changed to illustrate the present working directory: now it shows <code>oneils@mpb /home$</code>, indicating that I am in <code>/home</code>. This is a helpful reminder of where I am in the file system as I work. Previously, it showed only <code>~</code>, which is actually a shortcut for <code>$HOME</code>, itself a shortcut for the absolute path to my home directory. Consequently, there are a number of ways to go back to my home directory: <code>cd /home/oneils</code>, or <code>cd $HOME</code>, or <code>cd ~</code>, or even just <code>cd</code> with no arguments, which defaults to moving to <code>$HOME</code>.</p>
 <pre id=part1-03-home
      class="language-txt 
             line-numbers 
@@ -717,7 +734,7 @@ profile.jpg
 <ol style="list-style-type: decimal">
 <li>Unix-like operating systems are nearly always case sensitive, for commands, parameters, and file and directory names.</li>
 <li>Because of the way spaces are treated on the command line, it is uncommon to see spaces in file or directory names. The command <code>cd mydocuments</code> is much easier to type than <code>cd my\ documents</code> or <code>cd 'my documents'</code>.</li>
-<li>If you forget to specify <code>cd</code> before specifying a path, a cryptic <code>permission denied</code> error will occur, rather than an error specific to the lack of <code>cd</code> command.</li>
+<li>If you forget to specify <code>cd</code> before specifying a path, a cryptic <code>permission denied</code> or <code>command not found</code> error will occur, rather than an error specific to the lack of <code>cd</code> command.</li>
 </ol>
 </div>
 <div id="hidden" class="section level6 unnumbered">
@@ -764,7 +781,7 @@ drwx------   7  oneils  iplant-everyone 4.0K  Sep 15 09:52 <span style="color: b
 </div>
 <div id="dot_dot" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
-<p>When using <code>ls -a</code>, we see two “special” directories: <code>.</code> and <code>..</code> are their names. These directories don’t really exist per se but are instead shortcuts that refer to special locations relative to the directory they are contained in. The <code>.</code> directory is a shortcut for the same directory it is contained in. Colloquially, it means “here.” The <code>..</code> directory is a shortcut for the directory <em>above</em> the directory containing it. Colloquially, it means “up.”</p>
+<p>When using <code>ls -a</code>, we see two “special” directories: <code>.</code> and <code>..</code> are their names (typically pronounced “dot” and “dot dot”). These directories don’t really exist per se but are instead shortcuts that refer to special locations relative to the directory they are contained in. The <code>.</code> directory is a shortcut for the same directory it is contained in. Colloquially, it means “here.” The <code>..</code> directory is a shortcut for the directory <em>above</em> the directory containing it. Colloquially, it means “up.”</p>
 <div class="fig center" style="width: 30%">
 <p><img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_20_dot_dotdot.png" /></p>
 </div>
@@ -804,7 +821,7 @@ drwx------   7  oneils  iplant-everyone 4.0K  Sep 15 09:52 <span style="color: b
 <div id="exercises-1" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="the-command-line-and-filesystem.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
-<li><p>Practice moving about the filesystem with <code>cd</code> and listing directory contents with <code>ls</code>, including navigating by relative path, absolute path, <code>.</code>, and <code>..</code>. Use <code>echo $PWD</code> and <code>pwd</code> frequently to list your present working directory. Practice navigating home with <code>cd ~</code>, <code>cd $HOME</code>, and just <code>cd</code> with no arguments. You might find it useful to draw a “map” of the filesystem, or at least the portions relevant to you, on a piece of paper.</p></li>
+<li><p>Practice moving about the file system with <code>cd</code> and listing directory contents with <code>ls</code>, including navigating by relative path, absolute path, <code>.</code>, and <code>..</code>. Use <code>echo $PWD</code> and <code>pwd</code> frequently to list your present working directory. Practice navigating home with <code>cd ~</code>, <code>cd $HOME</code>, and just <code>cd</code> with no arguments. You might find it useful to draw a “map” of the filesystem, or at least the portions relevant to you, on a piece of paper.</p></li>
 <li><p>Without explicitly typing your username, create another environment variable called <code>$CHECKCASH</code>, such that when <code>echo $CHECKCASH</code> is run, a string like <code>oneils has $20</code> is printed (except that <code>oneils</code> would be your username and should be set by reading from <code>$USER</code>).</p></li>
 <li><p>The directory <code>/etc</code> is where many configuration files are stored. Try navigating there (using <code>cd</code>) using an absolute path. Next, go back home with <code>cd $HOME</code> and try navigating there using a relative path.</p></li>
 <li><p>What happens if you are in the top-level directory <code>/</code> and you run <code>cd ..</code>?</p></li>
@@ -828,7 +845,7 @@ drwx------   7  oneils  iplant-everyone 4.0K  Sep 15 09:52 <span style="color: b
           </div>
         </div>
       </div>
-<a href="logging-in.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="getting-set-up.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="working-with-files-and-directories.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

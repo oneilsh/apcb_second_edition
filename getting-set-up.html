@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)</title>
-  <meta name="description" content="Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)" />
+  <title>Chapter 2 Getting Set Up | A Primer for Computational Biology (2nd Edition)</title>
+  <meta name="description" content="Chapter 2 Getting Set Up | A Primer for Computational Biology (2nd Edition)" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)" />
+  <meta property="og:title" content="Chapter 2 Getting Set Up | A Primer for Computational Biology (2nd Edition)" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Logging In | A Primer for Computational Biology (2nd Edition)" />
+  <meta name="twitter:title" content="Chapter 2 Getting Set Up | A Primer for Computational Biology (2nd Edition)" />
   
   
   
@@ -183,17 +183,19 @@
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
 <ul>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+<li class="chapter" data-level="2.0.1" data-path="getting-set-up.html"><a href="getting-set-up.html#opening-a-terminal"><i class="fa fa-check"></i><b>2.0.1</b> Opening a terminal</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-in"><i class="fa fa-check"></i>Logging in</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
 <ul>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
-<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-file-system"><i class="fa fa-check"></i>Getting Around the File System</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
@@ -212,7 +214,7 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
 <ul>
-<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and <code>$PATH</code></a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
 </ul></li>
@@ -472,21 +474,17 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logging-in" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Logging In<a href="logging-in.html#logging-in" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book assumes that you have access to an account on a Unix-like operating system (such as Linux) that you can use directly or log in to remotely via the SSH (Secure-SHell) login protocol. Accounts of this type are frequently available at universities and research institutions, though you may also consider using or installing Linux on your own hardware.</p>
-<p>Before explaining anything in detail, let’s cover the actual process of logging in to a remote computer via SSH. To do this, you will need four things:</p>
-<ol style="list-style-type: decimal">
-<li>Client software on your own computer.</li>
-<li>The address of the remote computer, called its “host name,” or, alternatively, its IP (Internet protocol) address.</li>
-<li>A username on the remote computer with which to log in.</li>
-<li>A corresponding password on the remote machine with which to log in.</li>
-</ol>
+<div id="getting-set-up" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Getting Set Up<a href="getting-set-up.html#getting-set-up" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This book assumes that you have access to an account on a Unix-like operating system (such as Linux) that you can use directly or log in to remotely via the SSH (<b>S</b>ecure-<b>SH</b>ell) login protocol. Accounts of this type are frequently available at universities and research institutions, though you may also consider using or installing Linux on your own hardware.</p>
+<div id="opening-a-terminal" class="section level3 hasAnchor" number="2.0.1">
+<h3><span class="header-section-number">2.0.1</span> Opening a terminal<a href="getting-set-up.html#opening-a-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we do anything, we want to be sure we can open a terminal to work in.</p>
 <p>If you are using a computer running MacOS, the client software will be command line oriented and is accessible from the Terminal utility. The Terminal is located in the Utilities folder, inside of the Applications folder.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-02-logging-in.Rmd.images/Updated_CompbioFinder.png" /></p>
 </div>
-<p>In the window that opens up, you will see a prompt for entering commands. On my computer it looks like this (except for the lines numbers along the left):</p>
+<p>In the window that opens up, you will see a prompt for entering commands. On my computer it looks like this (except for the line numbers along the left):</p>
 <pre id=part1-02-prompt
      class="language-txt 
             line-numbers 
@@ -494,7 +492,19 @@
 <code>
 [oneils@mbp ~]$
 </code></pre>
-<p>At this prompt, enter the following: <code>ssh &lt;username&gt;@&lt;hostname or ip&gt;</code>. Note that you don’t actually type the angle brackets; angle brackets are commonly used nomenclature to indicate a field you need to specify. To log in to my account with username <code>oneils</code> at the Oregon State University’s main Linux computer (<code>shell.onid.oregonstate.edu</code>), for example, I would type:</p>
+<p>If you are running Microsoft Windows, you should install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux (WSL)</a>. After correctly installing, restarting your computer, opening the Ubuntu app, and <a href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password">creating a username and password</a>, you’ll be ready to proceed.</p>
+<p>Finally, if you are already running a Linux or other Unix-like operating system, you’ll need to find the Terminal utility on your own.</p>
+</div>
+<div id="logging-in" class="section level3 unnumbered hasAnchor">
+<h3>Logging in<a href="getting-set-up.html#logging-in" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you have access to a remote Unix-like operating system, you’ll need to log in via SSH (if not, <a href="the-command-line-and-filesystem.html#the-command-line-and-filesystem">skip ahead</a>). To do this, you will need four things:</p>
+<ol style="list-style-type: decimal">
+<li>Client software on your own computer.</li>
+<li>The address of the remote computer, called its “host name,” or, alternatively, its IP (Internet protocol) address.</li>
+<li>A username on the remote computer with which to log in.</li>
+<li>A corresponding password on the remote machine with which to log in.</li>
+</ol>
+<p>Open a terminal on your computer (the Terminal app for MacOS, WSL on Windows, or a Linux terminal). At the prompt, enter the following: <code>ssh &lt;username&gt;@&lt;hostname or ip&gt;</code>. Note that you don’t actually type the angle brackets; angle brackets are commonly used nomenclature to indicate a field you need to specify. To log in to my account with username <code>oneils</code> at the Oregon State University’s main Linux computer (<code>shell.onid.oregonstate.edu</code>), for example, I would type:</p>
 <pre id=part1-02-ssh
      class="language-txt 
             line-numbers 
@@ -511,36 +521,52 @@
 <code>
 [oneils@shell.onid.oregonstate.edu ~]$
 </code></pre>
-<p>If you are running Microsoft Windows, you should install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux (WSL)</a>. After correctly installing, restarting your computer, opening the Ubuntu app, and <a href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password">creating a username and password</a>, the steps for logging in remotely via SSH will be similar to those for MacOS.</p>
-<p>Finally, if you are already running a Linux or other Unix-like operating system, you’ll need to find the Terminal utility on your own and log in as above.</p>
 <div id="logging-in-further-changing-your-password" class="section level4 unnumbered hasAnchor callout-box">
-<h4>Logging in Further, Changing Your Password<a href="logging-in.html#logging-in-further-changing-your-password" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4>Logging in Further, Changing Your Password<a href="getting-set-up.html#logging-in-further-changing-your-password" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Depending on where you are logging in to, you may not be done with the login process. At many universities and research centers, the administrator would prefer that you not do any work on the computer you initially logged in to, because that computer may be reserved just for initial logins by dozens or even hundreds of researchers. As a result, you may need to “check out” a secondary, internal computer for your actual computational needs. Sometimes this can be done by SSHing on the command line to the secondary computer, but at some institutions, you will be asked to run other commands for this checkout process. Check with your local system administrator.</p>
 <p>In addition, you may want to change your password after your initial login. Running the <code>passwd</code> command usually suffices, and you will be prompted to enter both your old and new passwords. As usual, for security reasons, no characters will appear when entered. Further, good system administrators never ask for your password, and they are unable to recover it if it gets lost. The best administrators can do is reset it to a temporary one.</p>
 </div>
+</div>
 <div id="ssh-secure-shell" class="section level3 unnumbered hasAnchor">
-<h3>SSH: Secure Shell<a href="logging-in.html#ssh-secure-shell" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>SSH: Secure Shell<a href="getting-set-up.html#ssh-secure-shell" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One might rightfully ask: what did we just accomplish with all of this logging in? On our desktop computer, we used a program called a client to connect to another program, called a server. A <em>server</em> is a program that waits in the background for another program (a <em>client</em>) to connect to it.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> This connection often happens over a network, but connections can occur between programs on the same computer as well. A client is a program that is generally run by a user on an as-needed basis, and it connects to a server. While it’s more correct to define a server as a program that waits for a connection from a client, colloquially, computers that primarily run server programs are also referred to as servers.</p>
 <div class="fig center" style="width: 60%">
 <p><img src="images/part1-02-logging-in.Rmd.images/I.2_7_ssh_server_client-3-1024x262.png" /></p>
 </div>
 <p>The SSH server and the SSH client communicate using what is known as the SSH “protocol,” simply an agreed-upon format for data transfer. The SSH protocol is quite lightweight: because all of the actual computation happens on the remote machine, the only information that needs to be transferred to the server are the keystrokes typed by the user, and the only information that needs to be transferred to the client are the characters to be displayed to the user. As its name implies, the SSH protocol is very secure owing to its reliance on advanced public-key cryptography.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
-<p>The SSH server may not be the only server program running on the remote computer. For example, web servers allow remote computers to serve web pages to clients (like Mozilla Firefox and OS X’s Safari) using HTTP (hypertext transfer protocol). But because there is only one host name or IP address associated with the remote computer, an extra bit (byte, actually) of information is required, known as the “port number.” By way of analogy, if the remote computer were an apartment building, port numbers would be apartment numbers. By convention, SSH connects on port 22 and HTTP connects on port 80, although these ports can be changed by administrators who wish to run their services in nonstandard ways. This explains why port 22 is specified when connecting via Putty (and is the default when using command-line <code>ssh</code>, but it can be adjusted with a parameter).</p>
+<p>The SSH server may not be the only server program running on the remote computer. For example, web servers allow remote computers to serve web pages to clients (like Mozilla Firefox and OS X’s Safari) using HTTP (hypertext transfer protocol). But because there is only one host name or IP address associated with the remote computer, an extra bit (byte, actually) of information is required, known as the “port number.” By way of analogy, if the remote computer were an apartment building, port numbers would be apartment numbers. By convention, SSH connects on port 22 and HTTP connects on port 80, although these ports can be changed by administrators who wish to run their services in nonstandard ways.</p>
 <div class="fig center" style="width: 60%">
 <p><img src="images/part1-02-logging-in.Rmd.images/I.2_8_web_server_client-1-1024x380.png" /></p>
 </div>
 <p>Other protocols of note include FTP (file transfer protocol) and its secure version, SFTP (secure file transfer protocol), designed specifically for transferring files.</p>
 </div>
 <div id="logging-out" class="section level3 unnumbered hasAnchor">
-<h3>Logging Out<a href="logging-in.html#logging-out" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>Logging Out<a href="getting-set-up.html#logging-out" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once finished working with the remote computer, we should log out of the SSH session. Logging out is accomplished by running the command <code>exit</code> on the command line until returned to the local desktop or the SSH client program closes the connection. Alternatively, it suffices to close the SSH client program or window — SSH will close the connection, and no harm will be done. Note, however, than any currently executing program will be killed on logout.</p>
 <p>If you are working on a remotely hosted virtual machine, it’s a good idea to also suspend the instance so that time spent not working isn’t counted against your usage limit.</p>
+<p>Note that, while not required, it’s also recommended to use the <code>exit</code> command to close your terminal in order to save your history. You may then close the window.</p>
+<pre id=part1-02-prompt
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>exit</b>
+
+logout
+
+Saving session...
+...copying shared history...
+...saving history...truncating history files...
+...completed.
+
+
+</code></pre>
 <div id="exercises" class="section level4 unnumbered hasAnchor exercises">
-<h4>Exercises<a href="logging-in.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4>Exercises<a href="getting-set-up.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li><p>Practice logging in to and back out of the remote machine to which you have access.</p></li>
 <li><p>Change your password to something secure but also easy to remember. Most Linux/Unix systems do not limit the length of a password, and longer passwords made up of collections of simple words are more secure than short strings of random letters. For example, a password like <code>correcthorsebatterystaple</code> is much more secure than <code>Tr0ub4dor&amp;3</code>.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p></li>
-<li><p>A program called <code>telnet</code> allows us to connect to any server on any port and attempt to communicate with it (which requires that we know the correct messages to send to the server for the protocol). Try connecting with <code>telnet</code> to port <code>80</code> of <code>google.com</code> by using the “Telnet” radio button in PuTTY if on Windows, or by running <code>telnet google.com 80</code> in the Terminal on OS X. Issue the command <code>GET http://www.google.com/</code> to see the raw data returned by the server.</p></li>
+<li><p>A program called <code>telnet</code> allows us to connect to any server on any port and attempt to communicate with it (which requires that we know the correct messages to send to the server for the protocol). Try connecting with <code>telnet</code> to port <code>80</code> of <code>google.com</code> by running <code>telnet google.com 80</code> in the Terminal. Issue the command <code>GET http://www.google.com/</code> to see the raw data returned by the server.</p></li>
 </ol>
 </div>
 
@@ -549,10 +575,10 @@
 <div class="footnotes">
 <hr />
 <ol start="2">
-<li id="fn2"><p>The style of your terminal session likely won’t look like what we show in this book, but you can customize the look of your terminal using preferences. We’ll be spending a lot of time in this environment!<a href="logging-in.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Sometimes server programs are called “daemons,” terminology that evokes Maxwell’s infamous “demon,” an impossible theoretical entity working in the background to sort gaseous molecules.<a href="logging-in.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>The public-key infrastructure currently in use by SSH is only secure as far as anyone in the academic sphere suspects: the mathematics underlying the key exchange protocol haven’t yet been proven unbreakable. Most mathematicians, however, suspect that they are unbreakable. On the other hand, bugs have been known to occur in the software itself, though they are usually fixed promptly when found.<a href="logging-in.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>These example passwords were drawn from a webcomic on the topic, located at <a href="http://xkcd.com/936/">http://xkcd.com/936/</a>.<a href="logging-in.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>The style of your terminal session likely won’t look like what we show in this book, but you can customize the look of your terminal using preferences. We’ll be spending a lot of time in this environment!<a href="getting-set-up.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Sometimes server programs are called “daemons,” terminology that evokes Maxwell’s infamous “demon,” an impossible theoretical entity working in the background to sort gaseous molecules.<a href="getting-set-up.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>The public-key infrastructure currently in use by SSH is only secure as far as anyone in the academic sphere suspects: the mathematics underlying the key exchange protocol haven’t yet been proven unbreakable. Most mathematicians, however, suspect that they are unbreakable. On the other hand, bugs have been known to occur in the software itself, though they are usually fixed promptly when found.<a href="getting-set-up.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>These example passwords were drawn from a webcomic on the topic, located at <a href="http://xkcd.com/936/">http://xkcd.com/936/</a>.<a href="getting-set-up.html#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -592,7 +618,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-02-logging-in.Rmd",
+    "link": "https://github.com/oneilsh/apcb_bookdown/edit/master/part1-02-getting-set-up.Rmd",
     "text": "Edit"
   },
   "history": {

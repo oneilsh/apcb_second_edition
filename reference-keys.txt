@@ -1,5 +1,6 @@
 context
-logging-in
+getting-set-up
+opening-a-terminal
 the-command-line-and-filesystem
 working-with-files-and-directories
 permissions-and-executables

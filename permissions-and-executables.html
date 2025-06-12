@@ -183,17 +183,19 @@
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
 <ul>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+<li class="chapter" data-level="2.0.1" data-path="getting-set-up.html"><a href="getting-set-up.html#opening-a-terminal"><i class="fa fa-check"></i><b>2.0.1</b> Opening a terminal</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-in"><i class="fa fa-check"></i>Logging in</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
 <ul>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
-<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-file-system"><i class="fa fa-check"></i>Getting Around the File System</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
@@ -212,7 +214,7 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
 <ul>
-<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and <code>$PATH</code></a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
 </ul></li>
@@ -474,14 +476,19 @@
             <section class="normal" id="section-">
 <div id="permissions-and-executables" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Permissions and Executables<a href="permissions-and-executables.html#permissions-and-executables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="permissions" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
 <p>As mentioned previously, the administrator <code>root</code> configures most things on the system, like where network drives are mounted and how access to the system is granted.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> Most of the files that are important for these configurations are “owned” by root, and for security purposes, other users can’t tamper with them. In fact, all users of the system usually own the files in their own home directory, and these files can’t be tampered with by other users (except for root, who has access to everything). These security settings are controlled via <em>permissions</em> associated with every file and directory.</p>
+</div>
+<div id="unix_groups" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
 <p>Root can also put users together into <em>groups</em>, allowing users in the same group to share files with each other but not outsiders, if they so choose. Groups may have more than one user, and a single user may be part of more than one group, as in the following example illustrating three groups and eight users.</p>
 <div class="fig center" style="width: 50%">
 <p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_1_groups_ex.png" /></p>
 </div>
 <p>The <code>groups</code> command shows the groups to which a user belongs; in the above example, <code>groups oneilst</code> would report <code>emrichlab</code> and <code>hellmannlab</code>. To see your own groups, you can always use something like <code>groups $USER</code> (relying on the shell to replace <code>$USER</code> with your username).</p>
-<p>Unfortunately, there’s no surefire or easy way to list all the members of a particular group—at least not without some deep knowledge of how the system is configured or some programming expertise. On some systems, a command like <code>getent group &lt;groupname&gt;</code> will provide the answer; <code>getent group faculty</code> would report <code>emrichs</code>, <code>schmidtj</code>, and <code>hellmannj</code> for the example above.</p>
-<p>If you are unsure of a person’s username, the <code>finger</code> command may come to the rescue. You can supply <code>finger</code> with either a first name or last name to search for (or even the username, if known), and it will return information—if entered by the system administrator—about that user.</p>
+<p>Unfortunately, there’s no surefire or easy way to list all the members of a particular group — at least not without some deep knowledge of how the system is configured or some programming expertise. On some systems, a command like <code>getent group &lt;groupname&gt;</code> will provide the answer; <code>getent group faculty</code> would report <code>emrichs</code>, <code>schmidtj</code>, and <code>hellmannj</code> for the example above.</p>
+<p>If you are unsure of a person’s username, the <code>finger</code> command may come to the rescue. You can supply <code>finger</code> with either a first name or last name to search for (or even the username, if known), and it will return information — if entered by the system administrator — about that user.</p>
 <pre id=part1-05-finger
      class="language-txt 
             line-numbers 
@@ -586,7 +593,7 @@ Can <code>cd</code> to the directory, and potentially access subdirectories
 </tr>
 </table>
 <p>The <code>temp</code> directory above gives the user all permissions (<code>rwx</code>), but members of the group and others can only <code>cd</code> to the directory and view the files there (<code>r-x</code>); they can’t add or remove files or directories. (They may be able to <em>edit</em> files in <code>temp</code>, however, depending on those files’ permissions.)</p>
-<p>The <code>chmod</code> (change mode) utility allows us to add or remove permissions. There are two types of syntax, the simpler “character” syntax and the numeric “octal” syntax. We’ll describe the simpler syntax and leave discussion of the octal syntax for those brave enough to read the manual page (<code>man chmod</code>).</p>
+<p>The <code>chmod</code> (<b>ch</b>ange <b>mod</b>e) utility allows us to add or remove permissions. There are two types of syntax, the simpler “character” syntax and the numeric “octal” syntax. We’ll describe the simpler syntax and leave discussion of the octal syntax for those brave enough to read the manual page (<code>man chmod</code>).</p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part1-05-permissions-executables.Rmd.images/I.5_5_chmod_syntax.png" /></p>
 </div>
@@ -654,9 +661,10 @@ oneils : iplant-everyone users community de-preview-access atmo-user dnasubway-u
 </code></pre>
 <p>Second, you own the files that you create, but generally only the root user has access to the <code>chown</code> utility that changes the owner of an existing file (it wouldn’t be very nice to “gift” another user a nefarious program).</p>
 <p>Third, while it is convenient to be able to open up a directory for reading by group members, doing so is only useful if all of the directories above it are also minimally accessible. In particular, all the directories in the path to a shared directory need to have at least <code>x</code> for the group if they are to be accessed in any way by group members.</p>
+</div>
 <div id="executables-and-path" class="section level3 unnumbered hasAnchor">
-<h3>Executables and $PATH<a href="permissions-and-executables.html#executables-and-path" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>What is a “program?” On a Unix-like system, it’s a file that has executable permissions for some user or users. (It also helps if that file contains some instructions that make sense to execute!) Often these are encoded in a “binary” format—simply long strings of <code>0</code>’s and <code>1</code>’s representing machine code that the CPU can interpret—but they may in some contexts also be human-readable text files. Many of the programs we’ve been using, like <code>echo</code> and <code>ls</code>, are executable files that live in the <code>/bin</code> directory along with many others, including <code>bash</code>, our shell program.</p>
+<h3>Executables and <code>$PATH</code><a href="permissions-and-executables.html#executables-and-path" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What is a “program?” On a Unix-like system, it’s a file that has executable permissions for some user or users. (It also helps if that file contains some instructions that make sense to execute!) Often these are encoded in a “binary” format — simply long strings of <code>0</code>’s and <code>1</code>’s representing machine code that the CPU can interpret — but they may in some contexts also be human-readable text files. Many of the programs we’ve been using, like <code>echo</code> and <code>ls</code>, are executable files that live in the <code>/bin</code> directory along with many others, including <code>bash</code>, our shell program.</p>
 <pre id=part1-05-executable
      class="language-txt 
             line-numbers 
@@ -740,7 +748,7 @@ total 24
 -rw-rw-rw-  1   oneils  community       15891 Oct 20  17:42 p450s.fasta
 drwxr-xr-x  2   oneils  iplant-everyone  4086 Oct 20  17:40 <span style="color: blue">temp</span>
 </code></pre>
-<p>It would appear that we might have created a program—we do have an executable file, and you might have guessed that the special syntax we’ve used makes the file executable in a meaningful way. Let’s try it out: according to our execution rule, we can specify the absolute path to it to run it.</p>
+<p>It would appear that we might have created a program — we do have an executable file, and you might have guessed that the special syntax we’ve used makes the file executable in a meaningful way. Let’s try it out: according to our execution rule, we can specify the absolute path to it to run it.</p>
 <pre id=part1-05-execute-myprog
      class="language-txt 
             line-numbers 
@@ -813,8 +821,8 @@ This is a bit weird...
 [oneils@mbp ~]$ <b>mkdir local</b>
 [oneils@mbp ~]$ <b>mkdir local/bin</b>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents local  Pictures Templates     Videos</span>
-<span style="color: blue">Desktop Downloads Music  Public</span>   todo_list.txt
+<span style="color: blue">apcb     Documents  local  Pictures  Templates      Videos</span>
+<span style="color: blue">Desktop  Downloads  Music  Public</span>    todo_list.txt
 [oneils@mbp ~]$ <b>mv apcb/intro/myprog.sh local/bin</b>
 </code></pre>
 <p>This accomplishes steps 1 and 2. For step 3, we need to make sure that our <code>local/bin</code> directory can be found in <code>$PATH</code>. Because <code>$PATH</code> is an environment variable, we can set it with <code>export</code>, making use of the fact that environment variables inside of double quotes (but not single quotes) are expanded to their contents.</p>
@@ -837,9 +845,14 @@ This is a bit weird...
 Hello!
 This is a bit weird...
 </code></pre>
-<p>There’s only one problem: every time we log out and log back in, modifications of environment variables that we’ve made are forgotten. Fortunately, <code>bash</code> looks for two important files when it starts:<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> (1) commands in the <code>.bash_login</code> file (in your home directory) are executed whenever <code>bash</code> starts as a consequence of a login session (e.g., when entering a password causes <code>bash</code> to start), and (2) commands in the <code>.bashrc</code> file (in your home directory) are executed whenever <code>bash</code> starts (e.g., on login <em>and</em> when <code>bash</code> is executed via a <code>#!</code> script).</p>
-<p>If you want to see a friendly greeting every time you log in, for example, you might add the line echo <code>"Hello $USER, nice to see you again!"</code> to your <code>.bash_login</code> file. Because we want our <code>$PATH</code> to be modified even if <code>bash</code> somehow starts without our logging in, we’ll add the <code>export</code> command to the <code>.bashrc</code> file.</p>
-<p>The <code>.bashrc</code> file may have information in it already, representing a default shell configuration placed there when the administrator created the account. While we can add our own commands to this file, we should do so at the end, and we should be careful to not disturb the other configuration commands that are likely there for a good reason. Also, the commands in this file should be free of errors and typos—some errors are bad enough to prevent you from logging in! Using the <code>-w</code> when editing the file with <code>nano</code> will help ensure that the editor does not attempt to autowrap long commands that shouldn’t be broken over multiple lines.</p>
+<p>There’s only one problem: every time we log out and log back in, modifications of environment variables that we’ve made are forgotten. Fortunately, <code>bash</code> looks for two important files when it starts:<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
+<ol style="list-style-type: decimal">
+<li>commands in the <code>.bash_login</code> file (in your home directory) are executed whenever <code>bash</code> starts as a consequence of a login session (e.g., when entering a password causes <code>bash</code> to start), and</li>
+<li>commands in the <code>.bashrc</code> file (in your home directory) are executed whenever <code>bash</code> starts (e.g., on login <em>and</em> when <code>bash</code> is executed via a <code>#!</code> script).</li>
+</ol>
+<p>If you want to see a friendly greeting every time you log in, for example, you might add the line <code>echo "Hello $USER, nice to see you again!"</code> to your <code>.bash_login</code> file. Because we want our <code>$PATH</code> to be modified even if <code>bash</code> somehow starts without our logging in, we’ll add the <code>export</code> command to the <code>.bashrc</code> file.</p>
+<p>The <code>.bashrc</code> file may have information in it already, representing a default shell configuration placed there when the administrator created the account. While we can add our own commands to this file, we should do so at the end, and we should be careful to not disturb the other configuration commands that are likely there for a good reason. Before editing this file, we recommend you make a backup; for example <code>cp .bashrc .bashrc_bkup</code>.</p>
+<p>Also, the commands in this file should be free of errors and typos — some errors are bad enough to prevent you from logging in! Using the <code>-w</code> when editing the file with <code>nano</code> will help ensure that the editor does not attempt to autowrap long commands that shouldn’t be broken over multiple lines.</p>
 <pre id=part1-05-ls-a
      class="language-txt 
             line-numbers 
@@ -868,8 +881,8 @@ This is a bit weird...
 <li><p>What is the difference between <code>export PATH="$HOME/local/bin:$PATH"</code> and <code>export PATH="$PATH:$HOME/local/bin"</code>? In what situations might the former be preferred over the latter?</p></li>
 <li><p>Carefully add the line export <code>PATH="$HOME/local/bin:$PATH"</code> to your <code>.bashrc</code> (assuming you have a <code>local/bin</code> directory in your home directory, and your default shell is <code>bash</code>). Be sure not to alter any lines already present, or to create any typos that might prevent you from logging in.</p></li>
 <li><p>Create an executable script in your <code>~/local/bin directory</code> called <code>myinfo.sh</code>, which runs <code>echo</code> on the <code>$HOME</code>, <code>$PWD</code>, and <code>$USER</code> environment variables, and also runs the <code>date</code> utility. Try running it by just running <code>myinfo.sh</code> from your home directory (you may need to log out and back in first, to get the shell to recognize the change in the contents of paths listed in <code>$PATH</code> if you modified your <code>.bashrc</code>).</p></li>
-<li><p>Executable <code>bash</code> scripts that start with <code>#!/bin/bash</code> will work fine, provided that the <code>bash</code> program lives in the <code>/bin</code> directory. On any system where this isn’t the case (probably a rare occurrence), it won’t.</br></br>
-Try creating a bash script where the first line is <code>#!/usr/bin/env bash</code>. The <code>env</code> program uses the <code>$PATH</code> variable to locate the <code>bash</code> executable, and passes off interpretation of the script to the located bash interpreter. This poses the same problem: what if <code>env</code> is not located in <code>/usr/bin</code>? Fortunately, this has been an agreed-upon location for the env program for decades, so scripts written in this manner are portable across more machines.</p></li>
+<li><p>Executable <code>bash</code> scripts that start with <code>#!/bin/bash</code> will work fine, provided that the <code>bash</code> program lives in the <code>/bin</code> directory. On any system where this isn’t the case (probably a rare occurrence), it won’t.</p>
+<p>Try creating a bash script where the first line is <code>#!/usr/bin/env bash</code>. The <code>env</code> program uses the <code>$PATH</code> variable to locate the <code>bash</code> executable, and passes off interpretation of the script to the located bash interpreter. This poses the same problem: what if <code>env</code> is not located in <code>/usr/bin</code>? Fortunately, this has been an agreed-upon location for the env program for decades, so scripts written in this manner are portable across more machines.</p></li>
 </ol>
 </div>
 

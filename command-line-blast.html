@@ -183,17 +183,19 @@
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
 <ul>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+<li class="chapter" data-level="2.0.1" data-path="getting-set-up.html"><a href="getting-set-up.html#opening-a-terminal"><i class="fa fa-check"></i><b>2.0.1</b> Opening a terminal</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-in"><i class="fa fa-check"></i>Logging in</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
 <ul>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
-<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-file-system"><i class="fa fa-check"></i>Getting Around the File System</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
@@ -212,7 +214,7 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
 <ul>
-<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and <code>$PATH</code></a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
 </ul></li>
@@ -479,8 +481,8 @@
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-08-command-line-BLAST.Rmd.images/I.8_1_blast_illustration.png" /></p>
 </div>
-<p>A sufficiently close match between subsequences (denoted by arrows in the figure above, though matches are usually longer than illustrated here) is called a high-scoring pair (HSP), while a query sequence is said to hit a target sequence if they share one or more HSPs. Sometimes, however, the term “hit” is used loosely, without differentiating between the two. Each HSP is associated with a “bitscore” that is based on the similarity of the subsequences as determined by a particular set of rules. Because in larger subject sets some good matches are likely to be found by chance, each HSP is also associated with an “E value,” representing the expected number of matches one might find by chance in a subject set of that size with that score or better. For example, an E value of 0.05 means that we can expect a match by chance in 1 in 20 similar searches, whereas an E value of 2.0 means we can expect 2 matches by chance for each similar search.</p>
-<p>BLAST is not a single tool, but rather a suite of tools (and the suite grows over the years as more features and related tools are added). The most modern version of the software, called BLAST+, is maintained by the National Center for Biotechnology Information (NCBI) and may be downloaded in binary and source forms at [<a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/" class="uri">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/</a>].</p>
+<p>A sufficiently close match between sub-sequences (denoted by arrows in the figure above, though matches are usually longer than illustrated here) is called a high-scoring pair (HSP), while a query sequence is said to hit a target sequence if they share one or more HSPs. Sometimes, however, the term “hit” is used loosely, without differentiating between the two. Each HSP is associated with a “bitscore” that is based on the similarity of the sub-sequences as determined by a particular set of rules. Because in larger subject sets some good matches are likely to be found by chance, each HSP is also associated with an “<em>E</em> value,” representing the expected number of matches one might find by chance in a subject set of that size with that score or better. For example, an <em>E</em> value of 0.05 means that we can expect a match by chance in 1 in 20 similar searches, whereas an <em>E</em> value of 2.0 means we can expect 2 matches by chance for each similar search.</p>
+<p>BLAST is not a single tool, but rather a suite of tools (and the suite grows over the years as more features and related tools are added). The most modern version of the software, called BLAST+, is maintained by the National Center for Biotechnology Information (NCBI) and may be downloaded in binary and source forms at <a href="https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/</a>.</p>
 <p>This chapter only briefly covers running BLAST on the command line in simple ways. Reading the help information (e.g., with <code>blastn --help</code>) and the NCBI BLAST Command Line Applications User Manual at <a href="http://www.ncbi.nlm.nih.gov/books/NBK1763/" class="uri">http://www.ncbi.nlm.nih.gov/books/NBK1763/</a> is highly recommended. The NCBI manual covers quite a few powerful and handy features of BLAST on the command line that this book does not.</p>
 <div id="blast-types" class="section level3 unnumbered hasAnchor">
 <h3>BLAST Types<a href="command-line-blast.html#blast-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -506,7 +508,7 @@ The name (or path) of the FASTA-formatted file to search in as subject sequences
 </li>
 <ul style="list-style-type:none;">
 <li>
-Only HSPs with E values smaller than this should be reported. For example: <code>-evalue 0.001</code> or <code>-evalue 1e-6</code>.
+Only HSPs with <em>E</em> values smaller than this should be reported. For example: <code>-evalue 0.001</code> or <code>-evalue 1e-6</code>.
 </li>
 </ul>
 <li>
@@ -534,11 +536,11 @@ For each query/target pair, only report the best <code>&lt;integer&gt;</code> HS
 </li>
 </ul>
 <li>
-<code>-out &lt;output file&gt;</code>
+<code>-out &lt;output_file&gt;</code>
 </li>
 <ul style="list-style-type:none;">
 <li>
-Write the output to <code>&lt;output file&gt;</code> as opposed to the default of <a href="using-bioinformatics-software.html#standard_output">standard output</a>.
+Write the output to <code>&lt;output_file&gt;</code> as opposed to the default of <a href="using-bioinformatics-software.html#standard_output">standard output</a>.
 </li>
 </ul>
 </div>
@@ -548,11 +550,11 @@ Write the output to <code>&lt;output file&gt;</code> as opposed to the default o
 <div class="fig right" style="width: 50%">
 <p><img src="images/part1-08-command-line-BLAST.Rmd.images/I.8_3_blast_database.png" /></p>
 </div>
-<p>Running <code>makeblastdb</code> on a FASTA file is fairly simple: <code>makeblastdb -in &lt;fasta file&gt; -out &lt;database name&gt; -dbtype &lt;type&gt; -title &lt;title&gt; -parse_seqids</code>, where <code>&lt;type&gt;</code> is one of <code>prot</code> or <code>nucl</code>, and <code>&lt;title&gt;</code> is a human-readable title (enclosed in quotes if necessary). The <code>-parse_seqids</code> flag indicates that the sequence IDs from the FASTA file should be included in the database so that they can be used in outputs as well as by other tools like <code>blastdbcmd</code> (discussed below).</p>
+<p>Running <code>makeblastdb</code> on a FASTA file is fairly simple: <code>makeblastdb -in &lt;fasta_file&gt; -out &lt;database_name&gt; -dbtype &lt;type&gt; -title &lt;title&gt; -parse_seqids</code>, where <code>&lt;type&gt;</code> is one of <code>prot</code> or <code>nucl</code>, and <code>&lt;title&gt;</code> is a human-readable title (enclosed in quotes if necessary). The <code>-parse_seqids</code> flag indicates that the sequence IDs from the FASTA file should be included in the database so that they can be used in outputs as well as by other tools like <code>blastdbcmd</code> (discussed below).</p>
 <p>Once a BLAST database has been created, other options can be used with <code>blastn</code> et al.:</p>
 <ul style="list-style-type:none;">
 <li>
-<code>-db &lt;database name&gt;</code>
+<code>-db &lt;database_name&gt;</code>
 </li>
 <ul style="list-style-type:none;">
 <li>
@@ -569,7 +571,7 @@ Use <code>&lt;integer&gt;</code> CPU cores on a multicore system, if they are av
 </ul>
 </ul>
 <p>When using the <code>-db</code> option, the BLAST tools will search for the database files in three locations: (1) the <a href="the-command-line-and-filesystem.html#present_working_directory">present working directory</a>, (2) your <a href="the-command-line-and-filesystem.html#home_directory">home directory</a>, and (3) the paths specified in the $BLASTDB <a href="the-command-line-and-filesystem.html#environment_variable">environment variable</a>.</p>
-<p>The tool <code>blastdbcmd</code> can be used to get information about BLAST databases—for example, with <code>blastdbcmd -db &lt;database name&gt; -info</code>—and can show the databases in a given path with <code>blastdbcmd -list &lt;path&gt;</code> (so, <code>blastdbcmd -list $BLASTDB</code> will show the databases found in the default search paths). This tool can also be used to extract sequences or information about them from databases based on information like the IDs reported in output files. As always, reading the help and documentation for software like BLAST is highly recommended.</p>
+<p>The tool <code>blastdbcmd</code> can be used to get information about BLAST databases — for example, with <code>blastdbcmd -db &lt;database name&gt; -info</code> — and can show the databases in a given path with <code>blastdbcmd -list &lt;path&gt;</code> (so, <code>blastdbcmd -list $BLASTDB</code> will show the databases found in the default search paths). This tool can also be used to extract sequences or information about them from databases based on information like the IDs reported in output files. As always, reading the help and documentation for software like BLAST is highly recommended.</p>
 </div>
 <div id="running-a-self-blast" class="section level3 unnumbered hasAnchor">
 <h3>Running a Self-BLAST<a href="command-line-blast.html#running-a-self-blast" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -579,10 +581,10 @@ Use <code>&lt;integer&gt;</code> CPU cores on a multicore system, if they are av
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/apcb/intro/blast]$ <b>wget 'http://downloads.yeastgenome.org/sequence/S288C_reference/orf_protein/orf_trans.fasta.gz' -O orf_trans.fasta.gz</b>
+[coonrod@n0349 ~/apcb/intro/blast]$ <b>wget 'http://sgd-archive.yeastgenome.org/sequence/S288C_reference/orf_protein/orf_trans.fasta.gz' -O orf_trans.fasta.gz</b>
 ...
-[oneils@mbp ~/apcb/intro/blast]$ <b>gzip -d orf_trans.fasta.gz</b>
-[oneils@mbp ~/apcb/intro/blast]$ <b>ls</b>
+[coonrod@n0349 ~/apcb/intro/blast]$ <b>gunzip orf_trans.fasta.gz</b>
+[coonrod@n0349 ~/apcb/intro/blast]$ <b>ls</b>
 orf_trans.fasta
 </code></pre>
 <p>In order to find sequences that are similar to others, we’re going to want to <code>blastp</code> this file against itself. So, we’ll start by creating a database of these sequences.</p>
@@ -591,32 +593,51 @@ orf_trans.fasta
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/apcb/intro/blast]$ <b>makeblastdb -in orf_trans.fasta -out orf_trans -dbtype prot -title "Yeast Open Reading Frames" -parse_seqids</b>
+[coonrod@n0349 ~/apcb/intro/blast]$ <b>makeblastdb -in orf_trans.fasta -out orf_trans -dbtype prot -title "Yeast Open Reading Frames" -parse_seqids</b>
 ...
-[oneils@mbp ~/apcb/intro/blast]$ <b>ls</b>
-orf_trans.fasta  orf_trans.pin  orf_trans.psd  orf_trans.psq
-orf_trans.phr    orf_trans.pog  orf_trans.psi
+[coonrod@n0349 ~/apcb/intro/blast]$ <b>ls</b>
+orf_trans.fasta  orf_trans.pin  orf_trans.pos  orf_trans.ptf
+orf_trans.pdb    orf_trans.pjs  orf_trans.pot  orf_trans.pto
+orf_trans.phr    orf_trans.pog  orf_trans.psq
 </code></pre>
 <p>Now we need to determine what options we will use for the <code>blastp</code>. In particular, do we want to limit the number of HSPs and target sequences reported for each query? Because we’re mostly interested in determining which proteins match others, we probably only need to keep one hit. But each protein’s best hit will likely be to itself! So we’d better keep the top two with <code>-max_target_seqs 2</code> and only the best HSP per hit with <code>-max_hsps 1</code>. We’ll also use an <code>-evalue 1e-6</code>, a commonly used cutoff.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
-<p>For the output, we’ll create a tab-separated output with comment lines (<code>-outfmt 7</code>), creating columns for the query sequence ID, subject sequence ID, HSP alignment length, percentage identity of the alignment, subject sequence length, query sequence length, start and end positions in the query and subject, and the <em>E</em> value. (The coded names—<code>qseqid</code>, <code>sseqid</code>, <code>length</code>, etc.—can be found by running <code>blastp -help</code>.) Finally, we’ll call the output file <a href="data/yeast_blastp_yeast_top2.txt"><code>yeast_blastp_yeast_top2.txt</code></a> and use four processors to speed the computation (which will only really help if the machine we are logged in to has at least that many).</p>
+<p>For the output, we’ll create a tab-separated output with comment lines (<code>-outfmt 7</code>), creating columns for the query sequence ID, subject sequence ID, HSP alignment length, percentage identity of the alignment, subject sequence length, query sequence length, start and end positions in the query and subject, and the <em>E</em> value. (The coded names—<code>qseqid</code>, <code>sseqid</code>, <code>length</code>, etc. — can be found by running <code>blastp -help</code>.) Finally, we’ll call the output file <a href="data/yeast_blastp_yeast_top2.txt"><code>yeast_blastp_yeast_top2.txt</code></a> and use four processors to speed the computation (which will only really help if the machine we are logged in to has at least that many).</p>
 <pre id=part1-08-blastp
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/apcb/intro/blast]$ <b>blastp -query orf_trans.fasta -db orf_trans -max_target_seqs 2 -max_hsps 1 -evalue 1e-6 -outfmt '7 qseqid sseqid length qlen slen qstart qend sstart send evalue' -out yeast_blastp_yeast_top2.txt -num_threads 4</b>
+[coonrod@n0349 ~/apcb/intro/blast]$ <b>blastp -query orf_trans.fasta -db orf_trans -max_target_seqs 2 -max_hsps 1 -evalue 1e-6 -outfmt '7 qseqid sseqid length qlen slen qstart qend sstart send evalue' -out yeast_blastp_yeast_top2.txt -num_threads 4</b>
 </code></pre>
 <p>It’s a long command, to be sure! This operation takes several minutes to finish, even with <code>-num_threads 4</code> specified. When it does finish, we can see with <code>less</code> that the output file contains the columns we specified interspersed with the comment lines provided by <code>-outfmt 7</code>.</p>
-<div class="fig center" style="width: 80%">
-<p><img src="images/part1-08-command-line-BLAST.Rmd.images/I.8_7_unix_94_4_blastout.png" /></p>
-</div>
-<p>In the output snippet above, YAL0005C has an HSP with itself (naturally), but also one with YLL024C. We’ll consider basic analyses containing this sort of data—rows and columns stored in text files, interspersed with extraneous lines—in later chapters.</p>
+<pre id=part1-08-blastp_out
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+...
+# BLASTP 2.14.0+
+# Query: YAL005C SSA1 SGDID:S000000004, Chr I from 141431-139503, Genome Release
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 2 hits found
+YAL005C YAL005C 643     643     643     1       643     1       643     0.0
+YAL005C YLL024C 643     643     640     1       643     1       640     0.0
+# BLASTP 2.14.0+
+# Query: YAL003W EFB1 SGDID:S000000003, Chr I from 142174-142253,142620-143160, 
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, 
+# 1 hits found
+YAL003W YAL003W 207     207     207     1       207     1       207     3.23e-150
+...
+</code></pre>
+<p>In the output snippet above, YAL005C has an HSP with itself (naturally), but also one with YLL024C. We’ll consider basic analyses containing this sort of data — rows and columns stored in text files, interspersed with extraneous lines — in later chapters.</p>
 <div id="exercises-6" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="command-line-blast.html#exercises-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li><p>If you don’t already have the NCBI Blast+ tools installed, install them. Once you do, check the contents of the <code>$BLASTDB</code> environment variable. If it’s not empty, use <code>blastdbcmd</code> to determine whether you have the “nr” database available, and any information you can determine about it (when it was downloaded, how many sequences it has, etc.)</p></li>
 <li><p>Create a new folder in your <code>projects</code> folder called <code>blast</code>. In this directory, download the <a href="data/p450s.fasta"><code>p450s.fasta</code></a> file and the yeast exome <a href="orf_trans.fasta"><code>orf_trans.fasta</code></a> from the book website. Create a database called <code>orf_trans</code> using <code>makeblastdb</code>, and use <code>blastp</code> to search the <code>p450s.fasta</code> file against it. When doing the search, use an <em>E</em>-value cutoff of <code>1e-6</code>, keep the top one target sequences, and produce an output file called <code>p450s_blastp_yeast_top1.blast</code> in output format <code>11</code>.</p></li>
-<li><p>Use the <code>blast_formatter</code> tool to convert the output format <code>11</code> file above into an output format <code>6</code> called <code>p450s_blastp_yeast_top1.txt</code>, with columns for: (1) Query Seq-id, (2) Subject Seq-id, (3) Subject Sequence Length, (4) Percentage of Identical Matches, (5) E Value, (6) Query Coverage per Subject, and (7) Subject title. (You may find browsing the NCBI BLAST+ manual and the output of <code>blast_formatter -help</code> to be informative.) The output, when viewed with <code>less -S</code>, should look something like this:</br></p></li>
+<li><p>Use the <code>blast_formatter</code> tool to convert the output format <code>11</code> file above into an output format <code>6</code> called <code>p450s_blastp_yeast_top1.txt</code>, with columns for: (1) Query Seq-id, (2) Subject Seq-id, (3) Subject Sequence Length, (4) Percentage of Identical Matches, (5) <em>E</em> value, (6) Query Coverage per Subject, and (7) Subject title. (You may find browsing the NCBI BLAST+ manual and the output of <code>blast_formatter -help</code> to be informative.) The output, when viewed with <code>less -S</code>, should look something like this:</br></p></li>
 </ol>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part1-08-command-line-BLAST.Rmd.images/I.8_8_unix_94_5_blastout.png" /></p>

@@ -183,17 +183,19 @@
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#command-lines-and-operating-systems"><i class="fa fa-check"></i>Command Lines and Operating Systems</a></li>
 <li class="chapter" data-level="" data-path="context.html"><a href="context.html#a-brief-history"><i class="fa fa-check"></i>A Brief History</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="logging-in.html"><a href="logging-in.html"><i class="fa fa-check"></i><b>2</b> Logging In</a>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
 <ul>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
-<li class="chapter" data-level="" data-path="logging-in.html"><a href="logging-in.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
+<li class="chapter" data-level="2.0.1" data-path="getting-set-up.html"><a href="getting-set-up.html#opening-a-terminal"><i class="fa fa-check"></i><b>2.0.1</b> Opening a terminal</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-in"><i class="fa fa-check"></i>Logging in</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#ssh-secure-shell"><i class="fa fa-check"></i>SSH: Secure Shell</a></li>
+<li class="chapter" data-level="" data-path="getting-set-up.html"><a href="getting-set-up.html#logging-out"><i class="fa fa-check"></i>Logging Out</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html"><i class="fa fa-check"></i><b>3</b> The Command Line and Filesystem</a>
 <ul>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#setting-environment-variables-dealing-with-spaces"><i class="fa fa-check"></i>Setting Environment Variables, Dealing with Spaces</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#alternative-shells"><i class="fa fa-check"></i>Alternative Shells</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#files-directories-and-paths"><i class="fa fa-check"></i>Files, Directories, and Paths</a></li>
-<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-filesystem"><i class="fa fa-check"></i>Getting around the Filesystem</a></li>
+<li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#getting-around-the-file-system"><i class="fa fa-check"></i>Getting Around the File System</a></li>
 <li class="chapter" data-level="" data-path="the-command-line-and-filesystem.html"><a href="the-command-line-and-filesystem.html#relative-paths-hidden-files-and-directories"><i class="fa fa-check"></i>Relative Paths, Hidden Files, and Directories</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-files-and-directories.html"><a href="working-with-files-and-directories.html"><i class="fa fa-check"></i><b>4</b> Working with Files and Directories</a>
@@ -212,7 +214,7 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html"><i class="fa fa-check"></i><b>5</b> Permissions and Executables</a>
 <ul>
-<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and $PATH</a></li>
+<li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#executables-and-path"><i class="fa fa-check"></i>Executables and <code>$PATH</code></a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#making-files-executable"><i class="fa fa-check"></i>Making Files Executable</a></li>
 <li class="chapter" data-level="" data-path="permissions-and-executables.html"><a href="permissions-and-executables.html#installing-a-program"><i class="fa fa-check"></i>Installing a Program</a></li>
 </ul></li>
@@ -477,15 +479,15 @@
 <p>Now that we’ve got the software installed for our example analysis, we’ll need to get some data. Supposing we don’t have any novel data to work with, we’ll ask the following question: can we identify, using HMMER and <code>muscle</code>, homologues of P450-1A1 genes in the <em>Drosophila melanogaster</em> protein data set? (This is a trivial example, as the <em>D. melanogaster</em> genome is already well annotated.)</p>
 <div id="getting-data" class="section level3 unnumbered hasAnchor">
 <h3>Getting Data<a href="using-bioinformatics-software.html#getting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first step will be to download the <em>D. melanogaster</em> data set, which we can find on <a href="http://flybase.org" class="uri">http://flybase.org</a>, the genome repository for <em>Drosophila</em> genomes. Generally, genome repositories like FlyBase provide full data sets for download, but they can be difficult to find. To start, we’ll navigate to “Files,” then “Releases (FTP).”</p>
+<p>The first step will be to download the <em>D. melanogaster</em> data set, which we can find on <a href="http://flybase.org" class="uri">http://flybase.org</a>, the genome repository for <em>Drosophila</em> genomes. Generally, genome repositories like FlyBase provide full data sets for download, but they can be difficult to find. To start, we’ll navigate to “Downloads,” then “Releases (FTP).”</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_22_flybase_home.png" /></p>
 </div>
-<p>From there, we’ll navigate to a recent release, like FB2014_05. Because genomic information is often being updated as better information becomes available, newer versions are indicated by newer releases.</p>
+<p>From there, we’ll navigate to the current release, FB2025_02 at the time of this update. Because genomic information is often being updated as better information becomes available, newer versions are indicated by newer releases.</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_23_flybase_recent.png" /></p>
 </div>
-<p>Next we’ll see links for specific species; we’ll work with <code>dmel_r6.02</code>. It is often a good idea to note specific release numbers or release dates for data sets you download, for eventual description in the methods sections of any papers you write that are based on those data.</p>
+<p>Next we’ll see links for specific species; we’ll work with <code>dmel_r6.63</code>. It is often a good idea to note specific release numbers or release dates for data sets you download, for eventual description in the methods sections of any papers you write that are based on those data.</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_24_flybase_dmel.png" /></p>
 </div>
@@ -493,7 +495,7 @@
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_25_flybase_fasta.png" /></p>
 </div>
-<p>Finally, we see a variety of gzipped files we can <code>wget</code> on the command line. Because we are interested in the full protein data set for this species, we will use the URL for <code>dmel-all-translation-r6.02.fasta.gz</code>.</p>
+<p>Finally, we see a variety of gzipped files we can <code>wget</code> on the command line. Because we are interested in the full protein data set for this species, we will use the URL for <code>dmel-all-translation-r6.63.fasta.gz</code>.</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_26_flybase_all_translation.png" /></p>
 </div>
@@ -503,12 +505,12 @@
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/downloads]$ <b>cd $HOME</b>
-[oneils@mbp ~]$ <b>mkdir projects</b>
-[oneils@mbp ~]$ <b>cd projects</b>
-[oneils@mbp ~/projects]$ <b>mkdir p450s</b>
-[oneils@mbp ~/projects]$ <b>cd p450s</b>
-[oneils@mbp ~/projects/p450s]$ <b>wget 'ftp://ftp.flybase.net/releases/FB2014_05/dmel_r6.02/fasta/dmel-all-translation-r6.02.fasta.gz'</b>
+[coonrod@login1 ~/downloads]$ <b>cd $HOME</b>
+[coonrod@login1 ~]$ <b>mkdir projects</b>
+[coonrod@login1 ~]$ <b>cd projects</b>
+[coonrod@login1 ~/projects]$ <b>mkdir p450s</b>
+[coonrod@login1 ~/projects]$ <b>cd p450s</b>
+[coonrod@login1 ~/projects/p450s]$ <b>wget 'https://s3ftp.flybase.org/genomes/Drosophila_melanogaster/dmel_r6.63_FB2025_02/fasta/dmel-all-translation-r6.63.fasta.gz'</b>
 </code></pre>
 <p>Because the file is gzipped, we can use <code>gunzip</code> to decompress it, and then use <code>less -S</code> to view the results without the long lines wrapped in the terminal window.</p>
 <pre id=part1-07-gunzip
@@ -516,8 +518,8 @@
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>gunzip dmel-all-translation-r6.02.fasta.gz</b>
-[oneils@mbp ~/projects/p450s]$ <b>less -S dmel-all-translation-r6.02.fasta</b>
+[coonrod@login1 ~/projects/p450s]$ <b>gunzip dmel-all-translation-r6.63.fasta.gz</b>
+[coonrod@login1 ~/projects/p450s]$ <b>less -S dmel-all-translation-r6.63.fasta</b>
 </code></pre>
 <p>The result illustrates the standard format for a FASTA file. Each sequence record begins with line starting with a <code>&gt;</code> character, and the first non-whitespace-containing word following that is considered the sequence ID.</p>
 <div class="fig center" style="width: 80%">
@@ -528,13 +530,16 @@
 <p>This line might then contain <em>whitespace</em> characters and metadata. Whitespace comprises a sequence of one or more spaces, tabs (represented in Unix/Linux as a special character sometimes written as <code>\t</code>), or newlines (represented in Unix/Linux as a special character sometimes written as <code>\n</code>) in a row.</p>
 <p>Lines following the header line contain the sequence information, and there is no specific format for the number of lines over which the sequence may be broken, or how long those lines should be. After the last sequence line for a record, a new sequence record may start.</p>
 <p>Depending on the source of the FASTA file, the IDs or metadata may represent multiple pieces of data; in this example, the metadata are separated by spaces and have a <code>&lt;label&gt;=&lt;value&gt;</code>; format that is specific to protein sequences from FlyBase.</p>
-<p>For our next trick, we’ll download some P450-1A1 protein sequences from Uniprot.org. Uniprot.org is a well-known protein database, and it is composed of the “TrEMBL” database and the subset of TrEMBL, known as “Swiss-Prot.” While the former contains many sequences with annotations, many of those annotations have been assigned by automated homology searches and have not been reviewed. The latter, Swiss-Prot, contains only sequences whose annotations have been manually reviewed.</p>
-<p>For the download, we’ll enter “p450 1A1” into the search field, and we’ll filter the results to only those in Swiss-Prot by clicking on the “Reviewed” link, resulting in 28 matches. Next, we can click on the “Download” button to download a “FASTA (canonical)” (rather than with all isoforms included) file.</p>
+<p>For our next trick, we’ll download some P450-1A1 protein sequences from <a href="https://www.uniprot.org/">uniprot.org</a>. UniProt is a well-known protein database, and it is composed of the “TrEMBL” database and the subset of TrEMBL, known as “Swiss-Prot.” While the former contains many sequences with annotations, many of those annotations have been assigned by automated homology searches and have not been reviewed. The latter, Swiss-Prot, contains only sequences whose annotations have been manually reviewed.</p>
+<p>For the download, we’ll enter “p450 1A1” into the search field, and we’ll filter the results to only those in Swiss-Prot by clicking on the “Reviewed” link, resulting in 69 matches. Next, we can click on the “Download” button to download a “FASTA (canonical)” (rather than with all isoforms included) file and rename it to <code>p450s.fasta</code>.</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_30_uniprot_download.png" /></p>
 </div>
-<p>The Uniprot website recently underwent a redesign, such that the downloaded file is transferred directly to the web browser, rather than presented as a URL that could be accessed with <code>wget</code>. This isn’t a problem, as it gives us a chance to discuss how to transfer files between the remote system and local desktop via SFTP.</p>
-<p>Like SSH, SFTP is a common client/server protocol. Provided the server is running on the remote computer (in fact, it uses the same port as SSH, port 22, because SSH provides the secure connection), we just need to install and run an SFTP client on our desktop. There are many SFTP clients available for Microsoft Windows (e.g., Core-FTP), OS X (e.g., Cyberduck), and Linux systems (e.g., <code>sftp</code> on the command line or the graphical FileZilla). The client discussed here is called FireFTP, and it is available as an extension for the Mozilla Firefox web browser (itself available for Windows, OS X, and Linux). To get it requires installing and running Firefox, navigating to Tools → Addons, and searching for “FireFTP.”</p>
+<div class="fig center" style="width: 80%">
+<p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_30.1_uniprot_download.png" /></p>
+</div>
+<p>The Uniprot website transfers the downloaded file directly to the web browser, rather than presenting it as a URL that can be accessed with <code>wget</code>. This isn’t a problem, as it gives us a chance to discuss how to transfer files between the remote system and local desktop via SFTP. (Of course, if you’re running on your own computer, this step is unnecessary.)</p>
+<p>Like SSH, SFTP is a common client/server protocol. Provided the server is running on the remote computer (in fact, it uses the same port as SSH, port 22, because SSH provides the secure connection), we just need to install and run an SFTP client on our desktop. There are many SFTP clients available for Microsoft Windows (e.g., Core-FTP), MacOS (e.g., Cyberduck), and Linux systems (e.g., <code>sftp</code> on the command line or the graphical FileZilla). The client discussed here is called FireFTP, and it is available as an extension for the Mozilla Firefox web browser (itself available for Windows, MacOS, and Linux). To get it requires installing and running Firefox, navigating to Tools → Addons, and searching for “FireFTP.”</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_31_fireftp_search.png" /></p>
 </div>
@@ -565,14 +570,14 @@
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>ls</b>
-dmel-all-translation-r6.02.fasta  p450s.fasta
-[oneils@mbp ~/projects/p450s]$ <b>which muscle</b>
-/home/oneils/local/bin/muscle
-[oneils@mbp ~/projects/p450s]$ <b>which hmmbuild</b>
-/home/oneils/local/bin/hmmbuild
-[oneils@mbp ~/projects/p450s]$ <b>which hmmsearch</b>
-/home/oneils/local/bin/hmmsearch
+[coonrod@login1 ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.02.fasta  p450s.fasta
+[coonrod@login1 ~/projects/p450s]$ <b>which muscle</b>
+/home/coonrod/local/bin/muscle
+[coonrod@login1 ~/projects/p450s]$ <b>which hmmbuild</b>
+/home/coonrod/local/bin/hmmbuild
+[coonrod@login1 ~/projects/p450s]$ <b>which hmmsearch</b>
+/home/coonrod/local/bin/hmmsearch
 </code></pre>
 <p>The first step is to run <code>muscle</code> on the <code>p450s.fasta</code> file to produce a multiple alignment. One quick way to identify how a program like <code>muscle</code> should be run (what parameters it takes) is to run it without any parameters. Alternatively, we could try the most common options for getting help: <code>muscle -h</code>, <code>muscle --help</code>, <code>muscle --h</code>, or <code>muscle -help</code>.</p>
 <pre id=part1-07-muscle-help
@@ -580,42 +585,32 @@ dmel-all-translation-r6.02.fasta  p450s.fasta
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>muscle</b>
+[coonrod@login1 ~/projects/p450s]$ <b>muscle</b>
 
+muscle 5.3.linux64 [d9725ac]  263Gb RAM, 48 cores
+Built Nov 10 2024 22:58:59
+(C) Copyright 2004-2021 Robert C. Edgar.
+https://drive5.com
 
-MUSCLE v3.8.31 by Robert C. Edgar
+Align FASTA input, write aligned FASTA (AFA) output:
+    muscle -align input.fa -output aln.afa
 
+Align large input using Super5 algorithm if -align is too expensive,
+typically needed with more than a few hundred sequences:
+    muscle -super5 input.fa -output aln.afa
 
-http://www.drive5.com/muscle
-This software is donated to the public domain.
-Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
-
-
-
-Basic usage
-
-
-    muscle -in &lt;inputfile&gt; -out &lt;outputfile&gt;
-
-
-Common options (for a complete list please see the User Guide):
-
-
-    -in &lt;inputfile&gt;    Input file in FASTA format (default stdin)
-    -out &lt;outputfile&gt;  Output alignment in FASTA format (default stdout)
-    -diags             Find diagonals (faster for similar sequences)
-    -maxiters &lt;n&gt;      Maximum number of iterations (integer, default 16)
-    -maxhours &lt;h&gt;      Maximum time to iterate in hours (default no limit)
-    -html              Write output in HTML format (default FASTA)
+Single replicate alignment:
+    muscle -align input.fa -perm PERM -perturb SEED -output aln.afa
+    muscle -super5 input.fa -perm PERM -perturb SEED -output aln.afa
 ...
 </code></pre>
-<p>The most important line of this help text is the usage information: <code>muscle -in &lt;inputfile&gt; -out &lt;outputfile&gt;</code>; parameters in angle brackets indicate that the parameter is required (nonrequired parameters often appear in straight brackets). Further help text indicates other parameters that we could opt to add. Presumably, they could be placed before or after the input or output specifiers. So, we’ll run <code>muscle</code> on our <code>p450s.fasta</code> file, and produce a file whose file name indicates its pedigree in some way:</p>
+<p>The most important line of this help text is the usage information: <code>muscle -align input.fa -output aln.afa</code>. Further help text indicates other parameters that we could opt to add. Presumably, they could be placed before or after the input or output specifiers. So, we’ll run <code>muscle</code> on our <code>p450s.fasta</code> file, and produce a file whose file name indicates its pedigree in some way:</p>
 <pre id=part1-07-run-muscle
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>muscle -in p450s.fasta -out p450s.fasta.aln</b>
+[coonrod@login1 ~/projects/p450s]$ <b>muscle -align p450s.fasta -output p450s.fasta.aln</b>
 </code></pre>
 <p>Once the command has finished executing, we can view the alignment file with <code>less -S p450s.fasta.aln</code>.</p>
 <pre id=part1-07-less-result
@@ -623,14 +618,16 @@ Common options (for a complete list please see the User Guide):
             line-numbers 
             linkable-line-numbers">
 <code>
-<b>>sp|P05176|CP1A1_RABIT Cytochrome P450 1A1 OS=Oryctolagus cuniculus GN=CYP1A1 PE
-------------------------------------------------------------
----------------------------------------------------MVSDFGLPT
-FISATELLLASAVFCLVFWVAGASKPRVPKGLKRLPGPWGWPLLGHVLTLGK---NPHV-
----ALARLSRRYGDVFQIRLGSTPVVVLSGLDTIKQALVRQGDDFKGRPDLYSFSFVTK-
------------------------------GQSMIFGSDSGPV---------WAARRRLAQ
-NALNSFSVAS--------------------------------------------------
-----------------DPASSSSCYLEEHV---SQEAENLISK-FQELMAAVGH------</b>
+<b>>sp|P08684|CP3A4_HUMAN Cytochrome P450 3A4 OS=Homo sapiens OX=9606 GN=CYP3A4 PE=1 SV=4
+MAL-------IP-------------DLAMETWLLL-----AV-SLV---LLYL-YG-----------THS--H-----GL
+FKKL-GIPGPTPLPFLGNILSYHKG--FCMFDMECHKKYGKVWGFYDGQQPVLAITDPDMIKTVLVKECYSVFTNRRPFG
+PVGFMKS-AISIA---E-DEEWKRLRSLLSPTFTSG------------KLKEMVPII---AQYGDVLVRN-L-RREA-ET
+GKPVTLKDVFGAYSMDVITSTSFGVNIDSLN-------NPQDPFVENTKKLLRFDFLDPFFLSITVFPFLIPILEVL---
+------NICVFPREVTNFLRKSVKRMKESRLE-DTQKHRVDFLQLMIDSQNSKE-------TE--S-HKALSDLELVAQS
+IIFIFAGYETTSSVLSFIMYELATHPDVQQKLQEEIDAVLPNKAPPTYDTVLQMEYLDMVVNETLRLFPIA-MRLERVCK
+KDVEINGMFIPKGVVVMIPSYALHRDPKYWTEPEKFLPERFSKKNKDNI---DPYIYTPFGSGPRNCIGMRFALMNMKLA
+LIRVLQNFSFKPCKETQI-PLKLSLGGLLQPEKPVVLKVESRDG---------------TV---SGA
+</b>
 </code></pre>
 <p>With further inspection, we’d see that the sequences have been made the same length by the insertion of gap characters. The next step is to run <code>hmmbuild</code> to produce the HMM profile. Again, we’ll run <code>hmmbuild</code> without any options to get information on what parameters it needs.</p>
 <pre id=part1-07-hmmbuild-help
@@ -638,28 +635,26 @@ NALNSFSVAS--------------------------------------------------
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>hmmbuild</b>
+[coonrod@login1 ~/projects/p450s]$ <b>hmmbuild</b>
 Incorrect number of command line arguments.
 Usage: hmmbuild [-options] &lt;hmmfile_out&gt; &lt;msafile&gt;
 
-
 where basic options are:
-  -h     : show brief help on version and usage
-  -n &lt;s&gt; : name the HMM &lt;s&gt;
-  -o &lt;f&gt; : direct summary output to file &lt;f&gt;, not stdout
-  -O &lt;f&gt; : resave annotated, possibly modified MSA to file &lt;f&gt;
-
+  -h     : show brief help on version and usage
+  -n &lt;s&gt; : name the HMM &lt;s&gt;
+  -o &lt;f&gt; : direct summary output to file &lt;f&gt;, not stdout
+  -O &lt;f&gt; : resave annotated, possibly modified MSA to file &lt;f&gt;
 
 To see more help on other available options, do:
-  hmmbuild -h
+  hmmbuild -h
 </code></pre>
-<p>The help output for <code>hmmbuild</code> is shorter, though the command also notes that we could run <code>hmmbuild -h</code> for more detailed information. The usage line, <code>hmmbuild [-options] &lt;hmmfile_out&gt; &lt;msafile&gt;</code>, indicates that the last two parameters are required, and are the name of the output file (for the profile HMM) and the multiple sequence alignment input file. The brackets indicate that, before these last two parameters, a number of optional parameters may be given, described later in the help output. In this case, <code>&lt;hmmfile_out&gt;</code> and <code>&lt;msafile&gt;</code> are positional: the second-to-last argument must specify the output, and the last must specify the input.</p>
+<p>The help output for <code>hmmbuild</code> is shorter, though the command also notes that we could run <code>hmmbuild -h</code> for more detailed information. The usage line, <code>hmmbuild [-options] &lt;hmmfile_out&gt; &lt;msafile&gt;</code>, indicates that the last two parameters are required (parameters in angle brackets <code>&lt;&gt;</code> indicate that the parameter is required - nonrequired parameters often appear in straight brackets <code>[]</code>), and are the name of the output file (for the profile HMM) and the multiple sequence alignment input file. The brackets indicate that, before these last two parameters, a number of optional parameters may be given, described later in the help output. In this case, <code>&lt;hmmfile_out&gt;</code> and <code>&lt;msafile&gt;</code> are positional: the second-to-last argument must specify the output, and the last must specify the input.</p>
 <pre id=part1-07-hmmbuild
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>hmmbuild p450s.fasta.aln.hmm p450s.fasta.aln</b>
+[coonrod@login1 ~/projects/p450s]$ <b>hmmbuild p450s.fasta.aln.hmm p450s.fasta.aln</b>
 </code></pre>
 <p>After this operation finishes, it may be interesting to take a look at the resulting HMM file with <code>less -S p450s.fasta.aln.hmm</code>. Here’s a snippet:</p>
 <pre id=part1-07-hmmbuild-less
@@ -667,16 +662,16 @@ To see more help on other available options, do:
             line-numbers 
             linkable-line-numbers">
 <code>
-<b>CKSUM 797170701
-STATS LOCAL MSV      -12.2089  0.69650
-STATS LOCAL VITERBI  -13.2160  0.69650
-STATS LOCAL FORWARD   -6.4971  0.69650
-HMM          A        C        D        E        F        G        H        I   
-            m->m     m->i     m->d     i->m     i->i     d->m     d->d
-  COMPO   2.56763  4.18442  2.94826  2.71355  3.22576  2.92226  3.70840  2.94423
-          2.68504  4.42336  2.77569  2.73176  3.46465  2.40496  3.72606  3.29362
-          0.66606  1.72211  1.17901  3.05405  0.04832  0.00000        *
-      1   3.15916  4.51751  4.70912  4.16707  3.23103  4.39232  4.76778  1.44083</b>
+<b>CKSUM 4016990903
+STATS LOCAL MSV      -11.7264  0.69789
+STATS LOCAL VITERBI  -12.7015  0.69789
+STATS LOCAL FORWARD   -6.2362  0.69789
+HMM          A        C        D        E        F        G        H        I     >
+            m->m     m->i     m->d     i->m     i->i     d->m     d->d
+  COMPO   2.61813  4.26410  3.02017  2.70882  3.14232  3.03883  3.70286  2.73853  >
+          2.68618  4.42225  2.77519  2.73123  3.46354  2.40513  3.72494  3.29354  >
+          0.01914  4.36142  5.08377  0.61958  0.77255  0.00000        *
+      1   3.44179  4.92539  4.62863  4.28822  3.53589  4.23482  4.91031  2.76712  </b>
 </code></pre>
 <p>With some documentation reading, we may even be able to decode how the probabilistic profile is represented in this matrix of letters and numbers. As a reminder, our project directory now contains the original sequence file, a multiple-alignment file, and the HMM profile file, as well as the <em>D. melanogaster</em> protein file in which we wish to search for the profile.</p>
 <pre id=part1-07-ls
@@ -684,9 +679,9 @@ HMM          A        C        D        E        F      
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>ls</b>
-dmel-all-translation-r6.02.fasta  p450s.fasta.aln
-p450s.fasta                       p450s.fasta.aln.hmm
+[coonrod@login1 ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.63.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
 </code></pre>
 <p>At this point, we are ready to search for the profile in the <em>D. melanogaster</em> protein set with <code>hmmsearch</code>. As usual, we’ll first inspect the usage for <code>hmmsearch</code>.</p>
 <pre id=part1-07-hmmsearch-help
@@ -694,14 +689,12 @@ p450s.fasta                       p450s.fasta.aln.hmm
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>hmmsearch</b>
+[coonrod@login1 ~/projects/p450s]$ <b>hmmsearch</b>
 Incorrect number of command line arguments.
 Usage: hmmsearch [options] &lt;hmmfile&gt; &lt;seqdb&gt;
 
-
 where most common options are:
-  -h : show brief help on version and usage
-
+  -h : show brief help on version and usage
 
 To see more help on available options, do hmmsearch -h
 </code></pre>
@@ -711,8 +704,7 @@ To see more help on available options, do hmmsearch -h
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-trans
-lation-r6.02.fasta</b>
+[coonrod@login1 ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-translation-r6.63.fasta</b>
 </code></pre>
 <p>Note that there was no required option for an output file. Running this command causes quite a lot of information to be printed to the terminal, including lines like:</p>
 <pre id=part1-07-hmmsearch-out
@@ -720,12 +712,12 @@ lation-r6.02.fasta</b>
             line-numbers 
             linkable-line-numbers">
 <code><b>...
-  Alignments for each domain:
-  == domain 1  score: 2.4 bits;  conditional E-value: 0.19
-  p450s.fasta 433 sdekivpivndlfganfdtisvalswslpylvaspeigkklkke 476
-                  + +++       f a+f+ is  l++   +l  +p ++ +l++e
-  FBpp0086933 305 TADDLLAQCLLFFFAGFEIISSSLCFLTHELCLNPTVQDRLYEE 348
-                  555566666667899***************************99 PP
+  Alignments for each domain:
+  == domain 1  score: 8.1 bits;  conditional E-value: 0.0058
+  p450s.fasta 158 eeiiskeaesLvsklqelmae..egsfdlskevvvsvanvicaicFg...rrykkedqellslvnlseefv 223
+                     + k +++L+++l +++ +   +++d+ +++ v+ +n+i+ + +g   +++++ed+ l+s +++s+  +
+  FBpp0080627 129 FGQVQKVGDHLIHHLLDRQGQgcPQEVDIQQKLRVYSVNIIANLIYGldiNNFEHEDHILTSYLSHSQASI 199
+                  45688899999999976664422699*********************444478999999999888887655 PP
 ...</b>
 </code></pre>
 <p>And, when we run ls, we find that no output file has been created.</p>
@@ -734,9 +726,9 @@ lation-r6.02.fasta</b>
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>ls</b>
-dmel-all-translation-r6.02.fasta  p450s.fasta.aln
-p450s.fasta                       p450s.fasta.aln.hmm
+[coonrod@login1 ~/projects/p450s]$ <b>ls</b>
+dmel-all-translation-r6.63.fasta  p450s.fasta.aln
+p450s.fasta                       p450s.fasta.aln.hmm
 </code></pre>
 <div id="standard_output" class="section level6 unnumbered">
 <h6 class="unnumbered"></h6>
@@ -750,8 +742,7 @@ p450s.fasta                       p450s.fasta.aln.hmm
             line-numbers 
             linkable-line-numbers">
 <code>
-[oneils@mbp ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-trans
-lation-r6.02.fasta  > p450s_hmmsearch_dmel.txt</b>
+[coonrod@login1 ~/projects/p450s]$ <b>hmmsearch p450s.fasta.aln.hmm dmel-all-translation-r6.63.fasta > p450s_hmmsearch_dmel.txt</b>
 </code></pre>
 <p>When this command executes, nothing is printed, and instead our file is created. When using the <code>&gt;</code> redirect, the file will be overwritten if it already exists. If, instead, we wished to append to an existing file (or create a new file if there is no file to append to), we could have used the <code>&gt;&gt;</code> redirect.</p>
 <p>Here are the contents of our final analysis, a simple text file with quite a bit of information, including some nicely formatted row and column data, as displayed by <code>less -S p450s_hmmsearch_dmel.txt</code>.</p>
@@ -760,15 +751,15 @@ lation-r6.02.fasta  > p450s_hmmsearch_dmel.txt</b>
             line-numbers 
             linkable-line-numbers">
 <code>
-<b>Query:       p450s.fasta  [M=730]
+<b>Query:       p450s.fasta  [M=515]
 Scores for complete sequences (score includes all domains):
-   --- full sequence ---   --- best 1 domain ---    -#dom-
-    E-value  score  bias    E-value  score  bias    exp  N  Sequence    Descript
-    ------- ------ -----    ------- ------ -----   ---- --  --------    --------
-    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0081483  type=pr
-    1.2e-98  332.1   0.1      2e-98  331.3   0.1    1.2  1  FBpp0307731  type=pr
-      7e-67  227.0   0.0      7e-67  227.0   0.0    1.5  1  FBpp0082768  type=pr
-    9.5e-67  226.6   0.0    9.5e-67  226.6   0.0    2.1  1  FBpp0297168  type=pr</b>
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence    Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------    -----------
+     7e-116  388.5   0.0   9.1e-116  388.1   0.0    1.0  1  FBpp0074380  type=polypeptide; 
+     7e-116  388.5   0.0   9.1e-116  388.1   0.0    1.0  1  FBpp0074381  type=polypeptide; 
+    2.2e-86  291.2   0.0    4.1e-85  287.0   0.0    2.0  1  FBpp0074374  type=polypeptide; 
+    2.2e-86  291.2   0.0    4.1e-85  287.0   0.0    2.0  1  FBpp0309669  type=polypeptide; </b>
 </code></pre>
 </div>
 </div>
@@ -789,7 +780,7 @@ Scores for complete sequences (score includes all domains):
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_51_unix_93_runhmmer_3.png" /></p>
 </div>
-<p>We could have replaced all instances of <code>$query</code> with <code>$1</code>, but this organization makes our script easier to read in the future, an important consideration when programming. Now we can run a full analysis by specifying the three relevant file names on the command line, as in: <code>./runhmmer.sh p450s.fasta dmel-all-translation-r6.02.fasta p450s_hmmsearch_dmel.txt</code>.</p>
+<p>We could have replaced all instances of <code>$query</code> with <code>$1</code>, but this organization makes our script easier to read in the future, an important consideration when programming. Now we can run a full analysis by specifying the three relevant file names on the command line, as in: <code>./runhmmer.sh p450s.fasta dmel-all-translation-r6.63.fasta p450s_hmmsearch_dmel.txt</code>.</p>
 <p>This <a href="data/runhmmer.sh"><code>runhmmer.sh</code></a> is a good candidate for inclusion in our <code>$HOME/local/bin</code> so that we can run it from anywhere, though we may want to add lines immediately following the <code>#!</code> line, to provide some help text for anyone who attempts to run the script without providing the correct inputs:</p>
 <div class="fig center" style="width: 80%">
 <p><img src="images/part1-07-using-bioinfo-software.Rmd.images/I.7_52_unix_94_runhmmer_4.png" /></p>
@@ -801,7 +792,7 @@ Scores for complete sequences (score includes all domains):
 <li><p>Create a new folder in your <code>projects</code> folder called <code>c_elegans</code>. Locate the FASTA file for the reference genome of <em>Caenorhabditis elegans</em> from <a href="http://wormbase.org" class="uri">http://wormbase.org</a>, and download it to this folder using <code>wget</code>. The file you are searching for will be named something like <code>c_elegans.PRJNA13758.WS244.genomic.fa.gz</code>. After it is downloaded, decompress it and view it with <code>less -S</code>.</p></li>
 <li><p>Install an SFTP client on your desktop, like FireFTP or CyberDuck, and attempt to connect to the same machine you log in to via SFTP. Download a FASTA file of some potentially homologous sequences from Uniprot to your local desktop, and transfer it to your remote <code>c_elegans</code> directory.</p></li>
 <li><p>Try running <code>muscle</code> and <code>HMMER</code> on the sequences you downloaded from uniprot.org against the <em>C. elegans</em> genome.</p></li>
-<li><p>If you have access to more than one Unix-based machine (such as an OS X desktop and a remote Linux computer, or two remote Linux computers), read the man page for <code>scp</code> with <code>man scp</code>, and also read about it online. Try to transfer a file and a directory between machines using <code>scp</code> on the command line.</p></li>
+<li><p>If you have access to more than one Unix-based machine (such as an MacOS desktop and a remote Linux computer, or two remote Linux computers), read the man page for <code>scp</code> with <code>man scp</code>, and also read about it online. Try to transfer a file and a directory between machines using <code>scp</code> on the command line.</p></li>
 <li><p>Write an executable <code>bash</code> script that automates a process of some kind, and install it in your <code>$HOME/local/bin</code>. Test it after logging out and back in.</p></li>
 </ol>
 </div>
