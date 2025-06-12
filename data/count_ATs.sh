@@ -9,6 +9,6 @@ fi
 export file=$1
 
 fasta_stats.py $file | \
-    grep 'unit: AT' | \
+    grep 'unit:AT' | \
     grep 'dinucleotide' | \
     wc

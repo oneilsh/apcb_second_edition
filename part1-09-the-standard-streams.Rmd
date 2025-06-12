@@ -39,9 +39,9 @@ We can run the `fasta_stats.py` program (after making it executable with `chmod`
 # Column 7: Length of repeat (in characters)
 # Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
 Processing sequence ID PZ7180000000004_TX
-PZ7180000000004_TX	0.279	1000	AAATA	12	unit: TAA	12	trinucleotide
+PZ7180000000004_TX	0.279	1000	AAATA	12	unit:TAA	12	trinucleotide
 Processing sequence ID PZ7180000031590
-PZ7180000031590	0.379	486	ACAAA	5	unit: ATTTA	10	pentanucleotide
+PZ7180000031590	0.379	486	ACAAA	5	unit:ATTTA	10	pentanucleotide
 </code></pre>
 
 Based on the information printed, it appears that sequence `PZ7180000031590` has a GC content (percentage of the sequence composed of G or C characters) of 37.9%, is 486 base pairs long, the most common five-base-pair sequence is `ACAAA` (occurring 5 times), and the longest perfect repeat is 10 base pairs long, caused by the pentanucleotide `ATTTA`, occurring twice.
@@ -75,8 +75,8 @@ When we run this command, however, we see that even though the output file has b
 # Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
 # Column 7: Length of repeat (in characters)
 # Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
-PZ7180000000004_TX	0.279	1000	AAATA	12	unit: TAA	12	trinucleotide
-PZ7180000031590	0.379	486	ACAAA	5	unit: ATTTA	10	pentanucleotide</b>
+PZ7180000000004_TX	0.279	1000	AAATA	12	unit:TAA	12	trinucleotide
+PZ7180000031590	0.379	486	ACAAA	5	unit:ATTTA	10	pentanucleotide</b>
 <span style="background-color:black; color:white;">pz_sample_stats.txt (END)</span>
 </code></pre>
 
@@ -134,12 +134,12 @@ Looking at the file with `less -S pz_stats.txt`, we can see that informational l
 # Column 6: Repeat unit of longest simple perfect repeat (2 to 10 chars)
 # Column 7: Length of repeat (in characters)
 # Column 8: Repeat type (dinucleotide, trinucleotide, etc.)
-PZ832049        0.321   218     CTTAA   4       unit: CGT        6       trinucle
-PZ21878_A       0.163   172     ATTAA   8       unit: ATT        6       trinucle
-PZ439397        0.153   111     TTAAT   5       unit: GAAAT      10      pentanuc
-PZ16108_A       0.157   191     ATTAA   7       unit: ATT        6       trinucle
-PZ21537_A       0.159   82      TTATT   3       unit: ATT        6       trinucle
-PZ535325        0.108   120     AATTA   6       unit: TA 6       dinucleotide
+PZ7180000000004_TX      0.279   1000    AAATA   12      unit:TAA        12      trinucleotide
+PZ7180000031590 0.379   486     ACAAA   5       unit:ATTTA      10      pentanucleotide
+PZ7180000027934 0.379   937     ATTTT   7       unit:GTTTGAC    14      heptanucleotide
+PZ456916        0.167   162     TAATT   6       unit:TAAT       8       tetranucleotide
+PZ7180000037718 0.299   518     TTTTT   15      unit:GTTGT      10      pentanucleotide
+PZ7180000000004_TY      0.578   998     AGAAG   8       unit:GCGAG      10      pentanucleotide
 ...</b>
 </code></pre>
 
@@ -160,18 +160,18 @@ This time, `less -S pz_stats.table` reveals only the desired lines.
             line-numbers 
             linkable-line-numbers">
 <code>
-<b>PZ832049        0.321   218     CTTAA   4       unit: CGT        6       trinucle
-PZ21878_A       0.163   172     ATTAA   8       unit: ATT        6       trinucle
-PZ439397        0.153   111     TTAAT   5       unit: GAAAT      10      pentanuc
-PZ16108_A       0.157   191     ATTAA   7       unit: ATT        6       trinucle
-PZ21537_A       0.159   82      TTATT   3       unit: ATT        6       trinucle
-PZ535325        0.108   120     AATTA   6       unit: TA 6       dinucleotide
+<b>PZ7180000000004_TX      0.279   1000    AAATA   12      unit:TAA        12      trinu
+PZ7180000031590 0.379   486     ACAAA   5       unit:ATTTA      10      pentanucleoti
+PZ7180000027934 0.379   937     ATTTT   7       unit:GTTTGAC    14      heptanucleoti
+PZ456916        0.167   162     TAATT   6       unit:TAAT       8       tetranucleoti
+PZ7180000037718 0.299   518     TTTTT   15      unit:GTTGT      10      pentanucleoti
+PZ7180000000004_TY      0.578   998     AGAAG   8       unit:GCGAG      10      penta
 ...</b>
 </code></pre>
 
 Rather than viewing the file with `less`, we can also count the number of lines present in the file with the `wc` tool, which counts the number of lines, words, and characters of input: `wc <file>`.
 
-Working with the cleaned data table reveals that our program produced 28,194 characters broken into 4,239 words among 471 lines of data output.
+Working with the cleaned data table reveals that our program produced 27,723 characters broken into 3,768 words among 471 lines of data output.
 
 <pre id=part1-09-wc
      class="language-txt 
@@ -179,7 +179,7 @@ Working with the cleaned data table reveals that our program produced 28,194 cha
             linkable-line-numbers">
 <code>
 [oneils@mbp ~/apcb/intro/fasta_stats]$ <b>wc pz_stats.table</b>
-  471  4239 28194 pz_stats.table
+  471  3768 27723 pz_stats.table
 </code></pre>
 
 ###### {- #standard_input}
@@ -203,7 +203,7 @@ To drive this home, we'll first remove our `pz_stats.table` file, and then rerun
 <span style="color: green">fasta_stats.py</span>  pz_cDNAs_sample.fasta    pz_sample_stats.txt
 pz_cDNAs.fasta  pz_sample_stats.err.txt  pz_stats.txt
 [oneils@mbp ~/apcb/intro/fasta_stats]$ <b>grep 'unit:' pz_stats.txt | wc</b>
-    471    4239   28194
+    471    3768   27723
 </code></pre>
 
 In this example, we've neither created a new file nor specified a file for `wc` to read from; the data are stored in a temporary buffer that is handled automatically by the shell and operating system. The `less` program can also read from standard input, so if we wanted to see the contents of the `grep` without creating a new file, we could run `grep 'unit:' pz_stats.txt | less -S`.
@@ -238,7 +238,7 @@ A chain of commands like the above, separated by pipe characters, is often calle
 
 ### Counting Simple AT Repeats {-}
 
-Let's expand on the small pipeline above to inspect just the "simple" AT repeats, that is, those that are the string "AT" repeated one or more times. We can start with what we have, but rather than just searching for `unit:`, we'll modify the pattern to find `unit: AT`, and see what we get:
+Let's expand on the small pipeline above to inspect just the "simple" AT repeats, that is, those that are the string "AT" repeated one or more times. We can start with what we have, but rather than just searching for `unit:`, we'll modify the pattern to find `unit:AT`, and see what we get:
 
 <pre id=part1-09-grep-AT
      class="language-txt 
@@ -246,27 +246,27 @@ Let's expand on the small pipeline above to inspect just the "simple" AT repeats
             linkable-line-numbers">
 <code>
 [oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs.fasta | \</b>
-> <b>grep 'unit: AT' | \</b>
+> <b>grep 'unit:AT' | \</b>
 > <b>less -S</b>
 </code></pre>
 
-The resulting output is close to what we hoped for, but not quite complete, as this pattern also matches things like `unit: ATT` and `unit: ATG`.
+The resulting output is close to what we hoped for, but not quite complete, as this pattern also matches things like `unit:ATT` and `unit:ATG`.
 
 <pre id=part1-09-AT-grep-output
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code>
-<b>PZ7180000031590	0.379	486	ACAAA	5	unit: ATTTA	10	pentanucleotide
-PZ15501_A	0.166	163	AATTA	7	unit: ATT	6	trinucleotide
-PZ7180000027936	0.22	273	TTTTT	10	unit: ATAAA	10	pentanucleotide
-PZ7180000024037	0.277	1462	TTTTT	36	unit: ATTGTGG	14	heptanucleotide
-PZ456919	0.287	143	ATACA	4	unit: ATAC	8	tetranucleotide
-PZ7180000024719_APV	0.306	1074	ATTAT	11	unit: ATT	6	trinucleotide
+<b>PZ22254_A       0.132   68      ATTAA   5       unit:AT 4       dinucleotide
+PZ20930_A       0.229   375     ATTAA   10      unit:ATT        6       trinucleotide
+PZ841572        0.285   411     TTTTT   7       unit:ATGTGA     12      hexanucleotid
+PZ7180000019701 0.254   678     TTTTT   12      unit:ATAAA      10      pentanucleoti
+PZ729309        0.269   535     ATATT   11      unit:ATTAA      10      pentanucleoti
+PZ835452        0.238   311     AAAAA   6       unit:ATG        6       trinucleotide
 ...</b>
 </code></pre>
 
-We probably want to further filter the output, but based on what pattern? In this case, those lines that match not only `unit: AT`, but also the term `dinucleotide`. Rather than attempt to produce a single complicated pattern that does this job in a single `grep`, we can add another `grep` call into the pipeline.
+We probably want to further filter the output, but based on what pattern? In this case, those lines that match not only `unit:AT`, but also the term `dinucleotide`. Rather than attempt to produce a single complicated pattern that does this job in a single `grep`, we can add another `grep` call into the pipeline.
 
 <pre id=part1-09-grep-grep
      class="language-txt 
@@ -274,7 +274,7 @@ We probably want to further filter the output, but based on what pattern? In thi
             linkable-line-numbers">
 <code>
 [oneils@mbp ~/apcb/intro/fasta_stats]$ <b>./fasta_stats.py pz_cDNAs.fasta | \</b>
-> <b>grep 'unit: AT' | \</b>
+> <b>grep 'unit:AT' | \</b>
 > <b>grep 'dinucleotide' | \</b>
 > <b>less -S</b>
 </code></pre>
@@ -286,12 +286,12 @@ This command results in the output we want:
             line-numbers 
             linkable-line-numbers">
 <code>
-<b>PZ7180000031598 0.21    81      AATAT   5       unit: AT        6       dinucleotide
-PZ23512_A       0.281   153     TTAAA   3       unit: AT        6       dinucleotide
-PZ851952        0.399   338     TATAT   12      unit: AT        24      dinucleotide
-PZ17053_A       0.21    119     ATTAA   6       unit: AT        4       dinucleotide
-PZ463243        0.227   97      TTGTA   3       unit: AT        4       dinucleotide
-PZ22254_A       0.132   68      ATTAA   5       unit: AT        4       dinucleotide
+<b>PZ7180000031598 0.21    81      AATAT   5       unit:AT 6       dinucleotide
+PZ23512_A       0.281   153     TTAAA   3       unit:AT 6       dinucleotide
+PZ851952        0.399   338     TATAT   12      unit:AT 24      dinucleotide
+PZ17053_A       0.21    119     ATTAA   6       unit:AT 4       dinucleotide
+PZ463243        0.227   97      TTGTA   3       unit:AT 4       dinucleotide
+PZ22254_A       0.132   68      ATTAA   5       unit:AT 4       dinucleotide
 ...</b>
 </code></pre>
 

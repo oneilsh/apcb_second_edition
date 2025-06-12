@@ -100,4 +100,4 @@ for id in seqs_dict:
     print(f"{maxmer[0]}\t{maxmer[1]}", end="\t")
     
     longest_rep_list = longest_perfect_repeat(seq)
-    print(f"unit: {longest_rep_list[2]}\t{longest_rep_list[0]}\t{types[len(longest_rep_list[2])]}")
+    print(f"unit:{longest_rep_list[2]}\t{longest_rep_list[0]}\t{types[len(longest_rep_list[2])]}")
