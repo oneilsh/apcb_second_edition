@@ -12,8 +12,8 @@ Although there are many tools to view and edit text files, one of the most effic
             linkable-line-numbers">
 <code>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures Templates  Videos</span>
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">Public</span>   todo_list.txt
+<span style="color: blue">apcb    Documents  Music        Pictures  Templates  Videos</span>
+<span style="color: blue">Desktop Downloads</span>  p450s.fasta  <span style="color: blue">Public</span>    todo_list.txt
 </code></pre>
 
 The invocation of `less` on the file [`p450s.fasta`](data/p450s.fasta) opens an "interactive window" within the terminal window, wherein we can scroll up and down (and left and right) in the file with the arrow keys. (As usual, the mouse is not very useful on the command line.) We can also search for a pattern by typing `/` and then typing the pattern before pressing Enter.
@@ -40,12 +40,12 @@ The `mkdir` command creates a new directory (unless a file or directory of the s
             linkable-line-numbers">
 <code>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures Templates  Videos</span>
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">Public</span>   todo_list.txt
+<span style="color: blue">apcb     Documents  Music        Pictures  Templates       Videos</span>
+<span style="color: blue">Desktop  Downloads</span>  p450s.fasta  <span style="color: blue">Public</span>    todo_list.txt
 [oneils@mbp ~]$ <b>mkdir projects</b>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures  Public</span>    todo_list.txt
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">projects  Templates Videos</span>
+<span style="color: blue">apcb     Documents  Music        Pictures  Public</span>     todo_list.txt
+<span style="color: blue">Desktop  Downloads</span>  p450s.fasta  <span style="color: blue">projects  Templates  Videos</span>
 </code></pre>
 
 ### Move or Rename a File or Directory {-}
@@ -63,8 +63,8 @@ In this example, we'll rename `p450s.fasta` to `p450s.fa`, move it into the `pro
 [oneils@mbp ~]$ <b>mv p450s.fa projects</b>
 [oneils@mbp ~]$ <b>mv projects projects_dir</b>
 [oneils@mbp ~]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music    projects_dir Templates     Videos</span>
-<span style="color: blue">Desktop Downloads Pictures Public</span>       todo_list.txt
+<span style="color: blue">apcb     Documents  Music     projects_dir  Templates      Videos</span>
+<span style="color: blue">Desktop  Downloads  Pictures  Public</span>        todo_list.txt
 </code></pre>
 
 Because `mv` serves a dual role, the semantics are important to remember:
@@ -114,7 +114,7 @@ It is possible to simultaneously copy and move (and remove, etc.) many files by 
 
 ### Remove (Delete) a File or Directory {-}
 
-Files may be deleted with the `rm` command, as in `rm <target_file>`. If you wish to remove an entire directory and everything inside, you need to specify the `-r` flag for recursive, as in `rm -r <target_dir>`. Depending on the configuration of your system, you may be asked "are you sure?" for each file, to which you can reply with a y. To avoid this checking, you can also specify the `-f` (force) flag, as in `rm -r -f <target_dir>` or `rm -rf <target_dir>`. Let's create a temporary directory alongside the file copies from above, inside the `projects` folder, and then remove the `p450s.fasta` file and the `todo_list.txt` file as well as the temporary folder.
+Files may be deleted with the `rm` command, as in `rm <target_file>`. If you wish to remove an entire directory and everything inside, you need to specify the `-r` flag for recursive, as in `rm -r <target_dir>`. Depending on the configuration of your system, you **may** be asked "are you sure?" for each file, to which you can reply with a `y` (or `n`, if you prefer to *not* delete). To avoid this checking, you can also specify the `-f` (force) flag, as in `rm -r -f <target_dir>` or `rm -rf <target_dir>`. Let's create a temporary directory alongside the file copies from above, inside the `projects` folder, and then remove the `p450s.fasta` file and the `todo_list.txt` file as well as the temporary folder.
 
 <pre id=part1-04-rm
      class="language-txt 
@@ -130,7 +130,7 @@ p450s.fasta   <span style="color: blue">tempdir</span>   todo_list.txt
 p450s.fasta
 </code></pre>
 
-Beware! *Deleted files are gone forever*. There is no undo, and there is no recycle bin. Whenever you use the `rm` command, double-check your syntax. There's a world of difference between `rm -rf project_copy` (which deletes the folder project_copy) and `rm -rf project _copy` (which removes the folders `project` and `_copy`, if they exist). If you're nervous about using `rm`, consider utilizing the `-i` option, which will ask for confirmation before removing each file.
+Beware! *Deleted files are gone forever*. There is no undo, and there is no recycle bin. Whenever you use the `rm` command, double-check your syntax. There's a world of difference between `rm -rf project_copy` (which deletes the folder project_copy) and `rm -rf project _copy` (which removes the folders `project` and `_copy`, if they exist). If you're nervous about using `rm`, consider utilizing the `-i` option, which will ask for confirmation before removing each file, or testing your command by using `ls` in place of `rm` first.
 
 ### Checking the Size of a File or Directory {-}
 
@@ -143,8 +143,8 @@ Although `ls -lh` can show the sizes of files, this command will not summarize h
 <code>
 [oneils@mbp ~/projects]$ <b>cd $HOME</b>
 [oneils@mbp ~/]$ <b>ls</b>
-<span style="color: blue">apcb    Documents Music       Pictures  Public</span>    todo_list.txt
-<span style="color: blue">Desktop Downloads</span> p450s.fasta <span style="color: blue">projects  Templates Videos</span>
+<span style="color: blue">apcb     Documents  Music        Pictures  Public</span>     todo_list.txt
+<span style="color: blue">Desktop  Downloads</span>  p450s.fasta  <span style="color: blue">projects  Templates  Videos</span>
 [oneils@mbp ~/]$ <b>du -sh p450s.fastq</b>
 16K  p450s.fasta
 [oneils@mbp ~/]$ <b>du -sh projects</b>
@@ -157,7 +157,7 @@ As always, `.` is a handy target, here helping to determine the file space used 
 
 ### Editing a (Text) File {-}
 
-There is no shortage of command-line text editors, and while some of them—like `vi` and `emacs`—are powerful and can enhance productivity in the long run, they also take a reasonable amount of time to become familiar with. (Entire books have been written about each of these editors.)
+There is no shortage of command-line text editors, and while some of them — like `vi` and `emacs` — are powerful and can enhance productivity in the long run, they also take a reasonable amount of time to become familiar with. (Entire books have been written about each of these editors.)
 
 In the meantime, a simple text editor available on most systems is `nano`; to run it, we simply specify a file name to edit:
 
@@ -178,6 +178,8 @@ If the file doesn't exist already, it will be created when it is first saved, or
 Although `nano` is not as sophisticated as `vi` or `emacs`, it does support a number of features, including editing multiple files, cut/copy/paste, find and replace by pattern, and syntax highlighting of code files.
 
 Code files are the types of files that we will usually want to edit with `nano`, rather than essays or short stories. By default, on most systems, `nano` automatically "wraps" long lines (i.e., automatically presses Enter) if they would be longer than the screen width. Unfortunately, this feature would cause an error for most lines of code! To disable it, `nano` can be started with the `-w` flag, as in `nano -w todo_list.txt`.
+
+If you're going to be doing serious file editing, you'll eventually want a more fully-featured text editor or integrated development environment (IDE). Our current favorite is VS Code, but there are many options.
 
 ### Command-Line Efficiency {-}
 
@@ -209,13 +211,17 @@ fileAA.temp fileA.temp  fileB.temp  <span style="color: blue">temp</span>
 
 Similarly, we could move only `fileA.temp` and `fileB.temp` (but not `fileAA.temp`) using `mv file?.tmp temp`, because the `?` wildcard will only match one of any character. These wildcards may be used anywhere in an absolute or relative path, and more than one may be used in a single path. For example, `ls /home/*/*.txt` will inspect all files ending in `.txt` in all users' home directories (if they are accessible for reading).
 
-Second, if you want to rerun a command, or run a command similar to a previously run command, you can access the command history by pressing the up arrow. Once you've identified which command you want to run or modify, you can modify it using the left and right arrows, backspace or delete, and then typing and pressing Enter again when you are ready to execute the modified command. (You don't even need to have the cursor at the end of the line to press Enter and execute the command.) For a given login session, you can see part of your command history by running the `history` command.
+###### {- #bash_history}
+
+Second, if you want to rerun a command, or run a command similar to a previously run command, you can access the *command history* by pressing the up arrow. Once you've identified which command you want to run or modify, you can modify it using the left and right arrows, backspace or delete, and then typing and pressing Enter again when you are ready to execute the modified command. (You don't even need to have the cursor at the end of the line to press Enter and execute the command.) For a given login session, you can see part of your command history by running the `history` command.
+
+###### {- #tab_completion}
 
 Finally, one of the best ways to navigate the shell and the filesystem is by using *tab completion*. When typing a path (either absolute or relative), file or directory name, or even a program name, you can press Tab, and the shell will autocomplete the portion of the path or command, up until the autocompletion becomes ambiguous. When the options are ambiguous, the shell will present you with the various matching options so that you can inspect them and keep typing. (If you want to see all options even if you haven't started typing the next part of a path, you can quickly hit Tab twice.) You can hit Tab as many times as you like while entering a command. Expert command-line users use the Tab key many times a minute!
 
 ### Getting Help on a Command or Program {-}
 
-Although we've discussed a few of the options(also known as arguments, or flags) for programs like `ls`, `cp`, `nano`, and others, there are many more you might wish to learn about. Most of these basic commands come with "man pages," short for "manual pages," that can be accessed with the `man` command.
+Although we've discussed a few of the options (also known as arguments, or flags) for programs like `ls`, `cp`, `nano`, and others, there are many more you might wish to learn about. Most of these basic commands come with "man pages," short for "manual pages," that can be accessed with the `man` command.
 
 <pre id=part1-04-man-ls
      class="language-txt 
@@ -237,7 +243,7 @@ The `top` utility is invaluable for checking what programs are consuming resourc
 
 From a users' perspective, the list of processes below the dark line is most useful. In this example, no processes are currently using a significant amount of CPU or memory (and those processes that are running are owned by the administrator `root`). But if any user were running processes that required more than a tiny bit of CPU, they would likely be shown. To instead sort by RAM usage, use the key sequence `Control-M`. When finished, `q` will quit `top` and return you to the command prompt.
 
-Of particular importance are the `%CPU` and `%MEM` columns. The first may vary from 0 up to 100 (percent) *times the number* of CPU cores on the system; thus a value of 3200 would indicate a program using 100% of 32 CPU cores (or perhaps 50% of 64 cores). The `%MEM` column ranges from 0 to 100 (percent). It is generally a bad thing for the system when the total memory used by all process is near or over 100%—this indicates that the system doesn't have enough "working memory" and it may be attempting to use the much slower hard drive as working memory. This situation is known as [swapping](#swapping), and the computer may run so slowly as to have effectively crashed.
+Of particular importance are the `%CPU` and `%MEM` columns. The first may vary from 0 up to 100 (percent) *times the number* of CPU cores on the system; thus a value of 3200 would indicate a program using 100% of 32 CPU cores (or perhaps 50% of 64 cores). The `%MEM` column ranges from 0 to 100 (percent). It is generally a bad thing for the system when the total memory used by all process is near or over 100% — this indicates that the system doesn't have enough "working memory" and it may be attempting to use the much slower hard drive as working memory. This situation is known as [swapping](#swapping), and the computer may run so slowly as to have effectively crashed.
 
 ### Killing Rogue Programs {-}
 
@@ -251,10 +257,11 @@ But if the rogue program is in a particularly bad error state, it won't stop eve
 
 #### Exercises {-}
 
-1. Create the following directories inside your home directory, if you don't already have them: `downloads`, `local`, and `projects`. Inside of `local`, create a directory called `bin`. These folders are a common and useful set to have in your home directory—we'll be using them in future chapters to work in, download files to, and install software to.
+1. Create the following directories inside your home directory, if you don't already have them: `downloads`, `local`, and `projects`. Inside of `local`, create a directory called `bin`. These folders are a common and useful set to have in your home directory — we'll be using them in future chapters to work in, download files to, and install software to.
 
-2. Open not one but *two* login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of `top`.</br></br>
-Create a hidden directory inside of your home directory called `.hidden`. Inside of this directory, create a file called `notes`. Edit the file to contain tricks and information you fear you might forget.^[You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like `nano`, TextEdit on OS X, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters with serif quotes, which don't work on the command line, leading to headaches.]
+2. Open not one but *two* login windows, and log in to a remote machine in each. This gives you two present working directories, one in each window. You can use one to work, and another to make notes, edit files, or watch the output of `top`.
+
+     Create a hidden directory inside of your home directory called `.hidden`. Inside of this directory, create a file called `notes`. Edit the file to contain tricks and information you fear you might forget.^[You might also consider keeping a paper notebook, or something in a Wiki or other text document. If you prefer to keep digital notes, try to use a simple text editor like `nano`, VS Code, TextEdit on MacOS, or Notepad on Windows. Rich-text editors like Microsoft Word will often automatically replace things like simple quote characters (`"`) with serif quotes (`“` or `”`), which don't work on the command line, leading to headaches.]
 
 3. Spend a few minutes just practicing tab completion while moving around the filesystem using absolute and relative paths. Getting around efficiently via tab-completion is a surprisingly necessary skill.
 

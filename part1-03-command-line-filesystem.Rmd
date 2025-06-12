@@ -1,12 +1,14 @@
 # The Command Line and Filesystem
 
+###### {- #program}
+
 Computer users are used to interacting with a "user interface." On many computers, this interface displays the desktop or task bar, icons, file previews, and so on. It takes input from the user in the form of keystrokes, mouse movements, and in some cases voice commands, and presents the results of the user's actions. Perhaps most importantly, the user interface is itself a *program* (it is software running on a computer, after all) we interact with to *execute other programs*.
 
 ###### {- #shell} 
 ###### {- #command_prompt} 
 The same thing happens when we use SSH to log in to a remote machine, or open up the Terminal application on a Linux or MacOS desktop. In this case, however, instead of interacting with a GUI (Graphical User Interface), we interact with a CLI (Command-Line Interface), or *shell*, which does the job of displaying the command prompt. The shell is the software we interact with on the command line. In some sense it is the command line, as it displays the command prompt, accepts input via typed text, runs other programs on our behalf, and displays the results textually. A *command prompt* is a line of status information provided in a text-based interface, indicating that commands are to be entered and run by pressing Enter. Command prompts often include information about what computer or network one is logged in to, the username one is logged in with, and an indication of the "present working directory" (discussed below).
 
-The first command that we'll learn for the Linux command line is `echo`, which prints the parameters we give it.
+The first command that we'll learn for the Unix command line is `echo`, which prints the parameters we give it.
 
 <pre id=part1-03-echo-example
      class="language-txt 
@@ -122,7 +124,21 @@ There is a special environment variable, `$0`, that generally holds the name of 
 
 The above command illustrates that we are running `bash`.^[Because `$0` holds the name of the currently running program, one might expect `echo $0` to result in `echo` being reported, but this isn't the case. As mentioned previously, the shell replaces the environment variables with their contents *before* the command is executed.]
 
-Depending on the system you are logged in to, running `echo $0` may not report `bash`. The reason is (although it may seem odd) that there are a variety of shells available, owing to the long history of Unix and Linux. In the beginning, the interfaces were quite simple, but over time better interfaces/shells were developed that included new features (consider how the "Start" menu has changed over the years on Microsoft Windows versions). We can run a different shell, if it is installed, by simply running it like any other program. The `tcsh` shell, itself an outgrowth of the `csh` shell, is sometimes the default instead of `bash`. (Both `csh` and `tcsh` are older than `bash`.)
+###### {- #change_default_shell}
+
+Depending on the system you are logged in to, running `echo $0` may not report `bash`. In fact, if you're using a Mac, you'll most likely see `zsh` as the default shell was changed from `bash` to `zsh` in 2019. Luckily, it's not hard to [change the default shell](https://support.apple.com/guide/terminal/change-the-default-shell-trml113/mac). We recommend Mac users set `bash` as the default shell like so:
+
+<pre id=part1-03-bash
+     class="language-txt 
+            line-numbers 
+            linkable-line-numbers">
+<code>
+[oneils@mbp ~]$ <b>chsh -s /bin/bash</b>
+</code></pre>
+
+After running this command, you will probably be asked to enter your password. Then, when you open a fresh terminal window, running `echo $0` should show you are indeed running `bash`.
+
+There are a variety of shells available, owing to the long history of Unix and Linux. In the beginning, the interfaces were quite simple, but over time better interfaces/shells were developed that included new features (consider how the "Start" menu has changed over the years on Microsoft Windows versions). We can run a different shell, if it is installed, by simply running it like any other program. The `tcsh` shell, itself an outgrowth of the `csh` shell, is sometimes the default instead of `bash`. (Both `csh` and `tcsh` are older than `bash`.)
 
 <pre id=part1-03-tcsh
      class="language-txt 
@@ -169,7 +185,7 @@ With some of the more difficult concepts of the shell out of the way, let's turn
 
 ###### {- #root}
 
-Most filesystems are hierarchical, with files and directories stored inside other directories. In Unix-like operating systems, the "top level" directory in which everything can be found is known as `/` (a forward slash). This top-level directory is sometimes called the *root* of the filesystem, as in the root of the filesystem tree. Within the root directory, there are commonly directories with names like `bin`, `etc`, `media`, and `home`; the last of these is often where users will store their own individual data.^[Computer scientists and mathematicians usually draw trees upside down. One theory is that trees are easier to draw upside down when working on a blackboard, the traditional (and still considered by many the best) medium of exposition for those fields. Our language reflects this thinking: when we move a file, we move it "down" into a subdirectory, or "up" into a directory "above" the current one.]
+Most file systems are hierarchical, with files and directories stored inside other directories. In Unix-like operating systems, the "top level" directory in which everything can be found is known as `/` (a forward slash). This top-level directory is sometimes called the *root* of the file system, as in the root of the file system tree. Within the root directory, there are commonly directories with names like `bin`, `etc`, `media`, and `home`; the last of these is often where users will store their own individual data.^[Computer scientists and mathematicians usually draw trees upside down. One theory is that trees are easier to draw upside down when working on a blackboard, the traditional (and still considered by many the best) medium of exposition for those fields. Our language reflects this thinking: when we move a file, we move it "down" into a subdirectory, or "up" into a directory "above" the current one.]
 
 <div class="fig center" style="width: 80%">
   <img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_12_filesystem_ex.png" />
@@ -177,7 +193,7 @@ Most filesystems are hierarchical, with files and directories stored inside othe
 
 ###### {- #absolute_path}
 
-Each file and directory in the filesystem can be uniquely identified by its *absolute path*, a unique locator for a file or directory in the filesystem, starting with the root folder `/` and listing each directory on the way to the file. In the figure above, the absolute path to the `todo_list.txt` file is `/home/oneils/documents/todo_list.txt`.
+Each file and directory in the file system can be uniquely identified by its *absolute path*, a unique locator for a file or directory in the file system, starting with the root folder `/` and listing each directory on the way to the file. In the figure above, the absolute path to the `todo_list.txt` file is `/home/oneils/documents/todo_list.txt`.
 
 Note that an absolute path must start with the leading forward slash, indicating that the path starts at the root folder `/`, and contain a valid path of folder names from there. (If you prefer to consider `/` as a folder name itself, an absolute path can also be specified like `//home/oneils/documents/todo_list.txt`, though using two forward slashes is considered redundant.)
 
@@ -185,11 +201,11 @@ Note that an absolute path must start with the leading forward slash, indicating
 
 Every user normally has a *home directory*, serving as a personal storage locker for files and directories. (Often the amount of space available this location is not as much as users would like.) The shell and other programs can find out the absolute path to your home directory via the environment variable `$HOME`; try running `echo $HOME` to see the absolute path to your own home directory.
 
-What about special devices like CD-ROM drives^[Wow - the authors are really showing our age here!] and network drives? On a Windows operating system, these would get their own "root" directory with names like `D:` and `E:` (with the main hard drive usually having the name `C:`). On Unix-based operating systems, there is only ever one filesystem hierarchy, and the top level is always `/`. Special devices like CD-ROM drives and network drives are mounted somewhere in the filesystem. It may be that the directory `/media` remains empty, for example, but when a CD-ROM is inserted, a new directory may appear inside that directory, perhaps with the absolute path `/media/cdrom0`, and the files on the CD-ROM will appear in that location.
+What about special devices like CD-ROM drives^[Wow - the authors are really showing our age here!] and network drives? On a Windows operating system, these would get their own "root" directory with names like `D:` and `E:` (with the main hard drive usually having the name `C:`). On Unix-based operating systems, there is only ever one file system hierarchy, and the top level is always `/`. Special devices like CD-ROM drives and network drives are mounted somewhere in the file system. It may be that the directory `/media` remains empty, for example, but when a CD-ROM is inserted, a new directory may appear inside that directory, perhaps with the absolute path `/media/cdrom0`, and the files on the CD-ROM will appear in that location.
 
-Determining how and where such devices are mounted is the job of the system administrator. On MacOS machines, inserted devices appear in `/Volumes`. If you are logged in to a large computational infrastructure, your home directory likely isn't located on the internal hard drive of the remote computer, but rather mounted from a network drive present on yet another remote computer. This configuration allows users to "see" the same filesystem hierarchy and files no matter which remote computer they happen to log in to, if more than one is available. (For example, even `/home` might be a network mount, and so all users' home directories might be available on a number of machines.)
+Determining how and where such devices are mounted is the job of the system administrator. On MacOS machines, inserted devices appear in `/Volumes`. If you are logged in to a large computational infrastructure, your home directory likely isn't located on the internal hard drive of the remote computer, but rather mounted from a network drive present on yet another remote computer. This configuration allows users to "see" the same file system hierarchy and files no matter which remote computer they happen to log in to, if more than one is available. (For example, even `/home` might be a network mount, and so all users' home directories might be available on a number of machines.)
 
-### Getting around the Filesystem {-}
+### Getting Around the File System {-}
 
 ###### {- #present_working_directory}
 
@@ -240,7 +256,7 @@ We can change the present working directory — that is, move to another directo
 
 ###### {- #tilda}
 
-Notice that the command prompt has changed to illustrate the present working directory: now it shows `oneils@mpb /home$`, indicating that I am in `/home`. This is a helpful reminder of where I am in the filesystem as I work. Previously, it showed only `~`, which is actually a shortcut for `$HOME`, itself a shortcut for the absolute path to my home directory. Consequently, there are a number of ways to go back to my home directory: `cd /home/oneils`, or `cd $HOME`, or `cd ~`, or even just `cd` with no arguments, which defaults to moving to `$HOME`.
+Notice that the command prompt has changed to illustrate the present working directory: now it shows `oneils@mpb /home$`, indicating that I am in `/home`. This is a helpful reminder of where I am in the file system as I work. Previously, it showed only `~`, which is actually a shortcut for `$HOME`, itself a shortcut for the absolute path to my home directory. Consequently, there are a number of ways to go back to my home directory: `cd /home/oneils`, or `cd $HOME`, or `cd ~`, or even just `cd` with no arguments, which defaults to moving to `$HOME`.
 
 <pre id=part1-03-home
      class="language-txt 
@@ -279,7 +295,7 @@ A few notes about moving around directories:
 
 1. Unix-like operating systems are nearly always case sensitive, for commands, parameters, and file and directory names. 
 2. Because of the way spaces are treated on the command line, it is uncommon to see spaces in file or directory names. The command `cd mydocuments` is much easier to type than `cd my\ documents` or `cd 'my documents'`. 
-3. If you forget to specify `cd` before specifying a path, a cryptic `permission denied` error will occur, rather than an error specific to the lack of `cd` command.
+3. If you forget to specify `cd` before specifying a path, a cryptic `permission denied` or `command not found` error will occur, rather than an error specific to the lack of `cd` command.
 
 ###### {- #hidden}
 
@@ -328,7 +344,7 @@ Some of these columns of information are describing the permissions associated w
 ###### {- #dot}
 ###### {- #dot_dot}
 
-When using `ls -a`, we see two "special" directories: `.` and `..` are their names. These directories don't really exist per se but are instead shortcuts that refer to special locations relative to the directory they are contained in. The `.` directory is a shortcut for the same directory it is contained in. Colloquially, it means "here." The `..` directory is a shortcut for the directory *above* the directory containing it. Colloquially, it means "up."
+When using `ls -a`, we see two "special" directories: `.` and `..` are their names (typically pronounced "dot" and "dot dot"). These directories don't really exist per se but are instead shortcuts that refer to special locations relative to the directory they are contained in. The `.` directory is a shortcut for the same directory it is contained in. Colloquially, it means "here." The `..` directory is a shortcut for the directory *above* the directory containing it. Colloquially, it means "up."
 
 <div class="fig center" style="width: 30%">
   <img src="images/part1-03-command-line-filesystem.Rmd.images/I.3_20_dot_dotdot.png" />
@@ -375,7 +391,7 @@ We can even use `.` and `..` in longer relative or absolute paths (number 2 in t
 <div class="exercises">
 #### Exercises {-}
 
-1. Practice moving about the filesystem with `cd` and listing directory contents with `ls`, including navigating by relative path, absolute path, `.`, and `..`. Use `echo $PWD` and `pwd` frequently to list your present working directory. Practice navigating home with `cd ~`, `cd $HOME`, and just `cd` with no arguments. You might find it useful to draw a "map" of the filesystem, or at least the portions relevant to you, on a piece of paper.
+1. Practice moving about the file system with `cd` and listing directory contents with `ls`, including navigating by relative path, absolute path, `.`, and `..`. Use `echo $PWD` and `pwd` frequently to list your present working directory. Practice navigating home with `cd ~`, `cd $HOME`, and just `cd` with no arguments. You might find it useful to draw a "map" of the filesystem, or at least the portions relevant to you, on a piece of paper.
 
 2. Without explicitly typing your username, create another environment variable called `$CHECKCASH`, such that when `echo $CHECKCASH` is run, a string like `oneils has $20` is printed (except that `oneils` would be your username and should be set by reading from `$USER`).
 
