@@ -8,7 +8,7 @@ fi
 
 export file=$1
 
-fasta_stats $file | \
-    grep 'unit:AT' | \
+fasta_stats.py $file | \
+    grep 'unit: AT' | \
     grep 'dinucleotide' | \
     wc
