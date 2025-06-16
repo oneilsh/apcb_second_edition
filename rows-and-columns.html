@@ -482,22 +482,23 @@
             line-numbers 
             linkable-line-numbers">
 <code>
-<b># BLASTP 2.2.30+
-# Query: YAL003W EFB1 SGDID:S000000003, Chr I from 142174-142253,142620-143160, 
+<b># BLASTP 2.14.0+
+# Query: YAL068C PAU8 SGDID:S000002142, Chr I from 2169-1807, Genome Release 64-5-1,
 # Database: orf_trans
-# Fields: query id, subject id, alignment length, query length, subject length, 
-# 1 hits found
-YAL003W YAL003W 207     207     207     1       207     1       207     2e-148
-# BLASTP 2.2.30+
-# Query: YAL005C SSA1 SGDID:S000000004, Chr I from 141431-139503, Genome Release
-# Database: orf_trans
-# Fields: query id, subject id, alignment length, query length, subject length, 
+# Fields: query id, subject id, alignment length, query length, subject length, q. 
 # 2 hits found
-YAL005C YAL005C 643     643     643     1       643     1       643     0.0
-YAL005C YLL024C 643     643     640     1       643     1       640     0.0
+YAL068C       YGL261C       121   121    121     1      121   1      121    3.27e-86
+YAL068C       YAL068C       121   121    121     1      121   1      121    3.27e-86
+# BLASTP 2.14.0+
+# Query: YAL067W-A YAL067W-A SGDID:S000028593, Chr I from 2480-2707, Genome Release 
+# Database: orf_trans
+# Fields: query id, subject id, alignment length, query length, subject length, q. s
+# 2 hits found
+YAL067W-A     YAL067W-A     76    76      76     1      76    1      76     1.48e-50
+YAL067W-A     YIL174W       76    76      76     1      76    1      76     3.49e-43
 ...</b>
 </code></pre>
-<p>Let’s ask the following: how many sequences in this data set had a match to some other sequence? To start with, we would probably use a <code>grep -v '#'</code> to remove all of the comment lines, but then what? We could try using <code>wc</code> to count the lines, but only after also removing the self-hits, where the ID in the first column is equal to the ID in the second column. None of the utilities we’ve seen so far—<code>grep</code>, <code>sort</code>, <code>head</code>, or <code>tail</code>—can perform this task. We need a new tool, <code>awk</code>, which is a line-by-line and column-by-column processing tool for text files: <code>awk '&lt;program&gt;' &lt;file&gt;</code> or <code>... | awk '&lt;program&gt;'</code>.</p>
+<p>Let’s ask the following: how many sequences in this data set had a match to some other sequence? To start with, we would probably use a <code>grep -v '#'</code> to remove all of the comment lines, but then what? We could try using <code>wc</code> to count the lines, but only after also removing the self-hits, where the ID in the first column is equal to the ID in the second column. None of the utilities we’ve seen so far — <code>grep</code>, <code>sort</code>, <code>head</code>, or <code>tail</code> — can perform this task. We need a new tool, <code>awk</code>, which is a line-by-line and column-by-column processing tool for text files: <code>awk '&lt;program&gt;' &lt;file&gt;</code> or <code>... | awk '&lt;program&gt;'</code>.</p>
 <p>Written in the late 1970s and named after its authors (Alfred Aho, Peter Weinberger, and Brian Kernigan), <code>awk</code> provides a sophisticated programming language that makes it easy to parse tabular data like the BLAST results above. The syntax for <code>awk</code> can be fairly complex, but much of the complexity can be ignored in regular use.</p>
 <p>First, let’s answer our specific question, of how many sequences had matches to other sequences, and then we’ll look at some <code>awk</code> syntax more generally. The <code>awk</code> command that we want, printing only those lines where the first two columns are not equal, is <code>awk '{if($1 != $2) {print $0}}'</code>.</p>
 <pre id=part1-11-awk
@@ -510,19 +511,21 @@ YAL005C YLL024C 643     643     640     1       643     1       64
 > awk '{if($1 != $2) {print $0}}' | \
 > less -S
 </b></code></pre>
-<p>Breaking down the <code>awk</code> command, the “program” that is executed is delimited by the single quotes (which collate their contents into a single command line parameter that is sent to the <code>awk</code> program). The code inside the outer pair of curly brackets is executed for each line. For each line, if the contents of the first column (represented by <code>$1</code>) are not equal to (<code>!=)</code> the second column (<code>$2</code>), then the code in the following pair of curly brackets is executed, and the line (<code>$0</code>) is printed (to <a href="using-bioinformatics-software.html#standard_output">standard output</a>).</p>
+<p>Breaking down the <code>awk</code> command, the “program” that is executed is delimited by the single quotes (which collate their contents into a single command line parameter that is sent to the <code>awk</code> program). The code inside the outer pair of curly brackets is executed for each line. For each line, if the contents of the first column (represented by <code>$1</code>) are not equal to (<code>!=</code>) the second column (<code>$2</code>), then the code in the following pair of curly brackets is executed, and the line (<code>$0</code>) is printed (to <a href="using-bioinformatics-software.html#standard_output">standard output</a>).</p>
 <pre id=part1-11-awk-output
      class="language-txt 
             line-numbers 
             linkable-line-numbers">
 <code><b>
-YDR534C YOR383C 134     529     205     1       129     1       134     7e-33
-YDR536W YEL069C 525     570     565     21      532     50      553     6e-59
-YDR541C YOL151W 342     345     343     4       345     2       343     6e-150
-YDR542W YGL261C 121     121     121     1       121     1       121     3e-83
-YDR545W YOR396W 1797    1797    1797    1       1797    1       1797    0.0
-YDR545W YLR467W 1797    1797    1797    1       1797    1       1797    0.0
-YEL006W YIL006W 330     336     374     15      330     41      365     4e-130
+...
+YDR541C   YOL151W  342     345     343     4       345     2       343     1.02e-151
+YDR542W   YGL261C  121     121     121     1       121     1       121     7.47e-85
+YDR545W   YOR396W  1797    1797    1797    1       1797    1       1797    0.0
+YDR545W   YLR467W  1797    1797    1797    1       1797    1       1797    0.0
+YEL077C   YLR466W  1276    1278    1383    3       1278    164     1383    0.0
+YEL076C-A YLR464W  217     217     217     1       217     1       217     3.09e-163
+YEL076C   YLR464W  171     217     217     1       171     1       171     1.60e-127
+YEL075C   YER189W  123     123     123     1       123     1       123     3.47e-87
 ...
 </b></code></pre>
 <p>In theory, at this point we should be able to replace the <code>less -S</code> with a <code>wc</code> to count the lines, and thus counting the number of sequences that had matches to other sequences. Unfortunately, in this case, theory doesn’t align with reality: inspecting the output above reveals that ID <code>YDR545W</code> is still represented by two lines, so this sequence would be counted twice.</p>
@@ -538,7 +541,7 @@ YEL006W YIL006W 330     336     374     15      330     41      36
 > awk '{if($1 != $2) {print $0}}' | \
 > sort -k1,1d -u | \
 > wc</b>
-   2884   28840  138048
+   2989   29890  149721
 </code></pre>
 <p>For any sufficiently complex data set, it is a good idea to check as many assumptions about it as possible when performing an analysis. In the above, using <code>wc</code> on the lines to count the number of sequences that had hits to others implied that in the first column no ID was listed twice. In this case, comparing the counts with and without the <code>sort -k1,1d -u</code> would serve to verify or reject this assumption. In later chapters, we’ll learn more techniques for this kind of “sanity checking.”</p>
 <div id="basic-syntax-for-awk" class="section level3 unnumbered hasAnchor">
@@ -594,9 +597,9 @@ The special variable <code>NF</code> holds the number of columns (also known as 
 [oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{print $1,$2}'</b>
-YAL001C YAL001C
-YAL002W YAL002W
-YAL003W YAL003W
+YAL068C YGL261C
+YAL068C YAL068C
+YAL067W-A YAL067W-A
 ...
 </code></pre>
 <p>Instead of separating the two output columns by a space, we can instead separate them by a string like <code>:::</code>, producing only a single conglomerated column of output.</p>
@@ -608,9 +611,9 @@ YAL003W YAL003W
 [oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{print $1":::"$2}'</b>
-YAL001C:::YAL001C
-YAL002W:::YAL002W
-YAL003W:::YAL003W
+YAL068C:::YGL261C
+YAL068C:::YAL068C
+YAL067W-A:::YAL067W-A
 ...
 </code></pre>
 <p>If we’d like to add a new first column that simply contains the line number, we can use the <code>NR</code> variable in conjunction with the <code>$0</code> variable:</p>
@@ -622,12 +625,12 @@ YAL003W:::YAL003W
 [oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk '{print NR,$0}'</b>
-1 YAL001C       YAL001C 1161    1161    1161    1       1161    1       1161    
-2 YAL002W       YAL002W 1275    1275    1275    1       1275    1       1275    
-3 YAL003W       YAL003W 207     207     207     1       207     1       207     
+1 YAL068C   YGL261C 121 121 121 1   121 1   121 3.27e-86
+2 YAL068C   YAL068C 121 121 121 1   121 1   121 3.27e-86
+3 YAL067W-A YAL067W-A   76  76  76  1   76  1   76  1.48e-50
 ...
 </code></pre>
-<p>If-statements allow <code>awk</code> to execute other statements conditionally; the syntax is <code>if( &lt;logical expression&gt; ) { &lt;statements to execute&gt; }</code>. Additionally, if a column contains numeric values, <code>awk</code> can work with them as such, and <code>awk</code> even understands scientific notation. Here’s an example where only lines with HSP E values (the tenth column in our example) of less than <code>1e-10</code> are printed.</p>
+<p><code>awk</code> can also execute statements conditionally; the syntax is <code>&lt;logical expression&gt; {&lt;statements to execute&gt;}</code>. Additionally, if a column contains numeric values, <code>awk</code> can work with them as such, and <code>awk</code> even understands scientific notation. Here’s an example where only lines with HSP <em>E</em> values (the tenth column in our example) of less than <code>1e-10</code> are printed.</p>
 <pre id=part1-11-awk-if
      class="language-txt 
             line-numbers 
@@ -635,14 +638,14 @@ YAL003W:::YAL003W
 <code>
 [oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
-> awk '{if($10 < 1e-10) {print $0}}'</b>
-YAL001C YAL001C 1161    1161    1161    1    1161    1     1161    0.0
-YAL002W YAL002W 1275    1275    1275    1    1275    1     1275    0.0
-YAL003W YAL003W 207     207     207     1    207     1     207     2e-148
+> awk '$10 < 1e-10 {print $0}'</b>
+YAL068C YGL261C 121 121 121 1   121 1   121 3.27e-86
+YAL068C YAL068C 121 121 121 1   121 1   121 3.27e-86
+YAL067W-A   YAL067W-A   76  76  76  1   76  1   76  1.48e-50
 ...
 </code></pre>
-<p>Notice that the organization of the curly brackets produces a nested block structure; although for this simple case the inside set of brackets could be omitted, it’s usually best practice to include them, as they illustrate exactly which statement is controlled by the preceding <code>if</code>.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a></p>
-<p>If-statements can control multiple conditions, and sometimes it helps to break <code>awk</code> programs over multiple lines to help with their readability, especially when they are included in executable scripts. This sophisticated statement adds a new first column that categorizes each HSP as either “great,” “good,” or “ok,” depending on the E value, printing only the two IDs and the E value (columns 1, 2, and 10):</p>
+<p>If we want to get a bit more complex, <code>awk</code> allows us to use if-statements. The syntax is <code>{if(&lt;logical expression&gt;) {statments to execute} else if(logical expression) {statments to execute} else {statements to execute}}</code>. Notice that the organization of the curly brackets produces a nested block structure; for simple cases of a single if-statement, the inside set of brackets could be omitted, it’s usually best practice to include them, as they illustrate exactly which statement is controlled by the preceding <code>if</code>.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a></p>
+<p>If-statements can control multiple conditions, and sometimes it helps to break <code>awk</code> programs over multiple lines to help with their readability, especially when they are included in executable scripts. This sophisticated statement adds a new first column that categorizes each HSP as either “great,” “good,” or “ok,” depending on the <em>E</em> value, printing only the two IDs and the <em>E</em> value (columns 1, 2, and 10):</p>
 <pre id=part1-11-awk-mult-line
      class="language-txt 
             line-numbers 
@@ -657,13 +660,13 @@ YAL003W YAL003W 207     207     207     1    207     1     207    
 > }'</b>
 ...
 great YAL018C YAL018C 0.0
-good YAL018C YOL048C 4e-25
-great YAL019W YAL019W 0.0
-great YAL019W YOR290C 1e-84
-great YAL020C YAL020C 0.0
-great YAL021C YAL021C 0.0
-good YAL021C YOL042W 6e-27
-great YAL022C YAL022C 0.0
+good YAL018C YOL048C 2.73e-25
+great YAL017W YAL017W 0.0
+great YAL017W YOL045W 0.0
+great YAL016W YAL016W 0.0
+great YAL015C YAL015C 0.0
+great YAL015C YOL043C 9.01e-102
+great YAL014C YAL014C 0.0
 ...
 </code></pre>
 <p>It is easy enough to determine whether a particular column is equal to a given string, for example, to pull out all lines where the first column is <code>YAL054C</code>:</p>
@@ -674,9 +677,9 @@ great YAL022C YAL022C 0.0
 <code>
 [oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
-> awk '{if($1 == "YAL054C") {print $0}}'</b>
-YAL054C YAL054C 714     714     714     1       714     1       714     0.0
-YAL054C YLR153C 645     714     684     73      712     37      674     0.0
+> awk '$1 == "YAL054C" {print $0}'</b>
+YAL054C YAL054C 714 714 714 1   714 1   714 0.0
+YAL054C YLR153C 645 714 684 73  712 37  674 0.0
 </code></pre>
 <p>Mathematical computations are a nice feature of <code>awk</code>. For example, columns 4 and 5 contain the total length of the query sequence and subject sequence, respectively, so we might wish to print the ratio of these two as an additional column at the end.</p>
 <pre id=part1-11-awk-math
@@ -690,15 +693,15 @@ YAL054C YLR153C 645     714     684     73      712     37      67
 ...
 YAL017W YAL017W 1
 YAL017W YOL045W 1.2314
-YAL018C YAL018C 1
-YAL018C YOL048C 0.950437
-YAL019W YAL019W 1
-YAL019W YOR290C 0.664319
-YAL020C YAL020C 1
+YAL016W YAL016W 1
+YAL015C YAL015C 1
+YAL015C YOL043C 1.04987
+YAL014C YAL014C 1
+YAL013W YAL013W 1
 ...
 </code></pre>
 <p>We could then pipe the result to a <code>sort -k3,3g | tail -n 5</code> to see the five HSPs with the largest ratios. Beware, however, that when performing mathematical operations or comparisons with columns, any contents that can’t be parsed as a number (<code>1.5</code> can be, as can <code>2</code> and <code>4e-4</code>, but not <code>i5</code> or <code>NA</code>) may be truncated (e.g., <code>10x1</code> is treated as just <code>10</code>) or treated as <code>0</code>. Using sort on columns with <code>-g</code> can reveal such potential problems, as the same underlying method is used for parsing.</p>
-There are a variety of mathematical functions built into <code>awk</code>. Here’s a sample:
+<p>There are a variety of mathematical functions built into <code>awk</code>. Here’s a sample:</p>
 <ul style="list-style-type:none;">
 <li>
 <code>log()</code>
@@ -762,7 +765,7 @@ When given no arguments, returns a random number between 0 (inclusive) and 1 (ex
 <div class="fig center" style="width: 100%">
 <p><img src="images/part1-11-rows-and-columns.Rmd.images/I.11_13_awk_blast_or.png" /></p>
 </div>
-<p>Thus far, we haven’t made much use of the <code>BEGIN</code> or <code>END</code> blocks, which are especially handy when we define and update our own variables. We can accomplish this task with an <code>=</code> assignment (not to be confused with the <code>==</code> comparison). This command prints the average E values in our example BLAST result file.</p>
+<p>Thus far, we haven’t made much use of the <code>BEGIN</code> or <code>END</code> blocks, which are especially handy when we define and update our own variables. We can accomplish this task with an <code>=</code> assignment (not to be confused with the <code>==</code> comparison). This command prints the average <em>E</em> values in our example BLAST result file.</p>
 <pre id=part1-11-awk-BEGIN-END
      class="language-txt 
             line-numbers 
@@ -771,10 +774,10 @@ When given no arguments, returns a random number between 0 (inclusive) and 1 (ex
 [oneils@mbp ~/apcb/intro/blast]$ <b>cat yeast_blastp_yeast_top2.txt | \
 > grep -v '#' | \
 > awk 'BEGIN{sumeval = 0} {sumeval = sumeval + $10} END{print sumeval/NR}'</b>
-3.00206e-09
+2.98445e-09
 </code></pre>
-<p>This command works because the right-hand side of an assignment to a variable with <code>=</code> is evaluated before the assignment happens. Thus, in the <code>BEGIN</code> block, the <code>sumeval</code> variable is initialized to <code>0</code>, then for each line the value of <code>sumeval</code> is added to the contents of the tenth column (the E value of that line), and the result is stored in <code>sumeval</code>. Finally, in the <code>END</code> block, <code>sumeval</code> contains the total sum of E values, and we can divide this result by the number of lines processed, <code>NR</code>.</p>
-<p>We can execute multiple statements within a single block if we separate them with semicolons. In the above example, the average E value computed includes self-hits. We can filter them out with an if-statement before modifying <code>sumeval</code>, but then we won’t want to divide the result by <code>NR</code>, because that will include the self-hit counts as well. To solve this problem, we’ll need to keep <em>two</em> variables.</p>
+<p>This command works because the right-hand side of an assignment to a variable with <code>=</code> is evaluated before the assignment happens. Thus, in the <code>BEGIN</code> block, the <code>sumeval</code> variable is initialized to <code>0</code>, then for each line the value of <code>sumeval</code> is added to the contents of the tenth column (the <em>E</em> value of that line), and the result is stored in <code>sumeval</code>. Finally, in the <code>END</code> block, <code>sumeval</code> contains the total sum of <em>E</em> values, and we can divide this result by the number of lines processed, <code>NR</code>.</p>
+<p>We can execute multiple statements within a single block if we separate them with semicolons. In the above example, the average <em>E</em> value computed includes self-hits. We can filter them out with an if-statement before modifying <code>sumeval</code>, but then we won’t want to divide the result by <code>NR</code>, because that will include the self-hit counts as well. To solve this problem, we’ll need to keep <em>two</em> variables.</p>
 <pre id=part1-11-awk-2vars
      class="language-txt 
             line-numbers 
@@ -785,20 +788,20 @@ When given no arguments, returns a random number between 0 (inclusive) and 1 (ex
 > awk 'BEGIN{sumeval = 0; count = 0} \
 > {if($1 != $2){sumeval = sumeval + $10; count = count + 1}} \
 > END{print sumeval/count}'</b>
-9.06228e-09
+8.96057e-09
 </code></pre>
 <p>As before, some IDs are still present more than one time in the first column with this solution, so it may make better sense to first filter the desired lines by using the <code>awk</code> and <code>sort -k1,1d -u</code> solution from above, and then use another <code>awk</code> for the average computation.</p>
 <div id="exercises-9" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="rows-and-columns.html#exercises-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
-<li><p>In the file <a href="data/pz_blastx_yeast_top10.txt">pz_blastx_yeast_top10.txt</a>, how many HSPs (lines) have an E value that is less than 1e-30 <em>or</em> have an identity value of greater than 50%? Use <code>awk</code>, <code>wc</code>, and <code>grep</code> if needed to compute the answer.</p></li>
-<li><p>The file <a href="data/contig_stats.txt">contig_stats.txt</a> describes statistics for contigs from a de novo genome assembly (a contig is an assembled “piece” of the genome). The fourth column describes the GC content of the various contigs. Other analyses indicate that the majority of correctly assembled genes have an average coverage (second column) of between 80.0 and 150.0. Use <code>awk</code> to determine the average GC content for contigs with coverage between 80.0 and 150.0. Then use another invocation of <code>awk</code> to determine the average GC content for all other contigs. (Do not count the header line in the file in your computations.)</p></li>
+<li><p>In the file <a href="data/pz_blastx_yeast_top10.txt">pz_blastx_yeast_top10.txt</a>, how many HSPs (lines) have an <em>E</em> value that is less than 1e-30 <em>or</em> have an identity value of greater than 50%? Use <code>awk</code>, <code>wc</code>, and <code>grep</code> if needed to compute the answer.</p></li>
+<li><p>The file <a href="data/contig_stats.txt">contig_stats.txt</a> describes statistics for contigs from a <em>de novo</em> genome assembly (a contig is an assembled “piece” of the genome). The fourth column describes the GC content of the various contigs. Other analyses indicate that the majority of correctly assembled genes have an average coverage (second column) of between 80.0 and 150.0. Use <code>awk</code> to determine the average GC content for contigs with coverage between 80.0 and 150.0. Then use another invocation of <code>awk</code> to determine the average GC content for all other contigs. (Do not count the header line in the file in your computations.)</p></li>
 <li><p>The file <a href="data/PZ.annot.txt">PZ.annot.txt</a> is the result of a gene ontology (GO) analysis for the full set of assembled <em>Papilio zelicaon</em> cDNA sequences. Owing to the incomplete nature of the annotation process, not all sequences were assigned GO terms. How many different sequence IDs are represented in this file?</p></li>
 <li><p>Some versions of the sort program can sort lines in “random” order by using the <code>-R</code> flag. Rather than using this flag, however, use <code>grep</code>, <code>awk</code> (with the <code>rand()</code> feature), <code>sort</code> (without the <code>-R</code> flag), and <code>head</code> to select five random IDs from <a href="data/pz_cDNAs.fasta">pz_cDNAs.fasta</a>. An example output might look like:<br></p>
 <div class="fig center" style="width: 100%">
 <img src="images/part1-11-rows-and-columns.Rmd.images/I.11_16_fasta_exercise.png" />
 </div>
-<p><br>The same command should produce a different list of five IDs each time it is run.</p></li>
+<p>The same command should produce a different list of five IDs each time it is run.</p></li>
 </ol>
 </div>
 

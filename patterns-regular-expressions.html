@@ -477,12 +477,12 @@
 <div id="patterns-regular-expressions" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number">Chapter 12</span> Patterns (Regular Expressions)<a href="patterns-regular-expressions.html#patterns-regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In previous chapters, we used a simple <a href="data/fasta_stats.py"><code>fasta_stats</code></a> program to perform basic analyses on a FASTA file called <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a>, mostly as an excuse to learn about the standard streams and tools like <code>grep</code> and <code>sort</code>. It turns out that the information in the <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a> file provides us with many potential questions to ponder.</p>
-<p>The sequences in this file are actually a subset of putative transcripts, produced from a de novo transcriptome assembly for the butterfly <em>Papilio zelicaon</em>. Each sequence header line encodes a variety of information: the second and third columns of the header lines reveal the number of reads contributing to each assembled sequence and the average coverage of the sequence (defined as the total number of bases contributed by reads, divided by the assembled sequence length). Even the sequence IDs encode some information: they all start with a pseudorandom identifier, but some have a suffix like <code>_TY</code>.</p>
+<p>The sequences in this file are actually a subset of putative transcripts, produced from a <em>de novo</em> transcriptome assembly for the butterfly <em>Papilio zelicaon</em>. Each sequence header line encodes a variety of information: the second and third columns of the header lines reveal the number of reads contributing to each assembled sequence and the average coverage of the sequence (defined as the total number of bases contributed by reads, divided by the assembled sequence length). Even the sequence IDs encode some information: they all start with a pseudorandom identifier, but some have a suffix like <code>_TY</code>.</p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part1-12-patterns.Rmd.images/I.12_1_unix_133_pz_cdnas_less.png" /></p>
 </div>
 <p>Groups of sequences that share the same <code>_</code> suffix were previously identified as having shared matches using a self-BLAST. Sequence IDs without such a suffix had no matches. We might ask: how many sequences are in such a group? This could be easily answered by first using <code>grep</code> to extract lines that match <code>&gt;</code> (the header lines), and then using another <code>grep</code> to extract those with the pattern <code>_</code> (those in a group) before sending the result to <code>wc</code>.</p>
-<p>A more complex question would be to ask how many different groups are represented in the file. If the group information was stored in a separate column (say, the second column), this question could be answered with the same process as above, followed by a <code>sort -k2,2d -u</code> to remove duplicate group identifiers. But how can we coerce the group information into its own column? We could do this by <em>substituting</em> instances of <code>_</code> with spaces. The <code>sed</code> (Stream EDitor) tool can help us. Here’s the overall pipeline we’ll use:</p>
+<p>A more complex question would be to ask how many different groups are represented in the file. If the group information was stored in a separate column (say, the second column), this question could be answered with the same process as above, followed by a <code>sort -k2,2d -u</code> to remove duplicate group identifiers. But how can we coerce the group information into its own column? We could do this by <em>substituting</em> instances of <code>_</code> with a tab character. The <code>sed</code> (<strong>S</strong>tream <strong>ED</strong>itor) tool can help us. Here’s the overall pipeline we’ll use:</p>
 <pre id=part1-12-sed
      class="language-txt 
             line-numbers 
@@ -491,7 +491,7 @@
 [oneils@mbp ~/apcb/intro/fasta_stats]$ <b>cat pz_cDNAs.fasta | \
 > grep '>' | \
 > grep '_' | \
-<span style="background-color:LemonChiffon">> sed -r 's/_/ /' | \</span>
+<span style="background-color:LemonChiffon">> sed -r 's/_/\t/' | \</span>
 > sort -k2,2d -u | \
 > less -S
 </b></code></pre>
@@ -502,10 +502,10 @@
             linkable-line-numbers">
 <code>
 <b>...
->PZ7180000000067 AF nReads=16 cov=12.0608
->PZ7180000028269 AFW nReads=3 cov=2.97992
->PZ7180000036480 AIJ nReads=11 cov=4.61416
->PZ783221 AOC nReads=1 cov=1
+>PZ7180000000067    AF nReads=16 cov=12.0608
+>PZ7180000028269    AFW nReads=3 cov=2.97992
+>PZ7180000036480    AIJ nReads=11 cov=4.61416
+>PZ783221   AOC nReads=1 cov=1
 ...
 </b></code></pre>
 <div id="sed" class="section level6 unnumbered">
@@ -520,7 +520,7 @@
 <div id="regular-expressions" class="section level3 unnumbered hasAnchor">
 <h3>Regular Expressions<a href="patterns-regular-expressions.html#regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The true power of <code>sed</code> comes not from its ability to replace text, but from its utility in replacing text based on “patterns” or, more formally, <em>regular expressions</em>. A regular expression is a syntax for describing pattern matching in strings. Regular expressions are described by the individual characters that make up the pattern to search for, and “meta-operators” that modify parts of the pattern for flexibility. In <code>[ch]at</code>, for example, the brackets function as a meta-operator meaning “one of these characters,” and this pattern matches both <code>cat</code> and <code>hat</code>, but not <code>chat</code>. Regular expressions are often built by chaining smaller expressions, as in <code>[ch]at on the [mh]at</code>, matching <code>cat on the hat</code>, <code>cat on the mat</code>, <code>hat on the hat</code>, and <code>hat on the mat</code>.</p>
-<p>In the example above, the entire pattern was specified by <code>_</code>, which is not a meta-operator of any kind, and so each instance of <code>_</code> was replaced by the replacement (a space character). The meta-operators that are supported by regular expressions are many and varied, but here’s a basic list along with some biologically inspired examples:</p>
+<p>In the example above, the entire pattern was specified by <code>_</code>, which is not a meta-operator of any kind, and so each instance of <code>_</code> was replaced by the replacement (a tab character). The meta-operators that are supported by regular expressions are many and varied, but here’s a basic list along with some biologically inspired examples:</p>
 <ul style="list-style-type:none;">
 <li>
 non-meta-operator characters or strings
@@ -585,7 +585,8 @@ Modifies the preceding pattern so that it matches if it occurs between <code>x</
 <code>ATCCGCGGCTC</code> to <code>AT_X_TC</code><br>
 <code>ATCGCGCGGCCCGTTCGGGCCT</code> to <code>AT_X_CCGTT_X_T</code>
 </blockquote>
-Using <code>{0,1}</code> has the effect of making what it follows optional in the pattern, and <code>{x,}</code> has the effect of allowing the pattern to match x or more times with no upper limit.
+<p>Using <code>{0,1}</code> has the effect of making what it follows optional in the pattern, and <code>{x,}</code> has the effect of allowing the pattern to match x or more times with no upper limit.</p>
+Note that when <code>x</code> is equal to <code>y</code>, it is redundant to specify both, so we can simplify, i.e., instead of <code>{3,3}</code>, we can simply use <code>{3}</code>.
 </li>
 </ul>
 <li>
@@ -623,7 +624,7 @@ Match either the pattern <code>&lt;pattern x&gt;</code> or the pattern<code>&lt;
 </ul>
 </ul>
 </ul>
-<p>Using these pieces, we can put together a regular expression that serves as a simple (and not actually useful in practice) open reading frame finder. For prokaryotic sequences (where introns are not a consideration), we’ll define these as a start codon <code>ATG</code>, followed by one or more codons, followed by one of the three canonical stop codons <code>TAA</code>, <code>TAG</code>, or <code>TGA</code>. The pattern for the start is <code>ATG</code>, and we’ve seen how we can encode a stop above, with <code>((TAA)|(TAG)|(TGA))</code>. How about “one or more codons?” Well, “one or more” is embodied in the <code>+</code> operator, and a codon is any three A’s, T’s, C’s, or G’s. So, “one or more codons” is encoded as (<code>[ACTG]{3,3})+</code>. Thus the regular expression for our simple open reading frame finder is:</p>
+<p>Using these pieces, we can put together a regular expression that serves as a simple (and not actually useful in practice) open reading frame finder. For prokaryotic sequences (where introns are not a consideration), we’ll define these as a start codon <code>ATG</code>, followed by one or more codons, followed by one of the three canonical stop codons <code>TAA</code>, <code>TAG</code>, or <code>TGA</code>. The pattern for the start is <code>ATG</code>, and we’ve seen how we can encode a stop above, with <code>((TAA)|(TAG)|(TGA))</code>. How about “one or more codons”? Well, “one or more” is embodied in the <code>+</code> operator, and a codon is any three A’s, T’s, C’s, or G’s. So, “one or more codons” is encoded as <code>([ACTG]{3,3})+</code>. Thus the regular expression for our simple open reading frame finder is:</p>
 <div class="fig center" style="width: 100%">
 <p><img src="images/part1-12-patterns.Rmd.images/I.12_5_regex_orf.png" /></p>
 </div>
@@ -648,7 +649,7 @@ T_ORF_CTTTTAG
 </div>
 <div id="character-classes-and-regular-expressions-in-other-tools" class="section level3 unnumbered hasAnchor">
 <h3>Character Classes and Regular Expressions in Other Tools<a href="patterns-regular-expressions.html#character-classes-and-regular-expressions-in-other-tools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We often wish to use charset brackets to match any one of a “class” of characters; for example, <code>[0123456789]</code> matches any single digit. Most regular expression syntaxes (including that used by <code>sed</code>) allow a shorthand version <code>[0-9]</code> (if we wanted to match only a 0, 9, or -, we could use <code>[09-]</code>). Similarly, <code>[a-z]</code> matches any single lowercase letter, and <code>[A-Z]</code> any uppercase letter. These can even be combined: <code>[A-Za-z0-9]</code> matches any digit or letter. In the POSIX extended syntax used by <code>sed</code>, <code>0-9</code> can also be specified as <code>[:digit:]</code>. Notice the lack of brackets in the former—to actually match any single digit, the regular expression is <code>[[:digit:]]</code> (which, yes, is annoying). To match any nondigit, we can negate the bracketed set as <code>[^[:digit:]]</code>.</p>
+<p>We often wish to use charset brackets to match any one of a “class” of characters; for example, <code>[0123456789]</code> matches any single digit. Most regular expression syntaxes (including that used by <code>sed</code>) allow a shorthand version <code>[0-9]</code> (if we wanted to match only a 0, 9, or -, we could use <code>[09-]</code>). Similarly, <code>[a-z]</code> matches any single lowercase letter, and <code>[A-Z]</code> any uppercase letter. These can even be combined: <code>[A-Za-z0-9]</code> matches any digit or letter. In the POSIX extended syntax used by <code>sed</code>, <code>0-9</code> can also be specified as <code>[:digit:]</code>. Notice the lack of brackets in the former — to actually match any single digit, the regular expression is <code>[[:digit:]]</code> (which, yes, is annoying). To match any nondigit, we can negate the bracketed set as <code>[^[:digit:]]</code>.</p>
 <p>These POSIX character classes are especially useful when we want to match character types that are difficult to type or enumerate. In particular, <code>[[:space:]]</code> matches one of any <a href="using-bioinformatics-software.html#whitespace">whitespace</a> character (spaces, tabs, newlines), and <code>[[:punct:]]</code> matches any “punctuation” character, of which there are quite a few. The <code>[[:space:]]</code> character class is particularly helpful when you are reformatting data stored in rows and columns but are not sure whether the column separators are spaces, tabs, or some combination.</p>
 <p>In many regular expression syntaxes (including those used by Perl, Python, R, and some versions of <code>sed</code>), even shorter shortcuts for character classes are available. In these, <code>\d</code> is equivalent to <code>[[:digit:]]</code>, <code>\D</code> is equivalent to <code>[^[:digit:]]</code>, <code>\s</code> for <code>[[:space:]]</code>, <code>\S</code> for <code>[^[:space:]]</code>, among others.</p>
 <p>As it turns out, regular expressions can be utilized by <code>grep</code> as well as <code>awk</code>. When using <code>grep</code>, we can specify that the pattern should be treated as an extended regular expression by adding the flag <code>-E</code> (as opposed to the <code>-r</code> used for <code>sed</code>.) Thus <code>grep -E '[[:digit:]]+'</code> extracts lines that contain an integer.</p>
@@ -733,16 +734,10 @@ The quick sed regex modifies the<br>
 the lazy awk output.
 </blockquote>
 <p>A few final notes about sed and regular expressions in general will help conclude this chapter.</p>
-<ol>
-<li>
-Regular expressions, while powerful, lend themselves to mistakes. Work incrementally, and regularly check the results.
-</li>
-<li>
-It is often easier to use multiple invocations of regular expressions (e.g., with multiple <code>sed</code> commands) rather than attempt to create a single complex expression.
-</li>
-<li>
-Use regular expressions where appropriate, but know that they are not always appropriate. Many problems that might seem a natural fit for regular expressions are also naturally fit by other strategies, which should be taken into consideration given the complexity that regular expressions can add to a given command or piece of code.
-</li>
+<ol style="list-style-type: decimal">
+<li>Regular expressions, while powerful, lend themselves to mistakes. Work incrementally, and regularly check the results.</li>
+<li>It is often easier to use multiple invocations of regular expressions (e.g., with multiple <code>sed</code> commands) rather than attempt to create a single complex expression.</li>
+<li>Use regular expressions where appropriate, but know that they are not always appropriate. Many problems that might seem a natural fit for regular expressions are also naturally fit by other strategies, which should be taken into consideration given the complexity that regular expressions can add to a given command or piece of code.</li>
 </ol>
 <blockquote>
 <p>
@@ -755,7 +750,7 @@ Some people, when confronted with a problem, think, “I know, I’ll use regula
 <div id="exercises-10" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="patterns-regular-expressions.html#exercises-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
-<li><p>In the de novo assembly statistics file <a href="data/contig_stats.txt"><code>contig_stats.txt</code></a>, the contig IDs are named as <code>NODE_1</code>, <code>NODE_2</code>, and so on. We’d prefer them to be named <code>contig1</code>, <code>contig2</code>, and the like. Produce <code>contig_stats_renamed.txt</code> with these changes performed.</p></li>
+<li><p>In the <em>de novo</em> assembly statistics file <a href="data/contig_stats.txt"><code>contig_stats.txt</code></a>, the contig IDs are named as <code>NODE_1</code>, <code>NODE_2</code>, and so on. We’d prefer them to be named <code>contig1</code>, <code>contig2</code>, and the like. Produce <code>contig_stats_renamed.txt</code> with these changes performed.</p></li>
 <li><p>How many sequences in the file <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a> are composed of only one read? You will likely need to use both <code>awk</code> and <code>sed</code> here, and be sure to carefully check the results of your pipeline with <code>less</code>.</p></li>
 <li><p>A particularly obnoxious colleague insists that in the file <a href="data/pz_cDNAs.fasta"><code>pz_cDNAs.fasta</code></a>, sequences that are not part of any group (i.e., those that have no <code>_</code> suffix) should have the suffix <code>_nogroup</code>. Appease this colleague by producing a file to this specification called <code>pz_cDNAs_fixed.fasta</code>.</p></li>
 <li><p>The header lines in the yeast protein set <a href="data/orf_trans.fasta"><code>orf_trans.fasta</code></a> look like so when viewed with <code>less -S</code> after grepping for <code>&gt;</code>:<br></p>
