@@ -131,7 +131,7 @@ BCCDFFEFHHHHHJJJJJIJIJJIJJJJJIIGIIIDFIIJIJIFHIJGGIGIJJJIJHJIGHGDIJCEEGHIGIGCACEF
 
 The above shows the first 12 lines of a FASTQ file generated on an Illumina HiSeq 2000. The first line in each set of four represents an identifier for the sequence read, the second line contains the sequence itself, the third line is often unused (containing only a `+`, though it may be followed by the identifier and other optional data), and the fourth line contains the "quality" of each base in the sequence encoded as a character. (The encoding has varied in the past, but in recent years, sequencing companies have standardized the encoding used by Sanger sequencing machines.)
 
-With a bit of modified syntax, `tail` can also be used to extract all lines of a file starting at a given line. As an example, `tail -n +5 input.fastq > test.fastq` would result in `test.fastq` having all but the first sequence record of `input.fastq` (i.e., starting at the fifth line). This feature is especially useful for stripping off header lines of output or files before further processing, as in `./fasta_stats.py pz_cDNAs.fasta | tail -n +9`, rather than using g`rep -v '#'` above.
+With a bit of modified syntax, `tail` can also be used to extract all lines of a file starting at a given line. As an example, `tail -n +5 input.fastq > test.fastq` would result in `test.fastq` having all but the first sequence record of `input.fastq` (i.e., starting at the fifth line). This feature is especially useful for stripping off header lines of output or files before further processing, as in `./fasta_stats.py pz_cDNAs.fasta | tail -n +9`, rather than using `grep -v '#'` above.
 
 <div class="exercises">
 #### Exercises {-}

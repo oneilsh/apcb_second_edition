@@ -19,7 +19,7 @@ The first command that we'll learn for the Unix command line is `echo`, which pr
 hello there
 </code></pre>
 
-Let's break down the command prompt and the program that we ran, which consisted of a program name and several parameters, separated by spaces. In the code below, the command prompt consists of `[oneils@mpb ~]$`.
+Let's break down the command prompt and the program that we ran, which consisted of a program name and several parameters, separated by spaces. In the code below, the command prompt consists of `[oneils@mbp ~]$`.
 
 <pre id=part1-03-export-echo
      class="language-txt 
@@ -256,7 +256,7 @@ We can change the present working directory — that is, move to another directo
 
 ###### {- #tilda}
 
-Notice that the command prompt has changed to illustrate the present working directory: now it shows `oneils@mpb /home$`, indicating that I am in `/home`. This is a helpful reminder of where I am in the file system as I work. Previously, it showed only `~`, which is actually a shortcut for `$HOME`, itself a shortcut for the absolute path to my home directory. Consequently, there are a number of ways to go back to my home directory: `cd /home/oneils`, or `cd $HOME`, or `cd ~`, or even just `cd` with no arguments, which defaults to moving to `$HOME`.
+Notice that the command prompt has changed to illustrate the present working directory: now it shows `oneils@mbp /home$`, indicating that I am in `/home`. This is a helpful reminder of where I am in the file system as I work. Previously, it showed only `~`, which is actually a shortcut for `$HOME`, itself a shortcut for the absolute path to my home directory. Consequently, there are a number of ways to go back to my home directory: `cd /home/oneils`, or `cd $HOME`, or `cd ~`, or even just `cd` with no arguments, which defaults to moving to `$HOME`.
 
 <pre id=part1-03-home
      class="language-txt 
