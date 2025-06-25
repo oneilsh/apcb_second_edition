@@ -85,7 +85,7 @@ Other protocols of note include FTP (file transfer protocol) and its secure vers
 
 ### Logging Out {-}
 
-Once finished working with the remote computer, we should log out of the SSH session. Logging out is accomplished by running the command `exit` on the command line until returned to the local desktop or the SSH client program closes the connection. Alternatively, it suffices to close the SSH client program or window — SSH will close the connection, and no harm will be done. Note, however, than any currently executing program will be killed on logout.
+Once finished working with the remote computer, we should log out of the SSH session. Logging out is accomplished by running the command `exit` on the command line until returned to the local desktop or the SSH client program closes the connection. Alternatively, it suffices to close the SSH client program or window — SSH will close the connection, and no harm will be done. Note, however, that any currently executing program will be killed on logout.
 
 If you are working on a remotely hosted virtual machine, it's a good idea to also suspend the instance so that time spent not working isn't counted against your usage limit.
 
