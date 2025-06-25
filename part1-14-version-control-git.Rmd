@@ -173,7 +173,7 @@ Or, more concisely
 * <span style="color: Goldenrod">0a85fe8</span> Added runhmmer.sh
 </code></pre>
 
-### Viewing changes bewteen commits {-}
+### Viewing changes between commits {-}
 
 Notice that each commit is identified by a long series of letters and numbers, such as `5fb66e0292...`: this is the commit hash. To see the differences between two commits, we can run `git diff` with just the first few characters of each identifier, as in `git diff 5fb66e0 0a85fe8`. The output format isn’t remarkably readable by default.
 
