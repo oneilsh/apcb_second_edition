@@ -270,7 +270,7 @@
 <ul>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
-<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-between-commits"><i class="fa fa-check"></i>Viewing changes between commits</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
@@ -586,7 +586,7 @@ BCCDFFEFHHHHHJJJJJIJIJJIJJJJJIIGIIIDFIIJIJIFHIJGGIGIJJJIJHJIGHGDIJCEEGHIGIGCACEF
 ...</b>
 </code></pre>
 <p>The above shows the first 12 lines of a FASTQ file generated on an Illumina HiSeq 2000. The first line in each set of four represents an identifier for the sequence read, the second line contains the sequence itself, the third line is often unused (containing only a <code>+</code>, though it may be followed by the identifier and other optional data), and the fourth line contains the “quality” of each base in the sequence encoded as a character. (The encoding has varied in the past, but in recent years, sequencing companies have standardized the encoding used by Sanger sequencing machines.)</p>
-<p>With a bit of modified syntax, <code>tail</code> can also be used to extract all lines of a file starting at a given line. As an example, <code>tail -n +5 input.fastq &gt; test.fastq</code> would result in <code>test.fastq</code> having all but the first sequence record of <code>input.fastq</code> (i.e., starting at the fifth line). This feature is especially useful for stripping off header lines of output or files before further processing, as in <code>./fasta_stats.py pz_cDNAs.fasta | tail -n +9</code>, rather than using g<code>rep -v '#'</code> above.</p>
+<p>With a bit of modified syntax, <code>tail</code> can also be used to extract all lines of a file starting at a given line. As an example, <code>tail -n +5 input.fastq &gt; test.fastq</code> would result in <code>test.fastq</code> having all but the first sequence record of <code>input.fastq</code> (i.e., starting at the fifth line). This feature is especially useful for stripping off header lines of output or files before further processing, as in <code>./fasta_stats.py pz_cDNAs.fasta | tail -n +9</code>, rather than using <code>grep -v '#'</code> above.</p>
 <div id="exercises-8" class="section level4 unnumbered hasAnchor exercises">
 <h4>Exercises<a href="sorting-first-and-last-lines.html#exercises-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">

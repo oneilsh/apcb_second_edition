@@ -270,7 +270,7 @@
 <ul>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#configuring-git"><i class="fa fa-check"></i>Configuring <code>git</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#initializing-a-repo"><i class="fa fa-check"></i>Initializing a Repo</a></li>
-<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-bewteen-commits"><i class="fa fa-check"></i>Viewing changes bewteen commits</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#viewing-changes-between-commits"><i class="fa fa-check"></i>Viewing changes between commits</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#keep-files-untracked-with-.gitignore"><i class="fa fa-check"></i>Keep files untracked with <code>.gitignore</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#branching"><i class="fa fa-check"></i>Branching</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remote-repos"><i class="fa fa-check"></i>Remote Repos</a></li>
@@ -530,7 +530,7 @@ YEL075C   YER189W  123     123     123     1       123     1       123     3.47e
 </b></code></pre>
 <p>In theory, at this point we should be able to replace the <code>less -S</code> with a <code>wc</code> to count the lines, and thus counting the number of sequences that had matches to other sequences. Unfortunately, in this case, theory doesn’t align with reality: inspecting the output above reveals that ID <code>YDR545W</code> is still represented by two lines, so this sequence would be counted twice.</p>
 <p>Why? In the BLAST command, we requested the top two HSPs per query with <code>-max_target_seqs 2</code> and <code>-max_hsps 1</code>, so we expected that the best HSP would be to the sequence itself, with the second best (if it existed) to be to a non-self-hit. But in this case, <code>blastx</code> decided to report two non-self-hits. In fact, if we were to inspect <code>YDR545W</code>, <code>YOR396W</code>, and <code>YLR467W</code>, we’d find that their sequences are identical, and so BLAST needed to pick two HSPs out of the three-way tie.</p>
-<p>In order to get the correct number of sequences that had matches to others, we need to remove any duplicates that might still be found in the first column. We can do this by adding a <code>sort -k1,1d -u</code>, for a final answer of 2,884.</p>
+<p>In order to get the correct number of sequences that had matches to others, we need to remove any duplicates that might still be found in the first column. We can do this by adding a <code>sort -k1,1d -u</code>, for a final answer of 2,989.</p>
 <pre id=part1-11-awk-sort
      class="language-txt 
             line-numbers 
